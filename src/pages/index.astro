@@ -1,53 +1,56 @@
 ---
-// 首页：置顶重点解读 + 最新文章 + 订阅 CTA（对标 Rest of World 首页逻辑）
+// 首页：tldr.tech 风格
+// H1 + 单 Subscribe 按钮 + 社会证明 + 每条"标题 + 来源域 + 阅读时长"
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const posts = (await getCollection('posts'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const topics = await getCollection('topics');
-const countries = await getCollection('countries');
-const series = await getCollection('series');
----
-<BaseLayout title="MY Policy Desk — Malaysia & ASEAN Policy, Trade, Economy" description="Malaysia and ASEAN policy, trade, and economy decoded for foreign buyers, importers, and investors.">
-  <h1>Policy, Trade & Economy — Decoded for Foreign Buyers</h1>
-  <p class="muted">Malaysia & ASEAN. Neutral, source-backed analysis with a focus on what policy means for supply and cost.</p>
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 20);
 
-  <section>
-    <h2 style="font-size:20px;margin-top:28px;">Latest</h2>
+// 从 URL 提取来源域
+function domain(url: string) {
+  try { return new URL(url).hostname.replace('www.', ''); }
+  catch { return 'official'; }
+}
+---
+<BaseLayout
+  title="Malaysia World Brief — See the world, clearly"
+  description="Neutral, source-backed policy and trade trends for Malaysian businesses. 5 minutes a day. Free email."
+>
+  <section style="text-align:center;padding:48px 16px 32px;">
+    <h1 style="font-size:42px;line-height:1.15;max-width:760px;margin:0 auto 16px;">
+      See the world, clearly.<br/>5 minutes a day.
+    </h1>
+    <p style="font-size:18px;color:#555;max-width:560px;margin:0 auto 24px;">
+      Neutral, source-backed policy and trade trends decoded for Malaysian businesses — what changed, what it means for your bottom line, what to do this week.
+    </p>
+    <a href="/subscribe/" class="btn-primary" style="display:inline-block;padding:14px 32px;font-size:16px;font-weight:700;">
+      Get the free daily email
+    </a>
+    <p style="margin-top:14px;font-size:13px;color:#888;">
+      Join Malaysian traders, exporters, and investors reading the trends before they hit the headlines.
+    </p>
+  </section>
+
+  <section style="max-width:760px;margin:0 auto;padding:0 16px;">
+    <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:1px;color:#888;border-bottom:1px solid #e5e7eb;padding-bottom:8px;">
+      Today's brief
+    </h2>
     {posts.length === 0 && <p class="muted">No articles yet.</p>}
     {posts.map((post) => (
-      <div class="card">
-        <a href={`/articles/${post.id}/`}>
-          <strong>{post.data.title}</strong>
-          <div class="muted">{post.data.description}</div>
-        </a>
-      </div>
+      <a href={`/articles/${post.id}/`} style="display:block;padding:16px 0;border-bottom:1px solid #f0f1f3;text-decoration:none;color:inherit;">
+        <div style="font-size:16px;font-weight:600;line-height:1.4;">{post.data.title}</div>
+        <div style="font-size:13px;color:#888;margin-top:4px;">
+          {post.data.sources?.[0]?.name?.split(' ')[0] || 'Malaysia World Brief'} · {post.data.pubDate.toLocaleDateString('en-GB')} · ~6 min read
+        </div>
+      </a>
     ))}
   </section>
 
-  <section>
-    <h2 style="font-size:20px;margin-top:28px;">Topics</h2>
-    {topics.map((t) => (
-      <a href={`/topics/${t.data.slug}/`} style="margin-right:14px;">{t.data.title}</a>
-    ))}
+  <section style="text-align:center;margin:40px 0;">
+    <a href="/subscribe/" style="font-size:15px;color:#1f6feb;font-weight:600;">
+      Get the free daily email →
+    </a>
   </section>
-
-  <section>
-    <h2 style="font-size:20px;margin-top:28px;">Countries</h2>
-    {countries.map((c) => (
-      <a href={`/countries/${c.data.slug}/`} style="margin-right:14px;">{c.data.title}</a>
-    ))}
-  </section>
-
-  <section>
-    <h2 style="font-size:20px;margin-top:28px;">Series</h2>
-    {series.map((s) => (
-      <a href={`/series/${s.data.slug}/`} style="margin-right:14px;">{s.data.title}</a>
-    ))}
-  </section>
-
-  <div class="callout">
-    <strong>Membership</strong> — Unlock daily & weekly briefs, full podcast audio, and trend projections. <a href="/subscribe/">Subscribe →</a>
-  </div>
 </BaseLayout>
