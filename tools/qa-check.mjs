@@ -77,6 +77,24 @@ function checkFile(file) {
   // 对比表 + 定义块
   if (!content.includes('|') || !content.match(/\|[\s-]+\|/)) msgs.push('缺对比表');
   if (!content.includes('**术语**')) msgs.push('缺定义块（> **术语** — 释义）');
+
+  // --- v2.0 论文内核：可信度三类标注（硬规则）---
+  const hasFact = /Confirmed fact|已确认事实/i.test(content);
+  const hasInference = /Reasonable inference|合理推断/i.test(content);
+  const hasView = /Our view|My view|我们的观点|我的观点/i.test(content);
+  if (!hasFact) msgs.push('缺【已确认事实 / Confirmed fact】标注');
+  if (!hasInference) msgs.push('缺【合理推断 / Reasonable inference】标注');
+  if (!hasView) msgs.push('缺【我的观点 / Our view】标注');
+
+  // --- v2.0 论文内核：反面论证段（硬规则，护城河）---
+  if (!/What would make this wrong|counterargument|反面/i.test(content)) {
+    msgs.push('缺【反面论证 / What would make this wrong】段（护城河，免费来源不写）');
+  }
+  // --- v2.0 论文内核：局限段（硬规则）---
+  if (!/(##\s*)?Limits|What we do not yet know|局限/i.test(content)) {
+    msgs.push('缺【局限 / Limits】段（论文 limitation）');
+  }
+
   // 词数 1500–2500
   const words = content.replace(/[#*>`_|]/g, ' ').trim().split(/\s+/).length;
   if (words < 1500 || words > 2500) msgs.push(`正文字数 ${words} 不在 1500–2500`);

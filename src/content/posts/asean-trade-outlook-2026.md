@@ -112,6 +112,20 @@ The table's buyer implication column is the actionable layer. A stable 8.7% shar
 
 ## How we calculated this
 
+**Confirmed fact.** The 8.7% global merchandise share, the 30% electronics share, the 2.9% 2026 growth projection, and the 9,000 aligned tariff lines are read from ASEAN Secretariat releases and IMF projections.
+
+**Reasonable inference.** The recommendation to diversify across two ASEAN hubs, and the read that a single hub disruption moves regional prices within days, follows from the concentration numbers plus regional component flows; it is not itself an official forecast.
+
+**Our view.** The directional stance—that moderate growth means normal supply-chain stress rather than a buyer's or a seller's market—is an editorial judgment about how to position procurement plans.
+
+## What would make this wrong
+
+The diversification recommendation is wrong if regional value chains are more decoupled than the Secretariat data suggests, or if a buyer's product set genuinely has only one qualified ASEAN supplier. The concentration thesis is also wrong if new capacity in Vietnam or Thailand dilutes electronics clustering faster than currently projected. Re-check the share figures quarterly against national sources.
+
+## Limits
+
+We do not yet have a supplier-level map of which firms rely on single hubs, so the two-hub recommendation is a planning default rather than a tailored audit. Tariff-line alignment is reported in aggregate, not product-by-product; a buyer must check its own HS codes. The 2.9% growth projection is an IMF figure, not a firm output number.
+
 All values are read directly from ASEAN Secretariat and IMF sources; projections are directional and must be re-verified before publication. The 9,000 tariff-line count is reported as the cumulative aligned-line figure for the 2024–2026 implementation phase, not as a forecast. No independent arithmetic beyond comparing stated values is performed in this test sample.
 
 ## FAQ

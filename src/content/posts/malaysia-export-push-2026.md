@@ -115,6 +115,22 @@ The practical read across the table is that Malaysia is not the lowest-cost hub 
 
 ## How we calculated this
 
+**Confirmed fact.** The RM 2.03 trillion export value, the 24.5% electronics share, the RM 372.5 billion approved-investment figure, and the RM 90 billion / 150,000-job roadmap targets are read directly from MITI, MIDA, MATRADE releases and the Semiconductor Strategic Roadmap. No arithmetic beyond reading stated values.
+
+**Reasonable inference.** The 18-to-30-month lead time and the expectation that commodity-grade electronics supply tightens are derived from the stated incentive weighting plus industry norms, not from a single official forecast.
+
+**Our view.** The counterintuitive read—that stronger export performance can mean slower supply for small general-order buyers—is an editorial judgment about how incentive-eligible suppliers prioritize their order book.
+
+## What would make this wrong
+
+This thesis breaks if any of the following happens: the RM 372.5 billion approval figure is not translating into actual ground-breakings within 12 months; MIDA incentive recipients keep general-order capacity as a condition of approval rather than shifting to high-value contracts; or a global demand shock cuts electronics export volume enough that surplus capacity reopens. Buyers who plan around this article should re-check the approval-to-production conversion quarterly, not once.
+
+## Limits
+
+We do not yet know which specific suppliers hold advanced-packaging exposure; the roadmap names a segment, not a qualified supplier list. Peer-hub comparison columns are illustrative and not sourced for this article. Currency moves between ringgit and the buyer's home currency are outside this directional read. All figures are assumptions for this test sample and must be re-verified against current primary sources before publication.
+
+## How we calculated this
+
 Figures are taken directly from the cited official sources (MITI, MIDA, MATRADE) and the Semiconductor Strategic Roadmap. No arithmetic beyond reading stated values; the 24.5% electronics share is compared against the RM 2.03 trillion total only to size the segment, not to derive a precise figure. All figures are assumptions for this test sample and must be re-verified against current primary sources before publication. Peer-hub columns are illustrative and are not sourced for this article; they appear to frame the comparison, not to state verified numbers.
 
 ## FAQ
