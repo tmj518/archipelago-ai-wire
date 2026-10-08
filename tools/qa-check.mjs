@@ -71,12 +71,27 @@ function checkFile(file) {
     if (m) msgs.push(`模糊词: "${m[0]}"`);
   });
 
-  // --- 正文结构（硬性结构）---
-  const sections = ['## What happened', '## Why now', '## So what', '## For you', '## The data point', '## How we calculated this', '## FAQ'];
-  sections.forEach((s) => { if (!content.includes(s)) msgs.push(`缺章节: ${s}`); });
-  // 对比表 + 定义块
-  if (!content.includes('|') || !content.match(/\|[\s-]+\|/)) msgs.push('缺对比表');
-  if (!content.includes('**术语**')) msgs.push('缺定义块（> **术语** — 释义）');
+  // --- 正文结构（v2.0 新模板优先；旧 V6.1 兼容）---
+  // v2.0 九段：ANSWER / What changed / Evidence chain / What would make this wrong / Limits / Impact by role / Action / FAQ
+  const v20 = [
+    /ANSWER/i, /What changed/i, /Evidence chain/i,
+    /What would make this wrong/i, /Limits/i,
+    /Impact by role/i, /Action/i, /## FAQ/i,
+  ];
+  const v61 = [
+    '## What happened', '## Why now', '## So what', '## For you',
+    '## The data point', '## How we calculated this', '## FAQ',
+  ];
+  const hasV20 = v20.every((re) => re.test(content));
+  const hasV61 = v61.every((s) => content.includes(s));
+  if (!hasV20 && !hasV61) {
+    // 两套都缺，列出缺的
+    v20.forEach((re, i) => { if (!re.test(content)) msgs.push(`v2.0 缺: ${re.source}`); });
+    v61.forEach((s) => { if (!content.includes(s)) msgs.push(`v6.1 缺: ${s}`); });
+  }
+  // 对比表 + 定义块（v2.0 降为提示，不 BLOCK）
+  // if (!content.includes('|') || !content.match(/\|[\s-]+\|/)) msgs.push('缺对比表');
+  // if (!content.includes('**术语**')) msgs.push('缺定义块（> **术语** — 释义）');
 
   // --- v2.0 论文内核：可信度三类标注（硬规则）---
   const hasFact = /Confirmed fact|已确认事实/i.test(content);
