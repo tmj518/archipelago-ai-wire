@@ -12,9 +12,10 @@ from pathlib import Path
 from typing import Optional
 
 import yaml
+from dotenv import load_dotenv
 
 try:
-    from crewai import Agent, Task, Crew, Process
+    from crewai import Agent, Task, Crew, Process, LLM
     CREWAI_AVAILABLE = True
 except ImportError:
     CREWAI_AVAILABLE = False
@@ -24,8 +25,28 @@ from storm.perspective import build_perspective_prompts, merge_perspectives
 from storm.parallel_research import parallel_research
 from storm.conversation import simulate_conversation, must_have_sections
 
+# 加载 .env
+load_dotenv(Path(__file__).parent / ".env")
+
 CONFIG_DIR = Path(__file__).parent / "config"
 OUTPUT_DIR = Path(__file__).parent / "output"
+
+
+def _build_llm(role: str) -> "LLM":
+    """
+    按角色返回 LLM 实例。写稿/质检分离（PROJECT_SPEC §1 原则 1）。
+    豆包 ARK 是 OpenAI 兼容端点，CrewAI 的 LLM 直接支持。
+    """
+    api_key = os.environ.get("ARK_API_KEY") or os.environ.get("OPENAI_API_KEY")
+    base_url = os.environ.get("ARK_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3")
+    model = os.environ.get("WRITER_MODEL", "doubao-pro-32k")
+    if role in ("fact_checker", "neutrality_auditor", "polish_editor", "deployer"):
+        model = os.environ.get("AUDITOR_MODEL", "doubao-pro-128k")
+    return LLM(
+        model=f"openai/{model}",
+        api_key=api_key,
+        base_url=base_url,
+    )
 
 
 def _load_yaml(name: str) -> dict:
@@ -33,8 +54,8 @@ def _load_yaml(name: str) -> dict:
         return yaml.safe_load(f)
 
 
-def build_agents(llm=None) -> dict:
-    """从 agents.yaml 实例化 11 个 Agent。llm 可注入不同模型（写稿/质检分离）。"""
+def build_agents() -> dict:
+    """从 agents.yaml 实例化 11 个 Agent。写稿/质检分离：不同角色用不同 LLM。"""
     if not CREWAI_AVAILABLE:
         return {}
     cfg = _load_yaml("agents.yaml")
@@ -46,7 +67,7 @@ def build_agents(llm=None) -> dict:
             backstory=spec["backstory"],
             verbose=spec.get("verbose", True),
             allow_delegation=spec.get("allow_delegation", False),
-            llm=llm,
+            llm=_build_llm(key),
         )
     return agents
 

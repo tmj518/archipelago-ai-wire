@@ -12,3 +12,12 @@ tools/_*.log
 # OS
 Thumbs.db
 .DS_Store
+
+# secrets
+.env
+agents/.env
+
+# python
+__pycache__/
+*.pyc
+agents/output/
