@@ -1,0 +1,26 @@
+---
+// 权威信源公示页：/sources/
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const SOURCES = [
+  { name: 'Malaysia Ministry of Investment, Trade and Industry (MITI)', url: 'https://www.miti.gov.my/', type: 'Official' },
+  { name: 'Malaysia Investment Development Authority (MIDA)', url: 'https://www.mida.gov.my/', type: 'Official' },
+  { name: 'Malaysia External Trade Development Corporation (MATRADE)', url: 'https://www.matrade.gov.my/', type: 'Official' },
+  { name: 'ASEAN Secretariat', url: 'https://asean.org/', type: 'Official' },
+  { name: 'Bank Negara Malaysia (Central Bank)', url: 'https://www.bnm.gov.my/', type: 'Official' },
+  { name: 'Reuters', url: 'https://www.reuters.com/', type: 'News' },
+  { name: 'BBC News', url: 'https://www.bbc.com/news', type: 'News' },
+];
+---
+<BaseLayout title="Sources — Our Authoritative Source Pool" description="The official and primary sources we rely on for policy and trade analysis.">
+  <h1>Sources</h1>
+  <p class="muted">We rely only on public, free, official sources. Third-party press releases and logistics marketing pages are leads, not sources.</p>
+  <div style="margin-top:16px;">
+    {SOURCES.map((s) => (
+      <div class="card">
+        <strong>{s.name}</strong> <span class="muted">({s.type})</span>
+        {s.url && <div><a href={s.url} target="_blank" rel="noopener">{s.url}</a></div>}
+      </div>
+    ))}
+  </div>
+</BaseLayout>

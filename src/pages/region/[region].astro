@@ -1,0 +1,32 @@
+---
+// 地区层长尾 SEO：/region/[region]/
+// 对标 Rest of World /region/（south-asia、china、africa、latin-america...）
+// 地区 slug 是固定枚举；文章通过 target_keyword 或 frontmatter region 标记关联
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  const REGIONS = [
+    { slug: 'asean', label: 'ASEAN' },
+    { slug: 'southeast-asia', label: 'Southeast Asia' },
+    { slug: 'china', label: 'China' },
+    { slug: 'us', label: 'United States' },
+    { slug: 'eu', label: 'European Union' },
+  ];
+  return REGIONS.map((r) => ({ params: { region: r.slug }, props: { region: r } }));
+}
+
+const { region } = Astro.props;
+const allPosts = await getCollection('posts');
+// 简化关联：按 slug 名称关键字匹配（真实场景用 frontmatter region 数组）
+const posts = allPosts.filter((p) => (p.data.target_keyword || '').toLowerCase().includes(region.slug.toLowerCase()));
+---
+<BaseLayout title={`${region.label} — Policy & Trade Analysis`} description={`${region.label} policy, trade, and economy signals for foreign buyers and investors.`}>
+  <h1>{region.label}</h1>
+  <p class="muted">Regional policy, trade, and economy signals. Neutral, source-backed analysis.</p>
+  <h2 style="font-size:20px;margin-top:24px;">Articles</h2>
+  {posts.length === 0 && <p class="muted">No articles tagged for this region yet.</p>}
+  {posts.map((p) => (
+    <div class="card"><a href={`/articles/${p.id}/`}><strong>{p.data.title}</strong></a></div>
+  ))}
+</BaseLayout>

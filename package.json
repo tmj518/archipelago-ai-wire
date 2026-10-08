@@ -1,0 +1,26 @@
+{
+  "name": "my-policy-news-malaysia",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "单人全自动多国AI时政内容出海 - 一期马来西亚英文站 (Astro + Cloudflare Pages)",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "qa": "node tools/qa-check.mjs",
+    "serp": "node tools/serp-check.mjs",
+    "reviewer": "node tools/reviewer-check.mjs --all",
+    "preflight": "node tools/preflight.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.3.7"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

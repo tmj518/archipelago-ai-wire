@@ -1,0 +1,14 @@
+---
+// 最新列表页：/latest/
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('posts')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout title="Latest" description="Latest policy, trade, and economy analysis.">
+  <h1>Latest</h1>
+  {posts.length === 0 && <p class="muted">No articles yet.</p>}
+  {posts.map((p) => (
+    <div class="card"><a href={`/articles/${p.id}/`}><strong>{p.data.title}</strong></a><div class="muted">{p.data.description}</div></div>
+  ))}
+</BaseLayout>

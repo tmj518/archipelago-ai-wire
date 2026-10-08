@@ -1,0 +1,6 @@
+# pnpm 默认忽略依赖的构建脚本；Astro 需要 esbuild 的 postinstall，必须显式允许
+allowBuilds:
+  esbuild: true
+  sharp: true
+minimumReleaseAgeExclude:
+  - astro@7.3.7

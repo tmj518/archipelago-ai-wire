@@ -1,0 +1,18 @@
+---
+// 播客合集页：/podcast/
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const episodes = (await getCollection('podcasts')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout title="Podcast — AI Readings" description="AI podcast readings of Malaysia & ASEAN policy and trade analysis.">
+  <h1>Podcast</h1>
+  <p class="muted">AI readings of our analysis — listen on the go. Full audio for members.</p>
+  {episodes.length === 0 && <p class="muted">No episodes yet.</p>}
+  {episodes.map((ep) => (
+    <div class="card">
+      <a href={`/podcast/${ep.id}/`}><strong>{ep.data.title}</strong></a>
+      <div class="muted">Episode {ep.data.episode} · {ep.data.pubDate.toISOString().slice(0, 10)}</div>
+    </div>
+  ))}
+</BaseLayout>

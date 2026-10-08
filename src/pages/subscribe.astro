@@ -1,0 +1,37 @@
+---
+// 订阅页：/subscribe/（免费邮件订阅 + 会员购买）
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const TIERS = [
+  { name: 'Monthly', price: '9', unit: 'USD/month', features: ['Daily & weekly briefs', 'Ad-free reading', 'Podcast audio', 'Trend projections'] },
+  { name: 'Yearly', price: '90', unit: 'USD/year', features: ['Everything in Monthly', '2 months free', 'Priority trend analysis'] },
+  { name: 'Lifetime', price: '300', unit: 'USD one-time', features: ['Everything in Yearly', 'No recurring charge', 'Lifetime access'] },
+];
+---
+<BaseLayout title="Subscribe — Membership" description="Subscribe to membership or the free newsletter for Malaysia & ASEAN policy and trade analysis.">
+  <h1>Subscribe</h1>
+  <p class="muted">Get the policy and trade trends that matter — neutral, source-backed, ad-free.</p>
+
+  <h2 style="font-size:20px;margin-top:24px;">Free newsletter</h2>
+  <p>Get a weekly summary by email. No charge, no ads.</p>
+  <form action="/account/" method="get" style="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0;">
+    <input type="email" name="email" placeholder="you@example.com" style="flex:1;min-width:200px;padding:10px;border:1px solid #e2e5ea;border-radius:6px;" />
+    <button type="submit" style="padding:10px 18px;background:#1f6feb;color:#fff;border:none;border-radius:6px;cursor:pointer;">Subscribe free</button>
+  </form>
+
+  <h2 style="font-size:20px;margin-top:32px;">Membership</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;">
+    {TIERS.map((t) => (
+      <div class="card" style="flex:1 1 220px;min-width:220px;">
+        <strong>{t.name}</strong>
+        <div style="font-size:24px;font-weight:800;margin:8px 0;">{t.price}</div>
+        <div class="muted">{t.unit}</div>
+        <ul style="font-size:13px;padding-left:18px;">
+          {t.features.map((f) => <li>{f}</li>)}
+        </ul>
+        <button style="padding:8px 14px;background:#2da44e;color:#fff;border:none;border-radius:6px;cursor:pointer;width:100%;">Subscribe {t.name}</button>
+      </div>
+    ))}
+  </div>
+  <p class="muted" style="font-size:12px;margin-top:16px;">Payments via Stripe and PayPal. See <a href="/refund/">Refund Policy</a>.</p>
+</BaseLayout>

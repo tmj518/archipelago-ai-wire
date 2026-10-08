@@ -1,0 +1,45 @@
+---
+// 文章详情页：/articles/[article-slug]/
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article>
+    <h1>{post.data.title}</h1>
+    {post.data.subtitle && <p style="font-size:18px;color:#3a3f46;">{post.data.subtitle}</p>}
+    <p class="muted">Published {post.data.pubDate.toISOString().slice(0, 10)} · Stakes: {post.data.stakes}</p>
+
+    <div style="font-size:14px;color:#5b6470;margin-bottom:20px;">
+      Sources:
+      {post.data.sources.map((s) => (
+        <span style="margin-right:8px;">{s.name}{s.url ? ' ↗' : ''}</span>
+      ))}
+    </div>
+
+    <Content />
+
+    {post.data.related && post.data.related.length > 0 && (
+      <section style="margin-top:32px;">
+        <h2>Related</h2>
+        {(await Promise.all(post.data.related.map(async (r) => {
+          const all = await getCollection('posts');
+          return all.find((p) => p.id === r);
+        }))).filter(Boolean).map((p) => (
+          <div class="card" key={p.id}>
+            <a href={`/articles/${p.id}/`}><strong>{p.data.title}</strong></a>
+          </div>
+        ))}
+      </section>
+    )}
+
+    <p class="muted" style="margin-top:28px;font-size:12px;">This article is policy and trade analysis for informational purposes only and does not constitute investment or legal advice.</p>
+  </article>
+</BaseLayout>

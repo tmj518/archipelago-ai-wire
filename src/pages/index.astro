@@ -1,0 +1,53 @@
+---
+// 首页：置顶重点解读 + 最新文章 + 订阅 CTA（对标 Rest of World 首页逻辑）
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('posts'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const topics = await getCollection('topics');
+const countries = await getCollection('countries');
+const series = await getCollection('series');
+---
+<BaseLayout title="MY Policy Desk — Malaysia & ASEAN Policy, Trade, Economy" description="Malaysia and ASEAN policy, trade, and economy decoded for foreign buyers, importers, and investors.">
+  <h1>Policy, Trade & Economy — Decoded for Foreign Buyers</h1>
+  <p class="muted">Malaysia & ASEAN. Neutral, source-backed analysis with a focus on what policy means for supply and cost.</p>
+
+  <section>
+    <h2 style="font-size:20px;margin-top:28px;">Latest</h2>
+    {posts.length === 0 && <p class="muted">No articles yet.</p>}
+    {posts.map((post) => (
+      <div class="card">
+        <a href={`/articles/${post.id}/`}>
+          <strong>{post.data.title}</strong>
+          <div class="muted">{post.data.description}</div>
+        </a>
+      </div>
+    ))}
+  </section>
+
+  <section>
+    <h2 style="font-size:20px;margin-top:28px;">Topics</h2>
+    {topics.map((t) => (
+      <a href={`/topics/${t.data.slug}/`} style="margin-right:14px;">{t.data.title}</a>
+    ))}
+  </section>
+
+  <section>
+    <h2 style="font-size:20px;margin-top:28px;">Countries</h2>
+    {countries.map((c) => (
+      <a href={`/countries/${c.data.slug}/`} style="margin-right:14px;">{c.data.title}</a>
+    ))}
+  </section>
+
+  <section>
+    <h2 style="font-size:20px;margin-top:28px;">Series</h2>
+    {series.map((s) => (
+      <a href={`/series/${s.data.slug}/`} style="margin-right:14px;">{s.data.title}</a>
+    ))}
+  </section>
+
+  <div class="callout">
+    <strong>Membership</strong> — Unlock daily & weekly briefs, full podcast audio, and trend projections. <a href="/subscribe/">Subscribe →</a>
+  </div>
+</BaseLayout>

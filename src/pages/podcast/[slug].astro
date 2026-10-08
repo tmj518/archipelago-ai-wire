@@ -1,0 +1,29 @@
+---
+// 播客独立音频页：/podcast/[audio-slug]/
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const episodes = await getCollection('podcasts');
+  return episodes.map((ep) => ({ params: { slug: ep.id }, props: { ep } }));
+}
+
+const { ep } = Astro.props;
+const { Content } = await render(ep);
+---
+<BaseLayout title={ep.data.title} description={ep.data.description}>
+  <article>
+    <h1>{ep.data.title}</h1>
+    <p class="muted">Episode {ep.data.episode} · {ep.data.pubDate.toISOString().slice(0, 10)}</p>
+    {ep.data.audio_src && (
+      <audio controls style="width:100%;margin:16px 0;">
+        <source src={ep.data.audio_src} type="audio/mpeg" />
+        Your browser does not support audio.
+      </audio>
+    )}
+    {!ep.data.audio_src && (
+      <div class="callout">Audio file pending — available to members when published.</div>
+    )}
+    <Content />
+  </article>
+</BaseLayout>
