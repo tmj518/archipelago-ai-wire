@@ -158,6 +158,18 @@ def run_pipeline(topic: str, dry_run: bool = True) -> Optional[dict]:
     return {"topic": topic, "result": str(result), "mode": "live"}
 
 
+def sync_to_lark():
+    """CrewAI 跑完后自动把新文章同步到飞书台账"""
+    try:
+        import subprocess
+        py313 = r"C:\Users\tmj19\AppData\Local\Programs\Python\Python313\python.exe"
+        sync_script = Path(__file__).parent / "sync_to_lark.py"
+        subprocess.run([py313, str(sync_script)], timeout=60)
+        print("[crew] synced to lark base")
+    except Exception as e:
+        print(f"[crew] lark sync failed: {e}")
+
+
 if __name__ == "__main__":
     import sys
     topic = sys.argv[1] if len(sys.argv) > 1 else "malaysia export policy 2026"
