@@ -71,23 +71,25 @@ function checkFile(file) {
     if (m) msgs.push(`模糊词: "${m[0]}"`);
   });
 
-  // --- 正文结构（v2.0 新模板优先；旧 V6.1 兼容）---
-  // v2.0 九段：ANSWER / What changed / Evidence chain / What would make this wrong / Limits / Impact by role / Action / FAQ
-  const v20 = [
-    /ANSWER/i, /What changed/i, /Evidence chain/i,
-    /What would make this wrong/i, /Limits/i,
-    /Impact by role/i, /Action/i, /## FAQ/i,
+  // --- 正文结构（SCQA 八段，终版定稿）---
+  // Answer / Situation / Complication / Evidence / Implication / Action / References
+  const scqa = [
+    /Answer|核心判断/i,
+    /Situation|现状/i,
+    /Complication|矛盾|变化/i,
+    /Evidence|证据/i,
+    /Implication|影响/i,
+    /Action|落地动作|本周/i,
+    /References|信源|参考/i,
   ];
-  const v61 = [
-    '## What happened', '## Why now', '## So what', '## For you',
-    '## The data point', '## How we calculated this', '## FAQ',
-  ];
+  const hasSCQA = scqa.every((re) => re.test(content));
+  // 兼容旧 v2.0 / v6.1
+  const v20 = [/ANSWER/i, /What changed/i, /Evidence chain/i, /What would make this wrong/i, /Limits/i, /Impact by role/i, /Action/i, /## FAQ/i];
+  const v61 = ['## What happened', '## Why now', '## So what', '## For you', '## The data point', '## How we calculated this', '## FAQ'];
   const hasV20 = v20.every((re) => re.test(content));
   const hasV61 = v61.every((s) => content.includes(s));
-  if (!hasV20 && !hasV61) {
-    // 两套都缺，列出缺的
-    v20.forEach((re, i) => { if (!re.test(content)) msgs.push(`v2.0 缺: ${re.source}`); });
-    v61.forEach((s) => { if (!content.includes(s)) msgs.push(`v6.1 缺: ${s}`); });
+  if (!hasSCQA && !hasV20 && !hasV61) {
+    scqa.forEach((re) => { if (!re.test(content)) msgs.push(`SCQA 缺: ${re.source}`); });
   }
   // 对比表 + 定义块（v2.0 降为提示，不 BLOCK）
   // if (!content.includes('|') || !content.match(/\|[\s-]+\|/)) msgs.push('缺对比表');
@@ -110,9 +112,9 @@ function checkFile(file) {
     msgs.push('缺【局限 / Limits】段（论文 limitation）');
   }
 
-  // 词数 1500–2500
+  // 词数 800–2000（终版常态 800-1200，重大事件上限 1500；旧文章过渡到 2000）
   const words = content.replace(/[#*>`_|]/g, ' ').trim().split(/\s+/).length;
-  if (words < 1500 || words > 2500) msgs.push(`正文字数 ${words} 不在 1500–2500`);
+  if (words < 800 || words > 2000) msgs.push(`正文字数 ${words} 不在 800–2000`);
 
   // --- 第一人称体验 / 编造金额检查（弱启发）---
   if (/\bI (saw|felt|went|bought|paid)\b/i.test(content)) msgs.push('疑似第一人称体验');
