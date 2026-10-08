@@ -40,7 +40,9 @@ def _build_llm(role: str) -> "LLM":
     api_key = os.environ.get("ARK_API_KEY") or os.environ.get("OPENAI_API_KEY")
     base_url = os.environ.get("ARK_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3")
     model = os.environ.get("WRITER_MODEL", "doubao-pro-32k")
-    if role in ("fact_checker", "neutrality_auditor", "polish_editor", "deployer"):
+    # 质检类角色用更强模型
+    if role in ("agent_03_fact_checker", "agent_06_compliance_reviewer",
+                "agent_07_translator_polisher", "agent_10_publisher"):
         model = os.environ.get("AUDITOR_MODEL", "doubao-pro-128k")
     return LLM(
         model=f"openai/{model}",
@@ -129,6 +131,30 @@ def run_pipeline(topic: str, dry_run: bool = True) -> Optional[dict]:
         verbose=True,
     )
     result = crew.kickoff(inputs={"topic": topic})
+
+    # 落盘：把每一步的输出保存到 output/
+    OUTPUT_DIR.mkdir(exist_ok=True)
+    # 从 tasks 拿每一步输出
+    for i, task in enumerate(tasks):
+        try:
+            task_output = task.output.raw if hasattr(task.output, 'raw') else str(task.output)
+            (OUTPUT_DIR / f"step_{i+1:02d}_{task.agent.role.replace(' ', '_')}.md").write_text(
+                task_output, encoding="utf-8"
+            )
+        except Exception as e:
+            print(f"[crew] step {i+1} save failed: {e}")
+
+    # 最终文章（agent_09 输出）写到 src/content/posts/
+    try:
+        posts_dir = Path(__file__).parent.parent / "src" / "content" / "posts"
+        posts_dir.mkdir(exist_ok=True)
+        slug = topic.lower().replace("'", "").replace(" ", "-")[:50]
+        final_md = tasks[8].output.raw if hasattr(tasks[8].output, 'raw') else str(tasks[8].output)
+        (posts_dir / f"{slug}.md").write_text(final_md, encoding="utf-8")
+        print(f"[crew] saved article to posts/{slug}.md")
+    except Exception as e:
+        print(f"[crew] final article save failed: {e}")
+
     return {"topic": topic, "result": str(result), "mode": "live"}
 
 

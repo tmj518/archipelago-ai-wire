@@ -1,74 +1,104 @@
 # agents/config/tasks.yaml
-# 11 个任务，单向数据流；任一失败中断下游
+# Archipelago Intel 终版 11 任务，单向数据流；任一失败中断下游
 
-scout_task:
+# 01 选题&信源采集
+task_01_scout:
   description: >
-    Poll official sources for the next 3 candidate policy events relevant to
-    Malaysia. Return JSON list.
-  expected_output: "JSON array: [{title, summary, source_url, publish_date, target_site}]"
-  agent: topic_scout
+    Poll official public sources (MITI/MIDA/MATRADE, central banks, statistics
+    offices, ASEAN Secretariat) for economic, tariff, industry, or cross-border
+    policy topics with commercial value for Malaysian SMEs. Return 3 candidates
+    as JSON with title, summary, source_url, publish_date.
+  expected_output: "JSON array of 3 candidates"
+  agent: agent_01_scout_source
 
-verify_task:
+# 02 深度调研（STORM）
+task_02_research:
   description: >
-    For each candidate, find a second independent official source. Reject if
-    the two disagree on any core number.
-  expected_output: "Verified candidate with two sources each, or REJECTED + reason"
-  agent: fact_checker
+    Pick the top candidate. Run multi-dimensional research: event background,
+    historical data, multiple institutional viewpoints. Compile a research pack
+    with 5-8 evidence items, each with source URL.
+  expected_output: "Research pack: 5-8 evidence items with URLs"
+  agent: agent_02_researcher
 
-write_task:
+# 03 事实核验
+task_03_factcheck:
   description: >
-    Write a 1500-2500 word English feature using STORM Perspective-Guided
-    generation. Follow the v2.0 template exactly. Label every claim as
-    Confirmed fact / Reasonable inference / Our view.
-  expected_output: "Markdown article draft with all required sections"
-  agent: localized_writer
+    Cross-verify each evidence item against a second independent source. If any
+    core number conflicts between sources, REJECT the topic. Output a fact-
+    check report: PASS / REJECTED.
+  expected_output: "Fact-check report with PASS/REJECT verdict"
+  agent: agent_03_fact_checker
 
-seo_task:
+# 04 决策备忘录撰写（SCQA）
+task_04_write:
   description: >
-    Run parallel SERP research for the target keyword. Generate title,
-    meta description, slug, H2/H3. Identify information gain vs top-3.
-  expected_output: "SEO fields + references + information-gain note"
-  agent: seo_researcher
+    Write an 800-1200 word English decision memo using SCQA structure:
+    1) Answer (3 sentences, conclusion first)
+    2) Situation (current market landscape)
+    3) Complication (what changed, what the market misses)
+    4) Evidence (3-5 items with source links)
+    5) Implication (what it means for importers, exporters, investors)
+    6) Action (1-2 concrete things to do this week)
+    7) References (source list)
+    8) 2-minute audio script
+    Label every claim: Confirmed fact / Reasonable inference / Our view.
+  expected_output: "Complete decision memo markdown"
+  agent: agent_04_writer
 
-audit_task:
+# 05 SEO 结构化
+task_05_seo:
   description: >
-    Simulate a multi-stakeholder conversation (critic, skeptic, regulator).
-    Cut bias, sensitive language, banned words. Verify the article has a
-    "What would make this wrong" section and a "Limits" section.
-  expected_output: "Audit pass/fail + list of edits applied"
-  agent: neutrality_auditor
+    Generate title (max 120 chars), meta description (max 300 chars), URL slug,
+    H2/H3 outline. Identify the information gap vs top-3 SERP results.
+  expected_output: "SEO fields + slug + outline"
+  agent: agent_05_seo_optimizer
 
-polish_task:
+# 06 合规质检
+task_06_compliance:
   description: >
-    Native English polish. Preserve every number and source label.
-  expected_output: "Polished English draft"
-  agent: polish_editor
+    Check neutrality, sensitive language, banned words. Add standard disclaimer.
+    Score the memo. If below threshold (6/10), send back for rewrite.
+  expected_output: "Compliance score + pass/fail + edits applied"
+  agent: agent_06_compliance_reviewer
 
-multimodal_task:
+# 07 多语言润色
+task_07_polish:
   description: >
-    Produce podcast script ([male Brian]/[female Jenny], fixed intro/outro)
-    and YouTube narration script from the polished article.
+    Native-level English polish. Preserve every number and source label. Remove
+    AI tells. Ensure Bloomberg/FT style.
+  expected_output: "Polished English memo"
+  agent: agent_07_translator_polisher
+
+# 08 多载体衍生
+task_08_media:
+  description: >
+    From the polished memo, derive: (a) podcast reading script with [male Brian]
+    / [female Jenny] cues and fixed intro/outro; (b) 3-minute YouTube narration
+    script. Keep conclusion first.
   expected_output: "podcast.md + youtube.md"
-  agent: multimodal_producer
+  agent: agent_08_media_generator
 
-# translate_task reserved for Stage 3+ (ES/PT)
-
-build_task:
+# 09 静态页面生成
+task_09_html:
   description: >
-    Emit src/content/posts/<slug>.md with valid frontmatter (figures>=5,
-    sources>=3, stakes, reviewBy).
-  expected_output: "Valid markdown file for Astro content collection"
-  agent: static_builder
+    Emit a valid Astro content-collection markdown file with frontmatter:
+    title, description, pubDate, figures (>=5 five-tuple), sources (>=3),
+    stakes: priced. Save to src/content/posts/<slug>.md.
+  expected_output: "Valid markdown file ready for build"
+  agent: agent_09_html_builder
 
-deploy_task:
+# 10 自动化发布
+task_10_publish:
   description: >
-    Run node tools/qa-check.mjs, reviewer-check, serp-check, preflight. If
-    all green, git commit/push. Log deployment status.
-  expected_output: "Deployment log: gates status, commit hash, CF Pages URL"
-  agent: deployer
+    Run node tools/qa-check.mjs --all, reviewer-check, preflight --build. If all
+    green, git add/commit/push. Log deploy status.
+  expected_output: "Deploy log: gates status, commit hash"
+  agent: agent_10_publisher
 
-optimize_task:
+# 11 数据分析闭环
+task_11_analytics:
   description: >
-    Read GSC data weekly. Recommend topic-weight adjustments for the scout.
-  expected_output: "Topic weight adjustment JSON"
-  agent: data_optimizer
+    Placeholder for GSC analytics (not yet connected). Output a JSON note on
+    which topic angles got the most engagement, to feed back to task_01.
+  expected_output: "Topic weight adjustment note"
+  agent: agent_11_analytics_feedback
