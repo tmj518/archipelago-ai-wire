@@ -1,5 +1,5 @@
 ---
-// 首页：信息流列表（对标 Malaysiakini / tldr.tech）
+// 首页：The Information / Stratechery 极简高级风
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -7,83 +7,56 @@ const posts = (await getCollection('posts'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const featured = posts[0];
-const rest = posts.slice(1);
+const rest = posts.slice(1, 6);
 ---
 <BaseLayout title="Archipelago Intel — Decision memos for cross-border business" description="Neutral, source-backed policy decision memos for Southeast Asian and Latin American SMEs.">
-  <div class="max-w-7xl mx-auto px-4 py-6">
-    <!-- Desktop 双栏：主栏70% + 侧栏30%；移动端单栏 -->
-    <div class="md:flex gap-8">
-      <!-- 主栏 -->
-      <div class="md:w-7/12 lg:w-8/12">
-        <!-- 头条 -->
-        {featured && (
-          <a href={`/articles/${featured.id}/`} class="block group mb-8">
-            <div class="aspect-video bg-bg-soft rounded-lg mb-4 overflow-hidden">
-              <!-- 封面图占位 -->
-              <div class="w-full h-full bg-gradient-to-br from-brand to-blue-700 flex items-center justify-center text-white/30 text-4xl font-bold">
-                AI
-              </div>
-            </div>
-            <h2 class="text-2xl md:text-3xl font-bold group-hover:text-accent transition">
-              {featured.data.title}
-            </h2>
-            <p class="text-muted mt-2 line-clamp-2">{featured.data.description}</p>
-            <div class="text-xs text-muted mt-2">
-              {featured.data.pubDate.toLocaleDateString('en-GB')} · ~6 min read
-            </div>
-          </a>
-        )}
+  <div class="max-w-3xl mx-auto px-6 py-12">
+    <!-- 导语 -->
+    <div class="mb-12 pb-8 border-b border-gray-200">
+      <p class="text-xs uppercase tracking-widest text-gray-400 mb-4">Daily Brief</p>
+      <h2 class="text-3xl md:text-4xl font-serif font-bold leading-tight mb-3">
+        What changed in policy, what it means for your bottom line.
+      </h2>
+      <p class="text-gray-600 leading-relaxed">
+        Every weekday, we decode official government releases into a 5-minute decision memo — conclusion first, sources cited, one thing to do this week.
+      </p>
+    </div>
 
-        <!-- 信息流列表 -->
-        <div class="divide-y divide-border">
-          {rest.map((post) => (
-            <a href={`/articles/${post.id}/`} class="block py-4 group">
-              <div class="flex gap-4">
-                <div class="w-24 h-24 md:w-32 md:h-32 bg-bg-soft rounded shrink-0 overflow-hidden">
-                  <div class="w-full h-full bg-gradient-to-br from-brand/60 to-blue-500/60"></div>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <h3 class="font-bold group-hover:text-accent transition line-clamp-2">
-                    {post.data.title}
-                  </h3>
-                  <p class="text-sm text-muted mt-1 line-clamp-2">{post.data.description}</p>
-                  <div class="text-xs text-muted mt-2">
-                    {post.data.pubDate.toLocaleDateString('en-GB')} · ~5 min read
-                  </div>
-                </div>
-              </div>
-            </a>
-          ))}
+    <!-- 头条：大标题，无图 -->
+    {featured && (
+      <a href={`/articles/${featured.id}/`} class="block group mb-10">
+        <div class="text-xs text-accent uppercase tracking-wider mb-2">Featured</div>
+        <h3 class="text-2xl md:text-3xl font-serif font-bold leading-snug group-hover:text-accent transition">
+          {featured.data.title}
+        </h3>
+        <p class="text-gray-600 mt-3 leading-relaxed">{featured.data.description}</p>
+        <div class="text-xs text-gray-400 mt-3">
+          {featured.data.pubDate.toLocaleDateString('en-GB')} · 6 min read
         </div>
-      </div>
+      </a>
+    )}
 
-      <!-- 侧边栏（移动端隐藏） -->
-      <aside class="hidden md:block md:w-5/12 lg:w-4/12">
-        <!-- 广告位 -->
-        <div class="bg-bg-soft rounded p-4 text-center text-xs text-muted mb-6">
-          <!-- ADSENSE_SLOT_SIDEBAR --> Advertisement
-        </div>
+    <!-- 列表：纯文字，分割线 -->
+    <div class="divide-y divide-gray-200">
+      {rest.map((post) => (
+        <a href={`/articles/${post.id}/`} class="block py-5 group">
+          <h4 class="text-lg font-serif font-bold leading-snug group-hover:text-accent transition">
+            {post.data.title}
+          </h4>
+          <p class="text-sm text-gray-500 mt-1 line-clamp-2">{post.data.description}</p>
+          <div class="text-xs text-gray-400 mt-2">
+            {post.data.pubDate.toLocaleDateString('en-GB')} · 5 min read
+          </div>
+        </a>
+      ))}
+    </div>
 
-        <!-- 订阅引导 -->
-        <div class="bg-brand text-white rounded p-5 mb-6">
-          <h3 class="font-bold text-lg mb-2">Get the daily memo</h3>
-          <p class="text-sm text-gray-300 mb-3">5 minutes a day. Neutral, source-backed analysis.</p>
-          <a href="/subscribe/" class="block bg-accent text-center py-2 rounded font-bold text-sm hover:opacity-90">
-            Subscribe free
-          </a>
-        </div>
-
-        <!-- 热门文章 -->
-        <div class="bg-white border border-border rounded p-5">
-          <h3 class="font-bold mb-3 text-sm uppercase tracking-wide text-muted">Popular</h3>
-          {posts.slice(0, 5).map((post, i) => (
-            <a href={`/articles/${post.id}/`} class="flex gap-3 py-2 border-b border-border last:border-0">
-              <span class="text-accent font-bold text-lg">{i + 1}</span>
-              <span class="text-sm font-medium line-clamp-2">{post.data.title}</span>
-            </a>
-          ))}
-        </div>
-      </aside>
+    <!-- 订阅 CTA -->
+    <div class="mt-12 pt-8 border-t border-gray-200 text-center">
+      <p class="text-sm text-gray-600 mb-4">Get the daily memo in your inbox. Free, 5 minutes a day.</p>
+      <a href="/subscribe/" class="inline-block bg-brand text-white px-8 py-3 font-bold text-sm hover:opacity-90 transition">
+        Subscribe free
+      </a>
     </div>
   </div>
 </BaseLayout>

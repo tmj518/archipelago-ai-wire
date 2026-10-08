@@ -1,12 +1,12 @@
 ---
-// BaseLayout.astro — 全局布局（对标 Malaysiakini，移动端优先响应式）
+// BaseLayout — The Information 极简高级风
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description?: string;
 }
-const { title, description = 'Archipelago Intel — Decision memos for cross-border business in ASEAN & LatAm.' } = Astro.props;
+const { title, description = 'Archipelago Intel — Decision memos for cross-border business.' } = Astro.props;
 const year = new Date().getFullYear();
 ---
 <!doctype html>
@@ -17,118 +17,63 @@ const year = new Date().getFullYear();
     <meta name="description" content={description} />
     <title>{title}</title>
     <script>
-      // 移动端汉堡菜单
       document.addEventListener('DOMContentLoaded', () => {
         const btn = document.getElementById('menu-btn');
         const menu = document.getElementById('mobile-menu');
-        if (btn && menu) {
-          btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-        }
-        // 订阅弹窗（阅读 60% 触发）
-        setTimeout(() => {
-          const popup = document.getElementById('sub-popup');
-          if (popup && !sessionStorage.getItem('sub-popup-closed')) {
-            popup.classList.remove('hidden');
-          }
-        }, 30000);
-        document.getElementById('popup-close')?.addEventListener('click', () => {
-          document.getElementById('sub-popup')?.classList.add('hidden');
-          sessionStorage.setItem('sub-popup-closed', '1');
-        });
+        if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
       });
     </script>
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="bg-white text-gray-900 min-h-screen flex flex-col">
     <!-- Header -->
-    <header class="bg-brand text-white sticky top-0 z-50 shadow">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="flex items-center justify-between h-14">
-          <!-- Logo -->
-          <a href="/" class="text-xl font-extrabold tracking-tight">Archipelago Intel</a>
+    <header class="border-b border-gray-200">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+          <a href="/" class="font-serif text-xl font-extrabold tracking-tight">Archipelago Intel</a>
 
-          <!-- PC 导航 -->
-          <nav class="hidden md:flex items-center gap-6 text-sm">
-            <a href="/latest/" class="hover:text-accent transition">Latest</a>
-            <a href="/topics/" class="hover:text-accent transition">Topics</a>
-            <a href="/countries/malaysia/" class="hover:text-accent transition">Malaysia</a>
-            <a href="/podcast/" class="hover:text-accent transition">Podcast</a>
-            <a href="/methodology/" class="hover:text-accent transition">Methodology</a>
+          <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600">
+            <a href="/latest/" class="hover:text-gray-900">Latest</a>
+            <a href="/methodology/" class="hover:text-gray-900">Methodology</a>
+            <a href="/podcast/" class="hover:text-gray-900">Podcast</a>
           </nav>
 
           <div class="flex items-center gap-3">
-            <a href="/subscribe/" class="hidden md:inline-block bg-accent text-white px-4 py-1.5 rounded text-sm font-bold hover:opacity-90 transition">
+            <a href="/subscribe/" class="hidden md:inline-block bg-gray-900 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-gray-700">
               Subscribe
             </a>
-            <!-- 汉堡按钮（移动端） -->
-            <button id="menu-btn" class="md:hidden text-white p-2" aria-label="Menu">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button id="menu-btn" class="md:hidden p-2" aria-label="Menu">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
               </svg>
             </button>
           </div>
         </div>
 
-        <!-- 移动端菜单 -->
-        <nav id="mobile-menu" class="hidden md:hidden pb-4 flex flex-col gap-2 text-sm">
-          <a href="/latest/" class="py-1 hover:text-accent">Latest</a>
-          <a href="/topics/" class="py-1 hover:text-accent">Topics</a>
-          <a href="/countries/malaysia/" class="py-1 hover:text-accent">Malaysia</a>
-          <a href="/podcast/" class="py-1 hover:text-accent">Podcast</a>
-          <a href="/methodology/" class="py-1 hover:text-accent">Methodology</a>
-          <a href="/subscribe/" class="bg-accent px-4 py-2 rounded text-center font-bold mt-2">Subscribe</a>
+        <nav id="mobile-menu" class="hidden md:hidden pb-4 flex flex-col gap-3 text-sm">
+          <a href="/latest/" class="py-1">Latest</a>
+          <a href="/methodology/" class="py-1">Methodology</a>
+          <a href="/podcast/" class="py-1">Podcast</a>
+          <a href="/subscribe/" class="bg-gray-900 text-white px-4 py-2 rounded text-center font-medium mt-2">Subscribe</a>
         </nav>
       </div>
     </header>
 
-    <!-- 顶部广告位 -->
-    <div class="bg-bg-soft border-b border-border py-2 text-center text-xs text-muted">
-      <!-- ADSENSE_SLOT_TOP --> Advertisement
-    </div>
-
-    <!-- Main -->
     <main class="flex-1">
       <slot />
     </main>
 
     <!-- Footer -->
-    <footer class="bg-brand text-white mt-12 py-8">
-      <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
-        <div>
-          <div class="font-bold mb-2">Archipelago Intel</div>
-          <div class="text-gray-300 text-xs">Decision memos for cross-border business.</div>
+    <footer class="border-t border-gray-200 mt-16">
+      <div class="max-w-3xl mx-auto px-6 py-8">
+        <div class="flex flex-wrap justify-between text-xs text-gray-400">
+          <div>© {year} Archipelago Intel. Not investment advice.</div>
+          <div class="flex gap-4">
+            <a href="/privacy/" class="hover:text-gray-600">Privacy</a>
+            <a href="/refund/" class="hover:text-gray-600">Refund</a>
+            <a href="/sources/" class="hover:text-gray-600">Sources</a>
+          </div>
         </div>
-        <div>
-          <div class="font-bold mb-2">About</div>
-          <a href="/about/" class="block text-gray-300 hover:text-accent">About us</a>
-          <a href="/methodology/" class="block text-gray-300 hover:text-accent">Methodology</a>
-          <a href="/sources/" class="block text-gray-300 hover:text-accent">Sources</a>
-        </div>
-        <div>
-          <div class="font-bold mb-2">Legal</div>
-          <a href="/privacy/" class="block text-gray-300 hover:text-accent">Privacy</a>
-          <a href="/refund/" class="block text-gray-300 hover:text-accent">Refund</a>
-        </div>
-        <div>
-          <div class="font-bold mb-2">Subscribe</div>
-          <a href="/subscribe/" class="block text-gray-300 hover:text-accent">Free email</a>
-          <a href="/subscribe/" class="block text-gray-300 hover:text-accent">Membership</a>
-        </div>
-      </div>
-      <div class="max-w-7xl mx-auto px-4 mt-6 pt-4 border-t border-white/20 text-xs text-gray-400">
-        © {year} Archipelago Intel. Content is for business reference only, not investment or legal advice.
       </div>
     </footer>
-
-    <!-- 订阅弹窗 -->
-    <div id="sub-popup" class="hidden fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-      <div class="bg-white rounded-lg max-w-md w-full p-6 relative">
-        <button id="popup-close" class="absolute top-2 right-3 text-gray-400 text-xl">&times;</button>
-        <h3 class="text-xl font-bold mb-2">Get the daily decision memo</h3>
-        <p class="text-sm text-gray-600 mb-4">5 minutes a day. Neutral, source-backed analysis for cross-border business. Free email.</p>
-        <a href="/subscribe/" class="block bg-accent text-white text-center py-2.5 rounded font-bold hover:opacity-90">
-          Subscribe free
-        </a>
-      </div>
-    </div>
   </body>
 </html>
