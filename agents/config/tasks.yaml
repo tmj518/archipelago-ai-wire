@@ -1,0 +1,74 @@
+# agents/config/tasks.yaml
+# 11 个任务，单向数据流；任一失败中断下游
+
+scout_task:
+  description: >
+    Poll official sources for the next 3 candidate policy events relevant to
+    Malaysia. Return JSON list.
+  expected_output: "JSON array: [{title, summary, source_url, publish_date, target_site}]"
+  agent: topic_scout
+
+verify_task:
+  description: >
+    For each candidate, find a second independent official source. Reject if
+    the two disagree on any core number.
+  expected_output: "Verified candidate with two sources each, or REJECTED + reason"
+  agent: fact_checker
+
+write_task:
+  description: >
+    Write a 1500-2500 word English feature using STORM Perspective-Guided
+    generation. Follow the v2.0 template exactly. Label every claim as
+    Confirmed fact / Reasonable inference / Our view.
+  expected_output: "Markdown article draft with all required sections"
+  agent: localized_writer
+
+seo_task:
+  description: >
+    Run parallel SERP research for the target keyword. Generate title,
+    meta description, slug, H2/H3. Identify information gain vs top-3.
+  expected_output: "SEO fields + references + information-gain note"
+  agent: seo_researcher
+
+audit_task:
+  description: >
+    Simulate a multi-stakeholder conversation (critic, skeptic, regulator).
+    Cut bias, sensitive language, banned words. Verify the article has a
+    "What would make this wrong" section and a "Limits" section.
+  expected_output: "Audit pass/fail + list of edits applied"
+  agent: neutrality_auditor
+
+polish_task:
+  description: >
+    Native English polish. Preserve every number and source label.
+  expected_output: "Polished English draft"
+  agent: polish_editor
+
+multimodal_task:
+  description: >
+    Produce podcast script ([male Brian]/[female Jenny], fixed intro/outro)
+    and YouTube narration script from the polished article.
+  expected_output: "podcast.md + youtube.md"
+  agent: multimodal_producer
+
+# translate_task reserved for Stage 3+ (ES/PT)
+
+build_task:
+  description: >
+    Emit src/content/posts/<slug>.md with valid frontmatter (figures>=5,
+    sources>=3, stakes, reviewBy).
+  expected_output: "Valid markdown file for Astro content collection"
+  agent: static_builder
+
+deploy_task:
+  description: >
+    Run node tools/qa-check.mjs, reviewer-check, serp-check, preflight. If
+    all green, git commit/push. Log deployment status.
+  expected_output: "Deployment log: gates status, commit hash, CF Pages URL"
+  agent: deployer
+
+optimize_task:
+  description: >
+    Read GSC data weekly. Recommend topic-weight adjustments for the scout.
+  expected_output: "Topic weight adjustment JSON"
+  agent: data_optimizer
