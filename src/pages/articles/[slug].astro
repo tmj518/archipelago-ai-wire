@@ -1,5 +1,5 @@
 ---
-// 文章详情页：/articles/[article-slug]/
+// 文章详情页：/articles/[slug]/（双栏→单栏响应式）
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
@@ -10,36 +10,97 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const allPosts = await getCollection('posts');
+const related = allPosts.filter(p => p.id !== post.id).slice(0, 3);
 ---
 <BaseLayout title={post.data.title} description={post.data.description}>
-  <article>
-    <h1>{post.data.title}</h1>
-    {post.data.subtitle && <p style="font-size:18px;color:#3a3f46;">{post.data.subtitle}</p>}
-    <p class="muted">Published {post.data.pubDate.toISOString().slice(0, 10)} · Stakes: {post.data.stakes}</p>
+  <div class="max-w-7xl mx-auto px-4 py-6">
+    <div class="md:flex gap-8">
+      <!-- 主阅读区 -->
+      <article class="md:w-7/12 lg:w-8/12">
+        <!-- 面包屑 -->
+        <nav class="text-xs text-muted mb-4">
+          <a href="/" class="hover:text-accent">Home</a>
+          <span class="mx-2">/</span>
+          <a href="/latest/" class="hover:text-accent">Articles</a>
+          <span class="mx-2">/</span>
+          <span>{post.id}</span>
+        </nav>
 
-    <div style="font-size:14px;color:#5b6470;margin-bottom:20px;">
-      Sources:
-      {post.data.sources.map((s) => (
-        <span style="margin-right:8px;">{s.name}{s.url ? ' ↗' : ''}</span>
-      ))}
-    </div>
+        <h1 class="text-2xl md:text-4xl font-bold mb-3">{post.data.title}</h1>
+        {post.data.subtitle && <p class="text-lg text-muted mb-4">{post.data.subtitle}</p>}
 
-    <Content />
+        <div class="flex items-center gap-4 text-xs text-muted mb-6 pb-4 border-b border-border">
+          <span>{post.data.pubDate.toLocaleDateString('en-GB')}</span>
+          <span>·</span>
+          <span>~6 min read</span>
+          <span>·</span>
+          <span class="bg-accent/10 text-accent px-2 py-0.5 rounded text-xs font-bold">{post.data.stakes || 'directional'}</span>
+        </div>
 
-    {post.data.related && post.data.related.length > 0 && (
-      <section style="margin-top:32px;">
-        <h2>Related</h2>
-        {(await Promise.all(post.data.related.map(async (r) => {
-          const all = await getCollection('posts');
-          return all.find((p) => p.id === r);
-        }))).filter(Boolean).map((p) => (
-          <div class="card" key={p.id}>
-            <a href={`/articles/${p.id}/`}><strong>{p.data.title}</strong></a>
+        <!-- 封面图 -->
+        <div class="aspect-video bg-bg-soft rounded-lg mb-6 overflow-hidden">
+          <div class="w-full h-full bg-gradient-to-br from-brand to-blue-700 flex items-center justify-center text-white/30 text-5xl font-bold">
+            AI
           </div>
-        ))}
-      </section>
-    )}
+        </div>
 
-    <p class="muted" style="margin-top:28px;font-size:12px;">This article is policy and trade analysis for informational purposes only and does not constitute investment or legal advice.</p>
-  </article>
+        <!-- 正文 -->
+        <div class="prose max-w-none">
+          <Content />
+        </div>
+
+        <!-- 正文内广告位 -->
+        <div class="bg-bg-soft rounded p-4 text-center text-xs text-muted my-8">
+          <!-- ADSENSE_SLOT_INLINE --> Advertisement
+        </div>
+
+        <!-- 来源 -->
+        {post.data.sources && post.data.sources.length > 0 && (
+          <section class="mt-8 pt-6 border-t border-border">
+            <h2 class="text-lg font-bold mb-3">Sources</h2>
+            <ul class="text-sm text-muted space-y-1">
+              {post.data.sources.map((s) => (
+                <li>
+                  {s.url ? <a href={s.url} target="_blank" rel="noopener" class="text-brand hover:underline">{s.name} ↗</a> : s.name}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <!-- 免责声明 -->
+        <p class="text-xs text-muted mt-8 pt-4 border-t border-border">
+          Disclaimer: This article is for business reference only. It is NOT investment, legal, or trade advice.
+        </p>
+      </article>
+
+      <!-- 侧边栏（移动端隐藏） -->
+      <aside class="hidden md:block md:w-5/12 lg:w-4/12">
+        <div class="bg-bg-soft rounded p-4 text-center text-xs text-muted mb-6 sticky top-20">
+          <!-- ADSENSE_SLOT_SIDEBAR --> Advertisement
+        </div>
+
+        <!-- 订阅引导 -->
+        <div class="bg-brand text-white rounded p-5 mb-6">
+          <h3 class="font-bold mb-2">Get the daily memo</h3>
+          <p class="text-sm text-gray-300 mb-3">5 minutes a day. Neutral, source-backed analysis.</p>
+          <a href="/subscribe/" class="block bg-accent text-center py-2 rounded font-bold text-sm hover:opacity-90">
+            Subscribe free
+          </a>
+        </div>
+
+        <!-- 相关推荐 -->
+        <div class="bg-white border border-border rounded p-5">
+          <h3 class="font-bold mb-3 text-sm uppercase tracking-wide text-muted">Related</h3>
+          {related.map((p) => (
+            <a href={`/articles/${p.id}/`} class="block py-2 border-b border-border last:border-0">
+              <div class="text-sm font-medium line-clamp-2">{p.data.title}</div>
+              <div class="text-xs text-muted mt-1">{p.data.pubDate.toLocaleDateString('en-GB')}</div>
+            </a>
+          ))}
+        </div>
+      </aside>
+    </div>
+  </div>
 </BaseLayout>

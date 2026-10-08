@@ -1,56 +1,89 @@
 ---
-// 首页：tldr.tech 风格
-// H1 + 单 Subscribe 按钮 + 社会证明 + 每条"标题 + 来源域 + 阅读时长"
+// 首页：信息流列表（对标 Malaysiakini / tldr.tech）
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const posts = (await getCollection('posts'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 20);
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// 从 URL 提取来源域
-function domain(url: string) {
-  try { return new URL(url).hostname.replace('www.', ''); }
-  catch { return 'official'; }
-}
+const featured = posts[0];
+const rest = posts.slice(1);
 ---
-<BaseLayout
-  title="Archipelago Intel — Decision memos for cross-border business"
-  description="Neutral, source-backed policy decision memos for Southeast Asian and Latin American SMEs. 5 minutes a day. Free email."
->
-  <section style="text-align:center;padding:48px 16px 32px;">
-    <h1 style="font-size:42px;line-height:1.15;max-width:760px;margin:0 auto 16px;">
-      Policy decoded.<br/>Actionable this week.
-    </h1>
-    <p style="font-size:18px;color:#555;max-width:560px;margin:0 auto 24px;">
-      Archipelago Intel turns official government policy into a 5-minute decision memo for cross-border SMEs: what changed, what it means for your bottom line, what to do this week.
-    </p>
-    <a href="/subscribe/" class="btn-primary" style="display:inline-block;padding:14px 32px;font-size:16px;font-weight:700;">
-      Get the free daily memo
-    </a>
-    <p style="margin-top:14px;font-size:13px;color:#888;">
-      Trusted by cross-border traders, exporters, and small investors across Malaysia, Indonesia, and Latin America.
-    </p>
-  </section>
+<BaseLayout title="Archipelago Intel — Decision memos for cross-border business" description="Neutral, source-backed policy decision memos for Southeast Asian and Latin American SMEs.">
+  <div class="max-w-7xl mx-auto px-4 py-6">
+    <!-- Desktop 双栏：主栏70% + 侧栏30%；移动端单栏 -->
+    <div class="md:flex gap-8">
+      <!-- 主栏 -->
+      <div class="md:w-7/12 lg:w-8/12">
+        <!-- 头条 -->
+        {featured && (
+          <a href={`/articles/${featured.id}/`} class="block group mb-8">
+            <div class="aspect-video bg-bg-soft rounded-lg mb-4 overflow-hidden">
+              <!-- 封面图占位 -->
+              <div class="w-full h-full bg-gradient-to-br from-brand to-blue-700 flex items-center justify-center text-white/30 text-4xl font-bold">
+                AI
+              </div>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold group-hover:text-accent transition">
+              {featured.data.title}
+            </h2>
+            <p class="text-muted mt-2 line-clamp-2">{featured.data.description}</p>
+            <div class="text-xs text-muted mt-2">
+              {featured.data.pubDate.toLocaleDateString('en-GB')} · ~6 min read
+            </div>
+          </a>
+        )}
 
-  <section style="max-width:760px;margin:0 auto;padding:0 16px;">
-    <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:1px;color:#888;border-bottom:1px solid #e5e7eb;padding-bottom:8px;">
-      Today's brief
-    </h2>
-    {posts.length === 0 && <p class="muted">No articles yet.</p>}
-    {posts.map((post) => (
-      <a href={`/articles/${post.id}/`} style="display:block;padding:16px 0;border-bottom:1px solid #f0f1f3;text-decoration:none;color:inherit;">
-        <div style="font-size:16px;font-weight:600;line-height:1.4;">{post.data.title}</div>
-        <div style="font-size:13px;color:#888;margin-top:4px;">
-          {post.data.sources?.[0]?.name?.split(' ')[0] || 'Malaysia World Brief'} · {post.data.pubDate.toLocaleDateString('en-GB')} · ~6 min read
+        <!-- 信息流列表 -->
+        <div class="divide-y divide-border">
+          {rest.map((post) => (
+            <a href={`/articles/${post.id}/`} class="block py-4 group">
+              <div class="flex gap-4">
+                <div class="w-24 h-24 md:w-32 md:h-32 bg-bg-soft rounded shrink-0 overflow-hidden">
+                  <div class="w-full h-full bg-gradient-to-br from-brand/60 to-blue-500/60"></div>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-bold group-hover:text-accent transition line-clamp-2">
+                    {post.data.title}
+                  </h3>
+                  <p class="text-sm text-muted mt-1 line-clamp-2">{post.data.description}</p>
+                  <div class="text-xs text-muted mt-2">
+                    {post.data.pubDate.toLocaleDateString('en-GB')} · ~5 min read
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
         </div>
-      </a>
-    ))}
-  </section>
+      </div>
 
-  <section style="text-align:center;margin:40px 0;">
-    <a href="/subscribe/" style="font-size:15px;color:#1f6feb;font-weight:600;">
-      Get the free daily email →
-    </a>
-  </section>
+      <!-- 侧边栏（移动端隐藏） -->
+      <aside class="hidden md:block md:w-5/12 lg:w-4/12">
+        <!-- 广告位 -->
+        <div class="bg-bg-soft rounded p-4 text-center text-xs text-muted mb-6">
+          <!-- ADSENSE_SLOT_SIDEBAR --> Advertisement
+        </div>
+
+        <!-- 订阅引导 -->
+        <div class="bg-brand text-white rounded p-5 mb-6">
+          <h3 class="font-bold text-lg mb-2">Get the daily memo</h3>
+          <p class="text-sm text-gray-300 mb-3">5 minutes a day. Neutral, source-backed analysis.</p>
+          <a href="/subscribe/" class="block bg-accent text-center py-2 rounded font-bold text-sm hover:opacity-90">
+            Subscribe free
+          </a>
+        </div>
+
+        <!-- 热门文章 -->
+        <div class="bg-white border border-border rounded p-5">
+          <h3 class="font-bold mb-3 text-sm uppercase tracking-wide text-muted">Popular</h3>
+          {posts.slice(0, 5).map((post, i) => (
+            <a href={`/articles/${post.id}/`} class="flex gap-3 py-2 border-b border-border last:border-0">
+              <span class="text-accent font-bold text-lg">{i + 1}</span>
+              <span class="text-sm font-medium line-clamp-2">{post.data.title}</span>
+            </a>
+          ))}
+        </div>
+      </aside>
+    </div>
+  </div>
 </BaseLayout>

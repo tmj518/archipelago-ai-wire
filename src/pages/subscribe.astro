@@ -1,6 +1,5 @@
 ---
-// 定价页：the-ken.com/pricing 风格
-// 三档 + 中间档 MOST POPULAR + 功能矩阵划掉/高亮
+// 定价页：the-ken 风格 + Tailwind 响应式
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const PLANS = [
@@ -62,51 +61,47 @@ const PLANS = [
 ];
 ---
 <BaseLayout title="Subscribe — Archipelago Intel" description="Membership plans for cross-border SMEs. Free daily decision memo, paid trend briefs, podcast, and source packages.">
-  <section style="text-align:center;padding:40px 16px 24px;">
-    <h1 style="font-size:36px;max-width:680px;margin:0 auto 12px;">
-      The only decision memo you need for cross-border business in ASEAN & LatAm.
-    </h1>
-    <p style="font-size:17px;color:#555;max-width:560px;margin:0 auto;">
-      Neutral, source-backed analysis. Read by cross-border traders, exporters, and small investors who want to be prepared for what comes next.
-    </p>
-  </section>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">
+        The only decision memo you need for cross-border business.
+      </h1>
+      <p class="text-muted max-w-xl mx-auto">
+        Neutral, source-backed analysis. Read by cross-border traders, exporters, and small investors who want to be prepared.
+      </p>
+    </div>
 
-  <section style="display:flex;flex-wrap:wrap;gap:16px;max-width:1080px;margin:24px auto;padding:0 16px;">
-    {PLANS.map((plan) => (
-      <div
-        class="card"
-        style={`flex:1 1 230px;min-width:230px;position:relative;${plan.popular ? 'border:2px solid #1f6feb;transform:scale(1.03);' : ''}`}
-      >
-        {plan.popular && (
-          <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#1f6feb;color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:12px;white-space:nowrap;">
-            MOST POPULAR
-          </div>
-        )}
-        <h3 style="margin:0 0 4px;">{plan.name}</h3>
-        <div style="font-size:36px;font-weight:800;margin:8px 0 2px;">{plan.price}</div>
-        <div style="font-size:13px;color:#888;margin-bottom:16px;">{plan.unit}</div>
-        <ul style="list-style:none;padding:0;margin:0;font-size:13px;">
-          {plan.features.map((f) => (
-            <li style={`padding:6px 0;border-bottom:1px solid #f0f1f3;${f.included ? '' : 'color:#bbb;text-decoration:line-through;'}`}>
-              {f.included ? '✓' : '✗'} {f.label}
-            </li>
-          ))}
-        </ul>
-        <button
-          style={`margin-top:16px;width:100%;padding:10px;border:none;border-radius:6px;font-weight:700;cursor:pointer;${plan.popular ? 'background:#1f6feb;color:#fff;' : 'background:#f0f1f3;color:#333;'}`}
-        >
-          {plan.price === '$0' ? 'Get started free' : `Subscribe ${plan.name}`}
-        </button>
-      </div>
-    ))}
-  </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {PLANS.map((plan) => (
+        <div class={`bg-white border rounded-lg p-6 relative ${plan.popular ? 'border-brand shadow-lg md:scale-105' : 'border-border'}`}>
+          {plan.popular && (
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
+              MOST POPULAR
+            </div>
+          )}
+          <h3 class="font-bold mb-1">{plan.name}</h3>
+          <div class="text-4xl font-extrabold mb-1">{plan.price}</div>
+          <div class="text-xs text-muted mb-4">{plan.unit}</div>
+          <ul class="space-y-2 text-sm mb-6">
+            {plan.features.map((f) => (
+              <li class={`flex items-start gap-2 ${f.included ? '' : 'text-muted line-through'}`}>
+                <span class={f.included ? 'text-accent font-bold' : 'text-muted'}>{f.included ? '✓' : '✗'}</span>
+                <span>{f.label}</span>
+              </li>
+            ))}
+          </ul>
+          <button class={`w-full py-2.5 rounded font-bold text-sm ${plan.popular ? 'bg-brand text-white hover:opacity-90' : 'bg-bg-soft text-ink hover:bg-border'}`}>
+            {plan.price === '$0' ? 'Get started free' : `Subscribe ${plan.name}`}
+          </button>
+        </div>
+      ))}
+    </div>
 
-  <section style="max-width:680px;margin:32px auto;padding:0 16px;font-size:14px;color:#666;text-align:center;">
-    <p>
-      Trusted by Malaysian exporters, cross-border traders, and small business owners who read trends before they hit the headlines.
-    </p>
-    <p style="margin-top:16px;">
-      Payments via Stripe & PayPal. See <a href="/refund/">Refund Policy</a> · <a href="/privacy/">Privacy</a>.
-    </p>
-  </section>
+    <div class="text-center mt-10 text-sm text-muted">
+      <p>Trusted by cross-border traders, exporters, and small business owners across Malaysia, Indonesia, and Latin America.</p>
+      <p class="mt-2">
+        Payments via Stripe & PayPal. See <a href="/refund/" class="text-brand underline">Refund Policy</a> · <a href="/privacy/" class="text-brand underline">Privacy</a>.
+      </p>
+    </div>
+  </div>
 </BaseLayout>
