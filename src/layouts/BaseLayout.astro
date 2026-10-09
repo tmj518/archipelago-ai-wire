@@ -1,5 +1,4 @@
 ---
-// BaseLayout — The Information 极简高级风
 import '../styles/global.css';
 
 interface Props {
@@ -20,60 +19,227 @@ const year = new Date().getFullYear();
       document.addEventListener('DOMContentLoaded', () => {
         const btn = document.getElementById('menu-btn');
         const menu = document.getElementById('mobile-menu');
-        if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('open'));
       });
     </script>
   </head>
-  <body class="bg-white text-gray-900 min-h-screen flex flex-col">
-    <!-- Header -->
-    <header class="border-b border-gray-200">
-      <div class="max-w-3xl mx-auto px-6">
-        <div class="flex items-center justify-between h-16">
-          <a href="/" class="font-serif text-xl font-extrabold tracking-tight">Archipelago Intel</a>
+  <body>
+    <header class="site-header">
+      <div class="header-top">
+        <div class="header-inner-top">
+          <a href="/" class="logo-block">Archipelago<br/>Intel</a>
 
-          <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600">
-            <a href="/latest/" class="hover:text-gray-900">Latest</a>
-            <a href="/methodology/" class="hover:text-gray-900">Methodology</a>
-            <a href="/podcast/" class="hover:text-gray-900">Podcast</a>
-          </nav>
-
-          <div class="flex items-center gap-3">
-            <a href="/subscribe/" class="hidden md:inline-block bg-gray-900 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-gray-700">
-              Subscribe
-            </a>
-            <button id="menu-btn" class="md:hidden p-2" aria-label="Menu">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          <div class="header-actions">
+            <a href="/subscribe/" class="subscribe-btn">Subscribe</a>
+            <a href="/about/" class="header-link">About</a>
+            <button id="menu-btn" class="menu-btn" aria-label="Menu">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
               </svg>
             </button>
           </div>
         </div>
-
-        <nav id="mobile-menu" class="hidden md:hidden pb-4 flex flex-col gap-3 text-sm">
-          <a href="/latest/" class="py-1">Latest</a>
-          <a href="/methodology/" class="py-1">Methodology</a>
-          <a href="/podcast/" class="py-1">Podcast</a>
-          <a href="/subscribe/" class="bg-gray-900 text-white px-4 py-2 rounded text-center font-medium mt-2">Subscribe</a>
-        </nav>
       </div>
+
+      <nav class="header-nav">
+        <div class="header-inner-nav">
+          <a href="/latest/" class="nav-link">Latest</a>
+          <a href="/topics/" class="nav-link">Topics</a>
+          <a href="/podcast/" class="nav-link">Podcast</a>
+          <a href="/methodology/" class="nav-link">Methodology</a>
+        </div>
+      </nav>
+
+      <nav id="mobile-menu" class="nav-mobile">
+        <a href="/latest/">Latest</a>
+        <a href="/topics/">Topics</a>
+        <a href="/podcast/">Podcast</a>
+        <a href="/methodology/">Methodology</a>
+        <a href="/subscribe/">Subscribe</a>
+      </nav>
     </header>
 
-    <main class="flex-1">
+    <main class="site-main">
       <slot />
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-gray-200 mt-16">
-      <div class="max-w-3xl mx-auto px-6 py-8">
-        <div class="flex flex-wrap justify-between text-xs text-gray-400">
-          <div>© {year} Archipelago Intel. Not investment advice.</div>
-          <div class="flex gap-4">
-            <a href="/privacy/" class="hover:text-gray-600">Privacy</a>
-            <a href="/refund/" class="hover:text-gray-600">Refund</a>
-            <a href="/sources/" class="hover:text-gray-600">Sources</a>
-          </div>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>© {year} Archipelago Intel. Not investment advice.</div>
+        <div class="footer-links">
+          <a href="/privacy/">Privacy</a>
+          <a href="/refund/">Refund</a>
+          <a href="/sources/">Sources</a>
         </div>
       </div>
     </footer>
   </body>
 </html>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-family: Georgia, 'Times New Roman', serif;
+  -webkit-font-smoothing: antialiased;
+  color: #1a1a1a;
+}
+
+body {
+  line-height: 1.6;
+  background: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-top {
+  padding: 16px 0;
+}
+
+.header-inner-top {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-block {
+  background: #c41e3a;
+  color: #fff;
+  padding: 12px 20px;
+  font-family: Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-decoration: none;
+  text-align: center;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.subscribe-btn {
+  background: #1a365d;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-family: -apple-system, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.subscribe-btn:hover { background: #2c5282; }
+
+.header-link {
+  font-family: -apple-system, sans-serif;
+  font-size: 0.9rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.header-link:hover { color: #000; }
+
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: #333;
+}
+
+.header-nav {
+  border-top: 1px solid #e5e5e5;
+}
+
+.header-inner-nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+}
+
+.nav-link {
+  font-family: -apple-system, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+  padding: 12px 0;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover {
+  border-bottom-color: #c41e3a;
+}
+
+.nav-mobile {
+  display: none;
+  flex-direction: column;
+  padding: 16px 24px;
+  border-top: 1px solid #e5e5e5;
+  gap: 12px;
+}
+
+.nav-mobile.open { display: flex; }
+.nav-mobile a { color: #333; text-decoration: none; padding: 4px 0; font-family: -apple-system, sans-serif; }
+
+/* Main */
+.site-main {
+  flex: 1;
+  width: 100%;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid #e5e5e5;
+  margin-top: 64px;
+  padding: 32px 0;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  font-family: -apple-system, sans-serif;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-links a { color: #999; text-decoration: none; }
+.footer-links a:hover { color: #666; }
+
+@media (max-width: 768px) {
+  .header-link { display: none; }
+  .menu-btn { display: block; }
+  .header-inner-top { padding: 0 16px; }
+  .footer-inner { padding: 0 16px; flex-direction: column; gap: 8px; }
+  .header-inner-nav { padding: 0 16px; gap: 20px; }
+}
+</style>

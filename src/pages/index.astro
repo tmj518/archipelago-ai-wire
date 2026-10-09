@@ -1,5 +1,4 @@
 ---
-// 首页：The Information / Stratechery 极简高级风
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -8,55 +7,194 @@ const posts = (await getCollection('posts'))
 
 const featured = posts[0];
 const rest = posts.slice(1, 6);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
 ---
 <BaseLayout title="Archipelago Intel — Decision memos for cross-border business" description="Neutral, source-backed policy decision memos for Southeast Asian and Latin American SMEs.">
-  <div class="max-w-3xl mx-auto px-6 py-12">
-    <!-- 导语 -->
-    <div class="mb-12 pb-8 border-b border-gray-200">
-      <p class="text-xs uppercase tracking-widest text-gray-400 mb-4">Daily Brief</p>
-      <h2 class="text-3xl md:text-4xl font-serif font-bold leading-tight mb-3">
-        What changed in policy, what it means for your bottom line.
-      </h2>
-      <p class="text-gray-600 leading-relaxed">
-        Every weekday, we decode official government releases into a 5-minute decision memo — conclusion first, sources cited, one thing to do this week.
-      </p>
-    </div>
+  <main class="page">
+    <header class="hero">
+      <p class="hero-kicker">Daily Brief</p>
+      <h1 class="hero-title">What changed in policy, what it means for your bottom line.</h1>
+      <p class="hero-sub">Every weekday, we decode official government releases into a 5-minute decision memo — conclusion first, sources cited, one thing to do this week.</p>
+    </header>
 
-    <!-- 头条：大标题，无图 -->
     {featured && (
-      <a href={`/articles/${featured.id}/`} class="block group mb-10">
-        <div class="text-xs text-accent uppercase tracking-wider mb-2">Featured</div>
-        <h3 class="text-2xl md:text-3xl font-serif font-bold leading-snug group-hover:text-accent transition">
-          {featured.data.title}
-        </h3>
-        <p class="text-gray-600 mt-3 leading-relaxed">{featured.data.description}</p>
-        <div class="text-xs text-gray-400 mt-3">
-          {featured.data.pubDate.toLocaleDateString('en-GB')} · 6 min read
-        </div>
+      <a href={`/articles/${featured.id}/`} class="featured">
+        <p class="featured-label">Featured</p>
+        <h2 class="featured-title">{featured.data.title}</h2>
+        <p class="featured-desc">{featured.data.description}</p>
+        <p class="featured-meta">{formatDate(featured.data.pubDate)} · 6 min read</p>
       </a>
     )}
 
-    <!-- 列表：纯文字，分割线 -->
-    <div class="divide-y divide-gray-200">
+    <div class="post-list">
       {rest.map((post) => (
-        <a href={`/articles/${post.id}/`} class="block py-5 group">
-          <h4 class="text-lg font-serif font-bold leading-snug group-hover:text-accent transition">
-            {post.data.title}
-          </h4>
-          <p class="text-sm text-gray-500 mt-1 line-clamp-2">{post.data.description}</p>
-          <div class="text-xs text-gray-400 mt-2">
-            {post.data.pubDate.toLocaleDateString('en-GB')} · 5 min read
-          </div>
+        <a href={`/articles/${post.id}/`} class="post-item">
+          <h3 class="post-title">{post.data.title}</h3>
+          <p class="post-desc">{post.data.description}</p>
+          <p class="post-meta">{formatDate(post.data.pubDate)} · 5 min read</p>
         </a>
       ))}
     </div>
 
-    <!-- 订阅 CTA -->
-    <div class="mt-12 pt-8 border-t border-gray-200 text-center">
-      <p class="text-sm text-gray-600 mb-4">Get the daily memo in your inbox. Free, 5 minutes a day.</p>
-      <a href="/subscribe/" class="inline-block bg-brand text-white px-8 py-3 font-bold text-sm hover:opacity-90 transition">
-        Subscribe free
-      </a>
+    <div class="cta">
+      <p class="cta-text">Get the daily memo in your inbox. Free, 5 minutes a day.</p>
+      <a href="/subscribe/" class="cta-btn">Subscribe free</a>
     </div>
-  </div>
+  </main>
 </BaseLayout>
+
+<style>
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px 80px;
+}
+
+.hero {
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 2px solid #1a1a1a;
+}
+
+.hero-kicker {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #999;
+  margin: 0 0 16px;
+}
+
+.hero-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 16px;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #666;
+  margin: 0;
+}
+
+.featured {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.featured:hover .featured-title { color: #0066cc; }
+
+.featured-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #b8860b;
+  margin: 0 0 8px;
+}
+
+.featured-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 12px;
+  color: #1a1a1a;
+  transition: color 0.15s;
+  letter-spacing: -0.02em;
+}
+
+.featured-desc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #444;
+  margin: 0 0 12px;
+}
+
+.featured-meta {
+  font-size: 0.85rem;
+  color: #999;
+  margin: 0;
+}
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 24px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.post-item:last-child { border-bottom: none; }
+.post-item:hover .post-title { color: #0066cc; }
+
+.post-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0 0 8px;
+  color: #1a1a1a;
+  transition: color 0.15s;
+}
+
+.post-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #666;
+  margin: 0 0 8px;
+}
+
+.post-meta {
+  font-size: 0.8rem;
+  color: #999;
+  margin: 0;
+}
+
+.cta {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+}
+
+.cta-text {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0 0 16px;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 12px 32px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.cta-btn:hover { background: #333; }
+
+@media (max-width: 640px) {
+  .page { padding: 32px 16px 60px; }
+  .hero-title { font-size: 1.75rem; }
+  .featured-title { font-size: 1.4rem; }
+  .post-title { font-size: 1.1rem; }
+}
+</style>

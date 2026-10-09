@@ -46,6 +46,8 @@ related:
   - "malaysia-export-push-2026"
 ---
 
+> **Disclaimer**: This content is for informational purposes only and does not constitute investment, legal, or trade advice.
+
 **AI Summary** — ASEAN accounts for roughly 8.7% of global merchandise trade, with electronics at about 30% of global exports. Regional growth is projected at 2.9% for 2026, and RCEP alignment has touched 9,000 new tariff lines. This directional scan flags where buyers should watch supply, tariffs, and value-chain signals.
 
 ## The regional picture shapes supplier decisions

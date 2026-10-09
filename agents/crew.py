@@ -11,6 +11,10 @@ import os
 from pathlib import Path
 from typing import Optional
 
+# 强制清掉代理：豆包 ARK 是国内端点，走代理反而被拒（WinError 10061）
+for _k in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy", "all_proxy"):
+    os.environ.pop(_k, None)
+
 import yaml
 from dotenv import load_dotenv
 
@@ -173,5 +177,9 @@ def sync_to_lark():
 if __name__ == "__main__":
     import sys
     topic = sys.argv[1] if len(sys.argv) > 1 else "malaysia export policy 2026"
-    out = run_pipeline(topic, dry_run=True)
+    dry_run = os.environ.get("CREWAI_LIVE") != "1"
+    print(f"[crew] mode: {'LIVE' if not dry_run else 'DRY-RUN'}, topic: {topic}")
+    out = run_pipeline(topic, dry_run=dry_run)
     print(out)
+    if not dry_run:
+        sync_to_lark()
