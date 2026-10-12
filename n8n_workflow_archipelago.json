@@ -1,0 +1,143 @@
+{
+  "name": "Archipelago Intel · 每日内容生产",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 4 * * *"
+            }
+          ]
+        }
+      },
+      "id": "trigger",
+      "name": "每日凌晨4点触发",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd C:\\Users\\tmj19\\Desktop\\马来西亚的新闻项目\\agents && $env:CREWAI_LIVE='1'; & 'C:\\Users\\tmj19\\AppData\\Local\\Programs\\Python\\Python313\\python.exe' crew.py",
+        "executeOnce": false,
+        "workingDirectory": "C:\\Users\\tmj19\\Desktop\\马来西亚的新闻项目\\agents"
+      },
+      "id": "crewai",
+      "name": "跑 CrewAI 11智能体流水线",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd C:\\Users\\tmj19\\Desktop\\马来西亚的新闻项目; node tools/qa-check.mjs --all; node tools/reviewer-check.mjs --all; npx astro build",
+        "executeOnce": false,
+        "workingDirectory": "C:\\Users\\tmj19\\Desktop\\马来西亚的新闻项目"
+      },
+      "id": "gates",
+      "name": "三道闸门+构建",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd C:\\Users\\tmj19\\Desktop\\马来西亚的新闻项目\\agents; & 'C:\\Users\\tmj19\\AppData\\Local\\Programs\\Python\\Python313\\python.exe' sync_to_lark.py",
+        "executeOnce": false,
+        "workingDirectory": "C:\\Users\\tmj19\\Desktop\\马来西亚的新闻项目\\agents"
+      },
+      "id": "lark",
+      "name": "飞书台账同步",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd C:\\Users\\tmj19\\Desktop\\马来西亚的新闻项目; git add -A; git commit -m 'auto: daily article $(date +%Y-%m-%d)'; git push origin main",
+        "executeOnce": false,
+        "workingDirectory": "C:\\Users\\tmj19\\Desktop\\马来西亚的新闻项目"
+      },
+      "id": "git",
+      "name": "Git 提交+推送",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1200, 300]
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_CHAT_ID",
+        "text": "=== Archipelago Intel 每日报告 ===\n时间: {{$now.toFormat('yyyy-MM-dd HH:mm')}}\n状态: {{ $json.exitCode === 0 ? '✅ 成功' : '❌ 失败' }}\n\n流水线已跑完，请检查 n8n 执行日志。",
+        "appendAttribution": false
+      },
+      "id": "notify",
+      "name": "结果通知",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [1440, 300],
+      "credentials": {}
+    }
+  ],
+  "connections": {
+    "每日凌晨4点触发": {
+      "main": [
+        [
+          {
+            "node": "跑 CrewAI 11智能体流水线",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "跑 CrewAI 11智能体流水线": {
+      "main": [
+        [
+          {
+            "node": "三道闸门+构建",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "三道闸门+构建": {
+      "main": [
+        [
+          {
+            "node": "飞书台账同步",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "飞书台账同步": {
+      "main": [
+        [
+          {
+            "node": "Git 提交+推送",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Git 提交+推送": {
+      "main": [
+        [
+          {
+            "node": "结果通知",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
