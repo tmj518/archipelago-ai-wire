@@ -1,0 +1,17 @@
+TEXT FIXTURE FOR tools/check-evidence.mjs --selftest
+
+This file is test data, not a source document. It exists so the evidence checker's self-test does not
+depend on data/sources/, which holds archived pages from the previous project and is not committed.
+
+It is read the same way a real archive file is: as text with markup stripped and whitespace normalised.
+The checker must still reject a number that is not here, and must still reject a real sentence that does
+not carry the number it is attached to.
+
+EXCERPT A: "provisional measures may be imposed not later than seven months from the date of initiation"
+
+EXCERPT B: "the definitive duty applicable to the product concerned is set at 17.4 per cent"
+
+The two sentences above are the only substantive lines. Everything else in this file is description, so a
+passing check cannot be an accident of a stray match elsewhere in the text.
+
+[END OF FIXTURE]

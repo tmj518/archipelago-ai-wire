@@ -42,6 +42,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync, rmSync
 import { join, resolve } from "node:path";
 import { spawnSync, execFileSync } from "node:child_process";
 import { PERSONA_VALUES } from "../src/lib/taxonomy.mjs";
+import { loadGuideQueue } from "../src/lib/guide-queue.mjs";
 
 import { loadEnv, today } from "./lib/gsc.mjs";
 
@@ -126,8 +127,22 @@ spentBefore = usageToday();
 
 /* ── the queue ────────────────────────────────────────────────────────────────────────────────── */
 
-const queue = JSON.parse(readFileSync(QUEUE_FILE, "utf8"));
-const topics = Array.isArray(queue.topics) ? queue.topics : [];
+/*
+ * The queue is loaded and validated before anything is fetched, written or generated.
+ *
+ * This used to be `JSON.parse(readFileSync(...))` followed by `Array.isArray(queue.topics) ? ... : []`,
+ * which turned three different problems into either a stack trace or - worse - a NO-SUBJECT with exit 0.
+ * A missing queue is a configuration fault, not a quiet day, and it now says so and stops before the
+ * line spends a token or writes a file it would have to take back.
+ */
+const loaded = loadGuideQueue(QUEUE_FILE);
+if (!loaded.ok) {
+  verdict = loaded.kind === "missing" ? "NO-QUEUE" : "QUEUE-INVALID";
+  reasons.push(loaded.detail);
+  step("queue", false, loaded.detail);
+  finish(78);
+}
+const { queue, topics } = loaded;
 const published = new Set(
   (existsSync(GUIDE_DIR) ? readdirSync(GUIDE_DIR) : []).filter((f) => f.endsWith(".md")).map((f) => f.replace(/\.md$/, "")),
 );

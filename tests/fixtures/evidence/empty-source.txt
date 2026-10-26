@@ -1,0 +1,4 @@
+This fixture exists to test one case: a source path that resolves, is readable, and contains nothing
+that any excerpt could match.
+
+It deliberately repeats none of the sentences used by the self-test.

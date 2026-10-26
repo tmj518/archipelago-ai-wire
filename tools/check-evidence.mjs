@@ -115,13 +115,21 @@ function checkOne({ value, evidence, evidence_from, source }, docCache) {
 
 if (args.includes("--selftest")) {
   /*
-   * A checker that has never failed has no discriminating power, so it is given two fixtures it must
-   * reject before it is trusted to pass anything: a number that is not in the archive, and a real
-   * excerpt that does not carry the number.
+   * A checker that has never failed has no discriminating power, so it is given fixtures it must
+   * reject before it is trusted to pass anything: a number that is not in the archive, a real
+   * excerpt that does not carry the number, a source that exists but is empty, and a source that
+   * does not exist at all.
+   *
+   * These used to point at data/sources/2026-10-16/eurlex-...txt - an archived page from the previous
+   * project, removed with the rest of that corpus on 2026-10-26. The self-test then exited 2 with
+   * "selftest needs <path>" on every clean clone, which meant the only evidence that the checker
+   * discriminates was unavailable exactly where it mattered. The fixtures below are committed, are
+   * clearly labelled as test data, and contain nothing except the sentences the cases need.
    */
-  const doc = "data/sources/2026-10-16/eurlex-oj-c-2026-4924-ad760-notice.txt";
-  if (!existsSync(join(ROOT, doc))) {
-    console.log("  selftest needs " + doc);
+  const doc = "tests/fixtures/evidence/sample-source.txt";
+  const emptyDoc = "tests/fixtures/evidence/empty-source.txt";
+  if (!existsSync(join(ROOT, doc)) || !existsSync(join(ROOT, emptyDoc))) {
+    console.log("  selftest needs " + doc + " and " + emptyDoc);
     process.exit(2);
   }
   const cases = [
@@ -139,6 +147,16 @@ if (args.includes("--selftest")) {
       name: "real excerpt that exists in the document",
       figure: { value: "seven", evidence: "provisional measures may be imposed not later than seven months", evidence_from: doc },
       expect: true,
+    },
+    {
+      name: "real value that the excerpt carries",
+      figure: { value: "17.4%", evidence: "the definitive duty applicable to the product concerned is set at 17.4 per cent", evidence_from: doc },
+      expect: true,
+    },
+    {
+      name: "source exists but is empty",
+      figure: { value: "seven", evidence: "provisional measures may be imposed not later than seven months", evidence_from: emptyDoc },
+      expect: false,
     },
     {
       name: "missing archive",

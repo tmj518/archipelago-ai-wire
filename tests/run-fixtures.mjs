@@ -25,6 +25,7 @@
  */
 import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -162,6 +163,74 @@ record("gate: it says the numbers are not tied to the document", /not tied to th
 
 const gateSrc = readFileSync(join(ROOT, "tools/gate.mjs"), "utf8");
 record("gate.mjs: the parity check is a hard gate", /id:\s*"check-schema-parity"/.test(gateSrc) && /tier:\s*"hard"/.test(gateSrc));
+
+/* ── the guide queue (P0-1) ─────────────────────────────────────────────────────────────────── */
+
+const queueLib = await import(pathToFileURL(join(ROOT, "src/lib/guide-queue.mjs")).href);
+
+const validTopic = {
+  slug: "ringgit-and-the-import-bill",
+  topic: "money",
+  audience: ["general"],
+  unit: "one month",
+  title: "What the ringgit does to an imported bill",
+  status: "queued",
+};
+
+const okQueue = queueLib.parseGuideQueue(JSON.stringify({ version: 2, topics: [validTopic] }));
+record("queue: a valid queue loads", okQueue.ok === true && okQueue.topics.length === 1);
+record("queue: it keeps the raw object for write-back", okQueue.ok === true && okQueue.queue.version === 2);
+
+const emptyQueue = queueLib.parseGuideQueue(JSON.stringify({ version: 2, topics: [] }));
+record("queue: an explicitly empty queue is valid, not broken", emptyQueue.ok === true && emptyQueue.topics.length === 0);
+
+const missing = queueLib.loadGuideQueue(join(tmpdir(), `no-such-queue-${Date.now()}.json`));
+record("queue: a missing file is reported as missing", missing.ok === false && missing.kind === "missing");
+record("queue: the message names the file and does not pretend it is empty", /no queue at/i.test(missing.detail));
+
+const broken = queueLib.parseGuideQueue("{ this is not json ");
+record("queue: malformed JSON is reported", broken.ok === false && broken.kind === "invalid-json");
+
+const noTopics = queueLib.parseGuideQueue(JSON.stringify({ version: 2 }));
+record("queue: a missing topics key is a structure fault, not an empty queue", noTopics.ok === false && noTopics.kind === "invalid-structure");
+
+const wrongType = queueLib.parseGuideQueue(JSON.stringify({ topics: "ringgit" }));
+record("queue: topics that is not an array is a structure fault", wrongType.ok === false && wrongType.kind === "invalid-structure");
+
+const oldChina = queueLib.parseGuideQueue(
+  JSON.stringify({ topics: [{ ...validTopic, slug: "z-visa", topic: "work-visa" }] }),
+);
+record("queue: a restored China-era topic is rejected by the vocabulary", oldChina.ok === false && /work-visa/.test(oldChina.detail));
+
+const retiredAudience = queueLib.parseGuideQueue(
+  JSON.stringify({ topics: [{ ...validTopic, audience: ["importer"] }] }),
+);
+record("queue: a retired audience is rejected", retiredAudience.ok === false && /importer/.test(retiredAudience.detail));
+
+const dupSlugs = queueLib.parseGuideQueue(JSON.stringify({ topics: [validTopic, { ...validTopic }] }));
+record("queue: duplicate slugs are rejected", dupSlugs.ok === false && /duplicate/i.test(dupSlugs.detail));
+
+const cLineSrc = readFileSync(join(ROOT, "tools/c-line-orchestrator.mjs"), "utf8");
+record("queue: the orchestrator uses the validated loader", /loadGuideQueue\(QUEUE_FILE\)/.test(cLineSrc));
+record("queue: a missing queue stops the line with its own verdict", /"NO-QUEUE"/.test(cLineSrc) && /finish\(78\)/.test(cLineSrc));
+
+/* ── the evidence checker (P0-2) ───────────────────────────────────────────────────────────── */
+
+const evidence = spawnSync(process.execPath, [join(ROOT, "tools/check-evidence.mjs"), "--selftest"], {
+  cwd: ROOT,
+  encoding: "utf8",
+  maxBuffer: 8 * 1024 * 1024,
+});
+record("evidence: the self-test runs without the old archive", evidence.status === 0, firstLine(evidence.stdout ?? "", "correct"));
+record("evidence: it still rejects what it must", /expect REJECT\s+got REJECT/.test(evidence.stdout ?? ""));
+record("evidence: it still accepts what it must", /expect PASS\s+got PASS/.test(evidence.stdout ?? ""));
+record("evidence: a source that exists but is empty is rejected", /source exists but is empty/.test(evidence.stdout ?? ""));
+const evidenceSrc = readFileSync(join(ROOT, "tools/check-evidence.mjs"), "utf8");
+record(
+  "evidence: the fixture is committed under tests/",
+  /const doc = "tests\/fixtures\/evidence\/sample-source\.txt"/.test(evidenceSrc),
+);
+record("evidence: the self-test no longer reads the old archive", !/const doc = "data\/sources/.test(evidenceSrc));
 
 /* ── the A-line call sites use the shared vocabulary (P0-4) ─────────────────────────────────── */
 
