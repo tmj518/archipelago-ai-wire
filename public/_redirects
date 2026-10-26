@@ -1,16 +1,27 @@
 # Cloudflare Pages redirects — copied verbatim into dist/ by Astro.
 #
-# Why the bare domain is redirected rather than served
+# Canonical host: www.toolsai.club
 #
-# Both https://landedmath.com/ and https://www.landedmath.com/ answered HTTP 200 with identical content,
-# so every page existed at two live URLs. The canonical tag named the bare form while the host's own
-# redirect went the other way, so the two signals disagreed and a search engine was free to pick either -
-# which is the arrangement that splits a page's signals between two addresses.
+# The site answers on two names, and only one of them may serve content. If both
+# https://toolsai.club/ and https://www.toolsai.club/ return 200 with the same page, every URL exists
+# twice, the canonical tag and the host's own behaviour disagree, and a search engine is free to pick
+# either - which is the arrangement that splits a page's signals between two addresses. The canonical
+# constant in src/consts.ts names the www form; this file is what makes the other form stop answering.
 #
-# www is the one Cloudflare serves as primary and the one the operator named, so it wins. 301 rather
-# than 302 because this is permanent and should be cached as such.
+# 301, not 302: the choice is permanent and should be cached as such.
 #
-# Order matters in a Cloudflare Pages _redirects file: the first matching rule wins, and these are
-# placed before any catch-all. The splat carries the path and query through, so a deep link keeps its
-# destination rather than landing on the homepage - the failure mode of a redirect written without one.
-https://landedmath.com/* https://www.landedmath.com/:splat 301
+# The splat carries the path through, so a deep link keeps its destination instead of landing on the
+# homepage - the failure mode of a redirect written without one.
+#
+# Query strings: Cloudflare Pages forwards the query string to the destination when the target does not
+# declare one of its own. That is the documented behaviour and it is NOT verified here - this repository
+# has no deployed environment, and the command that added this rule forbade deploying. Check it with a
+# real request the first time the site is live (see the launch checklist).
+#
+# Order matters: the first matching rule wins. There is one rule and no catch-all, deliberately - a
+# catch-all would also capture the domain this site will use.
+#
+# The previous project's two rules were removed on 2026-10-26. They named the domain that project used,
+# which this project does not own, so they could never fire here - and leaving them in the file would
+# suggest the redirect had been configured when it had not.
+https://toolsai.club/* https://www.toolsai.club/:splat 301

@@ -14,14 +14,18 @@ import taxonomy from "./lib/taxonomy.json";
 /**
  * The canonical origin.
  *
- * A new domain has not been purchased yet, so this is a documented placeholder rather than a
- * guess at a live property: every canonical, og:url, JSON-LD url and sitemap entry derives from
- * it, and pointing those at a domain the project does not own is worse than pointing them at one
- * it will own. Set PUBLIC_SITE_URL at build time, or edit this line once the domain is
- * registered, and everything follows.
+ * Confirmed by the project owner on 2026-10-26 as https://www.toolsai.club. The www form is the
+ * canonical one: the bare domain redirects to it (public/_redirects), so every canonical, og:url,
+ * JSON-LD url and sitemap entry names the same single address. Two forms serving the same content is
+ * the arrangement that splits a page's signals, and the redirect plus this constant are what prevent
+ * it - neither is sufficient alone.
+ *
+ * PUBLIC_SITE_URL still overrides it for a preview build. That override is a deployment convenience,
+ * not a second source of truth: tests/build-assertions.mjs checks the built output, so a build that
+ * drifted to another origin fails rather than shipping quietly.
  */
 export const SITE_URL =
-  import.meta.env.PUBLIC_SITE_URL || "https://www.archipelagoaiwire.com";
+  import.meta.env.PUBLIC_SITE_URL || "https://www.toolsai.club";
 
 export const SITE = {
   url: SITE_URL,
@@ -124,7 +128,12 @@ export const AUTHOR = {
     "The editorial desk of Archipelago AI Wire. We read the primary documents, keep the numbers traceable, and explain what world events mean for people in Malaysia.",
   longBio:
     "Archipelago AI Wire exists to help Malaysians understand the world: what is happening, why it is happening, and what it means here — for jobs, prices, businesses, students and households. Every figure carries a source and a retrieval date. Drafting is AI-assisted; every piece is reviewed against the source documents before publication, and corrections are recorded on the page.",
-  email: "editor@archipelagoaiwire.com",
+  /*
+   * Moved with the domain on 2026-10-26: an editorial address on a domain the site no longer uses is
+   * a contact route that cannot work. Mail routing for toolsai.club is NOT configured yet - this is the
+   * address the site will use, not one that currently delivers. Set it up before launch.
+   */
+  email: "editor@toolsai.club",
 };
 
 /** Footer. */

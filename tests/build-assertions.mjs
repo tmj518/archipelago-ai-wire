@@ -92,6 +92,64 @@ record(
   !/\/(category\/(trade-policy|platforms|supply-chain|sourcing|logistics))\//.test(topic),
 );
 
+/* ── the canonical domain (command 10, A) ─────────────────────────────────────────────────── */
+
+const CANON = "https://www.toolsai.club";
+const home = pageHtml("/");
+
+const canonical = /<link\s+rel="canonical"\s+href="([^"]+)"/.exec(home)?.[1] ?? "";
+record("domain: canonical uses the confirmed origin", canonical === `${CANON}/`, canonical || "missing");
+
+const ogUrl = /<meta\s+property="og:url"\s+content="([^"]+)"/.exec(home)?.[1] ?? "";
+record("domain: og:url uses the confirmed origin", ogUrl.startsWith(`${CANON}/`), ogUrl || "missing");
+
+const jsonLdUrls = [...home.matchAll(/"url":"([^"]+)"/g)].map((m) => m[1]);
+record("domain: JSON-LD URLs use the confirmed origin", jsonLdUrls.length > 0 && jsonLdUrls.every((u) => u.startsWith(CANON)), jsonLdUrls[0] ?? "none");
+
+record(
+  "domain: every sitemap URL uses the confirmed origin",
+  sitemapPaths.length > 0 && readdirSync(DIST).filter((f) => /^sitemap-\d+\.xml$/.test(f)).every((f) => {
+    const xml = readFileSync(join(DIST, f), "utf8");
+    return [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].every((m) => m[1].startsWith(`${CANON}/`));
+  }),
+);
+
+const everyHtml = [];
+for (const f of ["index.html", "about/index.html", "sources/index.html", "contact/index.html", "terms/index.html"]) {
+  const p = join(DIST, f);
+  if (existsSync(p)) everyHtml.push(readFileSync(p, "utf8"));
+}
+record(
+  "domain: the placeholder domain appears in no page",
+  everyHtml.every((h) => !/archipelagoaiwire/.test(h)),
+);
+
+/* ── redirects ship with the build (command 10, B) ─────────────────────────────────────────── */
+
+const shippedRedirects = join(DIST, "_redirects");
+if (existsSync(shippedRedirects)) {
+  const r = readFileSync(shippedRedirects, "utf8");
+  record("redirects: shipped to dist", true);
+  record("redirects: bare domain 301s to www", /^https:\/\/toolsai\.club\/\*\s+https:\/\/www\.toolsai\.club\/:splat\s+301$/m.test(r));
+  record("redirects: the old domain is not shipped", !/landedmath/.test(r));
+} else {
+  record("redirects: shipped to dist", false, "_redirects missing from dist");
+}
+
+/* ── GA4 is absent unless explicitly enabled (command 10, C) ───────────────────────────────── */
+
+const allHtml = [];
+for (const f of readdirSync(DIST).filter((x) => x.endsWith(".html"))) allHtml.push(readFileSync(join(DIST, f), "utf8"));
+for (const d of ["about", "contact", "sources", "terms", "privacy", "search", "guide", "topic"]) {
+  const p = join(DIST, d, "index.html");
+  if (existsSync(p)) allHtml.push(readFileSync(p, "utf8"));
+}
+const joined = allHtml.join("\n");
+record("ga: no gtag loader in the build", !/googletagmanager\.com\/gtag\/js/.test(joined));
+record("ga: no measurement-id meta in the build", !/name="ga-measurement-id"/.test(joined));
+record("ga: the previous project's id is not in the build", !/N99G9FY6NZ/.test(joined));
+record("gsc: no empty verification meta", !/<meta\s+name="google-site-verification"\s+content=""/.test(joined));
+
 /* ── report ────────────────────────────────────────────────────────────────────────────────── */
 
 const failed = results.filter((r) => !r.ok);

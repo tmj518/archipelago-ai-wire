@@ -332,6 +332,42 @@ const css = readFileSync(join(ROOT, "src/styles/global.css"), "utf8");
 record("a11y: a global :focus-visible rule exists", /:focus-visible\s*\{/.test(css));
 record("a11y: the focus ring uses a design token", /:focus-visible\s*\{[^}]*outline:\s*2px solid var\(--c-red\)/.test(css));
 
+/* ── the canonical domain (command 10, A) ──────────────────────────────────────────────────── */
+
+const CANON = "https://www.toolsai.club";
+const constsSrc = readFileSync(join(ROOT, "src/consts.ts"), "utf8");
+record("domain: SITE_URL defaults to the confirmed origin", constsSrc.includes(`"${CANON}"`));
+record("domain: the placeholder domain is gone from consts", !/archipelagoaiwire/.test(constsSrc));
+record("domain: the editorial address moved with the domain", /editor@toolsai\.club/.test(constsSrc));
+
+const redirectsSrc = readFileSync(join(ROOT, "public/_redirects"), "utf8");
+const ruleLines = redirectsSrc.split(/\r?\n/).filter((l) => l.trim() && !l.trim().startsWith("#"));
+record("redirects: exactly one rule", ruleLines.length === 1, ruleLines.join(" | "));
+record("redirects: bare domain 301s to www", /^https:\/\/toolsai\.club\/\*\s+https:\/\/www\.toolsai\.club\/:splat\s+301$/m.test(redirectsSrc));
+record("redirects: the old project's domain is gone", !/landedmath/.test(redirectsSrc));
+record("redirects: no wildcard catch-all that would capture the canonical host", !/^\s*\/\*/m.test(redirectsSrc));
+
+/* ── GA4 is fail-closed (command 10, C) ────────────────────────────────────────────────────── */
+
+const ga = await import(pathToFileURL(join(ROOT, "src/lib/analytics.mjs")).href);
+const VALID_ID = "G-ABC1234567";
+
+record("ga: the switch is off by default", ga.gaMeasurementId({ id: VALID_ID }) === null);
+record("ga: switch off means no tag even with a valid id", ga.gaMeasurementId({ enabled: "false", id: VALID_ID }) === null);
+record("ga: switch on with no id renders nothing", ga.gaMeasurementId({ enabled: "true", id: "" }) === null);
+record("ga: switch on with an invalid id renders nothing", ga.gaMeasurementId({ enabled: "true", id: "UA-12345-1" }) === null);
+record("ga: a short id is rejected", ga.gaMeasurementId({ enabled: "true", id: "G-ABC" }) === null);
+record("ga: a lowercase id is normalised", ga.gaMeasurementId({ enabled: "true", id: "g-abc1234567" }) === VALID_ID);
+record("ga: switch on with a valid id emits it", ga.gaMeasurementId({ enabled: "true", id: VALID_ID }) === VALID_ID);
+record("ga: surrounding whitespace is tolerated", ga.gaMeasurementId({ enabled: " TRUE ", id: ` ${VALID_ID} ` }) === VALID_ID);
+
+const gaSrc = readFileSync(join(ROOT, "src/components/GoogleAnalytics.astro"), "utf8");
+record("ga: the component decides through the pure function", /gaMeasurementId\(\{/.test(gaSrc));
+record("ga: the component requires the explicit switch", /PUBLIC_GA_ENABLED/.test(gaSrc));
+/* Strip the documented placeholder first: G-XXXXXXXXXX is ten X's and would match a real-id regex. */
+record("ga: no measurement id is hardcoded in the component", !/G-[A-Z0-9]{10}/.test(gaSrc.replace(/G-X{10}/g, "")));
+record("ga: the previous project's id appears nowhere in source", !/N99G9FY6NZ/.test(gaSrc + constsSrc));
+
 function firstLine(s, needle) {
   return String(s)
     .split(/\r?\n/)

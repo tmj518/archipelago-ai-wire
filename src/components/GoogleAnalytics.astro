@@ -18,11 +18,22 @@
  *
  * ## The values
  *
+ *   PUBLIC_GA_ENABLED                 "true" to emit analytics at all. Off unless set.
  *   PUBLIC_GA_MEASUREMENT_ID          "G-XXXXXXXXXX" from GA4 -> Admin -> Data streams -> Web
  *   PUBLIC_GOOGLE_SITE_VERIFICATION   the content value from Search Console's verification meta tag
  *
  * Both are read at build time. For this site that means the Cloudflare Pages project, Production and Preview
  * both - a value set only in a local shell produces a build with no tag and no error.
+ *
+ * ## Why there is a switch
+ *
+ * On 2026-10-26 the build was found emitting the PREVIOUS project's GA4 property id, inherited from the
+ * environment. A tag that works is indistinguishable from a tag that works correctly, so nothing failed
+ * visibly: the new site would simply have reported into the old property, permanently and silently.
+ *
+ * So the tag is emitted only when BOTH the switch is on and the id is in GA4's own format. Missing id,
+ * malformed id, inherited id or an unset switch all produce no tag at all - see src/lib/analytics.mjs.
+ * The id is never defaulted and never falls back to another property.
  *
  * ## When they are absent
  *
@@ -35,7 +46,12 @@
  * Without them the loader arrives and every measurement is refused - which reads as a working install that
  * reports no traffic, the most expensive kind of wrong.
  */
-const GA = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? "";
+import { gaMeasurementId } from "../lib/analytics.mjs";
+
+const GA = gaMeasurementId({
+  enabled: import.meta.env.PUBLIC_GA_ENABLED,
+  id: import.meta.env.PUBLIC_GA_MEASUREMENT_ID,
+});
 const VERIFY = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? "";
 ---
 
@@ -67,7 +83,7 @@ const VERIFY = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? "";
            * Array, and gtag.js only records a uniqueEventId for entries it accepted - which is why the console showed
            *
            *   ["js", ...]                                    no uniqueEventId, never ran
-           *   ["config", "G-N99G9FY6NZ", {...}]              no uniqueEventId, never ran
+           *   ["config", "G-XXXXXXXXXX", {...}]              no uniqueEventId, never ran
            *   {"event":"gtm.dom","gtm.uniqueEventId":3}      accepted
            *
            * and why document.cookie had no _ga and the Network panel had no collect at all. The tag loaded 200, the
