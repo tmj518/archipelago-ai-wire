@@ -98,7 +98,7 @@ const SCENARIOS = [
     turns: [
       [{ name: "run", args: { command: "git push --force origin main" } }],
       /*
-       * An allowed command, deliberately a cheap one. This was `node tools/preflight.mjs`, and preflight
+       * An allowed command, deliberately a cheap one. It used to be the old pre-run check, and that check
        * inside the sandbox prints its whole check list against a tree that is incomplete on purpose -
        * tens of thousands of characters into a single tool result, which crowded out the rest of the
        * conversation and left the loop at its turn limit with no report at all. The output cap in

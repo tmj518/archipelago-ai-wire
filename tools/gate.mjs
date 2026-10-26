@@ -57,7 +57,7 @@ function saveCache(c) {
  * hash of `dist` was therefore very nearly constant, and the two gates that take it as their input,
  * mobile layout and CSP, served verdicts from a previous build.
  *
- * What that looked like in practice, twice on 2026-10-16: preflight reported a mobile overflow on a
+ * What that looked like in practice, twice on 2026-10-16: the pre-run check reported a mobile overflow on a
  * specific page - a table 71px too wide, then a code block 87px too wide - while check-mobile alone
  * passed all 135 pages. Both were real numbers attached to a stale dist. The tell was that the gate
  * said 131 pages and the standalone check said 135.
@@ -198,7 +198,7 @@ const GATES = [
   /*
    * Vocabulary parity, added as a hard gate on 2026-10-26.
    *
-   * It existed before but nothing ran it: no workflow, no gate entry, and `preflight.mjs` mentioned it
+   * It existed before but nothing ran it: no workflow, no gate entry, and one tool mentioned it
    * in a comment. So when the categories were replaced, the copy in src/lib/schema-rules.mjs kept
    * telling the writer that `trade-policy` and `importer` were legal, and no check noticed. A rule that
    * nothing executes is documentation.

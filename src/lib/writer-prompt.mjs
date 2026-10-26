@@ -8,7 +8,7 @@
  * was `MASTER_PROMPT.md`. The repositioning rewrote the prompt document and left the executable
  * instructions untouched, so the A line would have kept producing "per-unit cost consequences for
  * importers" while the documentation said the site served all Malaysians. The audit caught it because
- * the strings "Landed Math" and "Chinese" were still in the code path.
+ * the previous publication's name and subject matter were still in the code path.
  *
  * That is the same failure this repository has paid for three times: two copies of one rule, and the
  * copy nobody reads is the one that runs. So the run-time prompt lives here, and

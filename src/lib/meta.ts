@@ -95,7 +95,7 @@ export function fitTitle(name, qualifier, siteName, limit = 60) {
    *
    * This used to floor the room at eighteen columns and keep the qualifier regardless, which produced titles
    * over the limit whenever a document carried a long period - "Producer prices... (September 2026, October 2026)
-   * - Landed Math" measured sixty-one. The floor is what to blame, not the qualifier: the name is worth more
+   * - the site name" measured sixty-one. The floor is what to blame, not the qualifier: the name is worth more
    * than a parenthetical nobody reads in a result snippet, and a title one column over fails the check that
    * exists to keep it inside the snippet.
    */

@@ -73,16 +73,15 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Render output — 5,130 files and 2.6 MB, all of it reproducible from the atom pool by running
-# `node tools/render.mjs --emit`. Committing it would put a copy of every derivative in the
-# repository and turn each re-render into a five-thousand-file diff. The atom pool it derives from
-# stays tracked, because the n8n workflow reads it and regenerating it needs a source read.
+# Render output. The rendering pipeline was removed with the previous publication on 2026-10-26;
+# the directory is kept out of the repository because it is generated, large, and would turn every
+# re-render into a five-thousand-file diff.
 data/renders/
 data/tmp/
 
-# Exported deliverables — the pages and decks built from the renders by `node tools/export.mjs`.
-# Same reasoning, and one more: these are upload payloads. A file that gets uploaded somewhere is
-# not source, and a repository that tracks it will show a diff every time a figure is corrected.
+# Exported deliverables: upload payloads built from the renders. A file that gets uploaded
+# somewhere is not source, and a repository that tracks it shows a diff every time a figure is
+# corrected.
 exports/
 
 # editors / OS

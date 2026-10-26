@@ -2,7 +2,7 @@
 /**
  * Verify the live site after a deploy.
  *
- * Run by tools/run-daily.ps1 as the last step, and safe to run by hand:
+ * Safe to run by hand, and meant to be the last step of a deploy:
  *     node tools/verify-live.mjs
  *     node tools/verify-live.mjs --slug eu-cbam-cost-per-tonne-chinese-steel-aluminium-2026
  *

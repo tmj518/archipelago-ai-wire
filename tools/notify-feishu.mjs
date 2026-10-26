@@ -163,7 +163,7 @@ if (!report && pipelineFinishedCleanly) {
   process.exit(0);
 }
 if (!report) {
-  lines.push(`🔴 Landed Math — STOPPED BEFORE PUBLISHING   [${routeTag}]`);
+  lines.push(`🔴 Archipelago AI Wire — STOPPED BEFORE PUBLISHING   [${routeTag}]`);
   lines.push("");
   /*
    * What actually happened, in the order a reader needs it: where it stopped, then what to do.
@@ -221,7 +221,7 @@ if (!report) {
    */
   const PUBLISHED_ISH = verdict === "PUBLISHED" || verdict === "PUBLISHED-WITHOUT-FINISH";
   const icon = PUBLISHED_ISH ? "✅" : verdict === "NO-DIRECTIVE" || verdict === "CEILING" || verdict === "IDLE" || verdict === "NO-SUBJECT" || verdict === "DUPLICATE-SUBJECT" ? "🟡" : "🔴";
-  lines.push(`${icon} Landed Math — ${verdict}   [${route}]`);
+  lines.push(`${icon} Archipelago AI Wire — ${verdict}   [${route}]`);
   lines.push("");
   if (report.article) lines.push(`Article: ${report.article}`);
   if (report.qa?.verdict) lines.push(`Review: ${report.qa.verdict}`);

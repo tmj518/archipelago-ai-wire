@@ -55,7 +55,7 @@ const OUT = (args.find((a) => a.startsWith("--out=")) ?? "").slice(6) || null;
 const NAMED = args.filter((a) => !a.startsWith("--") && !a.endsWith(".json"));
 
 /** Publishers that are never a competitor: aggregators, and our own domain. */
-const NOT_COMPETITOR = /landedmath\.com|google\.|bing\.|youtube\.com|facebook\.com|twitter\.com|x\.com|linkedin\.com\/posts|reddit\.com|quora\.com|pinterest\.|wikipedia\.org|amazon\.|alibaba\.com|made-in-china\.com/i;
+const NOT_COMPETITOR = /toolsai\.club|google\.|bing\.|youtube\.com|facebook\.com|twitter\.com|x\.com|linkedin\.com\/posts|reddit\.com|quora\.com|pinterest\.|wikipedia\.org|amazon\.|alibaba\.com|made-in-china\.com/i;
 
 function loadSerp(slug) {
   /* `--serp=` lets a fixture be scored without a matching article, which is how this tool is

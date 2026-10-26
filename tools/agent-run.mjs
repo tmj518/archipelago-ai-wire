@@ -4,7 +4,7 @@
  *
  * ## Why this exists
  *
- * The working local pipeline was not a script. `tools/run-daily.ps1` piped `daily-task.txt` - 22 KB of
+ * The working local pipeline was not a script. The old scheduler piped `daily-task.txt` - 22 KB of
  * instructions - into `dsh headless`, a general agent that read files, ran commands, looked at errors and
  * decided what to do next. It produced 29 articles. The wrapper script only did the two things the agent
  * could not do inside its sandbox: build and push.
@@ -889,8 +889,8 @@ const SYSTEM = `${DATA_NOTE}
 
 ${SUBMIT_NOTE}
 
-You are the daily operator for Landed Math, an English site that turns Chinese and other
-official primary documents into per-unit cost consequences for importers.
+You are the daily operator for Archipelago AI Wire, an independent Malaysian publication.
+Every piece answers what happened, why it is happening now, and what it means for Malaysia.
 
 Your tools: read_file, write_file, list_dir, run, check_draft, publish_draft, finish.
 

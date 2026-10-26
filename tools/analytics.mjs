@@ -80,8 +80,15 @@ const TOKEN = (process.env.CF_API_TOKEN ?? "").trim();
  * Defaulted here for the same reason as the account id: it grants nothing, it identifies the site, and the
  * alternative is a silent zero.
  */
-const BEACON = ((process.env.CF_ANALYTICS_TOKEN ?? "").trim() || "be1864c080cf47f88bd1c126a8571ede").trim();
-const SITE_HOST = "landedmath.com";
+const BEACON = (process.env.CF_ANALYTICS_TOKEN ?? "").trim();
+/*
+ * No defaults for either value.
+ *
+ * Both used to be filled in with the previous publication's values, which meant an unconfigured
+ * run queried somebody else's site and recorded it as this one's readership. A missing value is
+ * now a stated configuration error, not a silent zero.
+ */
+const SITE_HOST = (process.env.SITE_HOST ?? "").trim();
 
 /** Paths are what the ledger keys on; Cloudflare reports full URLs. */
 const toPath = (u) => {
@@ -99,9 +106,9 @@ function today() {
 /* ---------------------------------------------------------------- fetch */
 
 async function fetchSnapshot(days = 30) {
-  if (!ACCOUNT || !TOKEN) {
+  if (!ACCOUNT || !TOKEN || !SITE_HOST) {
     console.log("ANALYTICS - cannot fetch\n");
-    console.log(`  Missing: ${[!ACCOUNT && "CF_ACCOUNT_ID", !TOKEN && "CF_API_TOKEN"].filter(Boolean).join(", ")}`);
+    console.log(`  Missing: ${[!ACCOUNT && "CF_ACCOUNT_ID", !TOKEN && "CF_API_TOKEN", !SITE_HOST && "SITE_HOST"].filter(Boolean).join(", ")}`);
     console.log("");
     if (BEACON) {
       console.log("  CF_ANALYTICS_TOKEN is set, and it is not what this needs. That is the beacon's site");
@@ -110,6 +117,7 @@ async function fetchSnapshot(days = 30) {
     }
     console.log("");
     console.log("  CF_ACCOUNT_ID   your account id, the hex string in the dashboard URL");
+    console.log("  SITE_HOST       the hostname this zone reports, e.g. www.example.com");
     console.log("  CF_API_TOKEN    a token with Account Analytics: Read");
     console.log("                  Cloudflare dashboard -> My Profile -> API Tokens -> Create Token");
     console.log("                  -> Read analytics for an account");

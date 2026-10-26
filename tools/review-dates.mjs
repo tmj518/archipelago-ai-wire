@@ -160,7 +160,7 @@ const unset = published.filter((a) => !a.reviewBy);
  * to four per week.
  *
  * This exists because the cap had no enforcement at all. The daily profile in
- * preflight.mjs describes itself as publishing "at most one piece", and nothing
+ * The pre-run check described itself as publishing "at most one piece", and nothing
  * tested it — while the actual record shows eight pieces on 2026-10-02 and three
  * on 2026-10-03. A written rule with no mechanism is the same failure shape as
  * the reciprocal-link rule, which decayed for two days unnoticed.

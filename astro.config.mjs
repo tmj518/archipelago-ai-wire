@@ -47,7 +47,7 @@ export default defineConfig({
        * would be the contradiction this filter exists to prevent, and they stay out.
        *
        * /contact/ was here without setting noindex and is now in the sitemap. It is a page people search for
-       * by name - "Landed Math contact" - so withholding it from the one file that enumerates the site is a
+       * by name - "site name contact" - so withholding it from the one file that enumerates the site is a
        * page that asked to be found and was not offered. The rule above the filter already said an exclusion
        * is either a page with no search value or a page that says noindex; /contact/ is neither.
        */

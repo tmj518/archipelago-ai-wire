@@ -194,7 +194,7 @@ const docKey = (s) => s.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fff]/g, "").sli
 
 function slugify(src) {
   const cleaned = src
-    .replace(/^Landed Math[^,]*,\s*/i, "")
+    .replace(/^Archipelago AI Wire[^,]*,\s*/i, "")
     .replace(/[\u4e00-\u9fff]+/g, " ")
     .replace(/[^A-Za-z0-9]+/g, " ")
     .trim()
@@ -204,7 +204,7 @@ function slugify(src) {
   return out;
 }
 
-const isModelOutput = (s) => /^Landed Math\b/i.test(s.trim()) || /priceDrift\(\)|freightAdjustment\(\)/.test(s);
+const isModelOutput = (s) => /^Archipelago AI Wire\b/i.test(s.trim()) || /priceDrift\(\)|freightAdjustment\(\)/.test(s);
 
 const byDoc = new Map();
 for (const f of figures) {
