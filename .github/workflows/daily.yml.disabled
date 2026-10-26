@@ -1,4 +1,4 @@
-name: Archipelago Daily (disabled - see docs/验收报告_第二阶段)
+name: Archipelago Daily (disabled)
 
 # The unattended run. Triggered by cron at 23:20 UTC, which is 07:20 in Beijing.
 #
