@@ -137,3 +137,17 @@ logs/
 # The C line's staging area. A guide only leaves this directory after it has passed its gates and a
 # real astro build, so nothing here is ever an artifact worth keeping.
 data/drafts-c/
+
+# Keyword research output.
+#
+# Seven files under data/keywords/ were committed by accident on 2026-10-26: the cleanup removed the
+# directory's own .gitignore first, and the following `git add -A` swept the CSVs back in. They are
+# timestamped output from a generator (tools/keyword-miner.mjs), they are research for the previous
+# project's subjects, and nothing in the current tree reads them. They were archived outside the
+# repository and removed from tracking on 2026-10-26; the files stay on disk.
+#
+# The rule names the two extensions the generator writes, not the directory: a hand-written seed list
+# or a curated note in the same folder should still be committable.
+data/keywords/*.csv
+data/keywords/*.log
+
