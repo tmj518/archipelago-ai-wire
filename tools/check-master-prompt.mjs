@@ -26,6 +26,7 @@
  */
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { SECTIONS, CATEGORY_SLUGS, AUDIENCE_VALUES, GUIDE_TOPIC_SLUGS } from "../src/lib/taxonomy.mjs";
 
 const ROOT = process.cwd();
 const MP = join(ROOT, "MASTER_PROMPT.md");
@@ -80,12 +81,18 @@ if (rows.length < 2) {
 }
 
 /* ── 2  the section headings ───────────────────────────────────────────────────────────────────── */
-/* qa-check holds the required list; MASTER_PROMPT.md must name every one of them. */
-const requiredBlock = /const SECTIONS\s*=\s*\[([\s\S]*?)\];/.exec(qa)?.[1] ?? "";
-const required = [...requiredBlock.matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+/*
+ * The required list comes from src/lib/taxonomy.json, not from parsing qa-check.mjs.
+ *
+ * It used to be scraped out of the gate's source with a regex. That worked until 2026-10-26, when
+ * the list moved to the shared taxonomy file and the scrape silently found nothing - which this
+ * check reports as a failure rather than a pass, thankfully, but the dependency was backwards:
+ * the vocabulary should not be discovered by reading an implementation file.
+ */
+const required = SECTIONS;
 
 if (!required.length) {
-  problems.push("cannot find the required section list in qa-check.mjs - this check would pass while comparing nothing");
+  problems.push("src/lib/taxonomy.json defines no sections - this check would pass while comparing nothing");
 } else {
   const missing = required.filter((h) => !mp.includes(h));
   if (missing.length) {
@@ -112,6 +119,36 @@ if (!figs) {
   if (!excludes) problems.push("MASTER_PROMPT.md does not say that dates and document numbers are not figures");
   console.log(`  ${stated && excludes ? "ok  " : "FAIL"} figures              ${figs} required, stated, and the exclusions named`);
 }
+
+/* ── 4  the vocabulary ─────────────────────────────────────────────────────────────────────────── */
+/*
+ * The category list in MASTER_PROMPT.md §7 had no check at all before this, which is how it ended
+ * up describing five categories the code no longer used. A writer told the wrong slug produces a
+ * draft the build rejects - the most expensive possible way to learn a list changed.
+ *
+ * Two directions, because they fail differently:
+ *   a stale slug still in the prompt   -> every draft is rejected by the schema
+ *   a new slug missing from the prompt -> the writer never uses that section
+ */
+const STALE_VOCABULARY = [
+  "trade-policy", "platforms", "supply-chain", "sourcing", "logistics",
+  "old-china-hand", "platform-seller", "relocating", "visitor",
+];
+const staleFound = STALE_VOCABULARY.filter((v) => new RegExp(`\\b${v.replace(/[-]/g, "[- ]")}\\b`).test(mp));
+if (staleFound.length) {
+  problems.push(`MASTER_PROMPT.md still names retired values: ${staleFound.join(", ")} - the schema rejects them`);
+}
+
+const missingCats = CATEGORY_SLUGS.filter((c) => !mp.includes(c));
+const missingAud = AUDIENCE_VALUES.filter((a) => !mp.includes(a));
+const missingTopics = GUIDE_TOPIC_SLUGS.filter((t) => !mp.includes(t));
+if (missingCats.length) problems.push(`MASTER_PROMPT.md does not name categor${missingCats.length > 1 ? "ies" : "y"}: ${missingCats.join(", ")}`);
+if (missingAud.length) problems.push(`MASTER_PROMPT.md does not name audience${missingAud.length > 1 ? "s" : ""}: ${missingAud.join(", ")}`);
+if (missingTopics.length) problems.push(`MASTER_PROMPT.md does not name guide topic${missingTopics.length > 1 ? "s" : ""}: ${missingTopics.join(", ")}`);
+console.log(
+  `  ${staleFound.length || missingCats.length || missingAud.length || missingTopics.length ? "FAIL" : "ok  "} vocabulary           ` +
+    `${CATEGORY_SLUGS.length} categories, ${AUDIENCE_VALUES.length} audiences, ${GUIDE_TOPIC_SLUGS.length} guide topics in sync`,
+);
 
 console.log("");
 if (!problems.length) {

@@ -3,6 +3,7 @@ import { glob } from "astro/loaders";
 // `z` from "astro:content" is deprecated and goes away in Astro 8.
 import { z } from "astro/zod";
 
+import taxonomy from "./lib/taxonomy.json";
 import { AUDIENCES, CATEGORIES, type Audience, type CategorySlug } from "./consts";
 
 /**
@@ -132,7 +133,7 @@ export const blog = defineCollection({
      * be claimed honestly, the piece does not get published.
      */
     information_gain: z
-      .enum(["custom-calculation", "cross-source", "own-data", "primary-source"])
+      .enum(taxonomy.informationGain as [string, ...string[]])
       .optional(),
     /**
      * Every figure in the body, with the five parts the spec requires:
@@ -188,15 +189,16 @@ export const blog = defineCollection({
 /**
  * The guide collection: the same site, a second promise.
  *
- * `/blog/` answers "what does this policy cost per unit". It is written by the trade pipeline, its
- * figures all carry a retrieval date, and every claim is a number with a source. That promise is the
- * site's only real asset and this file does not touch it - the `blog` schema above is unchanged.
+ * `/blog/` answers "what happened in the world, and what does it mean for Malaysia". It is written
+ * by the news pipeline, its figures all carry a retrieval date, and every claim is a number or a
+ * named document. That promise is the site's only real asset and this file does not touch it - the
+ * `blog` schema above is unchanged.
  *
- * `/guide/` answers a different question for a different reader: "I am moving to, working in or
- * visiting China - what does it cost me, what does it take, and when was that checked". The unit
- * changes (a month, an application, a move) and so does the evidence (a fee schedule, a port list, a
- * processing time), but the standard does not: no claim without a source, no guide without a date it
- * was last checked.
+ * `/guide/` answers a different question for the same Malaysian reader: "the thing that changed -
+ * what do I actually do about it, what does it cost me, and when was that checked". The unit
+ * changes (a month, an application, a form) and so does the evidence (a fee schedule, a checklist, a
+ * deadline), but the standard does not: no claim without a source, no guide without a date it was
+ * last checked.
  *
  * WHY THIS IS A SEPARATE COLLECTION AND NOT A CATEGORY
  *
@@ -224,19 +226,12 @@ export const guide = defineCollection({
     description: z.string().max(300),
 
     /** Which cluster the guide belongs to. Also the /guide/ index grouping. */
-    topic: z.enum([
-      "work-visa",
-      "residence",
-      "tax",
-      "social-insurance",
-      "relocation",
-      "transit",
-      "driving",
-      "employment",
-    ]),
+    topic: z.enum(taxonomy.guideTopics.map((t) => t.slug) as [string, ...string[]]),
 
     /** Who is asking. One guide can serve several, but the answer differs by unit. */
-    audience: z.array(z.enum(["employer", "employee", "student", "visitor", "relocating"])).min(1),
+    audience: z
+      .array(z.enum(taxonomy.guideAudiences as [string, ...string[]]))
+      .min(1),
 
     /**
      * The unit the costs are expressed in - "one month", "one application", "one move".
@@ -280,7 +275,7 @@ export const guide = defineCollection({
       .array(z.object({ action: z.string(), detail: z.string().default("") }))
       .min(5, "a guide needs at least five ordered steps"),
 
-    persona: z.string().default("old-china-hand"),
+    persona: z.enum(taxonomy.personas as [string, ...string[]]).default("malaysian-explainer"),
     draft: z.boolean().default(false),
   }),
 });

@@ -38,21 +38,40 @@ const UA =
 /*
  * The sources that matter, with what each is for. Ordered by value to the pipeline rather than
  * alphabetically, because if only some come through the order is the answer.
+ *
+ * Rebuilt for the Malaysian project on 2026-10-26. The previous list was fifteen Chinese and EU
+ * endpoints, and its note on GACC ("known 412 site-wide") is the reason the old pipeline could
+ * not read the customs statistics it was built around.
+ *
+ * Three things are encoded in the choices below, because the probe is the only place they can be
+ * measured from the network the automation actually runs on:
+ *
+ *   1. NUMBER SOURCES come first. These publish figures in the page body and are the only ones
+ *      that can satisfy a verbatim-quote check.
+ *   2. ANALYSIS SOURCES are last. ISEAS and ISIS supply the reasoning for `Why now` and `So what`
+ *      and almost never a number; treating them as figure sources is how a piece ends up with an
+ *      argument and no evidence.
+ *   3. The known-bad ones stay on the list. JKDM and the Securities Commission are included so the
+ *      probe keeps proving they are unusable from a runner, rather than being quietly dropped and
+ *      then rediscovered the week a guide needs them.
  */
 const TARGETS = [
-  ["cacs.mofcom.gov.cn", "https://cacs.mofcom.gov.cn/", "trade remedies: the highest-value entry, foreign anti-dumping against China"],
-  ["gss.mof.gov.cn", "http://gss.mof.gov.cn/gzdt/", "Tariff Commission: rate schedules and adjustments"],
-  ["mof.gov.cn", "https://www.mof.gov.cn/zhengwuxinxi/zhengcefabu/", "Ministry of Finance: tax and subsidy notices"],
-  ["mofcom.gov.cn", "https://www.mofcom.gov.cn/zfxxgk/", "MOFCOM: trade policy and announcements"],
-  ["stats.gov.cn", "https://www.stats.gov.cn/sj/zxfb/", "NBS: PPI, CPI, industrial profit"],
-  ["chinatax.gov.cn", "https://www.chinatax.gov.cn/chinatax/n810341/n810755/index.html", "STA: export tax rebate rates"],
-  ["miit.gov.cn", "https://www.miit.gov.cn/zwgk/zcwj/index.html", "MIIT: industrial policy and access rules"],
-  ["samr.gov.cn", "https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/", "SAMR: standards, certification, inspections"],
-  ["safe.gov.cn", "https://www.safe.gov.cn/safe/whxw/index.html", "SAFE: exchange rates and cross-border capital"],
-  ["customs.gov.cn", "http://www.customs.gov.cn/", "GACC Chinese: known 412 site-wide, included to confirm it stays that way"],
-  ["english.customs.gov.cn", "http://english.customs.gov.cn/Legislation/Announcement", "GACC English announcements: read but stale since 2023"],
-  ["eur-lex.europa.eu", "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:C_202604924", "EUR-Lex: 202 to a plain fetch, needs a browser"],
-  ["tron.trade.ec.europa.eu", "https://tron.trade.ec.europa.eu/investigations", "EU trade defence register: client-rendered, XML endpoint read separately"],
+  ["bnm.gov.my", "https://www.bnm.gov.my/pr", "Bank Negara Malaysia press releases: policy rate, reserves, exchange rate - English, figures in HTML"],
+  ["bnm.gov.my/rates", "https://www.bnm.gov.my/rates-statistics", "the key rates and statistics page the daily numbers are read from"],
+  ["dosm.gov.my", "https://www.dosm.gov.my/portal-main/home", "DOSM key indicators: CPI, trade, GDP, employment - English path, figures in HTML"],
+  ["open.dosm.gov.my", "https://open.dosm.gov.my/", "DOSM open data: the structured channel, CSV and API rather than sentences"],
+  ["mida.gov.my", "https://www.mida.gov.my/media-release/feed/", "MIDA media releases as RSS: investment approvals with RM amounts in the body"],
+  ["mof.gov.my", "https://www.mof.gov.my/portal/en/news/speech", "Ministry of Finance: the budget speech in English, a separate page from the Malay one"],
+  ["miti.gov.my", "https://www.miti.gov.my/index.php/pages/view/10936", "MITI media releases 2026: trade measures. Titles in HTML, figures in linked PDFs"],
+  ["customs.gov.my", "https://mysst.customs.gov.my/", "JKDM sales-and-service tax portal: English shell, Malay guidance PDFs - expected to be the weak link"],
+  ["sc.com.my", "https://www.sc.com.my/resources/media/media-release", "Securities Commission: listing is client-rendered, included to keep measuring that"],
+  ["iseas.edu.sg", "https://www.iseas.edu.sg/category/articles-commentaries/iseas-perspective/iseas-perspective-2026/", "ISEAS Perspective: regional analysis, English, for Why now and So what"],
+  ["isis.org.my", "https://www.isis.org.my/", "ISIS Malaysia: strategic analysis from a Malaysian standpoint"],
+  ["federalreserve.gov", "https://www.federalreserve.gov/newsevents/pressreleases.htm", "US Fed: the world-side rate decisions that move the ringgit"],
+  ["ecb.europa.eu", "https://www.ecb.europa.eu/press/html/index.en.html", "ECB press: euro-area decisions"],
+  ["imf.org", "https://www.imf.org/en/News", "IMF: country reviews and forecasts"],
+  ["worldbank.org", "https://www.worldbank.org/en/news", "World Bank: development data and country briefs"],
+  ["wto.org", "https://www.wto.org/english/news_e/news_e.htm", "WTO: trade notices and disputes"],
   ["api.indexnow.org", "https://api.indexnow.org/indexnow", "IndexNow: the submission step, checked for reachability only"],
   ["registry.npmjs.org", "https://registry.npmjs.org/astro", "npm registry: needed by install, so a failure here explains a failed run"],
 ];

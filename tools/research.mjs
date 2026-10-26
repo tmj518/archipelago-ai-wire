@@ -260,32 +260,45 @@ function duplicateScore(proposal, ledger) {
  * publish rates for a living - the EU Official Journal and the US Federal Register API - were never reached, because
  * the loop had already stopped.
  *
- * So the sources that answer from anywhere come first. The Chinese ones keep their entries and their reachability is
- * still recorded; they simply no longer sit at the front of a queue that can close before the back.
+ * So the sources that answer from anywhere come first.
+ *
+ * Reordered again on 2026-10-26 for the Malaysian project. The rule that survived both versions is
+ * the one worth keeping: a source that publishes the number in its own body comes before a source
+ * that publishes commentary about the number.
+ *
+ * Measured from this machine on 2026-10-26 by tools/check-source-reachability.mjs: 15 of 18 hosts
+ * answer. imf.org refused one path (/en/News, 403) and serves another (/en/Publications, 200), which
+ * is why the entry below names the path rather than the host. worldbank.org reset the connection
+ * and is listed with its data host instead.
  */
 const CANDIDATES = [
-  ["https://www.federalregister.gov/api/v1/documents.json?per_page=20&order=newest&conditions[agencies][]=u.s.-customs-and-border-protection", "federal-register-cbp", "US CBP rules with effective dates, the best API of any source here"],
-  ["https://policy.trade.ec.europa.eu/news_en", "eu-trade-news", "EU trade policy news, CBAM and trade defence"],
-  ["https://cacs.mofcom.gov.cn/", "trade-remedy-cases", "foreign anti-dumping and safeguard measures against Chinese exports, the highest-value source for a cost angle"],
-  ["http://gss.mof.gov.cn/gzdt/", "tariff-commission", "Tariff Commission notices: rate schedules and adjustments"],
-  ["https://www.mof.gov.cn/zhengwuxinxi/zhengcefabu/", "ministry-of-finance", "Ministry of Finance policy releases"],
-  ["https://www.mofcom.gov.cn/zfxxgk/", "mofcom", "MOFCOM announcements"],
-  ["https://www.stats.gov.cn/sj/zxfb/", "statistics-bureau", "National Bureau of Statistics releases: PPI, CPI, industrial profit"],
-  ["https://www.chinatax.gov.cn/chinatax/n810341/n810755/index.html", "tax-administration", "export tax rebate rates"],
+  ["https://www.bnm.gov.my/pr", "bank-negara", "policy rate, reserves, exchange rate - English, the figures sit in the page body"],
+  ["https://www.dosm.gov.my/portal-main/home", "dosm", "CPI, trade, GDP, employment - the monthly releases the index is built from"],
+  ["https://www.mida.gov.my/media-release/feed/", "mida", "investment approvals as RSS, with ringgit amounts in the release body"],
+  ["https://www.mof.gov.my/portal/en/news/speech", "ministry-of-finance", "the budget speech in English, on its own page rather than behind a language toggle"],
+  ["https://www.miti.gov.my/index.php/pages/view/10936", "miti", "trade measures and trade performance; titles in HTML, figures in the linked PDF"],
+  ["https://www.imf.org/en/publications", "imf", "WEO, Article IV and regional outlooks; the site also serves index.md and index.json per page"],
+  ["https://www.federalreserve.gov/newsevents/pressreleases.htm", "federal-reserve", "the world-side rate decisions that move the ringgit"],
+  ["https://www.ecb.europa.eu/press/html/index.en.html", "ecb", "euro-area decisions and the exchange-rate channel"],
+  ["https://www.wto.org/english/news_e/news_e.htm", "wto", "trade notices, disputes and notifications"],
   /*
-   * Customs was the omission that mattered most: the tariff schedules and clearance rules are what a per-unit
-   * cost is built from, and the list did not have it.
+   * Analysis comes after the numbers, and is labelled as analysis.
+   *
+   * ISEAS and ISIS Malaysia are the two sources that supply the reasoning for `Why now` and
+   * `So what`. They are not figure sources: a piece built from their sentences and no statistical
+   * release is an opinion column with a byline it has not earned.
    */
-  ["http://www.customs.gov.cn/customs/302249/index.html", "customs", "tariff schedules, classification and clearance rules"],
+  ["https://www.iseas.edu.sg/category/articles-commentaries/iseas-perspective/iseas-perspective-2026/", "iseas", "regional analysis: what a world event means for Southeast Asia"],
+  ["https://www.isis.org.my/", "isis-malaysia", "strategic analysis from a Malaysian standpoint"],
   /*
-   * Industry chambers, listed last on purpose. An association reports what its members are hitting, which is the
-   * closest thing to a demand signal there is without a keyword tool - and a summary of a measure is coverage,
-   * not the measure. A figure may come from a chamber only when it is the chamber's own published statistic.
+   * Included to keep measuring a known-weak source rather than pretending it is fine.
+   *
+   * JKDM answers 200 with an English shell and puts the rates in Malay PDFs; the Securities
+   * Commission listing is client-rendered and returns an empty list to a plain fetch. Both are
+   * reachable and neither is reliably quotable.
    */
-  ["http://www.ccpit.org", "trade-council", "trade friction alerts and commercial certification"],
-  ["http://www.cccme.org.cn", "machinery-chamber", "machinery and electronics export data and market access"],
-
-
+  ["https://mysst.customs.gov.my/", "customs-sst", "sales-and-service tax; English shell, Malay guidance documents"],
+  ["https://www.sc.com.my/resources/media/media-release", "securities-commission", "regulator releases; listing is client-rendered"],
 ];
 
 if (!available().length) {

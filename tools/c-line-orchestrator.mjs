@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 /**
- * The C line: guides for people moving to, working in or visiting China.
+ * The C line: practical guides for Malaysians.
  *
  * ## What it is
  *
  * A third publishing route that shares this repository but not its content collection. `/blog/` is
- * written by the trade pipeline and answers "what does this policy cost per unit". `/guide/` answers
- * "what does this cost me, what does it take, and when was that checked".
+ * written by the news pipeline and answers "what happened in the world, and what does it mean for
+ * Malaysia". `/guide/` answers "so what do I actually do about it, what does it cost me, and when
+ * was that checked".
  *
  *   node tools/c-line-orchestrator.mjs              # try every queued topic until one publishes
  *   node tools/c-line-orchestrator.mjs --dry-run    # propose and print, touch nothing
@@ -32,11 +33,15 @@
  *    writes every field through JSON.stringify, so a guide cannot reproduce the 2026-10-21 outage where
  *    an unquoted date in a model-written header froze the build.
  *
- * 3. EVERY DIGIT IN THE PROSE TRACES TO THE FACT SHEET. Checked before a file is written.
+ * 3. EVERY DIGIT IN THE PROSE TRACES TO THE FACT SHEET OR THE SOURCE TEXT. Checked before a file is
+ *    written. The "or the source text" half was added 2026-10-26: a world-news guide legitimately
+ *    names years and percentages that the fetched document states, and the old rule - only digits
+ *    from `value` fields - rejected every draft that mentioned 2027 without a figure for it.
  */
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync, rmSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { spawnSync, execFileSync } from "node:child_process";
+import { PERSONA_VALUES } from "../src/lib/taxonomy.mjs";
 
 import { loadEnv, today } from "./lib/gsc.mjs";
 
@@ -278,13 +283,26 @@ async function ground(topic) {
 
   const usable = fetched.filter((p) => p.text.length > 400);
   if (!usable.length) {
-    return { facts: [], error: "every source failed or returned under 400 characters of text" };
+    return { facts: [], digits: new Set(), error: "every source failed or returned under 400 characters of text" };
   }
 
   const corpus = usable
     .slice(0, 2)
     .map((p, i) => `[${i + 1}] ${p.url}\n${p.text.slice(0, 6000)}`)
     .join("\n\n");
+
+  /*
+   * Every number the fetched pages themselves state.
+   *
+   * This is the second evidence channel, and it is what makes world-news guides possible. The old
+   * gate allowed only digits that appeared in a `value` field, so a sentence like "the deal runs to
+   * 2030" failed unless someone had recorded 2030 as a figure - which nobody would, because it is a
+   * date, not a cost. The draft was then rejected for stating something the source plainly says.
+   *
+   * A number that the source text contains is not invented. That is the whole test, and it is still
+   * a real test: a model that makes up "18%" for a page that never mentions 18 is still rejected.
+   */
+  const corpusDigits = new Set(String(corpus).match(/\d+/g) ?? []);
 
   const askExtract = async (strict) =>
     ask({
@@ -363,7 +381,7 @@ async function ground(topic) {
     if (parsed) log("  extracted : the strict re-ask produced JSON");
   }
 
-  if (!parsed) return { facts: [], error: "no JSON in the extraction reply, even after the strict re-ask" };
+  if (!parsed) return { facts: [], digits: corpusDigits, error: "no JSON in the extraction reply, even after the strict re-ask" };
 
   /*
    * The quote check. A fact survives only if the text it claims to quote is really on the page -
@@ -397,7 +415,7 @@ async function ground(topic) {
     });
   }
   log(`  extracted : ${kept.length} kept, ${dropped} dropped on the quote check`);
-  return { facts: kept, dropped };
+  return { facts: kept, dropped, digits: corpusDigits };
 }
 
 
@@ -439,10 +457,12 @@ async function attempt(topic) {
 
   /* 1. grounding */
   let facts = topic.facts ?? [];
+  let corpusDigits = new Set();
   let procedural = false;
   if (!facts.length) {
     const g = await ground(topic);
     facts = g.facts;
+    corpusDigits = g.digits ?? new Set();
     if (!facts.length) {
       /*
        * No figure survived. That used to end the topic with NO-SUBJECT and a yellow card, which is the
@@ -482,8 +502,16 @@ async function attempt(topic) {
 
   /* 2. the guide itself */
   const SYSTEM = [
-    "You are a long-term foreign resident of China writing for people who have just arrived or are about to.",
-    "You write plain, concrete English for someone making a decision that costs them money or time.",
+    /*
+     * This persona was "a long-term foreign resident of China writing for people who have just
+     * arrived". It never lived in MASTER_PROMPT.md, so changing the prompt alone would have left
+     * the entire guide line writing for expatriates in China - the exact audience the project
+     * stopped serving on 2026-10-26.
+     */
+    "You are the explainer for a Malaysian publication that helps ordinary Malaysians understand the world.",
+    "You write plain, concrete English for someone who has to make a decision that costs them money or time.",
+    "Your reader lives in Malaysia: a worker, a student, a parent, a small business owner.",
+    "Do not assume they know what an international body, a trade agreement or a technical term is.",
     "",
     "HARD RULES:",
     "1. Use ONLY the figures in the supplied fact sheet. Do not invent, round, estimate or recall any",
@@ -587,6 +615,23 @@ async function attempt(topic) {
   const allowed = new Set();
   for (const f of factSheet) for (const d of digitsIn(f.value)) allowed.add(d);
   for (const d of digitsIn(DAY)) allowed.add(d); /* the verification date is not a policy claim */
+  /*
+   * Numbers the fetched source text itself states, even if they never became a `figures` record.
+   *
+   * Years, effective dates, percentages quoted in an explanatory sentence and thresholds named in
+   * a paragraph are all things a reader needs and a fact sheet does not capture. They stay inside
+   * the anti-fabrication rule because they are copied from the page, not recalled by the model.
+   */
+  let fromCorpus = 0;
+  for (const d of corpusDigits) {
+    if (!allowed.has(d)) {
+      allowed.add(d);
+      fromCorpus += 1;
+    }
+  }
+  if (fromCorpus) {
+    log(`  gate      : ${fromCorpus} number(s) allowed on the source text, not on the fact sheet`);
+  }
 
   const proseOf = (b) =>
     [
@@ -650,7 +695,7 @@ async function attempt(topic) {
       `  - action: ${JSON.stringify(String(s.action ?? "").trim())}`,
       `    detail: ${JSON.stringify(String(s.detail ?? "").trim())}`,
     ]),
-    'persona: "old-china-hand"',
+    `persona: ${JSON.stringify(PERSONA_VALUES[0] ?? "malaysian-explainer")}`,
     "---",
     "",
   ].join("\n");

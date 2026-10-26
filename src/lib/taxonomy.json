@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "updated": "2026-10-26",
+  "note": "Single source of truth for every controlled vocabulary on the site. Read by src/consts.ts (through the Astro build) and by tools/*.mjs (through src/lib/taxonomy.mjs). Nothing else may define these lists. This file exists because the same enum lived in four places - consts.ts, content.config.ts, two copies inside qa-check.mjs, and a prose list in MASTER_PROMPT.md - and they drifted. See docs/审计_2026-10-26_新站改造清单.md.",
+
+  "categories": [
+    {
+      "slug": "world",
+      "label": "World",
+      "navLabel": "World",
+      "description": "What is happening beyond Malaysia's borders — geopolitics, conflict, international institutions and the shifts that set the weather for everyone else. Every piece here still ends with what it means for Malaysia; a world story with no Malaysian consequence does not get published."
+    },
+    {
+      "slug": "malaysia-impact",
+      "label": "Malaysia Impact",
+      "navLabel": "Malaysia",
+      "description": "The same events read from the Malaysian side: what changes for jobs, prices, businesses, students and households here. This is the site's home column — the reason the other columns exist."
+    },
+    {
+      "slug": "tech-ai",
+      "label": "Tech & AI",
+      "navLabel": "Tech & AI",
+      "description": "Where technology is going and what it does to work, learning and the tools Malaysian businesses and students will have to use — explained without the vendor language."
+    },
+    {
+      "slug": "economy",
+      "label": "Economy & Trade",
+      "navLabel": "Economy",
+      "description": "Trade rules, energy, commodities, inflation and employment — the numbers that end up in a Malaysian wallet, a Malaysian payroll or a Malaysian invoice."
+    }
+  ],
+
+  "audiences": [
+    { "value": "general", "label": "Everyone" },
+    { "value": "students", "label": "Students & young people" },
+    { "value": "workers", "label": "Workers & professionals" },
+    { "value": "entrepreneurs", "label": "Entrepreneurs & businesses" },
+    { "value": "teachers", "label": "Teachers & researchers" },
+    { "value": "citizens", "label": "Citizens watching the country" }
+  ],
+
+  "guideTopics": [
+    { "slug": "money", "label": "Money & tax" },
+    { "slug": "work", "label": "Work & skills" },
+    { "slug": "study", "label": "Study & education" },
+    { "slug": "business", "label": "Business & trade" },
+    { "slug": "daily-life", "label": "Daily life & costs" },
+    { "slug": "travel-docs", "label": "Travel & documents" }
+  ],
+
+  "guideAudiences": [
+    "general",
+    "students",
+    "workers",
+    "entrepreneurs",
+    "teachers",
+    "citizens"
+  ],
+
+  "personas": ["malaysian-explainer"],
+
+  "informationGain": [
+    "custom-calculation",
+    "cross-source",
+    "own-data",
+    "primary-source"
+  ],
+
+  "searchIntent": ["informational", "transactional", "comparison"],
+
+  "stakes": ["priced", "directional"],
+
+  "priority": ["P0", "P1", "P2"],
+
+  "sections": [
+    "What happened",
+    "Why now",
+    "So what",
+    "What it means for Malaysia",
+    "How confident",
+    "For you",
+    "The data point"
+  ]
+}

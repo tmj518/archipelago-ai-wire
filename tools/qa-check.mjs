@@ -16,6 +16,20 @@ import { proseWords, WORD_TARGET, hasCostTable } from "../src/lib/prose.mjs";
 import { guideFor } from "../src/lib/rule-guide.mjs";
 import { substantiveFigures, figuresShortfall } from "../src/lib/figures.mjs";
 import { MIN_SUBSTANTIVE } from "../src/lib/figure-limits.mjs";
+/*
+ * The controlled vocabularies come from one file now.
+ *
+ * Before 2026-10-26 this script carried `CATEGORY_ENUM` twice in the same file, and the same list
+ * a third time lived in src/consts.ts. Two copies inside one file is the failure mode this
+ * project has already paid for twice: the value that gets missed is always the one the build
+ * reads. taxonomy.json is the single source; consts.ts and this script both read it.
+ */
+import {
+  CATEGORY_SLUGS,
+  AUDIENCE_VALUES,
+  INFORMATION_GAIN_VALUES,
+  SECTIONS,
+} from "../src/lib/taxonomy.mjs";
 
 const BANNED_VAGUE = [
   "may", "might", "possibly", "perhaps", "could", "reportedly", "allegedly",
@@ -30,13 +44,26 @@ const BANNED_CLICHE = [
   "in conclusion", "let's dive in", "buckle up",
 ];
 
+/*
+ * Blocking terms: incitement, defamation and contempt. NOT the topics a country is sensitive about.
+ *
+ * The previous list was a China desk's list — Taiwan, Xinjiang, Tiananmen, Tibet, Hong Kong — and
+ * it worked on the logic "the whole subject is out of scope". That logic does not transfer to a
+ * publication whose job is to help Malaysians understand their own country and its region. Race,
+ * religion and royalty are not fringe subjects here; they are how public life is organised, and a
+ * rule that blocks the words would leave the site unable to explain the country it exists to
+ * explain.
+ *
+ * So the mechanical blacklist is reduced to speech that is not publishable in any framing:
+ * incitement to violence, criminal defamation, and contempt of court. The 3R judgement moves to
+ * the reviewer prompt and to the editorial rules in MASTER_PROMPT.md §3.6 — verifiable facts,
+ * restrained wording, facts separated from opinion, no group blamed for an individual's act. A
+ * keyword was never going to decide that, and pretending otherwise was security theatre.
+ */
 const BANNED_SENSITIVE = [
-  "taiwan independence", "south china sea ruling", "uyghur", "xinjiang camps",
-  "tiananmen", "tibet independence", "hong kong independence",
-];
-
-const SECTIONS = [
-  "What happened", "Why now", "So what", "How confident", "For you", "The data point",
+  "kill all", "exterminate", "wipe out the", "behead",
+  "incite violence", "incitement to violence",
+  "sub judice", "contempt of court",
 ];
 
 /**
@@ -55,6 +82,29 @@ const PRIMARY_DOC_PATTERN = new RegExp(
     "\\bRegulation\\s+\\(EU\\)\\s+\\d{4}/\\d+",
     "\\bCELEX\\b",
     "\\bOJ\\s?L\\s?\\d",
+    /*
+     * Malaysian numbering, added 2026-10-26.
+     *
+     * Without these, an article that honestly declared `information_gain: primary-source` while
+     * citing a Malaysian gazette was blocked for "naming no document identifier" - the gate could
+     * only recognise US, EU and Chinese schemes. A Malaysian site whose primary sources always
+     * fail the primary-source check is a site that cannot use its own best evidence.
+     *
+     *   P.U. (A) 411/2023   subsidiary legislation, printed   (the usual citation)
+     *   P.U. (B) ...        subsidiary legislation, not printed
+     *   Akta 850 / Act 850  an Act of Parliament
+     *   BNM/RH/GL 001-1     a Bank Negara guideline or policy document
+     *   SST-02              a customs form that a guide will name
+     */
+    "\\bP\\.\\s?U\\.\\s?\\(\\s?[AB]\\s?\\)\\s?\\d+",
+    "\\bP\\.\\s?U\\.\\s?\\([AB]\\)\\s?\\d+/\\d{4}",
+    "\\bAkta\\s?[A-Z]?\\d{1,5}\\b",
+    "\\bAct\\s?[A-Z]?\\d{3,5}\\b",
+    "\\bBNM/RH/[A-Z]{2,3}\\s?\\d",
+    "\\bWarta\\s+Kerajaan\\b",
+    "\\bFederal\\s+Government\\s+Gazette\\b",
+    "\\bLaws\\s+of\\s+Malaysia\\b",
+    "\\bSST-\\d{2}\\b",
   ].join("|"),
   "i",
 );
@@ -99,6 +149,23 @@ function check(file) {
     ? add("pass", "text encoding", "valid UTF-8, no replacement characters")
     : add("block", "text encoding", `${replacementChars} replacement character(s) — file was rewritten through a non-UTF-8 codepage`);
 
+  /*
+   * A byte-order mark, which is valid UTF-8 and therefore invisible to the check above.
+   *
+   * Found the hard way on 2026-10-26: PowerShell's `-Encoding UTF8` writes EF BB BF, the leading
+   * BOM stops `parseFrontmatter` from matching `^---`, and every frontmatter rule then reports
+   * "missing" - while the other twenty-odd body rules pass, so the file looks mostly healthy.
+   * A whole article's metadata can be silently unchecked. This is the same family as the
+   * codepage incident already recorded in the pitfall log: the damage is to the invisible bytes.
+   */
+  raw.charCodeAt(0) === 0xfeff
+    ? add(
+        "block",
+        "no byte-order mark",
+        "file begins with a UTF-8 BOM — the frontmatter parser cannot see the opening ---, so every metadata rule reads 'missing'",
+      )
+    : add("pass", "no byte-order mark", "clean start");
+
   // ---- frontmatter-driven rules -------------------------------------
   const figures = (fm.match(/^\s*- value:/gm) || []).length;
   const sources = (fm.match(/^\s{2}- "/gm) || []).length;
@@ -119,8 +186,8 @@ function check(file) {
   const ENUM_FROM = "2026-10-19";
   const thisDate = (fmLine("publishDate") ?? "").replace(/"/g, "");
   if (thisDate >= ENUM_FROM) {
-    const GAIN_ENUM = ["custom-calculation", "cross-source", "own-data", "primary-source"];
-    const CATEGORY_ENUM = ["trade-policy", "platforms", "supply-chain", "sourcing", "logistics"];
+    const GAIN_ENUM = INFORMATION_GAIN_VALUES;
+    const CATEGORY_ENUM = CATEGORY_SLUGS;
     const gainValue = String(gain ?? "").replace(/^information_gain:\s*/, "").replace(/"/g, "").trim();
     const catValue = String(fmLine("category") ?? "").replace(/"/g, "").trim();
     add(
@@ -170,12 +237,20 @@ function check(file) {
   else add("warn", "named sources >= 3", `${sources} sources`);
 
   gain ? add("pass", "information_gain declared", gain) : add("block", "information_gain declared", "missing");
-  const CATEGORY_ENUM = ["trade-policy", "platforms", "supply-chain", "sourcing", "logistics"];
+  /*
+   * The duplicate that used to sit here is gone.
+   *
+   * There were two checks: a date-gated one near the top (grandfathering anything published before
+   * ENUM_FROM) and this unconditional one. The unconditional one ran on every article, so the
+   * grandfathering above it never did anything - a redundancy that read as a feature. Removed
+   * rather than kept as a second copy, because two validations of one field is exactly how the
+   * enum drifted in the first place.
+   */
   const catLine = fmLine("category");
   add(
-    catLine && CATEGORY_ENUM.includes(String(catLine).replace(/"/g, "")) ? "pass" : "block",
+    catLine && CATEGORY_SLUGS.includes(String(catLine).replace(/"/g, "")) ? "pass" : "block",
     "category legal",
-    catLine ? `"${catLine}" is not one of ${CATEGORY_ENUM.join(", ")}` : "missing - the build rejects the entry",
+    catLine ? `"${catLine}" is not one of ${CATEGORY_SLUGS.join(", ")}` : "missing - the build rejects the entry",
   );
 
   // A claim of primary-source is only credible if the body actually names the
@@ -186,7 +261,21 @@ function check(file) {
       : add("block", "primary-source cited", "declares primary-source but names no document identifier");
   }
   keyword ? add("pass", "target_keyword declared", keyword) : add("block", "target_keyword declared", "missing");
-  audience ? add("pass", "audience declared", audience) : add("warn", "audience declared", "not set (defaults to both)");
+  /*
+   * Audience legality, which nothing checked before.
+   *
+   * The old rule only asked whether the field existed, so any string passed here and the build
+   * failed later for the whole site. The six values are now validated against the same list the
+   * schema reads.
+   */
+  if (!audience) {
+    add("warn", "audience declared", "not set (defaults to general)");
+  } else {
+    const av = String(audience).replace(/"/g, "").trim();
+    AUDIENCE_VALUES.includes(av)
+      ? add("pass", "audience legal", av)
+      : add("block", "audience legal", `"${av}" is not one of ${AUDIENCE_VALUES.join(", ")} - the build rejects it`);
+  }
 
   // ---- schema string limits -------------------------------------------
   // The collection schema caps title at 120 characters, subtitle at 160 and

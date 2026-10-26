@@ -89,7 +89,15 @@ export const WORD_TARGET_STRICT = WORD_TARGET.withoutCostTable;
  */
 export function hasCostTable(body) {
   const rows = body.match(/^\|.*$/gm) || [];
-  const money = rows.filter((r) => /(CNY|USD|EUR|GBP|¥|\$|€)\s?[\d,]+/.test(r));
+  /*
+   * Malaysian amounts belong in this pattern.
+   *
+   * The old test recognised CNY, USD, EUR, GBP and the three symbols, but not ringgit - so a
+   * table of RM figures, which is what almost every Malaysian piece will carry, would have been
+   * classified as "no cost table". The two tiers currently share the same numbers, so the
+   * misclassification was invisible; it stops being invisible the moment the tiers diverge.
+   */
+  const money = rows.filter((r) => /(MYR|RM|CNY|USD|EUR|GBP|¥|\$|€|£)\s?[\d,]+/.test(r));
   // A header row plus at least two data rows carrying amounts.
   return money.length >= 3;
 }
@@ -99,7 +107,16 @@ export const SECTION_BUDGET = {
   "AI Summary": [60, 100],
   "What happened": [200, 300],
   "Why now": [100, 200],
-  "So what": [250, 350],
+  "So what": [200, 300],
+  /*
+   * The section this site exists for.
+   *
+   * `So what` is the judgement about the world; this one is the judgement about Malaysia, and it
+   * is separate because the two fail differently. A piece can be right about what a tariff does
+   * in general and empty about what it does to a Malaysian exporter, and the old single-section
+   * structure let that pass.
+   */
+  "What it means for Malaysia": [180, 320],
   "How confident": [100, 180],
   "For you": [150, 250],
   "The data point": [60, 100],

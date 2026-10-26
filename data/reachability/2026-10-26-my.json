@@ -1,0 +1,176 @@
+{
+  "generated": "2026-10-26T09:40:51.400Z",
+  "runSeconds": 64,
+  "egress": "reported by the caller if needed; this script does not call a geo service",
+  "totals": {
+    "probed": 18,
+    "reachable": 15,
+    "blocked": 1,
+    "challenged": 0,
+    "failed": 1
+  },
+  "rows": [
+    {
+      "host": "bnm.gov.my",
+      "url": "https://www.bnm.gov.my/pr",
+      "why": "Bank Negara Malaysia press releases: policy rate, reserves, exchange rate - English, figures in HTML",
+      "status": 200,
+      "bytes": 231557,
+      "ms": 1471,
+      "note": "document"
+    },
+    {
+      "host": "bnm.gov.my/rates",
+      "url": "https://www.bnm.gov.my/rates-statistics",
+      "why": "the key rates and statistics page the daily numbers are read from",
+      "status": 200,
+      "bytes": 221256,
+      "ms": 1378,
+      "note": "document"
+    },
+    {
+      "host": "dosm.gov.my",
+      "url": "https://www.dosm.gov.my/portal-main/home",
+      "why": "DOSM key indicators: CPI, trade, GDP, employment - English path, figures in HTML",
+      "status": 200,
+      "bytes": 627520,
+      "ms": 1203,
+      "note": "document"
+    },
+    {
+      "host": "open.dosm.gov.my",
+      "url": "https://open.dosm.gov.my/",
+      "why": "DOSM open data: the structured channel, CSV and API rather than sentences",
+      "status": 200,
+      "bytes": 177903,
+      "ms": 3748,
+      "note": "document"
+    },
+    {
+      "host": "mida.gov.my",
+      "url": "https://www.mida.gov.my/media-release/feed/",
+      "why": "MIDA media releases as RSS: investment approvals with RM amounts in the body",
+      "status": 200,
+      "bytes": 113118,
+      "ms": 1913,
+      "note": "document"
+    },
+    {
+      "host": "mof.gov.my",
+      "url": "https://www.mof.gov.my/portal/en/news/speech",
+      "why": "Ministry of Finance: the budget speech in English, a separate page from the Malay one",
+      "status": 200,
+      "bytes": 127248,
+      "ms": 1571,
+      "note": "document"
+    },
+    {
+      "host": "miti.gov.my",
+      "url": "https://www.miti.gov.my/index.php/pages/view/10936",
+      "why": "MITI media releases 2026: trade measures. Titles in HTML, figures in linked PDFs",
+      "status": 200,
+      "bytes": 138898,
+      "ms": 9671,
+      "note": "document"
+    },
+    {
+      "host": "customs.gov.my",
+      "url": "https://mysst.customs.gov.my/",
+      "why": "JKDM sales-and-service tax portal: English shell, Malay guidance PDFs - expected to be the weak link",
+      "status": 200,
+      "bytes": 608701,
+      "ms": 1495,
+      "note": "document"
+    },
+    {
+      "host": "sc.com.my",
+      "url": "https://www.sc.com.my/resources/media/media-release",
+      "why": "Securities Commission: listing is client-rendered, included to keep measuring that",
+      "status": 200,
+      "bytes": 1151267,
+      "ms": 1690,
+      "note": "document"
+    },
+    {
+      "host": "iseas.edu.sg",
+      "url": "https://www.iseas.edu.sg/category/articles-commentaries/iseas-perspective/iseas-perspective-2026/",
+      "why": "ISEAS Perspective: regional analysis, English, for Why now and So what",
+      "status": 200,
+      "bytes": 140700,
+      "ms": 818,
+      "note": "document"
+    },
+    {
+      "host": "isis.org.my",
+      "url": "https://www.isis.org.my/",
+      "why": "ISIS Malaysia: strategic analysis from a Malaysian standpoint",
+      "status": 200,
+      "bytes": 1647880,
+      "ms": 1350,
+      "note": "document"
+    },
+    {
+      "host": "federalreserve.gov",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases.htm",
+      "why": "US Fed: the world-side rate decisions that move the ringgit",
+      "status": 200,
+      "bytes": 87369,
+      "ms": 1088,
+      "note": "document"
+    },
+    {
+      "host": "ecb.europa.eu",
+      "url": "https://www.ecb.europa.eu/press/html/index.en.html",
+      "why": "ECB press: euro-area decisions",
+      "status": 200,
+      "bytes": 99869,
+      "ms": 7436,
+      "note": "document"
+    },
+    {
+      "host": "imf.org",
+      "url": "https://www.imf.org/en/News",
+      "why": "IMF: country reviews and forecasts",
+      "status": 403,
+      "bytes": 376,
+      "ms": 1441,
+      "note": ""
+    },
+    {
+      "host": "worldbank.org",
+      "url": "https://www.worldbank.org/en/news",
+      "why": "World Bank: development data and country briefs",
+      "status": 0,
+      "bytes": 0,
+      "ms": 2660,
+      "note": "threw: ECONNRESET"
+    },
+    {
+      "host": "wto.org",
+      "url": "https://www.wto.org/english/news_e/news_e.htm",
+      "why": "WTO: trade notices and disputes",
+      "status": 200,
+      "bytes": 14953,
+      "ms": 674,
+      "note": "document"
+    },
+    {
+      "host": "api.indexnow.org",
+      "url": "https://api.indexnow.org/indexnow",
+      "why": "IndexNow: the submission step, checked for reachability only",
+      "status": 400,
+      "bytes": 136,
+      "ms": 1444,
+      "note": ""
+    },
+    {
+      "host": "registry.npmjs.org",
+      "url": "https://registry.npmjs.org/astro",
+      "why": "npm registry: needed by install, so a failure here explains a failed run",
+      "status": 200,
+      "bytes": 9586859,
+      "ms": 986,
+      "note": "document"
+    }
+  ]
+}

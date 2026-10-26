@@ -32,7 +32,12 @@ import { MIN_SUBSTANTIVE } from "./figure-limits.mjs";
 const SUBSTANTIVE_UNIT = new RegExp(
   [
     "percent",
+    "\\bpct\\b",
     "%",
+    "percentage point",
+    "\\bpp\\b",
+    "basis point",
+    "\\bbps\\b",
     "\\brate\\b",
     "\\bduty\\b",
     "\\btariff\\b",
@@ -46,8 +51,23 @@ const SUBSTANTIVE_UNIT = new RegExp(
     "\\bthreshold\\b",
     "\\bUSD\\b",
     "\\bEUR\\b",
+    "\\bGBP\\b",
     "\\bRMB\\b",
     "\\bCNY\\b",
+    /*
+     * The Malaysian currency, in the three spellings an official page actually uses.
+     *
+     * This was missing, and it was the single most damaging omission for the 2026-10-26
+     * repositioning: Malaysian documents quote almost everything in ringgit, so a site aimed at
+     * Malaysian readers would have had its main class of figure judged "not a cost" and quietly
+     * counted as zero. `RM` is matched without a word boundary on the left because "RM1,500"
+     * has no separator between the symbol and the digits.
+     */
+    "\\bMYR\\b",
+    "\\bRM\\b",
+    "RM\\s?\\d",
+    "\\bringgit\\b",
+    "\\bsen\\b",
     "\\bdollars?\\b",
     "\\beuros?\\b",
     "\\byuan\\b",
@@ -68,10 +88,19 @@ const SUBSTANTIVE_UNIT = new RegExp(
   "i",
 );
 
-/** A value parses as a number after stripping the separators a figure tends to carry. */
+/**
+ * A value parses as a number after stripping the separators a figure tends to carry.
+ *
+ * The currency symbols are stripped rather than required, because the schema keeps the number in
+ * `value` and the currency in `unit` - that split is what lets a figure be compared, summed or
+ * charted without parsing prose. A writer that puts "RM1,500" in `value` is violating that split,
+ * but rejecting the record over it would be punishing the wrong thing: the number is real, only
+ * its placement is wrong. So the prefix is stripped here too, and the record still counts.
+ */
 export function numericValue(value) {
   const raw = String(value ?? "")
-    .replace(/[,%\s$€¥]/g, "")
+    .replace(/^(?:RM|MYR|USD|EUR|GBP|RMB|CNY)\s*/i, "")
+    .replace(/[,%\s$€¥£]/g, "")
     .replace(/^\+/, "");
   if (!/^\d+(?:\.\d+)?$/.test(raw)) return null;
   return Number(raw);

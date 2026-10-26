@@ -1,11 +1,12 @@
 name: Source reachability probe
 
-# Asks the question the whole cloud migration depends on: can a data-centre runner read China's
-# official sites?
+# Asks the question the whole cloud pipeline depends on: can a data-centre runner read Malaysia's
+# official sites and the world-side institutions the explainers are built on?
 #
-# The earlier measurement of "5 of 6 reachable from a foreign IP" went through a local proxy whose
-# exit node may be a residential address. GitHub runners egress from data-centre ranges, and Chinese
-# government sites treat those differently. So this runs the probe from the runner and reports.
+# The previous version of this probe measured Chinese ministry sites, and the answer decided where
+# the fetch step had to live. The same question is being asked again of a different set: Malaysian
+# agencies gate on bot policy, and two of them (JKDM, the Securities Commission) answer HTTP 200 while
+# serving nothing a machine can quote.
 #
 # It is deliberately separate from any build or publish workflow: it changes nothing and answers one
 # question. Run it from the Actions tab with "Run workflow", and read the summary at the end of the
@@ -113,7 +114,7 @@ jobs:
             const ok = r.rows.filter(x => x.status === 200 && x.bytes >= 900 && x.note === "document");
             const bad = r.rows.filter(x => !(x.status === 200 && x.bytes >= 900 && x.note === "document"));
             const lines = [];
-            lines.push((ok.length >= 6 ? "✅" : "🔴") + " Source reachability probe");
+            lines.push((ok.length >= 12 ? "✅" : "🔴") + " Source reachability probe");
             lines.push("");
             lines.push(`reachable ${r.totals.reachable}/${r.totals.probed}`);
             lines.push("");
@@ -121,7 +122,7 @@ jobs:
             lines.push("");
             lines.push("NOT OK: " + (bad.map(x => x.host + " (" + x.status + ")").join(", ") || "none"));
             lines.push("");
-            lines.push("Landed Math");
+            lines.push("Archipelago AI Wire");
             const payload = { msg_type: "text", content: { text: lines.join("\n") } };
             fs.writeFileSync("data/tmp/probe-card.json", JSON.stringify(payload));
           '
