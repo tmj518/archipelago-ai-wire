@@ -56,8 +56,9 @@ const { analyses, figures, sources } = Astro.props;
       */}
     {analyses > 0 ? (
       <p class="hero-proof">
-        {analyses} explainers · <strong>{figures}</strong> sourced figures ·
-        <strong>{sources}</strong> named documents
+        {analyses} {analyses === 1 ? "explainer" : "explainers"} ·{" "}
+        <strong>{figures}</strong> {figures === 1 ? "sourced figure" : "sourced figures"} ·{" "}
+        <strong>{sources}</strong> {sources === 1 ? "named document" : "named documents"}
       </p>
     ) : (
       <p class="hero-proof">

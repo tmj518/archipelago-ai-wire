@@ -78,7 +78,20 @@ for (const [slug, targets] of g) {
   for (const t of targets) if (!g.has(t)) missingTargets.push(`${slug} -> ${t}`);
 }
 
-const orphans = slugs.filter((s) => g.get(s).size === 0);
+/*
+ * The outbound rule needs a second article to point at.
+ *
+ * A dead end is a real defect in a corpus, because the reader who finishes one piece has nowhere to
+ * go inside the site. It is not a defect in the first piece ever published: there is no other article
+ * to link to, so the rule cannot be satisfied by any correct writing. The first article failed this
+ * check on 2026-10-26 for exactly that reason, and the honest fix is to state the precondition rather
+ * than to add a link to nothing or to drop the rule.
+ *
+ * The moment a second piece is published, both are held to it - including the first, which then has a
+ * neighbour it should have linked to.
+ */
+const corpusCanLink = slugs.length > 1;
+const orphans = corpusCanLink ? slugs.filter((s) => g.get(s).size === 0) : [];
 
 /*
  * Two different questions, and only one of them was being asked.

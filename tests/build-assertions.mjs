@@ -54,12 +54,18 @@ const hasNoindex = (p) => /<meta\s+name="robots"\s+content="[^"]*noindex/i.test(
 
 /* ── the six archive pages the audit named ─────────────────────────────────────────────────── */
 
+/*
+ * Archives with nothing in them: noindexed, and kept out of the sitemap.
+ *
+ * `work-education-family` left this list on 2026-10-26, when the first article was published into it.
+ * That is the mechanism working, not the check being relaxed: an archive with a piece in it must be
+ * indexable and must appear in the sitemap, and the assertion below now proves that instead.
+ */
 const ARCHIVES = [
   "/category/world/",
   "/category/malaysia-impact/",
   "/category/economy/",
   "/category/tech-ai/",
-  "/category/work-education-family/",
   "/category/business-opportunities-risks/",
   "/guide/",
   "/topic/",
