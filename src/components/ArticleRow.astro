@@ -1,0 +1,17 @@
+---
+/** One row in the "Latest Analysis" list. */
+export interface Props {
+  href: string;
+  date: string;
+  title: string;
+  excerpt?: string;
+}
+
+const { href, date, title, excerpt } = Astro.props;
+---
+
+<div class="article-row">
+  <div class="row-date">{date}</div>
+  <h3><a href={href}>{title}</a></h3>
+  {excerpt && <p>{excerpt}</p>}
+</div>

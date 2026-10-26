@@ -1,0 +1,22 @@
+{
+  "_note": "SERP snapshot for the information-gain gate. Results are the top English-language coverage returned by the agent search tool for this topic on 2026-10-07. Every competitor URL below was fetched directly and its content read, not taken from the snippet: enlybee.com, chinaispp.com and lamerce.it all returned HTTP 200. stats.gov.cn and news.cn are official publishers of the input data and are excluded from the competitor set automatically, so the NBS release that supplied the figures is not listed here. The keyword is the negotiation question a buyer asks after an input-cost increase, not the PPI headline itself, so the competitor set is sourcing-advisory coverage rather than macro news.",
+  "_captured": "2026-10-07",
+  "_keyword": "China PPI August 2026 supplier price increase negotiation importers",
+  "results": [
+    {
+      "url": "https://www.enlybee.com/china-sourcing-costs-2026/",
+      "title": "China is getting more expensive for UK buyers. Here are the numbers behind it",
+      "snippet": "A UK-focused sourcing advisory note published 12 September 2026. It reports the same two NBS readings used here — producer prices up 3.8% and input prices up 5.8% — then converts the cost pressure into a buyer's currency exposure, with a CNY 100,000 order costing GBP 10,361 in September 2025 against GBP 11,020 in September 2026, and estimates combined currency and input pressure at 'possibly around 10%'. It carries no per-unit or per-container cost table for a buyer's own budget, no passthrough input and no per-unit money figure; the section on the price gap is one paragraph, and the quantitative tables are exchange rates and UK import totals."
+    },
+    {
+      "url": "https://www.chinaispp.com/why-are-your-chinese-supplier-prices-rising-and-how-do-you-negotiate-anyway/",
+      "title": "Why Are Your Chinese Supplier Prices Rising — and How Do You Negotiate Anyway?",
+      "snippet": "A sourcing-agent playbook published 3 August 2026, using a 9% supplier price memo as its worked case. Its tables decompose an increase into percentage points per driver (copper, PCB, labour, freight, RMB, margin cushion) and compare negotiation tactics, and its money figures are procurement outcomes — a settlement at 3.2%, USD 122,000 recovered — not unit costs derived from a published index. It predates the August data release and does not use the purchasing price index or the input-output gap at all. It is the closest competitor on negotiation method and has no per-unit cost table priced from official statistics."
+    },
+    {
+      "url": "https://lamerce.it/en/news/china-producer-prices-rising-what-changes-for-buyers",
+      "title": "China producer prices rising: what changes for buyers",
+      "snippet": "An Italian sourcing agency's note of 16 September 2026. It quotes the 3.8% factory-gate reading and the analyst expectation of 3.6%, then cautions that the PPI is an average in yuan on the domestic market and is not the price of an order. It advises asking for written offer validity and for the cost line that rose. It cites only the 3.8% figure, uses no input-side index, publishes no cost table and carries no money figure; its recommended action is a written request rather than a calculation."
+    }
+  ]
+}

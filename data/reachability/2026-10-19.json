@@ -1,0 +1,149 @@
+{
+  "generated": "2026-10-19T04:42:41.122Z",
+  "runSeconds": 42,
+  "egress": "reported by the caller if needed; this script does not call a geo service",
+  "totals": {
+    "probed": 15,
+    "reachable": 10,
+    "blocked": 1,
+    "challenged": 1,
+    "failed": 1
+  },
+  "rows": [
+    {
+      "host": "cacs.mofcom.gov.cn",
+      "url": "https://cacs.mofcom.gov.cn/",
+      "why": "trade remedies: the highest-value entry, foreign anti-dumping against China",
+      "status": 200,
+      "bytes": 62609,
+      "ms": 2494,
+      "note": "document"
+    },
+    {
+      "host": "gss.mof.gov.cn",
+      "url": "http://gss.mof.gov.cn/gzdt/",
+      "why": "Tariff Commission: rate schedules and adjustments",
+      "status": 200,
+      "bytes": 604,
+      "ms": 1926,
+      "note": "200 but tiny - probable block or empty shell"
+    },
+    {
+      "host": "mof.gov.cn",
+      "url": "https://www.mof.gov.cn/zhengwuxinxi/zhengcefabu/",
+      "why": "Ministry of Finance: tax and subsidy notices",
+      "status": 200,
+      "bytes": 20830,
+      "ms": 1414,
+      "note": "document"
+    },
+    {
+      "host": "mofcom.gov.cn",
+      "url": "https://www.mofcom.gov.cn/zfxxgk/",
+      "why": "MOFCOM: trade policy and announcements",
+      "status": 200,
+      "bytes": 161774,
+      "ms": 1910,
+      "note": "document"
+    },
+    {
+      "host": "stats.gov.cn",
+      "url": "https://www.stats.gov.cn/sj/zxfb/",
+      "why": "NBS: PPI, CPI, industrial profit",
+      "status": 200,
+      "bytes": 72939,
+      "ms": 4516,
+      "note": "document"
+    },
+    {
+      "host": "chinatax.gov.cn",
+      "url": "https://www.chinatax.gov.cn/chinatax/n810341/n810755/index.html",
+      "why": "STA: export tax rebate rates",
+      "status": 200,
+      "bytes": 37502,
+      "ms": 1266,
+      "note": "document"
+    },
+    {
+      "host": "miit.gov.cn",
+      "url": "https://www.miit.gov.cn/zwgk/zcwj/index.html",
+      "why": "MIIT: industrial policy and access rules",
+      "status": 0,
+      "bytes": 0,
+      "ms": 969,
+      "note": "threw: ETIMEDOUT"
+    },
+    {
+      "host": "samr.gov.cn",
+      "url": "https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/",
+      "why": "SAMR: standards, certification, inspections",
+      "status": 200,
+      "bytes": 9193,
+      "ms": 1557,
+      "note": "document"
+    },
+    {
+      "host": "safe.gov.cn",
+      "url": "https://www.safe.gov.cn/safe/whxw/index.html",
+      "why": "SAFE: exchange rates and cross-border capital",
+      "status": 200,
+      "bytes": 22711,
+      "ms": 1638,
+      "note": "document"
+    },
+    {
+      "host": "customs.gov.cn",
+      "url": "http://www.customs.gov.cn/",
+      "why": "GACC Chinese: known 412 site-wide, included to confirm it stays that way",
+      "status": 412,
+      "bytes": 1937,
+      "ms": 2896,
+      "note": ""
+    },
+    {
+      "host": "english.customs.gov.cn",
+      "url": "http://english.customs.gov.cn/Legislation/Announcement",
+      "why": "GACC English announcements: read but stale since 2023",
+      "status": 200,
+      "bytes": 19534,
+      "ms": 1626,
+      "note": "document"
+    },
+    {
+      "host": "eur-lex.europa.eu",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:C_202604924",
+      "why": "EUR-Lex: 202 to a plain fetch, needs a browser",
+      "status": 202,
+      "bytes": 2035,
+      "ms": 209,
+      "note": ""
+    },
+    {
+      "host": "tron.trade.ec.europa.eu",
+      "url": "https://tron.trade.ec.europa.eu/investigations",
+      "why": "EU trade defence register: client-rendered, XML endpoint read separately",
+      "status": 200,
+      "bytes": 56579,
+      "ms": 1027,
+      "note": "document"
+    },
+    {
+      "host": "api.indexnow.org",
+      "url": "https://api.indexnow.org/indexnow",
+      "why": "IndexNow: the submission step, checked for reachability only",
+      "status": 400,
+      "bytes": 136,
+      "ms": 170,
+      "note": ""
+    },
+    {
+      "host": "registry.npmjs.org",
+      "url": "https://registry.npmjs.org/astro",
+      "why": "npm registry: needed by install, so a failure here explains a failed run",
+      "status": 200,
+      "bytes": 9570421,
+      "ms": 218,
+      "note": "document"
+    }
+  ]
+}

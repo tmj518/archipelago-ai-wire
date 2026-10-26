@@ -1,0 +1,128 @@
+---
+/**
+ * Subscription confirmed.
+ *
+ * A P1 page from the specification's page list, and the destination a double opt-in provider
+ * redirects to once someone clicks the confirmation link. It exists because that reader has
+ * just taken an action with no visible result: without a page here they land on the homepage
+ * and cannot tell whether it worked.
+ *
+ * DELIBERATELY UNLINKED. It is the one page on the site with no inbound link anywhere, and
+ * that is correct rather than an oversight: nothing links to it because nothing should.
+ * `SITE.newsletterAction` is still empty, so no provider is redirecting here yet; when one
+ * is connected, this URL goes into its confirmation-redirect setting. It is noindex, so it
+ * cannot be reached from search either. The orphan sweep reports it, and that is the entry
+ * to ignore.
+ *
+ * The most useful thing it does is the second step. A new subscription that lands in a spam
+ * folder is indistinguishable from no subscription, so this page's job is to send the reader
+ * to the whitelisting instructions while the email is still at the top of their inbox - which
+ * is the moment they will actually do it.
+ *
+ * No address is read, stored, logged or reflected: the page has no query handling at all, so
+ * there is nothing to leak if a provider does pass one.
+ */
+import Sidebar from "../components/Sidebar.astro";
+import { SITE } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { numbersFor, published } from "../lib/post";
+import { getCollection } from "astro:content";
+import { fitTitle, fitDescription } from "../lib/meta";
+
+const posts = published(await getCollection("blog"));
+const numbers = numbersFor(posts);
+const latest = posts.slice(0, 3);
+
+const title = "You are on the list";
+const description =
+  "Your subscription to Landed Math is confirmed. Here is what arrives, how often, and the one step that keeps it out of your spam folder.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: `${title} — ${SITE.name}`,
+  description,
+  url: `${SITE.url}/confirmed/`,
+  robots: "noindex",
+};
+
+/** The cadence, stated the way the newsletter form states it, so the two agree. */
+const WHAT_ARRIVES = [
+  "One email when a tracked change actually moves a per-unit cost — not a daily digest.",
+  "The figure, its unit, its period, the named primary source, and the date it was retrieved.",
+  "The arithmetic, so you can change an input and see the answer move.",
+  "An unsubscribe link in every message, and no address ever shared or sold.",
+];
+---
+
+<BaseLayout title={`${fitTitle(title, "", SITE.name)} — ${SITE.name}`} description={fitDescription(description)} jsonLd={jsonLd} noindex>
+  <div class="container">
+    <main id="main">
+      <div class="page-head">
+        <h1>You are on the list</h1>
+        <p>
+          The subscription is confirmed. Nothing else is required — but there is one step worth
+          doing now, while the email is still at the top of your inbox.
+        </p>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">Do this now, it takes a minute</span>
+        <p>
+          Mark the confirmation email as <strong>not spam</strong> and add the sender to your
+          contacts. A subscription that lands in a spam folder is indistinguishable from no
+          subscription, and the first message from any new publication looks to a filter like
+          the shape of spam.{" "}
+          <a href="/whitelist/"><strong>Client-by-client instructions →</strong></a>
+        </p>
+      </div>
+
+      <h2 class="section-title">What arrives, and how often</h2>
+      <ul>
+        {WHAT_ARRIVES.map((w) => (
+          <li>{w}</li>
+        ))}
+      </ul>
+      <p>
+        The cadence is irregular by design. An email goes out when a tracked change moves a
+        cost, which is not most days — a daily digest would have to invent something to say on
+        the days when nothing did.
+      </p>
+
+      <h2 class="section-title">While you wait</h2>
+      <p>
+        The {posts.length} analyses published so far are all free to read in full, and the{" "}
+        <a href="/brief/">archive</a> lists them by the day they went out. If you have an
+        invoice in front of you, the <a href="/calculator/">calculator</a> does the per-unit
+        arithmetic without an email address.
+      </p>
+      <ul>
+        {latest.map((p) => (
+          <li>
+            <a href={`/blog/${p.id}/`}>{p.data.title}</a>
+          </li>
+        ))}
+      </ul>
+
+      <h2 class="section-title">If the email never arrives</h2>
+      <p>
+        Check the spam folder first, then{" "}
+        <a href="/contact/">say so</a> — the site sends no tracking pixels, so it cannot detect
+        that a message went astray. That is a deliberate trade:{" "}
+        <a href="/privacy/">the privacy page</a> promises no tracking, which means delivery
+        problems have to be reported rather than noticed.
+      </p>
+    </main>
+
+    <Sidebar numbers={numbers} />
+  </div>
+</BaseLayout>
+
+<style>
+  ul {
+    padding-left: 20px;
+  }
+  li {
+    margin: 7px 0;
+  }
+</style>

@@ -1,0 +1,32 @@
+[
+  {
+    "url": "https://www.deloitte.com/content/dam/assets-zone1/cn/en/docs/services/tax/2026/deloitte-cn-tax-newsflash-en-260323.pdf",
+    "title": "Deloitte China tax newsflash, 23 March 2026",
+    "snippet": "Attempted and not readable from this machine: the fetch returned unsupported content type application/pdf, and this tool cannot read PDFs. Treated as unverified. It is likely the strongest professional analysis in the set, which is precisely why it should be read before relying on any claim that no one else covers this ground."
+  },
+  {
+    "url": "https://www.europarl.europa.eu/RegData/etudes/STUD/2026/783610/EXPO_STU(2026)783610_EN.pdf",
+    "title": "EU-China Tensions: Industrial Overcapacity, European Parliament study",
+    "snippet": "Attempted, returned HTTP 202 with an empty body, so nothing was read. Directional from the title and the search snippet: it describes export tax rebates as the most prominent direct measure through which the Chinese government supports industries' overseas sales. That is a policy-level framing rather than a per-good cost comparison."
+  },
+  {
+    "url": "https://mp.weixin.qq.com/s/rrd-N95tOzLR-cWrrZbLoA",
+    "title": "2026年关税调整方案发布，铝铜税率未调整",
+    "snippet": "Attempted, blocked by a CAPTCHA wall (环境异常, verification required). The search snippet says the 2026 tariff adjustment plan did not change aluminium and copper rates. Not read, so not relied on. Note this is a claim worth checking against our own article, which reports a 30 per cent nominal rate reduced to 10 per cent provisional on copper cathode."
+  },
+  {
+    "url": "https://www.lexology.com/library/document.ashx?g=11b5ae68-6d31-4bdd-9b89-b51a9d130ce8",
+    "title": "Export tax rebate fraud enforcement cases, State Taxation Administration",
+    "snippet": "Attempted, returned HTTP 403 behind a bot challenge. From the snippet it concerns four prosecuted cases of export tax rebate fraud, which is enforcement rather than the rate structure. Not read."
+  },
+  {
+    "url": "https://aluminium-journal.com/china-aluminium-market",
+    "title": "China's role in the global aluminium market",
+    "snippet": "Industry analysis of Chinese aluminium supply and trade. Sector-level: covers the market and policy environment, not the per-good export duty and rebate arithmetic for a named product."
+  },
+  {
+    "url": "https://mezha.net/ch/bukvy/6631674d_china_reshapes_global/",
+    "title": "中国通过进出口调整重塑全球基本金属供应格局",
+    "snippet": "Trade coverage of China reshaping base metal supply through import and export adjustments. Directional policy commentary; no worked example of what a named good pays on export."
+  }
+]

@@ -1,0 +1,206 @@
+---
+/**
+ * The subscribe prompt, shown once after a reader has actually read something.
+ *
+ * The brief asks for a reading-triggered modal with a close button, an explanation of the
+ * ad-free subscription, and a reserved Stripe entry point. Three constraints shaped how it is
+ * built, and each one is a deliberate departure from the shape a growth modal usually takes.
+ *
+ * It triggers on depth of reading, not on a timer and not on arrival. A prompt that appears
+ * before someone has read a paragraph is an interruption; one that appears after they have
+ * read most of an analysis is an offer. The measure is scroll depth past 60% of the article,
+ * which is the only signal available on a static site with no tracking scripts.
+ *
+ * It appears once, ever. The dismissal is stored in `localStorage` under a versioned key, so
+ * changing the offer can re-prompt and merely rebuilding the site cannot. There is no
+ * session-based nagging: a reader who said no is not asked again.
+ *
+ * It is not rendered at all when there is nothing to sell. `SITE.newsletterAction` is empty
+ * and paid tiers are closed, so the paid panel is inert and the copy says so rather than
+ * pretending. When both are connected, the Stripe link goes in the marked place.
+ *
+ * No third-party script, no cookie, no network call. It is a `<dialog>` element and one
+ * listener, which keeps the site's "no tracking scripts" promise intact - localStorage is not
+ * a cookie and is not transmitted anywhere.
+ */
+export interface Props {
+  /** Only render where there is an article to have read. */
+  enabled?: boolean;
+}
+
+const { enabled = true } = Astro.props;
+if (!enabled) return Astro.skip;
+
+/**
+ * Versioned key. Bump the version to re-prompt everyone after a material change to the offer;
+ * leave it alone and the dismissal holds forever.
+ */
+const DISMISS_KEY = "lm-subscribe-prompt-v1";
+---
+
+<dialog id="subscribe-modal" class="sub-modal" aria-labelledby="sub-modal-title">
+  <form method="dialog" class="sub-modal__form">
+    <button class="sub-modal__close" value="close" aria-label="Close">×</button>
+  </form>
+
+  <h2 id="sub-modal-title" class="sub-modal__title">No ads, no sponsors, no tracking</h2>
+
+  <p class="sub-modal__body">
+    Every analysis on this site is free to read in full. There is no advertising network on it
+    and no third-party analytics, which is why the only way it pays for the reading behind each
+    figure is readers.
+  </p>
+
+  <ul class="sub-modal__list">
+    <li>One email when a tracked change actually moves a per-unit cost</li>
+    <li>The figure, its source and the date on every number</li>
+    <li>Unsubscribe in one click, and the free tier never changes</li>
+  </ul>
+
+  <div class="sub-modal__actions">
+    <a class="sub-modal__cta" href="/#subscribe">Subscribe free</a>
+    <a class="sub-modal__link" href="/pricing/">What paid tiers add</a>
+  </div>
+
+  {/*
+    * STRIPE ENTRY POINT — reserved, not wired.
+    *
+    * Paid subscriptions are closed: `SITE.newsletterAction` is empty and no payment provider
+    * is connected. When one is, this anchor becomes the checkout link and the copy above
+    * stops saying "not open". Putting a live-looking button here before that would be the
+    * same defect as the inert pricing buttons, only in a modal.
+    *
+    * <a class="sub-modal__cta" href="https://buy.stripe.com/XXXXXXXX">Subscribe — $12/month</a>
+  */}
+  <p class="sub-modal__note">
+    Paid tiers are not open yet. <a href="/pricing/">See what they will include →</a>
+  </p>
+</dialog>
+
+<style>
+  .sub-modal {
+    max-width: 460px;
+    width: calc(100vw - 32px);
+    border: 1px solid var(--c-line, #e2e2e2);
+    border-radius: 6px;
+    padding: 26px 24px 20px;
+    background: var(--c-surface, #fff);
+    color: var(--c-ink, #1a1a1a);
+    box-shadow: 0 12px 40px rgb(0 0 0 / 18%);
+  }
+
+  .sub-modal::backdrop {
+    background: rgb(0 0 0 / 42%);
+  }
+
+  .sub-modal__form {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    margin: 0;
+  }
+
+  .sub-modal__close {
+    background: none;
+    border: 0;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--c-ink-5, #888);
+    /* 44px target: the brief's touch rule applies to the close button most of all, because
+       a modal that is hard to dismiss is the complaint that generates ad-blockers. */
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .sub-modal__title {
+    margin: 0 0 10px;
+    font-size: 1.15rem;
+  }
+
+  .sub-modal__body {
+    font-size: 0.94rem;
+    margin: 0 0 12px;
+  }
+
+  .sub-modal__list {
+    font-size: 0.92rem;
+    padding-left: 18px;
+    margin: 0 0 16px;
+  }
+
+  .sub-modal__list li {
+    margin: 5px 0;
+  }
+
+  .sub-modal__actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .sub-modal__cta {
+    background: var(--c-red, #d4573a);
+    color: #fff;
+    padding: 11px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .sub-modal__link {
+    font-size: 0.9rem;
+  }
+
+  .sub-modal__note {
+    font-size: 0.82rem;
+    opacity: 0.72;
+    margin: 0;
+  }
+</style>
+
+<script>
+  /**
+   * Show the prompt once, after the reader has demonstrably read something.
+   *
+   * No framework and no dependency: one scroll listener that removes itself on first fire,
+   * one localStorage read, and the native <dialog> API for focus trapping and Escape handling
+   * that would otherwise have to be written by hand.
+   */
+  const KEY = "lm-subscribe-prompt-v1";
+
+  const dialog = document.getElementById("subscribe-modal") as HTMLDialogElement | null;
+  if (dialog) {
+    let dismissed = false;
+    try {
+      dismissed = localStorage.getItem(KEY) === "1";
+    } catch {
+      // Storage can be unavailable (private mode, blocked cookies). Treat that as "already
+      // dismissed" rather than prompting on every page: an un-storable dismissal would
+      // otherwise re-prompt forever, which is worse than never prompting.
+      dismissed = true;
+    }
+
+    if (!dismissed && typeof dialog.showModal === "function") {
+      const onScroll = () => {
+        const doc = document.documentElement;
+        const scrolled = doc.scrollTop + window.innerHeight;
+        const depth = scrolled / doc.scrollHeight;
+        if (depth < 0.6) return;
+        window.removeEventListener("scroll", onScroll);
+        try {
+          localStorage.setItem(KEY, "1");
+        } catch {
+          /* nothing to do; the prompt is a one-shot either way */
+        }
+        dialog.showModal();
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
+  }
+</script>

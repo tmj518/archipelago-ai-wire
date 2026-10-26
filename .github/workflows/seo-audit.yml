@@ -1,0 +1,120 @@
+# A read-only SEO audit: which pages does Google already rank, and which of them nobody clicks.
+#
+# It runs in the runner because the Search Console key is a repository secret. It changes no article body
+# and publishes nothing; the one thing it writes is the backtest log, which is the evidence that a title
+# change did anything at all.
+name: SEO audit
+
+on:
+  #
+  # Weekly, Monday 08:07 Beijing (00:07 UTC).
+  #
+  # Without this the whole data loop was manual: the shortlist, the gap list and the backtest measurement
+  # all sat behind a button, so "data-driven" meant "when someone remembers". Weekly rather than daily
+  # because the window is ninety days - a day moves the numbers by less than their own noise, and a title
+  # change needs a week before it can be read. The minute is off the daily crons (23:20, 01:20, 12:20,
+  # 13:20) so the two workflows never contend for the same runner minute.
+  #
+  schedule:
+    - cron: '7 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Needed for the one step that writes back: the backtest log only becomes evidence if it survives
+    # the runner, and measurements live in the repository, not in a log that scrolls away.
+    permissions:
+      contents: write
+    env:
+      #
+      # The property string is a repository variable, not a literal, because getting it wrong is
+      # indistinguishable from having no traffic. A Domain property and a URL-prefix property for one
+      # host are separate datasets: searchAnalytics answers whichever one the URL names, and an empty
+      # answer from the wrong property reads exactly like an empty answer from the right one. Changing
+      # a setting should be enough to test the other one; editing this file should not be required.
+      #
+      #   Settings -> Secrets and variables -> Actions -> Variables -> GSC_SITE
+      #
+      GSC_SITE_URL: ${{ vars.GSC_SITE || 'sc-domain:landedmath.com' }}
+      GSC_SITE: ${{ vars.GSC_SITE || 'sc-domain:landedmath.com' }}
+      GSC_CREDENTIALS_BASE64: ${{ secrets.GSC_CREDENTIALS_BASE64 }}
+      # gsc-report reads GSC_CREDENTIALS in three shapes - a path, the JSON document, or base64 of it -
+      # so the secret can be handed over as-is. Before 2026-10-21 it was read as a path only, and a
+      # base64 blob made existsSync() false, which surfaced as "0 rows" rather than as an error.
+      GSC_CREDENTIALS: ${{ secrets.GSC_CREDENTIALS_BASE64 }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+
+      #
+      # First, the question that a 0-row result cannot answer on its own: which properties can this
+      # credential read, and how many rows sit behind each. This step is deliberately allowed to fail
+      # the run - if the credential or the property is wrong, that is the finding, not a nuisance.
+      #
+      - name: Which properties can this credential read
+        run: node tools/gsc-report.mjs --sites --days=90
+
+      #
+      # The payload as one line of base64, because the log masker eats any line that is only a brace:
+      # the first attempt at this printed the pretty JSON and every "{" and "}" came back as "***",
+      # which turns a valid document into something no parser will read. base64 has no braces in it.
+      #
+      #   gh run view <id> --log | grep -o 'PAYLOAD-BASE64.*' ... | tail -1 | base64 -d > out/gsc-90.json
+      #
+      - name: The rows themselves, as the rewriter consumes them
+        run: |
+          echo "PAYLOAD-BASE64"
+          node tools/gsc-report.mjs --json --days=90 | base64 -w 0
+          echo ""
+          echo "END"
+
+      - name: Which pages are ranked but not clicked
+        run: node tools/optimize-titles.mjs --min-imp=20 --max-pos=12 --max-ctr=0.02
+
+      #
+      # The other half of the loop: the queries Google already shows us for, and whether we have a page
+      # of our own for them. Same base64 treatment, because the JSON has braces on their own lines.
+      #
+      - name: Queries we rank for and have no page for
+        run: |
+          echo "GAPS-BASE64"
+          node tools/query-gap.mjs --json --days=90 | base64 -w 0
+          echo ""
+          echo "END"
+
+      #
+      # Measure the titles that have already been changed, and keep the measurements. This step writes
+      # data/backtest.jsonl, so it must be committed or the evidence dies with the runner.
+      #
+      - name: Backtest the titles changed so far
+        run: node tools/optimize-titles.mjs --min-imp=20 --max-pos=12 --max-ctr=0.02 --backtest
+
+      #
+      # Two artefacts are worth surviving the runner: the backtest measurements, and the gap list. The
+      # gap list is the input to next week's subject choice - if it stays in the log, "the queries we
+      # rank for and have no page for" is a thing somebody has to remember to go and read.
+      #
+      - name: Keep the backtest log and the gap list
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          #
+          # `git add data/gsc/gaps_*.json` is fatal when the glob matches nothing, and it runs after the
+          # measurements have been taken - so the audit reported failure and threw away the day's
+          # backtest numbers. That is what happened twice on 2026-10-26 while the site itself was
+          # healthy. Add each artefact only when it exists, and decide from the index rather than from
+          # a pathspec that may not match.
+          #
+          [ -f data/backtest.jsonl ] && git add data/backtest.jsonl || true
+          for f in data/gsc/gaps_*.json; do [ -f "$f" ] && git add "$f" || true; done
+          if git diff --cached --quiet; then
+            echo "nothing new to keep"
+            exit 0
+          fi
+          git commit -m "audit: titles measured and queries without a page, $(date -u +%F)"
+          git pull --rebase --autostash origin main || true
+          git push

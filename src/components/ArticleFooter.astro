@@ -1,0 +1,146 @@
+---
+import { AUTHOR } from "../consts";
+import NewsletterForm from "./NewsletterForm.astro";
+import RelatedCard from "./RelatedCard.astro";
+import type { CardData } from "../lib/post";
+import type { Hub } from "../lib/topics";
+
+/**
+ * The block that closes every article: author line, subscribe prompt and
+ * three related reads (spec §3). Shown full-width beneath the two-column
+ * article layout, exactly as the prototype previewed it.
+ *
+ * A topic-hub row was added on 2026-10-12. The audit that prompted it found zero article-to-hub
+ * links across the published corpus: the hubs existed and the homepage indexed them, but no article
+ * pointed at one, so every hub was reachable only from the front page and from other hubs. A hub
+ * that nothing links to from below is a page with no inbound path from the work it summarises.
+ *
+ * The links are the article's own tags resolved against the hub set, so each is a real relation and
+ * not a filled slot. An article with one qualifying tag gets one link; the row renders only what
+ * exists rather than padding to a number.
+ */
+export interface Props {
+  related: CardData[];
+  hubs?: Hub[];
+  authorName?: string;
+  authorInitials?: string;
+  authorBio?: string;
+  avatar?: string;
+}
+
+const {
+  related,
+  hubs = [],
+  authorName = AUTHOR.name,
+  authorInitials = AUTHOR.initials,
+  authorBio = AUTHOR.longBio,
+  avatar = AUTHOR.avatar,
+} = Astro.props;
+---
+
+<div class="container container--flush container--full">
+  <div class="article-bottom">
+    <div class="author-row">
+      <div class="avatar-sm">
+        {avatar ? <img src={avatar} alt={authorName} width="56" height="56" /> : authorInitials}
+      </div>
+      <div>
+        <div class="author-name">{authorName}</div>
+        <p>{authorBio}</p>
+      </div>
+    </div>
+
+    <NewsletterForm variant="inline" />
+
+    {/*
+      Rendered whenever the index exists, which is always, rather than only when the article has
+      topic hubs. The first version gated on `hubs.length > 0` and so vanished on the four articles
+      whose tags are the first of their kind - leaving them with no route into the cluster structure
+      at all. The index link is worth having on every article; whether an article has hubs of its own
+      is a separate question.
+    */}
+    <section class="article-hubs">
+      <h2 class="related-title">
+        {hubs.length > 0 ? "Topics in this analysis" : "Browse by topic"}
+      </h2>
+      {
+        hubs.length > 0 && (
+          <ul class="article-hub-list">
+            {hubs.map((h) => (
+              <li>
+                <a href={`/topic/${h.slug}/`}>
+                  {h.tag} <span class="article-hub-count">{h.count}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+      <p class="article-hubs-index">
+        <a href="/topic/">Browse every topic &rarr;</a> — each one gathers the analyses that share a
+        subject, with the figures and their documents.
+      </p>
+    </section>
+
+    {
+      related.length > 0 && (
+        <>
+          <h2 class="related-title">Related Reading</h2>
+          <div class="related-grid">
+            {related.map((item) => (
+              <RelatedCard href={item.href} date={item.date} title={item.title} />
+            ))}
+          </div>
+        </>
+      )
+    }
+
+    {/* The disclaimer used to sit here. It now lives in the site footer, which
+        every page already carries, so repeating it on articles said the same
+        thing twice on one screen. This block is also where the audio player and
+        video embed will go, and it should not be crowded. */}
+  </div>
+</div>
+
+<style>
+  .article-hubs {
+    margin: 26px 0 6px;
+    padding-top: 18px;
+    border-top: 1px solid var(--c-line);
+  }
+  .article-hub-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+  }
+  .article-hub-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 13px;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    font-size: 13.5px;
+    text-decoration: none;
+    /* 44px minimum touch target, the same rule the mobile layout gate enforces. */
+    min-height: 44px;
+  }
+  .article-hub-list a:hover {
+    border-color: var(--c-red);
+  }
+  .article-hub-count {
+    font-size: 11.5px;
+    color: var(--c-ink-4);
+    background: var(--c-line-faint);
+    border-radius: 999px;
+    padding: 1px 7px;
+  }
+  .article-hubs-index {
+    margin: 12px 0 0;
+    font-size: 13.5px;
+    color: var(--c-ink-3);
+  }
+</style>

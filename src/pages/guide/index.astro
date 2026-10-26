@@ -1,0 +1,108 @@
+---
+/**
+ * The guide index: every published guide, grouped by cluster.
+ *
+ * This page exists so that a guide is reachable from something other than the sitemap. A section that
+ * only a crawler can find is a section with no internal links, and internal links are the only
+ * authority this site can hand a new page.
+ *
+ * Same article classes as the guide page and the blog: one heading scale, one reading width, one site.
+ */
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../consts";
+
+const TOPIC_LABEL = {
+  "work-visa": "Work visas",
+  residence: "Residence permits",
+  tax: "Tax",
+  "social-insurance": "Social insurance",
+  relocation: "Relocating",
+  transit: "Transit and entry",
+  driving: "Driving",
+  employment: "Employing people",
+};
+
+const guides = (await getCollection("guide"))
+  .filter((g) => g.data.draft !== true)
+  .sort((a, b) => String(b.data.lastVerified).localeCompare(String(a.data.lastVerified)));
+
+const byTopic = new Map();
+for (const g of guides) {
+  const t = g.data.topic;
+  if (!byTopic.has(t)) byTopic.set(t, []);
+  byTopic.get(t).push(g);
+}
+
+const groups = [...byTopic.entries()].sort((a, b) => b[1].length - a[1].length);
+---
+
+<BaseLayout
+  title={`Guides to what China costs you — ${SITE.name}`}
+  description="What it costs to move to, work in, or visit China: fees with the date they were checked, steps in order, and the source for every figure."
+>
+  <main id="main" class="wrap">
+    <article>
+      <header class="article-header">
+        <a class="tag" href="/">Landed Math</a>
+        <h1>Guides</h1>
+        <p class="standfirst">
+          What it costs to move to, work in or visit China — written per unit, with the date each figure
+          was checked. Every guide lists its steps in order and names the source behind every number.
+        </p>
+        <div class="meta">{guides.length} guide{guides.length === 1 ? "" : "s"}</div>
+      </header>
+
+      <div class="prose">
+        {
+          guides.length === 0 ? (
+            <p>The first guides are being written. Check back shortly.</p>
+          ) : (
+            groups.map(([topic, items]) => (
+              <section>
+                <h2>{TOPIC_LABEL[topic] ?? topic}</h2>
+                <ul class="guide-list">
+                  {items.map((g) => (
+                    <li>
+                      <a href={`/guide/${g.id}/`}>{g.data.title}</a>
+                      <span class="guide-meta">
+                        {g.data.unit} · checked {g.data.lastVerified}
+                      </span>
+                      <p class="guide-excerpt">{g.data.description}</p>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))
+          )
+        }
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .guide-list {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+  }
+  .guide-list li {
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0.9rem 0;
+  }
+  .guide-list a {
+    font-weight: 700;
+  }
+  .guide-meta {
+    margin-left: 0.6rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.6;
+  }
+  .guide-excerpt {
+    margin: 0.3rem 0 0;
+  }
+</style>

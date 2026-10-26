@@ -1,0 +1,90 @@
+---
+/**
+ * Google Analytics 4 and Search Console verification.
+ *
+ * ## Why the bootstrap is a bundled script and not an inline one
+ *
+ * The obvious shape is an inline `<script is:inline>` holding the gtag stub. It does not work here: Astro
+ * emits a CSP with a sha256 hash for every inline script it processes, and an inline script carrying
+ * `define:vars` is not one of them - so the tag rendered, the browser refused it, and the page looked
+ * installed while reporting nothing. check-csp caught it on 144 pages, which is what that check exists for.
+ *
+ * `dangerouslySetInnerHTML` is not the escape hatch either: in an Astro component it renders as an attribute
+ * and the content arrives as `[object Object]`.
+ *
+ * So the bootstrap is an ordinary `<script>` that Astro bundles into /_astro/, which is same-origin and needs
+ * no hash. The measurement id travels in a meta tag rather than in the script body, because a bundled module
+ * has no `document.currentScript` to read it from.
+ *
+ * ## The values
+ *
+ *   PUBLIC_GA_MEASUREMENT_ID          "G-XXXXXXXXXX" from GA4 -> Admin -> Data streams -> Web
+ *   PUBLIC_GOOGLE_SITE_VERIFICATION   the content value from Search Console's verification meta tag
+ *
+ * Both are read at build time. For this site that means the Cloudflare Pages project, Production and Preview
+ * both - a value set only in a local shell produces a build with no tag and no error.
+ *
+ * ## When they are absent
+ *
+ * Nothing is rendered and the build is identical to before. That silence is why analytics went unnoticed for
+ * so long, so the daily summary reports whether it is configured rather than leaving it to be inferred.
+ *
+ * ## CSP
+ *
+ * googletagmanager.com is in script-src, and google-analytics.com plus region1 in connect-src and img-src.
+ * Without them the loader arrives and every measurement is refused - which reads as a working install that
+ * reports no traffic, the most expensive kind of wrong.
+ */
+const GA = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? "";
+const VERIFY = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? "";
+---
+
+{VERIFY && <meta name="google-site-verification" content={VERIFY} />}
+
+{
+  GA && (
+    <>
+      {/* The id travels here because a bundled module cannot read it from document.currentScript. */}
+      <meta name="ga-measurement-id" content={GA} />
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA}`} />
+      <script>
+        /*
+         * Bundled into /_astro/, so it is same-origin and allowed by 'self' without a hash.
+         *
+         * anonymize_ip is on: the site is read from the EU and the UK as much as anywhere, and a first-party
+         * identifier is not needed for counting articles.
+         */
+        const el = document.querySelector('meta[name="ga-measurement-id"]');
+        const id = el instanceof HTMLMetaElement ? el.content : "";
+        if (id) {
+          const w = window as unknown as { dataLayer?: unknown[]; gtag?: (...a: unknown[]) => void };
+          w.dataLayer = w.dataLayer || [];
+          /*
+           * PUSH arguments, NOT AN ARRAY.
+           *
+           * This is the whole bug. gtag.js drains the queue through the same core GTM uses, and that core processes an
+           * entry by reading it as an arguments-like command: entry[0] is the verb. A rest parameter produces a real
+           * Array, and gtag.js only records a uniqueEventId for entries it accepted - which is why the console showed
+           *
+           *   ["js", ...]                                    no uniqueEventId, never ran
+           *   ["config", "G-N99G9FY6NZ", {...}]              no uniqueEventId, never ran
+           *   {"event":"gtm.dom","gtm.uniqueEventId":3}      accepted
+           *
+           * and why document.cookie had no _ga and the Network panel had no collect at all. The tag loaded 200, the
+           * queue filled correctly, and GA never initialised: the most convincing possible failure, because every
+           * individual part looked right.
+           *
+           * Google's own snippet pushes `arguments` for exactly this reason. Adapting the TS signature to keep the
+           * type checker quiet would have written the bug back in, so the function takes no declared parameters.
+           */
+          w.gtag = function () {
+            // eslint-disable-next-line prefer-rest-params
+            w.dataLayer!.push(arguments as unknown as unknown[]);
+          };
+          w.gtag("js", new Date());
+          w.gtag("config", id, { anonymize_ip: true });
+        }
+      </script>
+    </>
+  )
+}

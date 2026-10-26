@@ -1,0 +1,256 @@
+---
+/**
+ * Find by market.
+ *
+ * The benchmark leads with a country tariff-rate page built from World Bank and
+ * WTO schedules. We hold no rate table, so copying that shape would have copied
+ * a container without its contents. What this material supports is a corridor
+ * index — every article prices a shipment moving between two or more markets — so
+ * the usable question is "which markets does this piece cite sources from".
+ *
+ * Market is assigned per SOURCE, by the body that published it, then unioned per
+ * article. That is deliberately different from scanning article text: "China"
+ * appears everywhere by virtue of the subject matter, so text matching tags
+ * everything and distinguishes nothing. A published-by rule is auditable, and the
+ * publisher of each source is already declared in the frontmatter.
+ *
+ * The first version of this page scanned titles and source strings with a
+ * hand-written pattern per market. It filed 7 articles under China when the
+ * material supports 14, missing every corridor piece, because source strings
+ * mention agencies in prose ("Ministry of Finance and State Taxation
+ * Administration") that the patterns did not anticipate. An incomplete index is
+ * worse than none, since a reader concludes the site has seven pieces on China
+ * rather than eighteen.
+ */
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../consts";
+import { fitTitle, fitDescription } from "../lib/meta";
+
+/**
+ * Publisher to market. Ordered, and each rule names the body it matches, so a
+ * misfiling can be traced to a rule rather than to a score.
+ *
+ * The pattern and the prose cue both matter. A first attempt at these rules
+ * matched only bodies spelled out in full, and left 20 of 97 sources unfiled —
+ * "Executive Order", "90 FR 37775", "Pub. L. 119-21", "Harmonized Tariff
+ * Schedule", the Dutch, Czech and Irish customs authorities, and a Commission
+ * delegated regulation. That is a blind spot in the rule, not an absence of
+ * evidence, and it silently halved the United States count from 7 to 4.
+ *
+ * Sources published by this site are deliberately not matched. Our own models are
+ * not evidence of a market, and filing an article under a market because we
+ * modelled it there would be circular. Articles whose sources are only ours and
+ * third-party commentary therefore surface in the no-market bucket by design.
+ */
+const RULES = [
+  {
+    market: "cn",
+    label: "China",
+    re: /State Council|Customs Tariff Commission|Ministry of Finance|State Taxation|税委会|税务总局|财政部|国务院|MOFCOM|General Administration of Customs|State Administration for Market Regulation|National Bureau of Statistics|People's Bank of China|State Administration of Foreign Exchange|Import and Export Tariff of the People|Xinhua|Provincial Department of Finance|海关总署/i,
+    bodies: [
+      "the State Council and its Customs Tariff Commission",
+      "the Ministry of Finance and the State Taxation Administration",
+      "MOFCOM and the General Administration of Customs",
+      "the National Bureau of Statistics",
+      "a provincial department of finance",
+    ],
+  },
+  {
+    market: "eu",
+    label: "European Union",
+    re: /Commission Implementing Regulation|Commission Delegated Regulation|Regulation \(EU\)|Official Journal|OJ L|European Commission|EUR-Lex|DG TAXUD|Revenue Commissioners|Dutch Customs|Douane|Czech Customs|DEHSt|Safety Gate/i,
+    bodies: [
+      "a Commission implementing or delegated regulation",
+      "the Official Journal",
+      "the European Commission, including DG TAXUD",
+      "a national customs or environment authority acting on an EU measure",
+    ],
+  },
+  {
+    market: "us",
+    label: "United States",
+    re: /Federal Register|thefederalregister|\d+ FR \d+|USTR|United States Trade Representative|Customs and Border Protection|\bCBP\b|USITC|HTSUS|Harmonized Tariff Schedule|Section 301|Section 232|Proclamation \d|Executive Order|Pub\. L\.|govinfo|note \d\([a-z]\)/i,
+    bodies: [
+      "the Federal Register or a citation to it",
+      "USTR, CBP or USITC",
+      "the Harmonized Tariff Schedule of the United States",
+      "an Executive Order, a Presidential Proclamation or a public law",
+    ],
+  },
+  {
+    market: "intl",
+    label: "Multilateral and regional",
+    re: /RCEP|Regional Comprehensive Economic Partnership|ASEAN|Free Trade Area|Suez Canal Authority|Shanghai Shipping|World Bank|WTO/i,
+    bodies: [
+      "an RCEP or ASEAN agreement text",
+      "the Suez Canal Authority",
+      "the Shanghai Shipping Exchange",
+      "the World Bank or the WTO",
+    ],
+  },
+];
+
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+
+const tagged = posts.map((p) => {
+  const sources = p.data.sources ?? [];
+  const perSource = sources.map((s) => ({
+    source: s,
+    markets: RULES.filter((r) => r.re.test(s)).map((r) => r.market),
+  }));
+  const keys = [...new Set(perSource.flatMap((x) => x.markets))];
+  return {
+    slug: p.id,
+    title: p.data.title,
+    category: p.data.category,
+    stakes: p.data.stakes ?? "directional",
+    reviewBy: p.data.reviewBy,
+    keys,
+    sourceCount: sources.length,
+  };
+});
+
+const byMarket = RULES.map((r) => ({
+  ...r,
+  posts: tagged
+    .filter((p) => p.keys.includes(r.market))
+    .sort((a, b) => (a.reviewBy?.getTime() ?? 0) - (b.reviewBy?.getTime() ?? 0)),
+})).filter((m) => m.posts.length > 0);
+
+const unfiled = tagged.filter((p) => p.keys.length === 0);
+const fmt = (d) => (d ? d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }) : "");
+const labelFor = (k) => RULES.find((r) => r.market === k)?.label ?? k;
+
+const title = "Find by market";
+const description =
+  "Which markets each article draws its sources from, assigned by the body that published each source. Every piece prices a shipment moving between two or more markets.";
+---
+
+<BaseLayout title={`${fitTitle(title, "", SITE.name)} — ${SITE.name}`} description={description}>
+  <div class="container">
+    <main id="main">
+      <article>
+        <header class="article-header">
+          <h1>{title}</h1>
+          <p class="standfirst">
+            This is a corridor index, not a table of national tariff rates. Every
+            article here prices a shipment moving between two or more markets. Pick
+            the market whose rules you need.
+          </p>
+        </header>
+
+        <div class="prose">
+          <p>
+            Market is assigned per source, by the body that published it, and then
+            unioned per article. So a piece sits under China when it cites a Chinese
+            ministry or customs notice, under the European Union when it cites a
+            Commission regulation, and under both when it cites both — which is most
+            of them, because that is what a corridor analysis is. The publisher rule
+            for each market is printed below, so any filing can be traced to a rule
+            rather than to a score.
+          </p>
+
+          <div class="tracker-summary">
+            <div class="tracker-stat">
+              <span class="tracker-num">{tagged.length}</span>
+              <span class="tracker-lbl">articles</span>
+            </div>
+            <div class="tracker-stat">
+              <span class="tracker-num">{tagged.reduce((a, p) => a + p.sourceCount, 0)}</span>
+              <span class="tracker-lbl">named sources behind them</span>
+            </div>
+            <div class="tracker-stat">
+              <span class="tracker-num">{tagged.filter((p) => p.keys.length > 1).length}</span>
+              <span class="tracker-lbl">cover more than one market</span>
+            </div>
+          </div>
+
+          {byMarket.map((m) => (
+            <section class="market-block">
+              <h2>
+                {m.label}
+                <span class="market-count">{m.posts.length} article{m.posts.length > 1 ? "s" : ""}</span>
+              </h2>
+              <p class="market-signal">
+                <strong>Filed here when a cited source was published by:</strong>{" "}
+                {m.bodies.join("; ")}.
+              </p>
+              <ul class="market-list">
+                {m.posts.map((p) => (
+                  <li>
+                    <a href={`/blog/${p.slug}/`}>{p.title}</a>
+                    <span class="market-meta">
+                      {p.category.replace(/-/g, " ")} · {p.stakes}
+                      {p.keys.length > 1 && ` · also ${p.keys.filter((k) => k !== m.market).map(labelFor).join(", ")}`}
+                      {p.reviewBy && ` · re-check ${fmt(p.reviewBy)}`}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+
+          {unfiled.length > 0 && (
+            <section class="market-block">
+              <h2>
+                Filed under no market
+                <span class="market-count">{unfiled.length} article{unfiled.length > 1 ? "s" : ""}</span>
+              </h2>
+              <p class="market-signal">
+                Sources that are neither a government register nor a named official
+                body, so no publisher rule applies. Listed rather than forced into a
+                market, because a guess here would be indistinguishable from a filing
+                we can justify.
+              </p>
+              <ul class="market-list">
+                {unfiled.map((p) => (
+                  <li>
+                    <a href={`/blog/${p.slug}/`}>{p.title}</a>
+                    <span class="market-meta">
+                      {p.category.replace(/-/g, " ")} · {p.stakes}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          <h2>Why there is no rate table here</h2>
+          <p>
+            A page of national tariff rates would need a schedule this site does not
+            hold. What it does instead is take one instrument at a time, find the rate
+            in the legal text that publishes it, and convert it into cost per unit,
+            per container or per tonne — with a named source and a retrieval date on
+            every figure. Those sources are counted on
+            <a href="/sources/">how the sources work</a>, including the ones that could
+            not be read.
+          </p>
+          <p>
+            If you already know your rate, the
+            <a href="/calculator/">landed-cost calculator</a> turns it into duty per
+            unit and per container, and the <a href="/tracker/">tracker</a> lists every
+            date on which these pieces will be re-read.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <aside class="sidebar">
+      <div class="widget">
+        <h2>By topic instead</h2>
+        <p>
+          The five sections are trade policy, platforms, supply chain, sourcing and
+          logistics, listed in the navigation.
+        </p>
+      </div>
+      <div class="widget">
+        <h2>Work out your own cost</h2>
+        <p>
+          The <a href="/calculator/">landed-cost calculator</a> uses the same models
+          behind the figures in these articles.
+        </p>
+      </div>
+    </aside>
+  </div>
+</BaseLayout>

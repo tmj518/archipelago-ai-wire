@@ -1,0 +1,99 @@
+name: CI
+
+# Every push to main, and every pull request: build the site and run all seven gates.
+#
+# This is the deterministic half of the pipeline and it does not depend on any credential, so it can
+# be turned on before anything else is migrated. It also answers a deployment question - whether the
+# gate suite runs on a Linux runner at all - which the migration needs answered before an LLM is
+# involved, because a failure there would be indistinguishable from a failure in the writer.
+#
+# What the runner has to supply that this machine supplies by accident:
+#   - Chromium. The mobile layout gate drives a real browser. It used to look only at Windows paths
+#     and would have printed SKIP and passed; it now fails when no browser is present, so the
+#     install step below is load-bearing rather than a nicety.
+#   - pnpm, not npm. The repository has pnpm-lock.yaml and no package-lock.json, so `npm ci` fails at
+#     the first step. corepack pins the version from package.json when one is declared.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      # Chromium for the mobile layout gate. `--with-deps` is not used on the second fallback
+      # because the Ubuntu image already carries the shared libraries; the loop below finds whichever
+      # binary the distribution actually provides and exports it, and fails loudly if none exists -
+      # the gate would otherwise report a pass while measuring nothing.
+      - name: Install Chromium for the mobile gate
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq chromium-browser || sudo apt-get install -y -qq chromium
+          FOUND=""
+          for p in /usr/bin/chromium-browser /usr/bin/chromium /usr/bin/google-chrome /snap/bin/chromium; do
+            if [ -x "$p" ]; then FOUND="$p"; break; fi
+          done
+          if [ -z "$FOUND" ]; then
+            echo "::error::no Chromium binary found, so the mobile layout gate cannot run"
+            exit 1
+          fi
+          echo "CHROME_PATH=$FOUND" >> "$GITHUB_ENV"
+          echo "using $FOUND"
+          "$FOUND" --version
+
+      - name: Install dependencies
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm exec astro build
+
+      - name: Run all seven gates
+        run: node tools/gate.mjs --fresh
+        env:
+          # The gates that touch the network must not hang on a dead route; this keeps a blocked
+          # source a reported failure rather than a thirty-minute timeout.
+          CI: 'true'
+
+      - name: Summarise the gate result
+        if: always()
+        run: |
+          {
+            echo "## CI"
+            echo ""
+            echo "- runner: \`$RUNNER_OS $RUNNER_ARCH\`"
+            echo "- node: \`$(node --version)\`"
+            echo "- chromium: \`${CHROME_PATH:-none}\`"
+            echo "- pages built: $(find dist -name index.html | wc -l)"
+            echo ""
+            echo "Gate output is in the step log above. \`--fresh\` is used because the cache is keyed"
+            echo "on inputs and a fresh runner has no cache to reuse."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the built site
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+          if-no-files-found: warn

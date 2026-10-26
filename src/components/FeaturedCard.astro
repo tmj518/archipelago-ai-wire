@@ -1,0 +1,48 @@
+---
+import { categoryLabel } from "../consts";
+
+/**
+ * Featured card — the big story at the top of the homepage.
+ *
+ * Imagery: the prototype used a red gradient + flag emoji as a placeholder.
+ * spec §2 calls for AI-generated art, so `image` / `imageAlt` are the real
+ * path; the gradient stays as the fallback until art exists.
+ * TODO(content): settle image spec — 16:10, 1200x750, always alt text.
+ */
+export interface Props {
+  href: string;
+  title: string;
+  excerpt?: string;
+  category: string;
+  priority?: string;
+  image?: string;
+  imageAlt?: string;
+  placeholderEmoji?: string;
+}
+
+const {
+  href,
+  title,
+  excerpt,
+  category,
+  priority,
+  image,
+  imageAlt = "",
+  placeholderEmoji = "📦",
+} = Astro.props;
+
+const tagText = priority
+  ? `${categoryLabel(category)} · ${priority}`
+  : categoryLabel(category);
+---
+
+<article class="featured">
+  <div class="featured-img">
+    {image ? <img src={image} alt={imageAlt} width="1200" height="750" /> : placeholderEmoji}
+  </div>
+  <div class="featured-body">
+    <span class="tag">{tagText}</span>
+    <h2><a href={href}>{title}</a></h2>
+    {excerpt && <p class="excerpt">{excerpt}</p>}
+  </div>
+</article>

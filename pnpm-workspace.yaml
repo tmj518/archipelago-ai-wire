@@ -1,6 +1,12 @@
-# pnpm 默认忽略依赖的构建脚本；Astro 需要 esbuild 的 postinstall，必须显式允许
+# esbuild must run its postinstall so the platform binary that Astro/Vite
+# execute during `astro build` is actually linked.
+#
+# Two keys on purpose: pnpm renamed this setting, and Cloudflare Pages picks
+# its own pnpm version at build time.
+#   - pnpm 10 reads `onlyBuiltDependencies`
+#   - pnpm 11 reads `allowBuilds`
+# An unread key is ignored, so keeping both covers either version.
+onlyBuiltDependencies:
+  - esbuild
 allowBuilds:
   esbuild: true
-  sharp: true
-minimumReleaseAgeExclude:
-  - astro@7.3.7

@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+
+import ArticleRow from "../../components/ArticleRow.astro";
+import Sidebar from "../../components/Sidebar.astro";
+import { CATEGORIES, SITE } from "../../consts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { numbersFor, published, toCard } from "../../lib/post";
+import { fitTitle, fitDescription } from "../../lib/meta";
+
+/** spec §3 navigation silos — one listing page per category. */
+export async function getStaticPaths() {
+  const posts = published(await getCollection("blog"));
+
+  return CATEGORIES.map((category) => ({
+    params: { category: category.slug },
+    props: {
+      category,
+      posts: posts
+        .filter((post) => post.data.category === category.slug)
+        .map(toCard),
+    },
+  }));
+}
+
+const { category, posts } = Astro.props;
+
+const all = published(await getCollection("blog"));
+const numbers = numbersFor(all);
+---
+
+<BaseLayout
+  title={`${fitTitle(category.label, "", SITE.name)} — ${SITE.name}`}
+  description={category.description}
+>
+  <div class="container">
+    <main id="main">
+      <div class="page-head">
+        <h1>{category.label}</h1>
+        <p>{category.description}</p>
+      </div>
+
+      <h2 class="section-title" style="margin-top:32px;">Analysis</h2>
+
+      {
+        posts.length > 0 ? (
+          posts.map((item) => (
+            <ArticleRow
+              href={item.href}
+              date={item.date}
+              title={item.title}
+              excerpt={item.excerpt}
+            />
+          ))
+        ) : (
+          <p class="empty-note">
+            No analysis published in this silo yet — check back shortly.
+          </p>
+        )
+      }
+    </main>
+
+    <Sidebar numbers={numbers} />
+  </div>
+</BaseLayout>

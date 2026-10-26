@@ -1,0 +1,188 @@
+---
+/**
+ * An inline SVG chart of the article's own figures.
+ *
+ * ## Why SVG and not a chart library
+ *
+ * The whole JavaScript budget of this site is nine kilobytes. A charting library is forty times that before it
+ * draws anything, and it would draw the same six bars. The figures are already in the frontmatter, the shape is
+ * a bar chart, and SVG is markup — so the chart costs bytes in the HTML that is being sent anyway and nothing at
+ * runtime. It is visible before any script has parsed, which matters on the connection an importer in Lagos or
+ * Jakarta is actually using.
+ *
+ * ## Which figures are chartable
+ *
+ * A bar needs a number and a comparable unit. `value` is sometimes a document number (`C/2026/6637`) and the
+ * numbers in one article are often in different units — percentages beside days. So:
+ *
+ *   a number parses out of `value`, after stripping separators and a trailing percent
+ *   the unit reduces to a short tag: percent -> %, days -> days, USD -> USD
+ *   the chart takes the most common unit among the numbers, so the bars are comparable, and states the unit
+ *
+ * Fewer than three numeric figures and no chart is drawn. Two bars is a table with extra steps.
+ *
+ * ## Accessibility
+ *
+ * `role="img"` with an `aria-label` that reads the values, because a chart a screen reader cannot read is a chart
+ * for some of the readers. Every figure also appears in the prose, so nothing is available only here.
+ */
+interface Fig {
+  value?: string;
+  unit?: string;
+  period?: string;
+  source?: string;
+  retrieved?: string;
+}
+
+const { figures = [] } = Astro.props as { figures?: Fig[] };
+
+/** Percent, currency and counts shorten to a tag; anything else is not a comparable amount. */
+function unitTag(unit: string): string {
+  const u = String(unit ?? "");
+  if (/percent|%/i.test(u)) return "%";
+  if (/USD|dollar|\$/i.test(u)) return "USD";
+  if (/EUR|euro|€/i.test(u)) return "EUR";
+  if (/\bdays?\b/i.test(u)) return "days";
+  if (/tonnes?|\btons?\b/i.test(u)) return "t";
+  return "";
+}
+
+/** A short label: the clause after an em dash describes the measure, so it is the useful half. */
+function shortLabel(unit: string): string {
+  const tail = String(unit ?? "")
+    .split(/—|–|--/)
+    .pop()!
+    .trim();
+  return tail.length > 34 ? tail.slice(0, 33).replace(/[,;:\s]+$/, "") + "…" : tail;
+}
+
+const parsed = (figures ?? [])
+  .map((f) => {
+    const raw = String(f.value ?? "").replace(/[,%\s$€]/g, "");
+    const n = Number(raw);
+    return { n, tag: unitTag(String(f.unit ?? "")), label: shortLabel(String(f.unit ?? "")), period: String(f.period ?? "").split(",")[0], source: String(f.source ?? "") };
+  })
+  .filter((f) => Number.isFinite(f.n) && f.tag !== "");
+
+/* The dominant unit, so the bars are comparable rather than decorative. */
+const counts = new Map<string, number>();
+for (const f of parsed) counts.set(f.tag, (counts.get(f.tag) ?? 0) + 1);
+const tag = [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? "";
+
+const bars = parsed
+  .filter((f) => f.tag === tag)
+  .sort((a, b) => b.n - a.n)
+  .slice(0, 6);
+
+const chartable = bars.length >= 3;
+
+/* Geometry. Rows of 34, label column 44% of the width. */
+const ROW = 34;
+const W = 640;
+const LABEL_W = Math.round(W * 0.46);
+const BAR_W = W - LABEL_W - 78;
+const H = chartable ? bars.length * ROW + 30 : 0;
+const max = bars.length ? Math.max(...bars.map((b) => Math.abs(b.n))) : 1;
+
+const summary = chartable
+  ? bars.map((b) => `${b.label}: ${b.n} ${tag}`).join("; ")
+  : "";
+---
+
+{
+  chartable && (
+    <figure class="figure-chart">
+      {/* Not decorative: it is the point of the article's numbers in one view. */}
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        role="img"
+        aria-label={`Chart of ${bars.length} figures. ${summary}`}
+        preserveAspectRatio="xMinYMin meet"
+      >
+        <title>{summary}</title>
+        {bars.map((b, i) => {
+          const y = i * ROW;
+          const width = Math.max(2, Math.round((Math.abs(b.n) / max) * BAR_W));
+          return (
+            <g>
+              <text x="0" y={y + 21} class="fc-label">
+                {b.label}
+              </text>
+              <rect x={LABEL_W} y={y + 8} width={width} height="16" rx="2" class="fc-bar" />
+              <text x={LABEL_W + width + 8} y={y + 21} class="fc-value">
+                {b.n}
+                {tag === "%" ? "%" : ` ${tag}`}
+              </text>
+              {b.period && (
+                <text x={W} y={y + 21} text-anchor="end" class="fc-period">
+                  {b.period}
+                </text>
+              )}
+            </g>
+          );
+        })}
+        {/* A baseline, so the bars read as measures rather than as decoration. */}
+        <line x1={LABEL_W} y1="2" x2={LABEL_W} y2={H - 28} class="fc-axis" />
+      </svg>
+      <figcaption>
+        Each bar is a figure from this article's source list, in {tag === "%" ? "percent" : tag}. The period is
+        the one stated in the source. Hover a bar for the document it came from.
+      </figcaption>
+    </figure>
+  )
+}
+
+<style>
+  .figure-chart {
+    margin: 1.75rem 0;
+    padding: 1rem 1.15rem 0.85rem;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius, 10px);
+    background: var(--c-surface-alt);
+  }
+
+  .figure-chart svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .fc-label {
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    fill: var(--c-ink-3);
+  }
+
+  .fc-bar {
+    fill: var(--c-navy);
+    opacity: 0.9;
+  }
+
+  .fc-value {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    fill: var(--c-ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .fc-period {
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    fill: var(--c-ink-5);
+  }
+
+  .fc-axis {
+    stroke: var(--c-line);
+    stroke-width: 1;
+  }
+
+  figcaption {
+    margin-top: 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--c-ink-5);
+  }
+</style>

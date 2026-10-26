@@ -1,0 +1,118 @@
+---
+/**
+ * An advertising slot.
+ *
+ * The front-end brief asks for three placements - a homepage banner, an article sidebar, and
+ * an in-article block on mobile - each reserved as a static placeholder with the AdSense
+ * script mount point marked rather than embedded.
+ *
+ * Nothing here loads a script and nothing here renders an ad. That is deliberate and it is
+ * the point of the component: the mount point exists so the placement can be judged and
+ * filled later, and it renders nothing until then. A placeholder that loads an ad network
+ * would break the privacy page's promise - "no advertising networks, no third-party
+ * analytics, no tracking scripts" - and that promise is load-bearing, because a
+ * reader-supported model is the only one consistent with it.
+ *
+ * So the slot is a reserved space with the integration documented, and the order of
+ * operations is explicit: connecting an ad network means editing the privacy page first,
+ * because the promise is a statement of fact that a script would make false.
+ *
+ * Sizes follow the IAB units the brief's layout implies rather than arbitrary numbers:
+ * 728x90 leaderboard or 970x90 for the banner, 300x250 or 300x600 for the sidebar, 300x250
+ * inline. The slot reserves the height so filling it later does not shift the layout, which
+ * is what causes the worst layout instability on a phone.
+ */
+export interface Props {
+  /** Where it sits, which decides the reserved size and the mobile behaviour. */
+  placement: "banner" | "sidebar" | "inline";
+  /** Shown in the reserved box so an unfilled slot is not a mystery to a reader. */
+  note?: string;
+}
+
+const { placement, note } = Astro.props;
+
+const SIZES = {
+  banner: { w: 728, h: 90, label: "Leaderboard 728×90" },
+  sidebar: { w: 300, h: 250, label: "Medium rectangle 300×250" },
+  inline: { w: 300, h: 250, label: "Medium rectangle 300×250" },
+};
+
+const size = SIZES[placement];
+---
+
+{/*
+  * AD MOUNT POINT — placement: {placement}
+  *
+  * To fill this slot, replace the inner placeholder markup with the ad tag and uncomment the
+  * script line. Two conditions before doing so:
+  *
+  *   1. /privacy/ currently states "no advertising networks, no third-party analytics, no
+  *      tracking scripts". That becomes false the moment an ad script loads. The privacy page
+  *      must be updated in the same change, not afterwards.
+  *   2. The slot has no reserved height on mobile for the banner, because a 728-wide unit
+  *      cannot fit a 360-wide screen and scaling it down makes the text illegal to read.
+  *
+  * <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX" crossorigin="anonymous"></script>
+  * <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  * <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  *
+  * The slot is hidden rather than shrunk where the unit cannot fit: a 728x90 leaderboard on a
+  * 360px screen is either unreadable or causes the horizontal overflow that the responsive
+  * rules exist to prevent.
+*/}
+<div class:list={["ad-slot", `ad-slot--${placement}`]} data-ad-placement={placement} aria-hidden="true">
+  <span class="ad-slot__label">Advertisement</span>
+  <span class="ad-slot__size">{note ?? size.label}</span>
+</div>
+
+<style>
+  .ad-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border: 1px dashed var(--c-line, #e2e2e2);
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 8px,
+      rgb(0 0 0 / 2%) 8px,
+      rgb(0 0 0 / 2%) 16px
+    );
+    color: var(--c-ink-6, #999);
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .ad-slot__label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .ad-slot__size {
+    font-size: 11px;
+    font-family: var(--mono, ui-monospace, monospace);
+    opacity: 0.6;
+  }
+
+  /* Reserved height per placement, so filling a slot later does not shift the page. */
+  .ad-slot--banner {
+    min-height: 90px;
+  }
+
+  .ad-slot--sidebar,
+  .ad-slot--inline {
+    min-height: 250px;
+  }
+
+  /* A leaderboard cannot fit a phone. Hidden rather than scaled, because scaling a 728-unit
+     down to 360 makes its text unreadable and its click target invalid. */
+  @media (max-width: 767px) {
+    .ad-slot--banner {
+      display: none;
+    }
+  }
+</style>

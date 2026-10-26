@@ -1,0 +1,179 @@
+---
+/**
+ * The whitelisting page.
+ *
+ * Mechanism A1 from the benchmark list, and the only one measured as pure gain at zero cost.
+ * The Ken keeps a page like this and links it from its email footer; the reason is that a
+ * subscription that lands in a spam folder is indistinguishable from no subscription, so this
+ * is worth building before the first email is sent rather than after.
+ *
+ * It is deliberately provider-neutral. `SITE.newsletterAction` is still empty, so the sending
+ * provider is not chosen yet; the instructions below are the ones that work for whatever
+ * provider is eventually used, and the from-address is read from the constants rather than
+ * written into the copy so it cannot go stale.
+ *
+ * No tracking, no form, no email capture. Someone who reaches this page has already
+ * subscribed - the failure being fixed is on their side, in a client we cannot see.
+ */
+import Sidebar from "../components/Sidebar.astro";
+import { AUTHOR, SITE } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { numbersFor, published } from "../lib/post";
+import { getCollection } from "astro:content";
+import { fitTitle, fitDescription } from "../lib/meta";
+
+const posts = published(await getCollection("blog"));
+const numbers = numbersFor(posts);
+
+const fromAddress = AUTHOR.email;
+
+const title = "Make sure the emails arrive";
+const description =
+  "How to whitelist Landed Math so the change alerts reach your inbox rather than your spam folder — for Gmail, Outlook, Apple Mail and corporate filters.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: title,
+  description,
+  url: `${SITE.url}/whitelist/`,
+  step: [
+    { "@type": "HowToStep", name: "Find the email in spam", text: "Look in the spam or junk folder for the confirmation or the first alert." },
+    { "@type": "HowToStep", name: "Mark it as not spam", text: "Use the client's not-spam control, which trains the filter for that sender." },
+    { "@type": "HowToStep", name: "Add the sender to contacts", text: `Add ${fromAddress} to your address book or safe senders list.` },
+    { "@type": "HowToStep", name: "Drag it to the inbox", text: "If the client supports it, dragging one message from spam to the inbox teaches the filter permanently." },
+  ],
+};
+
+/**
+ * The instructions, by client. Kept as data so a new client is a row rather than a rewrite,
+ * and so the address is interpolated once.
+ */
+const CLIENTS = [
+  {
+    name: "Gmail",
+    steps: [
+      `Open the spam folder and find a message from ${fromAddress}.`,
+      "Open it and click <strong>Report not spam</strong>. This trains the filter for that sender.",
+      "Then add the address to contacts: <strong>Contacts → Create contact</strong>.",
+      "If you use filters, create one matching <code>from:(" + fromAddress + ")</code> and set <strong>Never send it to Spam</strong>.",
+    ],
+  },
+  {
+    name: "Outlook / Microsoft 365",
+    steps: [
+      "Right-click the message and choose <strong>Junk → Not Junk</strong>.",
+      `Add ${fromAddress} to <strong>Safe senders and domains</strong> under Settings → Mail → Junk email.`,
+      "If your organisation manages the filter, the same list may be controlled centrally — see the section below.",
+    ],
+  },
+  {
+    name: "Apple Mail",
+    steps: [
+      `Open the message and choose <strong>Mark as Not Junk</strong>, then move it to the inbox.`,
+      `Add ${fromAddress} to a contact card, or to <strong>Mail → Settings → Rules</strong>.`,
+      "On iCloud, <strong>Mail → Preferences → Rules</strong> can move matching messages to the inbox automatically.",
+    ],
+  },
+  {
+    name: "Corporate filters (Proofpoint, Mimecast, Barracuda)",
+    steps: [
+      "These act before your mailbox, so the client-level steps will not be enough.",
+      `Ask IT to allowlist the sending domain <code>${fromAddress.split("@")[1]}</code>.`,
+      "If they need a justification: it is a research subscription you signed up for, one email per change, with an unsubscribe link in every message.",
+    ],
+  },
+];
+
+const WARNING_SIGNS = [
+  "The confirmation email never arrived, and it is not in spam either.",
+  "A message arrived but every link in it is disabled.",
+  "The message arrived with images blocked and a warning banner about the sender.",
+  "You found it in a <strong>Promotions</strong> or <strong>Updates</strong> tab rather than the inbox.",
+];
+---
+
+<BaseLayout title={`${fitTitle(title, "", SITE.name)} — ${SITE.name}`} description={fitDescription(description)} jsonLd={jsonLd}>
+  <div class="container">
+    <main id="main">
+      <div class="page-head">
+        <h1>Make sure the emails arrive</h1>
+        <p>
+          A subscription that lands in a spam folder is indistinguishable from no subscription.
+          This page is the fix, and it takes about a minute. There is nothing to sign up for
+          here — if you are reading this you have already subscribed, and the problem is on the
+          receiving side.
+        </p>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">The one thing that matters</span>
+        <p>
+          Mark one message from <strong>{fromAddress}</strong> as <strong>not spam</strong>, and
+          add that address to your contacts. Those two actions teach the filter permanently.
+          Everything below is the same instruction for a specific client.
+        </p>
+      </div>
+
+      <h2 class="section-title">Signs the filter is holding your mail</h2>
+      <ul>
+        {WARNING_SIGNS.map((w) => (
+          <li set:html={w} />
+        ))}
+      </ul>
+
+      <h2 class="section-title">By email client</h2>
+      {CLIENTS.map((c) => (
+        <>
+          <h3>{c.name}</h3>
+          <ol>
+            {c.steps.map((s) => (
+              <li set:html={s} />
+            ))}
+          </ol>
+        </>
+      ))}
+
+      <h2 class="section-title">Why this happens</h2>
+      <p>
+        An email from a sender you have never corresponded with, sent through a bulk provider,
+        looks to a filter like the shape of spam. It is not a judgement about the content — the
+        first message from any new publication lands in the same place. The fix is to tell the
+        filter otherwise once, which is what the steps above do.
+      </p>
+      <p>
+        The site sends no tracking pixels and no third-party analytics, so it cannot see whether
+        a message was opened or whether it went to spam. That is a deliberate trade: the{" "}
+        <a href="/privacy/">privacy page</a> promises no tracking, which means deliverability
+        problems have to be reported by you rather than detected by us. If something is not
+        arriving, <a href="/contact/">say so</a>.
+      </p>
+
+      <h2 class="section-title">What the emails contain</h2>
+      <p>
+        One message when a tracked change actually moves a per-unit cost — not a daily digest
+        and not a weekly round-up. Each one names the instrument, states the figure with its
+        retrieval date, and gives the arithmetic. There is an unsubscribe link in every message.
+      </p>
+    </main>
+
+    <Sidebar numbers={numbers} />
+  </div>
+</BaseLayout>
+
+<style>
+  ul,
+  ol {
+    padding-left: 20px;
+  }
+  li {
+    margin: 6px 0;
+  }
+  code {
+    font-family: var(--mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+    font-size: 0.88em;
+    background: rgb(0 0 0 / 5%);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+</style>

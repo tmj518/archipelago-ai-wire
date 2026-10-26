@@ -1,0 +1,217 @@
+---
+/**
+ * The search results page.
+ *
+ * It exists because the box in the nav is a real form: without JavaScript it submits here with `?q=` and this page
+ * reads the query from the URL and filters the same index the instant search uses. That means the search works
+ * with scripts blocked, on a slow connection, and for anyone whose browser extension interferes - which is not a
+ * hypothetical for a site read across a dozen countries.
+ *
+ * The filtering runs twice by design: the markup ships an empty result list, and the script fills it. There is no
+ * server-side search because there is no server, and a build-time page per query is not a thing.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../consts";
+import { fitTitle, fitDescription } from "../lib/meta";
+
+const title = `Search — ${SITE.name}`;
+const description = "Search every article on Landed Math by subject, measure or document number.";
+---
+
+<BaseLayout
+  title={fitTitle("Search", "", SITE.name) + ` — ${SITE.name}`}
+  description={fitDescription(description)}
+  noindex
+>
+  <div class="container">
+    <main id="main" class="search-page">
+      <h1>Search</h1>
+      <p class="search-lede">
+        Every article on the site, by subject, by measure, or by the number of the document it came from.
+      </p>
+
+      <form class="search-page-form" method="get" action="/search/" role="search">
+        <label class="sr-only" for="q">Search articles</label>
+        <input id="q" type="search" name="q" placeholder="Try “cellulose ethers” or “CBAM”" autocomplete="off" />
+        <button type="submit">Search</button>
+      </form>
+
+      <p class="search-status" data-status aria-live="polite"></p>
+      <ul class="search-hits" data-hits></ul>
+    </main>
+  </div>
+</BaseLayout>
+
+<script>
+  /*
+   * The query comes from the URL, so the page works from a link, from a bookmark, and from the form without any
+   * script having run yet. The script only fills the list.
+   */
+  const params = new URLSearchParams(location.search);
+  const q = (params.get("q") ?? "").trim();
+  const input = document.getElementById("q") as HTMLInputElement | null;
+  const hits = document.querySelector<HTMLUListElement>("[data-hits]");
+  const status = document.querySelector<HTMLElement>("[data-status]");
+
+  if (input) input.value = q;
+
+  type Item = { s: string; t: string; d: string; c: string; n: number; p: string; g: string };
+
+  if (q.length < 2) {
+    if (status) status.textContent = "Type at least two characters.";
+  } else if (hits && status) {
+    status.textContent = "Searching…";
+    fetch("/search-index.json")
+      .then((r) => (r.ok ? r.json() : { items: [] }))
+      .then((j) => {
+        const items: Item[] = Array.isArray(j.items) ? j.items : [];
+        const needle = q.toLowerCase();
+        const scored = items
+          .map((it) => {
+            const t = it.t.toLowerCase();
+            const hay = `${t} ${it.d} ${it.g}`.toLowerCase();
+            const score = !hay.includes(needle) ? 0 : t.startsWith(needle) ? 3 : t.includes(needle) ? 2 : 1;
+            return { it, score };
+          })
+          .filter((x) => x.score > 0)
+          .sort((a, b) => b.score - a.score || b.it.n - a.it.n);
+
+        status.textContent = scored.length
+          ? `${scored.length} article${scored.length === 1 ? "" : "s"} matching “${q}”.`
+          : `No article matches “${q}”.`;
+
+        for (const { it } of scored) {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = `/blog/${it.s}/`;
+          const strong = document.createElement("strong");
+          strong.textContent = it.t;
+          const meta = document.createElement("span");
+          meta.className = "hit-meta";
+          meta.textContent = `${it.c} · ${it.p}`;
+          const desc = document.createElement("span");
+          desc.className = "hit-desc";
+          desc.textContent = it.d;
+          a.append(strong, meta, desc);
+          li.append(a);
+          hits.append(li);
+        }
+      })
+      .catch(() => {
+        status.textContent = "The index could not be loaded. Every article is listed on the category pages.";
+      });
+  }
+</script>
+
+<style>
+  .search-page {
+    padding: 2.5rem 0 4rem;
+    max-width: 46rem;
+  }
+
+  .search-page h1 {
+    margin: 0 0 0.4rem;
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+  }
+
+  .search-lede {
+    margin: 0 0 1.5rem;
+    color: var(--c-ink-3);
+  }
+
+  .search-page-form {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0 0 1.25rem;
+  }
+
+  /*
+   * Stacked on a narrow phone.
+   *
+   * Side by side, the input and the button come to 360px together at 320px wide - the mobile check measured the
+   * 40px overflow before this existed. A form that makes a phone scroll sideways is a form people abandon.
+   */
+  @media (max-width: 420px) {
+    .search-page-form {
+      flex-direction: column;
+    }
+    .search-page-form input,
+    .search-page-form button {
+      width: 100%;
+    }
+  }
+
+  .search-page-form input {
+    flex: 1 1 auto;
+    padding: 0.6rem 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--c-ink);
+    background: var(--c-surface);
+    border: 1px solid var(--c-field-border, var(--c-line));
+    border-radius: 6px;
+  }
+
+  .search-page-form button {
+    padding: 0.6rem 1.1rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--c-navy);
+    border: 1px solid var(--c-navy);
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .search-status {
+    margin: 0 0 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--c-ink-4);
+  }
+
+  .search-hits {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .search-hits li + li {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--c-line-soft);
+  }
+
+  .search-hits a {
+    display: block;
+    padding: 0.5rem 0;
+    text-decoration: none;
+  }
+
+  .search-hits strong {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--c-ink);
+    line-height: 1.35;
+  }
+
+  .hit-meta {
+    display: block;
+    margin-top: 0.15rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    color: var(--c-ink-5);
+  }
+
+  .hit-desc {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--c-ink-3);
+  }
+</style>

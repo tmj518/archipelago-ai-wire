@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Cross-border Insider — Deep analysis on China trade & e-commerce</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: #fafaf8; color: #1a1a1a; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== NAV ===== */
+.nav {
+  background: #fff; border-bottom: 1px solid #e8e6e1;
+  padding: 18px 0; position: sticky; top: 0; z-index: 100;
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.logo {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px; font-weight: 700; letter-spacing: -0.3px;
+}
+.logo em { color: #c8102e; font-style: normal; }
+.nav-links { display: flex; gap: 28px; font-size: 14px; }
+.nav-links a {
+  color: #444; text-decoration: none; font-weight: 500;
+  padding-bottom: 4px; border-bottom: 2px solid transparent;
+}
+.nav-links a:hover, .nav-links a.active { color: #c8102e; border-bottom-color: #c8102e; }
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, #0a2540 0%, #14345e 100%);
+  color: #fff; padding: 70px 24px;
+}
+.hero-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+.hero .kicker {
+  text-transform: uppercase; letter-spacing: 3px; font-size: 11px;
+  color: #ffd166; font-weight: 600; margin-bottom: 18px;
+}
+.hero h1 {
+  font-family: Georgia, serif; font-size: 42px; line-height: 1.25;
+  font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px;
+}
+.hero p {
+  font-size: 17px; color: rgba(255,255,255,0.75); max-width: 650px; margin: 0 auto;
+}
+.hero .meta { margin-top: 22px; font-size: 13px; color: rgba(255,255,255,0.5); }
+
+/* ===== LAYOUT ===== */
+.container {
+  max-width: 1200px; margin: 40px auto; padding: 0 24px;
+  display: grid; grid-template-columns: 1fr 300px; gap: 40px;
+}
+
+/* ===== FEATURED ===== */
+.featured {
+  background: #fff; border-radius: 4px; overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 36px;
+}
+.featured-img {
+  height: 280px;
+  background: linear-gradient(135deg, #c8102e 0%, #8b0000 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.92); font-size: 56px;
+}
+.featured-body { padding: 32px; }
+.tag {
+  display: inline-block; padding: 3px 10px; background: #fff3f3;
+  color: #c8102e; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px; border-radius: 3px;
+  margin-bottom: 14px;
+}
+.featured h2 {
+  font-family: Georgia, serif; font-size: 26px; line-height: 1.35;
+  margin-bottom: 12px;
+}
+.featured h2 a { color: #1a1a1a; text-decoration: none; }
+.featured h2 a:hover { color: #c8102e; }
+.featured .excerpt { color: #555; font-size: 15px; }
+
+/* ===== LATEST LIST ===== */
+.section-title {
+  font-family: Georgia, serif; font-size: 20px; margin-bottom: 20px;
+  padding-bottom: 10px; border-bottom: 2px solid #1a1a1a;
+}
+.article-row {
+  padding: 20px 0; border-bottom: 1px solid #eee;
+}
+.article-row:last-child { border-bottom: none; }
+.article-row .row-date {
+  font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.article-row h3 {
+  font-family: Georgia, serif; font-size: 18px; line-height: 1.4; margin-bottom: 6px;
+}
+.article-row h3 a { color: #1a1a1a; text-decoration: none; }
+.article-row h3 a:hover { color: #c8102e; }
+.article-row p { font-size: 14px; color: #666; }
+
+/* ===== SIDEBAR ===== */
+.widget {
+  background: #fff; border-radius: 4px; padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 20px;
+}
+.widget h4 {
+  font-family: Georgia, serif; font-size: 15px; margin-bottom: 14px;
+  padding-bottom: 8px; border-bottom: 2px solid #c8102e;
+}
+
+.author-card { text-align: center; }
+.author-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, #0a2540, #1a3a5c);
+  margin: 0 auto 12px; display: flex; align-items: center;
+  justify-content: center; color: #fff; font-size: 26px; font-weight: 700;
+}
+.author-card h5 { font-size: 15px; margin-bottom: 4px; }
+.author-card p { font-size: 12px; color: #888; line-height: 1.5; }
+
+.numbers-list { list-style: none; }
+.numbers-list li {
+  display: flex; justify-content: space-between;
+  padding: 6px 0; font-size: 13px; border-bottom: 1px solid #f5f5f5;
+}
+.numbers-list li:last-child { border-bottom: none; }
+.numbers-list .num { font-weight: 700; color: #c8102e; }
+
+/* Newsletter small box */
+.newsletter-box { font-size: 13px; }
+.newsletter-box p { color: #666; margin-bottom: 12px; line-height: 1.5; }
+.newsletter-box input {
+  width: 100%; padding: 9px 10px; border: 1px solid #ddd;
+  border-radius: 3px; font-size: 13px; margin-bottom: 8px;
+}
+.newsletter-box button {
+  width: 100%; padding: 9px; background: #0a2540; color: #fff;
+  border: none; border-radius: 3px; font-size: 13px; font-weight: 600;
+  cursor: pointer;
+}
+.newsletter-box button:hover { background: #c8102e; }
+
+/* ===== ARTICLE BOTTOM (preview) ===== */
+.article-bottom {
+  background: #fff; border-radius: 4px; padding: 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-top: 36px;
+}
+.article-bottom .author-row {
+  display: flex; gap: 16px; align-items: center;
+  padding-bottom: 20px; border-bottom: 1px solid #eee; margin-bottom: 20px;
+}
+.article-bottom .author-row .avatar-sm {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, #0a2540, #1a3a5c);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 20px; font-weight: 700; flex-shrink: 0;
+}
+.article-bottom .author-row h5 { font-size: 15px; }
+.article-bottom .author-row p { font-size: 13px; color: #888; }
+
+.related-title {
+  font-family: Georgia, serif; font-size: 16px; margin-bottom: 14px;
+}
+.related-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.related-card {
+  padding: 14px; background: #f8f8f5; border-radius: 4px;
+}
+.related-card .rel-date { font-size: 11px; color: #999; margin-bottom: 6px; }
+.related-card h6 {
+  font-family: Georgia, serif; font-size: 13px; line-height: 1.4;
+}
+.related-card h6 a { color: #1a1a1a; text-decoration: none; }
+.related-card h6 a:hover { color: #c8102e; }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #0a2540; color: rgba(255,255,255,0.7);
+  padding: 36px 24px; margin-top: 50px;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+.footer-links {
+  display: flex; justify-content: center; gap: 24px;
+  margin-bottom: 16px; font-size: 13px;
+}
+.footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; }
+.footer-links a:hover { color: #ffd166; }
+.footer .tagline {
+  font-size: 12px; color: rgba(255,255,255,0.4);
+  border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .container { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 28px; }
+  .nav-links { display: none; }
+  .related-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">China Cross-border <em>Insider</em></div>
+    <div class="nav-links">
+      <a href="#" class="active">Home</a>
+      <a href="#">Trade Policy</a>
+      <a href="#">Platforms</a>
+      <a href="#">Supply Chain</a>
+      <a href="#">About</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Today's Lead Story</div>
+    <h1>China-US $30B Tariff Truce: What It Actually Means for Your Q4 Margins</h1>
+    <p>Toys, home appliances, baby products and holiday gifts now at MFN rates. Here's the math nobody else is doing — per container, per unit, per seller type.</p>
+    <div class="meta">September 29, 2026 · 12 min read · By Cross-border Veteran</div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<div class="container">
+  <main>
+    <!-- Featured -->
+    <article class="featured">
+      <div class="featured-img">🇨🇳 🤝 🇺🇸</div>
+      <div class="featured-body">
+        <span class="tag">Trade Policy · P0</span>
+        <h2><a href="#">The $30 Billion Truce: 90% of Targeted Goods Now at MFN Rates</a></h2>
+        <p class="excerpt">Yesterday I wrote: "Once coal procurement is locked in, consumer goods tariff relief is only a matter of time." Today the Ministry of Commerce made it official. A $10 FOB toy just got $2.50 cheaper at US customs. Here's how to play it.</p>
+      </div>
+    </article>
+
+    <!-- Latest -->
+    <h2 class="section-title">Latest Analysis</h2>
+
+    <div class="article-row">
+      <div class="row-date">Sep 28, 2026</div>
+      <h3><a href="#">China's Industrial Profits Up 15.7% — Why This Matters for Your Q4 Supply Chain</a></h3>
+      <p>Factory output is recovering faster than expected. Lead times are shortening. Here's what it means for your 2027 pricing negotiations.</p>
+    </div>
+
+    <div class="article-row">
+      <div class="row-date">Sep 27, 2026</div>
+      <h3><a href="#">TikTok Shop US New SPS Score: What Sellers Must Fix by Oct 15</a></h3>
+      <p>The new Seller Performance Score rolls out in two weeks. Our data shows 37% of sellers are currently below threshold. Here's the remediation checklist.</p>
+    </div>
+
+    <div class="article-row">
+      <div class="row-date">Sep 26, 2026</div>
+      <h3><a href="#">Temu Semi-Managed Push: Traffic Shift Confirmed in Q3 Internal Data</a></h3>
+      <p>Semi-managed sellers are getting 2.3x more impressions than fully-managed peers. Here's who should switch and who shouldn't.</p>
+    </div>
+
+    <div class="article-row">
+      <div class="row-date">Sep 25, 2026</div>
+      <h3><a href="#">Amazon Bans Meta AI Agent "Muse" — The End of AI Shopping Assistants?</a></h3>
+      <p>Amazon blocked Muse from scraping its catalog. This is a signal: AI-driven product discovery is about to get regulated.</p>
+    </div>
+
+    <div class="article-row">
+      <div class="row-date">Sep 24, 2026</div>
+      <h3><a href="#">EU Anti-Dumping on Cellulose Ethers: Exporters Have 30 Days to Respond</a></h3>
+      <p>The European Commission opened an investigation covering Apr 2025 – Mar 2026. Here's the response window and what evidence to prepare.</p>
+    </div>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="widget author-card">
+      <div class="author-avatar">CV</div>
+      <h5>Cross-border Veteran</h5>
+      <p>10 years selling on Amazon, Temu, TikTok Shop and D2C. Broke everything once. Here so you don't have to.</p>
+    </div>
+
+    <div class="widget">
+      <h4>Today's Numbers</h4>
+      <ul class="numbers-list">
+        <li><span>Stories tracked</span><span class="num">11</span></li>
+        <li><span>P0 industry-level</span><span class="num">1</span></li>
+        <li><span>P1 sector-level</span><span class="num">3</span></li>
+        <li><span>Official sources</span><span class="num">82%</span></li>
+      </ul>
+    </div>
+
+    <div class="widget newsletter-box">
+      <h4>Daily Brief</h4>
+      <p>One email every morning. 5 minutes. All the China cross-border news that moves your P&L.</p>
+      <input type="email" placeholder="your@email.com">
+      <button>Subscribe Free</button>
+    </div>
+  </aside>
+</div>
+
+<!-- ARTICLE BOTTOM PREVIEW -->
+<div class="container" style="margin-top:0;">
+  <div class="article-bottom" style="grid-column: 1 / -1;">
+    <div class="author-row">
+      <div class="avatar-sm">CV</div>
+      <div>
+        <h5>Cross-border Veteran</h5>
+        <p>10 years in cross-border e-commerce. Based in China, selling globally. No agency, no sponsorship, no agenda.</p>
+      </div>
+    </div>
+
+    <div class="newsletter-box" style="margin-bottom:24px;">
+      <p style="color:#666;">Enjoyed this analysis? Get the next one in your inbox.</p>
+      <div style="display:flex; gap:8px;">
+        <input type="email" placeholder="your@email.com" style="flex:1; padding:9px 10px; border:1px solid #ddd; border-radius:3px; font-size:13px;">
+        <button style="padding:9px 20px; background:#0a2540; color:#fff; border:none; border-radius:3px; font-size:13px; font-weight:600; cursor:pointer;">Subscribe</button>
+      </div>
+    </div>
+
+    <h4 class="related-title">Related Reading</h4>
+    <div class="related-grid">
+      <div class="related-card">
+        <div class="rel-date">Sep 22</div>
+        <h6><a href="#">The Hidden Cost of China's Import Surge: Not What You Think</a></h6>
+      </div>
+      <div class="related-card">
+        <div class="rel-date">Sep 20</div>
+        <h6><a href="#">Why保税物流 Growth of 42.3% Is a Bigger Story Than Exports</a></h6>
+      </div>
+      <div class="related-card">
+        <div class="rel-date">Sep 18</div>
+        <h6><a href="#">From Factory to Supply Chain Organizer: China's Quiet Shift</a></h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">RSS Feed</a>
+    </div>
+    <div class="tagline">
+      No tracking · No ads · Independent analysis · Not financial or legal advice
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

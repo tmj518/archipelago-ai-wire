@@ -1,0 +1,131 @@
+---
+/**
+ * The brief archive index.
+ *
+ * Structured after the benchmark's archive page: entries in reverse order, one row per day,
+ * the row title carrying the day's actual items rather than a generic label, and the
+ * subscribe line repeated at the top of the archive as well as the homepage - someone who
+ * has scrolled this far is the person most likely to subscribe.
+ *
+ * The date is in the URL because that is what the benchmark does and because it is what
+ * makes an archive page predictable: a reader can guess tomorrow's URL, and so can a crawler
+ * working through the list.
+ */
+import { getCollection } from "astro:content";
+
+import Sidebar from "../../components/Sidebar.astro";
+import { SITE, formatDate } from "../../consts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { numbersFor, published } from "../../lib/post";
+import { briefsFor } from "../../lib/brief.mjs";
+import { fitTitle, fitDescription } from "../../lib/meta";
+
+const posts = published(await getCollection("blog"));
+const numbers = numbersFor(posts);
+const briefs = briefsFor(posts);
+
+/** Emoji per category, which is how the benchmark keeps a row scannable at a glance. */
+const EMOJI = {
+  "trade-policy": "⚖️",
+  platforms: "🛒",
+  "supply-chain": "🏭",
+  sourcing: "📦",
+  logistics: "🚢",
+};
+
+const title = "Briefs";
+const description = `${briefs.length} dated briefs of published China trade analysis, newest first — what changed, what it costs per unit, and the source behind every figure.`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE.url}/brief/#page`,
+  url: `${SITE.url}/brief/`,
+  name: `Briefs — ${SITE.name}`,
+  description,
+  inLanguage: SITE.language,
+  isPartOf: { "@id": `${SITE.url}/#website` },
+};
+
+const totalFigures = posts.reduce((a, p) => a + (p.data.figures?.length ?? 0), 0);
+const totalSources = posts.reduce((a, p) => a + (p.data.sources?.length ?? 0), 0);
+---
+
+<BaseLayout title={`${fitTitle(title, "", SITE.name)} — ${SITE.name}`} description={fitDescription(description)} jsonLd={jsonLd}>
+  <div class="container">
+    <main id="main">
+      <div class="page-head">
+        <h1>Briefs</h1>
+        <p>
+          Everything published, by the day it went out. Oldest at the bottom, newest first —
+          the same order as the{" "}
+          <a href="/rss.xml">feed</a>, and every row is a real date you can cite.
+        </p>
+        <p class="proof">
+          {briefs.length} briefs · {posts.length} analyses · <strong>{totalFigures}</strong> sourced figures ·
+          <strong>{totalSources}</strong> named primary sources ·{" "}
+          <a href="/pricing/">free to read in full</a>
+        </p>
+      </div>
+
+      <div class="brief-list">
+        {briefs.map((b) => (
+          <div class="brief-row">
+            <div class="brief-date">
+              <a href={`/brief/${b.date}/`}>{b.date}</a>
+            </div>
+            <h2>
+              <a href={`/brief/${b.date}/`}>
+                {b.items.map((i) => `${EMOJI[i.category] ?? "•"} ${i.title}`).join(", ")}
+              </a>
+            </h2>
+            <p class="brief-meta">
+              {b.items.length} {b.items.length === 1 ? "piece" : "pieces"} ·{" "}
+              {b.items.map((i) => i.category.replace("-", " ")).join(" · ")}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <p class="empty-note">
+        A brief is a publishing day, not a newsletter: it is the record of what went out on that
+        date. Emails, when they send, go out the same day a tracked change moves a per-unit
+        cost — which is why the cadence is irregular and the <a href="/pricing/">pricing page</a>{" "}
+        says so.
+      </p>
+    </main>
+
+    <Sidebar numbers={numbers} />
+  </div>
+</BaseLayout>
+
+<style>
+  .proof {
+    font-size: 0.92rem;
+    opacity: 0.85;
+  }
+  .brief-list {
+    margin: 26px 0;
+    border-top: 1px solid var(--rule, #e8e8e8);
+  }
+  .brief-row {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule, #e8e8e8);
+  }
+  .brief-date {
+    font-family: var(--mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+    font-size: 0.82rem;
+    opacity: 0.7;
+    margin-bottom: 4px;
+  }
+  .brief-row h2 {
+    font-size: 1.02rem;
+    margin: 0 0 4px;
+    line-height: 1.4;
+  }
+  .brief-meta {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin: 0;
+  }
+</style>

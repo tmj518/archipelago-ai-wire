@@ -1,0 +1,16 @@
+# Cloudflare Pages redirects — copied verbatim into dist/ by Astro.
+#
+# Why the bare domain is redirected rather than served
+#
+# Both https://landedmath.com/ and https://www.landedmath.com/ answered HTTP 200 with identical content,
+# so every page existed at two live URLs. The canonical tag named the bare form while the host's own
+# redirect went the other way, so the two signals disagreed and a search engine was free to pick either -
+# which is the arrangement that splits a page's signals between two addresses.
+#
+# www is the one Cloudflare serves as primary and the one the operator named, so it wins. 301 rather
+# than 302 because this is permanent and should be cached as such.
+#
+# Order matters in a Cloudflare Pages _redirects file: the first matching rule wins, and these are
+# placed before any catch-all. The splat carries the path and query through, so a deep link keeps its
+# destination rather than landing on the homepage - the failure mode of a redirect written without one.
+https://landedmath.com/* https://www.landedmath.com/:splat 301

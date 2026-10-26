@@ -1,0 +1,182 @@
+---
+/**
+ * One guide: the steps, the costs, and the date it was checked.
+ *
+ * Deliberately not ArticleLayout. That shell renders a category link, a standfirst, related reading and
+ * the analysis footer - all of which belong to a blog article and none of which a guide has. What a
+ * guide does have is its own contract, and this page is where that contract is visible: the unit, the
+ * verification date, and a cost table in which every row names where the number came from.
+ *
+ * The markup reuses the article classes (`.article-header`, `.standfirst`, `.meta`, `.tag`, `.prose`)
+ * rather than redefining them. That is what keeps the two sections looking like one site: the heading
+ * scale, the reading width, the rule under the header and the paragraph spacing all come from
+ * global.css, so a change made for the blog reaches the guides for free and the two cannot drift.
+ */
+import { getCollection, render } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../consts";
+import { fitTitle } from "../../lib/meta";
+
+export async function getStaticPaths() {
+  const guides = await getCollection("guide");
+  return guides
+    .filter((g) => g.data.draft !== true)
+    .map((g) => ({ params: { slug: g.id }, props: { guide: g } }));
+}
+
+const { guide } = Astro.props;
+const { data } = guide;
+const { Content } = await render(guide);
+
+const TOPIC_LABEL = {
+  "work-visa": "Work visas",
+  residence: "Residence permits",
+  tax: "Tax",
+  "social-insurance": "Social insurance",
+  relocation: "Relocating",
+  transit: "Transit and entry",
+  driving: "Driving",
+  employment: "Employing people",
+};
+
+const AUDIENCE_LABEL = {
+  employer: "employers",
+  employee: "employees",
+  student: "students",
+  visitor: "visitors",
+  relocating: "people relocating",
+};
+
+const canonical = new URL(`/guide/${guide.id}/`, Astro.site ?? SITE.url).href;
+---
+
+<BaseLayout title={fitTitle(data.title, "", SITE.name)} description={data.description} ogType="article">
+  <main id="main" class="wrap">
+    <article>
+      <header class="article-header">
+        <a class="tag" href="/guide/">Guides · {TOPIC_LABEL[data.topic] ?? data.topic}</a>
+        <h1>{data.title}</h1>
+        <p class="standfirst">{data.description}</p>
+        <div class="meta">
+          {data.unit} · Checked <time datetime={data.lastVerified}>{data.lastVerified}</time>
+          {" · "}For {data.audience.map((a) => AUDIENCE_LABEL[a] ?? a).join(", ")}
+        </div>
+      </header>
+
+      <div class="prose">
+        {
+          data.figures.length > 0 ? (
+            <>
+              <h2 id="costs">What it costs</h2>
+              <div class="table-responsive" style="overflow-x: auto; width: 100%;">
+                <table class="guide-costs">
+                  <thead>
+                    <tr>
+                      <th scope="col">Figure</th>
+                      <th scope="col">Period</th>
+                      <th scope="col">Source</th>
+                      <th scope="col">Checked</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.figures.map((f) => (
+                      <tr>
+                        <td>
+                          {f.value}
+                          {f.unit ? ` ${f.unit}` : ""}
+                        </td>
+                        <td>{f.period}</td>
+                        <td>{f.source}</td>
+                        <td>
+                          <time datetime={f.retrieved}>{f.retrieved}</time>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          ) : (
+            /*
+             * A guide with no figures says so, in the place where the figures would be.
+             *
+             * The authority has not published the number, or has not published it anywhere this tool
+             * could read and quote. Either way the honest statement is about the absence - not a
+             * rounded estimate dressed as a rate, and not silence.
+             */
+            <p class="guide-nofigures">
+              <strong>No published figure yet.</strong> The authority does not publish this cost in a form
+              we could verify and quote, so this guide covers the procedure only: what to bring, in what
+              order, and where it goes wrong. We will add the figures the moment there is a source for them.
+            </p>
+          )
+        }
+
+        <h2 id="steps">In order</h2>
+        <ol class="guide-steps">
+          {
+            data.steps.map((s) => (
+              <li>
+                <strong>{s.action}</strong>
+                {s.detail ? <span> — {s.detail}</span> : null}
+              </li>
+            ))
+          }
+        </ol>
+
+        <Content />
+
+        <hr />
+
+        <p class="guide-footnote">
+          Last checked {data.lastVerified}{data.reviewBy ? `, next review ${data.reviewBy}` : ""}. Every
+          figure above names its source and the date it was read. This page is a guide, not legal, tax or
+          immigration advice — confirm with the authority before acting on a deadline.
+        </p>
+        <p class="guide-footnote">
+          <a href={canonical}>Permalink</a> · <a href="/guide/">All guides</a>
+        </p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  /*
+   * Only the two things the article stylesheet has no opinion about: the ordered steps and the
+   * verification footnote. Everything else is inherited.
+   */
+  .guide-steps {
+    padding-left: 1.2rem;
+  }
+  .guide-steps li {
+    margin-bottom: 0.6rem;
+  }
+  .guide-footnote {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    line-height: 1.55;
+  }
+  .guide-costs {
+    width: 100%;
+    min-width: 34rem;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    /* .prose sets display:block on tables; this one stays a table inside its own scroller. */
+    display: table;
+  }
+  .guide-costs th,
+  .guide-costs td {
+    text-align: left;
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    vertical-align: top;
+  }
+  .guide-costs th {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.65;
+  }
+</style>

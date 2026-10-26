@@ -1,0 +1,36 @@
+---
+import ArticleRow from "../components/ArticleRow.astro";
+import { CATEGORIES } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page not found"
+  description="That page does not exist. Browse the analysis by silo instead."
+  noindex
+>
+  <div class="container container--full">
+    <main id="main">
+      <div class="page-head">
+        <h1>404 — that page is not here</h1>
+        <p>
+          The link may be stale. Everything published lives under one of the
+          three silos, or on the <a href="/">homepage</a>.
+        </p>
+      </div>
+
+      <h2 class="section-title" style="margin-top:32px;">Browse by silo</h2>
+
+      {
+        CATEGORIES.map((category) => (
+          <ArticleRow
+            href={`/category/${category.slug}/`}
+            date="Section"
+            title={category.label}
+            excerpt={category.description}
+          />
+        ))
+      }
+    </main>
+  </div>
+</BaseLayout>

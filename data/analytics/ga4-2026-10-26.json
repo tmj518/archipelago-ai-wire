@@ -1,0 +1,31 @@
+{
+  "property": "properties/559378568",
+  "account": "",
+  "days": 28,
+  "totals": {
+    "activeUsers": 39,
+    "newUsers": 39,
+    "screenPageViews": 206,
+    "sessions": 53,
+    "eventCount": 504
+  },
+  "channels": [
+    {
+      "channel": "Direct",
+      "sessions": 48
+    },
+    {
+      "channel": "Organic Search",
+      "sessions": 3
+    },
+    {
+      "channel": "AI Assistant",
+      "sessions": 1
+    },
+    {
+      "channel": "Unassigned",
+      "sessions": 1
+    }
+  ],
+  "at": "2026-10-26T06:20:23.021Z"
+}

@@ -1,23 +1,139 @@
-# dependencies
-node_modules/
-
 # build output
 dist/
 .astro/
 
-# logs
-tools/_*.log
-*.log
+# Generated media. `build/video/` holds rendered slides, narration and the
+# assembled MP4 — tens of megabytes per article, and all of it reproducible
+# from the article plus tools/make-video.py. Only the YouTube id is committed.
+build/
 
-# OS
-Thumbs.db
-.DS_Store
+# Environment setup scratch
+_env_setup/
 
-# secrets
-.env
-agents/.env
-
-# python
+# Python
 __pycache__/
 *.pyc
-agents/output/
+
+# dependencies
+node_modules/
+
+# environment
+# `.env.r2` holds a Cloudflare API token with Object Read & Write on the media
+# bucket. The literal names below did not cover it, so a credential file would
+# have been committable. Match the whole family and re-admit only templates.
+.env
+.env.*
+!.env.example
+!.env.r2.example
+.env.production
+.env.local
+
+# Google / YouTube OAuth credentials. The client secret and the cached refresh
+# token are each equivalent to an account password: the refresh token alone can
+# upload to the channel. tools/youtube-upload.mjs writes both outside the repo
+# (under %LOCALAPPDATA%\Programs\n8n), so this is a second line of defence for
+# the case where someone runs it with a copy sitting in the working directory.
+youtube-oauth.json
+youtube-token.json
+*youtube-oauth*.json
+*youtube-token*.json
+client_secret*.json
+token.json
+
+# Google Search Console service-account key, used by tools/gsc-report.mjs.
+#
+# A service-account private key is a credential: it grants read access to the Search Console
+# property for as long as it exists, with no second factor and no expiry. It was missing from
+# this file until 2026-10-08, which meant the key would have been committable the moment
+# anyone created it in the project root - the default location the tool documents.
+#
+# Local alternative: put it under %LOCALAPPDATA%\dsh\ where nothing is tracked at all.
+gsc-service-account*.json
+*-service-account*.json
+.gsc/
+
+# IndexNow key files are the opposite and are deliberately NOT ignored: the endpoint verifies
+# ownership by fetching /<key>.txt and comparing, so the file is meant to be public. See
+# tools/submit-urls.mjs.
+
+# logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Render output — 5,130 files and 2.6 MB, all of it reproducible from the atom pool by running
+# `node tools/render.mjs --emit`. Committing it would put a copy of every derivative in the
+# repository and turn each re-render into a five-thousand-file diff. The atom pool it derives from
+# stays tracked, because the n8n workflow reads it and regenerating it needs a source read.
+data/renders/
+data/tmp/
+
+# Exported deliverables — the pages and decks built from the renders by `node tools/export.mjs`.
+# Same reasoning, and one more: these are upload payloads. A file that gets uploaded somewhere is
+# not source, and a repository that tracks it will show a diff every time a figure is corrected.
+exports/
+
+# editors / OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Cloudflare / Wrangler
+.wrangler/
+.dev.vars
+
+# Agent scratch space. Research agents download HTML, PDF and text extracts
+# here. It is working material, not site content: keeping it out of the repo
+# stops multi-megabyte PDFs landing in git history on every `git add -A`.
+# The sources are cited by name in each article's frontmatter instead.
+_research/
+_research_tmp/
+_research_*/
+*-evidence/
+landed-math-dossier-*.txt
+*_dossier*.txt
+*dossier*.md
+
+# curl -o NONE creates a real file on Windows (NUL is the reserved name)
+NONE
+
+# Research agent scratch. Third time this has been swept in by git add -A:
+# agents write working files at the repository root, and directory names vary
+# by task (cbam/, out/). Patterns now cover the shapes rather than the names.
+cbam/
+out/
+p_*.txt
+*.bin
+_probe*
+fetch.py
+fetch.ps1
+get.ps1
+h2t.py
+lang.py
+probe.py
+search.py
+cellar*.py
+crop.py
+
+# QA reports are generated per run; data/qa has its own ignore.
+
+# Unattended run transcripts. Useful on disk, not useful in git.
+# Archived source bodies. The manifest keeps url, label, bytes and sha256, which is the provenance a figure
+# needs; the page itself is re-fetchable and verifiable against that hash. One day of these is 1.5 MB and a year
+# is about 550 MB, which is the only thing here that grows without bound.
+#
+# The small .txt archives stay - a EUR-Lex notice is 40 KB of readable text and cheap to keep.
+data/sources/**/*.html
+
+logs/
+
+# Gate results cache. Keyed by input hash, so it is correct to regenerate and never
+# worth committing. See tools/gate.mjs and tools/serp-check.mjs.
+.cache/
+
+# The C line's staging area. A guide only leaves this directory after it has passed its gates and a
+# real astro build, so nothing here is ever an artifact worth keeping.
+data/drafts-c/

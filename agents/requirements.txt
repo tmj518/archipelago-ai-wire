@@ -1,8 +1,0 @@
-# CrewAI + STORM 内容生产流水线依赖
-# 安装：pip install -r agents/requirements.txt
-crewai>=0.86.0
-crewai-tools>=0.17.0
-duckduckgo-search>=6.3.0   # 免费搜索后端（GPTResearcher 备选）
-gpt-researcher>=0.16.0     # 可选：深度并行研究（Agent 4）
-python-dotenv>=1.0.0
-pyyaml>=6.0

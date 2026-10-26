@@ -1,0 +1,716 @@
+{
+  "version": 2,
+  "note": "The C line's subject queue. `facts` is optional: when it is empty the orchestrator fetches `sources`, follows same-site links matching `fetchKeywords`, and keeps only figures that come back with a verbatim quote found in the fetched text. `marketPrice: true` requires at least three independent hosts and relabels the source as an estimate.",
+  "topics": [
+    {
+      "slug": "144-hour-visa-free-transit",
+      "topic": "transit",
+      "audience": [
+        "visitor"
+      ],
+      "unit": "one transit",
+      "title": "144-Hour Visa-Free Transit in China: Who Qualifies",
+      "query": "144 hour visa free transit china",
+      "status": "done",
+      "doneAt": "2026-10-22",
+      "sources": [
+        "https://www.nia.gov.cn/",
+        "https://en.nia.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "过境",
+        "免签",
+        "144",
+        "transit"
+      ],
+      "facts": [],
+      "mustSay": [],
+      "avoid": []
+    },
+    {
+      "slug": "china-tax-residency-183-days",
+      "topic": "tax",
+      "audience": [
+        "employee",
+        "employer"
+      ],
+      "unit": "one tax year",
+      "title": "China Tax Residency: The 183-Day Threshold",
+      "query": "china tax residency 183 days",
+      "status": "done",
+      "sources": [
+        "https://www.chinatax.gov.cn/",
+        "http://www.chinatax.gov.cn/chinatax/n810341/index.html"
+      ],
+      "fetchKeywords": [
+        "183",
+        "居民",
+        "非居民",
+        "个人所得税",
+        "tax"
+      ],
+      "facts": [],
+      "mustSay": [
+        "The 183-day threshold is what separates a resident from a non-resident for tax purposes.",
+        "Days are counted within a calendar year, not across a rolling twelve months.",
+        "A resident is taxed on worldwide income; a non-resident on China-source income.",
+        "Treaty tie-breakers and the six-year rule can change the answer; a professional should confirm."
+      ],
+      "avoid": [
+        "Do not state a tax rate, a deduction, or a bracket.",
+        "Do not describe the six-year rule in numbers unless the fact sheet contains them."
+      ],
+      "doneAt": "2026-10-23"
+    },
+    {
+      "slug": "residence-permit-renewal",
+      "topic": "residence",
+      "audience": [
+        "employee",
+        "student"
+      ],
+      "unit": "one renewal",
+      "title": "China Residence Permit: Renewal and Overstay",
+      "query": "china residence permit renewal",
+      "status": "done",
+      "sources": [
+        "https://www.nia.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "居留许可",
+        "居留",
+        "停留居留",
+        "residence permit"
+      ],
+      "facts": [],
+      "mustSay": [
+        "A residence permit has an expiry date and must be extended before it passes.",
+        "Overstaying is penalised per day, and the penalty has a ceiling.",
+        "The renewal is filed before expiry at the exit-entry authority that issued the permit.",
+        "Working on a permit that does not authorise work is a separate offence from overstaying."
+      ],
+      "avoid": [
+        "Do not state a fee or a processing time unless the fact sheet contains it."
+      ],
+      "doneAt": "2026-10-22"
+    },
+    {
+      "slug": "foreigner-social-insurance",
+      "topic": "social-insurance",
+      "audience": [
+        "employer",
+        "employee"
+      ],
+      "unit": "one month",
+      "title": "Social Insurance for Foreign Employees in China",
+      "query": "foreigner social insurance china",
+      "status": "done",
+      "sources": [
+        "http://www.mohrss.gov.cn/",
+        "https://www.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "社会保险",
+        "社保",
+        "外国人",
+        "social insurance"
+      ],
+      "facts": [],
+      "mustSay": [
+        "Foreign employees working in China are covered by the social insurance scheme.",
+        "The scheme has several branches, and the employer pays a share of each.",
+        "Rates differ by city; a national figure does not exist.",
+        "Bilateral agreements can exempt some nationals from part of the contribution."
+      ],
+      "avoid": [
+        "Do not state a contribution rate unless the fact sheet contains one for a named city."
+      ],
+      "doneAt": "2026-10-23"
+    },
+    {
+      "slug": "convert-foreign-driving-licence",
+      "topic": "driving",
+      "audience": [
+        "employee",
+        "relocating"
+      ],
+      "unit": "one conversion",
+      "title": "Converting a Foreign Driving Licence in China",
+      "query": "convert foreign driving license china",
+      "status": "done",
+      "sources": [
+        "https://gab.122.gov.cn/",
+        "https://www.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "驾驶证",
+        "驾照",
+        "机动车",
+        "driving licence"
+      ],
+      "facts": [],
+      "mustSay": [
+        "A foreign licence is converted, not exchanged automatically: there is an application and usually a test.",
+        "The applicant needs a valid residence status of a minimum duration.",
+        "The theory test is the common requirement; the road test depends on the issuing country.",
+        "The foreign licence must be valid and translated."
+      ],
+      "avoid": [
+        "Do not state a fee or a test length unless the fact sheet contains it."
+      ],
+      "doneAt": "2026-10-23"
+    },
+    {
+      "slug": "relocation-cost-per-cubic-metre",
+      "topic": "relocation",
+      "audience": [
+        "relocating"
+      ],
+      "unit": "one cubic metre",
+      "title": "Shipping Household Goods to China: Cost per m³",
+      "query": "shipping household goods to china cost",
+      "status": "done",
+      "marketPrice": true,
+      "sources": [
+        "http://www.customs.gov.cn/",
+        "https://www.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "搬家",
+        "海运",
+        "行李",
+        "shipping",
+        "moving"
+      ],
+      "facts": [],
+      "mustSay": [
+        "Unaccompanied baggage is a customs category with its own declaration.",
+        "The price is quoted per cubic metre, and the volume is measured, not estimated by weight.",
+        "Door-to-door and port-to-door are different products with different prices.",
+        "This is a market estimate, not a published tariff."
+      ],
+      "avoid": [
+        "Do not present a market estimate as an official rate."
+      ],
+      "doneAt": "2026-10-23"
+    },
+    {
+      "slug": "z-visa-vs-m-visa",
+      "topic": "work-visa",
+      "audience": [
+        "employee",
+        "employer"
+      ],
+      "unit": "one application",
+      "title": "Z Visa or M Visa: Which China Visa You Need",
+      "query": "china z visa vs m visa",
+      "status": "done",
+      "sources": [
+        "https://www.nia.gov.cn/",
+        "https://en.nia.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "签证",
+        "工作许可",
+        "Z字",
+        "visa",
+        "work permit"
+      ],
+      "facts": [],
+      "mustSay": [
+        "The Z visa is for employment and is converted into a residence permit after arrival.",
+        "The M visa is for commercial and trade visits, not for working.",
+        "A work permit notification is required before a Z visa is issued.",
+        "The fee is set per nationality by reciprocity, so it is not one number."
+      ],
+      "avoid": [
+        "Do not state a visa fee unless the fact sheet contains one for a named nationality."
+      ],
+      "doneAt": "2026-10-22"
+    },
+    {
+      "slug": "cost-to-hire-foreign-employee",
+      "topic": "employment",
+      "audience": [
+        "employer"
+      ],
+      "unit": "one employee per month",
+      "title": "What It Costs to Employ a Foreigner in China",
+      "query": "cost to hire foreign employee china",
+      "status": "done",
+      "sources": [
+        "http://www.mohrss.gov.cn/",
+        "https://www.chinatax.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "社会保险",
+        "个人所得税",
+        "外国人来华工作许可",
+        "工资"
+      ],
+      "facts": [],
+      "mustSay": [
+        "The monthly cost of an expatriate has three parts: salary, employer social insurance, and the amortised cost of the permit.",
+        "Employer contributions are a percentage of a declared salary base that is capped per city.",
+        "The permit and its renewals are a recurring cost, not a one-off.",
+        "This is an estimate and must be recalculated per city."
+      ],
+      "avoid": [
+        "Do not state a salary figure: it is the employer's decision, not a published rate."
+      ],
+      "doneAt": "2026-10-25"
+    },
+    {
+      "slug": "visa-extension-inside-china",
+      "topic": "residence",
+      "audience": [
+        "visitor",
+        "employee"
+      ],
+      "unit": "one extension",
+      "title": "Extending a China Visa Without Leaving",
+      "query": "extend china visa inside china",
+      "status": "done",
+      "sources": [
+        "https://www.nia.gov.cn/",
+        "https://en.nia.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "签证",
+        "延期",
+        "换发",
+        "补发",
+        "visa"
+      ],
+      "facts": [],
+      "mustSay": [
+        "A visa can be extended, changed or reissued inside China, but only at the exit-entry authority that has jurisdiction over where you are.",
+        "The application is made before the current stay expires; an overstay is a separate offence with its own penalty.",
+        "The reasons that justify an extension are a closed list, not any reason the applicant prefers.",
+        "A stay permit is a different document from a residence permit."
+      ],
+      "avoid": [
+        "Do not state a fee or a processing time unless the fact sheet contains it."
+      ],
+      "doneAt": "2026-10-22"
+    },
+    {
+      "slug": "foreigner-accommodation-registration",
+      "topic": "residence",
+      "audience": [
+        "visitor",
+        "employee",
+        "student"
+      ],
+      "unit": "one stay",
+      "title": "Registering Where You Stay as a Foreigner",
+      "query": "foreigner police registration china hotel",
+      "status": "queued",
+      "sources": [
+        "https://www.nia.gov.cn/",
+        "https://en.nia.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "住宿登记",
+        "临时住宿",
+        "登记",
+        "registration"
+      ],
+      "facts": [],
+      "mustSay": [
+        "A foreigner staying somewhere other than a hotel is registered with the local public security bureau.",
+        "Hotels register their guests as part of check-in; a private address does not.",
+        "The registration is tied to an address and a period, and it is asked for at the residence-permit desk.",
+        "Failing to register is a fine, and the fine is stated in the regulation."
+      ],
+      "avoid": [
+        "Do not state a number of hours or a fine unless the fact sheet contains it."
+      ],
+      "priorityScore": 3,
+      "priorityWhy": {
+        "basis": "prior",
+        "base": 3,
+        "demandImpressions": 0,
+        "demandQuery": "",
+        "intent": 1,
+        "gap": 1,
+        "pageImpressions": 0,
+        "pagePosition": null
+      }
+    },
+    {
+      "slug": "permanent-residence-application",
+      "topic": "residence",
+      "audience": [
+        "employee",
+        "relocating"
+      ],
+      "unit": "one application",
+      "title": "China Permanent Residence: What the Route Requires",
+      "query": "china permanent residence green card requirements",
+      "status": "done",
+      "sources": [
+        "https://www.nia.gov.cn/",
+        "https://en.nia.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "永久居留",
+        "绿卡",
+        "permanent residence"
+      ],
+      "facts": [],
+      "mustSay": [
+        "Permanent residence is applied for under a specific category, and the categories have different evidence requirements.",
+        "The application is decided by the National Immigration Administration, not by the local police.",
+        "A permanent residence permit has a validity period and is renewed.",
+        "Meeting the category is necessary, not sufficient; the authority still decides."
+      ],
+      "avoid": [
+        "Do not state an income threshold, an investment amount or a processing time unless the fact sheet contains it."
+      ],
+      "doneAt": "2026-10-24"
+    },
+    {
+      "slug": "work-permit-notification",
+      "topic": "work-visa",
+      "audience": [
+        "employer",
+        "employee"
+      ],
+      "unit": "one application",
+      "title": "The Work Permit That Comes Before the Z Visa",
+      "query": "china work permit notification letter",
+      "status": "queued",
+      "sources": [
+        "https://www.nia.gov.cn/",
+        "https://en.nia.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "工作许可",
+        "外国人工作",
+        "work permit"
+      ],
+      "facts": [],
+      "mustSay": [
+        "The work permit notification is issued before the visa, by the science and technology authority, not the visa office.",
+        "The visa and the permit are two documents held by two different authorities.",
+        "The permit is classified, and the classification determines what the employer must prove.",
+        "The permit becomes a residence permit after arrival."
+      ],
+      "avoid": [
+        "Do not state a fee, a validity period or a processing time unless the fact sheet contains it."
+      ],
+      "priorityScore": 2.8,
+      "priorityWhy": {
+        "basis": "prior",
+        "base": 2.8,
+        "demandImpressions": 0,
+        "demandQuery": "",
+        "intent": 1,
+        "gap": 1,
+        "pageImpressions": 0,
+        "pagePosition": null
+      }
+    },
+    {
+      "slug": "entry-exit-record",
+      "topic": "transit",
+      "audience": [
+        "employee",
+        "relocating"
+      ],
+      "unit": "one request",
+      "title": "Getting Your China Entry and Exit Record",
+      "query": "china entry exit record查询",
+      "status": "queued",
+      "sources": [
+        "https://www.nia.gov.cn/",
+        "https://en.nia.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "出入境记录",
+        "记录查询",
+        "entry and exit"
+      ],
+      "facts": [],
+      "mustSay": [
+        "The record is issued by the exit-entry authority and covers the dates you entered and left.",
+        "It is requested in person or through the official platform, and the applicant proves identity.",
+        "It is the document a bank, a school or a residence-permit desk asks for when it wants a stay history.",
+        "The record states facts; it does not state purpose of travel."
+      ],
+      "avoid": [
+        "Do not state a fee or a processing time unless the fact sheet contains it."
+      ],
+      "priorityScore": 1.08,
+      "priorityWhy": {
+        "basis": "prior",
+        "base": 1.8,
+        "demandImpressions": 0,
+        "demandQuery": "",
+        "intent": 0.6,
+        "gap": 1,
+        "pageImpressions": 0,
+        "pagePosition": null
+      }
+    },
+    {
+      "slug": "china-tax-annual-reconciliation",
+      "topic": "tax",
+      "audience": [
+        "employee"
+      ],
+      "unit": "one tax year",
+      "title": "Reconciling Your China Income Tax as a Foreigner",
+      "query": "china individual income tax annual reconciliation foreigner",
+      "status": "queued",
+      "sources": [
+        "https://www.chinatax.gov.cn/",
+        "https://www.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "个人所得税",
+        "年度汇算",
+        "汇算清缴",
+        "专项附加扣除"
+      ],
+      "facts": [],
+      "mustSay": [
+        "An annual reconciliation is a filing, separate from the monthly withholding an employer does.",
+        "Whether a foreigner must file depends on the income, the withholding and the residence status that year.",
+        "The reconciliation window is set by the tax authority for a period each year, not chosen by the taxpayer.",
+        "Treaty relief is claimed in the filing, not automatically applied."
+      ],
+      "avoid": [
+        "Do not state a threshold, a rate or a deduction unless the fact sheet contains it."
+      ],
+      "priorityScore": 3,
+      "priorityWhy": {
+        "basis": "prior",
+        "base": 3,
+        "demandImpressions": 0,
+        "demandQuery": "",
+        "intent": 1,
+        "gap": 1,
+        "pageImpressions": 0,
+        "pagePosition": null
+      }
+    },
+    {
+      "slug": "china-bank-account-foreigner",
+      "topic": "residence",
+      "audience": [
+        "visitor",
+        "employee",
+        "relocating"
+      ],
+      "unit": "one account",
+      "title": "Opening a Chinese Bank Account on a Foreign Passport",
+      "query": "opening bank account china foreigner documents",
+      "status": "queued",
+      "sources": [
+        "https://www.gov.cn/",
+        "https://www.pbc.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "银行账户",
+        "开户",
+        "外国人",
+        "实名"
+      ],
+      "facts": [],
+      "mustSay": [
+        "The account is opened in person, and the bank verifies identity against the passport and the visa or permit.",
+        "A proof of address is usually asked for, and a residence registration is often what satisfies it.",
+        "The name on the account must match the passport exactly, including the order of the names.",
+        "Online banking and cross-border receipt differ between account classes; the branch decides the class."
+      ],
+      "avoid": [
+        "Do not state a deposit minimum or a fee unless the fact sheet contains it."
+      ],
+      "priorityScore": 3,
+      "priorityWhy": {
+        "basis": "prior",
+        "base": 3,
+        "demandImpressions": 0,
+        "demandQuery": "",
+        "intent": 1,
+        "gap": 1,
+        "pageImpressions": 0,
+        "pagePosition": null
+      }
+    },
+    {
+      "slug": "china-sim-card-real-name",
+      "topic": "residence",
+      "audience": [
+        "visitor",
+        "employee",
+        "student"
+      ],
+      "unit": "one line",
+      "title": "A Chinese Phone Number: Real-Name Registration",
+      "query": "china sim card real name registration passport",
+      "status": "queued",
+      "sources": [
+        "https://www.gov.cn/",
+        "https://www.miit.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "实名",
+        "电话用户",
+        "入网",
+        "手机号"
+      ],
+      "facts": [],
+      "mustSay": [
+        "A phone line is registered to a verified identity before it is activated.",
+        "A foreigner registers with a passport, and the registration is what links the number to the person.",
+        "Banking, delivery and platform accounts increasingly require a number registered to the holder.",
+        "A number registered to somebody else cannot be used as proof of identity."
+      ],
+      "avoid": [
+        "Do not state a fee or a validity period unless the fact sheet contains it."
+      ],
+      "priorityScore": 3,
+      "priorityWhy": {
+        "basis": "prior",
+        "base": 3,
+        "demandImpressions": 0,
+        "demandQuery": "",
+        "intent": 1,
+        "gap": 1,
+        "pageImpressions": 0,
+        "pagePosition": null
+      }
+    },
+    {
+      "slug": "china-permanent-residence-marriage",
+      "topic": "residence",
+      "audience": [
+        "relocating"
+      ],
+      "unit": "one application",
+      "title": "Permanent Residence Through Marriage",
+      "query": "china permanent residence through marriage requirements",
+      "status": "queued",
+      "sources": [
+        "https://www.nia.gov.cn/",
+        "https://en.nia.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "永久居留",
+        "夫妻团聚",
+        "婚姻",
+        "绿卡"
+      ],
+      "facts": [],
+      "mustSay": [
+        "Marriage is one of the categories for permanent residence, and it has its own conditions.",
+        "The conditions concern the duration of the marriage and the time spent living in China.",
+        "The application is decided by the immigration authority, and meeting the conditions is necessary rather than sufficient.",
+        "The permit is renewed, so the status is not permanent in the sense of never expiring."
+      ],
+      "avoid": [
+        "Do not state a number of years, an income or a fee unless the fact sheet contains it."
+      ],
+      "priorityScore": 3,
+      "priorityWhy": {
+        "basis": "prior",
+        "base": 3,
+        "demandImpressions": 0,
+        "demandQuery": "",
+        "intent": 1,
+        "gap": 1,
+        "pageImpressions": 0,
+        "pagePosition": null
+      }
+    },
+    {
+      "slug": "china-medical-insurance-foreigner",
+      "topic": "social-insurance",
+      "audience": [
+        "employee",
+        "employer"
+      ],
+      "unit": "one year",
+      "title": "Health Cover for Foreigners Working in China",
+      "query": "china medical insurance foreigner employee",
+      "status": "queued",
+      "sources": [
+        "http://www.mohrss.gov.cn/",
+        "https://www.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "医疗保险",
+        "职工医保",
+        "外国人",
+        "商业保险"
+      ],
+      "facts": [],
+      "mustSay": [
+        "There are two different things: the statutory employee scheme and a commercial policy an employer buys.",
+        "The statutory scheme is tied to social insurance registration, and it varies by city.",
+        "A commercial policy is what covers treatment outside the scheme, and the two are not substitutes.",
+        "Which one applies depends on the employment status, not on nationality alone."
+      ],
+      "avoid": [
+        "Do not state a premium or a reimbursement rate unless the fact sheet contains one for a named city."
+      ],
+      "priorityScore": 2.5,
+      "priorityWhy": {
+        "basis": "prior",
+        "base": 2.5,
+        "demandImpressions": 0,
+        "demandQuery": "",
+        "intent": 1,
+        "gap": 1,
+        "pageImpressions": 0,
+        "pagePosition": null
+      }
+    },
+    {
+      "slug": "china-renting-apartment-deposit",
+      "topic": "relocation",
+      "audience": [
+        "relocating",
+        "employee"
+      ],
+      "unit": "one tenancy",
+      "title": "Renting in China: Contract, Deposit and Registration",
+      "query": "renting apartment china foreigner deposit contract",
+      "status": "queued",
+      "sources": [
+        "https://www.gov.cn/",
+        "https://www.mohurd.gov.cn/"
+      ],
+      "fetchKeywords": [
+        "住房租赁",
+        "租赁合同",
+        "押金",
+        "登记备案"
+      ],
+      "facts": [],
+      "mustSay": [
+        "A tenancy is a written contract, and the deposit is a term of that contract rather than a custom.",
+        "The landlord's right to let the flat is evidenced by a property certificate, which the tenant can ask to see.",
+        "A foreign tenant needs the address registered for the residence permit, and the landlord is part of that.",
+        "Disputes follow the contract and the deposit terms, so what is written matters more than what was said."
+      ],
+      "avoid": [
+        "Do not state a typical deposit multiple or a rent level unless the fact sheet contains it."
+      ],
+      "priorityScore": 2,
+      "priorityWhy": {
+        "basis": "prior",
+        "base": 2,
+        "demandImpressions": 0,
+        "demandQuery": "",
+        "intent": 1,
+        "gap": 1,
+        "pageImpressions": 0,
+        "pagePosition": null
+      }
+    }
+  ]
+}

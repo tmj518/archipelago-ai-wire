@@ -1,0 +1,20 @@
+keywords_*.csv
+run_*.log
+*.failed
+raw/
+.env.keywords
+
+# The full scored candidate pool, written alongside the shortlist.
+#
+# Regenerable from the seed list, so it is machine output rather than project
+# content — the same reason data/review/upcoming.md is ignored. Committing a
+# derived snapshot puts something in the repository that contradicts its source
+# the moment the source changes, and a later reader cannot tell which is current.
+#
+# It exists because discarding it was a real loss: the first run scored 139
+# candidates and kept 12, and the other 127 were only ever a number in a log
+# line. Keeping the pool on disk means a later session can pick from it without
+# a fresh network run, which matters when the proxy path drops a third of
+# requests.
+candidates_*.csv
+

@@ -1,0 +1,137 @@
+{
+  "at": "2026-10-26T01:12:01.037Z",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "19 previous run(s), last 2026-10-23T03:32:04.120Z (PUBLISHED)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "0 of 15 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (5 sections)"
+    },
+    {
+      "name": "research",
+      "ok": true,
+      "detail": "proposed china-emergency-procurement-rules-imported-goods-october-2026, 7 verified figure(s)"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "7 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/china-emergency-procurement-rules-imported-goods-october-2026.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
+      "ok": true,
+      "detail": "unavailable, recorded as a lesson, publishing anyway"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/china-emergency-procurement-rules-imported-goods-october-2026.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict PUBLISHED"
+    }
+  ],
+  "verdict": "PUBLISHED",
+  "reasons": [],
+  "article": "china-emergency-procurement-rules-imported-goods-october-2026",
+  "commit": null,
+  "usage": {
+    "calls": 39,
+    "failed": 26,
+    "usd": 0.0436,
+    "promptTokens": 98803,
+    "completionTokens": 15404
+  },
+  "route": "script",
+  "categoryActivity": {
+    "logistics": 0,
+    "sourcing": 0,
+    "trade-policy": 0,
+    "supply-chain": 0,
+    "platforms": 0
+  },
+  "uncoveredSections": [],
+  "researchLog": [
+    "  proposing a subject from 5 archived document(s) (attempt 2 of 3)...",
+    "  stream      : the endpoint answered as SSE, 1010 delta(s) joined",
+    "  endpoint    : ep-20261019161601-9k6dn replied with 4191 characters but no document structure, trying the next one",
+    "  stream      : the endpoint answered as SSE, 951 delta(s) joined",
+    "  endpoint    : ep-20251220175517-rjpsc replied with 3870 characters but no document structure, trying the next one",
+    "  stream      : the endpoint answered as SSE, 983 delta(s) joined",
+    "  endpoint    : ep-20251220173606-gzxdg replied with 4028 characters but no document structure, trying the next one",
+    "  spent   : ~0.0184  (ceiling 0.40)",
+    "  model   : deepseek/deepseek-chat",
+    "  feasible: true",
+    "  slug already published: eu-goes-safeguard-tariff-rate-quota-2026 - retrying with another subject",
+    "  slug    : eu-goes-safeguard-tariff-rate-quota-2026",
+    "  keyword : EU safeguard grain-oriented electrical steel tariff-rate quota 2026",
+    "  duplicate check: score 99 against eu-goes-safeguard-tariff-rate-quota-2026",
+    "      the slug eu-goes-safeguard-tariff-rate-quota-2026 is already in src/content/blog",
+    "  REJECTED as a duplicate - trying another subject rather than ending the day.",
+    "  proposing a subject from 5 archived document(s) (attempt 3 of 3)...",
+    "  stream      : the endpoint answered as SSE, 1153 delta(s) joined",
+    "  endpoint    : ep-20261019161601-9k6dn replied with 4073 characters but no document structure, trying the next one",
+    "  stream      : the endpoint answered as SSE, 1255 delta(s) joined",
+    "  endpoint    : ep-20251220175517-rjpsc replied with 4328 characters but no document structure, trying the next one",
+    "  stream      : the endpoint answered as SSE, 1327 delta(s) joined",
+    "  endpoint    : ep-20251220173606-gzxdg replied with 4486 characters but no document structure, trying the next one",
+    "  spent   : ~0.0287  (ceiling 0.40)",
+    "  model   : deepseek/deepseek-chat",
+    "  feasible: true",
+    "  slug    : china-emergency-procurement-rules-imported-goods-october-2026",
+    "  keyword : China emergency procurement imported products filing 2026",
+    "  duplicate check: score 0",
+    "  slug    : china-emergency-procurement-rules-imported-goods-october-2026",
+    "  keyword : China emergency procurement imported products filing 2026",
+    "  category: trade-policy",
+    "  figures : 7",
+    "  evidence check:",
+    "    external figures : 0",
+    "    verified         : 0",
+    "    failed           : 0",
+    "  wrote /data/directive.json",
+    "  spend this run: ~$0.0287",
+    "  Next: node tools/cloud-orchestrator.mjs   (which will write, review and publish)"
+  ],
+  "seconds": 125
+}

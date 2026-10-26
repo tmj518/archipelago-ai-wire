@@ -1,0 +1,85 @@
+# The two checks that need the network, on their own schedule.
+#
+# They were on the publish path and both of them broke it. serp-check fetches competitor pages - 270
+# seconds, and one slow host costs the day's article. check-mobile starts a headless browser and needs
+# Chromium installed first, which is another minute on a runner and a minute of memory pressure.
+#
+# Neither is worthless; both answer questions that matter and neither answer is needed to publish a
+# particular article. So they are not deleted, they are moved: this runs them weekly, reports, and lets a
+# failure be a failure without stopping anything.
+#
+# The operator's framing is the design: the publish path is short and stable, quality checks run
+# independently, may fail, and report.
+name: Weekly deep checks
+
+on:
+  schedule:
+    # Monday 04:20 UTC, an hour ahead of the source probe so the two do not contend for a runner.
+    - cron: "20 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deep:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+
+      - name: Install Chromium for the mobile check
+        # Only this workflow needs a browser, which is the point of moving it here.
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q chromium-browser || sudo apt-get install -y -q chromium
+          CHROME=$(command -v chromium-browser || command -v chromium || echo "")
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+          echo "using $CHROME"
+
+      - name: Install dependencies
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm exec astro build
+
+      - name: Run the slow tier
+        # Reported, not blocking: this workflow failing means a check found something, which is what it
+        # is for. It never gates a publication because it never runs on the publish path.
+        continue-on-error: true
+        run: node tools/gate.mjs --tier=slow --fresh 2>&1 | tee /tmp/slow.txt
+
+      - name: Summarise on the run page
+        if: always()
+        run: |
+          {
+            echo "## Weekly deep checks"
+            echo ""
+            echo "These are the two checks that need the network or a browser. They are off the publish"
+            echo "path on purpose: a competitor fetch timing out must not cost a day's article."
+            echo ""
+            echo '```'
+            tail -40 /tmp/slow.txt 2>/dev/null || echo "no output"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Notify Feishu
+        if: always()
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+        run: |
+          if [ -z "$FEISHU_WEBHOOK" ]; then exit 0; fi
+          RESULT=$(grep -E "RESULT:" /tmp/slow.txt 2>/dev/null | tail -1 || echo "did not run")
+          FAILED=$(grep -cE "FAIL|✗" /tmp/slow.txt 2>/dev/null || echo 0)
+          TEXT=$(printf 'Weekly deep checks\n\n%s\n%d finding line(s)\n\nOnly a report. Nothing was blocked.\n\nLanded Math' "$RESULT" "$FAILED")
+          curl -s -X POST "$FEISHU_WEBHOOK" \
+            -H 'content-type: application/json' \
+            -d "$(printf '{"msg_type":"text","content":{"text":%s}}' "$(printf '%s' "$TEXT" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read()))')")" \
+            | head -c 200

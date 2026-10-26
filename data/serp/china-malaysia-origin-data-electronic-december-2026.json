@@ -1,0 +1,22 @@
+{
+  "_note": "SERP snapshot for the information-gain gate. Ordering is the best available from the agent search tool at the time of capture, not a verbatim ranked SERP capture. Replace with a paid SERP API or a fresh agent pull before re-running the gate.",
+  "_captured": "2026-10-01",
+  "_keyword": "China Malaysia RCEP certificate of origin electronic data 2026",
+  "results": [
+    {
+      "url": "https://www.dagangnet.com/wp-content/uploads/2026/05/Announcement-ACFTA-RCEP-Electronic-Origin-Data-Exchange.pdf",
+      "title": "Announcement: ACFTA and RCEP Electronic Origin Data Exchange",
+      "snippet": "Announcement on the ACFTA and RCEP electronic origin data exchange between China and Malaysia, covering certificate of origin data transmission and importer obligations."
+    },
+    {
+      "url": "https://global-scm.com/blog/?p=3832",
+      "title": "Malaysia and China begin eCO data exchange — what changes for customs clearance and origin management",
+      "snippet": "Malaysia and China start electronic certificate of origin data exchange, changing customs clearance speed and origin certificate management for importers in 2026."
+    },
+    {
+      "url": "https://www.mytradelink.gov.my/",
+      "title": "MyTradeLink — Malaysia trade facilitation portal",
+      "snippet": "Malaysian trade facilitation portal for certificate of origin issuance, ACFTA and RCEP origin data, and electronic exchange with trading partners."
+    }
+  ]
+}

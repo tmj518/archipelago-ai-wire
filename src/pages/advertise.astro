@@ -1,0 +1,257 @@
+---
+/**
+ * Advertise — what is for sale, and the one thing that is not.
+ *
+ * ## Why this page exists in this shape
+ *
+ * The site's privacy policy states, in two places, that there are no advertising networks and no
+ * third-party analytics. That is a promise about how readers are treated, and it is also the reason
+ * a conventional ad-rate page cannot exist here: selling display impressions requires a network,
+ * and a network requires the tracking the page promises not to do. The obvious move - quietly
+ * adding a network and editing the policy - would trade the only asset this site has, which is that
+ * a reader can check every number and is not being watched while they do it.
+ *
+ * So the page sells the things that do not need tracking, and states the boundary explicitly:
+ *
+ *   - Data licensing. The corpus is 227 figures, each tied to a named document, a period and a
+ *     retrieval date. That is a dataset with provenance, and provenance is what a compliance team
+ *     cannot get from a scraped price list.
+ *   - Sponsored research, declared. A sponsor pays for a question to be answered and gets no say in
+ *     the answer. The declaration goes on the piece.
+ *   - Corrections and updates on request, which is a service rather than an advertisement.
+ *
+ * Everything that could be a false claim is stated as it is: `SITE.newsletterAction` is empty so
+ * there is no audience to sell, the rates are provisional and the page says so, and no rate card is
+ * written as though a deal has been done. Numbers on this page are counted from the corpus at build
+ * time rather than typed.
+ */
+import { getCollection } from "astro:content";
+
+import Sidebar from "../components/Sidebar.astro";
+import { AUTHOR, SITE } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { numbersFor, published } from "../lib/post";
+import instrumentRegistry from "../data/instruments.json";
+import { fitTitle, fitDescription } from "../lib/meta";
+
+const posts = published(await getCollection("blog"));
+const numbers = numbersFor(posts);
+
+/* Counted, not typed: a rate card that miscounts its own corpus is not worth reading. */
+const figures = posts.reduce((a, p) => a + (p.data.figures?.length ?? 0), 0);
+const sources = posts.reduce((a, p) => a + (p.data.sources?.length ?? 0), 0);
+const instruments = instrumentRegistry.instruments.length;
+
+const title = "Advertise, licence, or commission";
+const description = `${posts.length} analyses, ${figures} sourced figures and ${instruments} indexed instruments, available for commercial licensing. No advertising network, no tracking, and no sponsor has a say in what the analysis concludes.`;
+
+/** What is available, with the price stated as provisional because none has been tested. */
+const OFFERS = [
+  {
+    name: "Data licence",
+    price: "from $400",
+    unit: "per dataset, one-off",
+    body: `The figure registry: ${figures} values, each with its unit, its period, the document that published it, and the date it was retrieved. Delivered as CSV and JSON. Includes the ${instruments} instrument records with their citation metadata.`,
+    terms: [
+      "Internal use, or republication with attribution",
+      "Provenance travels with every row",
+      "Redistribution as a competing dataset is not included",
+    ],
+  },
+  {
+    name: "Sponsored research",
+    price: "from $1,800",
+    unit: "per piece, declared",
+    body: "You name a question that a customs or trade change raises for your business, and it is answered to the same standard as everything else here: primary documents, shown arithmetic, and a How confident section that states what would make the conclusion wrong.",
+    terms: [
+      "The sponsor does not see the conclusion before publication",
+      "A declaration appears on the piece, naming the sponsor",
+      "The answer is published whatever it says",
+    ],
+  },
+  {
+    name: "Correction and monitoring",
+    price: "from $250",
+    unit: "per month",
+    body: "The documents behind a set of figures are re-read on a schedule, and you are told when one changes. This is the review clock the site already runs on itself, pointed at the classifications you ship under.",
+    terms: [
+      "You choose the tariff lines or instrument set",
+      "Changes reported with the document and the date",
+      "No exclusivity: the same monitoring is available to anyone",
+    ],
+  },
+];
+
+/**
+ * The boundary, stated before the offers rather than after them.
+ *
+ * A reader who reaches the rate card should already know what the money does not buy. Putting this
+ * at the foot of the page would be the same as putting it nowhere.
+ */
+const BOUNDARY = [
+  "No advertising network, and no display inventory for sale. The privacy page promises no tracking scripts, and an impression sold through a network is a tracking script.",
+  "No sponsored conclusions. A sponsor buys a question, not an answer.",
+  "No sponsored placement inside the analysis. If a commercial relationship exists, it is declared in the piece, not woven into it.",
+  "No exclusive access to a change. A rule change that moves your cost is published for everyone at the same time, because a reader being charged more than another reader for the same document defeats the point of the site.",
+];
+---
+
+<BaseLayout title={`${fitTitle(title, "", SITE.name)} — ${SITE.name}`} description={fitDescription(description)}>
+  <div class="container">
+    <main id="main">
+      <div class="page-head">
+        <h1>{title}</h1>
+        <p>
+          {posts.length} analyses, <strong>{figures}</strong> sourced figures and
+          <strong>{instruments}</strong> indexed instruments. Everything below is available to anyone
+          who asks; nothing below changes what gets published.
+        </p>
+      </div>
+
+      <div class="prose" style="margin-top:32px;">
+        <h2>What the money does not buy</h2>
+        <p>
+          This site has no advertising network and no third-party analytics, and that is stated on the{" "}
+          <a href="/privacy/">privacy page</a> as a fact about how readers are treated. The
+          consequence is that conventional display advertising is not for sale here — an impression
+          sold through a network is a tracking script, and the promise would become false the moment
+          one loaded.
+        </p>
+        <p>So the boundary comes first, because a rate card without it reads as an offer to influence the work:</p>
+        <ul>
+          {BOUNDARY.map((b) => (
+            <li>{b}</li>
+          ))}
+        </ul>
+
+        <h2>What is for sale</h2>
+        <p>
+          Three things, all of them the same asset: a set of figures whose provenance can be checked.
+        </p>
+      </div>
+
+      <div class="offer-grid">
+        {
+          OFFERS.map((o) => (
+            <div class="offer">
+              <h3>{o.name}</h3>
+              <p class="offer-price">
+                {o.price} <span class="offer-unit">{o.unit}</span>
+              </p>
+              <p class="offer-body">{o.body}</p>
+              <ul class="offer-terms">
+                {o.terms.map((t) => (
+                  <li>{t}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="prose" style="margin-top:8px;">
+        <p class="offer-note">
+          <strong>These rates are provisional.</strong> None has been tested against a buyer, and no
+          agreement exists as of the date below. They are set by comparison with what trade-data
+          subscriptions charge for figures with less provenance, not from a negotiation.
+        </p>
+
+        <h2>Why the data is worth paying for</h2>
+        <p>
+          A Chinese tariff, rebate or safeguard change is published in Chinese, on a ministry site,
+          often as a table in a PDF, and the number that matters to you is one row of it. The value
+          here is not the number — you can find the number. It is the four things attached to it:
+          the unit, the period it applies to, the document that published it, and the date it was
+          retrieved. Those four are what turn a figure into something you can put in a quotation
+          without being wrong later.
+        </p>
+        <p>
+          That is also why the registry is checkable rather than asserted: every figure on this site
+          links to the instrument page for its source document. See{" "}
+          <a href="/instrument/">the {instruments} indexed instruments</a> and{" "}
+          <a href="/sources/">how the sources work</a>, including which ones cannot be read at all.
+        </p>
+
+        <h2>What cannot be licensed</h2>
+        <p>
+          The analyses themselves are free to read and licensed{" "}
+          <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">
+            CC BY 4.0
+          </a>
+          : republish them with attribution and a link, no permission needed and no fee. A licence
+          buys the structured data and the work, not the right to read or reuse the writing.
+        </p>
+
+        <h2>How to start</h2>
+        <p>
+          Email <a href={`mailto:${AUTHOR.email}`}>{AUTHOR.email}</a> with the tariff lines,
+          instrument set or question you have in mind. A reply comes with a scope and a fixed price
+          before anything is agreed.
+        </p>
+        <p class="offer-note">
+          Published {new Date().toISOString().slice(0, 10)}. If a commercial relationship is ever
+          agreed, it is declared on this page and on the work it touches.
+        </p>
+      </div>
+    </main>
+
+    <Sidebar numbers={numbers} />
+  </div>
+</BaseLayout>
+
+<style>
+  .offer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    margin: 22px 0 26px;
+  }
+  .offer {
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+  }
+  .offer h3 {
+    margin: 0 0 8px;
+    font-size: 1.02rem;
+  }
+  .offer-price {
+    margin: 0 0 10px;
+    font-size: 1.28rem;
+    font-weight: 700;
+    color: var(--c-navy);
+  }
+  .offer-unit {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--c-ink-4);
+  }
+  .offer-body {
+    font-size: 14px;
+    margin: 0 0 12px;
+    color: var(--c-ink-2);
+  }
+  .offer-terms {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 13px;
+    color: var(--c-ink-3);
+  }
+  .offer-terms li {
+    margin: 5px 0;
+  }
+  .offer-note {
+    font-size: 13.5px;
+    color: var(--c-ink-3);
+    background: var(--c-line-faint);
+    border-left: 3px solid var(--c-line);
+    padding: 12px 14px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  @media (max-width: 767px) {
+    .offer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

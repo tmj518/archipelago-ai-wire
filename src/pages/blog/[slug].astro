@@ -1,0 +1,164 @@
+---
+import { getCollection, render } from "astro:content";
+
+import { SITE, AUTHOR, categoryLabel } from "../../consts";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { numbersFor, published, relatedPosts } from "../../lib/post";
+import { personNode, publisherRef } from "../../lib/seo.mjs";
+import { buildHubs, hubsFor } from "../../lib/topics";
+import { fitTitle, fitDescription } from "../../lib/meta";
+
+export async function getStaticPaths() {
+  const posts = published(await getCollection("blog"));
+
+  /*
+   * The hub set is built once here and each article's own hubs are resolved from it, rather than
+   * every article page recomputing the cluster counts. A hub link has to point at a page that was
+   * generated, so both the route and these links come from the same buildHubs call - which is the
+   * reason the clustering lives in lib/topics.ts and not in either file.
+   */
+  const hubs = buildHubs(posts);
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post, related: relatedPosts(posts, post), hubs: hubsFor(post.data.tags, hubs) },
+  }));
+}
+
+const { post, related, hubs } = Astro.props;
+const { data } = post;
+
+const { Content } = await render(post);
+
+const posts = published(await getCollection("blog"));
+const numbers = numbersFor(posts);
+
+const canonical = new URL(`/blog/${post.id}/`, Astro.site ?? SITE.url).href;
+
+// Article structured data. The layout renders the visible article; this is the
+// machine-readable statement of the same thing, and it stays here because it
+// depends on the canonical URL and the site config rather than on the article
+// shell.
+//
+// dateModified takes the latest recorded revision. That is the only signal worth
+// emitting: it moves when the content moves. Deriving it from the review clock
+// (`reviewBy`) would make a scheduled look into a claimed revision, which is the
+// date churn Google describes as manipulation rather than maintenance. Articles with
+// no revision therefore carry no dateModified at all, which is correct rather than
+// missing.
+const lastRevision = data.revisions.at(-1);
+
+
+/**
+ * The FAQ section as schema.org FAQPage, or null when the article has none.
+ *
+ * Two question spellings are accepted because the structural check accepts both, and a schema that only
+ * understood one of them would silently emit nothing for part of the archive. Answers are flattened to plain
+ * text, since markdown in a JSON-LD string is read literally.
+ */
+function faqBlock(body) {
+  const section = /##\s*FAQ\s*\n([\s\S]*?)(?=\n##\s|$)/.exec(body ?? "")?.[1];
+  if (!section) return null;
+
+  const marks = [];
+  for (const m of section.matchAll(/^###\s+(.+)$/gm)) marks.push({ at: m.index, q: m[1].trim(), len: m[0].length });
+  for (const m of section.matchAll(/^\*\*([^*\n]+\?)\*\*\s*$/gm)) marks.push({ at: m.index, q: m[1].trim(), len: m[0].length });
+  if (!marks.length) return null;
+  marks.sort((a, b) => a.at - b.at);
+
+  const plain = (s) =>
+    s
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/[*_`>#]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const items = marks
+    .map((m, i) => {
+      const from = m.at + m.len;
+      const to = i + 1 < marks.length ? marks[i + 1].at : section.length;
+      const answer = plain(section.slice(from, to));
+      return answer.length >= 40 ? { "@type": "Question", name: m.q, acceptedAnswer: { "@type": "Answer", text: answer } } : null;
+    })
+    .filter(Boolean);
+
+  return items.length >= 2 ? { "@type": "FAQPage", mainEntity: items } : null;
+}
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  /*
+   * NewsArticle rather than Article, on the front-end brief's instruction.
+   *
+   * Both types take the same properties, so this is not a correctness fix - it is a
+   * classification one. NewsArticle is what a reader-facing trade publication should claim:
+   * it tells an aggregator that the piece is dated reporting on a change, which is what
+   * earns the news treatments in search and in news surfaces. Article would be the honest
+   * type for an undated explainer, and this site does not publish those.
+   *
+   * `dateline` is deliberately absent. It means the place from which a report was filed,
+   * and the piece is written from a desk in Shenzhen about documents published in Beijing,
+   * Brussels and Washington. Claiming a dateline would assert a reporting trip.
+   */
+  "@type": "NewsArticle",
+  headline: data.title,
+  ...(data.subtitle ? { alternativeHeadline: data.subtitle } : {}),
+  description: data.description,
+  datePublished: data.publishDate.toISOString(),
+  ...(lastRevision ? { dateModified: lastRevision.date.toISOString() } : {}),
+  /*
+   * author as a node with a url, not a bare name.
+   *
+   * The byline is a pen name, and Google's spam policies name fabricated creator
+   * profiles as a deception signal — so the fix is not a fuller invented persona. It is
+   * pointing the existing name at the real background already published on /about/,
+   * which is what makes the byline checkable instead of asserted.
+   */
+  author: personNode(),
+  publisher: publisherRef(),
+  ...(data.heroImage ? { image: new URL(data.heroImage, Astro.site ?? SITE.url).href } : {}),
+  articleSection: categoryLabel(data.category),
+  keywords: data.tags.join(", "),
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+};
+
+/*/*
+ * FAQPage as a second block, and the layout takes an array for exactly this.
+ *
+ * schema.org puts the questions on the page rather than the article. A FAQPage claiming to be the NewsArticle
+ * would have the page describe itself twice, which is the mistake OWN_PAGE_TYPES exists to prevent - so the
+ * two go in as two blocks.
+ */
+const faqLd = faqBlock(post.body);
+const jsonLdBlocks = faqLd ? [jsonLd, faqLd] : jsonLd;
+---
+
+<BaseLayout
+  /*
+   * The subtitle is deliberately not part of the title tag, and this was wrong until 2026-10-15.
+   *
+   * The page title used to be `title - subtitle - site`, which read well in a browser tab and badly
+   * everywhere the title is actually consumed. Measured on the live site: the EAEU article's title
+   * was 255 characters and the AD760 article's was 159, against roughly 60 that a search result
+   * shows and 90 that the site's own subtitle-free articles use. The same composed string fed
+   * `og:title` and `twitter:title`, so the truncation reached every share card too.
+   *
+   * The subtitle is not lost by dropping it here. It renders as the standfirst under the headline,
+   * and the structured data already carries it as `alternativeHeadline`, which is the property
+   * schema.org provides for exactly this. `description` is the metadata field for the summary and is
+   * already supplied separately.
+   */
+  title={`${fitTitle(data.title, "", SITE.name)} — ${SITE.name}`}
+  description={data.description}
+  ogType="article"
+  image={data.heroImage}
+  publishedTime={data.publishDate}
+  modifiedTime={data.updatedDate}
+  jsonLd={jsonLdBlocks}
+  citation={{ title: data.title, date: data.publishDate }}
+>
+  <ArticleLayout post={post} related={related} numbers={numbers} hubs={hubs}>
+    <Content />
+  </ArticleLayout>
+</BaseLayout>

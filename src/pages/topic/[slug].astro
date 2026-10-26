@@ -1,0 +1,175 @@
+---
+/**
+ * Topic hub — mechanism 4 of 对标学习10条, the "connection layer".
+ *
+ * The benchmark study found that the two publications with real moats organise around topics
+ * rather than only around categories: Our World in Data has 126 topic pages, each a horizontal
+ * hub that gathers everything on a subject, and every article in the cluster links back through
+ * it. A category page answers "what section is this"; a topic page answers "what do we know about
+ * this" - and it is the topic name that a reader types into a search box.
+ *
+ * Generated from the `tags` already on each article, so this adds no writing and cannot fall out
+ * of step with the corpus: a tag with two or more articles produces a page, and a tag with one
+ * does not, because a hub holding a single item is a category by another name.
+ *
+ * The two-article floor is deliberate. The benchmark study warned that hub pages are worth little
+ * until a site has enough articles to cluster - "one page with one or two articles pointing at it
+ * is a magnet with nothing to attract" - so the floor is set where a hub starts to be a hub, and
+ * it will admit more pages on its own as the corpus grows. No list to maintain.
+ */
+import { getCollection } from "astro:content";
+
+import ArticleRow from "../../components/ArticleRow.astro";
+import Sidebar from "../../components/Sidebar.astro";
+import { CATEGORIES, SITE } from "../../consts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { numbersFor, published, toCard } from "../../lib/post";
+import { MIN_CLUSTER, slugify } from "../../lib/topics";
+import { fitTitle, fitDescription } from "../../lib/meta";
+
+export async function getStaticPaths() {
+  const posts = published(await getCollection("blog"));
+
+  const byTag = new Map<string, { tag: string; posts: typeof posts }>();
+  for (const post of posts) {
+    for (const tag of post.data.tags ?? []) {
+      const slug = slugify(tag);
+      if (!slug) continue;
+      if (!byTag.has(slug)) byTag.set(slug, { tag, posts: [] });
+      byTag.get(slug)!.posts.push(post);
+    }
+  }
+
+  return [...byTag.entries()]
+    .filter(([, v]) => v.posts.length >= MIN_CLUSTER)
+    .map(([slug, v]) => ({
+      params: { slug },
+      props: {
+        tag: v.tag,
+        slug,
+        /* Newest first, which is how a hub should read: the current state of the topic. */
+        posts: [...v.posts].sort((a, b) => +b.data.publishDate - +a.data.publishDate).map(toCard),
+        categories: [...new Set(v.posts.map((p) => p.data.category))],
+      },
+    }));
+}
+
+const { tag, posts, categories } = Astro.props;
+const all = published(await getCollection("blog"));
+const numbers = numbersFor(all);
+
+/*
+ * The other tags this cluster touches, so a hub links sideways to its neighbours.
+ *
+ * A hub that only links down to its own articles is a leaf. Sideways links are what turn a set of
+ * hubs into a graph, which is the thing the benchmark actually has and this did not.
+ */
+const related = (() => {
+  const counts = new Map<string, number>();
+  for (const p of posts) {
+    const raw = all.find((a) => `/blog/${a.id}/` === p.href);
+    for (const t of raw?.data.tags ?? []) {
+      const s = slugify(t);
+      if (s === slugify(tag)) continue;
+      counts.set(s, (counts.get(s) ?? 0) + 1);
+    }
+  }
+  return [...counts.entries()]
+    .filter(([, n]) => n >= MIN_CLUSTER)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8)
+    .map(([s]) => s);
+})();
+
+const labelOf = (s: string) =>
+  all.flatMap((p) => p.data.tags ?? []).find((t) => slugify(t) === s) ?? s;
+
+const categoryLabel = (s: string) => CATEGORIES.find((c) => c.slug === s)?.label ?? s;
+
+const description = `Every analysis on ${tag}: ${posts.length} pieces, each figure traceable to a named document and a retrieval date.`;
+---
+
+<BaseLayout title={`${fitTitle(tag, "", SITE.name)} — ${SITE.name}`} description={fitDescription(description)}>
+  <div class="container">
+    <main id="main">
+      <div class="page-head">
+        <h1>{tag}</h1>
+        <p>
+          {posts.length} analyses on this topic, newest first. Each one carries its figures with
+          the source document and the date it was retrieved.
+        </p>
+      </div>
+
+      {
+        categories.length > 1 && (
+          <p class="topic-silos">
+            Appears in{" "}
+            {categories.map((c, i) => (
+              <>
+                {i > 0 && (i === categories.length - 1 ? " and " : ", ")}
+                <a href={`/category/${c}/`}>{categoryLabel(c)}</a>
+              </>
+            ))}
+          </p>
+        )
+      }
+
+      <h2 class="section-title" style="margin-top:32px;">Analysis</h2>
+
+      {
+        posts.map((item) => (
+          <ArticleRow href={item.href} date={item.date} title={item.title} excerpt={item.excerpt} />
+        ))
+      }
+
+      {
+        related.length > 0 && (
+          <section class="topic-related">
+            <h2 class="section-title">Related topics</h2>
+            <ul class="topic-list">
+              {related.map((s) => (
+                <li>
+                  <a href={`/topic/${s}/`}>{labelOf(s)}</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+    </main>
+
+    <Sidebar numbers={numbers} />
+  </div>
+</BaseLayout>
+
+<style>
+  .topic-silos {
+    font-size: 14px;
+    color: var(--c-ink-3);
+    margin: 6px 0 0;
+  }
+  .topic-related {
+    margin-top: 40px;
+    padding-top: 22px;
+    border-top: 1px solid var(--c-line);
+  }
+  .topic-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+  }
+  .topic-list a {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .topic-list a:hover {
+    border-color: var(--c-red);
+  }
+</style>

@@ -1,245 +1,280 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
+import { AUTHOR, CF_ANALYTICS_TOKEN, SITE } from "../consts";
+import { siteBlocks, webPageBlock } from "../lib/seo.mjs";
+import { fitDescription } from "../lib/meta";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 
-interface Props {
+/**
+ * Site chrome + the SEO head.
+ *
+ * spec §2 makes Google the acquisition channel, so every page ships a
+ * canonical URL, a description, Open Graph / Twitter cards and JSON-LD.
+ *
+ * The site-wide JSON-LD — WebSite, Organization and BreadcrumbList — is added here
+ * rather than per page. It used to be per page, and five page types ended up with none
+ * of it, which is exactly the failure mode of opt-in metadata: the pages that need it
+ * most are the ones nobody remembers to update.
+ */
+export interface Props {
   title: string;
   description?: string;
+  ogType?: "website" | "article";
+  image?: string;
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  noindex?: boolean;
+  /** Overrides the page-level schema type; defaults by path. */
+  pageType?: "WebPage" | "CollectionPage";
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /**
+   * Highwire Press citation metadata, for article pages only.
+   *
+   * Mechanism 2 of 对标学习10条, executed 2026-10-09. The benchmark carries seven of these tags
+   * on every article and two anchored blocks in the body, and the reason is that three different
+   * kinds of reader want three different things: academic databases read `citation_*`, AI
+   * crawlers read the most structured passage, and a human wants a string they can paste into a
+   * document. Putting all three on one page takes the friction out of citing, and being cited is
+   * the only distribution this site can get without an audience or a backlink profile.
+   *
+   * Deliberately not `citation_journal_title` alone: the benchmark's equivalent is its own name,
+   * and here that is set from SITE.name so it cannot drift.
+   */
+  citation?: {
+    title: string;
+    /** ISO date. Defaults to publishedTime when omitted. */
+    date?: Date;
+    authors?: string[];
+    /** Article PDF or full text URL; defaults to the canonical URL. */
+    fullTextUrl?: string;
+  };
 }
-const { title, description = 'Archipelago Intel — Decision memos for cross-border business.' } = Astro.props;
-const year = new Date().getFullYear();
+
+const {
+  title,
+  description = SITE.description,
+  ogType = "website",
+  image = "/og-default.png",
+  publishedTime,
+  modifiedTime,
+  noindex = false,
+  pageType,
+  jsonLd,
+  citation,
+} = Astro.props;
+
+const site = Astro.site ?? new URL(SITE.url);
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL(image, site).href;
+
+/*
+ * The citation block, assembled once. `citation_publication_date` and the full-text URL both
+ * default to values the layout already has, so an article page supplies only its title and the
+ * rest cannot be left blank by omission.
+ */
+const cite = citation
+  ? {
+      title: citation.title,
+      date: (citation.date ?? publishedTime)?.toISOString().slice(0, 10),
+      authors: citation.authors?.length ? citation.authors : [AUTHOR.name],
+      fullTextUrl: citation.fullTextUrl ?? canonical,
+    }
+  : null;
+
+/*
+ * `noindex` pages get no structured data at all. Emitting it on a page we are asking
+ * Google to drop is a contradiction, and the structured-data tests treat it as one.
+ */
+const ownBlocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+
+/*
+ * The page-level block is generated here unless the page already declares a more
+ * specific one.
+ *
+ * The five pages that had no structured data — calculator, tracker, markets, sources
+ * and the category hubs — had none because it was opt-in per page. Making it opt-out
+ * means the next page added gets it without anyone remembering to.
+ *
+/*
+ * Skipped when the page supplies its own AboutPage, ContactPage, NewsArticle, WebSite,
+ * CollectionPage or Dataset block, so no page states two things about itself.
+ *
+ * NewsArticle is in the list for the article pages, which emit it deliberately: both types
+ * take the same properties, so claiming the news type is a classification choice rather than
+ * a correctness one, and a page must not carry both.
+ *
+ * Dataset is in the list for the /instrument/<id>/ pages: a set of measured values with
+ * provenance is not a WebPage, and emitting both would have the page describe itself twice.
+ */
+const OWN_PAGE_TYPES = [
+  "AboutPage",
+  "ContactPage",
+  "Article",
+  "NewsArticle",
+  "WebSite",
+  "CollectionPage",
+  "Dataset",
+];
+const declaresOwn = ownBlocks.some((b) => {
+  const t = (b as { "@type"?: unknown })["@type"];
+  return typeof t === "string" && OWN_PAGE_TYPES.includes(t);
+});
+
+const path = Astro.url.pathname;
+const pageBlocks = noindex
+  ? []
+  : [
+      ...siteBlocks(path, title),
+      ...(declaresOwn
+        ? []
+        : [
+            webPageBlock({
+              type: pageType ?? (path.startsWith("/category/") ? "CollectionPage" : "WebPage"),
+              url: canonical,
+              name: title,
+              description,
+            }),
+          ]),
+    ];
+
+const blocks = [...pageBlocks, ...ownBlocks];
+
+/*
+ * The description as a search result will show it.
+ *
+ * A meta description longer than about 155 columns is cut by the engine, and the cut lands wherever the
+ * engine chooses - usually mid-clause. fitDescription in src/lib/meta.ts cuts on a sentence boundary when
+ * one falls late enough to stay informative, and on a word boundary otherwise, counting CJK as two columns.
+ *
+ * Applied here rather than per page because every page reaches the reader through this file, and twelve of
+ * them passed a description straight through at up to 290 characters.
+ */
+const fittedDescription = fitDescription(description);
 ---
+
 <!doctype html>
-<html lang="en">
+<html lang={SITE.language}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
     <title>{title}</title>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const btn = document.getElementById('menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('open'));
-      });
-    </script>
+    <meta name="description" content={fittedDescription} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={SITE.name}
+      href="/rss.xml"
+    />
+    <meta name="theme-color" content="#0a2540" />
+    <meta name="author" content={AUTHOR.name} />
+
+    {/*
+      * Highwire Press citation metadata — mechanism 2 of 对标学习10条, executed 2026-10-09.
+      *
+      * These tags do not affect ranking. What they do is make the article citable without the
+      * reader having to decide how to label it: an academic index reads the citation_* set, an AI
+      * crawler reads the most structured passage on the page, and a person wants a string they
+      * can paste. The benchmark carries all seven on every article for that reason, and being
+      * cited is the one distribution channel that works with no audience and no backlinks.
+      */}
+    {
+      cite && (
+        <>
+          <meta name="citation_title" content={cite.title} />
+          {cite.authors.map((a) => (
+            <meta name="citation_author" content={a} />
+          ))}
+          <meta name="citation_publication_date" content={cite.date} />
+          <meta name="citation_journal_title" content={SITE.name} />
+          <meta name="citation_journal_abbrev" content={SITE.name} />
+          <meta name="citation_fulltext_html_url" content={cite.fullTextUrl} />
+          <meta name="citation_fulltext_world_readable" content="" />
+        </>
+      )
+    }
+
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={fittedDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+    {
+      publishedTime && (
+        <meta
+          property="article:published_time"
+          content={publishedTime.toISOString()}
+        />
+      )
+    }
+    {
+      modifiedTime && (
+        <meta
+          property="article:modified_time"
+          content={modifiedTime.toISOString()}
+        />
+      )
+    }
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={fittedDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {
+      blocks.map((block) => (
+        <script type="application/ld+json" set:html={JSON.stringify(block)} />
+      ))
+    }
+    <GoogleAnalytics />
   </head>
+
   <body>
-    <header class="site-header">
-      <div class="header-top">
-        <div class="header-inner-top">
-          <a href="/" class="logo-block">Archipelago<br/>Intel</a>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Nav />
+    <slot />
+    <Footer />
 
-          <div class="header-actions">
-            <a href="/subscribe/" class="subscribe-btn">Subscribe</a>
-            <a href="/about/" class="header-link">About</a>
-            <button id="menu-btn" class="menu-btn" aria-label="Menu">
-              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <nav class="header-nav">
-        <div class="header-inner-nav">
-          <a href="/latest/" class="nav-link">Latest</a>
-          <a href="/topics/" class="nav-link">Topics</a>
-          <a href="/podcast/" class="nav-link">Podcast</a>
-          <a href="/methodology/" class="nav-link">Methodology</a>
-        </div>
-      </nav>
-
-      <nav id="mobile-menu" class="nav-mobile">
-        <a href="/latest/">Latest</a>
-        <a href="/topics/">Topics</a>
-        <a href="/podcast/">Podcast</a>
-        <a href="/methodology/">Methodology</a>
-        <a href="/subscribe/">Subscribe</a>
-      </nav>
-    </header>
-
-    <main class="site-main">
-      <slot />
-    </main>
-
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div>© {year} Archipelago Intel. Not investment advice.</div>
-        <div class="footer-links">
-          <a href="/privacy/">Privacy</a>
-          <a href="/refund/">Refund</a>
-          <a href="/sources/">Sources</a>
-        </div>
-      </div>
-    </footer>
+    {
+      /*
+       * Cloudflare Web Analytics. No cookies, so no consent banner — which is
+       * the reason this was chosen over GA4 (进度日志 §2). Rendered only when
+       * the token is present, so local dev and any fork stay clean.
+       *
+       * The whole tag is emitted as one raw string, and that is deliberate:
+       *   - `is:inline` keeps Astro from bundling it, and `defer` keeps it off
+       *     the critical path so the script cannot affect what it measures.
+       *   - The beacon wants `{"token":"..."}` in the attribute. Letting Astro
+       *     build that attribute escapes every double quote to &quot;, which a
+       *     browser decodes but which does not match Cloudflare's snippet.
+       *   - `set:html` on the <script> element writes inside the element, not
+       *     into its attribute list. The first version of this used that and
+       *     rendered the token as script *text*:
+       *       <script src="..."> data-cf-beacon='{"token":"..."}'</script>
+       *     which loads the beacon with no configuration at all. Writing the
+       *     full tag avoids both problems.
+       *
+       * The token is a 32-character hex string from the dashboard, so nothing
+       * here can inject markup — but the guard below enforces that shape
+       * instead of trusting it.
+       *
+       * No `is:inline` on the emitted tag: raw HTML never reaches Astro's
+       * directive processing, so writing it there would ship a literal unknown
+       * attribute. It is unnecessary anyway — a string passed to set:html is
+       * already not processed.
+       */
+      /^[a-f0-9]{32}$/i.test(CF_ANALYTICS_TOKEN) && (
+        <Fragment
+          set:html={`<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"${CF_ANALYTICS_TOKEN}"}'></script>`}
+        />
+      )
+    }
   </body>
 </html>
-
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-html {
-  font-family: Georgia, 'Times New Roman', serif;
-  -webkit-font-smoothing: antialiased;
-  color: #1a1a1a;
-}
-
-body {
-  line-height: 1.6;
-  background: #fff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Header */
-.site-header {
-  background: #fff;
-  border-bottom: 1px solid #e5e5e5;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-top {
-  padding: 16px 0;
-}
-
-.header-inner-top {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo-block {
-  background: #c41e3a;
-  color: #fff;
-  padding: 12px 20px;
-  font-family: Georgia, serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  line-height: 1.1;
-  text-decoration: none;
-  text-align: center;
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.subscribe-btn {
-  background: #1a365d;
-  color: #fff;
-  padding: 8px 20px;
-  border-radius: 20px;
-  font-family: -apple-system, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.subscribe-btn:hover { background: #2c5282; }
-
-.header-link {
-  font-family: -apple-system, sans-serif;
-  font-size: 0.9rem;
-  color: #333;
-  text-decoration: none;
-}
-
-.header-link:hover { color: #000; }
-
-.menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  color: #333;
-}
-
-.header-nav {
-  border-top: 1px solid #e5e5e5;
-}
-
-.header-inner-nav {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  gap: 32px;
-  overflow-x: auto;
-}
-
-.nav-link {
-  font-family: -apple-system, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  text-decoration: none;
-  padding: 12px 0;
-  white-space: nowrap;
-  border-bottom: 2px solid transparent;
-}
-
-.nav-link:hover {
-  border-bottom-color: #c41e3a;
-}
-
-.nav-mobile {
-  display: none;
-  flex-direction: column;
-  padding: 16px 24px;
-  border-top: 1px solid #e5e5e5;
-  gap: 12px;
-}
-
-.nav-mobile.open { display: flex; }
-.nav-mobile a { color: #333; text-decoration: none; padding: 4px 0; font-family: -apple-system, sans-serif; }
-
-/* Main */
-.site-main {
-  flex: 1;
-  width: 100%;
-}
-
-/* Footer */
-.site-footer {
-  border-top: 1px solid #e5e5e5;
-  margin-top: 64px;
-  padding: 32px 0;
-}
-
-.footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  justify-content: space-between;
-  font-family: -apple-system, sans-serif;
-  font-size: 0.8rem;
-  color: #999;
-}
-
-.footer-links {
-  display: flex;
-  gap: 16px;
-}
-
-.footer-links a { color: #999; text-decoration: none; }
-.footer-links a:hover { color: #666; }
-
-@media (max-width: 768px) {
-  .header-link { display: none; }
-  .menu-btn { display: block; }
-  .header-inner-top { padding: 0 16px; }
-  .footer-inner { padding: 0 16px; flex-direction: column; gap: 8px; }
-  .header-inner-nav { padding: 0 16px; gap: 20px; }
-}
-</style>

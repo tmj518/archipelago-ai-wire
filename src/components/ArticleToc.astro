@@ -1,0 +1,177 @@
+---
+/**
+ * A table of contents for an article the reader may not finish.
+ *
+ * Every article on this site is about two thousand words with ten sections, and until now the only way to find
+ * the section you came for was to scroll. That is the single largest reading cost on the site, and it is not a
+ * matter of taste: a reader who arrives from a search result for one number in "How we calculated this" has to
+ * pass eight sections to reach it.
+ *
+ * ## Why it is built from the DOM rather than from frontmatter
+ *
+ * The headings already exist, with ids, rendered from the markdown. Reading them from the DOM means the list
+ * cannot disagree with the page, cannot go stale when an article is rewritten, and needs nothing from the
+ * writer. A frontmatter list would be a second copy of the structure, and a second copy is a thing that drifts.
+ *
+ * ## Why it is a bundled script
+ *
+ * This site's CSP hashes every inline script it emits, and an inline script carrying `define:vars` is not one
+ * of them - the tag renders and the browser refuses it. An ordinary `<script>` is bundled into /_astro/, which
+ * is same-origin and allowed by 'self' without a hash.
+ *
+ * ## The scroll-spy
+ *
+ * IntersectionObserver rather than a scroll handler: a scroll handler runs on every frame of a 2000-word page
+ * on a phone, and the whole cost of this site is currently 9 KB of JavaScript. One observer watching eleven
+ * headings costs nothing measurable.
+ *
+ * ## When it does nothing
+ *
+ * Fewer than three headings, and it removes itself. A list of two items under a heading that says "On this
+ * page" is a worse experience than no list.
+ */
+---
+
+<nav class="toc" data-toc aria-label="On this page" hidden>
+  <p class="toc-title">On this page</p>
+  <ol class="toc-list" data-toc-list></ol>
+</nav>
+
+<script>
+  /*
+   * Build the list from the headings already on the page, then track which one is in view.
+   *
+   * `hidden` in the markup and removed here only when there is something to show: without JavaScript the reader
+   * gets a clean article rather than an empty box, and a noscript block would be a second thing to maintain.
+   */
+  const nav = document.querySelector<HTMLElement>("[data-toc]");
+  const list = document.querySelector<HTMLOListElement>("[data-toc-list]");
+  const prose = document.querySelector<HTMLElement>(".prose");
+
+  if (nav && list && prose) {
+    const headings = Array.from(prose.querySelectorAll<HTMLHeadingElement>("h2[id]")).filter(
+      (h) => (h.textContent ?? "").trim().length > 0,
+    );
+
+    if (headings.length >= 3) {
+      const byId = new Map<string, HTMLAnchorElement>();
+
+      for (const h of headings) {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = "#" + h.id;
+        a.textContent = (h.textContent ?? "").trim();
+        li.append(a);
+        list.append(li);
+        byId.set(h.id, a);
+      }
+
+      nav.hidden = false;
+
+      /*
+       * A heading is "current" while it is the last one above the top third of the viewport.
+       *
+       * IntersectionObserver with a rootMargin that biases toward the top: a section becomes current when its
+       * heading has just passed the top, which is where a reader's attention is, rather than when it enters the
+       * viewport from below.
+       */
+      const seen = new Set<string>();
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) seen.add(e.target.id);
+            else seen.delete(e.target.id);
+          }
+          const current = headings.filter((h) => seen.has(h.id)).pop()?.id ?? headings[0]?.id;
+          if (!current) return;
+          for (const [id, a] of byId) a.classList.toggle("is-current", id === current);
+        },
+        { rootMargin: "-15% 0px -70% 0px", threshold: 0 },
+      );
+      for (const h of headings) observer.observe(h);
+    }
+  }
+</script>
+
+<style>
+  .toc {
+    margin: 0 0 2rem;
+    padding: 1rem 1.15rem;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius, 10px);
+    background: var(--c-surface-alt);
+  }
+
+  .toc-title {
+    margin: 0 0 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--c-ink-4);
+  }
+
+  .toc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: toc;
+  }
+
+  .toc-list li {
+    counter-increment: toc;
+    margin: 0.25rem 0;
+  }
+
+  .toc-list a {
+    display: block;
+    padding: 0.2rem 0;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--c-ink-2);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .toc-list a::before {
+    content: counter(toc) ". ";
+    color: var(--c-ink-5);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .toc-list a:hover,
+  .toc-list a:focus-visible {
+    color: var(--c-ink);
+    border-bottom-color: var(--c-line);
+  }
+
+  .toc-list a.is-current {
+    color: var(--c-red);
+    font-weight: 600;
+  }
+
+  .toc-list a.is-current::before {
+    color: var(--c-red);
+  }
+
+  /* On a wide screen the list sits beside the text instead of above it. */
+  @media (min-width: 1080px) {
+    .toc {
+      position: sticky;
+      top: 5.5rem;
+      float: right;
+      width: 15rem;
+      margin: 0 -17.5rem 1.5rem 1.5rem;
+      max-height: calc(100vh - 8rem);
+      overflow-y: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .toc-list a {
+      transition: none;
+    }
+  }
+</style>

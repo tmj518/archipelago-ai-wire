@@ -1,0 +1,15 @@
+---
+/** One card in the article footer's "Related Reading" grid. */
+export interface Props {
+  href: string;
+  date: string;
+  title: string;
+}
+
+const { href, date, title } = Astro.props;
+---
+
+<div class="related-card">
+  <div class="rel-date">{date}</div>
+  <h4><a href={href}>{title}</a></h4>
+</div>

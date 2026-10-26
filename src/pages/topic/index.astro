@@ -1,0 +1,109 @@
+---
+/**
+ * The topic index — every hub in one place.
+ *
+ * Added 2026-10-12. The hubs existed and each one was reachable from the homepage chip row and from
+ * other hubs, but there was no single page listing them, so `/topic/` returned 404. That mattered as
+ * soon as an article footer started offering "browse every topic": a site should not link to a page
+ * it has not built, and the alternative was to leave the index out of the footer and lose the one
+ * navigation path that leads from an article into the cluster structure.
+ *
+ * The list is built from the corpus at build time through the same `buildHubs` the hub routes use,
+ * so a tag cannot be listed here without a page behind it and a page cannot exist without appearing
+ * here. Sorting is by size, which makes the biggest subject areas visible first rather than
+ * alphabetical order that says nothing about the corpus.
+ */
+import { getCollection } from "astro:content";
+
+import Sidebar from "../../components/Sidebar.astro";
+import { SITE } from "../../consts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { numbersFor, published } from "../../lib/post";
+import { buildHubs } from "../../lib/topics";
+
+const posts = published(await getCollection("blog"));
+const numbers = numbersFor(posts);
+const hubs = [...buildHubs(posts).values()].sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+
+const totalLinks = hubs.reduce((a, h) => a + h.count, 0);
+---
+
+<BaseLayout
+  title={`Topics — ${SITE.name}`}
+  description={`Every subject this site has priced, gathered into ${hubs.length} topic pages. Each one collects the analyses that share a subject, with the figures and the documents behind them.`}
+>
+  <div class="container">
+    <main id="main">
+      <div class="page-head">
+        <h1>Topics</h1>
+        <p>
+          {hubs.length} subjects, gathered from {posts.length} analyses. A topic page collects
+          everything published on one subject, newest first, and links sideways to the neighbouring
+          subjects — which is the difference between a list of articles and a map of them.
+        </p>
+      </div>
+
+      <p class="topic-silos" style="margin-top:14px;">
+        Every analysis also sits in one of the five sections:{" "}
+        <a href="/category/trade-policy/">trade policy</a>, <a href="/category/platforms/">platforms</a>,{" "}
+        <a href="/category/supply-chain/">supply chain</a>, <a href="/category/sourcing/">sourcing</a>{" "}
+        and <a href="/category/logistics/">logistics</a>.
+      </p>
+
+      <h2 class="section-title" style="margin-top:32px;">All topics</h2>
+
+      <ul class="topic-index">
+        {
+          hubs.map((h) => (
+            <li>
+              <a href={`/topic/${h.slug}/`}>
+                {h.tag} <span class="topic-index-count">{h.count}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="empty-note" style="margin-top:26px;">
+        {totalLinks} subject links across {hubs.length} topics. A subject with a single analysis does
+        not appear here: one piece is a tag, not a topic, and the list grows on its own as the
+        corpus does.
+      </p>
+    </main>
+
+    <Sidebar numbers={numbers} />
+  </div>
+</BaseLayout>
+
+<style>
+  .topic-index {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px 11px;
+  }
+  .topic-index a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 15px;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    font-size: 14.5px;
+    text-decoration: none;
+    /* 44px minimum touch target, the rule the mobile layout gate enforces. */
+    min-height: 44px;
+  }
+  .topic-index a:hover {
+    border-color: var(--c-red);
+  }
+  .topic-index-count {
+    font-size: 11.5px;
+    color: var(--c-ink-4);
+    background: var(--c-line-faint);
+    border-radius: 999px;
+    padding: 1px 8px;
+  }
+</style>

@@ -1,0 +1,279 @@
+---
+/**
+ * Site search, entirely in the browser.
+ *
+ * ## The shape
+ *
+ * A form that works without JavaScript — it submits to `?q=` and the page reloads — and a script that upgrades it
+ * to instant results when JavaScript is available. That ordering matters: a search box that does nothing until a
+ * bundle parses is worse than no search box, and the CSP here hashes every inline script, so the upgrade path has
+ * to be one Astro is willing to hash.
+ *
+ * ## Why it fetches on focus and not on load
+ *
+ * The index is about thirty kilobytes. Fetching it on every page load would spend that on every reader, most of
+ * whom will not search. Fetching it the first time the box is focused spends it on the readers who will, and by
+ * then they have already committed to the interaction.
+ *
+ * ## Why the results are a listbox
+ *
+ * Arrow keys and Enter have to work, and a screen reader has to say how many results there are. `role="listbox"`
+ * with `aria-expanded` is the smallest markup that gives both, and it is what a native combobox does.
+ */
+---
+
+<div class="site-search" data-search>
+  <form class="search-form" method="get" action="/search/" role="search">
+    <label class="sr-only" for="search-input">Search articles</label>
+    <input
+      id="search-input"
+      type="search"
+      name="q"
+      placeholder="Search articles…"
+      autocomplete="off"
+      spellcheck="false"
+      role="combobox"
+      aria-expanded="false"
+      aria-controls="search-results"
+      aria-autocomplete="list"
+      data-search-input
+    />
+  </form>
+  <div class="search-panel" data-search-panel hidden>
+    <ul id="search-results" role="listbox" aria-label="Search results" data-search-results></ul>
+    <p class="search-empty" data-search-empty hidden>No article matches that.</p>
+  </div>
+</div>
+
+<script>
+  /*
+   * Fetched once, on first focus. Filtering is a loop over the array; the corpus is tens of items and will be
+   * hundreds, and at that size a linear scan is faster than an index nobody maintains.
+   */
+  const root = document.querySelector<HTMLElement>("[data-search]");
+  const input = root?.querySelector<HTMLInputElement>("[data-search-input]");
+  const panel = root?.querySelector<HTMLElement>("[data-search-panel]");
+  const list = root?.querySelector<HTMLUListElement>("[data-search-results]");
+  const empty = root?.querySelector<HTMLElement>("[data-search-empty]");
+
+  type Item = { s: string; t: string; d: string; c: string; n: number; p: string; g: string };
+
+  let items: Item[] | null = null;
+  let loading: Promise<void> | null = null;
+  let active = -1;
+
+  async function load() {
+    if (items) return;
+    loading ??= fetch("/search-index.json")
+      .then((r) => (r.ok ? r.json() : { items: [] }))
+      .then((j) => {
+        items = Array.isArray(j.items) ? j.items : [];
+      })
+      .catch(() => {
+        items = [];
+      });
+    await loading;
+  }
+
+  function score(it: Item, q: string): number {
+    const t = it.t.toLowerCase();
+    const hay = `${t} ${it.d} ${it.g}`.toLowerCase();
+    if (!hay.includes(q)) return 0;
+    /* A title match outranks a body match, and a prefix outranks a mention. */
+    if (t.startsWith(q)) return 3;
+    if (t.includes(q)) return 2;
+    return 1;
+  }
+
+  function render(q: string) {
+    if (!list || !panel || !empty) return;
+    const query = q.trim().toLowerCase();
+    list.innerHTML = "";
+    active = -1;
+
+    if (query.length < 2) {
+      panel.hidden = true;
+      empty.hidden = true;
+      input?.setAttribute("aria-expanded", "false");
+      return;
+    }
+
+    const hits = (items ?? [])
+      .map((it) => ({ it, s: score(it, query) }))
+      .filter((x) => x.s > 0)
+      .sort((a, b) => b.s - a.s || b.it.n - a.it.n)
+      .slice(0, 8);
+
+    panel.hidden = false;
+    input?.setAttribute("aria-expanded", "true");
+    empty.hidden = hits.length > 0;
+
+    for (const { it } of hits) {
+      const li = document.createElement("li");
+      li.setAttribute("role", "option");
+      const a = document.createElement("a");
+      a.href = `/blog/${it.s}/`;
+      a.innerHTML = "";
+      const title = document.createElement("strong");
+      title.textContent = it.t;
+      const meta = document.createElement("span");
+      meta.className = "search-meta";
+      meta.textContent = `${it.c} · ${it.p}`;
+      a.append(title, meta);
+      li.append(a);
+      list.append(li);
+    }
+  }
+
+  function move(delta: number) {
+    if (!list) return;
+    const options = Array.from(list.querySelectorAll("li"));
+    if (!options.length) return;
+    active = (active + delta + options.length) % options.length;
+    options.forEach((li, i) => li.setAttribute("aria-selected", i === active ? "true" : "false"));
+    (options[active].querySelector("a") as HTMLElement | null)?.scrollIntoView({ block: "nearest" });
+  }
+
+  input?.addEventListener("focus", () => {
+    void load();
+  });
+
+  input?.addEventListener("input", () => {
+    void load().then(() => render(input.value));
+  });
+
+  input?.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      move(1);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      move(-1);
+    } else if (e.key === "Enter") {
+      const options = list?.querySelectorAll("li") ?? [];
+      if (active >= 0 && options[active]) {
+        e.preventDefault();
+        (options[active].querySelector("a") as HTMLAnchorElement | null)?.click();
+      }
+      /* Otherwise the form submits to /search/, which works without any of this. */
+    } else if (e.key === "Escape") {
+      panel?.setAttribute("hidden", "");
+      input.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  /* A click anywhere else closes the panel without clearing the query. */
+  document.addEventListener("click", (e) => {
+    if (root && e.target instanceof Node && !root.contains(e.target)) {
+      panel?.setAttribute("hidden", "");
+      input?.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  /* Ctrl/Cmd-K, the shortcut every reader of documentation already has in their fingers. */
+  document.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      input?.focus();
+    }
+  });
+</script>
+
+<style>
+  .site-search {
+    position: relative;
+    flex: 1 1 12rem;
+    max-width: 20rem;
+  }
+
+  .search-form {
+    margin: 0;
+  }
+
+  .site-search input {
+    width: 100%;
+    padding: 0.42rem 0.7rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--c-ink);
+    background: var(--c-surface);
+    border: 1px solid var(--c-field-border, var(--c-line));
+    border-radius: 6px;
+  }
+
+  .site-search input::placeholder {
+    color: var(--c-ink-5);
+  }
+
+  .site-search input:focus-visible {
+    outline: 2px solid var(--c-navy);
+    outline-offset: 1px;
+  }
+
+  .search-panel {
+    position: absolute;
+    z-index: 40;
+    top: calc(100% + 0.35rem);
+    left: 0;
+    right: 0;
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+    border-radius: 8px;
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .search-panel ul {
+    margin: 0;
+    padding: 0.25rem;
+    list-style: none;
+    max-height: 22rem;
+    overflow-y: auto;
+  }
+
+  .search-panel li a {
+    display: block;
+    padding: 0.45rem 0.6rem;
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--c-ink);
+  }
+
+  .search-panel li a:hover,
+  .search-panel li[aria-selected="true"] a {
+    background: var(--c-surface-alt);
+  }
+
+  .search-panel strong {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .search-meta {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    color: var(--c-ink-5);
+  }
+
+  .search-empty {
+    margin: 0;
+    padding: 0.7rem;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: var(--c-ink-5);
+  }
+
+  @media (max-width: 767px) {
+    /* The nav is a vertical list on a phone; the box belongs under the logo, not beside the toggle. */
+    .site-search {
+      order: 3;
+      flex-basis: 100%;
+      max-width: none;
+      margin-top: 0.6rem;
+    }
+  }
+</style>

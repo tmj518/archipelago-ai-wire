@@ -1,28 +1,46 @@
 {
-  "name": "my-policy-news-malaysia",
-  "type": "module",
+  "name": "china-cross-border-insider",
   "version": "0.1.0",
   "private": true,
-  "description": "单人全自动多国AI时政内容出海 - 一期马来西亚英文站 (Astro + Cloudflare Pages)",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "qa": "node tools/qa-check.mjs",
-    "serp": "node tools/serp-check.mjs",
-    "reviewer": "node tools/reviewer-check.mjs --all",
-    "preflight": "node tools/preflight.mjs"
+    "og": "node scripts/make-og-image.mjs",
+    "qa": "node tools/qa-check.mjs --all",
+    "review": "node tools/reviewer-check.mjs --all",
+    "qa:serp": "node tools/serp-check.mjs --all --serp=file:data/serp",
+    "landed": "node tools/landed-cost.mjs",
+    "guarantee": "node tools/guarantee-cost.mjs",
+    "hold": "node tools/hold-cost.mjs",
+    "rebate": "node tools/rebate-passthrough.mjs",
+    "freight": "node tools/freight-index.mjs",
+    "deposit": "node tools/deposit-risk.mjs",
+    "mip": "node tools/mip-floor.mjs",
+    "peritem": "node tools/per-item-charge.mjs",
+    "drift": "node tools/price-drift.mjs",
+    "xduty": "node tools/export-duty.mjs",
+    "keywords": "node tools/keyword-miner.mjs",
+    "keywords:pilot": "node tools/keyword-miner.mjs --limit=10 --seed-limit=6",
+    "gsc": "node tools/gsc-report.mjs",
+    "gsc:90": "node tools/gsc-report.mjs --days=90",
+    "r2": "node tools/r2-upload.mjs",
+    "pdf": "node tools/pdf-text.mjs"
   },
   "dependencies": {
-    "astro": "^7.3.7"
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.5"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "gray-matter": "^4.0.3",
-    "tailwindcss": "^4.3.3"
-  },
-  "engines": {
-    "node": ">=22"
+    "@astrojs/check": "^0.9.10",
+    "@napi-rs/canvas": "^1.0.9",
+    "pdf-parse": "^2.4.5",
+    "typescript": "^6.0.3"
   }
 }

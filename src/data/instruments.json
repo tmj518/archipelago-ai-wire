@@ -1,0 +1,3334 @@
+{
+  "generated": "2026-10-26",
+  "instruments": [
+    {
+      "id": "european-commission-directorate-general-for-trade-and-econom",
+      "source": "European Commission Directorate-General for Trade and Economic Security",
+      "figures": [
+        {
+          "articleSlug": "eu-fdi-screening-2025-notification-rates-importer-compliance-2026",
+          "articleNum": 40,
+          "value": "40%",
+          "unit": "year-on-year increase in FDI notifications to the EU cooperation mechanism",
+          "period": "2024 to 2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2025-notification-rates-importer-compliance-2026",
+          "articleNum": 40,
+          "value": "667",
+          "unit": "total FDI investment notifications submitted to the EU in 2025",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2025-notification-rates-importer-compliance-2026",
+          "articleNum": 40,
+          "value": "88%",
+          "unit": "share of 2025 FDI notification cases closed within 15 days",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2025-notification-rates-importer-compliance-2026",
+          "articleNum": 40,
+          "value": "27%",
+          "unit": "share of 2025 FDI notifications belonging to the manufacturing sector",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2025-notification-rates-importer-compliance-2026",
+          "articleNum": 40,
+          "value": "12%",
+          "unit": "share of 2025 notified FDI investments that required an in-depth security risk assessment",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2025-notification-rates-importer-compliance-2026",
+          "articleNum": 40,
+          "value": "less than 2%",
+          "unit": "share of FDI notification cases where the Commission issued a formal opinion",
+          "period": "2023, 2024, 2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2025-notification-rates-importer-compliance-2026",
+          "articleNum": 40,
+          "value": "17 January 2028",
+          "unit": "effective application date for the new EU Foreign Investment Screening Regulation",
+          "period": "2028 onwards",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2026-timeline-notification-rates-importer",
+          "articleNum": 43,
+          "value": "40%",
+          "unit": "annual percentage increase in FDI notifications to the EU cooperation mechanism",
+          "period": "2024 to 2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2026-timeline-notification-rates-importer",
+          "articleNum": 43,
+          "value": "667",
+          "unit": "total FDI investment notifications submitted to the EU mechanism",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2026-timeline-notification-rates-importer",
+          "articleNum": 43,
+          "value": "88%",
+          "unit": "share of notified FDI cases closed within the standard processing window",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2026-timeline-notification-rates-importer",
+          "articleNum": 43,
+          "value": "27%",
+          "unit": "share of all 2025 FDI notifications belonging to the manufacturing sector",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2026-timeline-notification-rates-importer",
+          "articleNum": 43,
+          "value": "12%",
+          "unit": "share of notified FDI investments requiring an in-depth security risk assessment",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2026-timeline-notification-rates-importer",
+          "articleNum": 43,
+          "value": "less than 2%",
+          "unit": "share of notified FDI cases that received a formal opinion from the European Commission",
+          "period": "2023, 2024, 2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2026-timeline-notification-rates-importer",
+          "articleNum": 43,
+          "value": "17 January 2028",
+          "unit": "effective application date of the new EU Foreign Investment Screening Regulation",
+          "period": "onwards",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2028-regime-timing-risk",
+          "articleNum": 46,
+          "value": "40%",
+          "unit": "increase in notifications to the EU cooperation mechanism",
+          "period": "between 2024 and 2025",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2028-regime-timing-risk",
+          "articleNum": 46,
+          "value": "667",
+          "unit": "investments notified to the Commission by EU Member States",
+          "period": "2025",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2028-regime-timing-risk",
+          "articleNum": 46,
+          "value": "477",
+          "unit": "notifications to the Commission",
+          "period": "2024",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2028-regime-timing-risk",
+          "articleNum": 46,
+          "value": "88%",
+          "unit": "notified cases closed within 15 days",
+          "period": "2025",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2028-regime-timing-risk",
+          "articleNum": 46,
+          "value": "15 days",
+          "unit": "closure period for 88% of notified cases",
+          "period": "2025",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2028-regime-timing-risk",
+          "articleNum": 46,
+          "value": "12%",
+          "unit": "notified investments requiring an in-depth security risk assessment",
+          "period": "2025",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-2028-regime-timing-risk",
+          "articleNum": 46,
+          "value": "less than 2%",
+          "unit": "cases in which the Commission issued opinions",
+          "period": "2025, consistent with 2024 and 2023",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-case-timing-fisr-2028",
+          "articleNum": 47,
+          "value": "40%",
+          "unit": "increase in notifications to the EU FDI cooperation mechanism",
+          "period": "between 2024 and 2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-case-timing-fisr-2028",
+          "articleNum": 47,
+          "value": "667",
+          "unit": "investments notified to the Commission by EU Member States",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-case-timing-fisr-2028",
+          "articleNum": 47,
+          "value": "477",
+          "unit": "notifications to the Commission by EU Member States",
+          "period": "2024",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-case-timing-fisr-2028",
+          "articleNum": 47,
+          "value": "88%",
+          "unit": "notified cases closed",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-case-timing-fisr-2028",
+          "articleNum": 47,
+          "value": "15",
+          "unit": "days within which 88% of notified cases were closed",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-case-timing-fisr-2028",
+          "articleNum": 47,
+          "value": "12%",
+          "unit": "notified investments requiring an in-depth security risk assessment",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-case-timing-fisr-2028",
+          "articleNum": 47,
+          "value": "less than 2%",
+          "unit": "cases in which the Commission issued opinions",
+          "period": "2025, consistent with 2024 and 2023",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-20"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-rules-2028-in-depth-review-risk",
+          "articleNum": 0,
+          "value": "40",
+          "unit": "percent",
+          "period": "reported period",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-rules-2028-in-depth-review-risk",
+          "articleNum": 0,
+          "value": "667",
+          "unit": "notifications",
+          "period": "reported period",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-rules-2028-in-depth-review-risk",
+          "articleNum": 0,
+          "value": "477",
+          "unit": "notifications",
+          "period": "reported comparison period",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-rules-2028-in-depth-review-risk",
+          "articleNum": 0,
+          "value": "88",
+          "unit": "percent",
+          "period": "reported period",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-rules-2028-in-depth-review-risk",
+          "articleNum": 0,
+          "value": "15",
+          "unit": "calendar days",
+          "period": "reported period",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-rules-2028-in-depth-review-risk",
+          "articleNum": 0,
+          "value": "12",
+          "unit": "percent",
+          "period": "reported period",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-rules-2028-in-depth-review-risk",
+          "articleNum": 0,
+          "value": "53",
+          "unit": "percent",
+          "period": "reported period",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-rules-2028-in-depth-review-risk",
+          "articleNum": 0,
+          "value": "less than 2",
+          "unit": "percent",
+          "period": "reported period",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-tariff-rate-quotas-price-thresholds-2026",
+          "articleNum": 50,
+          "value": "18 September 2026",
+          "unit": "provisional safeguard imposition and publication date",
+          "period": "from 18 September 2026",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-22"
+        },
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-tariff-rate-quotas-price-thresholds-2026",
+          "articleNum": 50,
+          "value": "March 2026",
+          "unit": "safeguard investigation launch date",
+          "period": "investigation launched March 2026",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-22"
+        },
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-tariff-rate-quotas-price-thresholds-2026",
+          "articleNum": 50,
+          "value": "nine months",
+          "unit": "normal safeguard investigation completion period",
+          "period": "from investigation launch",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-22"
+        },
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-tariff-rate-quotas-price-thresholds-2026",
+          "articleNum": 50,
+          "value": "11 months",
+          "unit": "exceptional extended investigation completion period",
+          "period": "from investigation launch in exceptional circumstances",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-22"
+        },
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-tariff-rate-quotas-price-thresholds-2026",
+          "articleNum": 50,
+          "value": "15",
+          "unit": "Member States needed for a qualified majority in the Safeguard Committee",
+          "period": "vote on definitive measures",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-22"
+        },
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-tariff-rate-quotas-price-thresholds-2026",
+          "articleNum": 50,
+          "value": "65%",
+          "unit": "EU population representation needed for a qualified majority",
+          "period": "vote on definitive measures",
+          "source": "European Commission, Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-22"
+        },
+        {
+          "articleSlug": "eu-pea-protein-anti-dumping-definitive-duties-2026",
+          "articleNum": 38,
+          "value": "40.5%",
+          "unit": "minimum definitive anti-dumping duty rate",
+          "period": "effective from 25 September 2026 for 5 years",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "eu-pea-protein-anti-dumping-definitive-duties-2026",
+          "articleNum": 38,
+          "value": "67.1%",
+          "unit": "maximum definitive anti-dumping duty rate",
+          "period": "effective from 25 September 2026 for 5 years",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "eu-pea-protein-anti-dumping-definitive-duties-2026",
+          "articleNum": 38,
+          "value": "five years",
+          "unit": "duration of definitive anti-dumping duties",
+          "period": "starting 25 September 2026",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "eu-pea-protein-anti-dumping-definitive-duties-2026",
+          "articleNum": 38,
+          "value": "29 April 2026",
+          "unit": "effective start date of provisional anti-dumping duties for Chinese pea protein",
+          "period": "29 April 2026 to 24 September 2026",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "eu-pea-protein-anti-dumping-definitive-duties-2026",
+          "articleNum": 38,
+          "value": "€175m",
+          "unit": "total annual value of the EU pea protein market",
+          "period": "2026",
+          "source": "European Commission Directorate-General for Trade and Economic Security",
+          "retrieved": "2026-10-18"
+        }
+      ],
+      "articleNums": [
+        0,
+        38,
+        40,
+        43,
+        46,
+        47,
+        50
+      ],
+      "articleSlugs": [
+        "eu-fdi-screening-2025-notification-rates-importer-compliance-2026",
+        "eu-fdi-screening-2026-timeline-notification-rates-importer",
+        "eu-fdi-screening-2028-regime-timing-risk",
+        "eu-fdi-screening-case-timing-fisr-2028",
+        "eu-fdi-screening-rules-2028-in-depth-review-risk",
+        "eu-goes-provisional-safeguard-tariff-rate-quotas-price-thresholds-2026",
+        "eu-pea-protein-anti-dumping-definitive-duties-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-sixth-annual-fdi-screening-report",
+      "source": "European Commission, sixth annual FDI screening report",
+      "figures": [
+        {
+          "articleSlug": "eu-fdi-screening-notification-surge-2026-2026-10-19",
+          "articleNum": 45,
+          "value": "40%",
+          "unit": "increase in notifications to the EU cooperation mechanism between 2024 and 2025",
+          "period": "2024 to 2025",
+          "source": "European Commission, sixth annual FDI screening report",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-notification-surge-2026-2026-10-19",
+          "articleNum": 45,
+          "value": "667",
+          "unit": "investments notified to the Commission in 2025",
+          "period": "2025",
+          "source": "European Commission, sixth annual FDI screening report",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-notification-surge-2026-2026-10-19",
+          "articleNum": 45,
+          "value": "477",
+          "unit": "investments notified to the Commission in 2024",
+          "period": "2024",
+          "source": "European Commission, sixth annual FDI screening report",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-notification-surge-2026-2026-10-19",
+          "articleNum": 45,
+          "value": "88%",
+          "unit": "share of notified cases closed within 15 days",
+          "period": "2025",
+          "source": "European Commission, sixth annual FDI screening report",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-notification-surge-2026-2026-10-19",
+          "articleNum": 45,
+          "value": "12%",
+          "unit": "share of notified investments requiring an in-depth security risk assessment",
+          "period": "2025",
+          "source": "European Commission, sixth annual FDI screening report",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-notification-surge-2026-2026-10-19",
+          "articleNum": 45,
+          "value": "53%",
+          "unit": "share of in-depth assessments in manufacturing",
+          "period": "2025",
+          "source": "European Commission, sixth annual FDI screening report",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-notification-threshold-2026",
+          "articleNum": 42,
+          "value": "667",
+          "unit": "investments notified to the Commission in 2025",
+          "period": "2025",
+          "source": "European Commission, sixth annual FDI screening report",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-notification-threshold-2026",
+          "articleNum": 42,
+          "value": "477",
+          "unit": "notifications in 2024",
+          "period": "2024",
+          "source": "European Commission, sixth annual FDI screening report",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-notification-threshold-2026",
+          "articleNum": 42,
+          "value": "40%",
+          "unit": "increase in notifications between 2024 and 2025",
+          "period": "2024-2025",
+          "source": "European Commission, sixth annual FDI screening report",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-notification-threshold-2026",
+          "articleNum": 42,
+          "value": "88%",
+          "unit": "share of notified cases closed within 15 days",
+          "period": "2025",
+          "source": "European Commission, sixth annual FDI screening report",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-notification-threshold-2026",
+          "articleNum": 42,
+          "value": "12%",
+          "unit": "share of notified investments requiring in-depth security risk assessment",
+          "period": "2025",
+          "source": "European Commission, sixth annual FDI screening report",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "eu-fdi-screening-notification-threshold-2026",
+          "articleNum": 42,
+          "value": "53%",
+          "unit": "share of in-depth assessments in manufacturing",
+          "period": "2025",
+          "source": "European Commission, sixth annual FDI screening report",
+          "retrieved": "2026-10-19"
+        }
+      ],
+      "articleNums": [
+        42,
+        45
+      ],
+      "articleSlugs": [
+        "eu-fdi-screening-notification-surge-2026-2026-10-19",
+        "eu-fdi-screening-notification-threshold-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "ministry-of-commerce-of-china",
+      "source": "Ministry of Commerce of China",
+      "figures": [
+        {
+          "articleSlug": "brazil-beef-import-additional-55-percent-tariff-october-2026",
+          "articleNum": 36,
+          "value": "100%",
+          "unit": "share of Brazil's 2026 beef safeguard import quota reached",
+          "period": "2026-09-29",
+          "source": "Ministry of Commerce of China",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "brazil-beef-import-additional-55-percent-tariff-october-2026",
+          "articleNum": 36,
+          "value": "3",
+          "unit": "days after quota is fully filled before additional tariff takes effect",
+          "period": "2026",
+          "source": "Ministry of Commerce of China",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "brazil-beef-import-additional-55-percent-tariff-october-2026",
+          "articleNum": 36,
+          "value": "55%",
+          "unit": "additional ad valorem import tariff rate applied to Brazilian beef",
+          "period": "from 2026-10-01 00:00 onwards",
+          "source": "Ministry of Commerce of China",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "brazil-beef-import-additional-55-percent-tariff-october-2026",
+          "articleNum": 36,
+          "value": "20",
+          "unit": "days for interested parties to register for the p-nitrotoluene anti-dumping investigation",
+          "period": "from 2026-10-03 onwards",
+          "source": "Ministry of Commerce of China",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "brazil-beef-import-additional-55-percent-tariff-october-2026",
+          "articleNum": 36,
+          "value": "10",
+          "unit": "working days after registration deadline for authorities to release anti-dumping questionnaires",
+          "period": "2026",
+          "source": "Ministry of Commerce of China",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "brazil-beef-import-additional-55-percent-tariff-october-2026",
+          "articleNum": 36,
+          "value": "12",
+          "unit": "maximum months for completion of the p-nitrotoluene anti-dumping investigation",
+          "period": "2026-10-03 to 2027-10-03",
+          "source": "Ministry of Commerce of China",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "brazil-beef-import-additional-55-percent-tariff-october-2026",
+          "articleNum": 36,
+          "value": "6",
+          "unit": "additional months allowed for extended p-nitrotoluene anti-dumping investigation",
+          "period": "2027",
+          "source": "Ministry of Commerce of China",
+          "retrieved": "2026-10-18"
+        }
+      ],
+      "articleNums": [
+        36
+      ],
+      "articleSlugs": [
+        "brazil-beef-import-additional-55-percent-tariff-october-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "national-bureau-of-statistics-of-china-producer-prices-for",
+      "source": "National Bureau of Statistics of China, Producer prices for industrial products, September 2026, published 14 October 2026",
+      "figures": [
+        {
+          "articleSlug": "china-producer-price-split-copper-ferrous-2026",
+          "articleNum": 35,
+          "value": "5.0",
+          "unit": "percent — year-on-year rise in China's producer price index for manufactured goods",
+          "period": "September 2026",
+          "source": "National Bureau of Statistics of China, Producer prices for industrial products, September 2026, published 14 October 2026",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-producer-price-split-copper-ferrous-2026",
+          "articleNum": 35,
+          "value": "20.0",
+          "unit": "percent — year-on-year rise in purchased prices of non-ferrous metals and wire",
+          "period": "September 2026",
+          "source": "National Bureau of Statistics of China, Producer prices for industrial products, September 2026, published 14 October 2026",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-producer-price-split-copper-ferrous-2026",
+          "articleNum": 35,
+          "value": "-0.4",
+          "unit": "percent — year-on-year change in purchased prices of ferrous metals",
+          "period": "September 2026",
+          "source": "National Bureau of Statistics of China, Producer prices for industrial products, September 2026, published 14 October 2026",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-producer-price-split-copper-ferrous-2026",
+          "articleNum": 35,
+          "value": "6.9",
+          "unit": "percent — year-on-year rise in purchased prices paid by Chinese industry",
+          "period": "September 2026",
+          "source": "National Bureau of Statistics of China, Producer prices for industrial products, September 2026, published 14 October 2026",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-producer-price-split-copper-ferrous-2026",
+          "articleNum": 35,
+          "value": "3.7",
+          "unit": "percent — month-on-month rise in purchased prices of fuel and power",
+          "period": "September 2026",
+          "source": "National Bureau of Statistics of China, Producer prices for industrial products, September 2026, published 14 October 2026",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-producer-price-split-copper-ferrous-2026",
+          "articleNum": 35,
+          "value": "2.4",
+          "unit": "percent — month-on-month rise in purchased prices of chemical raw materials",
+          "period": "September 2026",
+          "source": "National Bureau of Statistics of China, Producer prices for industrial products, September 2026, published 14 October 2026",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-producer-price-split-copper-ferrous-2026",
+          "articleNum": 35,
+          "value": "35.3",
+          "unit": "percent — year-on-year rise in prices of coal mining and washing",
+          "period": "September 2026",
+          "source": "National Bureau of Statistics of China, Producer prices for industrial products, September 2026, published 14 October 2026",
+          "retrieved": "2026-10-18"
+        }
+      ],
+      "articleNums": [
+        35
+      ],
+      "articleSlugs": [
+        "china-producer-price-split-copper-ferrous-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-2025-annual-trade-defence-report-news-re",
+      "source": "European Commission, 2025 Annual Trade Defence Report news release",
+      "figures": [
+        {
+          "articleSlug": "eu-trade-defence-2025-retroactive-duty-risk",
+          "articleNum": 51,
+          "value": "32",
+          "unit": "new trade-defence investigations initiated",
+          "period": "2025",
+          "source": "European Commission, 2025 Annual Trade Defence Report news release",
+          "retrieved": "2026-10-23"
+        },
+        {
+          "articleSlug": "eu-trade-defence-2025-retroactive-duty-risk",
+          "articleNum": 51,
+          "value": "26",
+          "unit": "definitive trade-defence measures imposed",
+          "period": "2025",
+          "source": "European Commission, 2025 Annual Trade Defence Report news release",
+          "retrieved": "2026-10-23"
+        },
+        {
+          "articleSlug": "eu-trade-defence-2025-retroactive-duty-risk",
+          "articleNum": 51,
+          "value": "232",
+          "unit": "trade-defence measures in place",
+          "period": "end of 2025",
+          "source": "European Commission, 2025 Annual Trade Defence Report news release",
+          "retrieved": "2026-10-23"
+        },
+        {
+          "articleSlug": "eu-trade-defence-2025-retroactive-duty-risk",
+          "articleNum": 51,
+          "value": "220",
+          "unit": "definitive trade-defence measures in place",
+          "period": "end of 2025",
+          "source": "European Commission, 2025 Annual Trade Defence Report news release",
+          "retrieved": "2026-10-23"
+        },
+        {
+          "articleSlug": "eu-trade-defence-2025-retroactive-duty-risk",
+          "articleNum": 51,
+          "value": "27",
+          "unit": "anti-dumping cases in which provisional duties were imposed",
+          "period": "2025",
+          "source": "European Commission, 2025 Annual Trade Defence Report news release",
+          "retrieved": "2026-10-23"
+        },
+        {
+          "articleSlug": "eu-trade-defence-2025-retroactive-duty-risk",
+          "articleNum": 51,
+          "value": "three",
+          "unit": "cases in which measures were applied retroactively",
+          "period": "2025",
+          "source": "European Commission, 2025 Annual Trade Defence Report news release",
+          "retrieved": "2026-10-23"
+        }
+      ],
+      "articleNums": [
+        51
+      ],
+      "articleSlugs": [
+        "eu-trade-defence-2025-retroactive-duty-risk"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-2026-coordinated-product-safety-sweep-re-5",
+      "source": "European Commission, 2026 coordinated product safety sweep results, published 8 September 2026",
+      "figures": [
+        {
+          "articleSlug": "eu-gpsr-sweep-2026-marketplace-listings",
+          "articleNum": 5,
+          "value": "1,700",
+          "unit": "online listings examined (approximately)",
+          "period": "sweep conducted May to July 2026",
+          "source": "European Commission, 2026 coordinated product safety sweep results, published 8 September 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "eu-gpsr-sweep-2026-marketplace-listings",
+          "articleNum": 5,
+          "value": "35",
+          "unit": "online marketplaces checked",
+          "period": "sweep conducted May to July 2026",
+          "source": "European Commission, 2026 coordinated product safety sweep results, published 8 September 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "eu-gpsr-sweep-2026-marketplace-listings",
+          "articleNum": 5,
+          "value": "560",
+          "unit": "enforcement orders sent to marketplaces for non-compliant listings",
+          "period": "following the 2026 sweep",
+          "source": "European Commission, 2026 coordinated product safety sweep results, published 8 September 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "eu-gpsr-sweep-2026-marketplace-listings",
+          "articleNum": 5,
+          "value": "58",
+          "unit": "percent of listings showing manufacturer, EU responsible person and product identification together",
+          "period": "2026 sweep",
+          "source": "European Commission, 2026 coordinated product safety sweep results, published 8 September 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "eu-gpsr-sweep-2026-marketplace-listings",
+          "articleNum": 5,
+          "value": "91",
+          "unit": "percent of marketplaces registered on the Safety Gate Portal, against 53 percent in 2025",
+          "period": "2026 sweep",
+          "source": "European Commission, 2026 coordinated product safety sweep results, published 8 September 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "eu-gpsr-sweep-2026-marketplace-listings",
+          "articleNum": 5,
+          "value": "100",
+          "unit": "percent of marketplaces designating a single consumer contact point, against 64 percent in 2025",
+          "period": "2026 sweep",
+          "source": "European Commission, 2026 coordinated product safety sweep results, published 8 September 2026",
+          "retrieved": "2026-10-02"
+        }
+      ],
+      "articleNums": [
+        5
+      ],
+      "articleSlugs": [
+        "eu-gpsr-sweep-2026-marketplace-listings"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-dg-trade-and-economic-security-news-arti",
+      "source": "European Commission, DG Trade and Economic Security news article",
+      "figures": [
+        {
+          "articleSlug": "eu-goes-safeguard-tariff-rate-quota-2026",
+          "articleNum": 49,
+          "value": "18 September 2026",
+          "unit": "date provisional safeguard measures imposed",
+          "period": "from 18 September 2026",
+          "source": "European Commission, DG Trade and Economic Security news article",
+          "retrieved": "2026-10-21"
+        },
+        {
+          "articleSlug": "eu-goes-safeguard-tariff-rate-quota-2026",
+          "articleNum": 49,
+          "value": "nine months",
+          "unit": "normal deadline to complete a safeguard investigation",
+          "period": "from investigation launch in March 2026",
+          "source": "European Commission, DG Trade and Economic Security news article",
+          "retrieved": "2026-10-21"
+        },
+        {
+          "articleSlug": "eu-goes-safeguard-tariff-rate-quota-2026",
+          "articleNum": 49,
+          "value": "11 months",
+          "unit": "extended deadline for a safeguard investigation",
+          "period": "exceptional circumstances",
+          "source": "European Commission, DG Trade and Economic Security news article",
+          "retrieved": "2026-10-21"
+        },
+        {
+          "articleSlug": "eu-goes-safeguard-tariff-rate-quota-2026",
+          "articleNum": 49,
+          "value": "15 EU Member States",
+          "unit": "minimum number of member states needed for qualified majority",
+          "period": "vote on definitive measures",
+          "source": "European Commission, DG Trade and Economic Security news article",
+          "retrieved": "2026-10-21"
+        },
+        {
+          "articleSlug": "eu-goes-safeguard-tariff-rate-quota-2026",
+          "articleNum": 49,
+          "value": "65%",
+          "unit": "share of EU population required for qualified majority",
+          "period": "vote on definitive measures",
+          "source": "European Commission, DG Trade and Economic Security news article",
+          "retrieved": "2026-10-21"
+        },
+        {
+          "articleSlug": "eu-goes-safeguard-tariff-rate-quota-2026",
+          "articleNum": 49,
+          "value": "March 2026",
+          "unit": "month the safeguard investigation was launched",
+          "period": "investigation start",
+          "source": "European Commission, DG Trade and Economic Security news article",
+          "retrieved": "2026-10-21"
+        }
+      ],
+      "articleNums": [
+        49
+      ],
+      "articleSlugs": [
+        "eu-goes-safeguard-tariff-rate-quota-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "general-administration-of-customs-of-the-prc-announcement-no-1",
+      "source": "General Administration of Customs of the PRC, Announcement No. 74 of 2026",
+      "figures": [
+        {
+          "articleSlug": "china-malaysia-origin-data-electronic-december-2026",
+          "articleNum": 1,
+          "value": "74",
+          "unit": "announcement number (2026)",
+          "period": "issued 29 May 2026",
+          "source": "General Administration of Customs of the PRC, Announcement No. 74 of 2026",
+          "retrieved": "2026-10-01"
+        },
+        {
+          "articleSlug": "china-malaysia-origin-data-electronic-december-2026",
+          "articleNum": 1,
+          "value": "4",
+          "unit": "document types covered (RCEP certificates, back-to-back certificates, ACFTA certificates, movement certificates)",
+          "period": "from 1 June 2026",
+          "source": "General Administration of Customs of the PRC, Announcement No. 74 of 2026",
+          "retrieved": "2026-10-01"
+        },
+        {
+          "articleSlug": "china-malaysia-origin-data-electronic-december-2026",
+          "articleNum": 1,
+          "value": "30 November 2026",
+          "unit": "last day manual origin-data entry is accepted as a remedy",
+          "period": "transition window opened 1 June 2026",
+          "source": "General Administration of Customs of the PRC, Announcement No. 74 of 2026",
+          "retrieved": "2026-10-01"
+        },
+        {
+          "articleSlug": "china-malaysia-origin-data-electronic-december-2026",
+          "articleNum": 1,
+          "value": "1 December 2026",
+          "unit": "date a duty guarantee becomes the route to advance release",
+          "period": "from this date onward",
+          "source": "General Administration of Customs of the PRC, Announcement No. 74 of 2026",
+          "retrieved": "2026-10-01"
+        },
+        {
+          "articleSlug": "importing-from-china-documents-checklist",
+          "articleNum": 27,
+          "value": "4",
+          "unit": "document types accepted for electronic origin data under RCEP — certificates of origin, back-to-back certificates, ACFTA certificates and movement certificates",
+          "period": "accepted from 1 June 2026, in the transition window that closes on 30 November 2026",
+          "source": "General Administration of Customs of the PRC, Announcement No. 74 of 2026",
+          "retrieved": "2026-10-01"
+        },
+        {
+          "articleSlug": "importing-from-china-documents-checklist",
+          "articleNum": 27,
+          "value": "1 December 2026",
+          "unit": "the date from which a duty guarantee becomes the route to advance a release before electronic origin data is confirmed",
+          "period": "the day after the transition window closes",
+          "source": "General Administration of Customs of the PRC, Announcement No. 74 of 2026",
+          "retrieved": "2026-10-01"
+        }
+      ],
+      "articleNums": [
+        1,
+        27
+      ],
+      "articleSlugs": [
+        "china-malaysia-origin-data-electronic-december-2026",
+        "importing-from-china-documents-checklist"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "ministry-of-finance-pboc-and-nfra-notice-2026-95",
+      "source": "Ministry of Finance, PBOC and NFRA Notice 财金〔2026〕95号",
+      "figures": [
+        {
+          "articleSlug": "china-home-purchase-loan-interest-subsidy-2026",
+          "articleNum": 41,
+          "value": "1个百分点",
+          "unit": "annual interest subsidy rate on loan principal",
+          "period": "loans issued during the one-year policy window, subsidy for up to 5 years",
+          "source": "Ministry of Finance, PBOC and NFRA Notice 财金〔2026〕95号",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-home-purchase-loan-interest-subsidy-2026",
+          "articleNum": 41,
+          "value": "100万元",
+          "unit": "maximum loan principal per household eligible for subsidy",
+          "period": "policy window from 1 October 2026",
+          "source": "Ministry of Finance, PBOC and NFRA Notice 财金〔2026〕95号",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-home-purchase-loan-interest-subsidy-2026",
+          "articleNum": 41,
+          "value": "120平方米",
+          "unit": "maximum floor area of eligible home",
+          "period": "policy window from 1 October 2026",
+          "source": "Ministry of Finance, PBOC and NFRA Notice 财金〔2026〕95号",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-home-purchase-loan-interest-subsidy-2026",
+          "articleNum": 41,
+          "value": "150万元",
+          "unit": "maximum purchase price of eligible home",
+          "period": "policy window from 1 October 2026",
+          "source": "Ministry of Finance, PBOC and NFRA Notice 财金〔2026〕95号",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-home-purchase-loan-interest-subsidy-2026",
+          "articleNum": 41,
+          "value": "90%",
+          "unit": "central government share of subsidy funding",
+          "period": "policy window from 1 October 2026",
+          "source": "Ministry of Finance, PBOC and NFRA Notice 财金〔2026〕95号",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-home-purchase-loan-interest-subsidy-2026",
+          "articleNum": 41,
+          "value": "10%",
+          "unit": "local government share of subsidy funding",
+          "period": "policy window from 1 October 2026",
+          "source": "Ministry of Finance, PBOC and NFRA Notice 财金〔2026〕95号",
+          "retrieved": "2026-10-18"
+        }
+      ],
+      "articleNums": [
+        41
+      ],
+      "articleSlugs": [
+        "china-home-purchase-loan-interest-subsidy-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "mofcom-announcement-no-44-of-2026",
+      "source": "MOFCOM Announcement No. 44 of 2026",
+      "figures": [
+        {
+          "articleSlug": "china-p-nitrotoluene-eu-anti-dumping-investigation-2026",
+          "articleNum": 34,
+          "value": "20 天",
+          "unit": "days to register as an interested party",
+          "period": "from 2026-10-03 publication",
+          "source": "MOFCOM Announcement No. 44 of 2026",
+          "retrieved": "2026-10-17"
+        },
+        {
+          "articleSlug": "china-p-nitrotoluene-eu-anti-dumping-investigation-2026",
+          "articleNum": 34,
+          "value": "2025 年 7 月 1 日至 2026 年 6 月 30 日",
+          "unit": "dumping investigation period",
+          "period": "dumping period under review",
+          "source": "MOFCOM Announcement No. 44 of 2026",
+          "retrieved": "2026-10-17"
+        },
+        {
+          "articleSlug": "china-p-nitrotoluene-eu-anti-dumping-investigation-2026",
+          "articleNum": 34,
+          "value": "2022 年 1 月 1 日至 2026 年 6 月 30 日",
+          "unit": "injury investigation period",
+          "period": "injury period under review",
+          "source": "MOFCOM Announcement No. 44 of 2026",
+          "retrieved": "2026-10-17"
+        },
+        {
+          "articleSlug": "china-p-nitrotoluene-eu-anti-dumping-investigation-2026",
+          "articleNum": 34,
+          "value": "29042020",
+          "unit": "China customs tariff code covered",
+          "period": "scope of the investigation",
+          "source": "MOFCOM Announcement No. 44 of 2026",
+          "retrieved": "2026-10-17"
+        },
+        {
+          "articleSlug": "china-p-nitrotoluene-eu-anti-dumping-investigation-2026",
+          "articleNum": 34,
+          "value": "10 个工作日",
+          "unit": "working days after registration deadline for questionnaires",
+          "period": "after registration close",
+          "source": "MOFCOM Announcement No. 44 of 2026",
+          "retrieved": "2026-10-17"
+        },
+        {
+          "articleSlug": "china-p-nitrotoluene-eu-anti-dumping-investigation-2026",
+          "articleNum": 34,
+          "value": "6 个月",
+          "unit": "possible extension of the investigation",
+          "period": "beyond 2027-10-03",
+          "source": "MOFCOM Announcement No. 44 of 2026",
+          "retrieved": "2026-10-17"
+        }
+      ],
+      "articleNums": [
+        34
+      ],
+      "articleSlugs": [
+        "china-p-nitrotoluene-eu-anti-dumping-investigation-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "national-bureau-of-statistics-of-china-industrial-producer-p",
+      "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes in August 2026, released 10 September 2026",
+      "figures": [
+        {
+          "articleSlug": "china-input-cost-gap-supplier-price-negotiation-2027",
+          "articleNum": 21,
+          "value": "5.8",
+          "unit": "percent — year-on-year rise in the purchasing price index for industrial producers, the inputs a factory buys",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes in August 2026, released 10 September 2026",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "china-input-cost-gap-supplier-price-negotiation-2027",
+          "articleNum": 21,
+          "value": "3.8",
+          "unit": "percent — year-on-year rise in the producer price index, the prices factories charge at the gate",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes in August 2026, released 10 September 2026",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "china-input-cost-gap-supplier-price-negotiation-2027",
+          "articleNum": 21,
+          "value": "3.2",
+          "unit": "percent — average year-on-year rise in the purchasing price index for industrial producers",
+          "period": "January to August 2026",
+          "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes in August 2026, released 10 September 2026",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "china-input-cost-gap-supplier-price-negotiation-2027",
+          "articleNum": 21,
+          "value": "2.0",
+          "unit": "percent — average year-on-year rise in the producer price index",
+          "period": "January to August 2026",
+          "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes in August 2026, released 10 September 2026",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "china-input-cost-gap-supplier-price-negotiation-2027",
+          "articleNum": 21,
+          "value": "19.8",
+          "unit": "percent — year-on-year rise in purchasing prices for nonferrous metals and cables",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes in August 2026, released 10 September 2026",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "china-input-cost-gap-supplier-price-negotiation-2027",
+          "articleNum": 21,
+          "value": "-0.5",
+          "unit": "percent — year-on-year change in producer prices for consumer goods, a fall",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes in August 2026, released 10 September 2026",
+          "retrieved": "2026-10-07"
+        }
+      ],
+      "articleNums": [
+        21
+      ],
+      "articleSlugs": [
+        "china-input-cost-gap-supplier-price-negotiation-2027"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "presidential-proclamation-11052-91-fr-51975",
+      "source": "Presidential Proclamation 11052, 91 FR 51975",
+      "figures": [
+        {
+          "articleSlug": "proclamation-11052-polysilicon-minimum-import-price",
+          "articleNum": 8,
+          "value": "21",
+          "unit": "US dollars per kilogram — minimum import price for polysilicon",
+          "period": "effective 4 December 2026",
+          "source": "Presidential Proclamation 11052, 91 FR 51975",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "proclamation-11052-polysilicon-minimum-import-price",
+          "articleNum": 8,
+          "value": "100",
+          "unit": "US dollars per kilogram — minimum import price for polysilicon ingots and wafers",
+          "period": "effective 4 December 2026",
+          "source": "Presidential Proclamation 11052, 91 FR 51975",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "proclamation-11052-polysilicon-minimum-import-price",
+          "articleNum": 8,
+          "value": "0.22",
+          "unit": "US dollars per watt — minimum import price for solar cells",
+          "period": "effective 4 December 2026",
+          "source": "Presidential Proclamation 11052, 91 FR 51975",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "proclamation-11052-polysilicon-minimum-import-price",
+          "articleNum": 8,
+          "value": "0.38",
+          "unit": "US dollars per watt — minimum import price for solar modules",
+          "period": "effective 4 December 2026",
+          "source": "Presidential Proclamation 11052, 91 FR 51975",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "proclamation-11052-polysilicon-minimum-import-price",
+          "articleNum": 8,
+          "value": "15",
+          "unit": "percent ad valorem — additional Section 232 duty on covered goods",
+          "period": "entries on or after 12:01 a.m. eastern time on 4 December 2026",
+          "source": "Presidential Proclamation 11052, 91 FR 51975",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "proclamation-11052-polysilicon-minimum-import-price",
+          "articleNum": 8,
+          "value": "8",
+          "unit": "named Trade Agreement Partners (United Kingdom, European Union, Japan, Republic of Korea, Switzerland, Liechtenstein, Mexico, Canada) plus future trade-and-security-agreement partners",
+          "period": "as published 11 August 2026",
+          "source": "Presidential Proclamation 11052, 91 FR 51975",
+          "retrieved": "2026-10-02"
+        }
+      ],
+      "articleNums": [
+        8
+      ],
+      "articleSlugs": [
+        "proclamation-11052-polysilicon-minimum-import-price"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "customs-tariff-commission-of-the-state-council-annex-3",
+      "source": "Customs Tariff Commission of the State Council, Annex 3 export goods tariff schedule, rows 29 and 30",
+      "figures": [
+        {
+          "articleSlug": "china-2026-export-duty-wrought-metals",
+          "articleNum": 11,
+          "value": "40",
+          "unit": "percent — export duty on ferrochrome, the good the announcement names as its lead example",
+          "period": "2026, with no provisional rate",
+          "source": "Customs Tariff Commission of the State Council, Annex 3 export goods tariff schedule, rows 29 and 30",
+          "retrieved": "2026-10-03"
+        },
+        {
+          "articleSlug": "china-2026-export-duty-wrought-metals",
+          "articleNum": 11,
+          "value": "30",
+          "unit": "percent — export duty on copper cathode, reduced to a 10 percent provisional rate",
+          "period": "2026",
+          "source": "Customs Tariff Commission of the State Council, Annex 3 export goods tariff schedule, rows 39 to 46",
+          "retrieved": "2026-10-03"
+        },
+        {
+          "articleSlug": "china-2026-export-duty-wrought-metals",
+          "articleNum": 11,
+          "value": "30",
+          "unit": "percent — export duty on copper waste and scrap, reduced to a 15 percent provisional rate",
+          "period": "2026",
+          "source": "Customs Tariff Commission of the State Council, Annex 3 export goods tariff schedule, row 50",
+          "retrieved": "2026-10-03"
+        },
+        {
+          "articleSlug": "china-2026-export-duty-wrought-metals",
+          "articleNum": 11,
+          "value": "0",
+          "unit": "percent — provisional export duty on every wrought copper line: wire, bar, rod, plate, sheet and strip",
+          "period": "2026, against a nominal rate of 30 percent",
+          "source": "Customs Tariff Commission of the State Council, Annex 3 export goods tariff schedule, rows 51 to 71",
+          "retrieved": "2026-10-03"
+        },
+        {
+          "articleSlug": "china-2026-export-duty-wrought-metals",
+          "articleNum": 11,
+          "value": "0",
+          "unit": "percent — provisional export duty on every wrought aluminium line: bar, rod, profile, wire, plate, sheet and strip",
+          "period": "2026, against a nominal rate of 20 percent",
+          "source": "Customs Tariff Commission of the State Council, Annex 3 export goods tariff schedule, rows 81 to 100",
+          "retrieved": "2026-10-03"
+        }
+      ],
+      "articleNums": [
+        11
+      ],
+      "articleSlugs": [
+        "china-2026-export-duty-wrought-metals"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "national-bureau-of-statistics-of-china-industrial-producer-p-28",
+      "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes, August 2026",
+      "figures": [
+        {
+          "articleSlug": "how-to-tell-a-factory-from-a-trading-company",
+          "articleNum": 28,
+          "value": "5.8",
+          "unit": "per cent — year-on-year rise in the purchasing price index for industrial producers",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes, August 2026",
+          "retrieved": "2026-10-06"
+        },
+        {
+          "articleSlug": "how-to-tell-a-factory-from-a-trading-company",
+          "articleNum": 28,
+          "value": "3.8",
+          "unit": "per cent — year-on-year rise in the producer price index, the price a factory receives",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes, August 2026",
+          "retrieved": "2026-10-06"
+        },
+        {
+          "articleSlug": "how-to-tell-a-factory-from-a-trading-company",
+          "articleNum": 28,
+          "value": "3.2",
+          "unit": "per cent — average year-on-year rise in the purchasing price index, January to August 2026",
+          "period": "year to date, January to August 2026",
+          "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes, August 2026",
+          "retrieved": "2026-10-06"
+        },
+        {
+          "articleSlug": "how-to-tell-a-factory-from-a-trading-company",
+          "articleNum": 28,
+          "value": "-0.5",
+          "unit": "per cent — year-on-year change in producer prices for consumer goods, the output side of the same release",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes, August 2026",
+          "retrieved": "2026-10-06"
+        },
+        {
+          "articleSlug": "how-to-tell-a-factory-from-a-trading-company",
+          "articleNum": 28,
+          "value": "19.8",
+          "unit": "per cent — year-on-year rise in purchasing prices for non-ferrous metals, the input beside the average",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, Industrial Producer Price Indexes, August 2026",
+          "retrieved": "2026-10-06"
+        }
+      ],
+      "articleNums": [
+        28
+      ],
+      "articleSlugs": [
+        "how-to-tell-a-factory-from-a-trading-company"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "national-bureau-of-statistics-of-china-via-xinhua-9",
+      "source": "National Bureau of Statistics of China, via Xinhua, 9 September 2026",
+      "figures": [
+        {
+          "articleSlug": "china-ppi-positive-factory-price-drift",
+          "articleNum": 10,
+          "value": "10.4",
+          "unit": "percent — month-on-month rise in oil extraction prices",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, via Xinhua, 9 September 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-ppi-positive-factory-price-drift",
+          "articleNum": 10,
+          "value": "4.1",
+          "unit": "percent — month-on-month rise in refined petroleum product prices",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, via Xinhua, 9 September 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-ppi-positive-factory-price-drift",
+          "articleNum": 10,
+          "value": "3.5",
+          "unit": "percent — month-on-month rise in electronic circuit manufacturing prices",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, via Xinhua, 9 September 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-ppi-positive-factory-price-drift",
+          "articleNum": 10,
+          "value": "0.31",
+          "unit": "percentage points — combined contribution to the monthly PPI rise from oil extraction, refined petroleum, organic chemical materials and nonferrous metal smelting",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, via Xinhua, 9 September 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-ppi-positive-factory-price-drift",
+          "articleNum": 10,
+          "value": "0.74",
+          "unit": "percentage points — combined downward contribution from the six industries with the largest negative impact",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, via Xinhua, 9 September 2026",
+          "retrieved": "2026-10-02"
+        }
+      ],
+      "articleNums": [
+        10
+      ],
+      "articleSlugs": [
+        "china-ppi-positive-factory-price-drift"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "counted-from-the-annex-to-announcement-no-5-of",
+      "source": "Counted from the annex to Announcement No. 5 of 2026",
+      "figures": [
+        {
+          "articleSlug": "china-zero-tariff-20-african-countries-2026",
+          "articleNum": 29,
+          "value": "22",
+          "unit": "HS chapters covered by the concession, running from chapter 01 to chapter 22 without a gap",
+          "period": "the 2026 schedule",
+          "source": "Counted from the annex to Announcement No. 5 of 2026",
+          "retrieved": "2026-10-12"
+        },
+        {
+          "articleSlug": "china-zero-tariff-20-african-countries-2026",
+          "articleNum": 29,
+          "value": "300",
+          "unit": "tariff lines in chapter 03, fish and crustaceans — the largest single chapter in the concession",
+          "period": "the 2026 schedule",
+          "source": "Counted from the annex to Announcement No. 5 of 2026",
+          "retrieved": "2026-10-12"
+        },
+        {
+          "articleSlug": "china-zero-tariff-20-african-countries-2026",
+          "articleNum": 29,
+          "value": "130",
+          "unit": "tariff lines in chapter 12, oil seeds and oleaginous fruits — the second largest chapter",
+          "period": "the 2026 schedule",
+          "source": "Counted from the annex to Announcement No. 5 of 2026",
+          "retrieved": "2026-10-12"
+        },
+        {
+          "articleSlug": "china-zero-tariff-20-african-countries-2026",
+          "articleNum": 29,
+          "value": "5",
+          "unit": "tariff lines in chapter 22, beverages, spirits and vinegar — the smallest chapter in the concession",
+          "period": "the 2026 schedule",
+          "source": "Counted from the annex to Announcement No. 5 of 2026",
+          "retrieved": "2026-10-12"
+        }
+      ],
+      "articleNums": [
+        29
+      ],
+      "articleSlugs": [
+        "china-zero-tariff-20-african-countries-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "eurasian-economic-commission-announcement-2026-520-ad16r2",
+      "source": "Eurasian Economic Commission announcement 2026/520/AD16R2",
+      "figures": [
+        {
+          "articleSlug": "eaeu-anti-dumping-oil-well-pipe-2026",
+          "articleNum": 26,
+          "value": "9 October 2026",
+          "unit": "the date the Internal Market Protection Department published the announcement",
+          "period": "30 days before the measure takes effect",
+          "source": "Eurasian Economic Commission announcement 2026/520/AD16R2",
+          "retrieved": "2026-10-11"
+        },
+        {
+          "articleSlug": "eaeu-anti-dumping-oil-well-pipe-2026",
+          "articleNum": 26,
+          "value": "2031-10-05",
+          "unit": "the last day the measure runs, inclusive",
+          "period": "five-year extension",
+          "source": "Eurasian Economic Commission announcement 2026/520/AD16R2",
+          "retrieved": "2026-10-11"
+        },
+        {
+          "articleSlug": "eaeu-anti-dumping-oil-well-pipe-2026",
+          "articleNum": 26,
+          "value": "Hunting Energy Services (Wuxi) Co. Ltd.",
+          "unit": "the exporter removed from the price undertaking list by the same decision",
+          "period": "announced 9 October 2026",
+          "source": "Eurasian Economic Commission announcement 2026/520/AD16R2",
+          "retrieved": "2026-10-11"
+        },
+        {
+          "articleSlug": "eaeu-anti-dumping-oil-well-pipe-2026",
+          "articleNum": 26,
+          "value": "7304 22, 7304 23, 7304 24, 7304 29 and 7304 30",
+          "unit": "the Eurasian Customs Union tariff headings the measure covers",
+          "period": "as notified, with the full nine-digit subdivisions listed in the announcement",
+          "source": "Eurasian Economic Commission announcement 2026/520/AD16R2",
+          "retrieved": "2026-10-11"
+        }
+      ],
+      "articleNums": [
+        26
+      ],
+      "articleSlugs": [
+        "eaeu-anti-dumping-oil-well-pipe-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-directorate-general-for-trade-and-econom-48",
+      "source": "European Commission Directorate-General for Trade and Economic Security, GOES safeguard news article",
+      "figures": [
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-trq-price-threshold-2026",
+          "articleNum": 48,
+          "value": "nine months",
+          "unit": "normal period within which a safeguard investigation must be completed",
+          "period": "Investigation launched in March 2026; provisional measures announced 18 September 2026",
+          "source": "European Commission Directorate-General for Trade and Economic Security, GOES safeguard news article",
+          "retrieved": "2026-10-21"
+        },
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-trq-price-threshold-2026",
+          "articleNum": 48,
+          "value": "11 months",
+          "unit": "maximum safeguard investigation period in exceptional circumstances",
+          "period": "Applicable to the safeguard investigation launched in March 2026",
+          "source": "European Commission Directorate-General for Trade and Economic Security, GOES safeguard news article",
+          "retrieved": "2026-10-21"
+        },
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-trq-price-threshold-2026",
+          "articleNum": 48,
+          "value": "15",
+          "unit": "minimum EU Member States required to vote in favour of definitive measures",
+          "period": "When the Commission proposes definitive safeguard measures",
+          "source": "European Commission Directorate-General for Trade and Economic Security, GOES safeguard news article",
+          "retrieved": "2026-10-21"
+        },
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-trq-price-threshold-2026",
+          "articleNum": 48,
+          "value": "65%",
+          "unit": "minimum share of the EU population represented by Member States voting in favour",
+          "period": "When the Commission proposes definitive safeguard measures",
+          "source": "European Commission Directorate-General for Trade and Economic Security, GOES safeguard news article",
+          "retrieved": "2026-10-21"
+        }
+      ],
+      "articleNums": [
+        48
+      ],
+      "articleSlugs": [
+        "eu-goes-provisional-safeguard-trq-price-threshold-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-notice-of-initiation-c-2026-6637-section-30",
+      "source": "European Commission, Notice of initiation C/2026/6637, section 2, Product under investigation",
+      "figures": [
+        {
+          "articleSlug": "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+          "articleNum": 30,
+          "value": "ex 3912 39 85",
+          "unit": "the Combined Nomenclature heading covering the product, with TARIC codes 3912 39 85 30, 3912 39 85 60 and 3912 39 85 90",
+          "period": "classification given in the notice for information and without prejudice to a later change",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 2, Product under investigation",
+          "retrieved": "2026-10-13"
+        },
+        {
+          "articleSlug": "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+          "articleNum": 30,
+          "value": "6",
+          "unit": "the number of distinct cellulose ethers in scope, identified by CAS number rather than by trade name",
+          "period": "methyl cellulose 9004-67-5, hydroxyethyl cellulose 9004-62-0 and 80455-45-4, hydroxyethyl methyl cellulose 9032-42-2, hydroxypropyl methyl cellulose 9004-65-3, ethyl hydroxyethyl cellulose 9004-58-4, and methyl ethyl hydroxyethyl cellulose",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 2, Product under investigation",
+          "retrieved": "2026-10-13"
+        },
+        {
+          "articleSlug": "eu-cellulose-ethers-duty-timeline",
+          "articleNum": 33,
+          "value": "ex 3912 39 85",
+          "unit": "the Combined Nomenclature heading covering the product, with TARIC codes 3912 39 85 30, 3912 39 85 60 and 3912 39 85 90",
+          "period": "classification given in the notice for information and without prejudice to a later change",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 2, Product under investigation",
+          "retrieved": "2026-10-13"
+        },
+        {
+          "articleSlug": "eu-cellulose-ethers-duty-timeline",
+          "articleNum": 33,
+          "value": "6",
+          "unit": "the number of distinct cellulose ethers in scope, identified by CAS number rather than by trade name",
+          "period": "methyl cellulose 9004-67-5, hydroxyethyl cellulose 9004-62-0 and 80455-45-4, hydroxyethyl methyl cellulose 9032-42-2, hydroxypropyl methyl cellulose 9004-65-3, ethyl hydroxyethyl cellulose 9004-58-4, and methyl ethyl hydroxyethyl cellulose",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 2, Product under investigation",
+          "retrieved": "2026-10-13"
+        }
+      ],
+      "articleNums": [
+        30,
+        33
+      ],
+      "articleSlugs": [
+        "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+        "eu-cellulose-ethers-duty-timeline"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "ministry-of-finance-of-the-prc-and-state-taxation",
+      "source": "Ministry of Finance of the PRC and State Taxation Administration, export tax rebate adjustment announcement, January 2026",
+      "figures": [
+        {
+          "articleSlug": "china-export-tax-rebate-removal-battery-solar",
+          "articleNum": 3,
+          "value": "1 April 2026",
+          "unit": "date the export VAT rebate on photovoltaic products was abolished",
+          "period": "announcement published early January 2026",
+          "source": "Ministry of Finance of the PRC and State Taxation Administration, export tax rebate adjustment announcement, January 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-export-tax-rebate-removal-battery-solar",
+          "articleNum": 3,
+          "value": "9 to 6",
+          "unit": "percent — the export VAT rebate rate for battery-related products from 1 April 2026",
+          "period": "effective 1 April 2026",
+          "source": "Ministry of Finance of the PRC and State Taxation Administration, export tax rebate adjustment announcement, January 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-export-tax-rebate-removal-battery-solar",
+          "articleNum": 3,
+          "value": "1 January 2027",
+          "unit": "date the battery-related export VAT rebate is abolished",
+          "period": "second stage of the same announcement",
+          "source": "Ministry of Finance of the PRC and State Taxation Administration, export tax rebate adjustment announcement, January 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-export-tax-rebate-removal-battery-solar",
+          "articleNum": 3,
+          "value": "9",
+          "unit": "percentage points of export value removed from the rebate across both stages",
+          "period": "9% to 6% in April 2026, then 6% to zero in January 2027",
+          "source": "Ministry of Finance of the PRC and State Taxation Administration, export tax rebate adjustment announcement, January 2026",
+          "retrieved": "2026-10-02"
+        }
+      ],
+      "articleNums": [
+        3
+      ],
+      "articleSlugs": [
+        "china-export-tax-rebate-removal-battery-solar"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "mofcom-trade-remedy-bureau-notice-2026-58",
+      "source": "MOFCOM Trade Remedy Bureau notice 商救济进一函〔2026〕58号",
+      "figures": [
+        {
+          "articleSlug": "china-brazil-beef-safeguard-55-percent-tariff-october-2026",
+          "articleNum": 44,
+          "value": "55%",
+          "unit": "additional tariff on top of the applicable tariff rate",
+          "period": "from 00:00 on 1 October 2026",
+          "source": "MOFCOM Trade Remedy Bureau notice 商救济进一函〔2026〕58号",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "china-brazil-beef-safeguard-55-percent-tariff-october-2026",
+          "articleNum": 44,
+          "value": "100%",
+          "unit": "share of the country-specific quota quantity reached",
+          "period": "reached on 29 September 2026",
+          "source": "MOFCOM Trade Remedy Bureau notice 商救济进一函〔2026〕58号",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "china-brazil-beef-safeguard-55-percent-tariff-october-2026",
+          "articleNum": 44,
+          "value": "第 3 日",
+          "unit": "day count after the 100% trigger before the surcharge starts",
+          "period": "trigger 29 September 2026, surcharge from 1 October 2026",
+          "source": "MOFCOM Trade Remedy Bureau notice 商救济进一函〔2026〕58号",
+          "retrieved": "2026-10-19"
+        },
+        {
+          "articleSlug": "china-brazil-beef-safeguard-55-percent-tariff-october-2026",
+          "articleNum": 44,
+          "value": "2026-09-30",
+          "unit": "date the execution notice was issued",
+          "period": "notice date",
+          "source": "MOFCOM Trade Remedy Bureau notice 商救济进一函〔2026〕58号",
+          "retrieved": "2026-10-19"
+        }
+      ],
+      "articleNums": [
+        44
+      ],
+      "articleSlugs": [
+        "china-brazil-beef-safeguard-55-percent-tariff-october-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "regulation-on-the-implementation-of-the-law-of-the",
+      "source": "Regulation on the Implementation of the Law of the PRC on Import and Export Commodity Inspection, Article 51",
+      "figures": [
+        {
+          "articleSlug": "china-container-suitability-check-frozen-food-export-2026",
+          "articleNum": 23,
+          "value": "100,000",
+          "unit": "yuan — the statutory maximum fine, per container, for using a container that was never suitability-inspected",
+          "period": "in force",
+          "source": "Regulation on the Implementation of the Law of the PRC on Import and Export Commodity Inspection, Article 51",
+          "retrieved": "2026-10-08"
+        },
+        {
+          "articleSlug": "china-container-suitability-check-frozen-food-export-2026",
+          "articleNum": 23,
+          "value": "200,000",
+          "unit": "yuan — the statutory maximum fine, per container, for using a container that failed suitability inspection",
+          "period": "in force",
+          "source": "Regulation on the Implementation of the Law of the PRC on Import and Export Commodity Inspection, Article 51",
+          "retrieved": "2026-10-08"
+        },
+        {
+          "articleSlug": "importing-from-china-documents-checklist",
+          "articleNum": 27,
+          "value": "100,000",
+          "unit": "yuan — the statutory maximum fine per container for using a container that failed the suitability check",
+          "period": "in force",
+          "source": "Regulation on the Implementation of the Law of the PRC on Import and Export Commodity Inspection, as cited in the official work guidance on GACC Announcement No. 136 of 2026",
+          "retrieved": "2026-10-08"
+        },
+        {
+          "articleSlug": "importing-from-china-documents-checklist",
+          "articleNum": 27,
+          "value": "200,000",
+          "unit": "yuan — the statutory maximum fine per container for a related violation of the same regulation",
+          "period": "in force",
+          "source": "Regulation on the Implementation of the Law of the PRC on Import and Export Commodity Inspection, as cited in the official work guidance on GACC Announcement No. 136 of 2026",
+          "retrieved": "2026-10-08"
+        }
+      ],
+      "articleNums": [
+        23,
+        27
+      ],
+      "articleSlugs": [
+        "china-container-suitability-check-frozen-food-export-2026",
+        "importing-from-china-documents-checklist"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "state-administration-for-market-regulation-2026-5",
+      "source": "State Administration for Market Regulation, 国市监注发〔2026〕5号",
+      "figures": [
+        {
+          "articleSlug": "china-real-name-registration-supplier-verification",
+          "articleNum": 6,
+          "value": "1 May 2026",
+          "unit": "date the 2026 registration document and materials standards take effect nationwide",
+          "period": "notice signed 6 January 2026, published 12 January 2026",
+          "source": "State Administration for Market Regulation, 国市监注发〔2026〕5号",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-real-name-registration-supplier-verification",
+          "articleNum": 6,
+          "value": "1",
+          "unit": "new standalone form, 《实名登记确认表》 (real-name registration confirmation form)",
+          "period": "introduced in the 2026 standards",
+          "source": "State Administration for Market Regulation, 国市监注发〔2026〕5号",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "how-to-tell-a-factory-from-a-trading-company",
+          "articleNum": 28,
+          "value": "1 May 2026",
+          "unit": "the date the 2026 registration document and materials standards took effect, replacing the 2022 editions",
+          "period": "notice signed 6 January 2026, published 12 January 2026",
+          "source": "State Administration for Market Regulation, 国市监注发〔2026〕5号",
+          "retrieved": "2026-10-08"
+        },
+        {
+          "articleSlug": "how-to-tell-a-factory-from-a-trading-company",
+          "articleNum": 28,
+          "value": "1",
+          "unit": "new standalone form, the real-name registration confirmation form (《实名登记确认表》), introduced by the 2026 standards",
+          "period": "introduced in the 2026 standards, in force from 1 May 2026",
+          "source": "State Administration for Market Regulation, 国市监注发〔2026〕5号",
+          "retrieved": "2026-10-08"
+        }
+      ],
+      "articleNums": [
+        6,
+        28
+      ],
+      "articleSlugs": [
+        "china-real-name-registration-supplier-verification",
+        "how-to-tell-a-factory-from-a-trading-company"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "ustr-notice-of-product-exclusion-extensions-90-fr-55232",
+      "source": "USTR, Notice of Product Exclusion Extensions, 90 FR 55232",
+      "figures": [
+        {
+          "articleSlug": "section-301-exclusions-expire-november-2026",
+          "articleNum": 2,
+          "value": "178",
+          "unit": "product exclusions",
+          "period": "as of 1 December 2025",
+          "source": "USTR, Notice of Product Exclusion Extensions, 90 FR 55232",
+          "retrieved": "2026-10-01"
+        },
+        {
+          "articleSlug": "section-301-exclusions-expire-november-2026",
+          "articleNum": 2,
+          "value": "164",
+          "unit": "exclusions under HTSUS 9903.88.69",
+          "period": "as of 1 December 2025",
+          "source": "USTR, Notice of Product Exclusion Extensions, 90 FR 55232",
+          "retrieved": "2026-10-01"
+        },
+        {
+          "articleSlug": "section-301-exclusions-expire-november-2026",
+          "articleNum": 2,
+          "value": "14",
+          "unit": "solar manufacturing equipment exclusions under HTSUS 9903.88.70",
+          "period": "as of 1 December 2025",
+          "source": "USTR, Notice of Product Exclusion Extensions, 90 FR 55232",
+          "retrieved": "2026-10-01"
+        },
+        {
+          "articleSlug": "section-301-exclusions-expire-november-2026",
+          "articleNum": 2,
+          "value": "9 November 2026, 11:59 p.m. Eastern",
+          "unit": "final entry date covered by the extension",
+          "period": "extension window opened 30 November 2025",
+          "source": "USTR, Notice of Product Exclusion Extensions, 90 FR 55232",
+          "retrieved": "2026-10-01"
+        }
+      ],
+      "articleNums": [
+        2
+      ],
+      "articleSlugs": [
+        "section-301-exclusions-expire-november-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "2026-10-15-citing-quy-t-nh-2652-qd",
+      "source": "中国贸易救济信息网（商务部）, 越南对涉华聚酯长丝纱线作出反倾销日落复审终裁, 2026-10-15, citing Quyết định 2652/QD-BCT",
+      "figures": [
+        {
+          "articleSlug": "vietnam-polyester-yarn-sunset-review-2026",
+          "articleNum": 31,
+          "value": "2652/QD-BCT",
+          "unit": "the number of the Vietnamese decision that concluded the sunset review",
+          "period": "issued 13 October 2026 by the Ministry of Industry and Trade",
+          "source": "中国贸易救济信息网（商务部）, 越南对涉华聚酯长丝纱线作出反倾销日落复审终裁, 2026-10-15, citing Quyết định 2652/QD-BCT",
+          "retrieved": "2026-10-16"
+        },
+        {
+          "articleSlug": "vietnam-polyester-yarn-sunset-review-2026",
+          "articleNum": 31,
+          "value": "16 October 2026",
+          "unit": "the date the continued measure takes effect",
+          "period": "five-year term, so it runs to 2029 unless reviewed again",
+          "source": "中国贸易救济信息网（商务部）, 越南对涉华聚酯长丝纱线作出反倾销日落复审终裁, 2026-10-15, citing Quyết định 2652/QD-BCT",
+          "retrieved": "2026-10-16"
+        },
+        {
+          "articleSlug": "vietnam-polyester-yarn-sunset-review-2026",
+          "articleNum": 31,
+          "value": "54.90%",
+          "unit": "the duty on the same product from India under the same decision, for comparison",
+          "period": "Indonesia is at 21.94 per cent and Malaysia at 21.45 per cent under the same review",
+          "source": "中国贸易救济信息网（商务部）, 越南对涉华聚酯长丝纱线作出反倾销日落复审终裁, 2026-10-15, citing Quyết định 2652/QD-BCT",
+          "retrieved": "2026-10-16"
+        },
+        {
+          "articleSlug": "vietnam-polyester-yarn-sunset-review-2026",
+          "articleNum": 31,
+          "value": "5402.33.10",
+          "unit": "one of six Vietnamese tariff lines the measure covers, alongside 5402.33.90, 5402.46.10, 5402.46.90, 5402.47.10 and 5402.47.90",
+          "period": "all six are synthetic filament yarn of polyester, not put up for retail sale",
+          "source": "中国贸易救济信息网（商务部）, 越南对涉华聚酯长丝纱线作出反倾销日落复审终裁, 2026-10-15, citing Quyết định 2652/QD-BCT",
+          "retrieved": "2026-10-16"
+        }
+      ],
+      "articleNums": [
+        31
+      ],
+      "articleSlugs": [
+        "vietnam-polyester-yarn-sunset-review-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "cbp-interim-final-rule-91-fr-37801",
+      "source": "CBP interim final rule, 91 FR 37801",
+      "figures": [
+        {
+          "articleSlug": "us-de-minimis-postal-route-closes-october-2026",
+          "articleNum": 12,
+          "value": "2,500",
+          "unit": "US dollars — the value ceiling for postal informal entry under 19 CFR 145.12(b)",
+          "period": "in force from 24 July 2026",
+          "source": "CBP interim final rule, 91 FR 37801",
+          "retrieved": "2026-10-03"
+        },
+        {
+          "articleSlug": "us-de-minimis-postal-route-closes-october-2026",
+          "articleNum": 12,
+          "value": "8.62",
+          "unit": "percent — CBP's stated effective average non-IEEPA duty rate on entry type 11 filings",
+          "period": "CBP sample of September to November 2025 entries",
+          "source": "CBP interim final rule, 91 FR 37801",
+          "retrieved": "2026-10-03"
+        },
+        {
+          "articleSlug": "us-de-minimis-postal-route-closes-october-2026",
+          "articleNum": 12,
+          "value": "316,163,988",
+          "unit": "US dollars — CBP's estimated annual increase in duty collections under the rule",
+          "period": "estimate published with the rule, 24 June 2026",
+          "source": "CBP interim final rule, 91 FR 37801",
+          "retrieved": "2026-10-03"
+        }
+      ],
+      "articleNums": [
+        12
+      ],
+      "articleSlugs": [
+        "us-de-minimis-postal-route-closes-october-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "customs-tariff-commission-of-the-state-council-official-inte",
+      "source": "Customs Tariff Commission of the State Council, official interpretation of the 2026 tariff adjustment plan, 29 December 2025",
+      "figures": [
+        {
+          "articleSlug": "china-2026-export-duty-wrought-metals",
+          "articleNum": 11,
+          "value": "68",
+          "unit": "of those goods subject to a provisional export duty rate",
+          "period": "2026, effective 1 January 2026",
+          "source": "Customs Tariff Commission of the State Council, official interpretation of the 2026 tariff adjustment plan, 29 December 2025",
+          "retrieved": "2026-10-03"
+        },
+        {
+          "articleSlug": "china-2026-export-duty-wrought-metals",
+          "articleNum": 11,
+          "value": "8,972",
+          "unit": "total tariff lines after the 2026 adjustment, with new national subheadings added for intelligent bionic robots, bio-aviation kerosene and forest ginseng",
+          "period": "from 1 January 2026",
+          "source": "Customs Tariff Commission of the State Council, official interpretation of the 2026 tariff adjustment plan, 29 December 2025",
+          "retrieved": "2026-10-03"
+        },
+        {
+          "articleSlug": "china-2026-export-duty-wrought-metals",
+          "articleNum": 11,
+          "value": "935",
+          "unit": "goods granted provisional import duty rates below the most-favoured-nation rate",
+          "period": "2026, from 1 January 2026",
+          "source": "Customs Tariff Commission of the State Council, official interpretation of the 2026 tariff adjustment plan, 29 December 2025",
+          "retrieved": "2026-10-03"
+        }
+      ],
+      "articleNums": [
+        11
+      ],
+      "articleSlugs": [
+        "china-2026-export-duty-wrought-metals"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-directorate-general-for-trade-and-econom-48",
+      "source": "European Commission Directorate-General for Trade and Economic Security, 2025 EU trade defence activities report news article",
+      "figures": [
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-trq-price-threshold-2026",
+          "articleNum": 48,
+          "value": "26",
+          "unit": "definitive trade defence measures imposed in 2025, shown as enforcement context rather than a GOES-specific rate",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security, 2025 EU trade defence activities report news article",
+          "retrieved": "2026-10-21"
+        },
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-trq-price-threshold-2026",
+          "articleNum": 48,
+          "value": "232",
+          "unit": "trade defence measures in place at the end of 2025, shown as enforcement context rather than a GOES-specific rate",
+          "period": "End of 2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security, 2025 EU trade defence activities report news article",
+          "retrieved": "2026-10-21"
+        },
+        {
+          "articleSlug": "eu-goes-provisional-safeguard-trq-price-threshold-2026",
+          "articleNum": 48,
+          "value": "three",
+          "unit": "cases in 2025 in which measures were applied retroactively, shown as enforcement context rather than a GOES-specific rate",
+          "period": "2025",
+          "source": "European Commission Directorate-General for Trade and Economic Security, 2025 EU trade defence activities report news article",
+          "retrieved": "2026-10-21"
+        }
+      ],
+      "articleNums": [
+        48
+      ],
+      "articleSlugs": [
+        "eu-goes-provisional-safeguard-trq-price-threshold-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-2026-coordinated-product-safety-sweep-re",
+      "source": "European Commission, 2026 coordinated product safety sweep results",
+      "figures": [
+        {
+          "articleSlug": "importing-from-china-documents-checklist",
+          "articleNum": 27,
+          "value": "58",
+          "unit": "per cent of online listings that showed the manufacturer, the EU responsible person or the product identification required by the General Product Safety Regulation",
+          "period": "2026 coordinated sweep, conducted May to July 2026",
+          "source": "European Commission, 2026 coordinated product safety sweep results",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "importing-from-china-documents-checklist",
+          "articleNum": 27,
+          "value": "560",
+          "unit": "enforcement orders sent to online marketplaces over non-compliant listings after the 2026 sweep",
+          "period": "following the sweep conducted May to July 2026",
+          "source": "European Commission, 2026 coordinated product safety sweep results",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "importing-from-china-documents-checklist",
+          "articleNum": 27,
+          "value": "1,700",
+          "unit": "online listings examined in the sweep, across 35 marketplaces",
+          "period": "May to July 2026",
+          "source": "European Commission, 2026 coordinated product safety sweep results",
+          "retrieved": "2026-10-02"
+        }
+      ],
+      "articleNums": [
+        27
+      ],
+      "articleSlugs": [
+        "importing-from-china-documents-checklist"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "lanthanides-io-regulatory-tracker-dataset-dated-5-june-2026",
+      "source": "lanthanides.io regulatory tracker, dataset dated 5 June 2026",
+      "figures": [
+        {
+          "articleSlug": "china-rare-earth-export-controls-licence-regime",
+          "articleNum": 4,
+          "value": "5",
+          "unit": "Chinese regulatory notices tracked, covering 20 element symbols",
+          "period": "as of 5 June 2026",
+          "source": "lanthanides.io regulatory tracker, dataset dated 5 June 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-rare-earth-export-controls-licence-regime",
+          "articleNum": 4,
+          "value": "15",
+          "unit": "element symbols classified as active under Chinese export controls",
+          "period": "as of 5 June 2026",
+          "source": "lanthanides.io regulatory tracker, dataset dated 5 June 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-rare-earth-export-controls-licence-regime",
+          "articleNum": 4,
+          "value": "5",
+          "unit": "element symbols suspended from the October 2025 expansion (holmium, erbium, thulium, europium, ytterbium)",
+          "period": "as of 5 June 2026",
+          "source": "lanthanides.io regulatory tracker, dataset dated 5 June 2026",
+          "retrieved": "2026-10-02"
+        }
+      ],
+      "articleNums": [
+        4
+      ],
+      "articleSlugs": [
+        "china-rare-earth-export-controls-licence-regime"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "national-bureau-of-statistics-of-china-prices-of-important",
+      "source": "National Bureau of Statistics of China, Prices of important production materials in circulation, late September 2026, published 9 October 2026",
+      "figures": [
+        {
+          "articleSlug": "china-producer-price-split-copper-ferrous-2026",
+          "articleNum": 35,
+          "value": "2972.5",
+          "unit": "yuan per tonne — ten-day rise in electrolytic copper (1#), to 111,742.5 yuan per tonne",
+          "period": "21 to 30 September 2026, against 11 to 20 September",
+          "source": "National Bureau of Statistics of China, Prices of important production materials in circulation, late September 2026, published 9 October 2026",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-producer-price-split-copper-ferrous-2026",
+          "articleNum": 35,
+          "value": "-11.8",
+          "unit": "yuan per tonne — ten-day change in hot-rolled coil (4.75-11.5mm, Q235), to 3,297.1 yuan per tonne",
+          "period": "21 to 30 September 2026, against 11 to 20 September",
+          "source": "National Bureau of Statistics of China, Prices of important production materials in circulation, late September 2026, published 9 October 2026",
+          "retrieved": "2026-10-18"
+        },
+        {
+          "articleSlug": "china-producer-price-split-copper-ferrous-2026",
+          "articleNum": 35,
+          "value": "434.7",
+          "unit": "yuan per tonne — ten-day rise in glacial acetic acid (99.5%), a 10.5 percent move",
+          "period": "21 to 30 September 2026, against 11 to 20 September",
+          "source": "National Bureau of Statistics of China, Prices of important production materials in circulation, late September 2026, published 9 October 2026",
+          "retrieved": "2026-10-18"
+        }
+      ],
+      "articleNums": [
+        35
+      ],
+      "articleSlugs": [
+        "china-producer-price-split-copper-ferrous-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "national-bureau-of-statistics-of-china-producer-price-index",
+      "source": "National Bureau of Statistics of China, producer price index, released 9 September 2026",
+      "figures": [
+        {
+          "articleSlug": "china-ppi-positive-factory-price-drift",
+          "articleNum": 10,
+          "value": "3.8",
+          "unit": "percent — year-on-year change in the producer price index",
+          "period": "August 2026, growth widening by 0.3 percentage point from July",
+          "source": "National Bureau of Statistics of China, producer price index, released 9 September 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-ppi-positive-factory-price-drift",
+          "articleNum": 10,
+          "value": "0.4",
+          "unit": "percent — month-on-month change in the producer price index, reversing a 0.7 percent decline in July",
+          "period": "August 2026",
+          "source": "National Bureau of Statistics of China, producer price index, released 9 September 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-ppi-positive-factory-price-drift",
+          "articleNum": 10,
+          "value": "2.0",
+          "unit": "percent — average year-on-year increase in the producer price index",
+          "period": "January to August 2026",
+          "source": "National Bureau of Statistics of China, producer price index, released 9 September 2026",
+          "retrieved": "2026-10-02"
+        }
+      ],
+      "articleNums": [
+        10
+      ],
+      "articleSlugs": [
+        "china-ppi-positive-factory-price-drift"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "national-bureau-of-statistics-of-china-same-release-table-22",
+      "source": "National Bureau of Statistics of China, same release, table 2",
+      "figures": [
+        {
+          "articleSlug": "china-industrial-profits-q4-supply-chain",
+          "articleNum": 22,
+          "value": "72.2",
+          "unit": "days — average receivables collection period, up 0.9 days year on year",
+          "period": "as at end of August 2026",
+          "source": "National Bureau of Statistics of China, same release, table 2",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "china-industrial-profits-q4-supply-chain",
+          "articleNum": 22,
+          "value": "21.3",
+          "unit": "days — finished-goods inventory turnover, up 0.6 days year on year",
+          "period": "as at end of August 2026",
+          "source": "National Bureau of Statistics of China, same release, table 2",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "china-industrial-profits-q4-supply-chain",
+          "articleNum": 22,
+          "value": "5.66",
+          "unit": "per cent — operating revenue profit margin, up 0.44 percentage points",
+          "period": "January to August 2026",
+          "source": "National Bureau of Statistics of China, same release, table 2",
+          "retrieved": "2026-10-07"
+        }
+      ],
+      "articleNums": [
+        22
+      ],
+      "articleSlugs": [
+        "china-industrial-profits-q4-supply-chain"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "official-work-guidance-on-gacc-announcement-no-136-of-23",
+      "source": "Official work guidance on GACC Announcement No. 136 of 2026, circulated by customs, 3 October 2026",
+      "figures": [
+        {
+          "articleSlug": "china-container-suitability-check-frozen-food-export-2026",
+          "articleNum": 23,
+          "value": "1973",
+          "unit": "the year China opened international sea container transport, when suitability inspection was applied for voluntarily",
+          "period": "business history recorded in the official work guidance",
+          "source": "Official work guidance on GACC Announcement No. 136 of 2026, circulated by customs, 3 October 2026",
+          "retrieved": "2026-10-08"
+        },
+        {
+          "articleSlug": "china-container-suitability-check-frozen-food-export-2026",
+          "articleNum": 23,
+          "value": "1984",
+          "unit": "the year a State Council commodity inspection regulation made container suitability inspection mandatory",
+          "period": "business history recorded in the official work guidance",
+          "source": "Official work guidance on GACC Announcement No. 136 of 2026, circulated by customs, 3 October 2026",
+          "retrieved": "2026-10-08"
+        },
+        {
+          "articleSlug": "china-container-suitability-check-frozen-food-export-2026",
+          "articleNum": 23,
+          "value": "2018",
+          "unit": "the year customs became the enforcement body for container suitability inspection, after the State Council institutional reform",
+          "period": "business history recorded in the official work guidance",
+          "source": "Official work guidance on GACC Announcement No. 136 of 2026, circulated by customs, 3 October 2026",
+          "retrieved": "2026-10-08"
+        }
+      ],
+      "articleNums": [
+        23
+      ],
+      "articleSlugs": [
+        "china-container-suitability-check-frozen-food-export-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "shanghai-shipping-research-institute-in-preparation-ccfi-ind",
+      "source": "Shanghai Shipping Research Institute (in Preparation), CCFI index page",
+      "figures": [
+        {
+          "articleSlug": "container-freight-index-publisher-change-2026",
+          "articleNum": 7,
+          "value": "1923.93",
+          "unit": "CCFI composite index points, previous reading 1917.68 (+0.3%)",
+          "period": "week ending 30 September 2026",
+          "source": "Shanghai Shipping Research Institute (in Preparation), CCFI index page",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "container-freight-index-publisher-change-2026",
+          "articleNum": 7,
+          "value": "1322.15",
+          "unit": "CCFI Southeast Asia Service points, previous reading 1211.87 (+9.1%)",
+          "period": "week ending 30 September 2026",
+          "source": "Shanghai Shipping Research Institute (in Preparation), CCFI index page",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "container-freight-index-publisher-change-2026",
+          "articleNum": 7,
+          "value": "1970.38",
+          "unit": "CCFI Europe Service points, previous reading 2028.95 (-2.9%)",
+          "period": "week ending 30 September 2026",
+          "source": "Shanghai Shipping Research Institute (in Preparation), CCFI index page",
+          "retrieved": "2026-10-02"
+        }
+      ],
+      "articleNums": [
+        7
+      ],
+      "articleSlugs": [
+        "container-freight-index-publisher-change-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "shanghai-shipping-research-institute-ccfi-index-page",
+      "source": "Shanghai Shipping Research Institute, CCFI index page",
+      "figures": [
+        {
+          "articleSlug": "freight-index-linked-contract-two-errors-2026",
+          "articleNum": 18,
+          "value": "1322.15",
+          "unit": "CCFI Southeast Asia Service index points, previous reading 1211.87",
+          "period": "week ending 30 September 2026, a rise of 9.1 per cent",
+          "source": "Shanghai Shipping Research Institute, CCFI index page",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "freight-index-linked-contract-two-errors-2026",
+          "articleNum": 18,
+          "value": "1970.38",
+          "unit": "CCFI Europe Service index points, previous reading 2028.95",
+          "period": "week ending 30 September 2026, a fall of 2.9 per cent",
+          "source": "Shanghai Shipping Research Institute, CCFI index page",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "freight-index-linked-contract-two-errors-2026",
+          "articleNum": 18,
+          "value": "1923.93",
+          "unit": "CCFI composite index points, previous reading 1917.68",
+          "period": "week ending 30 September 2026, a rise of 0.33 per cent",
+          "source": "Shanghai Shipping Research Institute, CCFI index page",
+          "retrieved": "2026-10-07"
+        }
+      ],
+      "articleNums": [
+        18
+      ],
+      "articleSlugs": [
+        "freight-index-linked-contract-two-errors-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "state-administration-for-market-regulation-and-people-s-bank",
+      "source": "State Administration for Market Regulation and People's Bank of China, 国市监注规〔2025〕",
+      "figures": [
+        {
+          "articleSlug": "how-to-tell-a-factory-from-a-trading-company",
+          "articleNum": 28,
+          "value": "25 September 2025",
+          "unit": "the date the national registration-agent information system went live",
+          "period": "created under a rule effective 15 September 2025",
+          "source": "State Administration for Market Regulation and People's Bank of China, 国市监注规〔2025〕",
+          "retrieved": "2026-10-08"
+        },
+        {
+          "articleSlug": "how-to-tell-a-factory-from-a-trading-company",
+          "articleNum": 28,
+          "value": "3",
+          "unit": "years — the period during which filings from a person designated directly responsible for a false registration are refused, counted from the date the registration is revoked",
+          "period": "in force from 15 September 2025",
+          "source": "State Administration for Market Regulation and People's Bank of China, 国市监注规〔2025〕",
+          "retrieved": "2026-10-08"
+        },
+        {
+          "articleSlug": "how-to-tell-a-factory-from-a-trading-company",
+          "articleNum": 28,
+          "value": "10",
+          "unit": "years — minimum retention of business and transaction records by registration agents",
+          "period": "in force from 15 September 2025",
+          "source": "State Administration for Market Regulation and People's Bank of China, 国市监注规〔2025〕",
+          "retrieved": "2026-10-08"
+        }
+      ],
+      "articleNums": [
+        28
+      ],
+      "articleSlugs": [
+        "how-to-tell-a-factory-from-a-trading-company"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "state-administration-for-market-regulation-and-people-s-bank-6",
+      "source": "State Administration for Market Regulation and People's Bank of China, 国市监注规〔2025〕3号, Art. 3 and 7",
+      "figures": [
+        {
+          "articleSlug": "china-real-name-registration-supplier-verification",
+          "articleNum": 6,
+          "value": "25 September 2025",
+          "unit": "date the national registration-agent information system went live",
+          "period": "created under a rule effective 15 September 2025",
+          "source": "State Administration for Market Regulation and People's Bank of China, 国市监注规〔2025〕3号, Art. 3 and 7",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-real-name-registration-supplier-verification",
+          "articleNum": 6,
+          "value": "3",
+          "unit": "years — period during which filings from a person designated directly responsible for a false registration are refused",
+          "period": "counted from the date the registration is revoked",
+          "source": "State Administration for Market Regulation and People's Bank of China, 国市监注规〔2025〕3号, Art. 38",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "china-real-name-registration-supplier-verification",
+          "articleNum": 6,
+          "value": "10",
+          "unit": "years — minimum retention of business and transaction records by registration agents",
+          "period": "in force from 15 September 2025",
+          "source": "State Administration for Market Regulation and People's Bank of China, 国市监注规〔2025〕3号, Art. 26",
+          "retrieved": "2026-10-02"
+        }
+      ],
+      "articleNums": [
+        6
+      ],
+      "articleSlugs": [
+        "china-real-name-registration-supplier-verification"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "state-council-customs-tariff-commission-2026-tariff-adjustme",
+      "source": "State Council Customs Tariff Commission, 2026 tariff adjustment plan",
+      "figures": [
+        {
+          "articleSlug": "china-export-rebate-vs-export-duty-2026",
+          "articleNum": 17,
+          "value": "30",
+          "unit": "per cent — nominal export duty on copper cathode, reduced to 10 per cent provisional",
+          "period": "from 1 January 2026",
+          "source": "State Council Customs Tariff Commission, 2026 tariff adjustment plan",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "china-export-rebate-vs-export-duty-2026",
+          "articleNum": 17,
+          "value": "40",
+          "unit": "per cent — export duty on ferrochrome, which has no provisional rate",
+          "period": "2026",
+          "source": "State Council Customs Tariff Commission, 2026 tariff adjustment plan",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "china-export-rebate-vs-export-duty-2026",
+          "articleNum": 17,
+          "value": "0",
+          "unit": "per cent — provisional export duty on every wrought copper and wrought aluminium line",
+          "period": "2026",
+          "source": "State Council Customs Tariff Commission, 2026 tariff adjustment plan",
+          "retrieved": "2026-10-07"
+        }
+      ],
+      "articleNums": [
+        17
+      ],
+      "articleSlugs": [
+        "china-export-rebate-vs-export-duty-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "calculated-24-april-2027-minus-4-october-2026-using",
+      "source": "Calculated: 24 April 2027 minus 4 October 2026, using the deadlines in Notice C/2026/6637",
+      "figures": [
+        {
+          "articleSlug": "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+          "articleNum": 30,
+          "value": "190 days",
+          "unit": "the gap between the closed comment window and the earliest possible provisional duty — the stretch in which registration can be ordered with nothing payable yet",
+          "period": "10 days from publication to 4 October 2026, against the seven-month provisional date of 24 April 2027",
+          "source": "Calculated: 24 April 2027 minus 4 October 2026, using the deadlines in Notice C/2026/6637",
+          "retrieved": "2026-10-15"
+        },
+        {
+          "articleSlug": "eu-cellulose-ethers-duty-timeline",
+          "articleNum": 33,
+          "value": "190 days",
+          "unit": "the gap between the closed comment window and the earliest possible provisional duty — the stretch in which registration can be ordered with nothing payable yet",
+          "period": "10 days from publication to 4 October 2026, against the seven-month provisional date of 24 April 2027",
+          "source": "Calculated: 24 April 2027 minus 4 October 2026, using the deadlines in Notice C/2026/6637",
+          "retrieved": "2026-10-15"
+        }
+      ],
+      "articleNums": [
+        30,
+        33
+      ],
+      "articleSlugs": [
+        "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+        "eu-cellulose-ethers-duty-timeline"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "calculated-50-000-dollars-multiplied-by-each-rate-from",
+      "source": "Calculated: 50,000 dollars multiplied by each rate from 0 to 50 percent",
+      "figures": [
+        {
+          "articleSlug": "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+          "articleNum": 30,
+          "value": "0 to 25,000 dollars",
+          "unit": "the duty on one 50,000-dollar container across the same range — the per-container exposure a buyer cannot price today",
+          "period": "calculated on CIF value, which is the basis Regulation (EU) 2016/1036 uses for ad valorem duty",
+          "source": "Calculated: 50,000 dollars multiplied by each rate from 0 to 50 percent",
+          "retrieved": "2026-10-15"
+        },
+        {
+          "articleSlug": "eu-cellulose-ethers-duty-timeline",
+          "articleNum": 33,
+          "value": "0 to 25,000 dollars",
+          "unit": "the duty on one 50,000-dollar container across the same range — the per-container exposure a buyer cannot price today",
+          "period": "calculated on CIF value, which is the basis Regulation (EU) 2016/1036 uses for ad valorem duty",
+          "source": "Calculated: 50,000 dollars multiplied by each rate from 0 to 50 percent",
+          "retrieved": "2026-10-15"
+        }
+      ],
+      "articleNums": [
+        30,
+        33
+      ],
+      "articleSlugs": [
+        "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+        "eu-cellulose-ethers-duty-timeline"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "cbp-proposed-rule-low-value-shipments-91-fr-docket",
+      "source": "CBP proposed rule, Low-Value Shipments, 91 FR, docket USCBP-2026-0298",
+      "figures": [
+        {
+          "articleSlug": "us-low-value-shipment-entry-rule-2026",
+          "articleNum": 24,
+          "value": "2,500",
+          "unit": "US dollars — the value ceiling for an informal entry, and the population the proposal covers",
+          "period": "in force, from 19 U.S.C. 1498(a)(1)(A)",
+          "source": "CBP proposed rule, Low-Value Shipments, 91 FR, docket USCBP-2026-0298",
+          "retrieved": "2026-10-09"
+        },
+        {
+          "articleSlug": "us-low-value-shipment-entry-rule-2026",
+          "articleNum": 24,
+          "value": "1,000",
+          "unit": "US dollars — the proposed floor for liquidated damages arising from a breach of a customs bond securing an informal entry",
+          "period": "proposed 8 October 2026, not in force",
+          "source": "CBP proposed rule, Low-Value Shipments, 91 FR, docket USCBP-2026-0298",
+          "retrieved": "2026-10-09"
+        }
+      ],
+      "articleNums": [
+        24
+      ],
+      "articleSlugs": [
+        "us-low-value-shipment-entry-rule-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "commission-implementing-regulation-eu-2026-1740-annex-i",
+      "source": "Commission Implementing Regulation (EU) 2026/1740, Annex I",
+      "figures": [
+        {
+          "articleSlug": "eu-cbam-vs-steel-safeguard-duty-per-tonne-2026",
+          "articleNum": 15,
+          "value": "428.24",
+          "unit": "EUR per tonne — CBAM carbon cost for Chinese screws and bolts, CN 7318 15, at the Q1 2026 certificate price",
+          "period": "Q1 2026 certificate price of EUR 75.36 per tonne of CO2e",
+          "source": "Commission Implementing Regulation (EU) 2026/1740, Annex I",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "eu-cbam-vs-steel-safeguard-duty-per-tonne-2026",
+          "articleNum": 15,
+          "value": "144.13",
+          "unit": "EUR per tonne — CBAM carbon cost for Chinese unwrought aluminium, CN 7601, at the Q1 2026 certificate price",
+          "period": "Q1 2026 certificate price of EUR 75.36 per tonne of CO2e",
+          "source": "Commission Implementing Regulation (EU) 2026/1740, Annex I",
+          "retrieved": "2026-10-07"
+        }
+      ],
+      "articleNums": [
+        15
+      ],
+      "articleSlugs": [
+        "eu-cbam-vs-steel-safeguard-duty-per-tonne-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "council-regulation-eu-2026-382-article-2",
+      "source": "Council Regulation (EU) 2026/382, Article 2",
+      "figures": [
+        {
+          "articleSlug": "us-vs-eu-low-value-parcel-charges-2026",
+          "articleNum": 16,
+          "value": "150",
+          "unit": "euro — the intrinsic value ceiling above which the EU EUR 3 per-item duty does not apply",
+          "period": "from 1 July 2026",
+          "source": "Council Regulation (EU) 2026/382, Article 2",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "us-vs-eu-low-value-parcel-charges-2026",
+          "articleNum": 16,
+          "value": "3",
+          "unit": "euro — flat EU customs duty per item in a consignment at or below EUR 150",
+          "period": "from 1 July 2026 until the permanent system replaces it",
+          "source": "Council Regulation (EU) 2026/382, Article 2",
+          "retrieved": "2026-10-07"
+        }
+      ],
+      "articleNums": [
+        16
+      ],
+      "articleSlugs": [
+        "us-vs-eu-low-value-parcel-charges-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "customs-tariff-commission-of-the-state-council-announcement-29",
+      "source": "Customs Tariff Commission of the State Council, Announcement No. 5 of 2026",
+      "figures": [
+        {
+          "articleSlug": "china-zero-tariff-20-african-countries-2026",
+          "articleNum": 29,
+          "value": "1 May 2026",
+          "unit": "the date the zero-tariff measure took effect",
+          "period": "announcement dated 28 April 2026",
+          "source": "Customs Tariff Commission of the State Council, Announcement No. 5 of 2026",
+          "retrieved": "2026-10-12"
+        },
+        {
+          "articleSlug": "china-zero-tariff-20-african-countries-2026",
+          "articleNum": 29,
+          "value": "30 April 2028",
+          "unit": "the date the measure ends — a two-year window, not a permanent concession",
+          "period": "the term set in the announcement",
+          "source": "Customs Tariff Commission of the State Council, Announcement No. 5 of 2026",
+          "retrieved": "2026-10-12"
+        }
+      ],
+      "articleNums": [
+        29
+      ],
+      "articleSlugs": [
+        "china-zero-tariff-20-african-countries-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-dg-taxud-price-of-cbam-certificates",
+      "source": "European Commission, DG TAXUD, Price of CBAM certificates",
+      "figures": [
+        {
+          "articleSlug": "eu-cbam-cost-per-tonne-chinese-steel-aluminium-2026",
+          "articleNum": 13,
+          "value": "EUR 75.36",
+          "unit": "per tonne of CO2e — CBAM certificate price for Q1 2026",
+          "period": "Q1 2026 (1 January to 31 March 2026), published 7 April 2026",
+          "source": "European Commission, DG TAXUD, Price of CBAM certificates",
+          "retrieved": "2026-10-03"
+        },
+        {
+          "articleSlug": "eu-cbam-cost-per-tonne-chinese-steel-aluminium-2026",
+          "articleNum": 13,
+          "value": "EUR 75.28",
+          "unit": "per tonne of CO2e — CBAM certificate price for Q2 2026",
+          "period": "Q2 2026 (1 April to 30 June 2026), published 6 July 2026",
+          "source": "European Commission, DG TAXUD, Price of CBAM certificates",
+          "retrieved": "2026-10-03"
+        }
+      ],
+      "articleNums": [
+        13
+      ],
+      "articleSlugs": [
+        "eu-cbam-cost-per-tonne-chinese-steel-aluminium-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-notice-of-initiation-c-2026-6637-oj",
+      "source": "European Commission, Notice of initiation C/2026/6637, OJ C/2026/4924, 24 September 2026",
+      "figures": [
+        {
+          "articleSlug": "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+          "articleNum": 30,
+          "value": "24 September 2026",
+          "unit": "the date the notice of initiation was published, which is the date every deadline in the case runs from",
+          "period": "initiation of case AD760, an initial investigation",
+          "source": "European Commission, Notice of initiation C/2026/6637, OJ C/2026/4924, 24 September 2026",
+          "retrieved": "2026-10-13"
+        },
+        {
+          "articleSlug": "eu-cellulose-ethers-duty-timeline",
+          "articleNum": 33,
+          "value": "24 September 2026",
+          "unit": "the date the notice of initiation was published, which is the date every deadline in the case runs from",
+          "period": "initiation of case AD760, an initial investigation",
+          "source": "European Commission, Notice of initiation C/2026/6637, OJ C/2026/4924, 24 September 2026",
+          "retrieved": "2026-10-13"
+        }
+      ],
+      "articleNums": [
+        30,
+        33
+      ],
+      "articleSlugs": [
+        "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+        "eu-cellulose-ethers-duty-timeline"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-notice-of-initiation-c-2026-6637-section",
+      "source": "European Commission, Notice of initiation C/2026/6637, section 1, Complaint",
+      "figures": [
+        {
+          "articleSlug": "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+          "articleNum": 30,
+          "value": "10 August 2026",
+          "unit": "the date the complaint was lodged, by Ashland Industries Nederland BV, Ashland Specialties Belgium BV and SE Tylose GmbH & Co. KG",
+          "period": "six weeks before the Commission opened the case",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 1, Complaint",
+          "retrieved": "2026-10-13"
+        },
+        {
+          "articleSlug": "eu-cellulose-ethers-duty-timeline",
+          "articleNum": 33,
+          "value": "10 August 2026",
+          "unit": "the date the complaint was lodged, by Ashland Industries Nederland BV, Ashland Specialties Belgium BV and SE Tylose GmbH & Co. KG",
+          "period": "six weeks before the Commission opened the case",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 1, Complaint",
+          "retrieved": "2026-10-13"
+        }
+      ],
+      "articleNums": [
+        30,
+        33
+      ],
+      "articleSlugs": [
+        "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+        "eu-cellulose-ethers-duty-timeline"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-notice-of-initiation-c-2026-6637-section-30",
+      "source": "European Commission, Notice of initiation C/2026/6637, section 5.1, Investigation period and period considered",
+      "figures": [
+        {
+          "articleSlug": "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+          "articleNum": 30,
+          "value": "1 April 2025 to 31 March 2026",
+          "unit": "the investigation period over which dumping and injury are measured",
+          "period": "the injury trend is examined from 1 January 2022 to the end of the investigation period",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 5.1, Investigation period and period considered",
+          "retrieved": "2026-10-13"
+        },
+        {
+          "articleSlug": "eu-cellulose-ethers-duty-timeline",
+          "articleNum": 33,
+          "value": "1 April 2025 to 31 March 2026",
+          "unit": "the investigation period over which dumping and injury are measured",
+          "period": "the injury trend is examined from 1 January 2022 to the end of the investigation period",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 5.1, Investigation period and period considered",
+          "retrieved": "2026-10-13"
+        }
+      ],
+      "articleNums": [
+        30,
+        33
+      ],
+      "articleSlugs": [
+        "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+        "eu-cellulose-ethers-duty-timeline"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-notice-of-initiation-c-2026-6637-section-30",
+      "source": "European Commission, Notice of initiation C/2026/6637, section 5.2, Comments on the complaint and the initiation of the investigation",
+      "figures": [
+        {
+          "articleSlug": "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+          "articleNum": 30,
+          "value": "10 days",
+          "unit": "the window to comment on the product scope, counted from publication — it closed on 4 October 2026",
+          "period": "the same section allows 15 days for a hearing request and 15 days to comment on provisional measures, closed 9 October 2026",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 5.2, Comments on the complaint and the initiation of the investigation",
+          "retrieved": "2026-10-13"
+        },
+        {
+          "articleSlug": "eu-cellulose-ethers-duty-timeline",
+          "articleNum": 33,
+          "value": "10 days",
+          "unit": "the window to comment on the product scope, counted from publication — it closed on 4 October 2026",
+          "period": "the same section allows 15 days for a hearing request and 15 days to comment on provisional measures, closed 9 October 2026",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 5.2, Comments on the complaint and the initiation of the investigation",
+          "retrieved": "2026-10-13"
+        }
+      ],
+      "articleNums": [
+        30,
+        33
+      ],
+      "articleSlugs": [
+        "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+        "eu-cellulose-ethers-duty-timeline"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-notice-of-initiation-c-2026-6637-section-30",
+      "source": "European Commission, Notice of initiation C/2026/6637, section 5.3, Procedure for the determination of dumping",
+      "figures": [
+        {
+          "articleSlug": "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+          "articleNum": 30,
+          "value": "30 days",
+          "unit": "the time a sampled exporting producer has to return the questionnaire after being told it is in the sample",
+          "period": "the sampling decision had not been published when this article was written",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 5.3, Procedure for the determination of dumping",
+          "retrieved": "2026-10-13"
+        },
+        {
+          "articleSlug": "eu-cellulose-ethers-duty-timeline",
+          "articleNum": 33,
+          "value": "30 days",
+          "unit": "the time a sampled exporting producer has to return the questionnaire after being told it is in the sample",
+          "period": "the sampling decision had not been published when this article was written",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 5.3, Procedure for the determination of dumping",
+          "retrieved": "2026-10-13"
+        }
+      ],
+      "articleNums": [
+        30,
+        33
+      ],
+      "articleSlugs": [
+        "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+        "eu-cellulose-ethers-duty-timeline"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-notice-of-initiation-c-2026-6637-section-30",
+      "source": "European Commission, Notice of initiation C/2026/6637, section 7, Schedule of the investigation; Regulation (EU) 2016/1036 Article 7(1)",
+      "figures": [
+        {
+          "articleSlug": "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+          "articleNum": 30,
+          "value": "24 May 2027",
+          "unit": "the last day on which provisional duties can be imposed — eight months from publication",
+          "period": "Article 7(1) of Regulation (EU) 2016/1036 allows seven months, and eight months at the outside",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 7, Schedule of the investigation; Regulation (EU) 2016/1036 Article 7(1)",
+          "retrieved": "2026-10-13"
+        },
+        {
+          "articleSlug": "eu-cellulose-ethers-duty-timeline",
+          "articleNum": 33,
+          "value": "24 May 2027",
+          "unit": "the last day on which provisional duties can be imposed — eight months from publication",
+          "period": "Article 7(1) of Regulation (EU) 2016/1036 allows seven months, and eight months at the outside",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 7, Schedule of the investigation; Regulation (EU) 2016/1036 Article 7(1)",
+          "retrieved": "2026-10-13"
+        }
+      ],
+      "articleNums": [
+        30,
+        33
+      ],
+      "articleSlugs": [
+        "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+        "eu-cellulose-ethers-duty-timeline"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-notice-of-initiation-c-2026-6637-section-30",
+      "source": "European Commission, Notice of initiation C/2026/6637, section 7; Regulation (EU) 2016/1036 Article 6(9)",
+      "figures": [
+        {
+          "articleSlug": "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+          "articleNum": 30,
+          "value": "24 November 2027",
+          "unit": "the last day of the investigation — fourteen months from publication, the outer limit in Article 6(9)",
+          "period": "the notice states the investigation concludes within one year, and not more than fourteen months, of publication",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 7; Regulation (EU) 2016/1036 Article 6(9)",
+          "retrieved": "2026-10-13"
+        },
+        {
+          "articleSlug": "eu-cellulose-ethers-duty-timeline",
+          "articleNum": 33,
+          "value": "24 November 2027",
+          "unit": "the last day of the investigation — fourteen months from publication, the outer limit in Article 6(9)",
+          "period": "the notice states the investigation concludes within one year, and not more than fourteen months, of publication",
+          "source": "European Commission, Notice of initiation C/2026/6637, section 7; Regulation (EU) 2016/1036 Article 6(9)",
+          "retrieved": "2026-10-13"
+        }
+      ],
+      "articleNums": [
+        30,
+        33
+      ],
+      "articleSlugs": [
+        "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+        "eu-cellulose-ethers-duty-timeline"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "european-commission-notice-of-initiation-of-an-anti-dumping",
+      "source": "European Commission, Notice of initiation of an anti-dumping proceeding concerning imports of certain cellulose ethers originating in the People's Republic of China and the Republic of Korea, C/2026/6637, OJ C/2026/4924",
+      "figures": [
+        {
+          "articleSlug": "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+          "articleNum": 30,
+          "value": "C/2026/6637",
+          "unit": "the notice of initiation, published as document 52026XC04924 in Official Journal C/2026/4924",
+          "period": "published 24 September 2026",
+          "source": "European Commission, Notice of initiation of an anti-dumping proceeding concerning imports of certain cellulose ethers originating in the People's Republic of China and the Republic of Korea, C/2026/6637, OJ C/2026/4924",
+          "retrieved": "2026-10-13"
+        },
+        {
+          "articleSlug": "eu-cellulose-ethers-duty-timeline",
+          "articleNum": 33,
+          "value": "C/2026/6637",
+          "unit": "the notice of initiation, published as document 52026XC04924 in Official Journal C/2026/4924",
+          "period": "published 24 September 2026",
+          "source": "European Commission, Notice of initiation of an anti-dumping proceeding concerning imports of certain cellulose ethers originating in the People's Republic of China and the Republic of Korea, C/2026/6637, OJ C/2026/4924",
+          "retrieved": "2026-10-13"
+        }
+      ],
+      "articleNums": [
+        30,
+        33
+      ],
+      "articleSlugs": [
+        "eu-anti-dumping-cellulose-ethers-ad760-registration-2026",
+        "eu-cellulose-ethers-duty-timeline"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "gacc-announcement-no-136-of-2026-article-2",
+      "source": "GACC Announcement No. 136 of 2026, Article 2",
+      "figures": [
+        {
+          "articleSlug": "china-container-suitability-check-frozen-food-export-2026",
+          "articleNum": 23,
+          "value": "4",
+          "unit": "self-check items the exporting producer must confirm on the container: clean, sanitary, refrigerated and sealed",
+          "period": "in force from 1 October 2026",
+          "source": "GACC Announcement No. 136 of 2026, Article 2",
+          "retrieved": "2026-10-08"
+        },
+        {
+          "articleSlug": "importing-from-china-documents-checklist",
+          "articleNum": 27,
+          "value": "4",
+          "unit": "self-check items the exporting producer must confirm on the container suitability declaration",
+          "period": "in force from 1 October 2026",
+          "source": "GACC Announcement No. 136 of 2026, Article 2",
+          "retrieved": "2026-10-08"
+        }
+      ],
+      "articleNums": [
+        23,
+        27
+      ],
+      "articleSlugs": [
+        "china-container-suitability-check-frozen-food-export-2026",
+        "importing-from-china-documents-checklist"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "general-administration-of-customs-of-the-prc-announcement-no-6",
+      "source": "General Administration of Customs of the PRC, Announcement No. 40 of 2026",
+      "figures": [
+        {
+          "articleSlug": "china-real-name-registration-supplier-verification",
+          "articleNum": 6,
+          "value": "2",
+          "unit": "new conditional-mandatory export declaration items (restricted-goods control code and control declaration elements)",
+          "period": "announcement dated 15 April 2026",
+          "source": "General Administration of Customs of the PRC, Announcement No. 40 of 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "how-to-tell-a-factory-from-a-trading-company",
+          "articleNum": 28,
+          "value": "2",
+          "unit": "new conditional-mandatory items added to the export declaration form, for restricted goods",
+          "period": "GACC announcement dated 15 April 2026",
+          "source": "General Administration of Customs of the PRC, Announcement No. 40 of 2026",
+          "retrieved": "2026-10-08"
+        }
+      ],
+      "articleNums": [
+        6,
+        28
+      ],
+      "articleSlugs": [
+        "china-real-name-registration-supplier-verification",
+        "how-to-tell-a-factory-from-a-trading-company"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "ministry-of-finance-ministry-of-emergency-management-cai-ku-52",
+      "source": "Ministry of Finance / Ministry of Emergency Management, Cai Ku [2026] No. 12, Article 13",
+      "figures": [
+        {
+          "articleSlug": "china-emergency-procurement-rules-imported-goods-october-2026",
+          "articleNum": 52,
+          "value": "十个工作日",
+          "unit": "deadline to publish the award result after the winning supplier is confirmed",
+          "period": "each emergency procurement from 1 October 2026",
+          "source": "Ministry of Finance / Ministry of Emergency Management, Cai Ku [2026] No. 12, Article 13",
+          "retrieved": "2026-10-26"
+        },
+        {
+          "articleSlug": "china-emergency-procurement-rules-imported-goods-october-2026",
+          "articleNum": 52,
+          "value": "五个工作日",
+          "unit": "outer deadline to publish the award result after the emergency ends, where timely publication was not possible",
+          "period": "each emergency procurement from 1 October 2026",
+          "source": "Ministry of Finance / Ministry of Emergency Management, Cai Ku [2026] No. 12, Article 13",
+          "retrieved": "2026-10-26"
+        }
+      ],
+      "articleNums": [
+        52
+      ],
+      "articleSlugs": [
+        "china-emergency-procurement-rules-imported-goods-october-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "ministry-of-finance-and-state-taxation-administration-2026-2-3",
+      "source": "Ministry of Finance and State Taxation Administration, 财政部 税务总局公告2026年第2号, Annex 1",
+      "figures": [
+        {
+          "articleSlug": "china-export-rebate-vs-export-duty-2026",
+          "articleNum": 17,
+          "value": "249",
+          "unit": "product lines in Annex 1 that lose the export VAT rebate outright",
+          "period": "from 1 April 2026",
+          "source": "Ministry of Finance and State Taxation Administration, 财政部 税务总局公告2026年第2号, Annex 1",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "china-export-tax-rebate-removal-battery-solar",
+          "articleNum": 3,
+          "value": "249",
+          "unit": "product lines in Annex 1 (photovoltaic and other products) that lose the export VAT rebate",
+          "period": "published 8 January 2026, effective 1 April 2026",
+          "source": "Ministry of Finance and State Taxation Administration, 财政部 税务总局公告2026年第2号, Annex 1",
+          "retrieved": "2026-10-02"
+        }
+      ],
+      "articleNums": [
+        3,
+        17
+      ],
+      "articleSlugs": [
+        "china-export-rebate-vs-export-duty-2026",
+        "china-export-tax-rebate-removal-battery-solar"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "national-bureau-of-statistics-of-china-industrial-enterprise",
+      "source": "National Bureau of Statistics of China, industrial enterprise profits for January to August 2026",
+      "figures": [
+        {
+          "articleSlug": "china-industrial-profits-q4-supply-chain",
+          "articleNum": 22,
+          "value": "52719.8",
+          "unit": "100 million yuan — total industrial enterprise profit, January to August 2026",
+          "period": "January to August 2026, published 28 September 2026",
+          "source": "National Bureau of Statistics of China, industrial enterprise profits for January to August 2026",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "china-industrial-profits-q4-supply-chain",
+          "articleNum": 22,
+          "value": "15.7",
+          "unit": "per cent — year-on-year growth in that cumulative profit figure, on a comparable basis",
+          "period": "January to August 2026",
+          "source": "National Bureau of Statistics of China, industrial enterprise profits for January to August 2026",
+          "retrieved": "2026-10-07"
+        }
+      ],
+      "articleNums": [
+        22
+      ],
+      "articleSlugs": [
+        "china-industrial-profits-q4-supply-chain"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "one-big-beautiful-bill-act-pub-l-119-21",
+      "source": "One Big Beautiful Bill Act, Pub. L. 119-21",
+      "figures": [
+        {
+          "articleSlug": "us-de-minimis-postal-route-closes-october-2026",
+          "articleNum": 12,
+          "value": "1 July 2027",
+          "unit": "date the de minimis exemption is repealed by statute, with no restoration in the interim",
+          "period": "enacted 4 July 2025",
+          "source": "One Big Beautiful Bill Act, Pub. L. 119-21",
+          "retrieved": "2026-10-03"
+        },
+        {
+          "articleSlug": "us-low-value-shipment-entry-rule-2026",
+          "articleNum": 24,
+          "value": "1 July 2027",
+          "unit": "the date the de minimis exemption is repealed by statute, after which no restoration is administratively possible",
+          "period": "enacted 4 July 2025",
+          "source": "One Big Beautiful Bill Act, Pub. L. 119-21",
+          "retrieved": "2026-10-09"
+        }
+      ],
+      "articleNums": [
+        12,
+        24
+      ],
+      "articleSlugs": [
+        "us-de-minimis-postal-route-closes-october-2026",
+        "us-low-value-shipment-entry-rule-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "regulation-eu-2026-1384-recital-18",
+      "source": "Regulation (EU) 2026/1384, recital 18",
+      "figures": [
+        {
+          "articleSlug": "eu-cbam-vs-steel-safeguard-duty-per-tonne-2026",
+          "articleNum": 15,
+          "value": "18,345,922",
+          "unit": "tonnes — total EU steel tariff-rate quota across all covered categories",
+          "period": "quota year 1 July 2026 to 30 June 2027",
+          "source": "Regulation (EU) 2026/1384, recital 18",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "eu-steel-safeguard-quota-2026-chinese-hrc-cost",
+          "articleNum": 14,
+          "value": "18,345,922",
+          "unit": "tonnes — total annual tariff-rate quota across all covered categories",
+          "period": "quota year 1 July 2026 to 30 June 2027",
+          "source": "Regulation (EU) 2026/1384, recital 18",
+          "retrieved": "2026-10-05"
+        }
+      ],
+      "articleNums": [
+        14,
+        15
+      ],
+      "articleSlugs": [
+        "eu-cbam-vs-steel-safeguard-duty-per-tonne-2026",
+        "eu-steel-safeguard-quota-2026-chinese-hrc-cost"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "state-council-customs-tariff-commission-2026-tariff-adjustme-17",
+      "source": "State Council Customs Tariff Commission, 2026 tariff adjustment plan, export duty schedule",
+      "figures": [
+        {
+          "articleSlug": "china-export-rebate-vs-export-duty-2026",
+          "articleNum": 17,
+          "value": "107",
+          "unit": "goods subject to Chinese export duty in 2026, counted row by row from the published schedule",
+          "period": "2026 tariff adjustment plan",
+          "source": "State Council Customs Tariff Commission, 2026 tariff adjustment plan, export duty schedule",
+          "retrieved": "2026-10-07"
+        },
+        {
+          "articleSlug": "china-export-rebate-vs-export-duty-2026",
+          "articleNum": 17,
+          "value": "68",
+          "unit": "of those 107 goods carrying a provisional export duty rate rather than the nominal one",
+          "period": "2026",
+          "source": "State Council Customs Tariff Commission, 2026 tariff adjustment plan, export duty schedule",
+          "retrieved": "2026-10-07"
+        }
+      ],
+      "articleNums": [
+        17
+      ],
+      "articleSlugs": [
+        "china-export-rebate-vs-export-duty-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "suez-canal-authority-periodical-no-28-of-2026",
+      "source": "Suez Canal Authority, Periodical No. 28 of 2026",
+      "figures": [
+        {
+          "articleSlug": "container-freight-index-publisher-change-2026",
+          "articleNum": 7,
+          "value": "1 August 2026 to 31 January 2027",
+          "unit": "six-month extension of Suez Canal Periodical No. 1 of 2026 to all vessel types",
+          "period": "circular dated 7 September 2026",
+          "source": "Suez Canal Authority, Periodical No. 28 of 2026",
+          "retrieved": "2026-10-02"
+        },
+        {
+          "articleSlug": "freight-index-linked-contract-two-errors-2026",
+          "articleNum": 18,
+          "value": "1 August 2026 to 31 January 2027",
+          "unit": "six-month extension of Suez Canal Periodical No. 1 of 2026, all vessel types",
+          "period": "circular dated 7 September 2026 — routing cost rather than index composition",
+          "source": "Suez Canal Authority, Periodical No. 28 of 2026",
+          "retrieved": "2026-10-07"
+        }
+      ],
+      "articleNums": [
+        7,
+        18
+      ],
+      "articleSlugs": [
+        "container-freight-index-publisher-change-2026",
+        "freight-index-linked-contract-two-errors-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "wto-committee-on-safeguards-g-sg-n-8-idn-25",
+      "source": "WTO Committee on Safeguards, G/SG/N/8/IDN/35/Corr.1, Table 7",
+      "figures": [
+        {
+          "articleSlug": "indonesia-tarpaulin-safeguard-duty-2026",
+          "articleNum": 25,
+          "value": "12,391",
+          "unit": "rupiah per kilogram — the specific safeguard duty in stage two",
+          "period": "stage two of three, notified 6 October 2026",
+          "source": "WTO Committee on Safeguards, G/SG/N/8/IDN/35/Corr.1, Table 7",
+          "retrieved": "2026-10-10"
+        },
+        {
+          "articleSlug": "indonesia-tarpaulin-safeguard-duty-2026",
+          "articleNum": 25,
+          "value": "11,458",
+          "unit": "rupiah per kilogram — the specific safeguard duty in stage three",
+          "period": "stage three of three, notified 6 October 2026",
+          "source": "WTO Committee on Safeguards, G/SG/N/8/IDN/35/Corr.1, Table 7",
+          "retrieved": "2026-10-10"
+        }
+      ],
+      "articleNums": [
+        25
+      ],
+      "articleSlugs": [
+        "indonesia-tarpaulin-safeguard-duty-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "2026-10-15-producer-annex-to-quy-t-nh",
+      "source": "中国贸易救济信息网（商务部）, 越南对涉华聚酯长丝纱线作出反倾销日落复审终裁, 2026-10-15, producer annex to Quyết định 2652/QD-BCT",
+      "figures": [
+        {
+          "articleSlug": "vietnam-polyester-yarn-sunset-review-2026",
+          "articleNum": 31,
+          "value": "3.36%",
+          "unit": "the lowest anti-dumping duty on Chinese polyester filament yarn, as a share of CIF value",
+          "period": "applies to Toray Fibers (Nantong) Co., Ltd and the Toray trading entities named in the annex",
+          "source": "中国贸易救济信息网（商务部）, 越南对涉华聚酯长丝纱线作出反倾销日落复审终裁, 2026-10-15, producer annex to Quyết định 2652/QD-BCT",
+          "retrieved": "2026-10-16"
+        },
+        {
+          "articleSlug": "vietnam-polyester-yarn-sunset-review-2026",
+          "articleNum": 31,
+          "value": "17.45%",
+          "unit": "the highest anti-dumping duty on Chinese polyester filament yarn, as a share of CIF value",
+          "period": "applies to the catch-all category 其他生产商/出口商 — all producers and exporters not named in the annex",
+          "source": "中国贸易救济信息网（商务部）, 越南对涉华聚酯长丝纱线作出反倾销日落复审终裁, 2026-10-15, producer annex to Quyết định 2652/QD-BCT",
+          "retrieved": "2026-10-16"
+        }
+      ],
+      "articleNums": [
+        31
+      ],
+      "articleSlugs": [
+        "vietnam-polyester-yarn-sunset-review-2026"
+      ],
+      "modelOutput": false
+    }
+  ]
+}

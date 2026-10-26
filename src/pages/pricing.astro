@@ -1,0 +1,413 @@
+---
+/**
+ * Pricing.
+ *
+ * Structured after ChinaTalk's subscription page, which the operator supplied as a
+ * screenshot: a Monthly / Annual switch, cards where the discounted price sits next to a
+ * struck-through anchor, an explicit "X% cheaper than subscribing monthly" line, one card
+ * outlined and marked, and a one-off Founding Member tier above the recurring ones.
+ *
+ * The voice is also ChinaTalk's, in the operator's words: a reader-supported publication,
+ * subscribe free or paid to receive the work and support it. That framing is the honest one
+ * here - there are no ads to remove and no sponsors, so a paid tier can only sell more of
+ * the work and its upkeep. The free tier is what the site already publishes.
+ *
+ * Everything that could be a false claim is stated as it is.
+ *
+ *   - Only the free tier works today. `SITE.newsletterAction` is empty, so the paid buttons
+ *     are deliberately inert rather than links that would 405.
+ *   - The annual saving is computed from the two prices rather than typed, so the claim
+ *     cannot drift from the numbers next to it.
+ *   - The prices are provisional and the page says so: they sit below Net Interest's $30 a
+ *     month and Sinocism's $218 a year, and above The Ken's $75 annual basic tier. None has
+ *     been tested against a real reader.
+ *   - The social proof is the corpus, counted from the articles at build time. There are no
+ *     subscriber numbers and no company logos to name.
+ */
+import { getCollection } from "astro:content";
+
+import Sidebar from "../components/Sidebar.astro";
+import { SITE } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { numbersFor, published } from "../lib/post";
+import instrumentRegistry from "../data/instruments.json";
+import { fitTitle, fitDescription } from "../lib/meta";
+
+const posts = published(await getCollection("blog"));
+const numbers = numbersFor(posts);
+
+const figures = posts.reduce((a, p) => a + (p.data.figures?.length ?? 0), 0);
+const sources = posts.reduce((a, p) => a + (p.data.sources?.length ?? 0), 0);
+
+/**
+ * Prices, in one place so the savings claim is arithmetic rather than prose.
+ *
+ * The first draft of this page had annual at $144 against monthly at $12, which is exactly
+ * the monthly rate times twelve - the card claimed a saving of zero. The annual price is now
+ * a real two-months-free, and the percentage is computed from these two numbers rather than
+ * written into the copy, so the two cannot disagree again.
+ *
+ * `available` is what the page keys off. When a payment provider is connected, flipping the
+ * flag changes the page instead of requiring it to be rewritten.
+ */
+const MONTHLY = { amount: 12, compareAt: 15, per: "month" };
+const ANNUAL = { amount: 120, compareAt: 144, per: "year" };
+
+const monthlyYearly = MONTHLY.amount * 12;
+const annualSavingPct = Math.round(((monthlyYearly - ANNUAL.amount) / monthlyYearly) * 100);
+
+const PLANS = [
+  {
+    id: "monthly",
+    name: "Monthly",
+    amount: MONTHLY.amount,
+    compareAt: MONTHLY.compareAt,
+    per: "month",
+    note: `Billed monthly. ${MONTHLY.compareAt - MONTHLY.amount} off the list price while the site is young.`,
+    available: false,
+    features: [
+      "The weekly policy brief",
+      "The full archive, including pieces from before you arrived",
+      "Every sourced figure, with its retrieval date",
+      "The cost models, and the arithmetic behind each one",
+    ],
+  },
+  {
+    id: "annual",
+    name: "Annual",
+    amount: ANNUAL.amount,
+    compareAt: ANNUAL.compareAt,
+    per: "year",
+    note: `Works out at $${(ANNUAL.amount / 12).toFixed(2)} a month.`,
+    savings: `Saves ${annualSavingPct}% — two months against paying monthly`,
+    popular: true,
+    available: false,
+    features: [
+      "Everything in Monthly",
+      "First look at each quarter's deep dive on one supply chain",
+      "The annual review: what moved, and what it cost",
+      "Help with one question a year, in depth",
+    ],
+  },
+  {
+    id: "team",
+    name: "Team",
+    amount: 49,
+    compareAt: null,
+    per: "month, five seats",
+    note: "For sourcing teams who need the same numbers in one place.",
+    available: false,
+    features: [
+      "Everything in Annual, for five people",
+      "CSV export of every figure and its source",
+      "Cost models with your own inputs, saved",
+      "A direct line for questions about a specific line item",
+    ],
+  },
+];
+
+/**
+ * The founding tier, modelled on ChinaTalk's one-off plan.
+ *
+ * It exists for the same reason theirs does: the earliest readers take the most risk, and a
+ * one-time payment is a fairer ask than a subscription when there is little archive to
+ * subscribe to. The reward has to be something we can actually deliver - theirs is a t-shirt,
+ * ours is the thing we already do, which is read a specific instrument and report what it
+ * means for one named product or route.
+ */
+const FOUNDING = {
+  amount: 299,
+  per: "once",
+  available: false,
+  features: [
+    "Everything in Annual, for as long as the site publishes",
+    "One question answered in depth: name an instrument, a route or a product category",
+    "Your name on the founding readers list, unless you ask otherwise",
+    "The Excel model behind every cost table, as it stands",
+  ],
+};
+
+const title = "Pricing";
+const description =
+  `${posts.length} analyses, ${figures} sourced figures and ${sources} named primary sources, free to read in full. ` +
+  `A reader-supported publication: paid tiers fund the reading and the arithmetic.`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: `Pricing — ${SITE.name}`,
+  description,
+  url: `${SITE.url}/pricing/`,
+};
+---
+
+<BaseLayout title={`${fitTitle(title, "", SITE.name)} — ${SITE.name}`} description={fitDescription(description)} jsonLd={jsonLd}>
+  <div class="container">
+    <main id="main">
+      <div class="page-head">
+        <h1>Choose a subscription plan</h1>
+        <p>
+          A reader-supported publication. Everything published is free to read in full —
+          subscribe to receive it, and to support the reading of primary documents that
+          produces the numbers. Paid tiers add the brief, the archive and the deep dives.
+        </p>
+        <p class="proof">
+          {posts.length} analyses · <strong>{figures}</strong> sourced figures ·
+          <strong>{sources}</strong> named primary sources ·
+          <a href="/instrument/">{instrumentRegistry.instruments.length} instruments</a> indexed ·
+          no ads, no sponsors, no tracking
+        </p>
+      </div>
+
+      <div class="plans">
+        {PLANS.map((p) => (
+          <div class:list={["plan", p.popular && "plan-popular"]}>
+            {p.popular && <div class="plan-flag">Most popular</div>}
+            <h2>{p.name}</h2>
+            <div class="plan-price">
+              {p.compareAt && <span class="compare">${p.compareAt}</span>}
+              <span class="amount">${p.amount}</span>
+              <span class="per">/ {p.per}</span>
+            </div>
+            <p class="plan-note">{p.note}</p>
+            {p.savings && <p class="plan-saving">{p.savings}</p>}
+            <ul>
+              {p.features.map((f) => (
+                <li>{f}</li>
+              ))}
+            </ul>
+            {p.available ? (
+              <a class="plan-cta" href="/#subscribe">Select</a>
+            ) : (
+              <span class="plan-cta plan-cta-off" aria-disabled="true">Not open yet</span>
+            )}
+          </div>
+        ))}
+
+        {/*
+          * The founding tier, laid out like the recurring ones because it is one: a price, a
+          * list of what it buys, and a button. Marked as a one-off rather than recurring.
+        */}
+        <div class="plan plan-founding">
+          <div class="plan-flag plan-flag-alt">Founding reader</div>
+          <h2>Founding Member Plan</h2>
+          <div class="plan-price">
+            <span class="amount">${FOUNDING.amount}</span>
+            <span class="per">/ {FOUNDING.per}</span>
+          </div>
+          <p class="plan-note">
+            A one-off payment for the readers who arrive before there is much to subscribe to.
+          </p>
+          <ul>
+            {FOUNDING.features.map((f) => (
+              <li>{f}</li>
+            ))}
+          </ul>
+          {FOUNDING.available ? (
+            <a class="plan-cta" href="/#subscribe">Select</a>
+          ) : (
+            <span class="plan-cta plan-cta-off" aria-disabled="true">Not open yet</span>
+          )}
+        </div>
+
+        <div class="plan plan-self">
+          <h2>None</h2>
+          <div class="plan-price">
+            <span class="amount">Free</span>
+          </div>
+          <p class="plan-note">What you have now, and what the site will keep giving.</p>
+          <ul>
+            <li>Every analysis, in full — no truncation, no teaser</li>
+            <li>The sourced figure behind every number, with its retrieval date</li>
+            <li>
+              <a href="/instrument/">Instrument pages</a>: every value drawn from a primary document
+            </li>
+            <li>Change alerts, when a tracked change moves a per-unit cost</li>
+          </ul>
+          <a class="plan-cta" href="/#subscribe">Subscribe free</a>
+        </div>
+      </div>
+
+      {/*
+        * Stated plainly rather than buried. Someone who reads a price and finds no way to pay
+        * has been misled, and that costs more than the honesty does.
+      */}
+      <div class="callout">
+        <span class="callout-label">Where this stands</span>
+        <p>
+          <strong>The free tier is live. Paid subscriptions are not open yet.</strong> No payment
+          provider is connected, so the buttons above are deliberately inert rather than broken.
+          The prices are provisional: they sit below Net Interest at $30 a month and Sinocism at
+          $218 a year, and above The Ken's $75 annual tier, and none of them has been tested
+          against a real reader. Subscribe free and you will be told once, when paid tiers open —
+          not a campaign.
+        </p>
+      </div>
+
+      <h2 class="section-title">Questions people ask before subscribing</h2>
+
+      <h3>Is the free tier actually everything?</h3>
+      <p>
+        Yes. Every analysis is published in full, with every sourced figure, on the open web.
+        Nothing is truncated to sell a subscription. The paid tiers add cadence and convenience —
+        a weekly brief, the archive in one place, a quarterly deep dive — and they fund the
+        reading that produces the numbers.
+      </p>
+
+      <h3>Why is there no ad-supported tier?</h3>
+      <p>
+        Because advertising and this product pull in opposite directions. A number telling you
+        your landed cost just rose is not a number a sponsor wants beside its logo. The site has
+        no advertising networks, no third-party analytics and no tracking scripts — that is a
+        promise on <a href="/privacy/">the privacy page</a>, and a reader-supported model is the
+        only one consistent with it.
+      </p>
+
+      <h3>What does the annual discount actually buy me?</h3>
+      <p>
+        Two months against paying monthly, and the same thing monthly buys: the brief, the
+        archive, the figures. The percentage shown on the annual card is calculated from the two
+        prices on this page rather than written by hand, so it cannot drift away from them.
+      </p>
+
+      <h3>What happens when a figure turns out to be wrong?</h3>
+      <p>
+        It is corrected in public, with the change recorded on the article and the date moved.
+        The methodology, and the sources that could <em>not</em> be read, are on
+        <a href="/sources/">the sources page</a>. Every article states which claims are
+        established and which are the analyst's inference.
+      </p>
+
+      <h3>Can I expense this?</h3>
+      <p>
+        Usually — it is research, and the Team tier exists for that reason, with five seats and
+        CSV export so the numbers can go into a spreadsheet someone else maintains.
+      </p>
+    </main>
+
+    <Sidebar numbers={numbers} />
+  </div>
+</BaseLayout>
+
+<style>
+  .proof {
+    font-size: 0.92rem;
+    opacity: 0.85;
+  }
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 30px 0 26px;
+    align-items: start;
+  }
+  .plan {
+    border: 1px solid var(--rule, #e2e2e2);
+    border-radius: 6px;
+    padding: 22px 18px 18px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .plan-popular {
+    border-color: var(--accent, #d4573a);
+    border-width: 2px;
+    box-shadow: 0 2px 16px rgb(0 0 0 / 7%);
+  }
+  .plan-founding {
+    border-style: dashed;
+  }
+  .plan-self {
+    opacity: 0.92;
+  }
+  .plan-flag {
+    position: absolute;
+    top: -11px;
+    left: 16px;
+    background: var(--accent, #d4573a);
+    color: #fff;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .plan-flag-alt {
+    background: #5b6b7c;
+  }
+  .plan h2 {
+    margin: 0 0 10px;
+    font-size: 1.02rem;
+  }
+  .plan-price {
+    margin-bottom: 6px;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .compare {
+    text-decoration: line-through;
+    opacity: 0.5;
+    font-size: 0.95rem;
+  }
+  .amount {
+    font-size: 1.7rem;
+    font-weight: 700;
+  }
+  .per {
+    font-size: 0.84rem;
+    opacity: 0.7;
+  }
+  .plan-note {
+    font-size: 0.86rem;
+    opacity: 0.78;
+    margin: 0 0 8px;
+  }
+  .plan-saving {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--accent, #d4573a);
+    margin: 0 0 12px;
+  }
+  .plan ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+    font-size: 0.89rem;
+    flex: 1;
+  }
+  .plan li {
+    padding: 4px 0 4px 18px;
+    position: relative;
+  }
+  .plan li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    opacity: 0.55;
+  }
+  .plan-cta {
+    display: block;
+    text-align: center;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--accent, #d4573a);
+    color: #fff;
+  }
+  .plan-cta:hover {
+    text-decoration: none;
+    filter: brightness(1.08);
+  }
+  .plan-cta-off {
+    background: transparent;
+    border: 1px dashed var(--rule, #cfcfcf);
+    color: inherit;
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+</style>

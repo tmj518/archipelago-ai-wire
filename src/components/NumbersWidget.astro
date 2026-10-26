@@ -1,0 +1,32 @@
+---
+/**
+ * "Today's Numbers" widget — spec §3.
+ * Values are passed in from computed content-collection data rather than
+ * hard-coded, so the widget can never show stale demo numbers.
+ */
+export interface NumberItem {
+  label: string;
+  value: string | number;
+}
+
+export interface Props {
+  heading?: string;
+  items: NumberItem[];
+}
+
+const { heading = "Today's Numbers", items } = Astro.props;
+---
+
+<div class="widget">
+  <h2>{heading}</h2>
+  <ul class="numbers-list">
+    {
+      items.map((item) => (
+        <li>
+          <span>{item.label}</span>
+          <span class="num">{item.value}</span>
+        </li>
+      ))
+    }
+  </ul>
+</div>

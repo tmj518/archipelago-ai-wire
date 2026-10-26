@@ -1,0 +1,61 @@
+---
+import AuthorCard from "../components/AuthorCard.astro";
+import { AUTHOR, SITE } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: `Contact ${SITE.name}`,
+  url: new URL("/contact/", Astro.site ?? SITE.url).href,
+};
+---
+
+<BaseLayout
+  title={`Contact — ${SITE.name}`}
+  description={`Pitch a topic, flag an error, or ask about consulting work.`}
+  jsonLd={jsonLd}
+>
+  <div class="container">
+    <main id="main">
+      <div class="page-head">
+        <h1>Contact</h1>
+        <p>The fastest way to reach the desk is email.</p>
+      </div>
+
+      <div class="prose" style="margin-top:32px;">
+        <p>
+          <strong>Email:</strong>{" "}
+          <a href={`mailto:${AUTHOR.email}`}>{AUTHOR.email}</a>
+        </p>
+
+        <h2>Good reasons to write</h2>
+        <ul>
+          <li>
+            <strong>A correction.</strong> Point at the figure and the source
+            that contradicts it; corrections are published.
+          </li>
+          <li>
+            <strong>A story worth costing out.</strong> If a policy change is
+            about to move your margins, say which one and what it costs you.
+          </li>
+          <li>
+            <strong>Consulting or data work.</strong> Landed-cost modelling,
+            platform policy triage, sourcing due diligence.
+          </li>
+        </ul>
+
+        <h2>What will not get a reply</h2>
+        <ul>
+          <li>Paid link placements and "sponsored analysis".</li>
+          <li>Guest posts written by an agency.</li>
+          <li>Anything asking for a backlink in exchange for a mention.</li>
+        </ul>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <AuthorCard />
+    </aside>
+  </div>
+</BaseLayout>

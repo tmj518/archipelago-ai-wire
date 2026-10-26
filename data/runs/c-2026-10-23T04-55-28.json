@@ -1,0 +1,51 @@
+{
+  "at": "2026-10-23T04:55:28.928Z",
+  "route": "c",
+  "verdict": "PUBLISHED",
+  "article": "convert-foreign-driving-licence",
+  "seconds": 76,
+  "usage": {
+    "calls": 2,
+    "failed": 1,
+    "usd": 0.0008
+  },
+  "providers": [
+    "volces"
+  ],
+  "reasons": [],
+  "steps": [
+    {
+      "name": "credentials",
+      "ok": true,
+      "detail": "46 key chars, model ep-20261019161601-9k6dn"
+    },
+    {
+      "name": "queue",
+      "ok": true,
+      "detail": "7 candidate(s)"
+    },
+    {
+      "name": "grounding convert-foreign-driving-licence",
+      "ok": true,
+      "detail": "procedural, no figures"
+    },
+    {
+      "name": "gates convert-foreign-driving-licence",
+      "ok": true,
+      "detail": "structure ok, procedural (no figures)"
+    },
+    {
+      "name": "build convert-foreign-driving-licence",
+      "ok": true,
+      "detail": "site builds with the guide in place"
+    },
+    {
+      "name": "published",
+      "ok": true,
+      "detail": "/guide/convert-foreign-driving-licence/"
+    }
+  ],
+  "researchLog": [
+    "model : volces/ep-20261019161601-9k6dn"
+  ]
+}

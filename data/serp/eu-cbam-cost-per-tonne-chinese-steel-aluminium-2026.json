@@ -1,0 +1,32 @@
+{
+  "_note": "SERP snapshot built from the competing-coverage section of the CBAM research dossier. Every URL was fetched directly with curl.exe (2026-10-03, HTTP 200) and again while verifying that the gate can load each competitor page; page contents were read from the downloaded copies, never from search snippets. Provenance: search discovery, then direct fetch verification. taxation-customs.ec.europa.eu, dehst.de, emissieautoriteit.nl and fu.gov.si are official publishers and are excluded from the competitor set automatically, so they are not listed here. Only the first three results enter the TOP_N comparison, and all three are steel-only: none carries a table of per-tonne costs with a currency amount, and none covers aluminium.",
+  "_captured": "2026-10-03",
+  "_keyword": "EU CBAM cost per tonne 2026 Chinese steel aluminium",
+  "results": [
+    {
+      "url": "https://news.metal.com/newscontent/104065992-smm-analysis-carbon-comes-due-a-full-breakdown-of-the-new-cbam-rules-the-country-cost-inversion-for-flagship-steels",
+      "title": "[SMM Analysis] Carbon Comes Due: A Full Breakdown of the New CBAM Rules & the Country-Cost Inversion for Flagship Steels",
+      "snippet": "Chinese HRC bears about 163 EUR/tonne, 26% of value. Billet, HRC and CRC within one origin are nearly identical (China 162 / 163 / 158 EUR/tonne). The CBAM factor - the share of free allocation not yet phased out - falls from 97.5% in 2026 to 0% by 2034."
+    },
+    {
+      "url": "https://news.metal.com/newscontent/104143290-smm-analysis-smm-launches-stainless-steel-cbam-calculator-indonesian-304-crc-carries-a-EUR626mt-cbam-bill-into-the-eu",
+      "title": "[SMM Analysis] SMM launches stainless steel CBAM calculator: Indonesian 304 CRC carries a EUR626/mt CBAM bill into the EU",
+      "snippet": "SMM launches a stainless steel CBAM calculator. Indonesian 304 cold-rolled coil carries a EUR626 per tonne CBAM bill into the EU under the 2026 country default values."
+    },
+    {
+      "url": "https://eurometal.net/italian-rerollers-and-buyers-call-cbam-values-unworkable-actual-emissions-verification-a-priority-in-2026/",
+      "title": "Italian rerollers and buyers call CBAM values unworkable, actual emissions verification a priority in 2026",
+      "snippet": "Per-origin 2026 default-value cost estimates attributed to Fastmarkets for steel slab only: China approximately EUR 144/t, Russia EUR 149/t, India EUR 230/t, Indonesia EUR 541/t, Brazil EUR 22/t."
+    },
+    {
+      "url": "https://semtrio.com/insights/blogs/cbam-certificates-pricing-purchase-surrender",
+      "title": "CBAM Certificates: Pricing, Purchase, Surrender",
+      "snippet": "Q1 2026 certificate price EUR 75.36 and Q2 2026 EUR 75.28, quarterly average in 2026 and weekly from 2027, the 97.5% 2026 free-allocation factor, and a worked example of embedded emissions minus SEFA."
+    },
+    {
+      "url": "https://www.carbonchain.com/cbam/cbam-certificate-estimator",
+      "title": "CBAM Calculations & Certificate Estimator",
+      "snippet": "A gated calculator landing page. Names the variables - global default values, supplier emissions intensities, EU benchmarks and phase-in adjustments - and publishes no figure."
+    }
+  ]
+}

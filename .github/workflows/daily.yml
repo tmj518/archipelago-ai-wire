@@ -1,0 +1,703 @@
+name: LandedMath Daily
+
+# The unattended run. Triggered by cron at 23:20 UTC, which is 07:20 in Beijing.
+#
+# It is safe to leave enabled before the pipeline can do anything: with no provider key the
+# orchestrator exits 78 after printing exactly which secrets are missing, and it writes nothing. A run
+# that cannot work says so rather than doing something.
+#
+# What runs on a good day:
+#   orchestrator -> writer -> reviewer -> publish -> registry rebuild -> commit and push
+# Cloudflare Pages deploys from the push. Feishu gets the report either way.
+#
+# What it will not do:
+#   invent its own subject. With no directive at data/directive.json the run exits 0 and reports that
+#   there was nothing to write. A day without a qualifying subject is a day without an article, which
+#   is the rule, not a failure.
+
+on:
+  schedule:
+    # 23:20 UTC = 07:20 Beijing. GitHub's scheduler can lag by several minutes under load, and it can
+    # skip a run entirely when the queue is busy, so this is the primary trigger and not the only one.
+    # Two runs a day, two routes.
+    #
+    # 07:20 Beijing is the script route: a fixed sequence, about a minute, the same machine every day.
+    # 20:20 Beijing is the agent route: a model reads the directive, decides, and writes - about three minutes
+    # when it behaves.
+    #
+    # One workflow rather than two. Two copies of fourteen steps drift apart, and both routes write the same
+    # report and the same card, so the failure domain is the same either way.
+    - cron: '20 23 * * *'   # 07:20 Beijing - script
+    - cron: '20 1 * * *'    # 09:20 Beijing - script BACKUP, in case the first is skipped
+    - cron: '20 12 * * *'   # 20:20 Beijing - agent
+    - cron: '20 13 * * *'   # 21:20 Beijing - agent BACKUP
+  # A push to data/trigger/ is a run.
+  #
+  # The scheduled crons are the promise; this is how a person - or an agent working in the repository - starts one
+  # without the GitHub API, which needs a token this project does not keep on a development machine. It is scoped
+  # to one directory so a normal push never spends a run.
+  #
+  # The route comes from the commit message: "run [agent]" starts the agent route, anything else the script route.
+  #
+  # Hash comments, not C-style. A block comment is not valid YAML at all - "Implicit keys need to be on a single
+  # line" - and the workflow is rejected whole. That is the third time these two characters have cost a run.
+  push:
+    paths:
+      - 'data/trigger/**'
+
+  workflow_dispatch:
+    inputs:
+      directive_file:
+        description: 'Path to a directive JSON. Leave empty to use data/directive.json.'
+        required: false
+        default: ''
+      route:
+        description: 'script = fixed steps, agent = a model reads daily-task.txt and decides'
+        required: false
+        default: 'script'
+        type: choice
+        options: ['script', 'agent']
+      force:
+        description: "Ignore the daily guard and run even if today already has an article"
+        required: false
+        default: false
+        type: boolean
+  # The backup trigger. GitHub's own cron is best-effort; a Cloudflare Worker cron can call the API at
+  # the same time every day and dispatch this event, which is a promise rather than a hope. Wiring the
+  # Worker is optional and this listener costs nothing until it exists.
+  repository_dispatch:
+    types: [daily-run]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+jobs:
+  # ---------------------------------------------------------------------------------------------
+  # Preflight. Proves the secrets exist and actually work before the expensive job starts.
+  #
+  # Two failures are possible and they look identical from a distance: the secret is missing, or the
+  # secret is present and wrong - an expired key, a depleted balance, a name that does not match the
+  # environment variable the code reads. Without this job, both appear as a NO-KEYS alert after the
+  # daily run has already spent its time, and the operator has to guess which one it was.
+  #
+  # The call is deliberately the smallest possible: one token, no content. It costs nothing measurable
+  # and it distinguishes "the key works" from "the key is there".
+  # ---------------------------------------------------------------------------------------------
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      keys_ok: ${{ steps.check.outputs.ok }}
+      summary: ${{ steps.check.outputs.summary }}
+    steps:
+      - id: check
+        name: Verify both providers with a real one-token call
+        env:
+          ARK_API_KEY: ${{ secrets.ARK_API_KEY || secrets.DUBAO201628 || secrets.APIKEY20261016201628 }}
+          DUBAO201628: ${{ secrets.DUBAO201628 }}
+          # Uppercase, like every other secret-derived name here. The lowercase spelling only worked
+          # because this file exported a lowercase key; on a Linux runner that is a different variable,
+          # and tools/lib-llm.mjs read exactly one of the two. Secret names are case-insensitive, so the
+          # secret itself did not have to be renamed.
+          DUBAOTUILI12345: ${{ secrets.DUBAOTUILI12345 }}
+          ARK_MODEL: ${{ secrets.ARK_MODEL }}
+          # One endpoint per role. A reviewer running the writer's model is the same opinion with a different
+          # prompt, and it misses exactly what the writer missed. Both fall back to ARK_MODEL.
+          ARK_MODEL_WRITER: ${{ secrets.ARK_MODEL_WRITER || secrets.DUBAOTUILI12345 }}
+          ARK_MODEL_REVIEWER: ${{ secrets.ARK_MODEL_REVIEWER || secrets.ARK_MODEL }}
+          OWNER_KEY_1: ${{ secrets.APIKEY20261016201628 }}
+          OWNER_KEY_2: ${{ secrets.GITHUB66CHINA }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_WRITE_API_KEY: ${{ secrets.DEEPSEEK_WRITE_API_KEY }}
+          DEEPSEEK_REVIEW_API_KEY: ${{ secrets.DEEPSEEK_REVIEW_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          set +e
+          OUT=/tmp/provider-check.txt
+          : > "$OUT"
+
+          probe() {
+            label="$1"; url="$2"; model="$3"; key="$4"
+            if [ -z "$key" ]; then
+              # Not a failure here. A missing key is named by the step below with the exact variable
+              # to set; counting it as a probe failure would report two problems for one cause.
+              echo "$label: SKIPPED - no key set" | tee -a "$OUT"
+              return 0
+            fi
+            if [ -z "$model" ]; then
+              echo "$label: FAIL - key is set but no endpoint id. Ark needs ep-..., not a model name" | tee -a "$OUT"
+              return 1
+            fi
+            code=$(curl -s -o /tmp/pc.json -w '%{http_code}' --max-time 45 \
+              -H 'content-type: application/json' -H "authorization: Bearer $key" \
+              -d "{\"model\":\"$model\",\"messages\":[{\"role\":\"user\",\"content\":\"hi\"}],\"max_tokens\":1}" \
+              "$url")
+            if [ "$code" = "200" ]; then
+              echo "$label: OK (HTTP 200, model $model)" | tee -a "$OUT"
+              return 0
+            fi
+            echo "$label: FAIL (HTTP $code) model=$model" | tee -a "$OUT"
+            echo "    api said: $(head -c 300 /tmp/pc.json | tr -d '\n')" | tee -a "$OUT"
+            case "$code" in
+              401) echo "    -> the key is wrong, revoked, or from another account" | tee -a "$OUT" ;;
+              402) echo "    -> no balance. Doubao and DeepSeek are paid APIs; top the account up" | tee -a "$OUT" ;;
+              403) echo "    -> the key is valid but not permitted for this endpoint" | tee -a "$OUT" ;;
+              404) echo "    -> endpoint not found or not deployed. On Ark this is the model-name-instead-of-ep case" | tee -a "$OUT" ;;
+              429) echo "    -> rate limited or out of quota" | tee -a "$OUT" ;;
+              000) echo "    -> no response at all, so the network is the problem, not the key" | tee -a "$OUT" ;;
+            esac
+            return 1
+          }
+
+          WRITER_MODEL="${ARK_MODEL_WRITER:-${ARK_MODEL:-${DOUBAO_ENDPOINT:-}}}"
+          WRITER_KEY="${ARK_API_KEY:-${DOUBAO_API_KEY:-${OWNER_KEY_1:-}}}"
+          REVIEW_KEY="${DEEPSEEK_REVIEW_API_KEY:-${DEEPSEEK_API_KEY:-${OWNER_KEY_2:-}}}"
+          OWNER_ARK="${OWNER_KEY_1:-}"
+
+          OK=true
+          probe "Doubao writer" "https://ark.cn-beijing.volces.com/api/v3/chat/completions" "$WRITER_MODEL" "$WRITER_KEY" && OK_COUNT=$((OK_COUNT+1))
+          # OWNER_KEY_1 is the Ark credential here. Offering it to DeepSeek would send an Ark key to
+          # api.deepseek.com and produce a 401 that reads as a broken DeepSeek key.
+          if [ -n "$OWNER_ARK" ] && [ "$REVIEW_KEY" = "$OWNER_ARK" ]; then
+            echo "DeepSeek reviewer: SKIPPED - the only candidate key is the Ark one, which would 401" | tee -a "$OUT"
+          else
+            probe "DeepSeek reviewer" "https://api.deepseek.com/chat/completions" "deepseek-chat" "$REVIEW_KEY" && OK_COUNT=$((OK_COUNT+1))
+          fi
+
+          if [ -n "${GITHUB_OUTPUT:-}" ]; then echo "ok=$OK" >> "$GITHUB_OUTPUT"; fi
+          {
+            echo "summary<<EOF"
+            cat "$OUT"
+            echo "EOF"
+          } >> "${GITHUB_OUTPUT:-/dev/null}"
+
+          {
+            echo "## Provider check"
+            echo ""
+            if [ "$OK_COUNT" -gt 0 ]; then
+              echo "Both providers answered."
+            else
+              echo "**A provider did not verify.** The block below is the entire output."
+            fi
+            echo ""
+            echo '```'
+            cat "$OUT"
+            echo '```'
+            echo ""
+            echo "Names read, first match wins:"
+            echo ""
+            echo '| role | names |'
+            echo '| --- | --- |'
+            echo '| writer key | ARK_API_KEY, DOUBAO_API_KEY, OWNER_KEY_1 |'
+            echo '| writer model | ARK_MODEL, DOUBAO_ENDPOINT - an ep-... id, not a model name |'
+            echo '| reviewer key | DEEPSEEK_REVIEW_API_KEY, DEEPSEEK_API_KEY, OWNER_KEY_2 |'
+          } >> "${GITHUB_STEP_SUMMARY:-/dev/null}"
+
+      - name: Report which secret names the pipeline reads
+        if: steps.check.outputs.ok != 'true'
+        run: |
+          cat <<'MSG'
+          ::: A required credential did not verify. The most common cause is a name mismatch, because the
+          ::: code reads exact environment variable names. These are the names it reads:
+          :::
+          :::   ARK_API_KEY                the Doubao writer, from the Volcano Ark console
+          :::   ARK_MODEL                  the ENDPOINT ID, not the model name. Looks like ep-2026...
+          :::   ARK_MODEL_WRITER           optional: the endpoint the writer calls. Falls back to ARK_MODEL.
+          :::   ARK_MODEL_REVIEWER         optional: the endpoint the reviewer calls. Falls back to ARK_MODEL.
+          :::                              Two different endpoints make the reviewer a second opinion rather than the
+          :::                              same model with a different prompt.
+          :::                              Create it in Ark under 在线推理 -> 创建推理接入点
+          :::   DEEPSEEK_REVIEW_API_KEY    the reviewer  (DEEPSEEK_API_KEY also accepted)
+          :::   DEEPSEEK_WRITE_API_KEY     optional alternate writer key, used if no Ark key exists
+          :::   OPENAI_API_KEY             optional alternative reviewer
+          :::   FEISHU_WEBHOOK             the daily report, the only channel that reaches you when
+          :::                              the computer is off
+          :::
+          ::: A secret named anything else - APIKEY..., MY_KEY - is stored correctly and never reaches
+          ::: the pipeline, which then reports NO-KEYS.
+          :::
+          ::: Other causes this step distinguishes: 401 wrong or revoked key, 402 insufficient balance,
+          ::: 429 rate limit, and a key that is valid but paired with no endpoint id.
+          MSG
+          exit 1
+
+  daily:
+    needs: preflight
+    # Skipped when the keys did not verify. Letting it run would repeat the same conclusion more
+    # slowly and then overwrite the useful error with a generic NO-KEYS alert - but the operator still
+    # needs a message, which is what the notify-keys job below is for.
+    if: needs.preflight.outputs.keys_ok == 'true'
+    runs-on: ubuntu-24.04
+    # Twelve minutes, not a hundred and twenty.
+    #
+    # A private repository gets 2000 Actions minutes a month, so one run at the old ceiling was six per cent of
+    # it. The script route takes about three minutes end to end; the agent route is meant to take five. Anything
+    # past twelve is not slow, it is stuck - and a stuck run should die cheaply rather than burn the month.
+    #
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # A full history is not needed and this keeps the checkout quick.
+          fetch-depth: 1
+          # The push at the end needs the token that can write.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      # No Chromium install, and no browser. The mobile measurement needs one, and it runs in
+      # .github/workflows/deep-checks.yml. On this path there is nothing to measure with a browser: the
+      # gates that run here are --tier=hard and --tier=soft, and both are file readers.
+      - name: Install dependencies
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+
+      - name: Build
+        # The gate reads dist/, so the site has to exist before anything is judged.
+        #
+        # The PUBLIC_ variables have to be here. This build runs in Actions and only the output is deployed, so a
+        # variable set on the Cloudflare Pages project is read by nobody - which is what "Google Analytics NOT IN
+        # THE BUILD" was reporting, run after run, while the variable was set on the wrong side of the deploy.
+        env:
+          PUBLIC_GA_MEASUREMENT_ID: ${{ vars.PUBLIC_GA_MEASUREMENT_ID || secrets.PUBLIC_GA_MEASUREMENT_ID }}
+          PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.PUBLIC_GOOGLE_SITE_VERIFICATION }}
+        run: pnpm exec astro build
+
+      - name: Refresh the subject ledger
+        # Derived from the corpus, and the duplicate check depends on it being current. Cheap, and it
+        # runs before the orchestrator so a subject published yesterday cannot be proposed again today.
+        run: node tools/research.mjs --ledger > /dev/null 2>&1 || true
+
+      - name: Record today's readership before the writer runs
+        # Without CF_ACCOUNT_ID and CF_API_TOKEN this exits 0 having recorded nothing, and the writer is
+        # told there is no readership evidence. That is the correct behaviour and not a failure: a
+        # missing analytics credential must not stop a day's publishing, and an empty brief is honest
+        # where a fabricated one would not be.
+        continue-on-error: true
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ANALYTICS_TOKEN: ${{ secrets.CF_ANALYTICS_TOKEN }}
+        run: |
+          set +e
+          # Probe first. Cloudflare authenticates before it parses a query, so a wrong field and a wrong token
+          # both come back as 9106 - the only way to tell them apart is to ask a smaller question first. The
+          # probe names which of the four links is broken; --fetch then either works or is explained.
+          node tools/analytics.mjs --probe 2>&1 | tee /tmp/analytics-probe.txt
+          node tools/analytics.mjs --fetch --days=7 2>&1 | tee /tmp/analytics.txt
+          CODE=${PIPESTATUS[0]}
+          mkdir -p data/tmp
+          if [ "$CODE" = "0" ] && ! grep -q "cannot fetch" /tmp/analytics.txt; then
+            node -e "const {readdirSync,readFileSync,writeFileSync}=require('fs');const d='data/analytics';let f=null;try{f=readdirSync(d).filter(x=>x.endsWith('.json')).sort().pop()}catch{};const s=f?JSON.parse(readFileSync(d+'/'+f,'utf8')):null;writeFileSync('data/tmp/integrations.json',JSON.stringify({readership:{configured:true,pageviews:s?.totalPageviews??0,days:s?.windowDays??7,articles:(s?.pages??[]).filter(p=>String(p.path).startsWith('/blog/')).length}},null,2))"
+          else
+            MISSING=$(grep -oE "Missing: .*" /tmp/analytics.txt | head -1 | sed 's/Missing: //')
+            node -e "const {writeFileSync}=require('fs');writeFileSync('data/tmp/integrations.json',JSON.stringify({readership:{configured:false,missing:'${MISSING:-CF_ACCOUNT_ID, CF_API_TOKEN}'}}))"
+          fi
+          true
+
+
+      #
+      # GA4 readership, with the Google key the repository already holds.
+      #
+      # The Cloudflare reader below answers with zeros when its token is not accepted, and "ok - 0
+      # pageview(s)" is indistinguishable from a site nobody visits. This asks Google directly and
+      # prints the service account's address when the property has not been shared with it, because
+      # that address is the entire fix.
+      #
+      - name: Read GA4
+        if: always()
+        continue-on-error: true
+        env:
+          GSC_CREDENTIALS_BASE64: ${{ secrets.GSC_CREDENTIALS_BASE64 }}
+          GSC_CREDENTIALS: ${{ secrets.GSC_CREDENTIALS_BASE64 }}
+        run: node tools/ga4-report.mjs --days=28
+      - name: Record whether the Google tags are present in the build
+        # The two Google integrations are build-time environment variables on the Cloudflare Pages project,
+        # not workflow secrets, so nothing in this file can see them. What can be seen is the built output:
+        # if the tag is in dist, the variable was set at build time. Checking the artefact rather than the
+        # configuration is what makes this answer trustworthy - and it is the difference between "the
+        # operator registered it" and "the site is reporting".
+        continue-on-error: true
+        run: |
+          set +e
+          GA=no; GSC=no
+          if grep -q "googletagmanager.com/gtag/js" dist/index.html 2>/dev/null; then GA=yes; fi
+          # A Domain property (sc-domain:) is verified through DNS and never carries a meta tag. Only a
+          # URL-prefix property needs one, so "absent" is reported as a fact rather than a failure - a daily
+          # false alarm on the one channel that reaches the operator teaches them to stop reading it.
+          if grep -q "google-site-verification" dist/index.html 2>/dev/null; then GSC=yes; fi
+          mkdir -p data/tmp
+          node -e "
+            const {readFileSync,writeFileSync,existsSync}=require('fs');
+            let s={}; try{s=JSON.parse(readFileSync('data/tmp/integrations.json','utf8'))}catch{}
+            s.google={ga:'$GA'==='yes', searchConsole:'$GSC'==='yes'};
+            writeFileSync('data/tmp/integrations.json',JSON.stringify(s,null,2));
+          "
+          echo "google analytics in build: $GA   search console verification: $GSC"
+
+      - name: Report which credentials each integration reads
+        # The operator asked more than once whether these were connected, and the honest answer was always
+        # "I do not know". They are named here so the answer is in the log of every run, and the notification
+        # reports the same four states from data/tmp/integrations.json.
+        run: |
+          echo "Integrations and what each one reads:"
+          echo "  readership     CF_ACCOUNT_ID + CF_API_TOKEN          (repository secrets)"
+          echo "  Feishu ledger  FEISHU_APP_ID + FEISHU_APP_SECRET + FEISHU_APP_TOKEN + FEISHU_TABLE_ID"
+          echo "  Google Analytics   PUBLIC_GA_MEASUREMENT_ID          (Cloudflare Pages build variables)"
+          echo "  Search Console      PUBLIC_GOOGLE_SITE_VERIFICATION   (Cloudflare Pages build variables)"
+          echo ""
+          echo "The two Google values are build-time variables, not workflow secrets: the tag is put into the"
+          echo "page by the build, so it has to be set where the build runs."
+
+      - name: Look for blue-ocean queries in Search Console
+        # Impressions over a thousand, click rate under one percent, position on page one or two: a page a reader
+        # sees and does not click. It is the cheapest win available and no keyword tool can see it.
+        #
+        # Never fails a run. A new property has no history, a service account may not be invited to the property,
+        # and a week may have no query that clears the thresholds - all ordinary, all written to
+        # data/blue-ocean/<date>.json with available:false, and the pipeline falls back to the official documents.
+        continue-on-error: true
+        env:
+          GSC_CREDENTIALS_BASE64: ${{ secrets.GSC_CREDENTIALS_BASE64 }}
+          GSC_SITE: ${{ vars.GSC_SITE }}
+        run: node tools/gsc-blue-ocean.mjs --days=7
+
+      - name: Run the pipeline
+        # Two routes over one set of checks.
+        #
+        # script is a fixed sequence of steps. agent reads daily-task.txt - the operator's own
+        # instructions, unchanged - and decides what to do with seven tools. They exist side by side
+        # because the local pipeline that produced 29 articles was the second kind, and replacing an
+        # agent with a fixed script is a different machine: it can only do what someone wrote down.
+        #
+        # Neither route can bypass the checks. The agent's publish_draft refuses any draft that
+        # check_draft has not passed in the same run, and both routes' output is verified by the same
+        # gates.
+        id: run
+        env:
+          ARK_API_KEY: ${{ secrets.ARK_API_KEY || secrets.DUBAO201628 || secrets.APIKEY20261016201628 }}
+          DUBAO201628: ${{ secrets.DUBAO201628 }}
+          DUBAOTUILI12345: ${{ secrets.DUBAOTUILI12345 }}
+          OWNER_KEY_1: ${{ secrets.APIKEY20261016201628 }}
+          OWNER_KEY_2: ${{ secrets.GITHUB66CHINA }}
+          ARK_MODEL: ${{ secrets.ARK_MODEL }}
+          ARK_MODEL_WRITER: ${{ secrets.ARK_MODEL_WRITER || secrets.DUBAOTUILI12345 }}
+          ARK_MODEL_REVIEWER: ${{ secrets.ARK_MODEL_REVIEWER || secrets.ARK_MODEL }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_REVIEW_API_KEY: ${{ secrets.DEEPSEEK_REVIEW_API_KEY }}
+          DEEPSEEK_WRITE_API_KEY: ${{ secrets.DEEPSEEK_WRITE_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+        run: |
+          DIRECTIVE="${{ github.event.inputs.directive_file }}"
+          if [ -z "$DIRECTIVE" ] && [ -n "${{ github.event.client_payload.directive_file }}" ]; then
+            DIRECTIVE="${{ github.event.client_payload.directive_file }}"
+          fi
+          ROUTE="${{ github.event.inputs.route }}"
+          if [ -z "$ROUTE" ]; then ROUTE="${{ github.event.client_payload.route }}"; fi
+          # The clock picks the route when nothing else does.
+          #
+          # schedule events carry no inputs, so a scheduled run has an empty ROUTE. The evening run is the
+          # agent - 12:20 UTC and later - and the morning run is the script. A manual dispatch still wins,
+          # because github.event.inputs is populated there and the branch above has already decided.
+          #
+          # Hash comments, not C-style. A C-style block comment opener inside a shell script is a glob: it
+          # expands to everything in the filesystem root, and the shell then tries to execute /bin as a command -
+          # "Is a directory", exit 126. That is what made run #23 fail after every step before it had succeeded.
+          # A push trigger names its route in the commit message; a scheduled run has no message and uses the hour.
+          if [ -z "$ROUTE" ]; then
+            if echo "${{ github.event.head_commit.message }}" | grep -qi '\[agent\]'; then
+              ROUTE="agent"
+            elif echo "${{ github.event.head_commit.message }}" | grep -qi '\[script\]'; then
+              ROUTE="script"
+            else
+              HOUR=$(date -u +%H)
+              if [ "$HOUR" -ge "12" ]; then ROUTE="agent"; else ROUTE="script"; fi
+            fi
+          fi
+          echo "route: $ROUTE"
+          if [ "$ROUTE" = "agent" ]; then
+            node tools/agent-run.mjs ${{ github.event.inputs.force == 'true' && '--force' || '' }}
+          elif [ -n "$DIRECTIVE" ]; then
+            node tools/cloud-orchestrator.mjs --directive-file="$DIRECTIVE"
+          else
+            node tools/cloud-orchestrator.mjs
+          fi
+
+      - name: Create the Feishu ledger if it does not exist yet
+        # The setup used to be a circle: the sync needs a base token and a table id, and those only exist once a
+        # base exists. tools/feishu-ledger.mjs breaks it - given the two credentials it creates the base, adds
+        # the columns the sync writes, and records the two identifiers.
+        #
+        # Here rather than in the operator's hands, and before the commit, so data/ledger-target.json lands in
+        # the same push and the sync below can read it. Guarded on the file's absence, so it runs once.
+        if: always()
+        continue-on-error: true
+        env:
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+        run: |
+          if [ -f data/ledger-target.json ]; then
+            echo "ledger already recorded in data/ledger-target.json"
+            cat data/ledger-target.json
+            exit 0
+          fi
+          if [ -z "$FEISHU_APP_ID" ] || [ -z "$FEISHU_APP_SECRET" ]; then
+            echo "FEISHU_APP_ID or FEISHU_APP_SECRET is not set, so there is no ledger to create."
+            exit 0
+          fi
+          node tools/feishu-ledger.mjs
+
+      - name: Commit and push anything that was approved
+        id: commit
+        run: |
+          git config user.name "landedmath-bot"
+          git config user.email "bot@landedmath.com"
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "nothing to commit"
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git add -A
+          git commit -m "daily: $(date -u +%F) — $(node -e "try{console.log(require('./data/tmp/orchestrator-report.json').verdict)}catch{console.log('run')}")"
+          # Retry the push. Two writers push to this branch - a person and the bot - and a rejected push used to
+          # end the step, which threw away the run's report for the second time in one night.
+          for attempt in 1 2 3 4 5; do
+            if git push; then break; fi
+            echo "push rejected, rebasing and retrying (attempt $attempt)"
+            git pull --rebase --no-edit origin main || git rebase --abort
+            sleep 3
+          done
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+          echo "sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Sync the ledger to Feishu
+        # Runs after the push so the table reflects what is actually committed. Optional: without the
+        # four app credentials tools/feishu-sync.mjs exits 2 naming what is missing, and
+        # continue-on-error keeps that from failing a run that published correctly. A notification
+        # channel that is not configured must not break the pipeline it reports on.
+        if: always()
+        continue-on-error: true
+        env:
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_APP_TOKEN: ${{ secrets.FEISHU_APP_TOKEN }}
+          FEISHU_TABLE_ID: ${{ secrets.FEISHU_TABLE_ID }}
+        run: |
+          set +e
+          node tools/feishu-sync.mjs 2>&1 | tee /tmp/ledger.txt
+          CODE=${PIPESTATUS[0]}
+          mkdir -p data/tmp
+          if [ "$CODE" = "0" ]; then
+            ROWS=$(grep -oE "[0-9]+ row" /tmp/ledger.txt | head -1 | grep -oE "[0-9]+")
+            node -e "const {readFileSync,writeFileSync,existsSync}=require('fs');let s={};try{s=JSON.parse(readFileSync('data/tmp/integrations.json','utf8'))}catch{};s.ledger={configured:true,rows:${ROWS:-0}};writeFileSync('data/tmp/integrations.json',JSON.stringify(s,null,2))"
+          else
+            MISSING=$(grep -oE "Missing: .*" /tmp/ledger.txt | head -1 | sed 's/Missing: //')
+            node -e "const {readFileSync,writeFileSync,existsSync}=require('fs');let s={};try{s=JSON.parse(readFileSync('data/tmp/integrations.json','utf8'))}catch{};s.ledger={configured:false,missing:'${MISSING:-FEISHU_APP_ID, FEISHU_APP_SECRET, FEISHU_APP_TOKEN, FEISHU_TABLE_ID}'};writeFileSync('data/tmp/integrations.json',JSON.stringify(s,null,2))"
+          fi
+          true
+
+      #
+      # The run ledger: one row per run, eight columns, its own table. Separate from the article
+      # ledger above, which answers "what is published" and cannot answer "what happened on Tuesday".
+      # Optional in exactly the same way: no credentials means exit 2 and a named reason, never a
+      # failed run over a reporting channel.
+      #
+      #
+      # The agent route writes data/tmp/agent-report.json and, on the fallback path, never reaches the
+      # line that copies it into data/runs - so its runs were invisible to the run ledger: nine agent
+      # runs over three weeks produced no rows. This copies the report in when one is not already there.
+      # It reads and writes files the agent route already produced; it changes none of its behaviour.
+      #
+      - name: Bridge the agent report into the run log
+        if: always()
+        continue-on-error: true
+        run: |
+          node -e "const fs=require('fs'),p=require('path');const src='data/tmp/agent-report.json';if(!fs.existsSync(src))process.exit(0);const r=JSON.parse(fs.readFileSync(src,'utf8'));if(!r||!r.at)process.exit(0);const stamp=String(r.at).replace(/[:.]/g,'-').slice(0,19);const out='data/runs/agent-'+stamp+'.json';if(fs.existsSync(out)){console.log('already recorded:',out);process.exit(0)}fs.mkdirSync('data/runs',{recursive:true});fs.writeFileSync(out,JSON.stringify({route:'agent',...r},null,2));console.log('recorded:',out)"
+      - name: Record the run in the run ledger
+        if: always()
+        continue-on-error: true
+        env:
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_APP_TOKEN: ${{ secrets.FEISHU_APP_TOKEN }}
+        run: node tools/feishu-run-ledger.mjs
+
+      #
+      # The corpus ledger: one row per published piece, blog and guide together, with the figures,
+      # internal links in and out, and the duplicate test. It reconciles the whole corpus rather than
+      # today's article, so it is correct whether or not this run published anything, and it belongs in
+      # the always() path for the same reason the run ledger does - a day that changed nothing still
+      # changed the corpus if the cleaner removed a duplicate.
+      #
+      - name: Record what is published in the content ledger
+        if: always()
+        continue-on-error: true
+        env:
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_APP_TOKEN: ${{ secrets.FEISHU_APP_TOKEN }}
+        run: node tools/content-ledger.mjs --prune
+
+      #
+      # The base token only exists after the first run, and the runner is thrown away afterwards. Without
+      # this the tool would create a new base every morning and the operator would own seven of them by
+      # Sunday. The file is the memory; committing it is what makes the bootstrap a one-time event.
+      #
+      - name: Keep the base the run ledger created
+        if: always()
+        continue-on-error: true
+        run: |
+          if [ -z "$(git status --porcelain data/ledger-target.json)" ]; then
+            echo "nothing to record - the base token is already committed or was not created"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ledger-target.json
+          git commit -m "ledger: record the base the run ledger created"
+          git push
+
+      - name: Notify Feishu
+        # Always runs. A run that failed is precisely the run the operator needs to hear about, and
+        # this is the only channel that reaches them when the computer is off.
+        if: always()
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+          # The route, so the card says which pipeline spoke. On a scheduled run GitHub does not populate
+          # github.event.inputs, so it is derived from the hour the same way the pipeline does - 12:00 UTC and
+          # later is the agent. Both routes write the same kind of card and the same failure means different
+          # things on each, so a card without this has to be looked up.
+          #
+          # FAILED_STEP is the name of the step that broke, taken from the job's own result. Without it the
+          # notifier can only say "no report", which names an internal file rather than the thing that failed.
+          ROUTE: ${{ github.event.inputs.route || '' }}
+          FAILED_STEP: ${{ job.status == 'failure' && 'the step shown in red above' || '' }}
+          # The pipeline step's own outcome. A step that succeeded and wrote no report is a no-op -
+          # today already published - not a failure, and the two must not draw the same red card.
+          PIPELINE_OUTCOME: ${{ steps.run.outcome }}
+        run: |
+          # Scheduled runs carry no inputs, so the route comes from the clock.
+          if [ -z "$ROUTE" ]; then
+            if [ "$(date -u +%H)" -ge "12" ]; then export ROUTE="agent"; else export ROUTE="script"; fi
+          fi
+          node tools/notify-feishu.mjs
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## LandedMath daily"
+            echo ""
+            echo "| field | value |"
+            echo "| --- | --- |"
+            echo "| verdict | \`$(node -e "try{console.log(require('./data/tmp/orchestrator-report.json').verdict)}catch{console.log('no report')}")\` |"
+            echo "| article | \`$(node -e "try{console.log(require('./data/tmp/orchestrator-report.json').article||'-')}catch{console.log('-')}")\` |"
+            echo "| pushed | \`${{ steps.commit.outputs.committed || 'false' }}\` |"
+            echo "| commit | \`${{ steps.commit.outputs.sha || '-' }}\` |"
+            echo "| providers | $(node -e "try{const r=require('./data/tmp/orchestrator-report.json');console.log((r.providers||[]).join(', ')||'none')}catch{console.log('unknown')}") |"
+            echo ""
+            echo "The full report is \`data/tmp/orchestrator-report.json\` in the run's commit, and the"
+            echo "per-run ledger is \`logs/orchestrator.jsonl\`."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload run artefacts
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: daily-run
+          path: |
+            data/tmp/orchestrator-report.json
+            logs/orchestrator.jsonl
+            logs/usage.jsonl
+            data/drafts/
+          if-no-files-found: warn
+          retention-days: 30
+
+  # ---------------------------------------------------------------------------------------------
+  # The ledger on a day the pipeline did not run.
+  #
+  # "Sync the ledger to Feishu" above already carries if: always(), but a step cannot run inside a job
+  # that never started. When preflight fails, the daily job is skipped and the table goes a day without
+  # an update - which is exactly the day the operator is most likely to be looking at it.
+  #
+  # This job fills that hole and only that hole. On a normal day needs.daily.result is success or
+  # failure and it does nothing, so the sync never runs twice and no row is written twice.
+  # ---------------------------------------------------------------------------------------------
+  ledger-when-skipped:
+    needs: [preflight, daily]
+    if: always() && needs.daily.result == 'skipped'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - name: Sync the ledger to Feishu
+        # Optional, like the step it mirrors: without the four app credentials feishu-sync exits 2
+        # naming what is missing, and a reporting channel that is not configured must not fail a run.
+        continue-on-error: true
+        env:
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_APP_TOKEN: ${{ secrets.FEISHU_APP_TOKEN }}
+          FEISHU_TABLE_ID: ${{ secrets.FEISHU_TABLE_ID }}
+        run: node tools/feishu-sync.mjs
+
+  # ---------------------------------------------------------------------------------------------
+  # The message when the keys did not verify.
+  #
+  # The daily job is skipped in that case, so without this the operator would get nothing at all and
+  # would have to guess whether the schedule failed to fire or the keys are wrong. The whole point of
+  # the notification channel is that it answers that question without anyone opening a browser.
+  # ---------------------------------------------------------------------------------------------
+  notify-keys:
+    needs: preflight
+    if: needs.preflight.outputs.keys_ok != 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - name: Write the report the notifier reads
+        run: |
+          mkdir -p data/tmp
+          cat > data/tmp/orchestrator-report.json <<JSON
+          {
+            "at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "verdict": "KEYS-FAILED",
+            "providers": [],
+            "article": null,
+            "seconds": 0,
+            "usage": { "calls": 0, "failed": 0, "usd": 0 },
+            "reasons": [
+              "The provider keys did not verify, so the pipeline was skipped rather than run.",
+              "${{ needs.preflight.outputs.summary }}",
+              "Check Settings -> Secrets and variables -> Actions. The code reads the exact names DEEPSEEK_API_KEY and OPENAI_API_KEY."
+            ]
+          }
+          JSON
+
+      - name: Notify Feishu
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+        run: node tools/notify-feishu.mjs
+
+

@@ -1,10 +1,146 @@
 ---
-// 关于页：/about/（E-E-A-T 信任页，对标 RoW about）
-import BaseLayout from '../layouts/BaseLayout.astro';
+import AuthorCard from "../components/AuthorCard.astro";
+import { AUTHOR, SITE } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: `About ${SITE.name}`,
+  url: new URL("/about/", Astro.site ?? SITE.url).href,
+  description: SITE.description,
+};
 ---
-<BaseLayout title="About" description="About MY Policy Desk — neutral, source-backed policy and trade analysis for foreign buyers.">
-  <h1>About</h1>
-  <p>MY Policy Desk decodes Malaysia and ASEAN policy, trade, and economy for foreign buyers, importers, and investors. Our analysis is neutral, source-backed, and focused on what policy means for supply, cost, and opportunity.</p>
-  <p>We operate a fully automated editorial pipeline covering research, verification, writing, SEO, compliance, and distribution. We publish across written articles, AI podcast audio, and video scripts.</p>
-  <p>See our <a href="/methodology/">Methodology</a> and <a href="/sources/">Sources</a> for our standards.</p>
+
+<BaseLayout
+  title={`About — ${SITE.name}`}
+  description={`Who writes ${SITE.name}, who it is for, how the analysis is produced, and what we refuse to do.`}
+  jsonLd={jsonLd}
+>
+  <div class="container">
+    <main id="main">
+      <div class="page-head">
+        <h1>About {SITE.name}</h1>
+        <p>
+          We read China's trade policy in the original, then translate it into
+          the only language that matters to a buyer: landed cost per unit.
+        </p>
+      </div>
+
+      <div class="prose" style="margin-top:32px;">
+        <h2>What this site does</h2>
+        <p>
+          China publishes an enormous amount about its own trade — tariff
+          schedules, customs bulletins, platform rule changes, industrial
+          statistics. Almost all of it is written for a domestic audience, in
+          language built for policy readers rather than buyers.
+        </p>
+        <p>
+          {SITE.name} is the translation layer. We take the primary documents,
+          find the numbers that matter, and work out what they cost on a
+          per-unit and per-container basis — for the person placing the order,
+          not the person writing the press release.
+        </p>
+
+        <h2>Who this is for</h2>
+        <ul>
+          <li>
+            <strong>Platform sellers.</strong> Amazon, Temu, TikTok Shop and D2C
+            operators in the US and EU who need to know what a rule change does
+            to their margin this quarter. Start with{" "}
+            <a href="/category/platforms/">Platforms</a> and{" "}
+            <a href="/category/trade-policy/">Trade Policy</a>.
+          </li>
+          <li>
+            <strong>Importers and buyers in emerging markets.</strong> Businesses
+            across Southeast Asia, the Middle East, Africa and Latin America
+            sourcing from China — where the practical questions rarely get
+            answered in English, and almost never with numbers attached. Start
+            with <a href="/category/sourcing/">Sourcing &amp; Suppliers</a> and{" "}
+            <a href="/category/logistics/">Logistics &amp; Customs</a>.
+          </li>
+        </ul>
+        <p>
+          The two audiences want different things from the same policy. We write
+          for both, and we say which one a piece is for.
+        </p>
+
+        {/*
+          The id is the anchor the article bylines point at.
+
+          Every Article block carries author.url = /about/#who, and Google's guidance
+          treats a byline as more credible when it resolves to a page explaining who the
+          author is. Without this id the link resolved to the top of this page instead,
+          which made the claim weaker than the markup implied.
+        */}
+        <h2 id="who">Who is behind this</h2>
+        <p>
+          {AUTHOR.name} — {AUTHOR.role}. Years on the sourcing and platform side
+          of cross-border commerce: Amazon FBA, TikTok Shop and Temu, in consumer
+          electronics and home goods. Close enough to the factory floor to know
+          when a number in a bulletin will not survive contact with a real quote.
+        </p>
+
+        <h2>How the analysis is produced</h2>
+        <ul>
+          <li>
+            <strong>Numbers first.</strong> Every article carries at least five
+            precise figures with a value, unit, date and named official source.
+          </li>
+          <li>
+            <strong>Landed-cost math.</strong> Policy news is only useful once it
+            is converted into FOB price × duty rate × container volume.
+          </li>
+          <li>
+            <strong>A clear position.</strong> "Most sellers assume X. The math
+            says Y. Do Z." No both-sides hedging.
+          </li>
+          <li>
+            <strong>Named sources only.</strong> Ministry of Commerce, General
+            Administration of Customs, National Bureau of Statistics, Xinhua,
+            CCTV — plus the destination market's own customs authority. No links
+            farmed from other blogs.
+          </li>
+        </ul>
+
+        <h2>What this site is not</h2>
+        <ul>
+          <li>
+            <strong>Not a mouthpiece.</strong> We are not affiliated with, funded
+            by, or speaking for any government, chamber or trade body. We explain
+            Chinese policy because understanding it is the whole job — not
+            because we are promoting it.
+          </li>
+          <li>Not a news aggregator — no rewriting somebody else's story.</li>
+          <li>Not financial or legal advice.</li>
+          <li>
+            Not ad-funded at the expense of the reader: no tracking pixels, no
+            sponsored posts pretending to be analysis.
+          </li>
+        </ul>
+
+        <h2>Corrections</h2>
+        <p>
+          If a figure is wrong, it gets corrected and the change is recorded in a
+          dated note on the article itself, under Corrections and updates. The
+          note states what changed, not just that something did, and the
+          machine-readable date the article was last modified moves only when
+          that note is added — never on a schedule. Email{" "}
+          <a href={`mailto:${AUTHOR.email}`}>{AUTHOR.email}</a>.
+        </p>
+        <p>
+          Every article also carries an internal review date: the point at which
+          its central figure is expected to have moved. Some of these are hard
+          deadlines published by the authority concerned — a duty rate that
+          changes on a named day, a quota period that ends. When one arrives, the
+          article is rechecked and either updated with a note or left alone
+          deliberately. Nothing is re-dated to look fresh.
+        </p>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <AuthorCard />
+    </aside>
+  </div>
 </BaseLayout>

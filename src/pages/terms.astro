@@ -1,0 +1,176 @@
+---
+/**
+ * Terms.
+ *
+ * A P0 page from the benchmark page list, and a prerequisite for the pricing page going
+ * live: a paid tier cannot open without terms that say what is being bought and what
+ * happens when it is not delivered.
+ *
+ * Everything here states the situation as it is rather than as it will be. Paid
+ * subscriptions are not open, so the subscription clauses describe what will apply once
+ * they are, and the page says that plainly instead of pretending they are in force. The
+ * refund terms follow the same rule as the rest of the site: no ambiguity about what a
+ * buyer is entitled to, because ambiguity in a refund policy is what turns a complaint
+ * into a chargeback.
+ *
+ * Not legal advice and not written by a lawyer. It is the clearest statement of the actual
+ * arrangement that can be made without one, and it should be reviewed by a lawyer before
+ * paid tiers open - which is recorded here rather than left implicit.
+ */
+import Sidebar from "../components/Sidebar.astro";
+import { AUTHOR, SITE } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { numbersFor, published } from "../lib/post";
+import { getCollection } from "astro:content";
+import { fitTitle, fitDescription } from "../lib/meta";
+
+const posts = published(await getCollection("blog"));
+const numbers = numbersFor(posts);
+
+const title = "Terms";
+const description =
+  "What Landed Math is, what a subscription buys, how corrections and refunds work, and the limits of what this analysis can be relied on for.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: `Terms — ${SITE.name}`,
+  description,
+  url: `${SITE.url}/terms/`,
+};
+
+const UPDATED = posts
+  .map((p) => p.data.updatedDate ?? p.data.publishDate)
+  .filter(Boolean)
+  .sort()
+  .pop() ?? "2026-10-08";
+---
+
+<BaseLayout title={`${fitTitle(title, "", SITE.name)} — ${SITE.name}`} description={fitDescription(description)} jsonLd={jsonLd}>
+  <div class="container">
+    <main id="main">
+      <div class="page-head">
+        <h1>Terms</h1>
+        <p class="updated">Last updated {UPDATED}</p>
+        <p>
+          Plain terms for a plain product: {posts.length} published analyses, a free tier that
+          carries all of them, and — when they open — paid tiers that add cadence and
+          convenience. Nothing here is drafted to win an argument later.
+        </p>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">Current status</span>
+        <p>
+          <strong>The free tier is live. Paid subscriptions are not open and no payment is
+          being taken.</strong> The clauses about subscriptions describe what will apply when
+          they open. Nothing on this site has charged anyone.
+        </p>
+      </div>
+
+      <h2 class="section-title">1. What this is</h2>
+      <p>
+        {SITE.name} publishes analysis of Chinese trade policy, platform rules and supply
+        chains, converted into per-unit landed cost. Every figure carries a value, a unit, a
+        period, a named source and the date it was retrieved. Analysis is published on the open
+        web; the <a href="/pricing/">pricing page</a> lists what is free and what will be paid.
+      </p>
+
+      <h2 class="section-title">2. Not advice</h2>
+      <p>
+        Nothing here is legal, tax, customs, financial or accounting advice, and it is not a
+        substitute for a customs broker, a freight forwarder or a lawyer. The cost tables are
+        arithmetic on stated inputs — <strong>often inputs you supply</strong>, such as your
+        goods value, your funding rate and your storage charge. Change an input and the answer
+        changes. Each article's calculation section names the inputs and shows the working, so
+        the result can be checked and reproduced rather than taken on trust.
+      </p>
+      <p>
+        <strong>You are responsible for verifying anything before you rely on it.</strong> Every
+        claim traces to a named primary source with a retrieval date, which is exactly so that
+        you can check it against the instrument yourself.
+      </p>
+
+      <h2 class="section-title">3. Corrections</h2>
+      <p>
+        When a published figure turns out to be wrong, the article is corrected in public: the
+        change is recorded on the article, the date is moved, and the correction is visible
+        rather than silent. Each article states which claims are established by a primary
+        source and which are the analyst's inference, and each carries a section on what would
+        falsify its conclusion.
+      </p>
+
+      <h2 class="section-title">4. Subscriptions, when they open</h2>
+      <p>
+        Paid tiers have not opened yet. When they do, these will apply:
+      </p>
+      <ul>
+        <li><strong>Billing.</strong> Monthly and annual plans renew automatically until cancelled. The price charged is the price shown on the pricing page at the time of purchase.</li>
+        <li><strong>Cancelling.</strong> You can cancel at any time and keep access until the end of the period you paid for. No email is required to cancel; a link in every message does it.</li>
+        <li><strong>Price changes.</strong> Existing subscribers are told before any price change applies to them, and are not moved onto a higher price mid-term.</li>
+        <li><strong>Free tier.</strong> Everything published is free to read in full. A paid tier never removes something that was free when you read it.</li>
+      </ul>
+
+      <h2 class="section-title">5. Refunds</h2>
+      <p>
+        See <a href="/refund/">the refund policy</a>. In short: if a paid tier is not what it
+        said it was, ask and it is refunded; the policy states the window and the process
+        rather than leaving it to discretion.
+      </p>
+
+      <h2 class="section-title">6. What you may do with the material</h2>
+      <p>
+        Read it, quote it, cite it, use the numbers in your own work, and link to it. That is
+        the point of publishing figures with their sources. What is not permitted is
+        republishing the analysis in full as your own, or reselling it. Quoting a figure with
+        its source named is always fine — the citation block on each{" "}
+        <a href="/instrument/">instrument page</a> shows the form.
+      </p>
+
+      <h2 class="section-title">7. Availability</h2>
+      <p>
+        The site is a static publication with no servers to go down, but no uptime is promised
+        and no service level is offered. Email delivery depends on providers and filters outside
+        anyone's control here, which is why there is a page on{" "}
+        <a href="/whitelist/">making sure the emails arrive</a>.
+      </p>
+
+      <h2 class="section-title">8. Liability</h2>
+      <p>
+        To the extent permitted by law, {SITE.name} is not liable for commercial decisions
+        taken on the basis of this analysis. That is not a disclaimer of responsibility for
+        accuracy — the sourcing rules and the correction record are the substance of that — it
+        is a statement that a calculation on your inputs cannot be a guarantee about your
+        shipment.
+      </p>
+
+      <h2 class="section-title">9. Contact</h2>
+      <p>
+        Anything on this page, including a refund request or a correction:{" "}
+        <a href={`mailto:${AUTHOR.email}`}>{AUTHOR.email}</a>. Corrections are welcome and are
+        the fastest way to get a figure fixed.
+      </p>
+
+      <p class="empty-note">
+        Not legal advice, and not drafted by a lawyer: it is the clearest statement of the
+        actual arrangement that could be written without one. It should be reviewed by a lawyer
+        before paid subscriptions open.
+      </p>
+    </main>
+
+    <Sidebar numbers={numbers} />
+  </div>
+</BaseLayout>
+
+<style>
+  .updated {
+    font-size: 0.86rem;
+    opacity: 0.7;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  li {
+    margin: 7px 0;
+  }
+</style>

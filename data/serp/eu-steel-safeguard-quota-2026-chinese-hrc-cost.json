@@ -1,0 +1,32 @@
+{
+  "_note": "SERP snapshot for the Article 14 keyword. Every URL below was fetched over HTTP and returned 200 on 2026-10-05; contents were read from the downloaded pages, not from search snippets. Provenance: search discovery, then direct fetch verification. eur-lex.europa.eu, boe.es, govinfo.gov and the Commission are official publishers and are excluded from the competitor set; the primary legal texts were reached through boe.es, which republishes EU law as HTML including annexes. Only the first three results enter the TOP_N comparison.",
+  "_captured": "2026-10-05",
+  "_keyword": "EU steel safeguard quota 2026 Chinese HRC cost",
+  "results": [
+    {
+      "url": "https://news.metal.com/newscontent/103984692-smm-analysis-eu-steel-tariff-wall-doubles-to-50-reconstructing-the-new-quota-system-and-in-depth-analysis-of-1a-hrc",
+      "title": "[SMM Analysis] EU Steel Tariff Wall Doubles to 50%: Reconstructing the New Quota System and In-Depth Analysis of 1A HRC",
+      "snippet": "The EU out-of-quota duty doubles to 50 percent and the quota system is rebuilt. Analysis of category 1A hot-rolled coil quotas by origin."
+    },
+    {
+      "url": "https://www.crowell.com/en/insights/client-alerts/eu-steel-overcapacity-regulation-new-permanent-measure-in-force-from-1-july-2026",
+      "title": "EU Steel Overcapacity Regulation: New Permanent Measure in Force from 1 July 2026",
+      "snippet": "The out-of-quota duty moves from 25% to 50% ad valorem effective 1 July 2026. Total annual TRQ volume is 18,345,922 tonnes. A melt and pour evidence obligation starts 1 October 2026."
+    },
+    {
+      "url": "https://www.gvw.com/en/news/blog/detail/neue-eu-stahlverordnung-hoehere-zoelle-halbierte-kontingente-und-verschaerfte-nachweispflichten",
+      "title": "New EU Steel Regulation: Higher tariffs, quotas halved and stricter documentation requirements",
+      "snippet": "Higher duties, halved quotas and tightened documentary requirements under the new EU steel regulation."
+    },
+    {
+      "url": "https://antidumping.vn/eus-new-steel-quotas-wont-dent-chinas-direct-exports-to-europe-but-may-choke-them-everywhere-else-n30399.html",
+      "title": "EU's new steel quotas won't dent China's direct exports to Europe, but may choke them everywhere else",
+      "snippet": "China's direct flat steel trade with the EU was already thin, at just 3-5% of total exports. Category 4B China allocation was cut 64.45% year on year to 182,997 tonnes."
+    },
+    {
+      "url": "https://mepsinternational.com/gb/en/news/eu-steel-quota-overhaul-adds-complexity-for-importers",
+      "title": "EU steel quota overhaul adds complexity for importers",
+      "snippet": "The quota overhaul adds administrative complexity for importers managing quarterly allocations."
+    }
+  ]
+}

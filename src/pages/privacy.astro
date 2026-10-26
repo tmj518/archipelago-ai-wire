@@ -1,20 +1,68 @@
 ---
-// 隐私政策页：/privacy/（符合 GDPR、马来西亚 PDPA、印尼 PDP、拉美隐私法规）
-import BaseLayout from '../layouts/BaseLayout.astro';
+import { AUTHOR, SITE } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const updated = "September 29, 2026";
 ---
-<BaseLayout title="Privacy Policy" description="Our privacy policy — how we collect and use data, in line with GDPR, PDPA, and related regulations.">
-  <h1>Privacy Policy</h1>
-  <p class="muted">Effective 2026-10-08</p>
 
-  <h2 style="font-size:20px;">1. What we collect</h2>
-  <p>We collect email addresses you provide for newsletter or membership subscriptions, and basic analytics (pages viewed). We do not collect payment card details; payments are handled by Stripe and PayPal.</p>
+<BaseLayout
+  title={`Privacy Policy — ${SITE.name}`}
+  description={`What ${SITE.name} collects, what it does not collect, and how to get your data removed.`}
+  noindex
+>
+  <div class="container container--full">
+    <main id="main">
+      <div class="page-head">
+        <h1>Privacy Policy</h1>
+        <p>Last updated: {updated}</p>
+      </div>
 
-  <h2 style="font-size:20px;">2. How we use it</h2>
-  <p>Email addresses are used to deliver newsletters and manage membership access. Analytics are used to improve content. We do not sell personal data.</p>
+      <div class="prose" style="margin-top:32px;">
+        <h2>The short version</h2>
+        <p>
+          No tracking scripts. No advertising networks. No third-party analytics
+          that profile you across sites. No data sold, ever.
+        </p>
 
-  <h2 style="font-size:20px;">3. Cookies</h2>
-  <p>We use minimal cookies for session and analytics. You can disable cookies in your browser.</p>
+        <h2>What is collected</h2>
+        <ul>
+          <li>
+            <strong>Server logs.</strong> The site is served by Cloudflare
+            Pages, which records standard request data (IP address, user agent,
+            requested URL) for security and abuse prevention.
+          </li>
+          <li>
+            <strong>Email address.</strong> Only if you voluntarily subscribe. It is
+            used to send the change alerts described above and nothing else. Every
+            alert carries an unsubscribe link; until one-click signup is wired up,
+            replying to any message removes you from the list.
+          </li>
+          <li>
+            <strong>Nothing else.</strong> No cookies are set by this site, no
+            fingerprinting, no cross-site identifiers.
+          </li>
+        </ul>
 
-  <h2 style="font-size:20px;">4. Your rights</h2>
-  <p>Under GDPR and applicable local laws (e.g., Malaysia PDPA), you may request access, correction, or deletion of your data. Contact us via the subscribe page.</p>
+        <h2>Third parties</h2>
+        <p>
+          Cloudflare provides hosting and the newsletter is delivered by a
+          mailing provider; both process data on our behalf only. There are no
+          ad networks, no social embeds that phone home, and no data brokers.
+        </p>
+
+        <h2>Your rights</h2>
+        <p>
+          Email <a href={`mailto:${AUTHOR.email}`}>{AUTHOR.email}</a> to have
+          your subscriber record exported or deleted. Requests are handled
+          within 30 days, no questions asked.
+        </p>
+
+        <h2>Changes</h2>
+        <p>
+          If this policy changes materially, the change is announced in the
+          newsletter before it takes effect.
+        </p>
+      </div>
+    </main>
+  </div>
 </BaseLayout>

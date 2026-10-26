@@ -1,0 +1,137 @@
+name: Source reachability probe
+
+# Asks the question the whole cloud migration depends on: can a data-centre runner read China's
+# official sites?
+#
+# The earlier measurement of "5 of 6 reachable from a foreign IP" went through a local proxy whose
+# exit node may be a residential address. GitHub runners egress from data-centre ranges, and Chinese
+# government sites treat those differently. So this runs the probe from the runner and reports.
+#
+# It is deliberately separate from any build or publish workflow: it changes nothing and answers one
+# question. Run it from the Actions tab with "Run workflow", and read the summary at the end of the
+# log.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly, Mondays 00:20 UTC. Blocking policy drifts, so the answer is re-measured rather than
+    # assumed once.
+    - cron: '20 0 * * 1'
+
+permissions:
+  # Write, because the result is committed back: a private repository's artifacts need a token to
+  # download, and the answer has to be readable by something other than a browser.
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Show the runner's egress
+        run: |
+          echo "runner: $RUNNER_OS $RUNNER_ARCH"
+          echo "--- egress address ---"
+          curl -s --max-time 20 https://api.ipify.org || echo "(ipify unreachable)"
+          echo ""
+          echo "--- reverse lookup ---"
+          IP=$(curl -s --max-time 20 https://api.ipify.org || echo "")
+          if [ -n "$IP" ]; then getent hosts "$IP" || echo "(no PTR record)"; fi
+          echo "--- region hints ---"
+          curl -s --max-time 20 https://ipinfo.io/json || echo "(ipinfo unreachable)"
+          echo ""
+
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      # No install step. The probe uses only Node's built-in fetch and fs, and skipping the install
+      # keeps the question clean: if it fails, the network is the reason, not a dependency.
+      - name: Run the reachability probe
+        run: node tools/check-source-reachability.mjs --out=data/tmp/reachability.json
+        continue-on-error: true
+
+      # The result has to leave the runner, and a private repository's artifacts need a token to
+      # download. So it is written three ways, cheapest first:
+      #
+      #   1. the step summary, which is the first thing anyone sees on the run page
+      #   2. a commit into the repository, which is the only channel a program can read back. This is
+      #      what makes the answer reviewable without a browser, and it is why the file is committed
+      #      rather than left as an artifact.
+      #   3. Feishu, when the webhook exists, so the operator sees it without opening GitHub at all
+      - name: Summarise the result
+        if: always()
+        run: |
+          node -e '
+            const fs = require("fs");
+            const p = "data/tmp/reachability.json";
+            if (!fs.existsSync(p)) { console.log("no result file"); process.exit(0); }
+            const r = JSON.parse(fs.readFileSync(p, "utf8"));
+            const lines = [];
+            lines.push("## Source reachability from a GitHub runner");
+            lines.push("");
+            lines.push("Egress is a data-centre range, which is the network the cloud pipeline will use.");
+            lines.push("");
+            lines.push("| host | status | bytes | note |");
+            lines.push("| --- | --- | --- | --- |");
+            for (const row of r.rows) lines.push(`| \`${row.host}\` | ${row.status} | ${row.bytes} | ${row.note} |`);
+            lines.push("");
+            lines.push(`reachable ${r.totals.reachable}/${r.totals.probed} · blocked ${r.totals.blocked} · challenged ${r.totals.challenged} · failed ${r.totals.failed}`);
+            lines.push("");
+            lines.push("**What this decides.** If the Chinese sources answer, a runner can fetch the primary");
+            lines.push("documents and the pipeline can research on its own. If they do not, the fetch step has");
+            lines.push("to stay where there is a residential or proxied egress, and only the deterministic half -");
+            lines.push("build, gates, deploy, notify - moves to the cloud.");
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join("\n") + "\n");
+            console.log(lines.join("\n"));
+          '
+
+      - name: Commit the result so it can be read without a browser
+        if: always()
+        run: |
+          if [ ! -f data/tmp/reachability.json ]; then echo "nothing to commit"; exit 0; fi
+          mkdir -p data/reachability
+          cp data/tmp/reachability.json "data/reachability/$(date -u +%F).json"
+          git config user.name "landedmath-bot"
+          git config user.email "bot@landedmath.com"
+          git add data/reachability
+          git commit -m "probe: source reachability from a runner, $(date -u +%F)" || echo "no change"
+          git push || echo "push failed"
+
+      - name: Notify Feishu
+        if: always()
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+        run: |
+          if [ ! -f data/tmp/reachability.json ]; then exit 0; fi
+          node -e '
+            const fs = require("fs");
+            const r = JSON.parse(fs.readFileSync("data/tmp/reachability.json", "utf8"));
+            const ok = r.rows.filter(x => x.status === 200 && x.bytes >= 900 && x.note === "document");
+            const bad = r.rows.filter(x => !(x.status === 200 && x.bytes >= 900 && x.note === "document"));
+            const lines = [];
+            lines.push((ok.length >= 6 ? "✅" : "🔴") + " Source reachability probe");
+            lines.push("");
+            lines.push(`reachable ${r.totals.reachable}/${r.totals.probed}`);
+            lines.push("");
+            lines.push("OK: " + (ok.map(x => x.host).join(", ") || "none"));
+            lines.push("");
+            lines.push("NOT OK: " + (bad.map(x => x.host + " (" + x.status + ")").join(", ") || "none"));
+            lines.push("");
+            lines.push("Landed Math");
+            const payload = { msg_type: "text", content: { text: lines.join("\n") } };
+            fs.writeFileSync("data/tmp/probe-card.json", JSON.stringify(payload));
+          '
+          node tools/notify-feishu.mjs --webhook="$FEISHU_WEBHOOK" --dry-run > /dev/null 2>&1 || true
+          node -e '
+            const fs = require("fs");
+            const url = process.env.FEISHU_WEBHOOK;
+            if (!url) { console.log("FEISHU_WEBHOOK not set; the card was built but not sent"); process.exit(0); }
+            const body = fs.readFileSync("data/tmp/probe-card.json", "utf8");
+            fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body })
+              .then(r => r.text()).then(t => console.log("feishu: " + t.slice(0, 200)))
+              .catch(e => console.log("feishu failed: " + e.message));
+          '

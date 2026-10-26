@@ -1,0 +1,22 @@
+{
+  "_note": "SERP snapshot from the research agent's competing-coverage section. Every URL below was fetched directly with curl.exe and returned 200 at the time of capture; contents were read from the downloaded copy rather than from search snippets. Provenance: discovered via web search, verified by direct fetch. federalregister.gov, cbp.gov and usitc.gov are official publishers and are excluded from the competitor set automatically. KISUNSHIPPING NOTE: this site returns 406 to HEAD or stripped-User-Agent requests; the content-bearing GET returns 200.",
+  "_captured": "2026-10-03",
+  "_keyword": "US de minimis suspended 2026 postal shipment duty per parcel China",
+  "results": [
+    {
+      "url": "https://china-fulfillment.com/us-de-minimis-ended-2026-china-sellers-guide.html",
+      "title": "US de minimis ended 2026: a China sellers guide",
+      "snippet": "Avoids per-parcel entry overhead of roughly $4 to $25 per package. As of mid-2026 a typical Chinese-made consumer good carries roughly a 35% combined rate."
+    },
+    {
+      "url": "https://kisunshipping.com/de-minimis-2026-why-china-small-packages-now-cost-2x-more/",
+      "title": "De minimis 2026: why China small packages now cost 2x more",
+      "snippet": "A $300 apparel parcel: import duties base 16% plus Section 301 at 7.5% becomes $70.50, merchandise processing fee $2.20, customs brokerage entry fee $35.00 per parcel, total landed cost $452.70 against $345.00, an increase of 31.2% per unit."
+    },
+    {
+      "url": "https://www.gocubic.io/blog/de-minimis-dead-ecommerce-importers-2026",
+      "title": "De minimis is dead: what ecommerce importers pay in 2026",
+      "snippet": "Formal entry filing fee $30 to $80 per small-parcel shipment charged by a licensed customs broker. On a $50 item you can be looking at $20 to $50 in new per-package import costs. Section 122 surcharge: a 10% across-the-board tariff, currently in effect."
+    }
+  ]
+}

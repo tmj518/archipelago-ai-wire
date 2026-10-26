@@ -1,0 +1,23 @@
+---
+import { DISCLAIMER, FOOTER_LINKS, SITE } from "../consts";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <ul class="footer-links">
+      {
+        FOOTER_LINKS.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <!-- The disclaimer used to appear only at the foot of articles, so the
+         homepage, category pages and the about page carried none of it. -->
+    <p class="disclaimer">{DISCLAIMER}</p>
+    <div class="copyright">© {year} {SITE.name}</div>
+  </div>
+</footer>

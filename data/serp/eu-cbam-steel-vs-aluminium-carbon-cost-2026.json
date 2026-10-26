@@ -1,0 +1,32 @@
+[
+  {
+    "url": "https://news.metal.com/es/newscontent/104069484-an%C3%A1lisis-de-smm-barreras-gemelas-fuerzan-un-reajuste-comercial-anatom%C3%ADa-completa-de-la-pugna-por-la-cuota-de-acero-de-la-ue-de-1835-mt",
+    "title": "SMM Analysis: Twin Barriers Force a Trade Reset — A Full Anatomy of the Scramble for the EU's 18.35 Mt Steel Quota",
+    "snippet": "Reached, and the headline is the closest competitor to this article: it treats the quota and CBAM as 'twin barriers' on the same trade, which is the same pairing this piece makes. The body was truncated on retrieval and no figures from it were read, so it is recorded as reached-but-unread. On the title alone it appears to be written for the metals trade rather than for a buyer pricing an order, and it is not framed around a per-tonne comparison of the two instruments or around aluminium, which is where this article's finding sits."
+  },
+  {
+    "url": "https://www.europarl.europa.eu/doceo/document/E-10-2025-004266-ASW_EN.pdf",
+    "title": "European Parliament written question E-004266/2025, answer given by Mr Šefčovič on behalf of the Commission, 19 January 2026",
+    "snippet": "Attempted and returned HTTP 202 with an empty body, so the Commission's answer was not read. Recorded as attempted-and-not-read. This is a primary source and would have been the strongest available check on how the Commission itself describes the interaction between the safeguard and CBAM; because it could not be read, the article does not rely on any Commission statement about that interaction and instead cites the two regulations directly."
+  },
+  {
+    "url": "https://sustainableatlas.org/post/carbon-border-adjustment-mechanism-cbam-implementation-kpis-by-sector-with-range-3332",
+    "title": "CBAM implementation KPIs by sector, with ranges",
+    "snippet": "Aggregated sector-level KPI ranges rather than a per-tonne cost for a named CN code. Sector KPIs would support a claim about CBAM implementation generally; they would not support or contradict a per-tonne figure for 7601 or 7208, which is what this article is built on."
+  },
+  {
+    "url": "http://www.e3g.org/wp-content/uploads/E3G-Sandbag-CBAM-Paper-Eng.pdf",
+    "title": "E3G and Sandbag, CBAM paper, comparing steelmaking technologies",
+    "snippet": "A PDF and a technology comparison — it contrasts production routes such as direct reduced iron on carbon intensity. That is a question about how steel is made, not about what an importer pays per tonne under the EU's two instruments, so it does not overlap with this article's comparison."
+  },
+  {
+    "url": "https://steel.smm.cn/news/13432/104069351",
+    "title": "SMM analysis of the EU's 18.35 million tonne steel quota scramble (Chinese edition)",
+    "snippet": "The Chinese edition of the same SMM analysis above. Reached in search but not fetched separately, since the English-language edition was already recorded as reached-but-unread. Both are the same underlying piece."
+  },
+  {
+    "url": "https://nsp.nanet.go.kr/plan/subject/detail.do?nationalPlanControlNo=PLAN0000067442",
+    "title": "Korean National Assembly Library, national strategy portal, subject page on CBAM",
+    "snippet": "A library subject page rather than an analysis. No per-tonne figures, no comparison of instruments. Recorded for completeness of the competitor set and not relied on."
+  }
+]

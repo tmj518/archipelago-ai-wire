@@ -1,0 +1,69 @@
+---
+import { AUTHOR, SITE } from "../consts";
+
+/**
+ * Article video embed.
+ *
+ * Spec v1.2 §6 rules, applied here:
+ *  - `youtube-nocookie.com` so no tracking cookie is set until playback
+ *  - `loading="lazy"` so the player costs nothing until it is scrolled to
+ *  - the video id lives in frontmatter; the file never enters the repository
+ *
+ * The component also emits VideoObject structured data, which is what lets the
+ * video appear as its own search result rather than only as page furniture.
+ */
+export interface Props {
+  videoId: string;
+  title: string;
+  description?: string;
+  /** ISO 8601, e.g. PT4M13S. */
+  duration?: string;
+  uploadDate?: Date;
+}
+
+const { videoId, title, description, duration, uploadDate } = Astro.props;
+const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}`;
+
+const videoObject = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: title,
+  description: description ?? title,
+  thumbnailUrl: `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
+  uploadDate: (uploadDate ?? new Date()).toISOString(),
+  ...(duration ? { duration } : {}),
+  embedUrl,
+  contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
+  publisher: {
+    "@type": "Organization",
+    name: SITE.name,
+    url: SITE.url,
+  },
+  author: { "@type": "Person", name: AUTHOR.name },
+};
+---
+
+<figure class="article-video">
+  <div class="video-frame">
+    <iframe
+      src={embedUrl}
+      title={title}
+      loading="lazy"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
+  </div>
+  <figcaption>
+    <span class="video-label">Video</span>
+    {title}
+    {
+      duration && (
+        <span class="video-duration">
+          {duration.replace(/^PT/, "").replace(/M/, "m ").replace(/S$/, "s").toLowerCase()}
+        </span>
+      )
+    }
+  </figcaption>
+</figure>
+
+<script type="application/ld+json" set:html={JSON.stringify(videoObject)} />

@@ -1,0 +1,29 @@
+---
+import { AUTHOR } from "../consts";
+
+/** Author credibility card — spec §3 sidebar widget. */
+export interface Props {
+  name?: string;
+  initials?: string;
+  role?: string;
+  bio?: string;
+  avatar?: string;
+}
+
+const {
+  name = AUTHOR.name,
+  initials = AUTHOR.initials,
+  role = AUTHOR.role,
+  bio = AUTHOR.shortBio,
+  avatar = AUTHOR.avatar,
+} = Astro.props;
+---
+
+<div class="widget author-card">
+  <div class="author-avatar">
+    {avatar ? <img src={avatar} alt={name} width="72" height="72" /> : initials}
+  </div>
+  <div class="author-name">{name}</div>
+  {role && <div class="author-role">{role}</div>}
+  <p>{bio}</p>
+</div>

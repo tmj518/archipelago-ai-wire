@@ -1,0 +1,31 @@
+---
+import AdSlot from "./AdSlot.astro";
+import AuthorCard from "./AuthorCard.astro";
+import NewsletterForm from "./NewsletterForm.astro";
+import NumbersWidget, { type NumberItem } from "./NumbersWidget.astro";
+
+/**
+ * Right rail — author card, today's numbers, the newsletter, and the sidebar ad slot.
+ *
+ * The ad slot is placed last, below everything the reader came for. The brief asks for a
+ * sidebar placement and this is where it belongs in a publication that claims to put reading
+ * first: an ad above the newsletter would be asking a reader to scroll past an unfilled box
+ * to reach the thing the page is for.
+ *
+ * The slot hides itself below 768px, where the rail is dropped from the layout entirely, so
+ * the mobile band gets no sidebar ad by construction rather than by a second rule.
+ */
+export interface Props {
+  numbers: NumberItem[];
+  showNumbers?: boolean;
+}
+
+const { numbers, showNumbers = true } = Astro.props;
+---
+
+<aside class="sidebar">
+  <AuthorCard />
+  {showNumbers && <NumbersWidget items={numbers} />}
+  <NewsletterForm variant="box" />
+  <AdSlot placement="sidebar" />
+</aside>

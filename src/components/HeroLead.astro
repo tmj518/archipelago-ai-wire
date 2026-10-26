@@ -1,0 +1,142 @@
+---
+/**
+ * The first screen, structured after the benchmark's homepage.
+ *
+ * TLDR's homepage is five blocks and nothing else: a headline carrying a time promise, a
+ * subtitle that names the audience, one button, a line of social proof, then the content
+ * itself. Ours was a kicker, the newest article's title as the h1, and no call to action
+ * at all - which gave a first-time visitor no statement of what this is, and no way to
+ * subscribe without scrolling.
+ *
+ * Two deliberate departures from the model.
+ *
+ * The social proof is not a subscriber count. TLDR says "8,000,000+ readers from
+ * Anthropic, OpenAI"; we have no subscribers and no logos, and inventing either is the
+ * exact failure this site is built to avoid. What is true and specific is the corpus:
+ * 23 analyses, 207 sourced figures, 129 named sources, 28 instrument pages. Those numbers
+ * are generated from the articles at build time, so they cannot drift from reality - a
+ * hand-written count would be stale within a week.
+ *
+ * The h1 is a promise about a decision rather than about minutes. "In 5 minutes" is honest
+ * for a curation product that summarises other people's reporting. We do arithmetic on
+ * primary documents and the reader supplies commercial inputs; promising them five minutes
+ * would be a claim the product does not keep.
+ */
+import NewsletterForm from "./NewsletterForm.astro";
+import { AUTHOR } from "../consts";
+import { AUDIENCE, CTA, CTA_NOTE, HEADLINE, SUBTITLE, WHAT_YOU_GET } from "../lib/copy";
+
+export interface Props {
+  /** Generated from the published collection, never typed by hand. */
+  analyses: number;
+  figures: number;
+  sources: number;
+  instruments: number;
+}
+
+const { analyses, figures, sources, instruments } = Astro.props;
+---
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Independent analysis · no ads · no tracking</div>
+
+    <h1>{HEADLINE}</h1>
+
+    <p class="hero-sub">{SUBTITLE}</p>
+    <p class="hero-audience">{AUDIENCE}</p>
+
+    <ul class="hero-gets">
+      {WHAT_YOU_GET.map((w) => (
+        <li>{w}</li>
+      ))}
+    </ul>
+
+    <div class="hero-cta">
+      <a class="hero-button" href="#subscribe">{CTA} →</a>
+      <p class="hero-cta-note">{CTA_NOTE}</p>
+    </div>
+
+    <p class="hero-proof">
+      {analyses} analyses · <strong>{figures}</strong> sourced figures ·
+      <strong>{sources}</strong> named primary sources ·
+      <a href="/instrument/">{instruments} instruments</a> indexed
+    </p>
+
+    <p class="hero-by">
+      {AUTHOR.name} · {AUTHOR.role} · <a href="/about/">how this is made</a>
+    </p>
+
+    <div id="subscribe" class="hero-form">
+      <NewsletterForm variant="inline" />
+    </div>
+  </div>
+</header>
+
+<style>
+  .hero-sub {
+    max-width: 46ch;
+    margin: 0 auto 8px;
+    font-size: 1.02rem;
+    opacity: 0.92;
+  }
+  .hero-audience {
+    max-width: 46ch;
+    margin: 0 auto 18px;
+    font-size: 0.92rem;
+    opacity: 0.78;
+  }
+  .hero-gets {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 20px;
+    max-width: 30ch;
+    text-align: left;
+    font-size: 0.92rem;
+  }
+  .hero-gets li {
+    padding: 3px 0 3px 18px;
+    position: relative;
+  }
+  .hero-gets li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    opacity: 0.6;
+  }
+  .hero-cta {
+    margin: 22px 0 18px;
+  }
+  .hero-button {
+    display: inline-block;
+    padding: 12px 26px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--accent, #d4573a);
+    color: #fff;
+  }
+  .hero-button:hover {
+    text-decoration: none;
+    filter: brightness(1.08);
+  }
+  .hero-cta-note {
+    font-size: 0.84rem;
+    opacity: 0.72;
+    margin: 9px 0 0;
+  }
+  .hero-proof {
+    font-size: 0.92rem;
+    opacity: 0.85;
+    margin: 0 0 6px;
+  }
+  .hero-by {
+    font-size: 0.88rem;
+    opacity: 0.75;
+    margin: 0 0 26px;
+  }
+  .hero-form {
+    max-width: 460px;
+    margin: 0 auto;
+  }
+</style>

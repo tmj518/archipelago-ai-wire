@@ -1,0 +1,280 @@
+---
+/**
+ * The article shell: everything that frames one piece of writing.
+ *
+ * Why this is separate from BaseLayout. BaseLayout is the site chrome — head,
+ * canonical, JSON-LD, nav, footer, analytics. This is the article chrome: the
+ * category link, the headline, the subtitle, the standfirst, the byline row, the
+ * hero image, the prose container, the video, the source list and the related
+ * reading block. Splitting them matters because our article structure is fixed —
+ * `qa-check` gates the V6.1 sections and the required elements — and fixed
+ * structure is exactly what is worth encapsulating. Before this, every one of
+ * those elements was inline in pages/blog/[slug].astro, so the only way to reuse
+ * the article rendering, or to add to it, was to edit that page.
+ *
+ * The route page keeps two things: `getStaticPaths`, which is routing, and the
+ * data assembly the layout cannot know about on its own. Everything downstream
+ * of "here is the post" lives here.
+ *
+ * Styling stays in src/styles/global.css, matching the convention every other
+ * component in this project follows — no component carries an inline <style>.
+ */
+import type { CollectionEntry } from "astro:content";
+
+import AdSlot from "../components/AdSlot.astro";
+import ArticleFooter from "../components/ArticleFooter.astro";
+import ArticleVideo from "../components/ArticleVideo.astro";
+import Sidebar from "../components/Sidebar.astro";
+import SubscribeModal from "../components/SubscribeModal.astro";
+import {
+  AUTHOR,
+  SITE,
+  audienceLabel,
+  categoryHref,
+  categoryLabel,
+  formatDate,
+} from "../consts";
+// CardData and NumberItem come from lib/post, which is what produces them.
+// NumbersWidget exports its own NumberItem, and taking that one instead would
+// mean depending on two definitions of the same shape staying in step.
+import { readingTime } from "../lib/post";
+import type { CardData, NumberItem } from "../lib/post";
+import type { Hub } from "../lib/topics";
+import ArticleToc from "../components/ArticleToc.astro";
+import FigureChart from "../components/FigureChart.astro";
+
+export interface Props {
+  post: CollectionEntry<"blog">;
+  /** Related reading, already selected by the caller. */
+  related: CardData[];
+  /** The homepage numbers rail, shown alongside the article. */
+  numbers: NumberItem[];
+  /**
+   * The topic hubs this article belongs to, resolved by the caller from the same clustering the
+   * hub routes use. Passed in rather than computed here so the layout does not need the whole
+   * collection, and so a link cannot be built against a hub that was never generated.
+   */
+  hubs?: Hub[];
+}
+
+const { post, related, numbers, hubs = [] } = Astro.props;
+const { data } = post;
+
+const minutes = readingTime(post.body);
+const siloLabel = categoryLabel(data.category);
+
+/*
+ * The citation strings, built once.
+ *
+ * `retrieved` is the newest retrieval date among the article's own figures, because that is when
+ * the facts were last checked against their sources - the honest date for a citation, and the same
+ * date the sitemap carries. Falling back to the publication date keeps the block populated for the
+ * four pre-V6.2 articles that carry no figures at all.
+ */
+const retrieved = (data.figures ?? [])
+  .map((f) => f.retrieved)
+  .filter(Boolean)
+  .sort()
+  .at(-1) ?? data.publishDate.toISOString().slice(0, 10);
+
+const citationUrl = new URL(`/blog/${post.id}/`, Astro.site ?? SITE.url).href;
+const citationYear = String(data.publishDate.getUTCFullYear());
+
+const citationPlain =
+  `${AUTHOR.name}. "${data.title}." ${SITE.name}, ${data.publishDate.toISOString().slice(0, 10)}. ` +
+  `Figures retrieved ${retrieved}. ${citationUrl}`;
+
+const bibtex =
+  `@misc{landedmath${post.id.replace(/[^a-z0-9]/gi, "")},\n` +
+  `  author       = {${AUTHOR.name}},\n` +
+  `  title        = {${data.title}},\n` +
+  `  howpublished = {${SITE.name}},\n` +
+  `  year         = {${citationYear}},\n` +
+  `  month        = {${data.publishDate.toISOString().slice(5, 7)}},\n` +
+  `  note         = {Figures retrieved ${retrieved}},\n` +
+  `  url          = {${citationUrl}}\n` +
+  `}`;
+---
+
+<div class="container">
+  <main id="main">
+    <article>
+      <header class="article-header">
+        <a class="tag" href={categoryHref(data.category)}>{siloLabel}</a>
+        <h1>{data.title}</h1>
+        {data.subtitle && <p class="subtitle">{data.subtitle}</p>}
+        <p class="standfirst">{data.description}</p>
+        <div class="meta">
+          {formatDate(data.publishDate)} · {minutes} min read · By {AUTHOR.name}
+          {" · "}For {audienceLabel(data.audience)}
+        </div>
+      </header>
+
+      {
+        data.heroImage && (
+          <figure class="article-hero-img">
+            <img
+              src={data.heroImage}
+              alt={data.heroImageAlt ?? ""}
+              width="1200"
+              height="750"
+            />
+          </figure>
+        )
+      }
+
+      <FigureChart figures={data.figures} />
+
+      <ArticleToc />
+
+      <div class="prose">
+        <slot />
+      </div>
+
+      {/*
+        * The in-article ad slot sits after the body rather than inside it.
+        *
+        * The brief asks for an inline block part-way through the prose, and the slot is
+        * reserved here instead because this is a static build: there is no way to inject a
+        * node at a percentage of rendered height without either a client script that moves
+        * content after paint - a layout shift, and the worst kind on a phone - or an
+        * editorial marker in every article's markdown.
+        *
+        * The honest placement is therefore after the analysis and before the sources, which
+        * is where a reader has finished the argument and is about to check it. Filling the
+        * slot is a one-line change when an editor is willing to add the marker to the
+        * templates that generate articles.
+      */}
+      <AdSlot placement="inline" />
+
+      {/*
+        * The subscribe prompt lives at article level rather than site level, so it only
+        * exists on pages where a reader has something to have read. Triggered on depth of
+        * reading rather than on a timer, and shown once, ever.
+      */}
+      <SubscribeModal />
+
+      {
+        data.youtube_id && (
+          <ArticleVideo
+            videoId={data.youtube_id}
+            title={data.videoTitle ?? data.title}
+            description={data.description}
+            duration={data.videoDuration}
+            uploadDate={data.publishDate}
+          />
+        )
+      }
+
+      {
+        data.sources.length > 0 && (
+          <section class="sources">
+            <h2>Sources</h2>
+            <ul>
+              {data.sources.map((source) => (
+                <li>{source}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        /*
+         * What changed since publication.
+         *
+         * Only rendered when there is something to say. An always-present
+         * "last updated" label would have to show a date, and a date that is a
+         * year old reads as abandonment — it advertises neglect. What earns
+         * trust is stating the change itself, so that is all this shows, and it
+         * shows nothing when nothing has changed.
+         *
+         * The date does NOT appear in the byline. Adding it there would make the
+         * byline churn on every revision, which is the date bumping this whole
+         * mechanism exists to avoid.
+         */
+        data.revisions.length > 0 && (
+          <section class="revisions">
+            <h2>Corrections and updates</h2>
+            <ul>
+              {data.revisions.map((r) => (
+                <li>
+                  <time datetime={r.date.toISOString()}>{formatDate(r.date)}</time>
+                  {" — "}
+                  {r.note}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+      {
+        /*
+         * How the article was produced.
+         *
+         * Added because Article 50 of the EU AI Act requires deployers to
+         * disclose AI-generated or AI-manipulated text published to inform the
+         * public about matters of public interest, and that obligation has been
+         * in force since 2 August 2026. The editorial-responsibility exception
+         * does not apply here: the intended pipeline is data-driven and
+         * automatic, so there is no human review to point at.
+         *
+         * Form matters as much as content. Article 50 requires the disclosure to
+         * be clear, distinguishable, noticeable and accessible, provided no later
+         * than first exposure, and explicitly says it may not be hidden in the
+         * legal notice or become visible only after the content is consumed. That
+         * is why this sits on the article itself, beside Sources, rather than in
+         * the site footer or the privacy policy.
+         *
+         * The wording describes what actually happens rather than the intended
+         * end state, because the obligation is to describe the real process. It
+         * says tool-assisted and item-by-item checked, which is accurate today:
+         * every figure is traced to a primary source, both gates run before
+         * publication, and i.e. corrections are recorded. If the pipeline becomes
+         * fully automatic with no review, this text has to change with it.
+         */
+        <section class="disclosure">
+          <h2>How this was made</h2>
+          <p>
+            Research and drafting are tool-assisted. Every figure is traced to a
+            named primary source and checked against it, each article clears a
+            structural review and an information-gain review before publication,
+            and corrections are recorded in a dated note above. The review
+            process is described on <a href="/about/">the about page</a>.
+          </p>
+        </section>
+      }
+    </article>
+
+    {/*
+      * Mechanism 2, human-readable layer: the citation block and the licence.
+      *
+      * The Highwire `citation_*` tags added on 2026-10-09 let a machine cite this page. This is the
+      * other half of the same mechanism, and the benchmark carries both: a string a reader can
+      * paste into a document, a BibTeX entry for anyone writing a paper, and a stated licence so
+      * that reusing the figure needs no permission request. The friction being removed is the
+      * reader's uncertainty about how to attribute the work - and being cited is the one form of
+      * distribution available to a site with no audience and no backlinks.
+      *
+      * The date is the retrieval date the figures themselves carry, not the build date, because the
+      * citation belongs to the version a reader actually saw.
+    */}
+    <section id="article-citation" class="citation-block">
+      <h2 class="section-title">Cite this analysis</h2>
+      <p class="citation-note">
+        Every figure here is traceable to a named document and a retrieval date. Reuse is welcome
+        under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a>
+        — attribute {AUTHOR.name} / {SITE.name} and link back to this page. No permission needed.
+      </p>
+      <pre class="citation-pre"><code>{citationPlain}</code></pre>
+      <details class="citation-bibtex">
+        <summary>BibTeX</summary>
+        <pre class="citation-pre"><code>{bibtex}</code></pre>
+      </details>
+    </section>
+
+    <ArticleFooter related={related} hubs={hubs} />
+  </main>
+
+  <Sidebar numbers={numbers} />
+</div>

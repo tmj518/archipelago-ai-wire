@@ -1,0 +1,22 @@
+{
+  "_note": "SERP snapshot for the information-gain gate. Results are the top English-language coverage returned by the agent search tool for this topic; relevance is asserted by the producer from that search. news.cn and stats.gov.cn are official publishers and are excluded from the competitor set automatically.",
+  "_captured": "2026-10-02",
+  "_keyword": "China PPI August 2026 factory gate prices importer sourcing budget",
+  "results": [
+    {
+      "url": "https://www.vantagemarkets.com/market-news/china-cpi-ppi-august-energy-prices-september-9-2026/",
+      "title": "China CPI jumps to 0.8%: what's behind August's spike?",
+      "snippet": "China CPI rose to 0.8% in August 2026 while the producer price index returned to growth, with energy prices driving the change in factory gate prices."
+    },
+    {
+      "url": "https://tradingeconomics.com/china/producer-prices-change",
+      "title": "China Producer Prices Change",
+      "snippet": "China producer price index data for August 2026, the year-on-year change in factory gate prices and the historical PPI series."
+    },
+    {
+      "url": "https://www.reuters.com/markets/asia/chinas-factory-gate-prices-return-growth-august-2026-09-09/",
+      "title": "China's factory gate prices return to growth in August",
+      "snippet": "China's producer price index returned to growth in August 2026, with factory gate prices rising year on year and input costs pushing producer prices higher."
+    }
+  ]
+}

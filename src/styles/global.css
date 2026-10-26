@@ -1,55 +1,1797 @@
-@import "tailwindcss";
+/* ============================================================
+   China Cross-border Insider — global stylesheet
+   Ported 1:1 from 英文站首页_完整版.html (prototype), then extended
+   for article / listing / legal pages.
 
-@theme {
-  --color-brand: #1a365d;
-  --color-accent: #e85d26;
-  --color-ink: #1a1a1a;
-  --color-muted: #6b7280;
-  --color-bg: #ffffff;
-  --color-bg-soft: #f8f9fa;
-  --color-border: #e5e7eb;
+   Section map
+   1. Design tokens        6. Sidebar widgets
+   2. Reset & base         7. Article footer (author / subscribe / related)
+   3. Layout               8. Long-form prose (article body)
+   4. Navigation & footer  9. Forms
+   5. Editorial cards     10. Utilities & responsive
+   ============================================================ */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  /* Brand palette — spec §3 */
+  --c-navy: #0a2540;
+  --c-navy-light: #14345e;
+  --c-navy-mid: #1a3a5c;
+  --c-red: #c8102e;
+  --c-red-dark: #8b0000;
+  --c-red-tint: #fff3f3;
+  /* NOT in spec §3 — pending decision (see README "待确认") */
+  --c-gold: #ffd166;
+
+  /* Surfaces & ink */
+  --c-bg: #fafaf8;
+  --c-surface: #ffffff;
+  --c-surface-alt: #f8f8f5;
+  --c-ink: #1a1a1a;
+  --c-ink-2: #444444;
+  --c-ink-3: #555555;
+  --c-ink-4: #666666;
+  /*
+ * Contrast, measured rather than chosen.
+ *
+ * These were #888888 and #999999, which are 3.39 and 2.73 against --c-bg - below the 4.5 WCAG AA asks for body
+ * text. They are not decoration: .sources is where each figure's provenance is written and .disclaimer is the
+ * note about what the figures cannot tell you, which are the two paragraphs a reader consults before deciding
+ * whether to trust a number.
+ *
+ * The ladder now runs ink 16.7, ink-2 9.3, ink-3 7.1, ink-4 5.5, ink-5 5.1, ink-6 4.5 - every step legible.
+ * tools/check-contrast.mjs fails the build if a future change drops any of them below the line.
+ */
+--c-ink-5: #6b6b6b;
+  --c-ink-6: #6f6f6f;
+  --c-line: #e8e6e1;
+  --c-line-soft: #eeeeee;
+  --c-line-faint: #f5f5f5;
+  --c-field-border: #dddddd;
+
+  /* Type */
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  /* Metrics */
+  --w-max: 1200px;
+  --w-read: 720px;
+  --radius: 4px;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --gutter: 24px;
+}
+/*
+ * Dark mode by media query only.
+ *
+ * A toggle would need a script before first paint, and this site's CSP hashes every inline script - so a toggle
+ * costs either a hash or a flash of the wrong theme while the bundle loads. The media query costs neither: the
+ * browser knows the preference before it paints, so the first frame is already the right one.
+ *
+ * Contrast is measured, on the same rule as the light palette: every ink step reaches 4.5 on its own
+ * background. The tightest pair is --c-ink-6 on --c-surface at 4.53. Without that the theme would be a
+ * downgrade for whoever switches, which is worse than not offering it.
+ *
+ * The surfaces are warm-neutral rather than pure grey - the brand sits on navy, red and gold, and a cold grey
+ * makes the red read as an error state.
+ *
+ * Accents brighten because the light values do not reach 4.5 on a dark ground, and shadows go darker and less
+ * diffuse because the light values simply vanish.
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: #17181a;
+    --c-surface: #1d1f22;
+    --c-surface-alt: #212326;
+
+    --c-ink: #e8e6e1;
+    --c-ink-2: #c9c7c2;
+    --c-ink-3: #b3b1ac;
+    --c-ink-4: #9c9a95;
+    --c-ink-5: #8f8d88;
+    --c-ink-6: #8b8984;
+
+    --c-line: #2e3033;
+    --c-line-soft: #272a2d;
+    --c-line-faint: #222427;
+    --c-field-border: #3a3d41;
+
+    --c-navy: #8fb6e6;
+    --c-navy-light: #a8c8ee;
+    --c-navy-mid: #6f9ace;
+    --c-red: #ff6b7f;
+    --c-red-dark: #ff8a9a;
+    --c-red-tint: #2a1518;
+    --c-gold: #e8bb52;
+
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 40%), 0 8px 24px rgb(0 0 0 / 30%);
+
+    color-scheme: dark;
+  }
+
+  /*
+   * Two surfaces that carry a literal colour rather than a variable: the ad placeholder's hatched black wash is
+   * invisible on a dark ground, and the modal scrim has to be darker than the page rather than a light veil.
+   */
+  .ad-slot {
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 8px,
+      rgb(255 255 255 / 3%) 8px,
+      rgb(255 255 255 / 3%) 16px
+    );
+  }
+  .sub-modal__scrim {
+    background: rgb(0 0 0 / 62%);
+  }
+
+  /* Anything drawn for a light page is a little too bright against a dark one. */
+  .prose img {
+    filter: brightness(0.92);
+  }
+}
+
+/* ---------- 2. Reset & base ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-white text-ink;
-  line-height: 1.7;
+  font-family: var(--font-sans);
+  background: var(--c-bg);
+  color: var(--c-ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4 {
-  @apply font-bold text-ink;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-red);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/*
+ * A backstop against horizontal overflow.
+ *
+ * The specific cause is fixed above (min-width on grid items, and a capped, scrollable
+ * pre), but a single wide element — a long URL, an unbreakable compound, a table with
+ * many columns — should not be able to give the whole page a sideways scrollbar. On a
+ * phone that makes the text unreadable, which is how this was reported.
+ */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ---------- 3. Layout ---------- */
+.container {
+  max-width: var(--w-max);
+  margin: 40px auto;
+  padding: 0 var(--gutter);
+  display: grid;
+  /*
+   * 12-column grid so the main column and the sidebar can hold a ratio rather than a fixed
+   * width. It was `1fr 300px`, which is fine at one screen size and wrong at every other:
+   * a fixed sidebar cannot shrink, so it either overflows or the main column collapses.
+   * Desktop 8/12 + 4/12 is the 70/30 the front-end brief asks for.
+   */
+  grid-template-columns: repeat(12, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+/*
+ * The single reading column, for pages that have no sidebar.
+ *
+ * The two guide templates have carried `class="wrap"` since they were written, and `.wrap` was never
+ * defined anywhere in this file. A class that matches no rule is not a fallback - it is nothing at all,
+ * so the guide index and every guide page rendered edge to edge with no measure and no centring, while
+ * every other page sat inside `.container`. It looked broken because it was.
+ *
+ * 760px is the reading width the blog's 8-of-12 column works out to at 1200px, so a guide and an
+ * article set text at the same size. margin:auto centres it; the gutter keeps it off the glass at
+ * 320px, where the mobile gate measures.
+ */
+.wrap {
+  max-width: 760px;
+  margin: 40px auto;
+  padding: 0 var(--gutter);
+}
+
+/* The two children of a content container: main text and the sidebar. */
+.container > main {
+  grid-column: span 8;
+}
+
+.container > aside {
+  grid-column: span 4;
+}
+
+/*
+ * Grid and flex items default to min-width: auto, which means they refuse to shrink
+ * below the width of their content. On an article that content includes a <pre> of
+ * calculation steps, and a pre defaults to white-space: pre and does not wrap, so the
+ * longest line decided the width of main — and main decided the width of the page.
+ *
+ * The symptom was a phone showing the article cut off at the right edge with a
+ * horizontal scrollbar, on every article but not on the homepage. The cause is not
+ * the pre; it is that nothing was allowed to shrink. min-width: 0 restores that
+ * permission, and the pre then scrolls within its own box instead of widening the
+ * page. Both are needed: this, and overflow-x on the pre below.
+ */
+.container > * {
+  min-width: 0;
+}
+
+.container--flush {
+  margin-top: 0;
+}
+
+.container--full {
+  grid-template-columns: 1fr;
+}
+
+/* ---------- 4. Navigation & footer ---------- */
+.nav {
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-line);
+  padding: 18px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-inner {
+  max-width: var(--w-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  text-decoration: none;
+  color: var(--c-ink);
+}
+
+.logo em {
+  color: var(--c-red);
+  font-style: normal;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--c-ink-2);
+  text-decoration: none;
+  font-weight: 500;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: var(--c-red);
+  border-bottom-color: var(--c-red);
+}
+
+/* ---------- header subscribe button ----------
+ * The brief asks for a subscribe control in the header. It is a filled button so that it
+ * reads as the primary action on the bar rather than as a twelfth section, and it is
+ * separated from the links by the margin on its list item.
+ */
+.nav-cta-item {
+  margin-left: 4px;
+}
+
+.nav-cta {
+  background: var(--c-red);
+  color: #fff !important;
+  padding: 7px 14px !important;
+  border-radius: var(--radius);
+  border-bottom: 2px solid transparent !important;
+}
+
+.nav-cta:hover {
+  background: var(--c-navy);
+  border-bottom-color: transparent !important;
+  color: #fff !important;
+}
+
+/* Mobile: prototype hid the nav entirely. We keep it reachable. */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-navy);
+  cursor: pointer;
+}
+
+.footer {
+  background: var(--c-navy);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 36px var(--gutter);
+  margin-top: 50px;
+}
+
+.footer-inner {
+  max-width: var(--w-max);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--c-gold);
+}
+
+/* Footer disclaimer. The footer sits on a dark background, so this cannot use
+   the ink tokens the article-foot version uses.
+   `margin: auto` rather than `margin: 0` because .footer-inner is centred with
+   text-align and a fixed max-width would otherwise sit hard against the left
+   edge of the footer while its text stayed centred. */
+.footer .disclaimer {
+  max-width: 68ch;
+  margin: 18px auto 0;
+  font-size: 11px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+/* Copyright line only. This replaced a `.tagline` rule when the
+   "No tracking · No ads · Independent analysis" string came out of the footer
+   on 2026-10-03; the spacing was tuned for one short line, so it is unchanged. */
+.footer .copyright {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+/* ---------- 5. Editorial cards ---------- */
+/* 5a. Hero */
+.hero {
+  background: linear-gradient(135deg, var(--c-navy) 0%, var(--c-navy-light) 100%);
+  color: #fff;
+  padding: 70px var(--gutter);
+}
+
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  color: var(--c-gold);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: 42px;
   line-height: 1.25;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
 }
 
-.prose p {
-  @apply mb-4;
+.hero h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero p {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.hero .meta {
+  margin-top: 22px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* 5b. Featured card */
+.featured {
+  background: var(--c-surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 36px;
+}
+
+.featured-img {
+  height: 280px;
+  background: linear-gradient(135deg, var(--c-red) 0%, var(--c-red-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 56px;
+}
+
+.featured-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-body {
+  padding: 32px;
+}
+
+.featured h2 {
+  font-size: 26px;
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+
+.featured h2 a {
+  color: var(--c-ink);
+  text-decoration: none;
+}
+
+.featured h2 a:hover {
+  color: var(--c-red);
+}
+
+.featured .excerpt {
+  color: var(--c-ink-3);
+  font-size: 15px;
+}
+
+/* 5c. Tag / priority chip */
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--c-red-tint);
+  color: var(--c-red);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  margin-bottom: 14px;
+}
+
+/* 5d. Latest list */
+.section-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--c-ink);
+}
+
+.article-row {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--c-line-soft);
+}
+
+.article-row:last-child {
+  border-bottom: none;
+}
+
+.article-row .row-date {
+  font-size: 12px;
+  color: var(--c-ink-6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.article-row h3 {
+  font-size: 18px;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.article-row h3 a {
+  color: var(--c-ink);
+  text-decoration: none;
+}
+
+.article-row h3 a:hover {
+  color: var(--c-red);
+}
+
+.article-row p {
+  font-size: 14px;
+  color: var(--c-ink-4);
+}
+
+/* ---------- 6. Sidebar widgets ---------- */
+.widget {
+  background: var(--c-surface);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 20px;
+}
+
+.widget h2,
+.widget h3,
+.widget h4 {
+  font-size: 15px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--c-red);
+}
+
+.author-card {
+  text-align: center;
+}
+
+.author-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--c-navy), var(--c-navy-mid));
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+  font-family: var(--font-serif);
+  overflow: hidden;
+}
+
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.author-card .author-name {
+  font-size: 15px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.author-card .author-role {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--c-red);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.author-card p {
+  font-size: 12px;
+  color: var(--c-ink-5);
+  line-height: 1.5;
+}
+
+.numbers-list {
+  list-style: none;
+}
+
+.numbers-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--c-line-faint);
+}
+
+.numbers-list li:last-child {
+  border-bottom: none;
+}
+
+.numbers-list .num {
+  font-weight: 700;
+  color: var(--c-red);
+}
+
+/* ---------- 7. Article footer (author / subscribe / related) ---------- */
+.article-bottom {
+  background: var(--c-surface);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow-card);
+  margin-top: 36px;
+}
+
+.article-bottom .author-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--c-line-soft);
+  margin-bottom: 20px;
+}
+
+.avatar-sm {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--c-navy), var(--c-navy-mid));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: var(--font-serif);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.avatar-sm img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-bottom .author-row .author-name {
+  font-size: 15px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+.article-bottom .author-row p {
+  font-size: 13px;
+  color: var(--c-ink-5);
+}
+
+.related-title {
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.related-card {
+  padding: 14px;
+  background: var(--c-surface-alt);
+  border-radius: var(--radius);
+}
+
+.related-card .rel-date {
+  font-size: 11px;
+  color: var(--c-ink-6);
+  margin-bottom: 6px;
+}
+
+.related-card h4 {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.related-card h4 a {
+  color: var(--c-ink);
+  text-decoration: none;
+}
+
+.related-card h4 a:hover {
+  color: var(--c-red);
+}
+
+/* ---------- 8. Long-form prose ---------- */
+.prose {
+  max-width: var(--w-read);
+  font-size: 17px;
+  color: #222;
+}
+
+/*
+ * Code blocks had no styling at all, which is what made them widen the page.
+ *
+ * A <pre> defaults to white-space: pre, so it does not wrap, and with no max-width or
+ * overflow it simply grew. Every calculation section on the site is a fenced code
+ * block, so every article was affected on a phone. Now it is capped at the column
+ * width and scrolls its own content sideways when a line is longer than the screen,
+ * which is the one place a horizontal scroll is the right answer.
+ */
+.prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #f6f7f9;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  tab-size: 2;
+}
+
+.prose pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+  white-space: pre;
+}
+
+.prose code {
+  background: #f2f3f5;
+  border: 1px solid var(--c-line-soft, var(--c-line));
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 0.92em;
+}
+
+/*
+ * Tables carry the comparison and cost figures, and a five-column table cannot fit a
+ * phone. Wrap the scroll in the table's own box rather than letting it widen the page.
+ */
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose > * + * {
+  margin-top: 1.15em;
+}
+
+.prose h2 {
+  font-size: 26px;
+  margin-top: 2em;
+  padding-top: 0.2em;
+}
+
+.prose h3 {
+  font-size: 20px;
+  margin-top: 1.6em;
+}
+
+.prose p,
+.prose li {
+  line-height: 1.75;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.3em;
+}
+
+.prose li + li {
+  margin-top: 0.4em;
 }
 
 .prose a {
-  @apply text-brand underline;
+  color: var(--c-red);
+  text-underline-offset: 2px;
+}
+
+.prose strong {
+  font-weight: 700;
 }
 
 .prose blockquote {
-  @apply border-l-4 border-accent pl-4 italic text-muted my-4;
+  border-left: 3px solid var(--c-red);
+  padding: 4px 0 4px 20px;
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-style: italic;
+  color: var(--c-ink-2);
 }
 
 .prose table {
-  @apply w-full border-collapse my-4;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-family: var(--font-sans);
 }
 
-.prose th, .prose td {
-  @apply border border-border px-3 py-2 text-left;
+.prose th,
+.prose td {
+  border: 1px solid var(--c-line);
+  padding: 9px 12px;
+  text-align: left;
 }
 
 .prose th {
-  @apply bg-bg-soft font-bold;
+  background: var(--c-surface-alt);
+  font-weight: 700;
 }
 
-/* 图片懒加载 */
-img[loading="lazy"] {
-  background: var(--color-bg-soft);
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--c-line);
+}
+
+.prose figcaption {
+  font-size: 13px;
+  color: var(--c-ink-5);
+  margin-top: 8px;
+}
+
+/* Article header block */
+.article-header {
+  margin-bottom: 28px;
+}
+
+.article-header h1 {
+  font-size: 36px;
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+/*
+ * The subtitle is the positioning line, not a summary (spec decision 1). It
+ * sits between the hook in the <h1> and the longer card excerpt, so it reads
+ * as a deck: smaller than the headline, darker than the standfirst, and it
+ * carries the target keyword into the visible page as well as the <title>.
+ */
+.article-header .subtitle {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--c-ink-4);
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.article-header .standfirst {
+  font-size: 17px;
+  color: var(--c-ink-3);
+  line-height: 1.6;
+}
+
+.article-header .meta {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--c-line);
+  font-size: 13px;
+  color: var(--c-ink-5);
+}
+
+.article-hero-img {
+  margin: 28px 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--c-navy) 0%, var(--c-navy-mid) 100%);
+}
+
+/* Data point / callout used by the V6.1 template */
+.callout {
+  background: var(--c-surface-alt);
+  border-left: 3px solid var(--c-navy);
+  padding: 18px 22px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 16px;
+}
+
+.callout .callout-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--c-red);
+  margin-bottom: 6px;
+}
+
+/* Sources footnote */
+.sources {
+  margin-top: 36px;
+  padding-top: 18px;
+  border-top: 1px solid var(--c-line);
+  font-size: 13px;
+  color: var(--c-ink-5);
+}
+
+.sources h2 {
+  font-size: 13px;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.sources ul {
+  list-style: none;
+}
+
+/* Corrections and updates.
+ *
+ * Visually distinct from the sources footnote on purpose: a correction is a
+ * claim about our own accuracy, not a citation. The left rule marks it as a note
+ * rather than body copy without shouting, and the date is monospaced so a reader
+ * scanning for "when" finds it first.
+ *
+ * Nothing renders here when no revision has been recorded. That is deliberate:
+ * a permanent "last updated" label has to show a date, and an old date reads as
+ * neglect rather than diligence. */
+.revisions {
+  margin-top: 36px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--c-ink-6);
+  background: var(--c-line-faint);
+  font-size: 14px;
+  color: var(--c-ink-4);
+}
+
+.revisions h2 {
+  font-size: 13px;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.revisions ul {
+  list-style: none;
+}
+
+.revisions li + li {
+  margin-top: 8px;
+}
+
+/* No --font-mono is defined in this project, so the fallback is doing the work.
+   Left explicit rather than dropped so the intent is visible if one is added. */
+.revisions time {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.disclaimer {
+  margin-top: 14px;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--c-ink-6);
+}
+
+/* How this was made — the Article 50 disclosure.
+ *
+ * Deliberately NOT styled like the sources footnote and NOT placed in the site
+ * footer. Article 50 requires the disclosure to be clear, distinguishable,
+ * noticeable and accessible, and says in terms that it may not be hidden in the
+ * legal notice or appear only after the content has been read. So it sits in the
+ * article body above the footer, with a rule that separates it from the prose
+ * rather than blending into it. */
+.disclosure {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--c-line);
+  font-size: 14px;
+  color: var(--c-ink-4);
+}
+
+.disclosure h2 {
+  font-size: 13px;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  color: var(--c-ink-3);
+}
+
+.disclosure a {
+  color: var(--c-ink-2, var(--c-ink-3));
+  text-decoration: underline;
+}
+
+/* Landed-cost calculator.
+ *
+ * The only interactive page on the site. Styled to read as a tool rather than an
+ * article: boxed inputs, results in a bordered panel, and the totals given a
+ * heavier rule so the number a reader came for is the one their eye lands on. */
+.calc {
+  margin: 28px 0 8px;
+  padding: 20px;
+  border: 1px solid var(--c-line);
+  border-radius: 4px;
+  background: var(--c-line-faint);
+}
+
+.calc-modes {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.calc-mode {
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: none;
+  color: var(--c-ink-4);
+  cursor: pointer;
+  border-radius: 3px 3px 0 0;
+}
+
+.calc-mode:hover {
+  color: var(--c-ink);
+}
+
+.calc-mode[aria-selected="true"] {
+  color: var(--c-ink);
+  font-weight: 600;
+  border-bottom-color: var(--c-ink-6);
+}
+
+.calc-mode:focus-visible {
+  outline: 2px solid var(--c-ink-6);
+  outline-offset: 1px;
+}
+
+.calc fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.calc legend {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--c-ink-4);
+  margin-bottom: 12px;
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px 16px;
+}
+
+.calc-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.calc-grid span {
+  font-size: 13px;
+  color: var(--c-ink-4);
+}
+
+.calc-grid input {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--c-line);
+  border-radius: 3px;
+  background: var(--c-bg);
+  color: var(--c-ink);
+  width: 100%;
+}
+
+.calc-grid input:focus {
+  outline: 2px solid var(--c-ink-6);
+  outline-offset: 1px;
+}
+
+.calc-result {
+  margin-top: 4px;
+}
+
+.calc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.calc-table caption {
+  text-align: left;
+  font-size: 13px;
+  color: var(--c-ink-4);
+  padding-bottom: 6px;
+}
+
+.calc-table th,
+.calc-table td {
+  text-align: left;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.calc-table th {
+  font-weight: 400;
+  color: var(--c-ink-3);
+}
+
+.calc-table td {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The two numbers a reader came for. */
+.calc-table .calc-total th,
+.calc-table .calc-total td {
+  font-weight: 600;
+  color: var(--c-ink);
+  border-bottom-color: var(--c-ink-6);
+}
+
+.calc-note {
+  font-size: 13px;
+  color: var(--c-ink-5);
+}
+
+/* Policy change tracker.
+ *
+ * Same visual language as the calculator page: it is a tool, not an article. The
+ * summary figures lead, because the useful answer is "how much is about to
+ * change", and the four status pills carry the only colour on the page so a
+ * reader scanning for what is urgent finds it without reading. */
+.tracker-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin: 24px 0 28px;
+  padding: 18px 20px;
+  border: 1px solid var(--c-line);
+  border-radius: 4px;
+  background: var(--c-line-faint);
+}
+
+.tracker-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tracker-num {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 30px;
+  line-height: 1;
+  color: var(--c-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.tracker-lbl {
+  font-size: 12px;
+  color: var(--c-ink-4);
+  line-height: 1.35;
+}
+
+.tracker-alert {
+  padding: 12px 16px;
+  border-left: 3px solid var(--c-ink-6);
+  background: var(--c-line-faint);
+  font-size: 14px;
+}
+
+.tracker-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 18px 0;
+}
+
+.tracker-table th {
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--c-ink-4);
+  font-weight: 400;
+  padding: 0 10px 8px 0;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.tracker-table td {
+  padding: 12px 10px 12px 0;
+  border-bottom: 1px solid var(--c-line);
+  vertical-align: top;
+}
+
+.tracker-date {
+  white-space: nowrap;
+  color: var(--c-ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.tracker-in {
+  color: var(--c-ink-5);
+  font-size: 12px;
+}
+
+.tracker-meta {
+  display: block;
+  font-size: 12px;
+  color: var(--c-ink-5);
+  margin-top: 3px;
+  text-transform: capitalize;
+}
+
+.tracker-num-cell {
+  text-align: right;
+  color: var(--c-ink-4);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The sourcing page's last column holds text where the tracker's holds a number. */
+.tracker-meta-cell {
+  color: var(--c-ink-5);
+  font-size: 12px;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.tracker-pill {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.5;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+  border: 1px solid var(--c-line);
+  color: var(--c-ink-3);
+  background: var(--c-bg);
+}
+
+/* Only the urgent state gets weight; the rest stay quiet so the scan works. */
+.tracker-pill-due {
+  border-color: var(--c-ink-6);
+  color: var(--c-ink);
+  font-weight: 600;
+}
+
+.tracker-pill-overdue {
+  border-color: var(--c-ink);
+  background: var(--c-ink);
+  color: var(--c-bg);
+  font-weight: 600;
+}
+
+/* Find by market.
+ *
+ * One block per market, each led by a count so a reader can see at a glance which
+ * markets have depth and which are thin — three articles for ASEAN against
+ * fourteen for China is information, not a defect to hide. The signal line is
+ * deliberately visible rather than tucked away, because the grouping is derived
+ * and a reader deserves to see the rule that filed something. */
+.market-block {
+  margin: 32px 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--c-line);
+}
+
+.market-block h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.market-count {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--c-ink-4);
+  border: 1px solid var(--c-line);
+  border-radius: 10px;
+  padding: 1px 8px;
+}
+
+.market-blurb {
+  margin-bottom: 6px;
+}
+
+.market-signal {
+  font-size: 13px;
+  color: var(--c-ink-5);
+  margin-bottom: 12px;
+}
+
+.market-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.market-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.market-meta {
+  display: block;
+  font-size: 12px;
+  color: var(--c-ink-5);
+  margin-top: 3px;
+  text-transform: capitalize;
+}
+
+/* ---------- 9. Forms ---------- */.newsletter-box {
+  font-size: 13px;
+}
+
+.newsletter-box p {
+  color: var(--c-ink-4);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.newsletter-box label {
+  display: block;
+  font-size: 12px;
+  color: var(--c-ink-5);
+  margin-bottom: 4px;
+}
+
+.newsletter-box input[type="email"] {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--c-field-border);
+  border-radius: 3px;
+  font-size: 13px;
+  font-family: inherit;
+  margin-bottom: 8px;
+}
+
+.newsletter-box button {
+  width: 100%;
+  padding: 9px;
+  background: var(--c-navy);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.newsletter-box button:hover {
+  background: var(--c-red);
+}
+
+/* Interim call to action while no provider is configured. Styled like the
+   button it replaces, because it does the same job. */
+.newsletter-cta {
+  display: block;
+  width: 100%;
+  padding: 9px;
+  background: var(--c-navy);
+  color: #fff;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+.newsletter-cta:hover {
+  background: var(--c-red);
+}
+
+.newsletter-box .newsletter-note {
+  font-size: 11px;
+  color: var(--c-ink-6);
+  margin: 8px 0 0;
+  line-height: 1.45;
+}
+
+/* Article video. The iframe fills a fixed 16:9 box so the player cannot shift
+   the layout as it loads, and the caption carries the label rather than the
+   heading hierarchy — a video is not a section of the argument. */
+.article-video {
+  margin: 28px 0;
+  padding: 0;
+}
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.article-video figcaption {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--c-ink-6);
+  line-height: 1.5;
+}
+
+.article-video .video-label {
+  flex: none;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--c-red);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.article-video .video-duration {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-ink-6);
+}
+
+/* Inline variant (article footer) */
+.newsletter-inline {
+  margin-bottom: 24px;
+}
+
+.newsletter-inline p {
+  color: var(--c-ink-4);
+}
+
+.newsletter-inline .field-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.newsletter-inline input[type="email"] {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.newsletter-inline button {
+  width: auto;
+  padding: 9px 20px;
+}
+
+/* ---------- 10. Utilities & responsive ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Keyboard-only entry point; invisible until focused. */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -60px;
+  z-index: 200;
+  background: var(--c-navy);
+  color: #fff;
+  padding: 9px 14px;
+  font-size: 13px;
+  border-radius: 0 0 var(--radius) var(--radius);
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+.page-head {
+  max-width: var(--w-read);
+}
+
+.page-head h1 {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.page-head p {
+  color: var(--c-ink-3);
+}
+
+.empty-note {
+  font-size: 14px;
+  color: var(--c-ink-5);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   RESPONSIVE — three bands, mobile-first rules applied by max-width
+   ==========================================================================
+
+   The front-end brief names three breakpoints and the site had one, at 900px,
+   which is not any of them:
+
+     mobile    0–767px     single column, sidebar removed, nav collapsed
+     tablet    768–1023px  two columns, narrower sidebar, smaller type
+     desktop   1024px+     two columns at 70/30
+
+   900px was the worst of both: a 900px-wide window got the tablet grid with
+   desktop type. These are `max-width` queries, so the desktop rules above stay
+   as the default and each band below only overrides what changes.
+   -------------------------------------------------------------------------- */
+
+/* ---------- tablet: 768–1023 ---------- */
+@media (max-width: 1023px) {
+  :root {
+    --gutter: 20px;
+  }
+
+  .container {
+    gap: 28px;
+    margin: 32px auto;
+  }
+
+  /* 7/12 + 5/12 — a proportionally wider sidebar on a narrower screen. */
+  .container > main {
+    grid-column: span 7;
+  }
+
+  .container > aside {
+    grid-column: span 5;
+  }
+
+  .hero {
+    padding: 52px var(--gutter);
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .article-header h1 {
+    font-size: 30px;
+  }
+
+  .prose {
+    font-size: 16.5px;
+  }
+
+  /* Cards lose their thumbnail column before they lose their thumbnail. */
+  .article-row {
+    gap: 14px;
+  }
+}
+
+/* ---------- mobile: 0–767 ---------- */
+@media (max-width: 767px) {
+  :root {
+    --gutter: 16px;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin: 24px auto;
+  }
+
+  /* One column: the sidebar is dropped from the layout rather than squeezed. */
+  .container > main,
+  .container > aside {
+    grid-column: 1 / -1;
+  }
+
+  .hero {
+    padding: 40px var(--gutter);
+  }
+
+  .hero h1 {
+    font-size: 27px;
+  }
+
+  .article-header h1 {
+    font-size: 25px;
+  }
+
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Navigation collapses to the hamburger at the mobile band, not at 900px. */
+  .nav-toggle {
+    display: inline-block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 0 4px;
+    border-top: 1px solid var(--c-line-soft);
+    margin-top: 8px;
+  }
+
+  .nav-links[data-open="true"] {
+    display: flex;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 12px 0;
+    border-bottom: none;
+  }
+
+  .prose {
+    font-size: 17px;
+    /* Generous leading is what makes a long analysis readable on a phone. */
+    line-height: 1.72;
+  }
+
+  .prose p {
+    margin-bottom: 1.15em;
+  }
+
+  /* ---------- touch targets ----------
+   * Every interactive element gets at least 44x44 CSS pixels of tappable area, which is
+   * the figure both Apple's and Google's guidance converge on. Applied by padding rather
+   * than by min-width so inline links inside a paragraph are not stretched - a link in a
+   * sentence is a different control from a link in a bar.
+   */
+  .nav-links a,
+  .nav-toggle,
+  .btn,
+  .hero-button,
+  .plan-cta,
+  .newsletter-cta,
+  button[type="submit"],
+  .article-row h3 a,
+  .brief-row h2 a,
+  .brief-item h2 a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Tables and code cannot reflow, so they scroll inside their own box. */
+  .prose table,
+  .table-wrap table,
+  .prose pre {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* An ad slot in the sidebar has nowhere to go when the sidebar is gone. */
+  .ad-slot--sidebar {
+    display: none;
+  }
+}
+
+@media print {
+  .nav,
+  .sidebar,
+  .footer,
+  .article-bottom {
+    display: none;
+  }
+}
+
+/* ---------- citation block (mechanism 2, human-readable layer) ----------
+ * The paste-ready string, the BibTeX entry and the licence, together at the foot of the analysis.
+ * Styled to read as a utility rather than as content: a reader who wants to cite does not want it
+ * to compete with the article, and a reader who does not can scroll past it.
+ */
+.citation-block {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--c-line);
+}
+
+.citation-note {
+  font-size: 14px;
+  color: var(--c-ink-3);
+  margin: 8px 0 14px;
+}
+
+.citation-pre {
+  background: var(--c-line-faint);
+  border: 1px solid var(--c-line-soft);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0;
+}
+
+.citation-bibtex {
+  margin-top: 10px;
+}
+
+.citation-bibtex summary {
+  font-size: 13px;
+  color: var(--c-ink-3);
+  cursor: pointer;
+  padding: 4px 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.citation-bibtex[open] summary {
+  margin-bottom: 8px;
 }

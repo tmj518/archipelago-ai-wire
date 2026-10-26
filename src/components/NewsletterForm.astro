@@ -1,0 +1,100 @@
+---
+import { AUTHOR, SITE } from "../consts";
+
+/**
+ * Newsletter capture.
+ *
+ * Two states:
+ *
+ *   - No provider configured (`SITE.newsletterAction` empty) → a mailto call to
+ *     action. Submissions land in the inbox, which works because Email Routing
+ *     forwards hello@ to a real mailbox.
+ *   - Provider configured → a real form posting to it.
+ *
+ * The form previously rendered unconditionally with no action, so a submit POSTed
+ * to the static page and Cloudflare answered HTTP 405. A capture box that throws
+ * an error page is worse than no capture box.
+ *
+ * The copy was rewritten on 2026-10-07 to say what the site actually does. It had
+ * promised "One email every morning" under the heading "Daily Brief", and the
+ * publication record is eighteen articles across five non-consecutive days, with
+ * no email ever sent. Every figure on this site is sourced and dated; a promise to
+ * a reader is a claim about us and was held to the same standard. What remains is
+ * a cadence the data supports — one email when a tracked change actually moves a
+ * per-unit cost — which is also the thing the tracker exists to know.
+ */
+export interface Props {
+  variant?: "box" | "inline";
+}
+
+const { variant = "box" } = Astro.props;
+const inputId = `newsletter-email-${variant}`;
+const hasProvider = Boolean(SITE.newsletterAction);
+const subscribeHref = `mailto:${AUTHOR.email}?subject=${encodeURIComponent("Subscribe to Landed Math")}`;
+
+/** The offer, stated once so both variants and both states say the same thing. */
+const promise = "One email when a tracked change actually moves your per-unit cost. No daily filler.";
+---
+
+{
+  variant === "box" ? (
+    <div class="widget newsletter-box">
+      <h2>Change alerts</h2>
+      <p>{promise}</p>
+      {hasProvider ? (
+        <form method="post" action={SITE.newsletterAction}>
+          <label for={inputId} class="visually-hidden">
+            Email address
+          </label>
+          <input
+            id={inputId}
+            type="email"
+            name="email"
+            placeholder="your@email.com"
+            autocomplete="email"
+            required
+          />
+          <button type="submit">Subscribe</button>
+        </form>
+      ) : (
+        <>
+          <a class="newsletter-cta" href={subscribeHref}>
+            Subscribe by email
+          </a>
+          <p class="newsletter-note">
+            Signup opens your mail client. Send the message and you are on the list —
+            one click is not wired up yet.
+          </p>
+        </>
+      )}
+    </div>
+  ) : (
+    <div class="newsletter-box newsletter-inline">
+      <p>{promise}</p>
+      {hasProvider ? (
+        <form method="post" action={SITE.newsletterAction}>
+          <div class="field-row">
+            <label for={inputId} class="visually-hidden">
+              Email address
+            </label>
+            <input
+              id={inputId}
+              type="email"
+              name="email"
+              placeholder="your@email.com"
+              autocomplete="email"
+              required
+            />
+            <button type="submit">Subscribe</button>
+          </div>
+        </form>
+      ) : (
+        <p>
+          <a class="newsletter-cta" href={subscribeHref}>
+            Subscribe by email
+          </a>
+        </p>
+      )}
+    </div>
+  )
+}

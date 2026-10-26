@@ -1,0 +1,24 @@
+---
+/**
+ * Hero — spec §3: dark navy band with a single lead headline.
+ * On the homepage it is fed the newest featured post.
+ */
+export interface Props {
+  kicker?: string;
+  title: string;
+  href?: string;
+  excerpt?: string;
+  meta?: string;
+}
+
+const { kicker = "Today's Lead Story", title, href, excerpt, meta } = Astro.props;
+---
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">{kicker}</div>
+    <h1>{href ? <a href={href}>{title}</a> : title}</h1>
+    {excerpt && <p>{excerpt}</p>}
+    {meta && <div class="meta">{meta}</div>}
+  </div>
+</header>
