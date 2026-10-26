@@ -265,6 +265,73 @@ record("A-line: retired enums are gone from the subject prompt", !/"category": "
 
 /* ── report ─────────────────────────────────────────────────────────────────────────────────── */
 
+/* ── sources with an optional URL (command 09, B) ──────────────────────────────────────────── */
+
+const srcLib = await import(pathToFileURL(join(ROOT, "src/lib/sources.mjs")).href);
+
+record("sources: https URL is kept", srcLib.safeSourceUrl("https://www.bnm.gov.my/rates-statistics") === "https://www.bnm.gov.my/rates-statistics");
+record("sources: http URL is kept", srcLib.safeSourceUrl("http://example.org/doc").startsWith("http://example.org/doc"));
+record("sources: javascript: is refused", srcLib.safeSourceUrl("javascript:alert(1)") === null);
+record("sources: data: is refused", srcLib.safeSourceUrl("data:text/html,<script>x</script>") === null);
+record("sources: protocol-relative is refused", srcLib.safeSourceUrl("//evil.example/x") === null);
+record("sources: relative path is refused", srcLib.safeSourceUrl("/docs/x.pdf") === null);
+record("sources: empty is refused", srcLib.safeSourceUrl("   ") === null);
+record("sources: garbage is refused", srcLib.safeSourceUrl("not a url") === null);
+record("sources: hostless http is refused", srcLib.safeSourceUrl("http:///path") === null);
+
+const mixed = srcLib.toSourceEntries([
+  "Plain name with no link",
+  { name: "Named with link", url: "https://example.org/a" },
+  { name: "Named with a bad link", url: "javascript:alert(1)" },
+  { name: "Named with empty link", url: "" },
+  { url: "https://example.org/only-url" },
+  { name: "   " },
+  42,
+  null,
+]);
+record("sources: plain strings survive as names without a link", mixed[0].name === "Plain name with no link" && mixed[0].href === null);
+record("sources: a valid URL becomes a link", mixed[1].href === "https://example.org/a");
+record("sources: an unsafe URL keeps the name and drops the link", mixed[2].name === "Named with a bad link" && mixed[2].href === null);
+record("sources: an empty URL drops the link", mixed[3].href === null);
+record("sources: a URL-only entry still renders", mixed[4].href === "https://example.org/only-url");
+record("sources: an empty name is dropped", mixed.length === 5, `${mixed.length} entries`);
+record("sources: a non-array is tolerated", Array.isArray(srcLib.toSourceEntries(null)) && srcLib.toSourceEntries(null).length === 0);
+
+const articleSrc = readFileSync(join(ROOT, "src/layouts/ArticleLayout.astro"), "utf8");
+record("sources: the article layout renders links through the sanitiser", /toSourceEntries\(data\.sources\)/.test(articleSrc));
+record("sources: external citation links are nofollow noopener", /rel="nofollow noopener"/.test(articleSrc));
+
+const urlFixture = gate("sources-with-urls.md");
+record("gate: object-form sources still satisfy the source count", urlFixture.code === 0, firstLine(urlFixture.out, "RESULT"));
+record("gate: it is not warned as having zero sources", !/named sources[^\n]*0 sources/.test(urlFixture.out));
+
+/* ── empty archives are not indexed (command 09, A) ────────────────────────────────────────── */
+
+const archLib = await import(pathToFileURL(join(ROOT, "src/lib/archive-state.mjs")).href);
+record("archive: zero is empty", archLib.isEmptyArchive(0) === true);
+record("archive: one is not empty", archLib.isEmptyArchive(1) === false);
+record("archive: a larger count is not empty", archLib.isEmptyArchive(25) === false);
+record("archive: undefined counts as empty", archLib.isEmptyArchive(undefined) === true);
+record("archive: NaN counts as empty", archLib.isEmptyArchive(NaN) === true);
+record("archive: a negative count is empty", archLib.isEmptyArchive(-3) === true);
+
+const astroCfg = readFileSync(join(ROOT, "astro.config.mjs"), "utf8");
+record("sitemap: the noindex filter integration is registered", /sitemapNoindex\(\)/.test(astroCfg));
+record("sitemap: the sitemap itself was not disabled", /sitemap\(\{/.test(astroCfg));
+
+const categorySrc2 = readFileSync(join(ROOT, "src/pages/category/[category].astro"), "utf8");
+const guideSrc2 = readFileSync(join(ROOT, "src/pages/guide/index.astro"), "utf8");
+const topicSrc2 = readFileSync(join(ROOT, "src/pages/topic/index.astro"), "utf8");
+record("archive: the category route gates on its own count", /noindex=\{isEmptyArchive\(posts\.length\)\}/.test(categorySrc2));
+record("archive: the guide route gates on its own count", /noindex=\{isEmptyArchive\(guides\.length\)\}/.test(guideSrc2));
+record("archive: the topic route gates on its own count", /noindex=\{isEmptyArchive\(hubs\.length\)\}/.test(topicSrc2));
+
+/* ── keyboard focus (command 09, C) ────────────────────────────────────────────────────────── */
+
+const css = readFileSync(join(ROOT, "src/styles/global.css"), "utf8");
+record("a11y: a global :focus-visible rule exists", /:focus-visible\s*\{/.test(css));
+record("a11y: the focus ring uses a design token", /:focus-visible\s*\{[^}]*outline:\s*2px solid var\(--c-red\)/.test(css));
+
 function firstLine(s, needle) {
   return String(s)
     .split(/\r?\n/)

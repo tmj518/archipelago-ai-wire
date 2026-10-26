@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 
 import { SITE_URL } from "./src/consts";
 import sitemapLastmod from "./tools/sitemap-lastmod.mjs";
+import sitemapNoindex from "./tools/sitemap-noindex.mjs";
 
 /**
  * Astro 7 static build.
@@ -63,6 +64,15 @@ export default defineConfig({
      * the sitemap plugin and patches its output.
      */
     sitemapLastmod(),
+    /*
+     * Then drop whatever the build marked noindex.
+     *
+     * The filter above is a list of permanently private pages. It cannot know that a category page is
+     * empty today, and teaching the config to count articles would create a second copy of a rule the
+     * pages already decide. This reads the finished HTML instead: if a page says noindex, its URL leaves
+     * the sitemap, no matter what made it say so.
+     */
+    sitemapNoindex(),
   ],
   markdown: {
     shikiConfig: { theme: "github-light" },

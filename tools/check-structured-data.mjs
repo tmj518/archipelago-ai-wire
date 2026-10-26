@@ -14,16 +14,22 @@ import { readFileSync, existsSync } from "node:fs";
  * and two China articles, all of which left with the repositioning. A gate that asserts pages exist
  * has to be updated when pages are deliberately removed, or it reports the removal as a defect
  * every run until someone switches it off - which is how a gate stops being trusted.
+ *
+ * The third column is `true` only for pages that must ALWAYS be noindex. The archive pages moved from
+ * `false` to `null`: whether they are indexable depends on whether they have anything to list, and that
+ * is a fact about the page, not something this list can know. When a page is noindex the correct number
+ * of structured-data blocks is zero - BaseLayout deliberately emits none, because markup describing a
+ * page that has asked not to be indexed is a claim about content nobody should see.
  */
 const PAGES = [
   ["/", "dist/index.html", false],
   ["/about/", "dist/about/index.html", false],
   ["/sources/", "dist/sources/index.html", false],
-  ["/category/world/", "dist/category/world/index.html", false],
-  ["/category/malaysia-impact/", "dist/category/malaysia-impact/index.html", false],
-  ["/category/tech-ai/", "dist/category/tech-ai/index.html", false],
-  ["/category/economy/", "dist/category/economy/index.html", false],
-  ["/guide/", "dist/guide/index.html", false],
+  ["/category/world/", "dist/category/world/index.html", null],
+  ["/category/malaysia-impact/", "dist/category/malaysia-impact/index.html", null],
+  ["/category/tech-ai/", "dist/category/tech-ai/index.html", null],
+  ["/category/economy/", "dist/category/economy/index.html", null],
+  ["/guide/", "dist/guide/index.html", null],
   ["/privacy/", "dist/privacy/index.html", true],
   ["/404.html", "dist/404.html", true],
 ];
@@ -31,7 +37,7 @@ const PAGES = [
 const problems = [];
 console.log("STRUCTURED DATA CHECK\n" + "=".repeat(80));
 
-for (const [label, file, expectNoIndex] of PAGES) {
+for (const [label, file, declaredNoIndex] of PAGES) {
   if (!existsSync(file)) { problems.push(`${label}: file missing`); console.log(`  MISSING ${label}`); continue; }
   const h = readFileSync(file, "utf8");
   const blocks = [];
@@ -44,8 +50,23 @@ for (const [label, file, expectNoIndex] of PAGES) {
   console.log(`\n  ${label}`);
   console.log(`     ${types.join(", ")}`);
 
-  if (expectNoIndex) {
-    if (types.length) problems.push(`${label}: noindex page carries structured data`);
+  /*
+   * The page's own robots meta decides which contract applies.
+   *
+   * A noindex page must carry no structured data; an indexable one must carry it. Reading the flag
+   * from the HTML rather than from this list is what keeps the two halves from disagreeing when a page
+   * becomes empty (or stops being empty) without anyone remembering to edit a table here.
+   */
+  const selfNoIndex = /<meta\s+name="robots"\s+content="[^"]*noindex/i.test(h);
+
+  if (selfNoIndex) {
+    if (types.length) problems.push(`${label}: noindex page carries structured data (${types.join(", ")})`);
+    if (declaredNoIndex === false) problems.push(`${label}: expected an indexable page but it sets noindex`);
+    console.log("     (noindex - no structured data expected)");
+    continue;
+  }
+  if (declaredNoIndex === true) {
+    problems.push(`${label}: this page must stay noindex but does not set the robots meta`);
     continue;
   }
 

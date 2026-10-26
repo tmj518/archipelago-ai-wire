@@ -7,6 +7,7 @@ import { CATEGORIES, SITE } from "../../consts";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { numbersFor, published, toCard } from "../../lib/post";
 import { fitTitle, fitDescription } from "../../lib/meta";
+import { isEmptyArchive } from "../../lib/archive-state.mjs";
 
 /** spec §3 navigation silos — one listing page per category. */
 export async function getStaticPaths() {
@@ -32,6 +33,13 @@ const numbers = numbersFor(all);
 <BaseLayout
   title={`${fitTitle(category.label, "", SITE.name)} — ${SITE.name}`}
   description={category.description}
+  /*
+   * An empty silo is not a page with content. Until something is published here it says "no analysis
+   * yet", and a page that says that asks a search engine for nothing; indexing it puts an empty shell
+   * in the results and dilutes the sections that do have work. The sitemap drops it automatically,
+   * because the sitemap builder removes every URL whose page carries this flag.
+   */
+  noindex={isEmptyArchive(posts.length)}
 >
   <div class="container">
     <main id="main">

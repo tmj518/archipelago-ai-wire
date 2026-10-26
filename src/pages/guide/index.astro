@@ -12,6 +12,7 @@ import { getCollection } from "astro:content";
 
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../consts";
+import { isEmptyArchive } from "../../lib/archive-state.mjs";
 
 const TOPIC_LABEL = {
   money: "Money & tax",
@@ -39,6 +40,9 @@ const groups = [...byTopic.entries()].sort((a, b) => b[1].length - a[1].length);
 <BaseLayout
   title={`Guides — what to do about it — ${SITE.name}`}
   description="Practical guides for Malaysians: what a change costs you, what the steps are, and the date each figure was checked."
+  /* No guides yet means nothing to index. The page keeps its own honest empty state; it just does not
+     ask to be found while it has no content. */
+  noindex={isEmptyArchive(guides.length)}
 >
   <main id="main" class="wrap">
     <article>

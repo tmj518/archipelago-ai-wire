@@ -38,6 +38,7 @@ import {
 // NumbersWidget exports its own NumberItem, and taking that one instead would
 // mean depending on two definitions of the same shape staying in step.
 import { readingTime } from "../lib/post";
+import { toSourceEntries } from "../lib/sources.mjs";
 import type { CardData, NumberItem } from "../lib/post";
 import type { Hub } from "../lib/topics";
 import ArticleToc from "../components/ArticleToc.astro";
@@ -171,8 +172,21 @@ const bibtex =
           <section class="sources">
             <h2>Sources</h2>
             <ul>
-              {data.sources.map((source) => (
-                <li>{source}</li>
+              {toSourceEntries(data.sources).map((source) => (
+                <li>
+                  {source.href ? (
+                    /*
+                     * rel="nofollow noopener": the first because a citation is not an endorsement and
+                     * these are outside our editorial control, the second because target="_blank"
+                     * without it hands the opened page a handle on this window.
+                     */
+                    <a href={source.href} rel="nofollow noopener" target="_blank">
+                      {source.name}
+                    </a>
+                  ) : (
+                    source.name
+                  )}
+                </li>
               ))}
             </ul>
           </section>

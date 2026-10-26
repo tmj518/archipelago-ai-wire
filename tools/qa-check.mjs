@@ -185,7 +185,27 @@ function check(file) {
 
   // ---- frontmatter-driven rules -------------------------------------
   const figures = (fm.match(/^\s*- value:/gm) || []).length;
-  const sources = (fm.match(/^\s{2}- "/gm) || []).length;
+  /*
+   * Count the named sources in either shape.
+   *
+   * The old count was `/^\s{2}- "/`, which matches a quoted string and nothing else. Once an entry may
+   * be `- name: "…"` with an optional `url:`, that regex counts zero and every article fails the
+   * "named sources >= 3" warning while listing three sources in plain sight. Counting the list items
+   * inside the `sources:` block works for both forms and still ignores `figures:` entries, which use a
+   * different key.
+   */
+  const countListItems = (frontmatter, key) => {
+    const lines = frontmatter.split(/\r?\n/);
+    const start = lines.findIndex((l) => new RegExp(`^${key}:`).test(l));
+    if (start < 0) return 0;
+    let n = 0;
+    for (let i = start + 1; i < lines.length; i++) {
+      if (/^\S/.test(lines[i])) break; // the next top-level key ends the block
+      if (/^\s{2}-\s/.test(lines[i])) n += 1;
+    }
+    return n;
+  };
+  const sources = countListItems(fm, "sources");
   const gain = fmLine("information_gain");
 
   /*

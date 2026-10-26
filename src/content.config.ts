@@ -119,8 +119,29 @@ export const blog = defineCollection({
      * reported themselves as number 21 before this field existed.
      */
     articleNumber: z.number().int().positive().optional(),
-    /** Official sources by name only — spec §4.3 forbids URLs in the body. */
-    sources: z.array(z.string()).default([]),
+    /**
+     * Official sources: a name, and optionally the URL a reader can follow.
+     *
+     * A plain string stays valid, because most existing entries are names and some sources have no
+     * web address at all. The object form adds the link without inventing one where none exists.
+     *
+     * The URL is deliberately NOT `z.string().url()`: one malformed URL would fail the whole build
+     * after the draft was written, and the schema still would not answer the question that matters -
+     * whether the string is safe in an href. src/lib/sources.mjs decides that at render time and
+     * refuses anything that is not an absolute http(s) URL, so a bad value degrades to a name rather
+     * than to a link or a broken build.
+     */
+    sources: z
+      .array(
+        z.union([
+          z.string(),
+          z.object({
+            name: z.string().min(1).max(300),
+            url: z.string().max(600).optional(),
+          }),
+        ]),
+      )
+      .default([]),
     /**
      * A named human who read this piece before publication, and when.
      *

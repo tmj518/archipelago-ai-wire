@@ -16,10 +16,11 @@
 import { getCollection } from "astro:content";
 
 import Sidebar from "../../components/Sidebar.astro";
-import { SITE } from "../../consts";
+import { CATEGORIES, SITE } from "../../consts";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { numbersFor, published } from "../../lib/post";
 import { buildHubs } from "../../lib/topics";
+import { isEmptyArchive } from "../../lib/archive-state.mjs";
 
 const posts = published(await getCollection("blog"));
 const numbers = numbersFor(posts);
@@ -30,45 +31,65 @@ const totalLinks = hubs.reduce((a, h) => a + h.count, 0);
 
 <BaseLayout
   title={`Topics — ${SITE.name}`}
-  description={`Every subject this site has priced, gathered into ${hubs.length} topic pages. Each one collects the analyses that share a subject, with the figures and the documents behind them.`}
+  description={
+    hubs.length
+      ? `Every subject this site has covered, gathered into ${hubs.length} topic pages. Each one collects the pieces that share a subject, with the figures and the documents behind them.`
+      : "Topic pages collect everything published on one subject, newest first. They appear once more than one piece covers the same subject."
+  }
+  /*
+   * With no hub to list there is nothing here to find, so the page asks not to be indexed. It is not
+   * hidden from readers - it is reachable from the navigation - it simply does not compete for a place
+   * in the results with an empty list. The sitemap builder drops any URL whose page carries this flag.
+   */
+  noindex={isEmptyArchive(hubs.length)}
 >
   <div class="container">
     <main id="main">
       <div class="page-head">
         <h1>Topics</h1>
         <p>
-          {hubs.length} subjects, gathered from {posts.length} analyses. A topic page collects
-          everything published on one subject, newest first, and links sideways to the neighbouring
-          subjects — which is the difference between a list of articles and a map of them.
+          {hubs.length
+            ? `${hubs.length} subject${hubs.length === 1 ? "" : "s"}, gathered from ${posts.length} analyses. A topic page collects everything published on one subject, newest first, and links sideways to the neighbouring subjects — which is the difference between a list of articles and a map of them.`
+            : "A topic page collects everything published on one subject, newest first. None have been gathered yet: a subject needs more than one piece before it is a topic rather than a tag."}
         </p>
       </div>
 
       <p class="topic-silos" style="margin-top:14px;">
-        Every analysis also sits in one of the five sections:{" "}
-        <a href="/category/trade-policy/">trade policy</a>, <a href="/category/platforms/">platforms</a>,{" "}
-        <a href="/category/supply-chain/">supply chain</a>, <a href="/category/sourcing/">sourcing</a>{" "}
-        and <a href="/category/logistics/">logistics</a>.
+        Every analysis also sits in one of the {CATEGORIES.length} sections:{" "}
+        {CATEGORIES.map((c, i) => (
+          <>
+            {i > 0 ? ", " : ""}
+            <a href={`/category/${c.slug}/`}>{c.navLabel.toLowerCase()}</a>
+          </>
+        ))}
+        .
       </p>
 
-      <h2 class="section-title" style="margin-top:32px;">All topics</h2>
+      {
+        hubs.length > 0 && (
+          <>
+            <h2 class="section-title" style="margin-top:32px;">
+              All topics
+            </h2>
 
-      <ul class="topic-index">
-        {
-          hubs.map((h) => (
-            <li>
-              <a href={`/topic/${h.slug}/`}>
-                {h.tag} <span class="topic-index-count">{h.count}</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+            <ul class="topic-index">
+              {hubs.map((h) => (
+                <li>
+                  <a href={`/topic/${h.slug}/`}>
+                    {h.tag} <span class="topic-index-count">{h.count}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
 
-      <p class="empty-note" style="margin-top:26px;">
-        {totalLinks} subject links across {hubs.length} topics. A subject with a single analysis does
-        not appear here: one piece is a tag, not a topic, and the list grows on its own as the
-        corpus does.
-      </p>
+            <p class="empty-note" style="margin-top:26px;">
+              {totalLinks} subject links across {hubs.length} topics. A subject with a single analysis
+              does not appear here: one piece is a tag, not a topic, and the list grows on its own as the
+              corpus does.
+            </p>
+          </>
+        )
+      }
     </main>
 
     <Sidebar numbers={numbers} />

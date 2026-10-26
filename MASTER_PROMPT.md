@@ -222,8 +222,21 @@ stakes       priced | directional
 information_gain  custom-calculation | cross-source | own-data | primary-source
 target_keyword    the phrase a reader would search, 2-5 words, lower case
 figures      one or more five-part records naming something a reader can act on
-sources      the named documents
+sources      the named documents; add the URL when the document has one, so a reader can check it
 ```
+
+A `sources` entry is either the document's name, or a name with a link:
+
+```
+sources:
+  - "P.U. (A) 411/2023 — Sales Tax (Persons Exempted From Payment of Tax) Order"
+  - name: "Bank Negara Malaysia — Key Rates and Statistics"
+    url: "https://www.bnm.gov.my/rates-statistics"
+```
+
+The URL is optional and must be the address you actually read. A source with no web address keeps the
+plain-name form: a printed gazette, a counter, a document handed over on paper. Do not invent a URL to
+make an entry look complete — an invented link is a fabricated source with a clickable wrapper.
 
 Guides carry a different set: `topic` is one of `money`, `work`, `study`, `business`, `daily-life`,
 `travel-docs`, and `audience` is a non-empty list drawn from the same six reader values above.
