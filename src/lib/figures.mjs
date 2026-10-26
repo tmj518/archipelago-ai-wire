@@ -28,6 +28,17 @@
  */
 import { MIN_SUBSTANTIVE } from "./figure-limits.mjs";
 
+/**
+ * Units that look like data and are not.
+ *
+ * "Five days" is a substantive figure when it is days of delay that cost money, and it is noise when
+ * it is a holiday. The unit test cannot tell the difference from the number alone, so this list names
+ * the shapes where a duration is plainly not a commercial quantity. It is deliberately short: a
+ * long list of exceptions is a rule nobody can predict, and the cost of a false negative here is a
+ * thin article, not a wrong one.
+ */
+const NON_SUBSTANTIVE_UNIT = /\b(holiday|holidays|annual leave|days off|weekend|weekends|notice period for visitors)\b/i;
+
 /** Units that name something with a commercial consequence. */
 const SUBSTANTIVE_UNIT = new RegExp(
   [
@@ -115,7 +126,9 @@ export function numericValue(value) {
  */
 export function isSubstantive(fig) {
   if (numericValue(fig?.value) === null) return false;
-  return SUBSTANTIVE_UNIT.test(String(fig?.unit ?? ""));
+  const unit = String(fig?.unit ?? "");
+  if (NON_SUBSTANTIVE_UNIT.test(unit)) return false;
+  return SUBSTANTIVE_UNIT.test(unit);
 }
 
 /** The records that count, in order. */

@@ -70,9 +70,24 @@ function readSitemap() {
 const today = new Date().toISOString().slice(0, 10);
 const entries = readSitemap();
 
+/*
+ * IndexNow is told which host the URLs belong to, and the host must be the one that served the key
+ * file. This used to be the previous project's domain hardcoded in three places, which would have
+ * announced this project's pages to search engines as belonging to a site that does not contain them.
+ *
+ * With no origin configured the tool stops before building any payload. Saying nothing is correct;
+ * announcing the wrong host is not.
+ */
+const ORIGIN = (process.env.SITE_ORIGIN ?? "").trim().replace(/\/+$/, "");
+if (!ORIGIN) {
+  console.log("\n  SITE_ORIGIN is not set, so no URL can be attributed to a host. Nothing was sent.");
+  console.log("  Set SITE_ORIGIN once the domain is registered.");
+  process.exit(0);
+}
+
 let targets;
 if (EXPLICIT.length) {
-  targets = EXPLICIT.map((p) => ({ url: `https://landedmath.com${p}`, lastmod: today }));
+  targets = EXPLICIT.map((p) => ({ url: `${ORIGIN}${p}`, lastmod: today }));
 } else if (args.includes("--changed")) {
   // Anything whose content date is today. This is what the daily run submits: an article
   // published today, or one corrected today.
@@ -105,9 +120,9 @@ if (!key) {
 }
 
 const payload = {
-  host: "landedmath.com",
+  host: new URL(ORIGIN).host,
   key,
-  keyLocation: `https://landedmath.com/${key}.txt`,
+  keyLocation: `${ORIGIN}/${key}.txt`,
   urlList: targets.map((t) => t.url),
 };
 

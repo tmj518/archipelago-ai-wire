@@ -63,6 +63,8 @@ const mustNotCount = [
   ["2026", "year"],
   ["P.U. (A) 411/2023", "gazette"],
   ["411/2023", "instrument number"],
+  ["5", "days of holiday"],
+  ["12", "weekends"],
 ];
 for (const [v, u] of mustCount) {
   record(`figure counts: ${v} ${u}`, figs.isSubstantive({ value: v, unit: u }) === true);
@@ -109,6 +111,78 @@ const parity = spawnSync(process.execPath, [join(ROOT, "tools/check-master-promp
   maxBuffer: 8 * 1024 * 1024,
 });
 record("parity: MASTER_PROMPT matches the code", parity.status === 0, firstLine(parity.stdout ?? "", "RESULT"));
+
+/* ── the single vocabulary source (P0-4) ─────────────────────────────────────────────────────── */
+
+const rules = await import(pathToFileURL(join(ROOT, "src/lib/schema-rules.mjs")).href);
+
+for (const gone of ["trade-policy", "platforms", "supply-chain", "sourcing", "logistics"]) {
+  record(`vocabulary: ENUMS.category rejects retired "${gone}"`, !rules.ENUMS.category.includes(gone));
+}
+for (const live of tax.CATEGORY_SLUGS) {
+  record(`vocabulary: ENUMS.category accepts "${live}"`, rules.ENUMS.category.includes(live));
+}
+for (const gone of ["importer", "platform-seller", "both"]) {
+  record(`vocabulary: ENUMS.audience rejects retired "${gone}"`, !rules.ENUMS.audience.includes(gone));
+}
+for (const live of tax.AUDIENCE_VALUES) {
+  record(`vocabulary: ENUMS.audience accepts "${live}"`, rules.ENUMS.audience.includes(live));
+}
+
+const schemaParity = spawnSync(process.execPath, [join(ROOT, "tools/check-schema-parity.mjs")], {
+  cwd: ROOT,
+  encoding: "utf8",
+  maxBuffer: 8 * 1024 * 1024,
+});
+record("parity: schema and vocabulary agree", schemaParity.status === 0, firstLine(schemaParity.stdout ?? "", "RESULT"));
+
+/* ── integration: the writer's prompt (P0-3) ────────────────────────────────────────────────── */
+
+const prompt = await import(pathToFileURL(join(ROOT, "src/lib/writer-prompt.mjs")).href);
+record("prompt: names the three questions", /what happened/i.test(prompt.WRITER_SYSTEM) && /what it means for malaysia/i.test(prompt.WRITER_SYSTEM));
+record("prompt: every required section appears in the structure", tax.SECTIONS.every((s) => prompt.STRUCTURE.includes(`## ${s}`)));
+record("prompt: the Malaysian consequence has a rule", /concrete carrier/.test(prompt.RULES));
+const STALE_PROMPT = ["Landed Math", "Chinese", "trade-policy", "platform-seller", "per-unit cost consequences"];
+record(
+  "prompt: no retired positioning survives",
+  STALE_PROMPT.every((s) => !(`${prompt.WRITER_SYSTEM}${prompt.RULES}${prompt.STRUCTURE}`).includes(s)),
+);
+
+/* ── integration: the two new quality rules ─────────────────────────────────────────────────── */
+
+const f4 = gate("quarantine-3r.md");
+record("gate: a 3R subject without a reviewer is quarantined", f4.code !== 0);
+record("gate: it says why", /3R review/.test(f4.out));
+
+const f5 = gate("primary-source-unbound.md");
+record("gate: a document named only in prose does not ground the figures", f5.code !== 0);
+record("gate: it says the numbers are not tied to the document", /not tied to the document/.test(f5.out));
+
+/* ── the gate suite actually runs the parity check ──────────────────────────────────────────── */
+
+const gateSrc = readFileSync(join(ROOT, "tools/gate.mjs"), "utf8");
+record("gate.mjs: the parity check is a hard gate", /id:\s*"check-schema-parity"/.test(gateSrc) && /tier:\s*"hard"/.test(gateSrc));
+
+/* ── the A-line call sites use the shared vocabulary (P0-4) ─────────────────────────────────── */
+
+const execSrc = readFileSync(join(ROOT, "tools/cloud-executor.mjs"), "utf8");
+record("A-line: the writer prompt is imported, not inlined", /from "\.\.\/src\/lib\/writer-prompt\.mjs"/.test(execSrc));
+record("A-line: an illegal directive is refused, not defaulted", /REFUSED - the directive carries a value/.test(execSrc));
+
+const orchSrc = readFileSync(join(ROOT, "tools/cloud-orchestrator.mjs"), "utf8");
+record(
+  "A-line: the enum repair derives from the taxonomy",
+  /setEnum\("category",\s*CATEGORY_SLUGS\[0\],\s*CATEGORY_SLUGS\)/.test(orchSrc) &&
+    /setEnum\("audience",\s*AUDIENCE_VALUES\[0\],\s*AUDIENCE_VALUES\)/.test(orchSrc),
+);
+
+const researchSrc = readFileSync(join(ROOT, "tools/research.mjs"), "utf8");
+record("A-line: subject selection is written for Malaysia", researchSrc.includes("Archipelago AI Wire"));
+record(
+  "A-line: the subject prompt lists the live categories, not a hardcoded copy",
+  researchSrc.includes('"category": "${CATEGORY_SLUGS.join(" | ")}"'),
+);
+record("A-line: retired enums are gone from the subject prompt", !/"category": "trade-policy/.test(researchSrc));
 
 /* ── report ─────────────────────────────────────────────────────────────────────────────────── */
 

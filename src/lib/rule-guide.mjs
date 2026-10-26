@@ -104,6 +104,19 @@ export const RULE_GUIDE = {
     example: "sources:\n  - \"Commission Implementing Regulation (EU) 2026/1740, Art. 7(1)\"",
   },
 
+  "3R review": {
+    want:
+      "A piece touching race, religion or royalty needs a named human reviewer recorded in the frontmatter before it can publish.",
+    how: [
+      "Add a `human_review:` block with the reviewer's name and the date they read it.",
+      "Do not remove the subject to get past the gate: these are reportable topics and the site exists to explain them.",
+      "Do not invent a reviewer. If nobody has read it, the piece waits — a quarantined piece is a correct outcome.",
+      "The record travels with the article on purpose, so the review cannot be separated from the text it covered.",
+    ],
+    example:
+      "human_review:\n  reviewer: \"Nurul Aina binti Rahman\"\n  date: 2026-10-26\n  note: \"Checked attribution and legal risk; no allegations against named persons.\"",
+  },
+
   "target_keyword declared": {
     want: "The phrase a reader would search for, in `target_keyword:`.",
     how: [

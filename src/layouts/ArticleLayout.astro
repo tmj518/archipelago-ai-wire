@@ -85,7 +85,7 @@ const citationPlain =
   `Figures retrieved ${retrieved}. ${citationUrl}`;
 
 const bibtex =
-  `@misc{landedmath${post.id.replace(/[^a-z0-9]/gi, "")},\n` +
+  `@misc{${SITE.name.toLowerCase().replace(/[^a-z0-9]/g, "")}${post.id.replace(/[^a-z0-9]/gi, "")},\n` +
   `  author       = {${AUTHOR.name}},\n` +
   `  title        = {${data.title}},\n` +
   `  howpublished = {${SITE.name}},\n` +

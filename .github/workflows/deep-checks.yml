@@ -78,7 +78,7 @@ jobs:
           if [ -z "$FEISHU_WEBHOOK" ]; then exit 0; fi
           RESULT=$(grep -E "RESULT:" /tmp/slow.txt 2>/dev/null | tail -1 || echo "did not run")
           FAILED=$(grep -cE "FAIL|✗" /tmp/slow.txt 2>/dev/null || echo 0)
-          TEXT=$(printf 'Weekly deep checks\n\n%s\n%d finding line(s)\n\nOnly a report. Nothing was blocked.\n\nLanded Math' "$RESULT" "$FAILED")
+          TEXT=$(printf 'Weekly deep checks\n\n%s\n%d finding line(s)\n\nOnly a report. Nothing was blocked.\n\nArchipelago AI Wire' "$RESULT" "$FAILED")
           curl -s -X POST "$FEISHU_WEBHOOK" \
             -H 'content-type: application/json' \
             -d "$(printf '{"msg_type":"text","content":{"text":%s}}' "$(printf '%s' "$TEXT" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read()))')")" \

@@ -195,6 +195,30 @@ const GATES = [
     inputs: ["dist"],
     fast: false,
   },
+  /*
+   * Vocabulary parity, added as a hard gate on 2026-10-26.
+   *
+   * It existed before but nothing ran it: no workflow, no gate entry, and `preflight.mjs` mentioned it
+   * in a comment. So when the categories were replaced, the copy in src/lib/schema-rules.mjs kept
+   * telling the writer that `trade-policy` and `importer` were legal, and no check noticed. A rule that
+   * nothing executes is documentation.
+   *
+   * Hard, not soft: the two sides it compares are the schema and the writer's instructions, and a
+   * disagreement means an article that passes the writer and fails the build.
+   */
+  {
+    id: "check-schema-parity",
+    tier: "hard",
+    label: "schema and vocabulary parity",
+    args: ["tools/check-schema-parity.mjs"],
+    inputs: [
+      "src/content.config.ts",
+      "src/lib/schema-rules.mjs",
+      "src/lib/taxonomy.json",
+      "src/lib/writer-prompt.mjs",
+    ],
+    fast: true,
+  },
 ];
 
 /* ------------------------------------------------------------------ run them */

@@ -9,6 +9,7 @@
  * The list lives here in JavaScript. src/lib/schema-rules.ts re-exports it for the Astro side, so both
  * read one file. tools/check-schema-parity.mjs proves this list and src/content.config.ts still agree.
  */
+import { TAXONOMY, CATEGORY_SLUGS, AUDIENCE_VALUES } from "./taxonomy.mjs";
 
 /**
  * The content schema's constraints, in one place, for everything that has to agree with it.
@@ -49,12 +50,20 @@ export const TEXT_LIMITS = {
   description: { max: 300, target: 275 },
 };
 
-/** Fields whose value must be one of a fixed set. */
+/**
+ * Fields whose value must be one of a fixed set.
+ *
+ * `category`, `audience`, `stakes` and `priority` are DERIVED from src/lib/taxonomy.json, not written
+ * out here. They were written out here, as a fifth copy of the vocabulary, and survived the
+ * 2026-10-26 repositioning intact: the file went on telling the A-line writer that `trade-policy` and
+ * `importer` were the legal values for a site that had replaced both. Keeping them in a constant is
+ * how a copy stays alive long after the thing it copied has moved.
+ */
 export const ENUMS = {
-  stakes: ["priced", "directional"],
-  priority: ["P0", "P1", "P2"],
-  category: ["trade-policy", "platforms", "supply-chain", "sourcing", "logistics"],
-  audience: ["importer", "platform-seller", "both"],
+  stakes: TAXONOMY.stakes,
+  priority: TAXONOMY.priority,
+  category: CATEGORY_SLUGS,
+  audience: AUDIENCE_VALUES,
 };
 
 /** Fields the schema requires. A missing one fails the build, not just the article. */

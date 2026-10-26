@@ -35,7 +35,16 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
-const BASE = "https://landedmath.com";
+/*
+ * No default origin. The previous value pointed at a domain this project does not own, so a run would
+ * have reported live status for somebody else's site - all green, all meaningless.
+ */
+const BASE = (process.env.SITE_ORIGIN ?? "").trim().replace(/\/+$/, "");
+if (!BASE) {
+  console.error("NO SITE ORIGIN. Set SITE_ORIGIN, for example https://www.example.com");
+  console.error("This tool will not guess which site to verify.");
+  process.exit(78);
+}
 const SLUG_ARG = (() => {
   const i = process.argv.indexOf("--slug");
   return i >= 0 ? process.argv[i + 1] : null;

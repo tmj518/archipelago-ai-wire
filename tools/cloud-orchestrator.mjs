@@ -33,6 +33,12 @@ import { join } from "node:path";
 import { execFileSync } from "node:child_process";
 import { available, summary as providerSummary, usageToday, needFor } from "./lib-llm.mjs";
 import { MIN_SUBSTANTIVE } from "../src/lib/figure-limits.mjs";
+import {
+  CATEGORY_SLUGS,
+  AUDIENCE_VALUES,
+  INFORMATION_GAIN_VALUES,
+  PRIORITY_VALUES,
+} from "../src/lib/taxonomy.mjs";
 
 const ROOT = process.cwd();
 const args = process.argv.slice(2);
@@ -741,10 +747,15 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
         else fm = fm + "\n" + line;
         repairs.push(key + "='" + cur + "' -> '" + value + "'");
       };
-      setEnum("information_gain", "custom-calculation", ["custom-calculation", "cross-source", "own-data", "primary-source"]);
-      setEnum("category", "trade-policy", ["trade-policy", "platforms", "supply-chain", "sourcing", "logistics"]);
-      setEnum("audience", "both", ["platform-seller", "importer", "both"]);
-      setEnum("priority", "P2", ["P0", "P1", "P2"]);
+      setEnum("information_gain", "custom-calculation", INFORMATION_GAIN_VALUES);
+      /*
+       * The repair used to rewrite an illegal category to "trade-policy" and an illegal audience to
+       * "both" - the retired vocabulary. A repair that writes a value the schema rejects converts a
+       * broken draft into a build failure for the whole site.
+       */
+      setEnum("category", CATEGORY_SLUGS[0], CATEGORY_SLUGS);
+      setEnum("audience", AUDIENCE_VALUES[0], AUDIENCE_VALUES);
+      setEnum("priority", "P2", PRIORITY_VALUES);
       if (repairs.length) {
         writeFileSync(draftPath, fm + rest, "utf8");
         console.log("  enum repair : " + repairs.join("; "));

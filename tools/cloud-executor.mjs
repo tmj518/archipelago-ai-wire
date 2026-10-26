@@ -37,6 +37,16 @@ import { askJson, summary as providerSummary } from "./lib-llm.mjs";
 import { TEXT_LIMITS, ENUMS, REQUIRED, violationsOf, limitsForPrompt } from "../src/lib/schema-rules.mjs";
 import { MIN_SUBSTANTIVE } from "../src/lib/figure-limits.mjs";
 import { substantiveFigures } from "../src/lib/figures.mjs";
+/*
+ * The prompt comes from one module now.
+ *
+ * The system line, the rules and the structure used to be three inline strings in this file, and the
+ * 2026-10-26 repositioning rewrote MASTER_PROMPT.md without touching them. A run reads code, not
+ * documentation, so the executable instructions are imported from src/lib/writer-prompt.mjs and are
+ * checked against the taxonomy by tests/run-fixtures.mjs.
+ */
+import { STRUCTURE, RULES, WRITER_SYSTEM } from "../src/lib/writer-prompt.mjs";
+import { CATEGORY_SLUGS, AUDIENCE_VALUES, categoryLabel } from "../src/lib/taxonomy.mjs";
 
 const ROOT = process.cwd();
 const BLOG = join(ROOT, "src", "content", "blog");
@@ -251,68 +261,13 @@ function recentLessons(limit = 5) {
   ].join("\n");
 }
 
-/** The structure, as a specification the model is asked to satisfy. */
-const STRUCTURE = `The article must have this exact shape.
-
-Frontmatter fields: title, subtitle, description, publishDate, reviewBy, stakes, category, audience,
-tags, priority, featured, draft, articleNumber, target_keyword, search_intent, information_gain,
-sources, figures.
-
-${limitsForPrompt()}
-
-Body sections, in this order and with these exact headings:
-  ## AI Summary         60 to 100 words. Conclusion first: what the change is and what it costs whom.
-  ## What happened      the precise change, with numbers and the instrument that made it
-  ## Why now            the timing, and what moved. Keep this section tight.
-  ## So what            the judgement plus the cost arithmetic. This is the most valuable section.
-  ## How confident      exactly three paragraphs, each starting with the bold label on its own line:
-                          **Confirmed.** ...
-                          **Inferred.** ...
-                          **What would change my mind.** ...
-                        The headings must be those words. Anything else fails the gate.
-  ## For you            three or more MARKDOWN BULLET LINES. Each line begins with a hyphen, a space, two
-                     asterisks, the audience segment, a colon, two asterisks, then the instruction. Exactly:
-                     "- **Importers holding in-transit cargo:** file every declaration before the deadline."
-                     Three different situations, not three names for the same importer. A bold PARAGRAPH followed
-                     by an em dash is not a bullet line and the gate counts zero segments - that mistake was made
-                     twice on 2026-10-18 and blocked the next run both times.
-  ## The data point     one sentence, then a <div class="callout"> containing it
-  ## FAQ                exactly 3 questions, each answer between 80 and 150 words.
-                        Write each question as a bold line ending in a question mark, on its own
-                        line, then the answer as a paragraph. A ### heading also works.
-  ## How we calculated this   the arithmetic in a fenced code block
-  ## The point          one paragraph
-
-Also required:
-  - at least one blockquote line starting with "> " (a definition block for the key term)
-  - at least one markdown table, and at least 3 rows of a table carrying an amount
-  - at least 3 internal links to other articles, in the form [anchor](/blog/<slug>/)
-  - 1,200 to 1,800 words of body prose if the article carries a cost table
-  - 1,000 to 2,000 words of body prose if it does not. The floor is dead: the gate accepts 100 words
-    now, so no article is rejected for length. But a short article is a worse article, and the honest way to fill
-    a thousand words from thin material is to work the arithmetic through more than one scenario rather than to
-    pad. If your draft comes in under 1,100 words, EXPAND, DO NOT STOP: add one more worked case to "So what", and
-    one more reader group to "For you", until the count clears 1,200. THE FLOOR IS 1,000 AND IT IS COUNTED: a draft of 789 words
-    was rejected on 2026-10-18 because this line only named the case with a cost table, so the writer never learned
-    what the other case required. If the directive's figures are thin, extend "So what" and "For you" with the
-    arithmetic and the operational steps - never shorten the article to fit the material.
-
-Blocked words, case-insensitive, anywhere in the file: may, could.
-Note that this catches the month May as well. Write dates as "24 September 2026" and never "May 2026";
-if a May date is unavoidable, express it through the instrument number instead.`;
-
-const RULES = `Non-negotiable rules.
-
-1. Use only the figures supplied in the directive. Do not add a number that is not in that list, and
-   do not change the value, unit, period, source or retrieved date of one that is.
-2. Do not invent a quotation, a person, an experience, or a panel of data. The first person is banned
-   entirely: never "I found", "my supplier", "our data". There is no human reviewer and an invented
-   experience cannot be caught by any check.
-3. "How confident" must separate what a document supports from what you are inferring. If a number
-   rests on a single document, say so in the Inferred paragraph. Do not present an inference as fact.
-4. Do not write a duty rate, a deadline or an effective date that the directive did not supply.
-5. Write in plain declarative sentences. State what happens. Never hedge.
-6. The reader is an importer or a foreign merchant, not a lawyer. Give them the number and the action.`;
+/*
+ * STRUCTURE and RULES are imported from src/lib/writer-prompt.mjs.
+ *
+ * They were defined here as two long template strings until 2026-10-26. Keeping them inline is what
+ * let the executable instructions drift away from MASTER_PROMPT.md during the repositioning: the
+ * document was rewritten, the strings were not, and only the strings run.
+ */
 
 /**
  * Read a `--name=value` argument.
@@ -338,8 +293,8 @@ function parseDirective() {
     title_idea: flag("title", keyword),
     keyword,
     angle: flag("angle", ""),
-    category: flag("category", "trade-policy"),
-    audience: flag("audience", "importer"),
+    category: flag("category", "malaysia-impact"),
+    audience: flag("audience", "general"),
     figures: [],
     sources: [],
   };
@@ -404,6 +359,29 @@ async function main() {
     process.exit(2);
   }
 
+  /*
+   * Refuse an illegal category or audience here rather than at the build.
+   *
+   * A silent fallback is how the old vocabulary survived the repositioning: `?? "trade-policy"` meant
+   * a directive without a category produced an article the schema would reject for the whole site,
+   * hours later, with the cause four steps back. The legal values come from taxonomy.json, so this
+   * check and the schema agree by construction.
+   */
+  const bad = [];
+  if (!CATEGORY_SLUGS.includes(directive.category)) bad.push(["category", directive.category, CATEGORY_SLUGS]);
+  if (!AUDIENCE_VALUES.includes(directive.audience)) bad.push(["audience", directive.audience, AUDIENCE_VALUES]);
+  if (bad.length) {
+    console.log("REFUSED - the directive carries a value the schema does not accept.");
+    for (const [field, got, legal] of bad) {
+      console.log(`  ${field}: "${got}" is not one of ${legal.join(", ")}`);
+    }
+    console.log("");
+    console.log("  Fix the directive. This module does not substitute a default, because a silent");
+    console.log("  substitution publishes an article in a section the site no longer has.");
+    process.exit(2);
+  }
+  console.log(`  section     : ${categoryLabel(directive.category)} (${directive.category}) / ${directive.audience}`);
+
   const figures = Array.isArray(directive.figures) ? directive.figures : [];
   const sourced = figures.filter((f) => f && f.value && f.source && f.retrieved);
   if (sourced.length < MIN_FIGURES) {
@@ -419,14 +397,14 @@ async function main() {
   }
 
   const examples = exemplars();
-  const task0 = `Write one article for Landed Math.
+  const task0 = `Write one article for Archipelago AI Wire.
 
 DIRECTIVE
   slug      : ${directive.slug}
   working title : ${directive.title_idea ?? ""}
   target keyword: ${directive.keyword ?? ""}
-  category  : ${directive.category ?? "trade-policy"}
-  audience  : ${directive.audience ?? "importer"}
+  category  : ${directive.category}
+  audience  : ${directive.audience}
   angle     : ${directive.angle ?? ""}
 
 ${STRUCTURE}
@@ -536,7 +514,7 @@ code fence and do not add commentary before or after it.`;
     console.log(`  issues to fix       : ${issues.length}`);
     for (const i of issues.slice(0, 6)) console.log(`      - ${String(i).slice(0, 130)}`);
 
-    task = `You wrote a draft for Landed Math. A separate reviewer, using a different model from a
+    task = `You wrote a draft for Archipelago AI Wire. A separate reviewer, using a different model from a
 different company, read it and refused to approve it. Fix exactly what it named and change nothing else.
 
 THE REVIEWER'S OBJECTIONS, most serious first:
@@ -590,11 +568,7 @@ ${previous.slice(0, 60000)}`;
 
   const r = await askJson({
     role: "writer",
-    system:
-      "You are the writer for Landed Math, an English site that turns Chinese and other official " +
-      "primary documents into per-unit cost consequences for importers. You write only from the " +
-      "figures you are given. You never invent a number, a source, a quotation or an experience. You " +
-      "return the finished markdown file and nothing else.",
+    system: WRITER_SYSTEM,
     messages: [{ role: "user", content: task }],
     maxTokens: 16384,
   });

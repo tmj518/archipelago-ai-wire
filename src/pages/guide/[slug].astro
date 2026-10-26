@@ -17,6 +17,15 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../consts";
 import { fitTitle } from "../../lib/meta";
+/*
+ * The JSON, not src/lib/taxonomy.mjs.
+ *
+ * The .mjs reader exists for plain-Node tools and resolves its file with node:fs at module load. Astro's
+ * prerender bundles the module but not the sibling JSON, so importing it into a page fails the build
+ * with ENOENT on `dist/.prerender/chunks/taxonomy.json`. Importing the JSON directly lets Vite inline
+ * it, which is the same data by a path that works in both runtimes.
+ */
+import taxonomy from "../../lib/taxonomy.json";
 
 export async function getStaticPaths() {
   const guides = await getCollection("guide");
@@ -29,24 +38,16 @@ const { guide } = Astro.props;
 const { data } = guide;
 const { Content } = await render(guide);
 
-const TOPIC_LABEL = {
-  "work-visa": "Work visas",
-  residence: "Residence permits",
-  tax: "Tax",
-  "social-insurance": "Social insurance",
-  relocation: "Relocating",
-  transit: "Transit and entry",
-  driving: "Driving",
-  employment: "Employing people",
-};
-
-const AUDIENCE_LABEL = {
-  employer: "employers",
-  employee: "employees",
-  student: "students",
-  visitor: "visitors",
-  relocating: "people relocating",
-};
+/*
+ * Labels come from the taxonomy, not from a second copy kept here.
+ *
+ * This file held its own map of the eight China-era guide topics and five audiences. It did not break
+ * the build because every lookup has a `?? slug` fallback, so the failure mode would have been a
+ * reader seeing "daily-life" instead of "Daily life & costs" on a finished page - quiet enough to
+ * survive for weeks.
+ */
+const TOPIC_LABEL = Object.fromEntries(taxonomy.guideTopics.map((t) => [t.slug, t.label]));
+const AUDIENCE_LABEL = Object.fromEntries(taxonomy.audiences.map((a) => [a.value, `${a.label.toLowerCase()}`]));
 
 const canonical = new URL(`/guide/${guide.id}/`, Astro.site ?? SITE.url).href;
 ---

@@ -132,7 +132,7 @@ function published() {
     out.push({
       slug,
       title,
-      url: `https://landedmath.com/blog/${slug}/`,
+      url: `${(process.env.SITE_ORIGIN ?? "").trim().replace(/\/+$/, "")}/blog/${slug}/`,
       path: `/blog/${slug}/`,
       keyword: /^target_keyword:\s*"(.+?)"/m.exec(raw)?.[1] ?? "",
       category: /^category:\s*"(.+?)"/m.exec(raw)?.[1] ?? "",
@@ -152,6 +152,16 @@ if (!env.GSC_CREDENTIALS || !env.GSC_SITE_URL) {
     "See the header of tools/keyword-miner.mjs for the one-time setup.",
   );
 }
+/*
+ * The origin is required too, and it is not the same setting as the property.
+ *
+ * GSC_SITE_URL is a property name (`sc-domain:example.com`); what the comparison needs is the scheme
+ * and host the pages are published at. This used to be a hardcoded domain from the previous project,
+ * so every page URL was compared against the wrong origin and matched nothing.
+ */
+if (!env.SITE_ORIGIN) {
+  bail("Set SITE_ORIGIN (for example https://www.example.com) so page URLs can be built for the comparison.");
+}
 
 // ------------------------------------------------------------------- fetch
 
@@ -162,7 +172,7 @@ log(`  window ${window.startDate} .. ${window.endDate}`);
  * --sites: price every property, not just the configured one.
  *
  * One host can carry several GSC properties at once - a Domain property,
- * sc-domain:landedmath.com, plus a URL-prefix property per scheme and subdomain -
+ * sc-domain:example.com, plus a URL-prefix property per scheme and subdomain -
  * and each is a separate dataset behind a separate permission. The API answers
  * whichever string is in the URL. So an empty result from the wrong property and
  * an empty result from the right one look identical, which is how "0 rows" turns

@@ -38,7 +38,7 @@
  * Credentials live in .env.keywords at the repository root (gitignored):
  *   BING_API_KEY=...
  *   GSC_CREDENTIALS=C:\path\to\service-account.json
- *   GSC_SITE_URL=sc-domain:landedmath.com
+ *   GSC_SITE_URL=sc-domain:example.com
  *   FEISHU_WEBHOOK=            # left empty until scheduling is switched on
  */
 

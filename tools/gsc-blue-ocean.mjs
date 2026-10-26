@@ -49,8 +49,19 @@ const DRY = args.includes("--dry-run");
 const OUT_DIR = join(ROOT, "data", "blue-ocean");
 const OUT = join(OUT_DIR, `${new Date().toISOString().slice(0, 10)}.json`);
 
-/* The property as Search Console names it. A Domain property is sc-domain:<host>. */
-const SITE = flag("site", "") || (process.env.GSC_SITE ?? "").trim() || "sc-domain:landedmath.com";
+/*
+ * The property as Search Console names it. A Domain property is sc-domain:<host>.
+ *
+ * There is no default. It used to fall back to the previous project's property, which meant a run
+ * with no configuration queried a site this project does not own and reported its numbers as ours.
+ * An unset property now stops the tool with a message naming what to set.
+ */
+const SITE = flag("site", "") || (process.env.GSC_SITE ?? "").trim();
+if (!SITE) {
+  console.error("NO SITE PROPERTY. Set GSC_SITE (or --site=), for example sc-domain:example.com.");
+  console.error("This tool will not guess: querying the wrong property produces numbers that look real.");
+  process.exit(78);
+}
 
 /** Thresholds, in one place so the report can state what it filtered on. */
 const FILTER = { minImpressions: Number(process.env.GSC_MIN_IMPRESSIONS ?? 1000), maxCtr: 0.01, minPosition: 5, maxPosition: 20, top: 3 };

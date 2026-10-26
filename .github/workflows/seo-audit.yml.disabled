@@ -37,8 +37,8 @@ jobs:
       #
       #   Settings -> Secrets and variables -> Actions -> Variables -> GSC_SITE
       #
-      GSC_SITE_URL: ${{ vars.GSC_SITE || 'sc-domain:landedmath.com' }}
-      GSC_SITE: ${{ vars.GSC_SITE || 'sc-domain:landedmath.com' }}
+      GSC_SITE_URL: ${{ vars.GSC_SITE }}
+      GSC_SITE: ${{ vars.GSC_SITE }}
       GSC_CREDENTIALS_BASE64: ${{ secrets.GSC_CREDENTIALS_BASE64 }}
       # gsc-report reads GSC_CREDENTIALS in three shapes - a path, the JSON document, or base64 of it -
       # so the secret can be handed over as-is. Before 2026-10-21 it was read as a path only, and a

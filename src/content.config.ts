@@ -121,6 +121,21 @@ export const blog = defineCollection({
     articleNumber: z.number().int().positive().optional(),
     /** Official sources by name only — spec §4.3 forbids URLs in the body. */
     sources: z.array(z.string()).default([]),
+    /**
+     * A named human who read this piece before publication, and when.
+     *
+     * Required by tools/qa-check.mjs for any piece touching race, religion or royalty. The field is
+     * optional in the schema because most pieces do not need it; the gate is what makes it mandatory
+     * for the ones that do. Recording it in the article rather than in a side table means the review
+     * travels with the text it reviewed.
+     */
+    human_review: z
+      .object({
+        reviewer: z.string().min(2).max(120),
+        date: z.coerce.date(),
+        note: z.string().max(400).optional(),
+      })
+      .optional(),
 
     // ---- v1.3 fields: the machine-checkable half of the QA gate ----------
     /** The long-tail query this piece is written to win. */

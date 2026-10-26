@@ -29,6 +29,7 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { CATEGORY_SLUGS, AUDIENCE_VALUES } from "../src/lib/taxonomy.mjs";
 
 const ROOT = process.cwd();
 const BLOG = join(ROOT, "src", "content", "blog");
@@ -37,6 +38,29 @@ const flag = (name, dflt) => {
   const hit = args.find((a) => a.startsWith(`--${name}=`));
   return hit ? hit.slice(name.length + 3) : dflt;
 };
+
+/**
+ * Read a frontmatter field that the directive must carry, or refuse.
+ *
+ * This replaced `?? "trade-policy"` and `?? "importer"`. A default that names a retired value is worse
+ * than a crash: it produces a directive that looks complete, the writer runs, and the failure surfaces
+ * as a build error for the whole site four steps later. Refusing here names the actual cause.
+ */
+function requireField(fm, name) {
+  const value = (new RegExp(`^${name}:\\s*"?(.+?)"?\\s*$`, "m").exec(fm)?.[1] ?? "").trim();
+  const legal = name === "category" ? CATEGORY_SLUGS : AUDIENCE_VALUES;
+  if (!value) {
+    console.log(`REFUSED - the source article carries no ${name} field.`);
+    console.log(`  legal values: ${legal.join(", ")}`);
+    process.exit(2);
+  }
+  if (!legal.includes(value)) {
+    console.log(`REFUSED - the source article's ${name} is "${value}", which the schema does not accept.`);
+    console.log(`  legal values: ${legal.join(", ")}`);
+    process.exit(2);
+  }
+  return value;
+}
 const DRY = args.includes("--dry-run");
 const FORCE = args.includes("--force");
 
@@ -105,8 +129,14 @@ const directive = {
   slug: flag("slug", `${from}-v2`),
   title_idea: topic,
   keyword: (/^target_keyword:\s*"?(.+?)"?\s*$/m.exec(fm)?.[1] ?? "").trim(),
-  category: (/^category:\s*"?(.+?)"?\s*$/m.exec(fm)?.[1] ?? "trade-policy").trim(),
-  audience: (/^audience:\s*"?(.+?)"?\s*$/m.exec(fm)?.[1] ?? "importer").trim(),
+  /*
+   * No fallback. A missing category used to become "trade-policy" and a missing audience "importer",
+   * which meant a directive built from a pre-repositioning article carried the retired vocabulary into
+   * the writer and produced a draft the schema would reject. Both values must come from the source
+   * article; if they are absent the directive is refused, not guessed.
+   */
+  category: requireField(fm, "category"),
+  audience: requireField(fm, "audience"),
   angle:
     flag("angle", "") ||
     "Write the follow-up that the first article could not: take the same primary documents and answer " +

@@ -66,6 +66,23 @@ const BANNED_SENSITIVE = [
   "sub judice", "contempt of court",
 ];
 
+/*
+ * 3R: reportable, but never published unreviewed.
+ *
+ * Race, religion and royalty are not banned subjects here - a Malaysian publication that cannot discuss
+ * them cannot explain the country. What is banned is publishing them without a named human having read
+ * the piece, because the failure mode (a defamatory or seditious sentence that reads as fact) is not
+ * something a keyword filter can catch.
+ *
+ * So the rule is a quarantine, not a blacklist: if the piece touches 3R, it needs `human_review:` in
+ * the frontmatter, and until a reviewer is recorded it stays blocked. There is deliberately no bypass
+ * and no "no reviewer configured, publish anyway" path.
+ *
+ * "Islamic" is excluded on purpose: Islamic finance is ordinary Malaysian economic vocabulary and
+ * flagging it would put half the economy desk into manual review for no safety gain.
+ */
+const THREE_R = /\b(race|racial|racism|religion|religious|royalty|royal institution|sultan|sultans|agong|bumiputera|muslim|muslims|halal|vernacular school|evangelis(m|t|ing))\b/i;
+
 /**
  * Document identifiers that count as citing a primary source. Kept as
  * recognisable numbering schemes rather than the word "announcement", so a
@@ -253,12 +270,29 @@ function check(file) {
     catLine ? `"${catLine}" is not one of ${CATEGORY_SLUGS.join(", ")}` : "missing - the build rejects the entry",
   );
 
-  // A claim of primary-source is only credible if the body actually names the
-  // document. Check the number, not the word "announcement".
+  /*
+   * A claim of primary-source is only credible if a document identifier appears BOTH in the prose and
+   * in at least one figure's source.
+   *
+   * The first version only searched the body, which meant an article could mention "P.U. (A) 411/2023"
+   * once and then carry six numbers sourced to nothing. Naming a document is not the same as grounding
+   * a number in it, and the gap between the two is exactly where an unverified figure hides. Requiring
+   * the identifier in `figures[].source` ties the claim to the records a reader can check.
+   */
   if (gain && /primary-source/.test(gain)) {
-    PRIMARY_DOC_PATTERN.test(body)
-      ? add("pass", "primary-source cited", "document identifier present")
-      : add("block", "primary-source cited", "declares primary-source but names no document identifier");
+    const inProse = PRIMARY_DOC_PATTERN.test(body);
+    const inFigures = figuresList.some((f) => PRIMARY_DOC_PATTERN.test(String(f.source ?? "")));
+    if (!inProse) {
+      add("block", "primary-source cited", "declares primary-source but names no document identifier");
+    } else if (!inFigures) {
+      add(
+        "block",
+        "primary-source cited",
+        "the prose names a document but no figures[].source carries a document identifier — the numbers are not tied to the document",
+      );
+    } else {
+      add("pass", "primary-source cited", "document identifier in the prose and in the figure sources");
+    }
   }
   keyword ? add("pass", "target_keyword declared", keyword) : add("block", "target_keyword declared", "missing");
   /*
@@ -694,6 +728,25 @@ const V6_2_FROM = "2026-10-08";
 
   const sensitive = BANNED_SENSITIVE.filter((w) => body.toLowerCase().includes(w));
   sensitive.length === 0 ? add("pass", "sensitive-term screen", "clean") : add("block", "sensitive-term screen", sensitive.join(", "));
+
+  /*
+   * The 3R quarantine. Detection is on the title, the description and the body, because a piece about a
+   * royal succession will name it in the headline long before the prose.
+   */
+  const threeRText = `${fm}\n${body}`;
+  const threeR = THREE_R.test(threeRText);
+  const reviewed = /^human_review:\s*$/m.test(fm) || /^human_review:\s*\{/m.test(fm) || /^\s+reviewer:\s*\S/m.test(fm);
+  if (!threeR) {
+    add("pass", "3R review", "no race, religion or royalty subject detected");
+  } else if (reviewed) {
+    add("pass", "3R review", "3R subject present and a human review is recorded");
+  } else {
+    add(
+      "block",
+      "3R review",
+      "race, religion or royalty subject detected with no human_review recorded — quarantined until a named reviewer signs off",
+    );
+  }
 
   if (isDraft) add("warn", "draft flag", "piece is draft: true — will not be published");
 

@@ -1,7 +1,9 @@
-# Landed Math
+# Archipelago AI Wire
 
-> **2026-10-01 改名**：项目原名 "China Cross-border Insider"（暂定名），域名 `crossborderinsider.com` 已被占用，
-> 正式定名为 **Landed Math**（域名 `landedmath.com`）
+> **2026-10-26 换定位**：本项目原为 **Landed Math**（中国贸易政策的到岸成本分析），现重构为
+> **Archipelago AI Wire** —— 帮助马来西亚全体人民看懂世界：发生了什么、为什么发生、对马来西亚意味着什么。
+> 旧站资产保留在标签 `snapshot/landedmath-import-dfa78c7`；本分支 `migration/archipelago-phase1` 是迁移线。
+> 域名尚未购买，`src/consts.ts` 的 `SITE_URL` 是占位符，上线前必须替换。
 ---
 
 ## 一、目录结构

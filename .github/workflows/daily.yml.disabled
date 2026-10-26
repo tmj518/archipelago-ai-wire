@@ -1,4 +1,4 @@
-name: LandedMath Daily
+name: Archipelago Daily (disabled - see docs/验收报告_第二阶段)
 
 # The unattended run. Triggered by cron at 23:20 UTC, which is 07:20 in Beijing.
 #
@@ -459,8 +459,8 @@ jobs:
       - name: Commit and push anything that was approved
         id: commit
         run: |
-          git config user.name "landedmath-bot"
-          git config user.email "bot@landedmath.com"
+          git config user.name "archipelago-bot"
+          git config user.email "archipelago-bot@users.noreply.github.com"
           if [ -z "$(git status --porcelain)" ]; then
             echo "nothing to commit"
             echo "committed=false" >> "$GITHUB_OUTPUT"
@@ -596,7 +596,7 @@ jobs:
         if: always()
         run: |
           {
-            echo "## LandedMath daily"
+            echo "## Archipelago daily"
             echo ""
             echo "| field | value |"
             echo "| --- | --- |"

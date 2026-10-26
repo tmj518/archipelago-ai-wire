@@ -40,6 +40,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, appendFileSync, rea
 import { join } from "node:path";
 import { execFileSync } from "node:child_process";
 import { askJson, available, summary as providerSummary, usageToday } from "./lib-llm.mjs";
+import { CATEGORY_SLUGS, AUDIENCE_VALUES } from "../src/lib/taxonomy.mjs";
 
 const ROOT = process.cwd();
 const args = process.argv.slice(2);
@@ -631,30 +632,27 @@ behind, choose what they do support.
 `
   : "";
 
-const prompt = `You are choosing today's subject for Landed Math, an English site that turns official
-documents into per-unit cost consequences for importers.
+const prompt = `You are choosing today's subject for Archipelago AI Wire, a Malaysian publication that helps
+ordinary Malaysians understand the world: what happened, why it is happening, and what it means for Malaysia.
 
 Below are source documents, fetched and archived today. Their paths are real; quote from them.
 
 WHAT MAKES A SUBJECT WORTH WRITING
   - a change with a date: something that took effect, expires, or was announced
-  - NOT A COST CONSEQUENCE: national aggregates and ratios. A GDP share, a total national spend, an index
-    level or a year-on-year percentage change in a national total is not a figure an importer can act on. Two runs on
-    2026-10-18 proposed the R&D statistics bulletin and the writer correctly refused both, one after twenty-six turns.
-    Prefer a subject with a rate or an amount that attaches to a product. Do NOT report infeasible merely
-    because the figures are aggregates: if the corpus holds only aggregates, propose the subject whose cost
-    consequence is strongest and name the figure the article will rest on. A published article with one solid
-    number and an honest disclosure is worth more than a day with nothing, and the operator's instruction is that
-    the pipeline must publish every day.
-  - at least two cost figures (a rate, an amount, a percentage, a quantity - not a date, not a document
-    number), each of which appears verbatim in one of these documents
-  - a cost consequence an importer can act on: a duty, a fee, a deadline, a rate, a threshold
-  - it is not already covered. The last forty published subjects are listed below.
+  - a Malaysian consequence that can be NAMED: an industry, a kind of job, a price, a procedure, a group of
+    people, an institution. "It could affect the Malaysian economy" is not a consequence; it is a sentence
+    without a subject, and it is rejected.
+  - at least two figures (a rate, an amount, a percentage, a quantity - not a date, not a document number),
+    each of which appears verbatim in one of these documents
+  - it is not already covered. The recently published subjects are listed below.
 
 WHAT IS REJECTED
   - a subject whose numbers are not in the documents below
   - a subject that repeats one of the listed articles, even under a different title
-  - political, religious, military or reputation commentary. Trade and cost facts only.
+  - a subject with no Malaysian carrier. Return feasible=false with reason_if_not="no Malaysian consequence"
+    rather than inventing a link between a foreign event and a Malaysian reader.
+  - a subject that rests on race, religion or royalty. Those are reportable subjects, but this pipeline has no
+    named human reviewer, and the gate quarantines them. Do not propose one automatically.
 ${BLUE_OCEAN_NOTE ? BLUE_OCEAN_NOTE + "\n\n" : ""}${sectionBlock}
 THE SOURCES
 
@@ -669,10 +667,10 @@ Return ONLY a JSON object:
   "reason_if_not": "one sentence, when feasible is false",
   "slug": "kebab-case, distinctive",
   "title_idea": "a plain declarative headline",
-  "keyword": "the phrase a buyer would search",
-  "category": "trade-policy | platforms | supply-chain | sourcing | logistics",
-  "audience": "importer | platform-seller | both",
-  "angle": "the decision this article lets the reader make, in one sentence",
+  "keyword": "the phrase a Malaysian reader would search",
+  "category": "${CATEGORY_SLUGS.join(" | ")}",
+  "audience": "${AUDIENCE_VALUES.join(" | ")}",
+  "angle": "what the reader can decide or do differently after reading, in one sentence",
   "sourceHosts": ["hostnames you used"],
   "figures": [
     { "value": "as it appears in the document",

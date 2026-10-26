@@ -22,7 +22,14 @@ import { api, ensureTable, tenantToken, upsertRows } from "./lib/feishu.mjs";
 const ROOT = resolve(import.meta.dirname, "..");
 const BLOG = join(ROOT, "src", "content", "blog");
 const GUIDE = join(ROOT, "src", "content", "guide");
-const SITE = "https://www.landedmath.com";
+/*
+ * The ledger records a URL per piece. It used to hardcode the previous project's domain, which filled
+ * the table with links to a site that is not this one.
+ *
+ * Unset is not fatal here - the ledger is still useful with relative paths - but a wrong absolute
+ * domain is worse than a relative one, so the origin is only used when SITE_ORIGIN is set.
+ */
+const SITE = (process.env.SITE_ORIGIN ?? "").trim().replace(/\/+$/, "");
 const TABLE = "内容台账";
 
 const args = process.argv.slice(2);
