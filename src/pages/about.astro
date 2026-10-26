@@ -1,6 +1,6 @@
 ---
 import AuthorCard from "../components/AuthorCard.astro";
-import { AUTHOR, SITE } from "../consts";
+import { AUTHOR, CATEGORIES, SITE } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const jsonLd = {
@@ -69,6 +69,24 @@ const jsonLd = {
           section should finish a piece able to say what changed and why it
           matters to them.
         </p>
+
+        {/*
+          Every section, listed from the taxonomy rather than typed out.
+          
+          The page used to name four of the six in examples and never listed the set, so a reader
+          could not tell what the publication covers or that two columns existed at all. Rendering
+          from CATEGORIES means a seventh column would appear here the moment it is defined, instead
+          of this page quietly describing a publication that no longer exists.
+        */}
+        <h2 id="sections">The six sections</h2>
+        <ul class="about-sections">
+          {CATEGORIES.map((c) => (
+            <li>
+              <a href={`/category/${c.slug}/`}>{c.label}</a>
+              <span class="about-sections__desc">{c.description}</span>
+            </li>
+          ))}
+        </ul>
 
         {/*
           The id is the anchor the article bylines point at. Google's guidance treats a byline as
@@ -153,3 +171,26 @@ const jsonLd = {
     </aside>
   </div>
 </BaseLayout>
+
+<style>
+  .about-sections {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 26px;
+    display: grid;
+    gap: 12px;
+  }
+  .about-sections li {
+    padding-left: 0;
+    line-height: 1.5;
+  }
+  .about-sections a {
+    font-weight: 600;
+  }
+  .about-sections__desc {
+    display: block;
+    color: var(--c-ink-4);
+    font-size: 14.5px;
+    margin-top: 2px;
+  }
+</style>

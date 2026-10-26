@@ -26,6 +26,13 @@ const { numbers, showNumbers = true } = Astro.props;
 <aside class="sidebar">
   <AuthorCard />
   {showNumbers && <NumbersWidget items={numbers} />}
-  <NewsletterForm variant="box" />
+  {/*
+    The page's only newsletter form, and the destination of the hero's call to action. There used to
+    be a second, inline copy inside the hero: it inherited the light box styling, rendered as a navy
+    bar on the navy hero, and repeated the frequency sentence the line above it already stated.
+  */}
+  <div id="subscribe">
+    <NewsletterForm variant="box" />
+  </div>
   <AdSlot placement="sidebar" />
 </aside>

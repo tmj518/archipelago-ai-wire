@@ -13,7 +13,6 @@
  * The instrument count came out with the China registry on 2026-10-26: a count of regulatory
  * filings is a promise this publication does not make.
  */
-import NewsletterForm from "./NewsletterForm.astro";
 import { AUTHOR } from "../consts";
 import { AUDIENCE, CTA, CTA_NOTE, HEADLINE, SUBTITLE, WHAT_YOU_GET } from "../lib/copy";
 
@@ -47,18 +46,29 @@ const { analyses, figures, sources } = Astro.props;
       <p class="hero-cta-note">{CTA_NOTE}</p>
     </div>
 
-    <p class="hero-proof">
-      {analyses} explainers · <strong>{figures}</strong> sourced figures ·
-      <strong>{sources}</strong> named documents
-    </p>
+    {/*
+      * The proof line, or nothing.
+      *
+      * Counted from the collection at build time, which was right - and which printed "0 explainers ·
+      * 0 sourced figures · 0 named documents" on a live homepage before the first piece was written.
+      * A publication announcing that it has published nothing is not being honest, it is being
+      * unread: the honest version of zero is a sentence about what is being checked, not a digit.
+      */}
+    {analyses > 0 ? (
+      <p class="hero-proof">
+        {analyses} explainers · <strong>{figures}</strong> sourced figures ·
+        <strong>{sources}</strong> named documents
+      </p>
+    ) : (
+      <p class="hero-proof">
+        First explainers are being checked against their source documents. Nothing is published
+        before every figure has a source and a date.
+      </p>
+    )}
 
     <p class="hero-by">
       {AUTHOR.name} · {AUTHOR.role} · <a href="/about/">how this is made</a>
     </p>
-
-    <div id="subscribe" class="hero-form">
-      <NewsletterForm variant="inline" />
-    </div>
   </div>
 </header>
 
@@ -122,10 +132,6 @@ const { analyses, figures, sources } = Astro.props;
   .hero-by {
     font-size: 0.88rem;
     opacity: 0.75;
-    margin: 0 0 26px;
-  }
-  .hero-form {
-    max-width: 460px;
-    margin: 0 auto;
+    margin: 0;
   }
 </style>

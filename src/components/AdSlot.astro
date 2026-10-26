@@ -60,59 +60,25 @@ const size = SIZES[placement];
   * 360px screen is either unreadable or causes the horizontal overflow that the responsive
   * rules exist to prevent.
 */}
-<div class:list={["ad-slot", `ad-slot--${placement}`]} data-ad-placement={placement} aria-hidden="true">
-  <span class="ad-slot__label">Advertisement</span>
-  <span class="ad-slot__size">{note ?? size.label}</span>
-</div>
-
-<style>
-  .ad-slot {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    border: 1px dashed var(--c-line, #e2e2e2);
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 8px,
-      rgb(0 0 0 / 2%) 8px,
-      rgb(0 0 0 / 2%) 16px
-    );
-    color: var(--c-ink-6, #999);
-    text-align: center;
-    margin: 20px 0;
-  }
-
-  .ad-slot__label {
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    opacity: 0.7;
-  }
-
-  .ad-slot__size {
-    font-size: 11px;
-    font-family: var(--mono, ui-monospace, monospace);
-    opacity: 0.6;
-  }
-
-  /* Reserved height per placement, so filling a slot later does not shift the page. */
-  .ad-slot--banner {
-    min-height: 90px;
-  }
-
-  .ad-slot--sidebar,
-  .ad-slot--inline {
-    min-height: 250px;
-  }
-
-  /* A leaderboard cannot fit a phone. Hidden rather than scaled, because scaling a 728-unit
-     down to 360 makes its text unreadable and its click target invalid. */
-  @media (max-width: 767px) {
-    .ad-slot--banner {
-      display: none;
-    }
-  }
-</style>
+{/*
+  * Renders nothing, deliberately.
+  *
+  * The component used to draw a dashed "Advertisement 300×250" box wherever it was placed. On a site
+  * whose first screen says "Independent · no ads · no tracking", that box was the one element on the
+  * page contradicting the page. A reserved slot is a good idea when an ad is coming; with no ad
+  * network connected and no plan to connect one before launch, all it reserved was 250px of nothing.
+  *
+  * The placement sizes and the integration note stay in this file because the decision they support
+  * is still the right one: connecting an ad network means editing /privacy/ in the same change,
+  * because that page states as fact that there are none. Restore the markup below at the same time,
+  * not before.
+  *
+  * AD MOUNT POINT — placement: {placement}, reserved size {size.label}
+  *
+  * <div class:list={["ad-slot", `ad-slot--${placement}`]} data-ad-placement={placement} aria-hidden="true">
+  *   <span class="ad-slot__label">Advertisement</span>
+  *   <span class="ad-slot__size">{note ?? size.label}</span>
+  * </div>
+  *
+  * and the <style> block that sized it, kept in git history at commit bb49b01.
+  */}

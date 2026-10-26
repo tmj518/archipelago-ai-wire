@@ -1,5 +1,6 @@
 ---
 import { AUTHOR, SITE } from "../consts";
+import { PROMISE } from "../lib/copy";
 
 /**
  * Newsletter capture.
@@ -32,8 +33,15 @@ const inputId = `newsletter-email-${variant}`;
 const hasProvider = Boolean(SITE.newsletterAction);
 const subscribeHref = `mailto:${AUTHOR.email}?subject=${encodeURIComponent(`Subscribe to ${SITE.name}`)}`;
 
-/** The offer, stated once so both variants and both states say the same thing. */
-const promise = "One email when a tracked change actually moves your per-unit cost. No daily filler.";
+/*
+ * The offer comes from lib/copy, the same constant the hero's note is built from.
+ *
+ * It used to be a local string promising "one email when a tracked change moves your per-unit cost".
+ * That sentence belonged to the previous publication's reader - an importer pricing a shipment - and
+ * it survived the repositioning because it lived in this file instead of beside the other copy. The
+ * homepage then said "one email a week" in one line and "per-unit cost" in the next.
+ */
+const promise = PROMISE;
 ---
 
 {
@@ -69,8 +77,11 @@ const promise = "One email when a tracked change actually moves your per-unit co
       )}
     </div>
   ) : (
+    /*
+     * The inline variant carries the control only. The hero already states the frequency two lines
+     * above it, so repeating the promise here printed the same sentence twice in one screen.
+     */
     <div class="newsletter-box newsletter-inline">
-      <p>{promise}</p>
       {hasProvider ? (
         <form method="post" action={SITE.newsletterAction}>
           <div class="field-row">
