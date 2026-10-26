@@ -1,6 +1,6 @@
 name: CI
 
-# Every push to main, and every pull request: build the site and run all seven gates.
+# Every push to main, and every pull request: build the site and run all ten gates.
 #
 # This is the deterministic half of the pipeline and it does not depend on any credential, so it can
 # be turned on before anything else is migrated. It also answers a deployment question - whether the
@@ -67,7 +67,7 @@ jobs:
       - name: Build
         run: pnpm exec astro build
 
-      - name: Run all seven gates
+      - name: Run all ten gates
         run: node tools/gate.mjs --fresh
         env:
           # The gates that touch the network must not hang on a dead route; this keeps a blocked

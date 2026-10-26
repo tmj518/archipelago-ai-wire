@@ -52,6 +52,21 @@ gsc-service-account*.json
 *-service-account*.json
 .gsc/
 
+# Private keys and certificate bundles.
+#
+# Nothing of these kinds is tracked today and `git grep` over the index finds no key material; this is the
+# rule that keeps it that way when a downloaded key lands in the repository root, which is the default place
+# every tool here documents.
+#
+# Deliberately NOT a blanket `*.key`. The project produces no .key file today, and a rule that wide would
+# swallow one that later becomes necessary - a fixture, a keystore - without anyone noticing until a build
+# failed for a reason nobody could see. These five are the shapes a private key actually arrives in.
+*.pem
+id_rsa
+id_rsa_*
+*.p12
+*.pfx
+
 # IndexNow key files are the opposite and are deliberately NOT ignored: the endpoint verifies
 # ownership by fetching /<key>.txt and comparing, so the file is meant to be public. See
 # tools/submit-urls.mjs.
