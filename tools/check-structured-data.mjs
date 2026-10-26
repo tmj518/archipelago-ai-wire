@@ -7,17 +7,23 @@ import { readFileSync, existsSync } from "node:fs";
  * The same reasoning applies to the check: if it is not run every build, the next page
  * added will drift the same way.
  */
+/*
+ * One entry per page type, not per page.
+ *
+ * Updated 2026-10-26: the list still named /calculator/, /tracker/, /markets/, two China categories
+ * and two China articles, all of which left with the repositioning. A gate that asserts pages exist
+ * has to be updated when pages are deliberately removed, or it reports the removal as a defect
+ * every run until someone switches it off - which is how a gate stops being trusted.
+ */
 const PAGES = [
   ["/", "dist/index.html", false],
   ["/about/", "dist/about/index.html", false],
   ["/sources/", "dist/sources/index.html", false],
-  ["/calculator/", "dist/calculator/index.html", false],
-  ["/tracker/", "dist/tracker/index.html", false],
-  ["/markets/", "dist/markets/index.html", false],
-  ["/category/trade-policy/", "dist/category/trade-policy/index.html", false],
-  ["/category/logistics/", "dist/category/logistics/index.html", false],
-  ["/blog/china-industrial-profits-q4-supply-chain/", "dist/blog/china-industrial-profits-q4-supply-chain/index.html", false],
-  ["/blog/china-export-rebate-vs-export-duty-2026/", "dist/blog/china-export-rebate-vs-export-duty-2026/index.html", false],
+  ["/category/world/", "dist/category/world/index.html", false],
+  ["/category/malaysia-impact/", "dist/category/malaysia-impact/index.html", false],
+  ["/category/tech-ai/", "dist/category/tech-ai/index.html", false],
+  ["/category/economy/", "dist/category/economy/index.html", false],
+  ["/guide/", "dist/guide/index.html", false],
   ["/privacy/", "dist/privacy/index.html", true],
   ["/404.html", "dist/404.html", true],
 ];

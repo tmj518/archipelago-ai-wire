@@ -1,0 +1,30 @@
+[01:28:09] gsc report start  window=28d  dryRun=false
+[01:28:09]   50 published articles
+[01:28:09] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[01:28:09] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261021.failed
+[01:28:09] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[01:45:04] gsc report start  window=28d  dryRun=false
+[01:45:04]   50 published articles
+[01:45:04] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[01:45:04] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261021.failed
+[02:06:12] gsc report start  window=90d  dryRun=false
+[02:06:12]   50 published articles
+[02:06:12]   window 2026-07-23 .. 2026-10-21
+[02:06:58] gsc report start  window=90d  dryRun=false
+[02:06:58]   50 published articles
+[02:06:58]   window 2026-07-23 .. 2026-10-21
+[02:06:58] FAILED: GSC query by page failed: error:1E08010C:DECODER routines::unsupported
+[02:06:58] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261021.failed
+[02:07:32] gsc report start  window=90d  dryRun=false
+[02:07:32]   50 published articles
+[02:07:32] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[02:07:32] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261021.failed
+[04:36:24] gsc report start  window=90d  dryRun=false
+[04:36:24]   50 published articles
+[04:36:24] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[04:36:24] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261021.failed
+[04:59:09] gsc report start  window=90d  dryRun=false
+[04:59:09]   51 published articles
+[04:59:09]   window 2026-07-23 .. 2026-10-21
+[04:59:09] FAILED: GSC query by page failed: error:1E08010C:DECODER routines::unsupported
+[04:59:09] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261021.failed

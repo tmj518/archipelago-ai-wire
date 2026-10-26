@@ -1,0 +1,4 @@
+[13:41:39] gsc report start  window=28d  dryRun=false
+[13:41:39]   11 published articles
+[13:41:39] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[13:41:39] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261002.failed

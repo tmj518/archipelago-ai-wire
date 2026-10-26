@@ -14,14 +14,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE } from "../../consts";
 
 const TOPIC_LABEL = {
-  "work-visa": "Work visas",
-  residence: "Residence permits",
-  tax: "Tax",
-  "social-insurance": "Social insurance",
-  relocation: "Relocating",
-  transit: "Transit and entry",
-  driving: "Driving",
-  employment: "Employing people",
+  money: "Money & tax",
+  work: "Work & skills",
+  study: "Study & education",
+  business: "Business & trade",
+  "daily-life": "Daily life & costs",
+  "travel-docs": "Travel & documents",
 };
 
 const guides = (await getCollection("guide"))
@@ -39,17 +37,17 @@ const groups = [...byTopic.entries()].sort((a, b) => b[1].length - a[1].length);
 ---
 
 <BaseLayout
-  title={`Guides to what China costs you — ${SITE.name}`}
-  description="What it costs to move to, work in, or visit China: fees with the date they were checked, steps in order, and the source for every figure."
+  title={`Guides — what to do about it — ${SITE.name}`}
+  description="Practical guides for Malaysians: what a change costs you, what the steps are, and the date each figure was checked."
 >
   <main id="main" class="wrap">
     <article>
       <header class="article-header">
-        <a class="tag" href="/">Landed Math</a>
+        <a class="tag" href="/">Archipelago AI Wire</a>
         <h1>Guides</h1>
         <p class="standfirst">
-          What it costs to move to, work in or visit China — written per unit, with the date each figure
-          was checked. Every guide lists its steps in order and names the source behind every number.
+          The world changed — so what do you actually do about it? Each guide sets out the steps in order,
+          names the authority behind every rule, and shows the date each figure was checked.
         </p>
         <div class="meta">{guides.length} guide{guides.length === 1 ? "" : "s"}</div>
       </header>

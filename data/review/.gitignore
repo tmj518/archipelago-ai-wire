@@ -1,6 +1,0 @@
-# The review report is derived from article frontmatter, which is the source of
-# truth and is versioned. Committing the derived copy would put a stale snapshot
-# in the repository that contradicts the frontmatter the moment anything changes.
-#
-# Regenerate with:  node tools/review-dates.mjs --write
-upcoming.md

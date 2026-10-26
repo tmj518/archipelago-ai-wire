@@ -1,26 +1,17 @@
 ---
 /**
- * The first screen, structured after the benchmark's homepage.
+ * The first screen.
  *
- * TLDR's homepage is five blocks and nothing else: a headline carrying a time promise, a
- * subtitle that names the audience, one button, a line of social proof, then the content
- * itself. Ours was a kicker, the newest article's title as the h1, and no call to action
- * at all - which gave a first-time visitor no statement of what this is, and no way to
- * subscribe without scrolling.
+ * Five blocks and nothing else: a headline that states the promise, a subtitle that names the
+ * audience, three lines saying what the reader gets, one button, and a line of proof.
  *
- * Two deliberate departures from the model.
+ * The proof is not a subscriber count. We have no subscribers and no logos, and inventing either is
+ * the exact failure this site is built to avoid. What is true and specific is the corpus — how many
+ * pieces, how many sourced figures, how many named documents — and it is counted from the articles
+ * at build time, so it cannot drift from reality.
  *
- * The social proof is not a subscriber count. TLDR says "8,000,000+ readers from
- * Anthropic, OpenAI"; we have no subscribers and no logos, and inventing either is the
- * exact failure this site is built to avoid. What is true and specific is the corpus:
- * 23 analyses, 207 sourced figures, 129 named sources, 28 instrument pages. Those numbers
- * are generated from the articles at build time, so they cannot drift from reality - a
- * hand-written count would be stale within a week.
- *
- * The h1 is a promise about a decision rather than about minutes. "In 5 minutes" is honest
- * for a curation product that summarises other people's reporting. We do arithmetic on
- * primary documents and the reader supplies commercial inputs; promising them five minutes
- * would be a claim the product does not keep.
+ * The instrument count came out with the China registry on 2026-10-26: a count of regulatory
+ * filings is a promise this publication does not make.
  */
 import NewsletterForm from "./NewsletterForm.astro";
 import { AUTHOR } from "../consts";
@@ -31,15 +22,14 @@ export interface Props {
   analyses: number;
   figures: number;
   sources: number;
-  instruments: number;
 }
 
-const { analyses, figures, sources, instruments } = Astro.props;
+const { analyses, figures, sources } = Astro.props;
 ---
 
 <header class="hero">
   <div class="hero-inner">
-    <div class="kicker">Independent analysis · no ads · no tracking</div>
+    <div class="kicker">Independent · no ads · no tracking</div>
 
     <h1>{HEADLINE}</h1>
 
@@ -58,9 +48,8 @@ const { analyses, figures, sources, instruments } = Astro.props;
     </div>
 
     <p class="hero-proof">
-      {analyses} analyses · <strong>{figures}</strong> sourced figures ·
-      <strong>{sources}</strong> named primary sources ·
-      <a href="/instrument/">{instruments} instruments</a> indexed
+      {analyses} explainers · <strong>{figures}</strong> sourced figures ·
+      <strong>{sources}</strong> named documents
     </p>
 
     <p class="hero-by">
@@ -90,7 +79,7 @@ const { analyses, figures, sources, instruments } = Astro.props;
     list-style: none;
     padding: 0;
     margin: 0 auto 20px;
-    max-width: 30ch;
+    max-width: 34ch;
     text-align: left;
     font-size: 0.92rem;
   }

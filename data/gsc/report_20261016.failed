@@ -1,0 +1,3 @@
+run: 20261016
+reason: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+stats: {"retries":0,"gscCalls":0,"started":1792165296595}

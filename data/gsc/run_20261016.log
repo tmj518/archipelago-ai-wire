@@ -1,0 +1,105 @@
+[01:35:05] gsc report start  window=28d  dryRun=false
+[01:35:05]   30 published articles
+[01:35:05] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[01:35:05] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[01:35:05] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[01:48:26] gsc report start  window=28d  dryRun=false
+[01:48:26]   31 published articles
+[01:48:26] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[01:48:26] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[01:48:26] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[01:54:44] gsc report start  window=28d  dryRun=false
+[01:54:44]   31 published articles
+[01:54:44] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[01:54:44] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[01:54:44] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[02:30:14] gsc report start  window=28d  dryRun=false
+[02:30:14]   31 published articles
+[02:30:14] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[02:30:14] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[02:30:14] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[02:42:05] gsc report start  window=28d  dryRun=false
+[02:42:05]   31 published articles
+[02:42:05] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[02:42:05] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[02:42:05] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[02:47:01] gsc report start  window=28d  dryRun=false
+[02:47:01]   31 published articles
+[02:47:01] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[02:47:01] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[02:47:01] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[03:02:23] gsc report start  window=28d  dryRun=false
+[03:02:23]   31 published articles
+[03:02:23] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[03:02:23] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[03:02:23] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[03:06:37] gsc report start  window=28d  dryRun=false
+[03:06:37]   31 published articles
+[03:06:37] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[03:06:37] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[03:06:37] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[03:11:14] gsc report start  window=28d  dryRun=false
+[03:11:14]   31 published articles
+[03:11:14] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[03:11:14] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[03:11:14] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[04:11:04] gsc report start  window=28d  dryRun=false
+[04:11:04]   31 published articles
+[04:11:04] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[04:11:04] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[04:11:04] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[08:08:42] gsc report start  window=28d  dryRun=false
+[08:08:42]   31 published articles
+[08:08:42] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[08:08:42] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[08:08:42] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[12:21:09] gsc report start  window=28d  dryRun=false
+[12:21:09]   31 published articles
+[12:21:09] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[12:21:09] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[12:21:09] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[12:36:16] gsc report start  window=28d  dryRun=false
+[12:36:16]   31 published articles
+[12:36:16] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[12:36:16] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[12:36:16] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[12:43:56] gsc report start  window=28d  dryRun=false
+[12:43:56]   31 published articles
+[12:43:56] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[12:43:56] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[12:43:56] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[12:50:47] gsc report start  window=28d  dryRun=false
+[12:50:47]   31 published articles
+[12:50:47] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[12:50:47] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[12:50:47] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[13:53:49] gsc report start  window=28d  dryRun=false
+[13:53:49]   31 published articles
+[13:53:49] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[13:53:49] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[13:53:49] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[14:34:09] gsc report start  window=28d  dryRun=false
+[14:34:09]   31 published articles
+[14:34:09] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[14:34:09] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[14:34:09] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[15:04:10] gsc report start  window=28d  dryRun=false
+[15:04:10]   31 published articles
+[15:04:10] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[15:04:10] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[15:04:10] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[15:11:13] gsc report start  window=28d  dryRun=false
+[15:11:13]   31 published articles
+[15:11:13] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[15:11:13] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[15:11:13] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[15:31:47] gsc report start  window=28d  dryRun=false
+[15:31:47]   31 published articles
+[15:31:47] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[15:31:47] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[15:31:47] treating an unconfigured Search Console as advisory (--allow-missing-credentials)
+[15:41:36] gsc report start  window=28d  dryRun=false
+[15:41:36]   31 published articles
+[15:41:36] FAILED: GSC not configured. Set GSC_CREDENTIALS and GSC_SITE_URL in .env.keywords. See the header of tools/keyword-miner.mjs for the one-time setup.
+[15:41:36] marker: C:\Users\tmj19\Desktop\出海官网更新工作流\data\gsc\report_20261016.failed
+[15:41:36] treating an unconfigured Search Console as advisory (--allow-missing-credentials)

@@ -1,0 +1,148 @@
+[12:35:54] keyword miner start  run=20261002_2035  limit=100  dryRun=false
+[12:35:54]   step load seeds: 10 ms
+[12:35:54]   32 seeds
+[12:36:02] keyword miner start  run=20261002_2036  limit=10  dryRun=true
+[12:36:02]   step load seeds: 9 ms
+[12:36:02]   32 seeds
+[12:36:02]   expanding 32 seeds via Google Suggest
+[12:37:50]     suggest failed for "checklist export duty": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=checklist%20export%20duty&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:38:10]     suggest failed for "requirements export duty": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=requirements%20export%20duty&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:39:05]     suggest failed for "what is copper": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=what%20is%20copper&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:39:24]     suggest failed for "cost copper": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=cost%20copper&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:41:55]     suggest failed for "cost landed cost": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=cost%20landed%20cost&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:42:13]     suggest failed for "price landed cost": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=price%20landed%20cost&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:42:31]     suggest failed for "checklist landed cost": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=checklist%20landed%20cost&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:43:33]     suggest failed for "cost tariff schedule": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=cost%20tariff%20schedule&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:44:09]     suggest failed for "checklist tariff schedule": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=checklist%20tariff%20schedule&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:48:14]     suggest failed for "requirements solar": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=requirements%20solar&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:48:32]     suggest failed for "2026 solar": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=2026%20solar&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:49:26]     suggest failed for "what is supplier negotiation": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=what%20is%20supplier%20negotiation&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:49:44]     suggest failed for "cost supplier negotiation": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=cost%20supplier%20negotiation&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[12:50:24]     suggest failed for "requirements supplier negotiation": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: application/json -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36 -w 
+%{http_code} https://suggestqueries.google.com/complete/search?client=firefox&q=requirements%20supplier%20negotiation&hl=en&gl=us
+curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed
+
+[13:02:19] keyword miner start  run=20261002_2102  limit=10  dryRun=true
+[13:02:19]   step load seeds: 10 ms
+[13:02:19]   32 seeds
+[13:02:19]   expanding 8 seeds via Google Suggest + Bing Suggest
+[13:03:31]     google suggest failed "how to export duty": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: app
+[13:05:00]     google suggest failed "copper": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: app
+[13:06:20]     bing suggest failed "aluminium": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: app
+[13:06:48]     google suggest failed "how to aluminium": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: app
+[13:07:33]     bing suggest failed "cost aluminium": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: app
+[13:12:54]     bing suggest failed "tariff schedule": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: app
+[13:15:58]   188 unique candidates (google suggest failures 5, bing 4)
+[13:15:58]   step expand: 819486 ms
+[13:15:58]   WARNING: BING_API_KEY not set — monthly_volume and competition will be '-'
+[13:15:58]   step gsc fetch: 0 ms
+[13:15:58]   note: GSC not configured — source_gsc false for every row
+[13:15:58]   step dedup: 8 ms
+[13:15:58]   11 keywords already mined or targeted by a page
+[13:15:58]   scored 188 candidates, selected 10
+[13:15:58]   hit_count distribution: {"1":10}
+[13:15:58] dry run — nothing written
+[13:16:40] keyword miner start  run=20261002_2116  limit=100  dryRun=false
+[13:16:40]   step load seeds: 9 ms
+[13:16:40]   32 seeds
+[13:16:47] keyword miner start  run=20261002_2116  limit=12  dryRun=true
+[13:16:47]   step load seeds: 8 ms
+[13:16:47]   32 seeds
+[13:16:47]   expanding 6 seeds via Google Suggest + Bing Suggest
+[13:17:19]     google suggest failed "china export duty 2026 copper aluminium ": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: app
+[13:18:33]     bing suggest failed "cost china export duty 2026 copper alumi": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: app
+[13:20:02]     google suggest failed "how to export duty": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: app
+[13:20:32]     bing suggest failed "how to export duty": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: app
+[13:21:09]     google suggest failed "cost export duty": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: app
+[13:25:32]     bing suggest failed "export tax rebate": Command failed: curl.exe -4 -sS --max-time 30 -H Accept: app
+[13:26:33]   119 candidates passed the relevance filter (rejected 13; google failures 4, bing 4)
+[13:26:33]   step expand: 585385 ms
+[13:26:33]   WARNING: BING_API_KEY not set — monthly_volume and competition will be '-'
+[13:26:33]   step gsc fetch: 0 ms
+[13:26:33]   note: GSC not configured — source_gsc false for every row
+[13:26:33]   step dedup: 8 ms
+[13:26:33]   11 keywords already mined or targeted by a page
+[13:26:33]   scored 119 candidates, selected 12
+[13:26:33]   hit_count distribution: {"2":12}
+[13:26:33] dry run — nothing written
+[13:27:04] keyword miner start  run=20261002_2127  limit=12  dryRun=true
+[13:27:04]   step load seeds: 8 ms
+[13:27:04]   32 seeds
+[13:27:04]   expanding 6 seeds via Google Suggest + Bing Suggest
+[13:28:14]   133 candidates passed the relevance filter (rejected 44; google failures 0, bing 0)
+[13:28:14]   step expand: 69110 ms
+[13:28:14]   WARNING: BING_API_KEY not set — monthly_volume and competition will be '-'
+[13:28:14]   step gsc fetch: 0 ms
+[13:28:14]   note: GSC not configured — source_gsc false for every row
+[13:28:14]   step dedup: 10 ms
+[13:28:14]   11 keywords already mined or targeted by a page
+[13:28:14]   scored 133 candidates, selected 12
+[13:28:14]   hit_count distribution: {"2":12}
+[13:28:14] dry run — nothing written
+[13:28:29] keyword miner start  run=20261002_2128  limit=12  dryRun=false
+[13:28:29]   step load seeds: 10 ms
+[13:28:29]   32 seeds
+[13:28:29]   expanding 6 seeds via Google Suggest + Bing Suggest
+[13:29:20]   139 candidates passed the relevance filter (rejected 20; google failures 0, bing 0)
+[13:29:20]   step expand: 51247 ms
+[13:29:20]   WARNING: BING_API_KEY not set — monthly_volume and competition will be '-'
+[13:29:20]   step gsc fetch: 0 ms
+[13:29:20]   note: GSC not configured — source_gsc false for every row
+[13:29:20]   step dedup: 8 ms
+[13:29:20]   11 keywords already mined or targeted by a page
+[13:29:20]   scored 139 candidates, selected 12
+[13:29:20]   hit_count distribution: {"1":3,"2":9}
+[13:29:20] 
+[13:29:20] done in 51.3s
+[13:29:20]   csv            : C:\Users\tmj19\Desktop\出海官网更新工作流\data\keywords\keywords_20261002_2128.csv
+[13:29:20]   rows           : 12
+[13:29:20]   suggest calls  : 24
+[13:29:20]   bing calls     : 24
+[13:29:20]   gsc calls      : 0
+[13:29:20]   retries        : 1
+[13:29:20]   source failures: 0
+[13:29:20]   DEGRADED       : bing (no BING_API_KEY); gsc (no credentials configured)
+[13:29:20]   This batch is marked degraded. hit_count is out of 3 but the missing
+[13:29:20]   source contributes 0 to every row, so cross-source ranking is not
+[13:29:20]   comparable with a non-degraded batch.
+[13:29:29] keyword miner start  run=20261002_2129  limit=12  dryRun=false
+[13:29:29] today already mined (keywords_20261002_2128.csv) — no-op. Use --force to override.

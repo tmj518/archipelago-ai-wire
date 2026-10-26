@@ -29,7 +29,7 @@ export const SITE = {
   /** Rendered as "Archipelago <em>AI Wire</em>" in the logo. */
   nameHead: "Archipelago",
   nameTail: "AI Wire",
-  title: "Archipelago AI Wire — understand the world, and what it means for Malaysia",
+  title: "Archipelago AI Wire — the world, explained for Malaysia",
   /** Kept under ~140 chars: this doubles as the meta description. */
   description:
     "What is happening in the world, why it is happening, and what it means for Malaysia — explained in plain language, with sourced numbers.",
