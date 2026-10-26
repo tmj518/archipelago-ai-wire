@@ -30,7 +30,7 @@ export interface Props {
 const { variant = "box" } = Astro.props;
 const inputId = `newsletter-email-${variant}`;
 const hasProvider = Boolean(SITE.newsletterAction);
-const subscribeHref = `mailto:${AUTHOR.email}?subject=${encodeURIComponent("Subscribe to Landed Math")}`;
+const subscribeHref = `mailto:${AUTHOR.email}?subject=${encodeURIComponent(`Subscribe to ${SITE.name}`)}`;
 
 /** The offer, stated once so both variants and both states say the same thing. */
 const promise = "One email when a tracked change actually moves your per-unit cost. No daily filler.";
