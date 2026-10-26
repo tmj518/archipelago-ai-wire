@@ -57,8 +57,10 @@ const hasNoindex = (p) => /<meta\s+name="robots"\s+content="[^"]*noindex/i.test(
 const ARCHIVES = [
   "/category/world/",
   "/category/malaysia-impact/",
-  "/category/tech-ai/",
   "/category/economy/",
+  "/category/tech-ai/",
+  "/category/work-education-family/",
+  "/category/business-opportunities-risks/",
   "/guide/",
   "/topic/",
 ];

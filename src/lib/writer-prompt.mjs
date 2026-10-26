@@ -21,7 +21,7 @@
  * that states a heading the gate does not require, or a length the gate does not enforce, teaches the
  * writer to fail. Importing means the prompt cannot drift from the gate by a single word.
  */
-import { SECTIONS } from "./taxonomy.mjs";
+import { SECTIONS, CATEGORY_SLUGS } from "./taxonomy.mjs";
 import { WORD_TARGET } from "./prose.mjs";
 
 /**
@@ -68,7 +68,30 @@ export const RULES = `Non-negotiable rules.
    record; facts and accusations are attributed, never adopted; no group is described as a monolith.
    A piece that carries legal risk is flagged for human review, not pushed through.
 10. The reader is a Malaysian household, student or small business - not a lawyer, not a trader, not a
-    specialist. Give them the consequence and the action.`;
+    specialist. Give them the consequence and the action.
+
+ANALYTICAL FRAMEWORKS
+
+A piece explains a mechanism, not only a sequence of events. Choose the framework that answers the
+question in front of the reader. Do not force all three into one article.
+
+  Systems thinking - use it when the question is how one change travels through an economy, with
+  delays and feedback. A good answer names the loop, the delay and who absorbs the shock first, and
+  separates a one-off from a self-reinforcing cycle.
+
+  Comparative advantage and global value chains - use it when the question is who does what, where,
+  and who keeps the margin. A good answer places Malaysia at a named link in the chain. Today's
+  advantage is a position to defend, never a guaranteed future.
+
+  Game theory and incentives - use it when the question is why the actors behave this way and what
+  they do next. A good answer names each actor's objective and constraint, the move available to
+  each, and the likely response, with the response labelled as a scenario rather than a fact.
+
+The order of work: conclusion first, then the evidence, then the mechanism, then the Malaysian
+consequence, then the uncertainty, then what a reader can do with it. A framework is a lens on
+evidence you already hold - it never generates a number. Anything that is a forecast or a scenario is
+labelled as one in the same sentence. If a framework does not help the reader's question, leave it
+out: theory on display is a way of not answering.`;
 
 /**
  * The shape of the article.
@@ -82,7 +105,8 @@ export const STRUCTURE = `The article must have this exact shape.
 
 Frontmatter fields: title, subtitle, description, publishDate, reviewBy, stakes, category, audience,
 tags, priority, featured, draft, target_keyword, search_intent, information_gain, sources, figures.
-The legal values for category and audience are given in the directive. Use them exactly.
+The legal categories, in the order the site publishes them, are: ${CATEGORY_SLUGS.join(", ")}.
+The audience is one of the six reader values in the directive. Use the values you were given exactly.
 
 Body sections. These headings are checked literally; every one below is required:
 

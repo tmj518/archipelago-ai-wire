@@ -69,8 +69,10 @@ export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "World", href: "/category/world/" },
   { label: "Malaysia", href: "/category/malaysia-impact/" },
-  { label: "Tech & AI", href: "/category/tech-ai/" },
   { label: "Economy", href: "/category/economy/" },
+  { label: "Tech & AI", href: "/category/tech-ai/" },
+  { label: "Work & Family", href: "/category/work-education-family/" },
+  { label: "Business", href: "/category/business-opportunities-risks/" },
   /*
    * The practical-guide collection is the one section that is not a blog category. It answers a
    * different question for the same reader - "what do I actually do about this" - and it is kept

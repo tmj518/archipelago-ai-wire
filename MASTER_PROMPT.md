@@ -124,6 +124,23 @@ Every consequence names at least one of: an industry, a kind of job, a price, a 
 institution. Every judgement carries its basis — a trade share, an employment count, a link in a production
 network, a clause in a regulation. A sentence whose basis you cannot state is a sentence to delete.
 
+**3.7 Three analytical frameworks.** A piece explains a mechanism, not only a sequence of events. Choose the
+framework that answers the question in front of the reader; do not force all three into every piece.
+
+| framework | use it when the question is | what a good answer does |
+| --- | --- | --- |
+| **Systems thinking** | how one change travels through an economy, with delays and feedback | names the loop, the delay and who absorbs the shock first; separates a one-off from a self-reinforcing cycle |
+| **Comparative advantage and global value chains** | who does what, where, and who keeps the margin | places Malaysia at a named link in the chain; treats today's advantage as a position to defend, never as a guaranteed future |
+| **Game theory and incentives** | why the actors behave this way, and what they do next | names each actor's objective and constraint, the move available to each, and the likely response; labels the response as a scenario, not a fact |
+
+Rules that hold whichever framework is used:
+
+- Order of work: conclusion first, then the evidence, then the mechanism, then the Malaysian consequence, then the
+  uncertainty, then what a reader can do with it.
+- A framework is a lens on evidence you already hold. It never generates a number.
+- Anything that is a forecast or a scenario is labelled as one in the same sentence.
+- If a framework does not help the reader's question, leave it out. Theory on display is a way of not answering.
+
 ## 4. Structure — every article, in this order
 
 The headings are checked literally, so use these words.
@@ -216,7 +233,7 @@ subtitle     <= 160
 description  <= 300
 publishDate  YYYY-MM-DD
 reviewBy     YYYY-MM-DD - the date the underlying facts change, not an arbitrary interval
-category     world | malaysia-impact | tech-ai | economy
+category     world | malaysia-impact | economy | tech-ai | work-education-family | business-opportunities-risks
 audience     general | students | workers | entrepreneurs | teachers | citizens
 stakes       priced | directional
 information_gain  custom-calculation | cross-source | own-data | primary-source

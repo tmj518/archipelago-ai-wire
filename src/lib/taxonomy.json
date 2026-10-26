@@ -17,16 +17,28 @@
       "description": "The same events read from the Malaysian side: what changes for jobs, prices, businesses, students and households here. This is the site's home column — the reason the other columns exist."
     },
     {
+      "slug": "economy",
+      "label": "Economy & Trade",
+      "navLabel": "Economy",
+      "description": "Trade rules, energy, commodities, inflation and employment — the numbers that end up in a Malaysian wallet, a Malaysian payroll or a Malaysian invoice."
+    },
+    {
       "slug": "tech-ai",
       "label": "Tech & AI",
       "navLabel": "Tech & AI",
       "description": "Where technology is going and what it does to work, learning and the tools Malaysian businesses and students will have to use — explained without the vendor language."
     },
     {
-      "slug": "economy",
-      "label": "Economy & Trade",
-      "navLabel": "Economy",
-      "description": "Trade rules, energy, commodities, inflation and employment — the numbers that end up in a Malaysian wallet, a Malaysian payroll or a Malaysian invoice."
+      "slug": "work-education-family",
+      "label": "Work, Education & Family",
+      "navLabel": "Work & Family",
+      "description": "The part of the world that lands at the kitchen table: which jobs are changing and what they now ask for, what education is worth and what it costs, and how households absorb a shift they did not choose. Written for the parent, the student and the worker rather than for the ministry that announced it."
+    },
+    {
+      "slug": "business-opportunities-risks",
+      "label": "Business Opportunities & Risks",
+      "navLabel": "Business",
+      "description": "Where a Malaysian firm can move and where it can be hurt: market access, supply-chain position, competition, regulation and financing. Every claim names the mechanism and the exposure — an opportunity with no named buyer and a risk with no named channel are both left out."
     }
   ],
 
