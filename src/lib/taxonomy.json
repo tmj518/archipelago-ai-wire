@@ -1,7 +1,7 @@
 {
   "version": 1,
   "updated": "2026-10-26",
-  "note": "Single source of truth for every controlled vocabulary on the site. Read by src/consts.ts (through the Astro build) and by tools/*.mjs (through src/lib/taxonomy.mjs). Nothing else may define these lists. This file exists because the same enum lived in four places - consts.ts, content.config.ts, two copies inside qa-check.mjs, and a prose list in MASTER_PROMPT.md - and they drifted. See docs/审计_2026-10-26_新站改造清单.md.",
+  "note": "Single source of truth for every controlled vocabulary on the site. Read by src/consts.ts (through the Astro build) and by tools/*.mjs (through src/lib/taxonomy.mjs). Nothing else may define these lists. This file exists because the same enum lived in four places - consts.ts, content.config.ts, two copies inside qa-check.mjs, and a prose list in MASTER_PROMPT.md - and they drifted. See docs/验收报告_第一阶段_2026-10-26.md.",
 
   "categories": [
     {
