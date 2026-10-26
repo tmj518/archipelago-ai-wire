@@ -31,6 +31,9 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: "24"
+          # Same reason as ci.yml: v5 derives an automatic package-manager cache from `packageManager`,
+          # and computing it runs `pnpm` before corepack has provided one.
+          package-manager-cache: false
 
       - name: Install Chromium for the mobile check
         # Only this workflow needs a browser, which is the point of moving it here.

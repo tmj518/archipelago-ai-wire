@@ -38,6 +38,17 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '24'
+          # setup-node v5 caches the package manager's downloads automatically, and decides what to cache
+          # from the `packageManager` field in package.json. Building that cache key executes `pnpm` -
+          # which does not exist yet, because corepack creates it in the install step further down. The
+          # first run of this workflow died there, before installing anything:
+          #
+          #   Error: Unable to locate executable file: pnpm.
+          #
+          # `package-manager-cache: false` is the documented switch for exactly this. Dependency caching
+          # can be restored later by provisioning pnpm before this step, but that is a deliberate change
+          # with its own verification, not something to bolt on while repairing a red build.
+          package-manager-cache: false
 
       # Chromium for the mobile layout gate. `--with-deps` is not used on the second fallback
       # because the Ubuntu image already carries the shared libraries; the loop below finds whichever
