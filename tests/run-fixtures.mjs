@@ -232,6 +232,16 @@ record(
 );
 record("evidence: the self-test no longer reads the old archive", !/const doc = "data\/sources/.test(evidenceSrc));
 
+/* ── the Feishu safety suite (command 06) ──────────────────────────────────────────────────── */
+
+const feishu = spawnSync(process.execPath, [join(ROOT, "tests/feishu-safety.mjs")], {
+  cwd: ROOT,
+  encoding: "utf8",
+  maxBuffer: 8 * 1024 * 1024,
+});
+record("feishu: the safety suite passes", feishu.status === 0, firstLine(feishu.stdout ?? "", "passed"));
+record("feishu: no base is created by the tests", /no base was created/.test(feishu.stdout ?? ""));
+
 /* ── the A-line call sites use the shared vocabulary (P0-4) ─────────────────────────────────── */
 
 const execSrc = readFileSync(join(ROOT, "tools/cloud-executor.mjs"), "utf8");

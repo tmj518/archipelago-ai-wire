@@ -9,20 +9,84 @@
  *   运行日期   路线   判决   耗时秒   花费美元   选题   写手/审核   失败原因
  *
  * This writes only that table. It never touches the article ledger, and it finds its own table by
- * name - creating it, and any missing column, if it is not there yet. Running it twice does not
- * duplicate a run: the timestamp is the key.
+ * name - creating the table and any missing column if they are not there yet, but only inside a base it
+ * was explicitly pointed at. It does not create a base unless asked to.
  *
- *   node tools/feishu-run-ledger.mjs --dry-run      # print the rows, need no credentials
- *   node tools/feishu-run-ledger.mjs --limit=50     # more history than the default 20
- *   node tools/feishu-run-ledger.mjs                # upsert into the 运行台账 table
+ *   node tools/feishu-run-ledger.mjs --dry-run        # print the rows, need no credentials
+ *   node tools/feishu-run-ledger.mjs --limit=50       # more history than the default 20
+ *   node tools/feishu-run-ledger.mjs                  # upsert into the 运行台账 table
+ *   node tools/feishu-run-ledger.mjs --check-config   # say which base it would use, and stop
+ *   node tools/feishu-run-ledger.mjs --create-base    # create a base deliberately (opt-in)
+ *
+ * Why creation is opt-in: on 2026-10-26 the data audit found that a base which could not be read caused
+ * the tool to clear the recorded identifier and create a second base, destroying the only pointer to
+ * the first. A failed read is a question for a human; it is not evidence that no base exists. The
+ * decision now lives in src/lib/feishu-target.mjs, is unit-tested, and cannot reach the create call
+ * without --create-base.
  */
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import { join, dirname } from "node:path";
+import { decideBase, parseRecordedTarget, redact, fingerprint, DEFAULT_BASE_NAME } from "../src/lib/feishu-target.mjs";
 
 const ROOT = process.cwd();
 const argv = process.argv.slice(2);
 const DRY = argv.includes("--dry-run");
 const LIMIT = Number((argv.find((a) => a.startsWith("--limit=")) ?? "").slice(8)) || 20;
+/*
+ * Creating a base is opt-in. Without this flag the tool refuses and says what to check.
+ * See src/lib/feishu-target.mjs for the decision table and the reasoning.
+ */
+const CREATE_BASE = argv.includes("--create-base");
+const CHECK_CONFIG = argv.includes("--check-config");
+const TARGET_FILE = (() => {
+  const hit = argv.find((a) => a.startsWith("--target-file="));
+  return hit ? hit.slice("--target-file=".length) : join(ROOT, "data", "ledger-target.json");
+})();
+
+/*
+ * Configuration is resolved at the top, before any row is read.
+ *
+ * `--check-config` has to be able to answer "which base would this use" without run data and without
+ * credentials; resolving it after the row scan meant the answer depended on whether data/runs happened
+ * to be empty. The decision is remembered and enforced further down, after --dry-run has had its say.
+ */
+const APP_ID = (process.env.FEISHU_APP_ID ?? "").trim();
+const APP_SECRET = (process.env.FEISHU_APP_SECRET ?? "").trim();
+
+let targetState;
+try {
+  targetState = parseRecordedTarget(readFileSync(TARGET_FILE, "utf8"));
+} catch {
+  targetState = { kind: "missing" };
+}
+
+const decision = decideBase({
+  envToken: process.env.FEISHU_APP_TOKEN ?? "",
+  targetState,
+  createBase: CREATE_BASE,
+  baseName: process.env.FEISHU_BASE_NAME ?? "",
+});
+
+const MISSING = [["FEISHU_APP_ID", APP_ID], ["FEISHU_APP_SECRET", APP_SECRET]]
+  .filter(([, v]) => !v)
+  .map(([k]) => k);
+
+if (CHECK_CONFIG) {
+  console.log("RUN LEDGER CONFIG CHECK\n" + "=".repeat(78));
+  console.log(`  target file : ${TARGET_FILE} (${targetState.kind})`);
+  console.log(`  credentials : ${MISSING.length ? "missing " + MISSING.join(", ") : "present"}`);
+  console.log(`  create-base : ${CREATE_BASE ? "allowed by --create-base" : "not allowed"}`);
+  if (decision.action === "use") {
+    console.log(`  decision    : use the base from the ${decision.source} (ref ${decision.ref})`);
+  } else if (decision.action === "create") {
+    console.log(`  decision    : would CREATE a base named "${decision.name}"`);
+  } else {
+    console.log(`  decision    : STOP - ${decision.reason}`);
+    console.log(`  ${decision.detail}`);
+    console.log(`  check       : ${decision.missing.join(", ")}`);
+  }
+  process.exit(decision.action === "fail" || MISSING.length ? 78 : 0);
+}
 
 const BASE = "https://open.feishu.cn/open-apis";
 const TABLE_NAME = "运行台账";
@@ -170,35 +234,31 @@ if (DRY) {
 
 /* ── Feishu ───────────────────────────────────────────────────────────────────────────────────── */
 
-const APP_ID = (process.env.FEISHU_APP_ID ?? "").trim();
-const APP_SECRET = (process.env.FEISHU_APP_SECRET ?? "").trim();
 /*
- * The base token: the environment, then what this tool recorded last time, then - if neither - a base
- * this run creates.
- *
- * Requiring it as a secret made the setup circular: the token only exists once a base exists, and the
- * thing that creates the base needs the token. A deployment that names a base explicitly still wins;
- * a deployment that has only the app id and secret bootstraps itself and records the result in
- * data/ledger-target.json, which is committed, so the next run finds it.
+ * Enforcement. The decision was made at the top of the file so that --check-config could answer
+ * without run data; this is where a refusal actually stops the run, after --dry-run has had its say.
  */
-let recordedTarget = (() => {
-  try {
-    return JSON.parse(readFileSync(join(ROOT, "data", "ledger-target.json"), "utf8"));
-  } catch {
-    return null;
-  }
-})();
-let APP_TOKEN = ((process.env.FEISHU_APP_TOKEN ?? "").trim() || recordedTarget?.appToken || "").trim();
 
-const MISSING = [["FEISHU_APP_ID", APP_ID], ["FEISHU_APP_SECRET", APP_SECRET]]
-  .filter(([, v]) => !v)
-  .map(([k]) => k);
+if (decision.action === "fail") {
+  console.log("\n  cannot continue: " + decision.reason);
+  console.log("  " + decision.detail);
+  console.log("");
+  console.log("  check : " + decision.missing.join(", "));
+  console.log("  Creating a base requires --create-base. --dry-run needs neither.");
+  process.exit(decision.code);
+}
+
 if (MISSING.length) {
   console.log("\n  cannot write: missing " + MISSING.join(", "));
   console.log("  The app's id and secret are the only two things that cannot be created here.");
   console.log("  --dry-run needs none of them.");
   process.exit(2);
 }
+
+/** Whatever the run decides, the token never reaches a log line. */
+const scrub = (s) => redact(s, [APP_TOKEN, APP_SECRET, process.env.FEISHU_APP_TOKEN]);
+
+let APP_TOKEN = decision.action === "use" ? decision.appToken : "";
 
 async function api(path, { method = "GET", token, body } = {}) {
   const res = await fetch(`${BASE}${path}`, {
@@ -233,7 +293,7 @@ async function apiRetry(path, opts, attempts = 3) {
     } catch (e) {
       last = e;
       const policy = /21001/.test(String(e.message));
-      console.log(`  attempt ${i}/${attempts} failed${policy ? " (platform policy)" : ""}: ${String(e.message).slice(0, 90)}`);
+      console.log(`  attempt ${i}/${attempts} failed${policy ? " (platform policy)" : ""}: ${scrub(String(e.message)).slice(0, 90)}`);
       if (i < attempts) await sleep(5000);
     }
   }
@@ -244,48 +304,54 @@ const tok = await apiRetry("/auth/v3/tenant_access_token/internal", {
   method: "POST",
   body: { app_id: APP_ID, app_secret: APP_SECRET },
 }).catch((e) => {
-  console.log("  token: FAILED after retries - " + String(e.message).slice(0, 120));
+  console.log("  token: FAILED after retries - " + scrub(String(e.message)).slice(0, 120));
   console.log("  The table is not updated this run; nothing else is affected.");
   process.exit(1);
 });
 const token = tok.tenant_access_token;
 
 /*
- * Bootstrap: no base token means no base yet, so make one.
+ * A configured base is verified before it is trusted - and a failed verification STOPS the run.
  *
- * The app id and secret are the only credentials a person has to create, and they already exist. A
- * base is a container this tool can create for itself; asking the operator to create one by hand and
- * then paste its token back in is the step that has kept this ledger empty all week.
- */
-/*
- * A recorded base is verified before it is trusted.
+ * The previous comment here read "a stale or wrong token must not be a dead end: if the base cannot be
+ * read, this falls back to creating one". That is the defect. A token that cannot be read is not proof
+ * that no base exists; it is the one signal that a human should look. Authentication can fail, the app
+ * can lose permission, the base can be deleted, the network can be down - and every one of those used
+ * to produce a second base plus a rewritten pointer to it.
  *
- * The operator hands over a Multidimensional Table link, and the token behind that link is recorded in
- * data/ledger-target.json. A stale or wrong token must not be a dead end: if the base cannot be read,
- * this falls back to creating one, which is the only action that always works with a valid credential.
+ * So: verify, and on failure keep the identifier, create nothing, overwrite nothing, and say what to
+ * check.
  */
 if (APP_TOKEN) {
   try {
     await api(`/bitable/v1/apps/${APP_TOKEN}/tables?page_size=100`, { token });
-    console.log(`\n  base  : reusing ${APP_TOKEN}`);
+    console.log(`\n  base  : reusing the ${decision.source} base (ref ${decision.ref})`);
   } catch (e) {
-    console.log(`\n  base  : recorded token ${APP_TOKEN} is not readable - ${e.message}`);
-    console.log("          creating a base of this project's own instead");
-    APP_TOKEN = "";
+    console.log(`\n  base  : the configured base is not readable - ${scrub(e.message)}`);
+    console.log("          STOPPING. This is not treated as 'no base yet'.");
+    console.log("          Nothing was created and nothing was overwritten;");
+    console.log(`          the recorded identifier is kept (ref ${decision.ref}).`);
+    console.log("          Check: the app's bitable:app permission, drive space, and whether the base still exists.");
+    process.exit(1);
   }
 }
 
+/*
+ * Creation is reachable only when decideBase returned "create", which requires --create-base.
+ * There is no path from "the read failed" to this block.
+ */
 if (!APP_TOKEN) {
+  const name = decision.name ?? DEFAULT_BASE_NAME;
   try {
     const made = await api("/bitable/v1/apps", {
       method: "POST",
       token,
-      body: { name: "Landed Math 数据中控台" },
+      body: { name },
     });
     APP_TOKEN = made.app?.app_token ?? "";
-    console.log(`  base  : created "Landed Math 数据中控台" (${APP_TOKEN})`);
+    console.log(`  base  : created "${name}" (ref ${fingerprint(APP_TOKEN)})`);
   } catch (e) {
-    console.log("  base  : FAILED to create - " + e.message);
+    console.log("  base  : FAILED to create - " + scrub(e.message));
     console.log("          the app needs the bitable:app permission, and drive space to hold a base.");
     process.exit(1);
   }
@@ -320,7 +386,7 @@ try {
   table = await findTable();
   console.log(`  table : ${TABLE_NAME} ${table.created ? "created" : "found"} (${table.id})`);
 } catch (e) {
-  console.log("  table : FAILED - " + e.message);
+  console.log("  table : FAILED - " + scrub(e.message));
   process.exit(1);
 }
 
@@ -341,19 +407,20 @@ try {
     console.log(`  field : primary column "${primary.field_name}" renamed to ${KEY_FIELD}`);
   }
 } catch (e) {
-  console.log(`  field : could not rename the primary column - ${e.message}`);
+  console.log(`  field : could not rename the primary column - ${scrub(e.message)}`);
 }
 
-/* Record what was created, so the next run reuses it instead of making a second base. */
+/* Record where this run wrote, so the next one reuses it instead of making a second base. */
 try {
-  mkdirSync(join(ROOT, "data"), { recursive: true });
+  mkdirSync(dirname(TARGET_FILE), { recursive: true });
   writeFileSync(
-    join(ROOT, "data", "ledger-target.json"),
+    TARGET_FILE,
     JSON.stringify({ appToken: APP_TOKEN, runTableId: table.id, runTableName: TABLE_NAME, at: new Date().toISOString() }, null, 2),
     "utf8",
   );
-  console.log("  record: data/ledger-target.json written (commit it; it is what the next run reads)");} catch (e) {
-  console.log("  record: could not write data/ledger-target.json - " + e.message);
+  console.log(`  record: ${TARGET_FILE} written (commit it; it is what the next run reads)`);
+} catch (e) {
+  console.log(`  record: could not write ${TARGET_FILE} - ${scrub(e.message)}`);
 }
 
 /* Missing columns are added rather than reported, so the first run on a fresh table is the last run. */
@@ -375,7 +442,7 @@ for (const name of FIELDS) {
     });
     added++;
   } catch (e) {
-    console.log(`  field ${name}: FAILED - ${e.message}`);
+    console.log(`  field ${name}: FAILED - ${scrub(e.message)}`);
   }
 }
 console.log(`  columns: ${FIELDS.filter((n) => have.includes(n)).length} present, ${added} added`);
@@ -402,7 +469,7 @@ for (const r of rows) {
     else created++;
   } catch (e) {
     failed++;
-    console.log(`  ${r["运行日期"]}: FAILED - ${e.message}`);
+    console.log(`  ${r["运行日期"]}: FAILED - ${scrub(e.message)}`);
   }
 }
 

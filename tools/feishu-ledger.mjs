@@ -145,7 +145,7 @@ if (existsSync(TARGET) && !FORCE) {
 
 /* ── 3  the base ─────────────────────────────────────────────────────────────────────────────────── */
 if (DRY) {
-  console.log("  dry run      : would create a base called 'Landed Math 台账' with these columns:");
+  console.log("  dry run      : would create a base called 'Archipelago AI Wire Ledger' with these columns:");
   for (const f of FIELDS) console.log("                   " + f);
   console.log("");
   console.log("  --dry-run: nothing created.");
@@ -157,7 +157,7 @@ try {
   const made = await api("/bitable/v1/apps", {
     method: "POST",
     token,
-    body: { name: "Landed Math 台账" },
+    body: { name: "Archipelago AI Wire Ledger" },
   });
   appToken = made.app?.app_token;
   console.log(`  base         : created, app_token ${appToken}`);
