@@ -75,6 +75,11 @@ jobs:
           corepack enable
           pnpm install --frozen-lockfile
 
+      # The suites below were run by hand and by nothing else, which is how a test suite rots.
+      - name: Data layer tests
+        run: |
+          node tests/i18n.mjs
+          node tests/eval-loop.mjs
       - name: Build
         run: pnpm exec astro build
 

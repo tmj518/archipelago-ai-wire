@@ -6,36 +6,42 @@
   "categories": [
     {
       "slug": "world",
+      "i18n": { "ms": { "label": "Dunia", "slug": "dunia" }, "zh": { "label": "世界", "slug": "shijie" } },
       "label": "World",
       "navLabel": "World",
       "description": "What is happening beyond Malaysia's borders — geopolitics, conflict, international institutions and the shifts that set the weather for everyone else. Every piece here still ends with what it means for Malaysia; a world story with no Malaysian consequence does not get published."
     },
     {
       "slug": "malaysia-impact",
+      "i18n": { "ms": { "label": "Kesan kepada Malaysia", "slug": "kesan-malaysia" }, "zh": { "label": "马来西亚影响", "slug": "malaysia-yingxiang" } },
       "label": "Malaysia Impact",
       "navLabel": "Malaysia",
       "description": "The same events read from the Malaysian side: what changes for jobs, prices, businesses, students and households here. This is the site's home column — the reason the other columns exist."
     },
     {
       "slug": "economy",
+      "i18n": { "ms": { "label": "Ekonomi & Perdagangan", "slug": "ekonomi" }, "zh": { "label": "经济与贸易", "slug": "jingji" } },
       "label": "Economy & Trade",
       "navLabel": "Economy",
       "description": "Trade rules, energy, commodities, inflation and employment — the numbers that end up in a Malaysian wallet, a Malaysian payroll or a Malaysian invoice."
     },
     {
       "slug": "tech-ai",
+      "i18n": { "ms": { "label": "Teknologi & AI", "slug": "teknologi-ai" }, "zh": { "label": "科技与 AI", "slug": "keji-ai" } },
       "label": "Tech & AI",
       "navLabel": "Tech & AI",
       "description": "Where technology is going and what it does to work, learning and the tools Malaysian businesses and students will have to use — explained without the vendor language."
     },
     {
       "slug": "work-education-family",
+      "i18n": { "ms": { "label": "Kerja, Pendidikan & Keluarga", "slug": "kerja-pendidikan-keluarga" }, "zh": { "label": "工作、教育与家庭", "slug": "gongzuo-jiaoyu-jiating" } },
       "label": "Work, Education & Family",
       "navLabel": "Work & Family",
       "description": "The part of the world that lands at the kitchen table: which jobs are changing and what they now ask for, what education is worth and what it costs, and how households absorb a shift they did not choose. Written for the parent, the student and the worker rather than for the ministry that announced it."
     },
     {
       "slug": "business-opportunities-risks",
+      "i18n": { "ms": { "label": "Peluang & Risiko Perniagaan", "slug": "peluang-risiko-perniagaan" }, "zh": { "label": "商业机会与风险", "slug": "shangye-jihui-fengxian" } },
       "label": "Business Opportunities & Risks",
       "navLabel": "Business",
       "description": "Where a Malaysian firm can move and where it can be hurt: market access, supply-chain position, competition, regulation and financing. Every claim names the mechanism and the exposure — an opportunity with no named buyer and a risk with no named channel are both left out."

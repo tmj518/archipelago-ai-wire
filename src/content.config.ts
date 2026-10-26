@@ -329,4 +329,48 @@ export const guide = defineCollection({
   }),
 });
 
-export const collections = { blog, guide };
+/**
+ * Translations: Malay and Chinese.
+ *
+ * Separate collections rather than a `locale` field on `blog`, for one concrete reason: the English
+ * files must not move. Their ids are their URLs, and putting them in a subfolder would have changed
+ * every published URL. A translation is also a different document with its own provenance, so it
+ * gets its own collection and its own schema.
+ *
+ * `localizationStatus` is the publication gate and the reason this stage ships no routes. A
+ * `machine` record is stored so the work is not lost, and it must never become a page. When the
+ * routes land (P1-B), they filter on `isPublishable` from src/lib/i18n.mjs.
+ */
+const translationFields = {
+  title: z.string().max(120),
+  description: z.string().max(300),
+  publishDate: z.coerce.date(),
+  category: z.enum(categorySlugs),
+  /** The English slug this version translates. The join key across languages. */
+  translationKey: z.string().min(3).max(200),
+  /**
+   * machine = produced by a model, not read by a human.
+   * draft   = being worked on.
+   * reviewed = a named reviewer checked the numbers, legal terms and local idiom.
+   * Only `reviewed` may be published.
+   */
+  localizationStatus: z.enum(["machine", "draft", "reviewed"]).default("machine"),
+  /** Required once the status is `reviewed`; a review without a name is not a review. */
+  reviewedBy: z.string().min(2).max(120).optional(),
+  reviewedAt: z.coerce.date().optional(),
+  sources: z
+    .array(z.union([z.string(), z.object({ name: z.string().min(1).max(300), url: z.string().max(600).optional() })]))
+    .default([]),
+};
+
+export const blogMs = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/blog-ms" }),
+  schema: z.object({ ...translationFields, locale: z.literal("ms") }),
+});
+
+export const blogZh = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/blog-zh" }),
+  schema: z.object({ ...translationFields, locale: z.literal("zh") }),
+});
+
+export const collections = { blog, guide, blogMs, blogZh };
