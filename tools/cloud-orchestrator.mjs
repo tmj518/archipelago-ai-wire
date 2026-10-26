@@ -206,7 +206,7 @@ if (!run.providers.length) {
   for (const n of needFor("reviewer")) console.log("    " + n);
   console.log("");
   console.log("  In this repository the two generated secret names are mapped to OWNER_KEY_1 and");
-  console.log("  OWNER_KEY_2 in daily.yml, so they count. The workflow also maps them there explicitly.");
+  console.log("  OWNER_KEY_2 by the workflow, so they count. The workflow also maps them there explicitly.");
   run.verdict = "NO-KEYS";
   /* The names this build actually searches, for the notifier to print. */
   run.need = needFor("writer");

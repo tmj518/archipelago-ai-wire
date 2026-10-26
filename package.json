@@ -29,7 +29,6 @@
     "keywords:pilot": "node tools/keyword-miner.mjs --limit=10 --seed-limit=6",
     "gsc": "node tools/gsc-report.mjs",
     "gsc:90": "node tools/gsc-report.mjs --days=90",
-    "r2": "node tools/r2-upload.mjs",
     "pdf": "node tools/pdf-text.mjs"
   },
   "dependencies": {

@@ -60,12 +60,12 @@
   #      dashboard change and cannot be made from this repository.
   #
   #        Cloudflare dashboard -> Caching -> Cache Rules -> Create rule
-  #          When incoming requests match : hostname equals landedmath.com
+  #          When incoming requests match : hostname equals www.toolsai.club
   #          Then : Eligible for cache;  Edge TTL -> "Use cache-control header if present"
   #
   # The header is kept because the rule is useless without it: the rule defers to the origin's
-  # s-maxage for the duration. It is also kept so tools/check-edge-cache.mjs has something real to
-  # test - run it and read `cf-cache-status`; a HIT is the only proof, and until then this directive
+  # s-maxage for the duration. Once the site is live, request a page twice and read `cf-cache-status`;
+  # a HIT is the only proof, and until then this directive
   # does nothing at all. That tool is the check, not this comment.
   #
   # The split between the directives is the point:

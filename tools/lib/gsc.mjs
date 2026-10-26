@@ -98,7 +98,7 @@ const b64url = (input) =>
  *
  * The variable is one name with three honest values: the path to the key file
  * (the local .env.keywords mode, which is what .env.keywords.example documents),
- * the key document itself, or base64 of it (the mode .github/workflows/seo-audit.yml
+ * the key document itself, or base64 of it (the mode a CI secret uses,
  * uses, because a secret is a string and cannot be a file).
  *
  * All three used to be read as a path. existsSync() answers false for a blob of

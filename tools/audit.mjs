@@ -43,7 +43,7 @@ const NAMED = args.filter((a) => !a.startsWith("--") && a.endsWith(".md"));
  *
  * Redirecting node's stdout with `>` in PowerShell produces UTF-16, which is not valid JSON and fails
  * at the reader with a parse error that looks like the tool is broken. That has now cost a round trip
- * three times in this project - render-page.mjs carries the same flag for the same reason - so it is
+ * three times in this project - another tool here carries the same flag for the same reason - so it is
  * a fixed property of these tools rather than something to remember.
  */
 const OUT = (args.find((a) => a.startsWith("--out=")) ?? "").slice(6) || null;

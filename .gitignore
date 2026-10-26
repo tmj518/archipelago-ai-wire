@@ -2,9 +2,9 @@
 dist/
 .astro/
 
-# Generated media. `build/video/` holds rendered slides, narration and the
-# assembled MP4 — tens of megabytes per article, and all of it reproducible
-# from the article plus tools/make-video.py. Only the YouTube id is committed.
+# Generated media. `build/video/` held rendered slides, narration and the assembled MP4 —
+# tens of megabytes per article. The video pipeline was removed from this project on
+# 2026-10-26; the rule stays because the directory is still a build artifact and still large.
 build/
 
 # Environment setup scratch
@@ -18,21 +18,17 @@ __pycache__/
 node_modules/
 
 # environment
-# `.env.r2` holds a Cloudflare API token with Object Read & Write on the media
-# bucket. The literal names below did not cover it, so a credential file would
-# have been committable. Match the whole family and re-admit only templates.
+# `.env.*` covers the whole family of credential files and re-admits only the template.
 .env
 .env.*
 !.env.example
-!.env.r2.example
 .env.production
 .env.local
 
-# Google / YouTube OAuth credentials. The client secret and the cached refresh
-# token are each equivalent to an account password: the refresh token alone can
-# upload to the channel. tools/youtube-upload.mjs writes both outside the repo
-# (under %LOCALAPPDATA%\Programs\n8n), so this is a second line of defence for
-# the case where someone runs it with a copy sitting in the working directory.
+# Google / YouTube OAuth credentials. The client secret and the cached refresh token are each
+# equivalent to an account password. The upload tooling was removed from this project on
+# 2026-10-26; the rules stay because the files may still exist on a developer's machine and a
+# forgotten credential is the one file nobody notices being committed.
 youtube-oauth.json
 youtube-token.json
 *youtube-oauth*.json
