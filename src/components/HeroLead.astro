@@ -2,54 +2,58 @@
 /**
  * The first screen.
  *
- * Five blocks and nothing else: a headline that states the promise, a subtitle that names the
- * audience, three lines saying what the reader gets, one button, and a line of proof.
+ * Five blocks and nothing else: a kicker, a headline that states the promise, a subtitle that names
+ * the reader, two actions, and a line of proof.
  *
  * The proof is not a subscriber count. We have no subscribers and no logos, and inventing either is
  * the exact failure this site is built to avoid. What is true and specific is the corpus — how many
  * pieces, how many sourced figures, how many named documents — and it is counted from the articles
  * at build time, so it cannot drift from reality.
  *
- * The instrument count came out with the China registry on 2026-10-26: a count of regulatory
- * filings is a promise this publication does not make.
+ * ## Why it got shorter on 2026-10-26
+ *
+ * It carried a three-item benefit list and its own newsletter form, which together pushed the first
+ * article about 750px down a 1440px window: a visitor saw a manifesto and no journalism. The list
+ * restated the subtitle three ways, and the form duplicated the one in the rail. Both are gone, and
+ * the height came down with them.
+ *
+ * The primary button goes to the newest article, because that is what a reader convinced by the
+ * first screen wants next. The newsletter is the second button, and it lands on the single form in
+ * the sidebar instead of creating another one here.
  */
 import { AUTHOR } from "../consts";
-import { AUDIENCE, CTA, CTA_NOTE, HEADLINE, SUBTITLE, WHAT_YOU_GET } from "../lib/copy";
+import { CTA, CTA_NOTE, CTA_SECONDARY, HEADLINE, KICKER, SUBTITLE } from "../lib/copy";
 
 export interface Props {
   /** Generated from the published collection, never typed by hand. */
   analyses: number;
   figures: number;
   sources: number;
+  /** Where the primary button leads: the newest piece, or the archive when there is none. */
+  latestHref: string;
 }
 
-const { analyses, figures, sources } = Astro.props;
+const { analyses, figures, sources, latestHref } = Astro.props;
 ---
 
 <header class="hero">
   <div class="hero-inner">
-    <div class="kicker">Independent · no ads · no tracking</div>
+    <div class="kicker">{KICKER}</div>
 
     <h1>{HEADLINE}</h1>
 
     <p class="hero-sub">{SUBTITLE}</p>
-    <p class="hero-audience">{AUDIENCE}</p>
 
-    <ul class="hero-gets">
-      {WHAT_YOU_GET.map((w) => (
-        <li>{w}</li>
-      ))}
-    </ul>
-
-    <div class="hero-cta">
-      <a class="hero-button" href="#subscribe">{CTA} →</a>
-      <p class="hero-cta-note">{CTA_NOTE}</p>
+    <div class="hero-actions">
+      <a class="hero-button" href={latestHref}>{CTA} →</a>
+      <a class="hero-button hero-button--ghost" href="#subscribe">{CTA_SECONDARY}</a>
     </div>
+    <p class="hero-cta-note">{CTA_NOTE}</p>
 
     {/*
       * The proof line, or nothing.
       *
-      * Counted from the collection at build time, which was right - and which printed "0 explainers ·
+      * Counted from the collection at build time, which was right — and which printed "0 explainers ·
       * 0 sourced figures · 0 named documents" on a live homepage before the first piece was written.
       * A publication announcing that it has published nothing is not being honest, it is being
       * unread: the honest version of zero is a sentence about what is being checked, not a digit.
@@ -75,64 +79,60 @@ const { analyses, figures, sources } = Astro.props;
 
 <style>
   .hero-sub {
-    max-width: 46ch;
-    margin: 0 auto 8px;
+    max-width: 52ch;
+    margin: 0 auto 22px;
     font-size: 1.02rem;
-    opacity: 0.92;
+    opacity: 0.9;
+    line-height: 1.55;
   }
-  .hero-audience {
-    max-width: 46ch;
-    margin: 0 auto 18px;
-    font-size: 0.92rem;
-    opacity: 0.78;
-  }
-  .hero-gets {
-    list-style: none;
-    padding: 0;
-    margin: 0 auto 20px;
-    max-width: 34ch;
-    text-align: left;
-    font-size: 0.92rem;
-  }
-  .hero-gets li {
-    padding: 3px 0 3px 18px;
-    position: relative;
-  }
-  .hero-gets li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    opacity: 0.6;
-  }
-  .hero-cta {
-    margin: 22px 0 18px;
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
   }
   .hero-button {
-    display: inline-block;
-    padding: 12px 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
     border-radius: 4px;
     font-weight: 600;
+    font-size: 0.95rem;
     text-decoration: none;
     background: var(--accent, #d4573a);
     color: #fff;
+    min-height: 44px;
   }
   .hero-button:hover {
     text-decoration: none;
     filter: brightness(1.08);
   }
+  .hero-button--ghost {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    color: #fff;
+  }
+  .hero-button--ghost:hover {
+    border-color: #fff;
+    filter: none;
+  }
   .hero-cta-note {
-    font-size: 0.84rem;
-    opacity: 0.72;
-    margin: 9px 0 0;
+    font-size: 0.82rem;
+    opacity: 0.62;
+    margin: 12px 0 18px;
   }
   .hero-proof {
-    font-size: 0.92rem;
-    opacity: 0.85;
-    margin: 0 0 6px;
+    font-size: 0.88rem;
+    opacity: 0.78;
+    margin: 0 0 4px;
+    max-width: 60ch;
+    margin-inline: auto;
   }
   .hero-by {
-    font-size: 0.88rem;
-    opacity: 0.75;
+    font-size: 0.82rem;
+    opacity: 0.6;
     margin: 0;
   }
 </style>

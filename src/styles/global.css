@@ -417,7 +417,8 @@ body {
 .hero {
   background: linear-gradient(135deg, var(--c-navy) 0%, var(--c-navy-light) 100%);
   color: #fff;
-  padding: 70px var(--gutter);
+  /* 70px until 2026-10-26, when the first article was pushed below the fold by brand copy. */
+  padding: 44px var(--gutter) 40px;
 }
 
 .hero-inner {
@@ -436,10 +437,10 @@ body {
 }
 
 .hero h1 {
-  font-size: 42px;
-  line-height: 1.25;
-  letter-spacing: -0.5px;
-  margin-bottom: 16px;
+  font-size: 38px;
+  line-height: 1.18;
+  letter-spacing: -0.6px;
+  margin-bottom: 12px;
 }
 
 .hero h1 a {

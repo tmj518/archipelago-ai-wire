@@ -95,14 +95,15 @@ const jsonLd = {
     analyses={posts.length}
     figures={figures}
     sources={sources}
+    latestHref={heroPost ? `/blog/${heroPost.id}/` : "#latest"}
   />
 
   <div class="container">
     <main id="main">
       {
         heroPost && (
-          <div class="lead-story">
-            <h2 class="section-title">Today's lead</h2>
+          <div class="lead-story" id="latest">
+            <h2 class="section-title">Latest analysis</h2>
             <ArticleRow
               href={`/blog/${heroPost.id}/`}
               date={`${formatDate(heroPost.data.publishDate)} · ${readingTime(heroPost.body)} min read`}
@@ -127,30 +128,39 @@ const jsonLd = {
         )
       }
 
-      <h2 class="section-title">Latest Analysis</h2>
+      {/*
+        The rest of the corpus, and the empty state only when the corpus really is empty.
 
-      {
-        latest.length > 0 ? (
-          latest.map((item) => (
+        With one article published, the lead story above is also the whole corpus, so this block used
+        to print "Nothing published yet" directly under a headline announcing it - the false-empty
+        state the first piece exposed. The heading is only worth printing when there is something
+        beneath it, and the empty note belongs to the no-articles case, not the one-article case.
+      */}
+      {latest.length > 0 && (
+        <section class="more-analysis">
+          <h2 class="section-title">More analysis</h2>
+          {latest.map((item) => (
             <ArticleRow
               href={item.href}
               date={item.date}
               title={item.title}
               excerpt={item.excerpt}
             />
-          ))
-        ) : (
-          // Both branches of this page were written when the site was empty. The
-          // cadence promise in this one — "the archive fills up weekly" — was a
-          // claim the publication record did not support, and it would have gone
-          // live the moment the article list was empty. Removed for the same
-          // reason the newsletter's "every morning" was removed.
+          ))}
+        </section>
+      )}
+
+      {posts.length === 0 && (
+        <>
+          <h2 class="section-title" id="latest">
+            Latest analysis
+          </h2>
           <p class="empty-note">
             Nothing published yet. The first explainers are being checked against their source
             documents — <a href="/about/">how this is made</a>.
           </p>
-        )
-      }
+        </>
+      )}
 
       {/*
         Browse by topic — mechanism 4 of the benchmark study, surfaced where it can be found.
