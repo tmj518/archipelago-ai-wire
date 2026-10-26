@@ -25,6 +25,35 @@ import { SECTIONS, CATEGORY_SLUGS } from "./taxonomy.mjs";
 import { WORD_TARGET } from "./prose.mjs";
 
 /**
+ * The version of the writing instructions in this file.
+ *
+ * Every metric the site will ever report about its own output is conditional on knowing which
+ * instructions produced it. Without this string, "the new prompt is better" is unfalsifiable: the
+ * articles were written by different text and there is no way to say which text.
+ *
+ * ## The format, and why it is checked
+ *
+ * `writer-YYYY-MM-DD.<rev>` — the date the instructions changed, and a revision letter for a second
+ * change on the same day. Tests/eval-loop.mjs and tests/run-fixtures.mjs both assert the shape, so a
+ * version that cannot be sorted or grouped fails the build rather than quietly fragmenting the data.
+ *
+ * ## What it is not
+ *
+ * Changing RULES or STRUCTURE without bumping this is the failure this constant exists to prevent.
+ * It is not automatically derived from the file contents: a content hash would change on a typo fix
+ * and make every historical comparison meaningless. The bump is a deliberate act by whoever changes
+ * the instructions, and it belongs in the same commit as the change.
+ *
+ * Articles published before 2026-10-26 carry no version and are reported as `unknown` by the
+ * evaluator. They are not backfilled with this value, because the instructions they were written
+ * against did not exist yet.
+ */
+export const PROMPT_VERSION = "writer-2026-10-26.a";
+
+/** The shape `PROMPT_VERSION` must match. Exported so the tests assert one regex, not two. */
+export const PROMPT_VERSION_PATTERN = /^writer-\d{4}-\d{2}-\d{2}\.[a-z]$/;
+
+/**
  * The persona.
  *
  * It is deliberately not a named correspondent. The copy is AI-assisted and human-checked, and a

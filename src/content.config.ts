@@ -159,6 +159,19 @@ export const blog = defineCollection({
       .optional(),
 
     // ---- v1.3 fields: the machine-checkable half of the QA gate ----------
+    /**
+     * Which writing instructions produced this piece, from `PROMPT_VERSION` in
+     * src/lib/writer-prompt.mjs.
+     *
+     * Optional on purpose. Articles written before 2026-10-26 have no version and must not be given
+     * one retrospectively - the evaluator reports them as `unknown`, which is a fact about the corpus
+     * and not a hole to be tidied up. A new article without this field is a pipeline defect, and the
+     * evaluator counts it as unknown rather than guessing.
+     */
+    promptVersion: z
+      .string()
+      .regex(/^writer-\d{4}-\d{2}-\d{2}\.[a-z]$/)
+      .optional(),
     /** The long-tail query this piece is written to win. */
     target_keyword: z.string().optional(),
     search_intent: z

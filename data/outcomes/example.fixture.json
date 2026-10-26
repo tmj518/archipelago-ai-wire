@@ -1,0 +1,32 @@
+{
+  "_note": "NOT A REAL RECORD. A worked example of the format, kept so the evaluator has something to parse in a clean checkout. provenance=simulated and fixture=true keep it out of every metric.",
+  "article_id": "example-not-published",
+  "locale": "en",
+  "translation_key": "example-not-published",
+  "published_at": "2026-10-26",
+  "provenance": "simulated",
+  "fixture": true,
+  "decision": {
+    "selected_at": "2026-10-26",
+    "selector": null,
+    "candidate_rank": null,
+    "candidates_considered": null
+  },
+  "generation": {
+    "prompt_version": "writer-2026-10-26.a",
+    "model": null,
+    "generated_at": null,
+    "cost_usd": null,
+    "tokens": null
+  },
+  "review": {
+    "gates_first_pass": true,
+    "rework_rounds": 0,
+    "corrections": 0,
+    "qa_summary": "fixture only"
+  },
+  "measurements": [
+    { "window": "d7", "captured_at": null, "clicks": null, "impressions": null, "ctr": null, "position": null, "source": null },
+    { "window": "d28", "captured_at": null, "clicks": null, "impressions": null, "ctr": null, "position": null, "source": null }
+  ]
+}

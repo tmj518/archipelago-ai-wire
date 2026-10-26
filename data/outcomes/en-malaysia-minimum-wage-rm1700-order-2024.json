@@ -1,0 +1,31 @@
+{
+  "article_id": "malaysia-minimum-wage-rm1700-order-2024",
+  "locale": "en",
+  "translation_key": "malaysia-minimum-wage-rm1700-order-2024",
+  "published_at": "2026-10-26",
+  "provenance": "observed",
+  "fixture": false,
+  "decision": {
+    "selected_at": "2026-10-26",
+    "selector": null,
+    "candidate_rank": null,
+    "candidates_considered": null
+  },
+  "generation": {
+    "prompt_version": null,
+    "model": null,
+    "generated_at": null,
+    "cost_usd": null,
+    "tokens": null
+  },
+  "review": {
+    "gates_first_pass": true,
+    "rework_rounds": 0,
+    "corrections": 0,
+    "qa_summary": "27 pass / 0 warn / 0 block"
+  },
+  "measurements": [
+    { "window": "d7", "captured_at": null, "clicks": null, "impressions": null, "ctr": null, "position": null, "source": null },
+    { "window": "d28", "captured_at": null, "clicks": null, "impressions": null, "ctr": null, "position": null, "source": null }
+  ]
+}
