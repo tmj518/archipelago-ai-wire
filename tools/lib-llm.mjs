@@ -30,6 +30,7 @@
  * pipeline still runs and says so in its report rather than pretending the review was independent.
  */
 import { appendFileSync, mkdirSync, readFileSync } from "node:fs";
+import { classifyError } from "../src/lib/run-key.mjs";
 import { join, dirname } from "node:path";
 
 const ROOT = process.cwd();
@@ -395,10 +396,20 @@ export function providerFor(role, avoid) {
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 function meter(entry) {
+  /*
+   * The accounting file answers "which task, which attempt, which kind of failure" - not "what was
+   * said". runId and taskKey are opaque; errorClass is derived; the free-text error stays where it
+   * was. Nothing written here can carry a prompt, a completion or a key.
+   */
+  const enriched = { ...entry };
+  if (enriched.runId == null) enriched.runId = null;
+  if (enriched.taskKey == null) enriched.taskKey = null;
+  if (enriched.error && !enriched.errorClass) enriched.errorClass = classifyError(enriched.error, enriched.status);
+  if (!enriched.error && enriched.ok === false && !enriched.errorClass) enriched.errorClass = "unknown";
   try {
     const p = join(ROOT, "logs", "usage.jsonl");
     mkdirSync(dirname(p), { recursive: true });
-    appendFileSync(p, JSON.stringify(entry) + "\n", "utf8");
+    appendFileSync(p, JSON.stringify(enriched) + "\n", "utf8");
   } catch {
     /* A meter that cannot be written must not fail the call it was measuring. */
   }
@@ -420,10 +431,10 @@ function meter(entry) {
  *
  * The existing callers pass no tools and read only `text`, so adding the field changes nothing for them.
  */
-export async function ask({ role = "writer", model: modelOverride = "", messages, system, temperature = 0.2, maxTokens = 8192, avoidProvider = null, retries = 2, tools = null, toolChoice = null }) {
+export async function ask({ role = "writer", model: modelOverride = "", messages, system, temperature = 0.2, maxTokens = 8192, avoidProvider = null, retries = 2, tools = null, toolChoice = null, runId = null, taskKey = null }) {
   const providerName = providerFor(role, avoidProvider);
   if (!providerName) {
-    meter({ at: new Date().toISOString(), role, ok: false, error: "no provider key present", providers: available() });
+    meter({ at: new Date().toISOString(), runId, taskKey, role, ok: false, error: "no provider key present", providers: available() });
     return {
       ok: false,
       error: "no provider key present",
@@ -433,7 +444,7 @@ export async function ask({ role = "writer", model: modelOverride = "", messages
   const p = PROVIDERS[providerName];
   const cred = resolveKey(providerName, role);
   if (!cred) {
-    meter({ at: new Date().toISOString(), role, ok: false, provider: providerName, error: "no key for this role" });
+    meter({ at: new Date().toISOString(), runId, taskKey, role, ok: false, provider: providerName, error: "no key for this role" });
     return { ok: false, error: `no key configured for role ${role} on ${providerName}`, need: keyNamesFor(providerName, role) };
   }
   const key = cred.value;
@@ -541,7 +552,7 @@ export async function ask({ role = "writer", model: modelOverride = "", messages
       const ms = Date.now() - started;
       if (!r.ok || json?.error) {
         lastError = json?.error?.message ?? `HTTP ${r.status}: ${text.slice(0, 200)}`;
-        meter({ at: new Date().toISOString(), role, provider: providerName, keyName: cred.name, model: modelFor(p, role), ok: false, ms, status: r.status, error: lastError, attempt });
+        meter({ at: new Date().toISOString(), runId, taskKey, role, provider: providerName, keyName: cred.name, model: modelFor(p, role), ok: false, ms, status: r.status, error: lastError, attempt });
         /* 429 and 5xx are worth another attempt; 401 and 400 are not. */
         if (r.status === 401 || r.status === 400 || r.status === 402 || r.status === 403) break;
         await sleep(2000 * (attempt + 1));
@@ -551,7 +562,11 @@ export async function ask({ role = "writer", model: modelOverride = "", messages
       const cost =
         ((usage.prompt_tokens ?? 0) / 1e6) * p.inPerM + ((usage.completion_tokens ?? 0) / 1e6) * p.outPerM;
       meter({
+        runId,
+        taskKey,
         at: new Date().toISOString(),
+        runId,
+        taskKey,
         role,
         provider: providerName,
         keyName: cred.name,
@@ -585,7 +600,7 @@ export async function ask({ role = "writer", model: modelOverride = "", messages
     } catch (e) {
       const ms = Date.now() - started;
       lastError = `${e.cause?.code ?? e.name ?? "error"}: ${e.message}`;
-      meter({ at: new Date().toISOString(), role, provider: providerName, keyName: cred.name, model: modelFor(p, role), ok: false, ms, error: lastError, attempt });
+      meter({ at: new Date().toISOString(), runId, taskKey, role, provider: providerName, keyName: cred.name, model: modelFor(p, role), ok: false, ms, error: lastError, attempt });
       /*
        * A timeout does not get a second attempt on the same provider.
        *
@@ -615,6 +630,8 @@ export async function ask({ role = "writer", model: modelOverride = "", messages
   const another = providerFor(role, providerName);
   if (switchableFailure && another && another !== providerName) {
     meter({
+      runId,
+      taskKey,
       at: new Date().toISOString(),
       role,
       provider: providerName,
@@ -622,7 +639,7 @@ export async function ask({ role = "writer", model: modelOverride = "", messages
       error: `${lastError} - falling back to ${another}`,
       fallbackTo: another,
     });
-    return ask({ role, messages, system, temperature, maxTokens, avoidProvider: providerName, retries: 1, tools, toolChoice });
+    return ask({ role, messages, system, temperature, maxTokens, avoidProvider: providerName, retries: 1, tools, toolChoice, runId, taskKey });
   }
 
   /* NETWORK_FALLBACK: the branch above is the one that keeps a dead route from ending a run. */

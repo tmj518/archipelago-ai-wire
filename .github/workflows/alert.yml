@@ -1,0 +1,45 @@
+# Alert on failure - one place, so a red run is not silence.
+#
+# GitHub already shows a failed run, but nobody watches the Actions tab. This workflow listens for the
+# completion of the scheduled jobs and pushes a card to Feishu when one fails. It sends nothing on
+# success: an alert channel that also reports good news stops being read.
+
+name: Alert on failure
+
+on:
+  workflow_run:
+    workflows: ["Data refresh", "Content day", "Daily health", "CI"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    if: github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+
+      - name: Send the card
+        run: |
+          if [ -z "${FEISHU_WEBHOOK:-}" ]; then
+            echo "::error::FEISHU_WEBHOOK is not set; the failure could not be announced"
+            exit 1
+          fi
+          ROUTE="$GITHUB_WORKFLOW" PIPELINE_OUTCOME="FAILED" node tools/notify-feishu.mjs
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+          GITHUB_WORKFLOW: ${{ github.event.workflow_run.name }}

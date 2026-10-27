@@ -152,5 +152,27 @@ if (!write) {
   console.log("\n  dry run - add --write to apply");
   process.exit(0);
 }
+/*
+ * Every planned edit targets an article that is already published - the tool reads them from BLOG
+ * and rewrites them. That is an update path, and this repository does not have one: an overwrite
+ * here would replace a reviewed, sourced article with a generated string, and nothing would record
+ * that it happened.
+ *
+ * So the write is refused while any target exists. The refusal is the feature: the dry run above
+ * still tells a human exactly which article should link where, and the link is added by editing the
+ * article and re-running the gate. No flag overrides this - a force switch would be the same
+ * overwrite with an extra keystroke.
+ */
+const { existingTargets } = await import("../src/lib/publish-guard.mjs");
+const blocked = existingTargets(BLOG, planned.map((p) => p.slug));
+if (blocked.length) {
+  console.error(`\n  REFUSED: ${blocked.length} of ${planned.length} target article(s) already exist.`);
+  console.error("  This tool has no update path and will not overwrite published articles:");
+  for (const s of blocked.slice(0, 10)) console.error(`    src/content/blog/${s}.md`);
+  if (blocked.length > 10) console.error(`    ... and ${blocked.length - 10} more`);
+  console.error("\n  To apply a link by hand: edit the article, then run");
+  console.error("    pnpm exec astro build && node tools/gate.mjs --fresh");
+  process.exit(1);
+}
 for (const p of planned) writeFileSync(join(BLOG, `${p.slug}.md`), p.next, "utf8");
 console.log(`\n  wrote ${planned.length} file(s)`);

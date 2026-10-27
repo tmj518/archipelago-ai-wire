@@ -123,6 +123,14 @@ const GATES = [
     fast: true,
   },
   {
+    id: "link-integrity",
+    tier: "hard",
+    label: "internal targets in dist",
+    args: ["tools/link-integrity.mjs"],
+    inputs: [],
+    fast: true,
+  },
+  {
     id: "link-check",
     tier: "hard",
     label: "internal links",

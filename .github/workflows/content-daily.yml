@@ -1,0 +1,98 @@
+# Content day - drafts only, and never a direct publish.
+#
+# The rule this workflow exists to enforce: AI output reaches the site through a pull request that a
+# human merges, not through a push. It cannot create an article on main by itself, and if the quality
+# gates fail it stops before opening anything.
+#
+# The generator command comes from the repository variable CONTENT_GENERATOR because this repository
+# has never run a model in CI and the flags matter. The default is empty, which fails closed with a
+# message naming the variable rather than guessing a command line and reporting a green run that did
+# nothing.
+
+name: Content day
+
+on:
+  schedule:
+    # 23:00 UTC = 07:00 Asia/Kuala_Lumpur the next morning.
+    - cron: "0 23 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: content-day
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+
+      - name: Preflight
+        run: |
+          missing=""
+          [ -z "${ARK_API_KEY:-}" ] && missing="$missing ARK_API_KEY"
+          [ -z "${ARK_BASE_URL:-}" ] && missing="$missing ARK_BASE_URL"
+          [ -z "${CONTENT_GENERATOR:-}" ] && missing="$missing vars.CONTENT_GENERATOR"
+          if [ -n "$missing" ]; then
+            echo "::error::content generation is not configured:$missing"
+            echo "No article was generated. This is a configuration failure, not a content failure." >&2
+            exit 1
+          fi
+          echo "generator: $CONTENT_GENERATOR"
+        env:
+          ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+          ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
+          CONTENT_GENERATOR: ${{ vars.CONTENT_GENERATOR }}
+
+      - name: Generate a draft
+        run: ${{ vars.CONTENT_GENERATOR }}
+        env:
+          ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+          ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
+          ARK_MODEL: ${{ vars.ARK_MODEL }}
+          AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
+
+      - name: Quality gates on the draft
+        run: |
+          node tools/qa-check.mjs --all
+          node tools/check-publish-ready.mjs --all
+
+      - name: Build and gates
+        run: |
+          pnpm exec astro build
+          node tools/gate.mjs --fresh
+
+      - name: Open a pull request
+        if: success()
+        run: |
+          if git diff --quiet; then
+            echo "no draft produced; nothing to propose"
+            exit 0
+          fi
+          git config user.name "content-day"
+          git config user.email "content-day@users.noreply.github.com"
+          branch="draft/content-$(date -u +%Y%m%d)"
+          git checkout -b "$branch"
+          git add src/content data/outcomes logs/usage.jsonl
+          git commit -m "draft: content run $(date -u +%Y-%m-%d)"
+          git push -u origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "Draft: content run $(date -u +%Y-%m-%d)" \
+            --body "Generated draft. Not published. Review the sources, then merge or close."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

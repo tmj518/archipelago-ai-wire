@@ -1,0 +1,102 @@
+# Daily health - the offline half of the pipeline, once a day.
+#
+# Why this exists, and why it is not ci.yml:
+#
+#   ci.yml runs on push and pull request, which means it runs when someone changes something. It does
+#   not run when nobody does. A publication whose only automated check is triggered by a commit can sit
+#   broken for a week - a dependency deprecating, a date boundary, a template that renders in an older
+#   timezone - with nothing reporting it.
+#
+#   deep-checks.yml already has a schedule, but it is the *network* half: SERP fetches and a headless
+#   browser, weekly, because both are slow and one slow host costs a run. This workflow is the other
+#   half: no network, no browser, no credentials, under a few minutes, every day.
+#
+# What it does not do, deliberately:
+#   - no AI calls, no GSC, no Bing, no Cloudflare API;
+#   - no content generation, no commits, no publishing;
+#   - no artifact upload, so nothing can carry a .env or a build secret off the runner;
+#   - no Chromium install, so it cannot fail for a reason unrelated to the site.
+#
+# Timing: 22:15 UTC = 06:15 Asia/Kuala_Lumpur (MYT, UTC+8) the next morning. GitHub warns that
+# scheduled runs can start late at busy times; the run is a health check, not a deadline.
+
+name: Daily health
+
+on:
+  schedule:
+    # 22:15 UTC every day. MYT is UTC+8, so this is 06:15 the following morning in Kuala Lumpur.
+    - cron: "15 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # One health check at a time. A manual re-run should not cancel the scheduled one it is meant to
+  # confirm or refute.
+  group: daily-health
+  cancel-in-progress: false
+
+jobs:
+  health:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          # Same reason as ci.yml: v5 derives an automatic package-manager cache from
+          # `packageManager`, and computing it runs `pnpm` before corepack has provided one.
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+
+      # The data layer: prompt version, outcome records, evaluator, editorial mode, trilingual map.
+      # None of these read the network, and each of them refuses to invent a number from too few
+      # samples - so a failure here is a real defect, not a threshold drifting.
+      - name: Data-layer tests
+        run: |
+          node tests/i18n.mjs
+          node tests/eval-loop.mjs
+          node tests/editorial.mjs
+
+      - name: Fixture and safety tests
+        run: |
+          node tests/run-fixtures.mjs
+          node tests/feishu-safety.mjs
+
+      - name: Build
+        run: pnpm exec astro build
+
+      # Everything below reads dist/, so it runs after the build. These are the gates that do not
+      # need a browser or the network; the ones that do stay in deep-checks.yml where they already
+      # live with the setup they need.
+      - name: Post-build checks
+        run: |
+          node tests/build-assertions.mjs
+          node tools/qa-check.mjs --all
+          node tools/check-schema-parity.mjs
+          node tools/check-master-prompt.mjs
+          node tools/link-check.mjs
+          node tools/check-meta.mjs
+          node tools/check-structured-data.mjs
+
+      - name: Summarise
+        if: always()
+        run: |
+          {
+            echo "## Daily health"
+            echo ""
+            echo "- node: \`$(node --version)\`"
+            echo "- pnpm: \`$(pnpm --version)\`"
+            echo "- pages built: $(find dist -name index.html 2>/dev/null | wc -l)"
+            echo "- job status: ${{ job.status }}"
+            echo ""
+            echo "This checks the repository, not the deployment. A green run says the site still"
+            echo "builds and its tests pass; it says nothing about whether Cloudflare Pages served it."
+          } >> "$GITHUB_STEP_SUMMARY"

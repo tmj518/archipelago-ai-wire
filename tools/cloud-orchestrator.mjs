@@ -1021,7 +1021,23 @@ if (wroteIt && qaCode === 0) {
    */
   const target = join(ROOT, "src", "content", "blog", `${slug}.md`);
   try {
-    writeFileSync(target, readFileSync(draftPath, "utf8"), "utf8");
+    /*
+       * Publication guard: one owner per slug, and no silent overwrite of an existing article.
+       * `publish` claims the slug with an atomic `wx` create, refuses when a different task owns it,
+       * and reports `duplicate` when this same task already published. A refusal throws so the run
+       * fails loudly instead of reporting a publish that never happened.
+       */
+      const { publish, publishTaskKey } = await import("../src/lib/publish-guard.mjs");
+      const guarded = publish({
+        dir: join(ROOT, "src", "content", "blog"),
+        slug,
+        taskKey: publishTaskKey({ kind: "explainer", slug }),
+        content: readFileSync(draftPath, "utf8"),
+      });
+      if (guarded.status !== "written") {
+        step("publish", false, `refused (${guarded.status}): ${slug}`);
+        throw new Error(`publish refused: ${guarded.status} for ${slug}`);
+      }
     published = true;
     step("publish", true, `staged at src/content/blog/${slug}.md`);
     /*
