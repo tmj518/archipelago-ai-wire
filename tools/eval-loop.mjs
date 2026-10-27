@@ -223,6 +223,211 @@ if (missingRate.prompt_version) limits.push(`${missingRate.prompt_version} recor
 if (missingRate.search) limits.push(`${missingRate.search} record(s) have no ${win} click data; search performance is reported from ${withSearch.length}`);
 limits.push("clicks measure attention, not correctness; no correction or quality conclusion is drawn from them");
 
+/* ---------------------------------------------------------------- editorial */
+
+/*
+ * --editorial reads data/reviews, not data/outcomes.
+ *
+ * A review is a judgement about a draft; an outcome is a measurement of a published piece. They are
+ * reported side by side and never combined - no weighted total, no ranking. The same refusals apply
+ * as in the performance report: simulated and fixture records are excluded from every metric, a null
+ * score is excluded rather than counted as zero, and fewer than twenty usable observations prints
+ * `insufficient` instead of a number that reads like a finding.
+ */
+const REVIEWS_DIR = value("reviews") ?? join(ROOT, "data", "reviews");
+const CRITERIA = ["conclusion", "sourcing", "mechanism", "malaysia_impact", "uncertainty", "actionability"];
+const RED_LINE_KEYS = ["unsourced_key_fact", "unverifiable_number", "fabricated_interview", "prediction_as_fact", "stale_source"];
+const BLIND_REQUIRED = ["prompt_version", "model", "traffic", "other_reviews"];
+
+function loadReviews() {
+  const errors = [];
+  const items = [];
+  for (const file of walk(REVIEWS_DIR)) {
+    let raw;
+    try {
+      raw = JSON.parse(readFileSync(file, "utf8"));
+    } catch (e) {
+      errors.push({ file: relative(ROOT, file), error: e.message });
+      continue;
+    }
+    if (!raw?.review_id || !raw?.article_id) {
+      errors.push({ file: relative(ROOT, file), error: "missing review_id or article_id" });
+      continue;
+    }
+    items.push({ file: relative(ROOT, file), ...raw });
+  }
+  return { items, errors };
+}
+
+/** Mean over the non-null scores only; null is never 0. */
+function scoreStats(records, criterion) {
+  const values = records.map((r) => r.scores?.[criterion]).filter((v) => typeof v === "number");
+  const missing = records.length - values.length;
+  if (!values.length) return { n: 0, mean: null, status: "insufficient", missing };
+  const mean = values.reduce((a, b) => a + b, 0) / values.length;
+  return { n: values.length, mean, status: values.length < MIN_SAMPLE ? "insufficient" : "ok", missing };
+}
+
+function editorialReport() {
+  const { items, errors } = loadReviews();
+  const observed = items.filter((r) => r.provenance !== "simulated" && r.fixture !== true);
+  const excluded = items.length - observed.length;
+
+  const criteria = {};
+  for (const c of CRITERIA) criteria[c] = scoreStats(observed, c);
+
+  const naReasons = observed.flatMap((r) => Object.entries(r.na ?? {}).map(([k, v]) => ({ review: r.review_id, criterion: k, reason: v })));
+
+  const redLines = { triggered: 0, by_type: {}, articles: [] };
+  for (const r of observed) {
+    for (const k of RED_LINE_KEYS) {
+      if (r.red_lines?.[k] === true) {
+        redLines.triggered++;
+        redLines.by_type[k] = (redLines.by_type[k] ?? 0) + 1;
+        if (!redLines.articles.includes(r.article_id)) redLines.articles.push(r.article_id);
+      }
+    }
+  }
+
+  const suspectBlind = observed.filter(
+    (r) => r.review_type === "blind" && !BLIND_REQUIRED.every((f) => (r.blind_to ?? []).includes(f)),
+  );
+
+  // Inter-reviewer agreement needs two reviewers on the same article. With one, say so.
+  const byArticle = new Map();
+  for (const r of observed) {
+    if (!byArticle.has(r.article_id)) byArticle.set(r.article_id, []);
+    byArticle.get(r.article_id).push(r);
+  }
+  const multi = [...byArticle.values()].filter((rs) => new Set(rs.map((r) => r.reviewer_id)).size >= 2);
+  let interReviewer;
+  if (!multi.length) {
+    interReviewer = { status: "not_computed", pairs: 0, reason: "no article has two reviews from different reviewers" };
+  } else {
+    const diffs = [];
+    for (const rs of multi) {
+      for (const c of CRITERIA) {
+        const vals = rs.map((r) => r.scores?.[c]).filter((v) => typeof v === "number");
+        if (vals.length >= 2) diffs.push(Math.max(...vals) - Math.min(...vals));
+      }
+    }
+    interReviewer = {
+      status: diffs.length < MIN_SAMPLE ? "insufficient" : "ok",
+      pairs: multi.length,
+      mean_abs_diff: diffs.length ? diffs.reduce((a, b) => a + b, 0) / diffs.length : null,
+      n_diffs: diffs.length,
+    };
+  }
+
+  // A delta needs a real pair; a lone re-score is a new review.
+  const paired = observed.filter((r) => r.revision?.before && r.revision?.after);
+  let revisions;
+  if (!paired.length) {
+    revisions = { status: "not_computed", pairs: 0, reason: "no review carries both revision.before and revision.after" };
+  } else {
+    const deltas = {};
+    for (const c of CRITERIA) {
+      const d = paired
+        .map((r) => (typeof r.revision.before[c] === "number" && typeof r.revision.after[c] === "number" ? r.revision.after[c] - r.revision.before[c] : null))
+        .filter((v) => v !== null);
+      deltas[c] = d.length ? { n: d.length, mean_delta: d.reduce((a, b) => a + b, 0) / d.length, status: d.length < MIN_SAMPLE ? "insufficient" : "ok" } : { n: 0, mean_delta: null, status: "insufficient" };
+    }
+    revisions = { status: paired.length < MIN_SAMPLE ? "insufficient" : "ok", pairs: paired.length, deltas };
+  }
+
+  const groupBy = (key) => {
+    const m = new Map();
+    for (const r of observed) {
+      const k = key(r) ?? "unknown";
+      if (!m.has(k)) m.set(k, []);
+      m.get(k).push(r);
+    }
+    return [...m.entries()].map(([k, rs]) => ({
+      key: k,
+      n: rs.length,
+      criteria: Object.fromEntries(CRITERIA.map((c) => [c, scoreStats(rs, c)])),
+    }));
+  };
+
+  const limits = [];
+  if (!items.length) limits.push("no review records - nothing to evaluate, and no conclusion follows from that");
+  if (errors.length) limits.push(`${errors.length} file(s) could not be parsed`);
+  if (observed.length < MIN_SAMPLE) limits.push(`only ${observed.length} usable review(s); every mean above is labelled insufficient`);
+  if (excluded) limits.push(`${excluded} simulated/fixture review(s) excluded from every metric`);
+  if (interReviewer.status === "not_computed") limits.push("inter-reviewer agreement not computed: " + interReviewer.reason);
+  if (revisions.status === "not_computed") limits.push("score change not computed: " + revisions.reason);
+  if (naReasons.length) limits.push(`${naReasons.length} criterion score(s) recorded as N/A with a reason, excluded from means rather than scored 0`);
+  if (suspectBlind.length) limits.push(`${suspectBlind.length} blind review(s) do not list all four withheld fields and are not trusted as blind`);
+  limits.push("editorial scores are never combined into a single total, and are never merged with traffic or growth metrics");
+
+  const out = {
+    generated_at: now.toISOString(),
+    reviews_dir: relative(ROOT, REVIEWS_DIR) || REVIEWS_DIR,
+    totals: { records: items.length, observed: observed.length, excluded, na_reasons: naReasons.length },
+    criteria,
+    red_lines: redLines,
+    suspect_blind: suspectBlind.map((r) => r.review_id),
+    inter_reviewer: interReviewer,
+    revisions,
+    by_locale: groupBy((r) => r.locale),
+    by_prompt: groupBy((r) => r.prompt_version),
+    na: naReasons,
+    limits,
+    parse_errors: errors,
+  };
+
+  if (wantJson) {
+    console.log(JSON.stringify(out, null, 2));
+    process.exit(errors.length ? 3 : 0);
+  }
+
+  const fmt = (s) => (s.status === "ok" ? `${s.mean.toFixed(2)} (n=${s.n}, missing=${s.missing})` : `insufficient (n=${s.n}, missing=${s.missing})`);
+  const say = (s) => console.log("  " + s);
+  console.log("EVAL LOOP - EDITORIAL");
+  console.log("=".repeat(64));
+  say(`reviews    : ${out.reviews_dir}`);
+  say(`generated  : ${out.generated_at}`);
+  console.log("");
+  console.log("SAMPLES");
+  say(`records            : ${out.totals.records}`);
+  say(`observed           : ${out.totals.observed}`);
+  say(`simulated/fixture  : ${out.totals.excluded}  (excluded from every metric)`);
+  say(`N/A with reason    : ${out.totals.na_reasons}`);
+  console.log("");
+  console.log("CRITERIA (0-3, never summed)");
+  for (const c of CRITERIA) say(`${c.padEnd(18)} ${fmt(criteria[c])}`);
+  console.log("");
+  console.log("CREDIBILITY RED LINES");
+  say(`triggered          : ${redLines.triggered}${redLines.triggered ? " -> " + redLines.articles.join(", ") : ""}`);
+  for (const [k, v] of Object.entries(redLines.by_type)) say(`  ${k.padEnd(22)} ${v}`);
+  console.log("");
+  console.log("INTER-REVIEWER");
+  if (interReviewer.status === "not_computed") say("not computed: " + interReviewer.reason);
+  else say(`articles with 2+ reviewers: ${interReviewer.pairs}; mean absolute difference: ${interReviewer.mean_abs_diff?.toFixed(2) ?? "n/a"} (${interReviewer.status})`);
+  console.log("");
+  console.log("REVISION (before -> after)");
+  if (revisions.status === "not_computed") say("not computed: " + revisions.reason);
+  else say(`paired reviews: ${revisions.pairs} (${revisions.status})`);
+  console.log("");
+  console.log("BY LOCALE / BY PROMPT VERSION");
+  for (const g of out.by_locale) say(`locale ${String(g.key).padEnd(6)} n=${g.n}`);
+  for (const g of out.by_prompt) say(`prompt ${String(g.key).padEnd(24)} n=${g.n}`);
+  console.log("");
+  console.log("LIMITS");
+  for (const l of limits) say("- " + l);
+  if (errors.length) {
+    console.log("");
+    console.log("PARSE ERRORS");
+    for (const e of errors) say(`${e.file}: ${e.error}`);
+  }
+  console.log("");
+  console.log(errors.length ? "RESULT: data integrity problems, see PARSE ERRORS" : "RESULT: editorial report from local records only; nothing was fetched");
+  process.exit(errors.length ? 3 : 0);
+}
+
+if (flag("editorial")) {
+  editorialReport();
+}
 /* ---------------------------------------------------------------- output */
 
 const report = {

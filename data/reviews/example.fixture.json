@@ -1,0 +1,41 @@
+{
+  "_note": "NOT A REAL REVIEW. Worked example of the format so the evaluator has something to parse in a clean checkout. provenance=simulated and fixture=true keep it out of every editorial metric.",
+  "review_id": "rev-example-000",
+  "article_id": "example-not-published",
+  "locale": "en",
+  "reviewer_id": "r-example",
+  "reviewed_at": "2026-10-27",
+  "prompt_version": null,
+  "review_type": "blind",
+  "provenance": "simulated",
+  "fixture": true,
+  "scores": {
+    "conclusion": 3,
+    "sourcing": 2,
+    "mechanism": 2,
+    "malaysia_impact": 2,
+    "uncertainty": 2,
+    "actionability": null
+  },
+  "na": {
+    "actionability": "fixture only: an explanatory piece with no reader action, which the rubric allows to be N/A"
+  },
+  "red_lines": {
+    "unsourced_key_fact": false,
+    "unverifiable_number": false,
+    "fabricated_interview": false,
+    "prediction_as_fact": false,
+    "stale_source": false
+  },
+  "red_line_notes": [],
+  "issues": [
+    {
+      "criterion": "sourcing",
+      "problem": "fixture: rate table checked second-hand",
+      "evidence": "fixture data, no document",
+      "suggested_fix": "fixture: read the source document"
+    }
+  ],
+  "revision": { "before": null, "after": null, "revised_at": null },
+  "blind_to": ["prompt_version", "model", "traffic", "other_reviews"]
+}

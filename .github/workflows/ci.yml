@@ -80,6 +80,7 @@ jobs:
         run: |
           node tests/i18n.mjs
           node tests/eval-loop.mjs
+          node tests/editorial.mjs
       - name: Build
         run: pnpm exec astro build
 
