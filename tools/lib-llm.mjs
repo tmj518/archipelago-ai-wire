@@ -29,7 +29,7 @@
  * because they share neither training data nor failure modes. If only one credential is present the
  * pipeline still runs and says so in its report rather than pretending the review was independent.
  */
-import { appendFileSync, mkdirSync, readFileSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
 import { classifyError } from "../src/lib/run-key.mjs";
 import { join, dirname } from "node:path";
 
@@ -395,6 +395,46 @@ export function providerFor(role, avoid) {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+/**
+ * The budget policy, as a pure decision.
+ *
+ * Separated from the file read so it can be tested without touching a real log. Unset, empty or zero
+ * means no ceiling, which is the behaviour local runs already had. A value that is not a finite
+ * non-negative number refuses everything: a misconfigured budget must not become an unlimited one.
+ */
+export function budgetDecision(spent, limit) {
+  if (limit === null || limit === undefined || limit === "") return { allowed: true, reason: "no limit configured" };
+  const n = Number(limit);
+  if (!Number.isFinite(n) || n < 0) return { allowed: false, reason: `invalid budget: ${String(limit)}` };
+  if (n === 0) return { allowed: true, reason: "no limit configured" };
+  if (spent >= n) return { allowed: false, reason: `spend limit reached: ${spent.toFixed(4)} >= ${n}` };
+  return { allowed: true, reason: `${spent.toFixed(4)} of ${n}` };
+}
+
+/**
+ * USD recorded today, read back from the meter.
+ *
+ * Returns Infinity when the log cannot be read: a ceiling that opens because the meter is corrupt is
+ * not a ceiling. `file` exists so tests can point this at a temporary log.
+ */
+export function spendToday(now = new Date(), file = null) {
+  try {
+    const p = file ?? process.env.AGENT_USAGE_LOG ?? join(ROOT, "logs", "usage.jsonl");
+    if (!existsSync(p)) return 0;
+    const day = now.toISOString().slice(0, 10);
+    let total = 0;
+    for (const line of readFileSync(p, "utf8").split("\n")) {
+      if (!line.trim()) continue;
+      let r;
+      try { r = JSON.parse(line); } catch { continue; }
+      if (typeof r.at === "string" && r.at.slice(0, 10) === day && typeof r.estimatedUsd === "number") total += r.estimatedUsd;
+    }
+    return total;
+  } catch {
+    return Number.POSITIVE_INFINITY;
+  }
+}
+
 function meter(entry) {
   /*
    * The accounting file answers "which task, which attempt, which kind of failure" - not "what was
@@ -433,6 +473,21 @@ function meter(entry) {
  */
 export async function ask({ role = "writer", model: modelOverride = "", messages, system, temperature = 0.2, maxTokens = 8192, avoidProvider = null, retries = 2, tools = null, toolChoice = null, runId = null, taskKey = null }) {
   const providerName = providerFor(role, avoidProvider);
+
+  /*
+   * The ceiling, checked before any request is made. It reads the meter rather than a counter in
+   * memory, so a retry loop and a second role share one number.
+   *
+   * Limit: this is not a hard cross-process cap. Two processes that start at the same moment can
+   * both read a total below the limit and both proceed, so the overshoot is bounded by "one run's
+   * spend" rather than zero. A true cap needs a lock or a single writer; neither exists here.
+   */
+  const spentToday = spendToday();
+  const budget = budgetDecision(spentToday, process.env.AGENT_USD_LIMIT ?? "");
+  if (!budget.allowed) {
+    meter({ at: new Date().toISOString(), runId, taskKey, role, ok: false, error: budget.reason, errorClass: "budget" });
+    return { ok: false, error: budget.reason, spent: spentToday, limit: Number(process.env.AGENT_USD_LIMIT) };
+  }
   if (!providerName) {
     meter({ at: new Date().toISOString(), runId, taskKey, role, ok: false, error: "no provider key present", providers: available() });
     return {
