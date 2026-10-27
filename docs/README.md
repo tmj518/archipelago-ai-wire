@@ -5,6 +5,8 @@ Working documents for this project. Only what is still used to make decisions li
 | File | What it is |
 |---|---|
 | `学习模型_冷启动_2026-10-27.md` | **The binding learning doctrine.** Four sources of learning (external method, public demand, reader feedback, own results) that must not be blended into one score; the six-tool stack and the limit of each; the six questions every article answers; the six-month plan; the three metric groups. Recorded as a decision on 2026-10-27. |
+| `编辑评分表_v1.md` | The rubric a human reviewer scores against: six criteria with an observable anchor at 0, 1, 2 and 3, N/A allowed with a reason, and a separate red-line check that no high score can outvote. No total is ever produced. |
+| `盲评包_第1篇.md` | The blind-review pack for the first article: what the reviewer receives, what is withheld until after scoring, the fill-in form, the form-to-JSON mapping, and the seven-step human protocol. **A form, not a result** — no review has been filed yet. |
 | `选题计划_2026-10-26_首批10题.md` | The first ten candidate subjects: the question each answers, the primary sources, the figures that are already verifiable, and the evidence gap. A plan, not published content. |
 
 The writing brief the pipeline actually reads is not here — it is [`../MASTER_PROMPT.md`](../MASTER_PROMPT.md),
