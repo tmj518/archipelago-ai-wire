@@ -180,3 +180,21 @@ jobs:
           git push origin HEAD:main || true
         env:
           JOB_STATUS: ${{ job.status }}
+
+      - name: Record and announce
+        if: always()
+        continue-on-error: true
+        run: |
+          slug=$(git log -1 --pretty=%s | sed -n 's/^publish: \(.*\)$/\1/p')
+          if [ -z "$slug" ]; then slug=$(ls -1 src/content/blog 2>/dev/null | tail -1 | sed 's/\.md$//'); fi
+          if [ -z "$slug" ]; then
+            node tools/record-publish.mjs --slug=pipeline --status=failed || true
+          elif [ "${{ job.status }}" = "success" ]; then
+            node tools/record-publish.mjs --slug="$slug" --status=published
+          else
+            node tools/record-publish.mjs --slug="$slug" --status=failed
+          fi
+        env:
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_CHAT_ID: ${{ secrets.FEISHU_CHAT_ID }}
