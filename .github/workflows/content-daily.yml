@@ -13,8 +13,9 @@ name: Content day
 
 on:
   schedule:
-    # 23:00 UTC = 07:00 Asia/Kuala_Lumpur the next morning.
-    - cron: "0 23 * * *"
+    # 18:00 UTC = 02:00 Asia/Singapore (UTC+8) the next day. GitHub cron is always UTC and does
+    # not know about time zones, so the conversion is written here rather than assumed.
+    - cron: "0 18 * * *"
   workflow_dispatch:
   # A trigger that needs no API token: changing this one file starts a run. `workflow_dispatch`
   # requires an authenticated call to the Actions API, and the token in use here can push over SSH
