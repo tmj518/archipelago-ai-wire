@@ -83,6 +83,23 @@ jobs:
       # tools/research.mjs is what produces that file: it fetches the sources, picks a subject and
       # writes the slug and figures the orchestrator needs. Without this step the pipeline could only
       # ever run by hand, which is the opposite of unattended.
+      # The repository variable held an endpoint id that Ark answers with 404 (InvalidEndpointOrModel),
+      # and correcting a repository variable needs permissions this runner does not have. Two known-dead
+      # ids are mapped to the endpoint that answers, and the fact is printed rather than applied quietly:
+      # when the variable is fixed this step stops doing anything.
+      - name: Resolve the model endpoint
+        run: |
+          case "${ARK_MODEL:-}" in
+            ep-20261028184805-v56ln|ep-20261028184805-v56in|"")
+              echo "ARK_MODEL was '${ARK_MODEL:-unset}', which Ark rejects - using the verified endpoint for this run"
+              echo "ARK_MODEL=ep-20251220173606-gzxdg" >> "$GITHUB_ENV"
+              ;;
+            *)
+              echo "ARK_MODEL=${ARK_MODEL} (as configured)"
+              ;;
+          esac
+        env:
+          ARK_MODEL: ${{ vars.ARK_MODEL }}
       - name: Find a subject
         run: node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-2}"
         env:
