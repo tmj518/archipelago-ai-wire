@@ -74,6 +74,8 @@ jobs:
           if [ -z "${ARK_BASE_URL:-}" ]; then echo "ARK_BASE_URL unset - using the Ark default host"; fi
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+          ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
           CONTENT_GENERATOR: ${{ vars.CONTENT_GENERATOR }}
           ARK_MODEL: ${{ vars.ARK_MODEL }}
@@ -102,6 +104,8 @@ jobs:
         run: node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-2}"
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+          ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
           AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
           RESEARCH_BUDGET: ${{ vars.RESEARCH_BUDGET }}
@@ -124,6 +128,8 @@ jobs:
           fi
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+          ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
           AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
 
