@@ -101,7 +101,17 @@ jobs:
               ;;
           esac
       - name: Find a subject
-        run: node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-2}"
+        run: |
+            set +e
+            node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-2}"
+            code=$?
+            set -e
+            if [ "$code" = "2" ]; then
+              echo "DUPLICATE-SUBJECT: nothing new to write today; the run ends here and is green"
+              echo "SKIP_SUBJECT=1" >> "$GITHUB_ENV"
+              exit 0
+            fi
+            exit $code
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
           ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
