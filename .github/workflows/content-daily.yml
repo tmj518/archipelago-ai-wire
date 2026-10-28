@@ -158,6 +158,7 @@ jobs:
       # merging it. Pushing to main is what makes Cloudflare Pages build the real site, and the
       # guard in tools/publish-guard.mjs is what keeps a re-run from publishing the same slug twice.
       - name: Publish
+        if: env.SKIP_SUBJECT != '1'
         run: |
           if git diff --quiet; then
             echo "::error::nothing to publish after a successful generation - refusing to report success"
@@ -178,6 +179,7 @@ jobs:
       # Pages needs a minute. If the URL never answers, the run fails and the alert workflow fires -
       # a deployment that silently 404s is the failure this step exists to catch.
       - name: Verify the article is live
+        if: env.SKIP_SUBJECT != '1'
         run: |
           slug=$(git log -1 --pretty=%s | sed -n 's/^publish: \(.*\)$/\1/p')
           url="https://www.toolsai.club/blog/${slug}/"
