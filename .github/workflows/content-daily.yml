@@ -70,8 +70,21 @@ jobs:
           ARK_MODEL: ${{ vars.ARK_MODEL }}
           CONTENT_GENERATOR: ${{ vars.CONTENT_GENERATOR }}
 
-      - name: Generate a draft
-        run: ${{ vars.CONTENT_GENERATOR }}
+      - name: Generate
+        run: |
+          # "exit 0 with nothing produced" is the failure mode that made this workflow look healthy
+          # while publishing nothing: cloud-orchestrator exits 0 and prints "no directive" when
+          # data/directive.json is absent. A green run that generated no article is worse than a red
+          # one, so the number of content files before and after is compared here.
+          before=$(git status --porcelain -- src/content | wc -l)
+          ${{ vars.CONTENT_GENERATOR }}
+          after=$(git status --porcelain -- src/content | wc -l)
+          echo "content changes: before=$before after=$after"
+          if [ "$after" = "0" ]; then
+            echo "::error::the generator exited without producing an article (no directive, or nothing to write)"
+            echo "The pipeline will not publish. This is a configuration or source failure, not a quiet day." >&2
+            exit 1
+          fi
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
           ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
@@ -88,22 +101,41 @@ jobs:
           pnpm exec astro build
           node tools/gate.mjs --fresh
 
-      - name: Open a pull request
-        if: success()
+      # The whole point: an article that passed every gate goes to production without a human
+      # merging it. Pushing to main is what makes Cloudflare Pages build the real site, and the
+      # guard in tools/publish-guard.mjs is what keeps a re-run from publishing the same slug twice.
+      - name: Publish
         run: |
           if git diff --quiet; then
-            echo "no draft produced; nothing to propose"
-            exit 0
+            echo "::error::nothing to publish after a successful generation - refusing to report success"
+            exit 1
           fi
-          git config user.name "content-day"
-          git config user.email "content-day@users.noreply.github.com"
-          branch="draft/content-$(date -u +%Y%m%d)"
-          git checkout -b "$branch"
-          git add src/content data/outcomes logs/usage.jsonl
-          git commit -m "draft: content run $(date -u +%Y-%m-%d)"
-          git push -u origin "$branch"
-          gh pr create --base main --head "$branch" \
-            --title "Draft: content run $(date -u +%Y-%m-%d)" \
-            --body "Generated draft. Not published. Review the sources, then merge or close."
+          git config user.name "archipelago-publisher"
+          git config user.email "publisher@users.noreply.github.com"
+          git add src/content src/lib data/outcomes logs/usage.jsonl
+          slug=$(git diff --cached --name-only | sed -n 's#^src/content/blog/\(.*\)\.md$#\1#p' | head -1)
+          if [ -z "$slug" ]; then
+            echo "::error::no article file staged; refusing to publish an empty change"
+            exit 1
+          fi
+          git commit -m "publish: ${slug}"
+          git push origin HEAD:main
+          echo "published: https://www.toolsai.club/blog/${slug}/" >> "$GITHUB_STEP_SUMMARY"
+
+      # Pages needs a minute. If the URL never answers, the run fails and the alert workflow fires -
+      # a deployment that silently 404s is the failure this step exists to catch.
+      - name: Verify the article is live
+        run: |
+          slug=$(git log -1 --pretty=%s | sed -n 's/^publish: \(.*\)$/\1/p')
+          url="https://www.toolsai.club/blog/${slug}/"
+          echo "waiting for $url"
+          for i in $(seq 1 20); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$url" || true)
+            echo "attempt $i: $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 15
+          done
+          echo "::error::$url did not return 200 within five minutes"
+          exit 1
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
