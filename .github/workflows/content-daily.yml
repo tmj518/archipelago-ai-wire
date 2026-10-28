@@ -16,6 +16,13 @@ on:
     # 23:00 UTC = 07:00 Asia/Kuala_Lumpur the next morning.
     - cron: "0 23 * * *"
   workflow_dispatch:
+  # A trigger that needs no API token: changing this one file starts a run. `workflow_dispatch`
+  # requires an authenticated call to the Actions API, and the token in use here can push over SSH
+  # but sees 404 for every repository API - so the only lever available was git itself. Committing a
+  # timestamp to the trigger file is a normal commit, which GitHub already treats as an event.
+  push:
+    paths:
+      - ".github/content-trigger.txt"
 
 permissions:
   contents: write
@@ -154,3 +161,21 @@ jobs:
           exit 1
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # The run's own record, committed back. Without this the only way to learn what happened is the
+      # Actions API, and the token available here cannot read it. Git is the channel that works.
+      - name: Record the outcome
+        if: always()
+        continue-on-error: true
+        run: |
+          mkdir -p data/runs
+          printf '{"at":"%s","sha":"%s","run":"%s","status":"%s"}\n' \
+            "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "${GITHUB_SHA::7}" "${GITHUB_RUN_ID}" "${JOB_STATUS}" \
+            > "data/runs/$(date -u +%Y%m%dT%H%M%S)-${GITHUB_RUN_ID}.json"
+          git config user.name "archipelago-publisher"
+          git config user.email "publisher@users.noreply.github.com"
+          git add data/runs
+          git commit -m "run: record ${GITHUB_RUN_ID} ${JOB_STATUS}" || exit 0
+          git push origin HEAD:main || true
+        env:
+          JOB_STATUS: ${{ job.status }}
