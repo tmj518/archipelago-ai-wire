@@ -1,0 +1,105 @@
+# Data refresh - GSC and Cloudflare Web Analytics, once a day.
+#
+# Fail-closed by design: if a credential is missing the preflight step fails with the exact name that
+# is missing, and nothing downstream runs. It never writes an empty snapshot and calls it a success -
+# that is how `data/gsc` ended up holding thirteen failed runs that looked like data.
+#
+# Persisting the data needs a commit, and committing needs write permission. That is gated behind the
+# repository variable DATA_COMMIT so the default posture stays read-only until someone decides
+# otherwise. Without it the job still collects and reports, and says the data was not persisted.
+
+name: Data refresh
+
+on:
+  schedule:
+    # 21:30 UTC = 05:30 Asia/Kuala_Lumpur the next morning.
+    - cron: "30 21 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+
+      - name: Preflight credentials
+        run: |
+          missing=""
+          [ -z "${GSC_CREDENTIALS:-}" ] && missing="$missing GSC_CREDENTIALS"
+          [ -z "${GSC_SITE_URL:-}" ] && missing="$missing GSC_SITE_URL"
+          [ -z "${CF_ACCOUNT_ID:-}" ] && missing="$missing CF_ACCOUNT_ID"
+          [ -z "${CF_API_TOKEN:-}" ] && missing="$missing CF_API_TOKEN"
+          [ -z "${SITE_HOST:-}" ] && missing="$missing SITE_HOST"
+          if [ -n "$missing" ]; then
+            echo "::error::missing credentials:$missing"
+            echo "Nothing was collected. Configure them in Settings -> Secrets and variables -> Actions." >&2
+            exit 1
+          fi
+          echo "all five credential names present"
+        env:
+          GSC_CREDENTIALS: ${{ secrets.GSC_CREDENTIALS }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          SITE_HOST: ${{ secrets.SITE_HOST }}
+
+      - name: Search Console report
+        run: node tools/gsc-report.mjs --days=28 --json
+        env:
+          GSC_CREDENTIALS: ${{ secrets.GSC_CREDENTIALS }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+          SITE_ORIGIN: https://www.toolsai.club
+
+      - name: Cloudflare Web Analytics snapshot
+        run: node tools/analytics.mjs --fetch --days=28
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          SITE_HOST: ${{ secrets.SITE_HOST }}
+
+      - name: What was collected
+        if: always()
+        run: |
+          echo "## Data refresh" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- gsc files: $(ls data/gsc 2>/dev/null | wc -l)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- analytics files: $(ls data/analytics 2>/dev/null | wc -l)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- persisted: ${{ vars.DATA_COMMIT == 'true' && 'yes' || 'no (set DATA_COMMIT=true to commit)' }}" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Persist the snapshots
+        if: vars.DATA_COMMIT == 'true'
+        run: |
+          git config user.name "data-refresh"
+          git config user.email "data-refresh@users.noreply.github.com"
+          git add data/gsc data/analytics
+          if git diff --cached --quiet; then
+            echo "nothing new to persist"
+          else
+            git commit -m "data: refresh GSC and Cloudflare snapshots"
+            git push
+          fi
+
+      - name: Alert on failure
+        if: failure()
+        run: node tools/notify-feishu.mjs --dry-run
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
