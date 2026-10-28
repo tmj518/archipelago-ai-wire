@@ -1,0 +1,84 @@
+{
+  "at": "2026-10-28T23:31:24.956Z",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "absent, treated as a first run"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "2 of 15 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (2 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "none at /data/directive.json"
+    },
+    {
+      "name": "research",
+      "ok": false,
+      "detail": "no verified subject today (exit 0)"
+    }
+  ],
+  "verdict": "NO-SUBJECT",
+  "reasons": [],
+  "article": null,
+  "commit": null,
+  "usage": null,
+  "route": "script",
+  "categoryActivity": {
+    "economy": 1,
+    "malaysia-impact": 1
+  },
+  "uncoveredSections": [],
+  "researchLog": [
+    "RESEARCH  2026-10-28T23:31:24.998Z",
+    "====================================================================================",
+    "  providers usable: volces, deepseek",
+    "    volces    writer=ARK_API_KEY              reviewer=ARK_REVIEW_API_KEY         ep-20251220173606-gzxdg",
+    "    deepseek  writer=DEEPSEEK_API_KEY         reviewer=DEEPSEEK_API_KEY           deepseek-chat",
+    "    roles: volces writes, deepseek reviews",
+    "    review independent: yes - volces writes, deepseek reviews",
+    "  budget   : $0.40",
+    "  fetches  : up to 4",
+    "  ok    bank-negara                231557B  archived",
+    "  ok    dosm                       626219B  archived",
+    "  ok    mida                       113118B  archived",
+    "  ok    ministry-of-finance        127248B  archived",
+    "  ok    bank-negara-article         10740B  article archived",
+    "  ok    bank-negara-article        208754B  article archived",
+    "  ok    bank-negara-article        208965B  article archived",
+    "  ok    bank-negara-article        208929B  article archived",
+    "  ok    dosm-article               105686B  article archived",
+    "  ok    dosm-article                94808B  article archived",
+    "  ok    dosm-article                93107B  article archived",
+    "  ok    dosm-article                92849B  article archived",
+    "  articles : 8 followed from the listings",
+    "  ledger: 2 published subject(s) to avoid repeating",
+    "  proposing a subject from 5 archived document(s)...",
+    "  stream      : the endpoint answered as SSE, 113 delta(s) joined",
+    "  endpoint    : ep-20251220173606-gzxdg replied with 372 characters but no document structure, trying the next one",
+    "  spent   : ~0.0010  (ceiling 0.40)",
+    "  model   : volces/ep-20251220173606-gzxdg",
+    "  feasible: false",
+    "  reason  : The documents contain only one cost figure (the OPR at 2.75%) and no second cost figure, so the requirement of at least two figures is not met.",
+    "  The documents do not support an article today. That is the answer, and no directive was",
+    "  written. A day without a qualifying subject is a day without an article."
+  ]
+}
