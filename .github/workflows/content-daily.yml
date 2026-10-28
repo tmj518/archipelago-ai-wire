@@ -112,6 +112,7 @@ jobs:
           RESEARCH_SOURCES: ${{ vars.RESEARCH_SOURCES }}
 
       - name: Generate
+        if: env.SKIP_SUBJECT != '1'
         run: |
           # "exit 0 with nothing produced" is the failure mode that made this workflow look healthy
           # while publishing nothing: cloud-orchestrator exits 0 and prints "no directive" when
