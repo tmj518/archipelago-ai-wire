@@ -51,7 +51,7 @@ const denied = await m.sendMessage({ appId: "a", appSecret: "b", receiveId: "oc_
 rec("send: 403 is not retried", denied.ok === false && denied.attempts === 1, JSON.stringify(denied));
 
 /* redaction */
-rec("redact: hides the middle", m.redact("hJOrmsMQToVAya2v2zDQbcUuuoE6xE4Z").includes("***"));
+rec("redact: hides the middle", m.redact("fake-secret-for-redaction-test-0123456789").includes("***"));
 rec("redact: short values fully hidden", m.redact("abc") === "***");
 rec("redact: empty stays empty", m.redact(undefined) === "");
 
