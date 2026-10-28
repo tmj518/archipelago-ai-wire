@@ -44,19 +44,30 @@ jobs:
 
       - name: Preflight
         run: |
+          # What the code actually needs: a key, an endpoint id (Ark's `model` field takes an ep-...
+          # endpoint, not a model name), and the generator command. ARK_BASE_URL is NOT required -
+          # lib-llm.mjs defaults to https://ark.cn-beijing.volces.com/api/v3 - so demanding it here
+          # failed runs that were perfectly configured.
           missing=""
-          [ -z "${ARK_API_KEY:-}" ] && missing="$missing ARK_API_KEY"
-          [ -z "${ARK_BASE_URL:-}" ] && missing="$missing ARK_BASE_URL"
-          [ -z "${CONTENT_GENERATOR:-}" ] && missing="$missing vars.CONTENT_GENERATOR"
+          [ -z "${ARK_API_KEY:-}" ] && missing="$missing ARK_API_KEY(secret)"
+          [ -z "${ARK_MODEL:-}" ] && missing="$missing ARK_MODEL(variable)"
+          [ -z "${CONTENT_GENERATOR:-}" ] && missing="$missing CONTENT_GENERATOR(variable)"
           if [ -n "$missing" ]; then
             echo "::error::content generation is not configured:$missing"
             echo "No article was generated. This is a configuration failure, not a content failure." >&2
             exit 1
           fi
+          case "$ARK_MODEL" in
+            ep-*) : ;;
+            *) echo "::error::ARK_MODEL must be an Ark endpoint id (ep-...), not a model name: got '${ARK_MODEL}'"; exit 1 ;;
+          esac
           echo "generator: $CONTENT_GENERATOR"
+          echo "endpoint:  $ARK_MODEL"
+          if [ -z "${ARK_BASE_URL:-}" ]; then echo "ARK_BASE_URL unset - using the Ark default host"; fi
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
           ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
+          ARK_MODEL: ${{ vars.ARK_MODEL }}
           CONTENT_GENERATOR: ${{ vars.CONTENT_GENERATOR }}
 
       - name: Generate a draft
