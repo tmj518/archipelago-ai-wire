@@ -75,7 +75,6 @@ jobs:
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
           ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
-          ARK_MODEL: ${{ vars.ARK_MODEL }}
           CONTENT_GENERATOR: ${{ vars.CONTENT_GENERATOR }}
 
       # The missing link in the chain. cloud-orchestrator decides *whether* to publish; it does not
@@ -99,13 +98,11 @@ jobs:
               ;;
           esac
         env:
-          ARK_MODEL: ${{ vars.ARK_MODEL }}
       - name: Find a subject
         run: node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-2}"
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
           ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
-          ARK_MODEL: ${{ vars.ARK_MODEL }}
           AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
           RESEARCH_BUDGET: ${{ vars.RESEARCH_BUDGET }}
           RESEARCH_SOURCES: ${{ vars.RESEARCH_SOURCES }}
@@ -128,7 +125,6 @@ jobs:
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
           ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
-          ARK_MODEL: ${{ vars.ARK_MODEL }}
           AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
 
       - name: Quality gates on the draft
