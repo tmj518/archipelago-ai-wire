@@ -105,8 +105,14 @@ export const STRUCTURE = `The article must have this exact shape.
 
 Frontmatter fields: title, subtitle, description, publishDate, reviewBy, stakes, category, audience,
 tags, priority, featured, draft, target_keyword, search_intent, information_gain, sources, figures.
+stakes is one of exactly two words: priced or directional. It is not a sentence and not a judgement
+about importance - priced means the change lands on an invoice, directional means it points a way.
+priority is one of exactly three values: P0, P1 or P2. It is a triage label, not a number.
 The legal categories, in the order the site publishes them, are: ${CATEGORY_SLUGS.join(", ")}.
 The audience is one of the six reader values in the directive. Use the values you were given exactly.
+
+
+figures must be copied from the directive, one entry per figure, with every part the directive gave you - a draft with an empty figures array is rejected. reviewBy is YYYY-MM-DD with no surrounding quotes, for example 2026-11-30. The body must contain one markdown table with at least four rows - header row, separator row and at least two data rows - comparing the rates, amounts or options the piece discusses; every number in it must come from the figures you were given. A draft with no table is rejected.
 
 Body sections. These headings are checked literally; every one below is required:
 

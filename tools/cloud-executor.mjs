@@ -351,6 +351,20 @@ function exemplars(n = 2) {
   return out;
 }
 
+/**
+ * Repair is not implemented.
+ *
+ * This was called but never defined, so any draft with a schema violation crashed the writer with a
+ * ReferenceError instead of being refused - the run reported WRITE-FAILED with no statement of what
+ * was wrong. Returning null keeps the existing behaviour after the call ("the writer did not return
+ * a usable fix, refusing the draft") without pretending the repair happened.
+ *
+ * Implementing it means asking the model to rewrite only the flagged fields and re-validating; that
+ * is a real feature with its own failure modes, not a stub to invent inside a crash fix.
+ */
+async function repairFrontmatter() {
+  return null;
+}
 async function main() {
   const directive = parseDirective();
   if (!directive) {

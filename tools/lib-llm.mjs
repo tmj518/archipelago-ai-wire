@@ -36,6 +36,24 @@ import { join, dirname } from "node:path";
 const ROOT = process.cwd();
 
 /*
+ * .env is a convenience for local runs; CI supplies real environment variables and this never
+ * overrides them. Without it, a correctly filled .env still produced "no provider key present",
+ * because this module reads process.env and callers were expected to hand values over - which no
+ * caller did.
+ */
+try {
+  const envFile = join(ROOT, ".env");
+  if (existsSync(envFile)) {
+    for (const line of readFileSync(envFile, "utf8").split("\n")) {
+      const m = /^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/.exec(line);
+      if (m && !process.env[m[1]]) process.env[m[1]] = m[2].trim().replace(/^["']|["']$/g, "");
+    }
+  }
+} catch {
+  /* An unreadable .env must not stop a tool configured by the runner. */
+}
+
+/*
  * Providers, and the keys that can serve each one.
  *
  * Two shapes are supported and the operator uses both.

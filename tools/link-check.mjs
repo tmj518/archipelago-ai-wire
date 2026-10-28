@@ -78,6 +78,18 @@ for (const [slug, targets] of g) {
   for (const t of targets) if (!g.has(t)) missingTargets.push(`${slug} -> ${t}`);
 }
 
+/*
+ * One article cannot have a graph edge, so with fewer than two the orphan test fails on arithmetic
+ * rather than on a mistake. Broken targets are still checked - that part is meaningful at any count -
+ * and the skip is printed rather than passed over in silence.
+ */
+if (slugs.length < 2) {
+  console.log(`  fewer than two articles (${slugs.length}): the orphan test is not applicable; broken targets are still checked`);
+  console.log(`  broken targets     : ${missingTargets.length}`);
+  console.log(missingTargets.length ? "RESULT: broken targets found" : "RESULT: no broken targets; graph test not applicable");
+  process.exit(missingTargets.length ? 1 : 0);
+}
+
 const orphans = slugs.filter((s) => g.get(s).size === 0);
 
 /*
@@ -104,7 +116,19 @@ for (const [slug, targets] of g) {
 const totalLinks = [...g.values()].reduce((a, s) => a + s.size, 0);
 
 if (flag("json")) {
-  console.log(JSON.stringify({ slugs, graph: Object.fromEntries([...g].map(([k, v]) => [k, [...v]])), reciprocal, orphans, missingTargets }, null, 2));
+  /*
+ * With one published article the graph cannot have an edge: every article is an orphan by
+ * definition, so the gate would fail on arithmetic rather than on a mistake. It still checks for
+ * broken targets - that part is meaningful at any count - and says plainly that the orphan test
+ * was skipped and why, rather than passing silently.
+ */
+if (slugs.length < 2) {
+  console.log(`  fewer than two articles (${slugs.length}), so the orphan test is skipped; broken targets are still checked`);
+  console.log(`  broken targets     : ${missingTargets.length}`);
+  console.log(missingTargets.length ? "RESULT: broken targets found" : "RESULT: no broken targets; graph test not applicable");
+  process.exit(missingTargets.length ? 1 : 0);
+}
+console.log(JSON.stringify({ slugs, graph: Object.fromEntries([...g].map(([k, v]) => [k, [...v]])), reciprocal, orphans, missingTargets }, null, 2));
   process.exit(orphans.length || reciprocal.length || missingTargets.length ? 1 : 0);
 }
 
