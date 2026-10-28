@@ -97,7 +97,6 @@ jobs:
               echo "ARK_MODEL=${ARK_MODEL} (as configured)"
               ;;
           esac
-        env:
       - name: Find a subject
         run: node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-2}"
         env:
