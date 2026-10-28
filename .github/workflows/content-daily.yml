@@ -76,6 +76,7 @@ jobs:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
           ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
           CONTENT_GENERATOR: ${{ vars.CONTENT_GENERATOR }}
+          ARK_MODEL: ${{ vars.ARK_MODEL }}
 
       # The missing link in the chain. cloud-orchestrator decides *whether* to publish; it does not
       # decide *what* to publish, and exits with "no directive" when data/directive.json is absent.
