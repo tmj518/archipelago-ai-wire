@@ -156,6 +156,8 @@ For the broader economy, the hold supports the growth forecast. The central bank
 - **A small business owner with an overdraft or term loan:** your interest cost is unchanged. The hold gives you a stable cost base for the next few months of planning.
 
 ## The data point
+
+The demographic trend that sits behind these rates is in [our reading of DOSM's 2010-2019 vital statistics](/blog/malaysia-births-deaths-2010-2019-vital-statistics/).
 Every figure in this piece is listed with its date on the [sources page](/sources/), and the wider picture sits under [economy](/category/economy/).
 
 

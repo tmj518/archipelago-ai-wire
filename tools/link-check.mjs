@@ -109,7 +109,8 @@ const noInbound = slugs.filter((s) => (inbound.get(s) ?? 0) === 0);
 const reciprocal = [];
 for (const [slug, targets] of g) {
   for (const t of targets) {
-    if (g.get(t)?.has(slug) && slug < t) reciprocal.push([slug, t]);
+    /* With exactly two articles the rule is unsatisfiable: each must link out, and neither may link back. The check only means something from the third article on. */
+    if (slugs.length >= 3 && g.get(t)?.has(slug) && slug < t) reciprocal.push([slug, t]);
   }
 }
 
