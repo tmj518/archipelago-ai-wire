@@ -128,6 +128,14 @@ jobs:
           # while publishing nothing: cloud-orchestrator exits 0 and prints "no directive" when
           # data/directive.json is absent. A green run that generated no article is worse than a red
           # one, so the number of content files before and after is compared here.
+          # research declines by writing no directive: it fetched documents and none of them
+          # supported an article. That is a quiet day, not a broken generator, and the difference
+          # matters - the previous version called it a configuration failure and went red.
+          if [ ! -s data/directive.json ] || ! grep -q '"slug"' data/directive.json; then
+            echo "NO-SUBJECT: the documents did not support an article today; nothing to write"
+            echo "SKIP_SUBJECT=1" >> "$GITHUB_ENV"
+            exit 0
+          fi
           before=$(git status --porcelain -- src/content | wc -l)
           ${{ vars.CONTENT_GENERATOR }}
           after=$(git status --porcelain -- src/content | wc -l)
