@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T17:01:51.523Z",
+  "at": "2026-10-29T17:07:49.007Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,25 +28,20 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "federal-allocations-sabah-sarawak-increase-2027 from /data/directive.json"
+      "detail": "sabah-sarawak-special-grant-rm1-5-billion-2027-budget from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
-      "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
-    },
-    {
-      "name": "writer (revision 1)",
       "ok": true,
-      "detail": "draft at /data/drafts/federal-allocations-sabah-sarawak-increase-2027.md"
+      "detail": "draft at /data/drafts/sabah-sarawak-special-grant-rm1-5-billion-2027-budget.md"
     },
     {
-      "name": "reviewer (revision 1)",
+      "name": "reviewer",
       "ok": false,
       "detail": "no parseable verdict"
     },
@@ -58,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/federal-allocations-sabah-sarawak-increase-2027.md"
+      "detail": "staged at src/content/blog/sabah-sarawak-special-grant-rm1-5-billion-2027-budget.md"
     },
     {
       "name": "registry",
@@ -78,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "federal-allocations-sabah-sarawak-increase-2027",
+  "article": "sabah-sarawak-special-grant-rm1-5-billion-2027-budget",
   "commit": null,
   "usage": {
-    "calls": 3,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0038,
-    "promptTokens": 13716,
-    "completionTokens": 8145
+    "usd": 0.0088,
+    "promptTokens": 10328,
+    "completionTokens": 5445
   },
   "route": "script",
   "categoryActivity": {
@@ -93,5 +88,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 71
+  "seconds": 25
 }
