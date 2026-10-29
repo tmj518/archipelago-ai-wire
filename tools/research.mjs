@@ -331,7 +331,7 @@ for (const [url, label, why] of CANDIDATES) {
   } catch (e) {
     out = `${e.stdout ?? ""}${e.stderr ?? ""}`;
   }
-  const ok = /^\s+ok\s/m.test(out);
+  let ok = /^\s+ok\s/m.test(out);
   const file = /archived: (\S+)/.exec(out)?.[1] ?? null;
   const bytes = Number(/ok\s+\d+\s+(\d+) bytes/.exec(out)?.[1] ?? /FAIL\s+\d+\s+(\d+) bytes/.exec(out)?.[1] ?? 0);
   console.log(`  ${ok ? "ok  " : "skip"}  ${label.padEnd(24)} ${String(bytes).padStart(8)}B  ${ok ? "archived" : "not usable (recorded anyway)"}`);
@@ -444,10 +444,36 @@ for (const page of fetched) {
     } catch (e) {
       out = `${e.stdout ?? ""}${e.stderr ?? ""}`;
     }
-    const ok = /^\s+ok\s/m.test(out);
+    let ok = /^\s+ok\s/m.test(out);
     const file = /archived: (\S+)/.exec(out)?.[1] ?? null;
     const bytes = Number(/ok\s+\d+\s+(\d+) bytes/.exec(out)?.[1] ?? 0);
     console.log(`  ${ok ? "ok  " : "skip"}  ${label.padEnd(24)} ${String(bytes).padStart(8)}B  ${ok ? "article archived" : "not usable"}`);
+    /*
+     * A 200 and 128 KB says nothing about whether this is an article: MITI answered with a
+     * navigation menu that archived cleanly and could not support a sentence. Drop the chrome,
+     * then let length, numbers and navigation density decide.
+     */
+    if (ok && file) {
+      let text = "";
+      try {
+        const raw = readFileSync(join(ROOT, file), "utf8");
+        text = raw
+          .replace(/<script[\s\S]*?<\/script>/gi, " ")
+          .replace(/<style[\s\S]*?<\/style>/gi, " ")
+          .replace(/<(nav|header|footer|aside)[\s\S]*?<\/\1>/gi, " ")
+          .replace(/<[^>]+>/g, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+      } catch { text = ""; }
+      const digits = (text.match(/\d+(?:\.\d+)?/g) ?? []).length;
+      const navHits = (text.match(/\b(menu|home|contact|sitemap|privacy|terms|login|search|careers|procurement|tender|directory|archive|subscribe|download|print|share)\b/gi) ?? []).length;
+      const navDensity = text.length ? (navHits * 1000) / text.length : 0;
+      if (text.length < 2500 || digits < 5 || navDensity > 2.2) {
+        ok = false;
+        console.log(`       rejected: ${text.length} chars, ${digits} numbers, nav ${navDensity.toFixed(1)}/1k`);
+      }
+    }
+
     if (ok && file) articles.push({ url: link, label, why: `an article linked from ${page.label}`, file: file.replace(/\\/g, "/"), bytes });
   }
 }
