@@ -29,14 +29,19 @@ export const SITE_URL =
 
 export const SITE = {
   url: SITE_URL,
-  name: "Archipelago AI Wire",
-  /** Rendered as "Archipelago <em>AI Wire</em>" in the logo. */
-  nameHead: "Archipelago",
-  nameTail: "AI Wire",
-  title: "Archipelago AI Wire — the world, explained for Malaysia",
+  /*
+   * The display name, in English, for "大马看世界". The tagline below it is the English rendering of
+   * "看懂世界，读懂大马". Kept in one object because the logo, the <title>, the meta description and the
+   * footer all read from here - a brand that lives in five strings drifts within a month.
+   */
+  name: "Malaysia Sees the World",
+  /** Rendered as "Malaysia <em>Sees the World</em>" in the logo. */
+  nameHead: "Malaysia",
+  nameTail: "Sees the World",
+  title: "Malaysia Sees the World — the world, explained",
   /** Kept under ~140 chars: this doubles as the meta description. */
   description:
-    "What is happening in the world, why it is happening, and what it means for Malaysia — explained in plain language, with sourced numbers.",
+    "What is happening in the world, why, and what it means for Malaysia — in plain language, with a source and a date on every figure.",
   language: "en",
   /**
    * Newsletter form target.
