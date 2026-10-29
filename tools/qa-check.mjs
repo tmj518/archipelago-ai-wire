@@ -739,7 +739,15 @@ const V6_2_FROM = "2026-10-08";
       w === "may" ? bodyNoPermissiveMay : body,
     ),
   );
-  vague.length === 0 ? add("pass", "no hedging words", "clean") : add("block", "no hedging words", vague.join(", "));
+  /* Name the sentence, not only the word: the writer is told the banned list already and still
+     uses them, and "might" alone does not say which claim reads as a guess. */
+  if (vague.length === 0) {
+    add("pass", "no hedging words", "clean");
+  } else {
+    const first = vague[0];
+    const sentence = (body.match(new RegExp(`[^.]*\\b${first}\\b[^.]*\\.`)) || [""])[0].trim().slice(0, 160);
+    add("block", "no hedging words", `${first} — in: ${sentence}`);
+  }
   const permissive = (body.match(new RegExp(PERMISSIVE_VERBS.source, "gi")) || []).length;
   if (permissive) add("pass", "permissive 'may' not treated as a hedge", `${permissive} instance(s)`);
 
