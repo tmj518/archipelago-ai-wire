@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T13:02:50.895Z",
+  "at": "2026-10-29T13:15:38.950Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "melaka-state-election-november-14-2026-polling-day from /data/directive.json"
+      "detail": "sabah-sarawak-special-grant-rm1-5-billion-2027-budget from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -42,44 +42,32 @@
     },
     {
       "name": "writer (revision 1)",
-      "ok": true,
-      "detail": "draft at /data/drafts/melaka-state-election-november-14-2026-polling-day.md"
-    },
-    {
-      "name": "reviewer (revision 1)",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: 3R review                              race, religion or royalty subje"
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
       "name": "writer (revision 2)",
-      "ok": true,
-      "detail": "draft at /data/drafts/melaka-state-election-november-14-2026-polling-day.md"
-    },
-    {
-      "name": "reviewer (revision 2)",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: 3R review                              race, religion or royalty subje"
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict REJECTED"
+      "detail": "verdict WRITE-FAILED"
     }
   ],
-  "verdict": "REJECTED",
+  "verdict": "WRITE-FAILED",
   "reasons": [
-    "the reviewer did not approve",
-    "no attempt improved on the first (scores 101 -> 101), so the objections are probably not mechanical",
-    "objection: {\"fix\":\"3R review                              race, religion or royalty subje\"}"
+    "the writer's draft violates the content schema on every attempt (3), so the limits are not reaching the model"
   ],
   "article": null,
   "commit": null,
   "usage": {
-    "calls": 5,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0211,
-    "promptTokens": 26969,
-    "completionTokens": 12538
+    "usd": 0.0183,
+    "promptTokens": 17982,
+    "completionTokens": 12237
   },
   "route": "script",
   "categoryActivity": {
@@ -87,39 +75,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "attempts": [
-    {
-      "attempt": 2,
-      "score": 101,
-      "verdict": "REJECTED",
-      "issues": [
-        {
-          "fix": "3R review                              race, religion or royalty subje"
-        }
-      ]
-    },
-    {
-      "attempt": 3,
-      "score": 101,
-      "verdict": "REJECTED",
-      "issues": [
-        {
-          "fix": "3R review                              race, religion or royalty subje"
-        }
-      ]
-    }
-  ],
-  "qa": {
-    "verdict": "REJECTED",
-    "layers": {
-      "L1": {
-        "pass": false,
-        "detail": "strict check as a published file: 3R review                              race, religion or royalty subje"
-      },
-      "L5": {
-        "pass": true
-      }
-    }
-  },
-  "seconds": 62
+  "seconds": 66
 }
