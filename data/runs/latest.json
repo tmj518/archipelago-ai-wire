@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T04:47:23.710Z",
+  "at": "2026-10-29T05:23:53.611Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,37 +28,42 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "kelantan-illegal-mining-100-probes-2024-2026 from /data/directive.json"
+      "detail": "tuju-waze-ban-1-7-million-civil-servants from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/tuju-waze-ban-1-7-million-civil-servants.md"
+    },
+    {
+      "name": "reviewer",
       "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
+      "detail": "REJECTED: L1 strict check as a published file: calculation shown to reader            declares custom-calculation but; FAQ 3-5 questions, 80-150 word answers 0 questions; comparison table present               0 table rows; no hedging words       "
     },
     {
       "name": "writer (revision 1)",
       "ok": true,
-      "detail": "draft at /data/drafts/kelantan-illegal-mining-100-probes-2024-2026.md"
+      "detail": "draft at /data/drafts/tuju-waze-ban-1-7-million-civil-servants.md"
     },
     {
       "name": "reviewer (revision 1)",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: calculation shown to reader            declares custom-calculation but; AI summary 40-100 words                111 words; FAQ 3-5 questions, 80-150 word answers 0 questions"
+      "detail": "REJECTED: L1 strict check as a published file: calculation shown to reader            declares custom-calculation but; FAQ 3-5 questions, 80-150 word answers 0 questions; comparison table present               0 table rows; no hedging words       "
     },
     {
       "name": "writer (revision 2)",
       "ok": true,
-      "detail": "draft at /data/drafts/kelantan-illegal-mining-100-probes-2024-2026.md"
+      "detail": "draft at /data/drafts/tuju-waze-ban-1-7-million-civil-servants.md"
     },
     {
       "name": "reviewer (revision 2)",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: calculation shown to reader            declares custom-calculation but; AI summary 40-100 words                111 words; FAQ 3-5 questions, 80-150 word answers 0 questions"
+      "detail": "REJECTED: L1 strict check as a published file: calculation shown to reader            declares custom-calculation but; FAQ 3-5 questions, 80-150 word answers 0 questions; comparison table present               0 table rows; no hedging words       "
     },
     {
       "name": "state written",
@@ -69,16 +74,16 @@
   "verdict": "REJECTED",
   "reasons": [
     "the reviewer did not approve",
-    "no attempt improved on the first (scores 103 -> 103), so the objections are probably not mechanical"
+    "no attempt improved on the first (scores 104 -> 104 -> 104), so the objections are probably not mechanical"
   ],
   "article": null,
   "commit": null,
   "usage": {
     "calls": 12,
     "failed": 8,
-    "usd": 0.0166,
-    "promptTokens": 18806,
-    "completionTokens": 10464
+    "usd": 0.0162,
+    "promptTokens": 22893,
+    "completionTokens": 9096
   },
   "route": "script",
   "categoryActivity": {
@@ -88,34 +93,59 @@
   "uncoveredSections": [],
   "attempts": [
     {
-      "attempt": 2,
-      "score": 103,
+      "attempt": 1,
+      "score": 104,
       "verdict": "REJECTED",
       "issues": [
         {
           "fix": "calculation shown to reader            declares custom-calculation but"
         },
         {
-          "fix": "AI summary 40-100 words                111 words"
+          "fix": "FAQ 3-5 questions, 80-150 word answers 0 questions"
+        },
+        {
+          "fix": "comparison table present               0 table rows"
+        },
+        {
+          "fix": "no hedging words                       perhaps"
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "score": 104,
+      "verdict": "REJECTED",
+      "issues": [
+        {
+          "fix": "calculation shown to reader            declares custom-calculation but"
         },
         {
           "fix": "FAQ 3-5 questions, 80-150 word answers 0 questions"
+        },
+        {
+          "fix": "comparison table present               0 table rows"
+        },
+        {
+          "fix": "no hedging words                       perhaps"
         }
       ]
     },
     {
       "attempt": 3,
-      "score": 103,
+      "score": 104,
       "verdict": "REJECTED",
       "issues": [
         {
           "fix": "calculation shown to reader            declares custom-calculation but"
         },
         {
-          "fix": "AI summary 40-100 words                111 words"
+          "fix": "FAQ 3-5 questions, 80-150 word answers 0 questions"
         },
         {
-          "fix": "FAQ 3-5 questions, 80-150 word answers 0 questions"
+          "fix": "comparison table present               0 table rows"
+        },
+        {
+          "fix": "no hedging words                       perhaps"
         }
       ]
     }
@@ -125,12 +155,12 @@
     "layers": {
       "L1": {
         "pass": false,
-        "detail": "strict check as a published file: calculation shown to reader            declares custom-calculation but; AI summary 40-100 words                111 words; FAQ 3-5 questions, 80-150 word answers 0 questions"
+        "detail": "strict check as a published file: calculation shown to reader            declares custom-calculation but; FAQ 3-5 questions, 80-150 word answers 0 questions; comparison table present               0 table rows; no hedging words       "
       },
       "L5": {
         "pass": true
       }
     }
   },
-  "seconds": 60
+  "seconds": 45
 }
