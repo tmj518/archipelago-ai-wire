@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T22:52:22.921Z",
+  "at": "2026-10-29T22:59:49.538Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sabah-sarawak-special-grant-rm1-5-billion-2027-budget from /data/directive.json"
+      "detail": "sabah-sarawak-special-grants-2027-budget from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -38,7 +38,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/sabah-sarawak-special-grant-rm1-5-billion-2027-budget.md"
+      "detail": "draft at /data/drafts/sabah-sarawak-special-grants-2027-budget.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/sabah-sarawak-special-grant-rm1-5-billion-2027-budget.md"
+      "detail": "staged at src/content/blog/sabah-sarawak-special-grants-2027-budget.md"
     },
     {
       "name": "registry",
@@ -63,7 +63,7 @@
     {
       "name": "inbound links",
       "ok": true,
-      "detail": "2 older article(s) now link here"
+      "detail": "no candidate needed one"
     },
     {
       "name": "state written",
@@ -73,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "sabah-sarawak-special-grant-rm1-5-billion-2027-budget",
+  "article": "sabah-sarawak-special-grants-2027-budget",
   "commit": null,
   "usage": {
-    "calls": 2,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0047,
-    "promptTokens": 10275,
-    "completionTokens": 4940
+    "usd": 0.0117,
+    "promptTokens": 18196,
+    "completionTokens": 6207
   },
   "route": "script",
   "categoryActivity": {
@@ -88,5 +88,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 37
+  "seconds": 31
 }
