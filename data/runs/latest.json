@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T22:59:49.538Z",
+  "at": "2026-10-29T23:18:28.349Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "3 of 15 net-new this week"
+      "detail": "4 of 15 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,21 +28,21 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sabah-sarawak-special-grants-2027-budget from /data/directive.json"
+      "detail": "pet-tax-relief-budget-2027-savings from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/sabah-sarawak-special-grants-2027-budget.md"
+      "detail": "draft at /data/drafts/pet-tax-relief-budget-2027-savings.md"
     },
     {
       "name": "reviewer",
-      "ok": false,
+      "ok": true,
       "detail": "no parseable verdict"
     },
     {
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/sabah-sarawak-special-grants-2027-budget.md"
+      "detail": "staged at src/content/blog/pet-tax-relief-budget-2027-savings.md"
     },
     {
       "name": "registry",
@@ -63,7 +63,7 @@
     {
       "name": "inbound links",
       "ok": true,
-      "detail": "no candidate needed one"
+      "detail": "1 older article(s) now link here"
     },
     {
       "name": "state written",
@@ -73,20 +73,20 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "sabah-sarawak-special-grants-2027-budget",
+  "article": "pet-tax-relief-budget-2027-savings",
   "commit": null,
   "usage": {
     "calls": 3,
     "failed": 0,
-    "usd": 0.0117,
-    "promptTokens": 18196,
-    "completionTokens": 6207
+    "usd": 0.0074,
+    "promptTokens": 19788,
+    "completionTokens": 4704
   },
   "route": "script",
   "categoryActivity": {
     "economy": 2,
-    "malaysia-impact": 1
+    "malaysia-impact": 2
   },
   "uncoveredSections": [],
-  "seconds": 31
+  "seconds": 27
 }
