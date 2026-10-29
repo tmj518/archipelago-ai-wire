@@ -701,12 +701,55 @@ function downgradeCalculationClaim(article) {
   return { article: out, changed: true };
 }
 
+/*
+ * The FAQ is content, not decoration.
+ *
+ * The reviewer asks for three to five questions with answers of eighty to a hundred and fifty words,
+ * and a draft with none was rejected twice on that rule alone. Code cannot invent the answers, and
+ * inventing them would defeat the point, so the questions are asked of the model from the article it
+ * has already written - one extra call whose input is the finished draft - and the section is then
+ * assembled here, so the heading, the numbering and the word counts are not left to chance.
+ */
+async function assembleFaq(article) {
+  if (/^##\s*FAQ\b/m.test(article)) return { article, added: false };
+  const body = article.replace(/^---[\s\S]*?\n---\n/, "").slice(0, 9000);
+  const r = await askJson({
+    role: "writer",
+    system:
+      "You write the FAQ for an article that is already finished. Use only facts stated in the article " +
+      "you are given. Do not add numbers, sources, names or events that are not already in it. " +
+      "Return one JSON object and nothing else: {\"faq\":[{\"q\":\"...\",\"a\":\"...\"}]} with three to five " +
+      "entries. Each answer must be between 80 and 150 words, in plain declarative English, and must " +
+      "actually answer the question rather than restate the heading.",
+    messages: [{ role: "user", content: body }],
+    maxTokens: 1400,
+  });
+  const faq = Array.isArray(r?.json?.faq) ? r.json.faq : [];
+  if (faq.length < 3) return { article, added: false };
+
+  const wordCount = (t) => String(t ?? "").trim().split(/\s+/).filter(Boolean).length;
+  const usable = faq
+    .filter((e) => e && typeof e.q === "string" && typeof e.a === "string" && /[?.]$/.test(e.q.trim()))
+    .filter((e) => wordCount(e.a) >= 80 && wordCount(e.a) <= 150);
+  if (usable.length < 3) {
+    console.log(`  faq       : skipped, ${usable.length} of ${faq.length} answers stayed inside 80-150 words`);
+    return { article, added: false };
+  }
+
+  const section = "\n## FAQ\n\n" + usable.slice(0, 5).map((e) => `**${e.q.trim()}**\n\n${e.a.trim()}`).join("\n\n") + "\n";
+  const at = article.indexOf("## How we calculated this");
+  const withFaq = at === -1 ? article.trimEnd() + "\n" + section : article.slice(0, at) + section.trimStart() + "\n" + article.slice(at);
+  return { article: withFaq, added: true, questions: usable.length };
+}
+
   const calcFix = downgradeCalculationClaim(article);
   if (calcFix.changed) { article = calcFix.article; console.log("  calc      : claim downgraded to cross-source, no calculation section in the draft"); }
   const figFix = injectDirectiveFigures(article);
   if (figFix.added) { article = figFix.article; console.log("  figures   : injected from the directive"); }
   const tableFix = ensureFiguresTable(article);
   if (tableFix.added) { article = tableFix.article; console.log("  table     : generated from the figures in the frontmatter"); }
+  const faqFix = await assembleFaq(article);
+  if (faqFix.added) { article = faqFix.article; console.log(`  faq       : ${faqFix.questions} questions assembled from the draft`); }
   let violations = schemaViolations(article);
 
   console.log(`  provider  : ${r.provider} / ${r.model}`);
