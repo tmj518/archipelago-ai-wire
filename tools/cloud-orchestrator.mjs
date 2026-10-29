@@ -139,19 +139,47 @@ function alreadyPublishedToday() {
      * topic. A duplicate run of latest.json is harmless - it carries the same verdict as the dated copy.
      */
     if (!f.endsWith(".json")) continue;
+    let j;
     try {
-      const j = JSON.parse(readFileSync(join(dir, f), "utf8"));
-      const when = new Date(new Date(j.at).getTime() + 8 * 3600 * 1000).toISOString().slice(0, 10);
-      /*
-       * Route-scoped. The guard asks "has THIS route published today", not "has anything published today", because
-       * the two routes are supposed to produce two articles. A global check would mean the agent never runs on any day
-       * the script succeeded - which is every day the system works, and therefore always.
-       */
-      if (j.route && j.route !== "script") continue;
-      if (when === beijing && /^PUBLISHED/.test(String(j.verdict ?? ""))) {
-        return { slug: j.article ?? j.slug ?? "?", at: j.at };
-      }
-    } catch {}
+      j = JSON.parse(readFileSync(join(dir, f), "utf8"));
+    } catch {
+      continue;
+    }
+    const when = new Date(new Date(j.at).getTime() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+    /*
+     * Route-scoped. The guard asks "has THIS route published today", not "has anything published today", because
+     * the two routes are supposed to produce two articles. A global check would mean the agent never runs on any day
+     * the script succeeded - which is every day the system works, and therefore always.
+     */
+    if (j.route && j.route !== "script") continue;
+    if (when !== beijing) continue;
+    if (!/^PUBLISHED/.test(String(j.verdict ?? ""))) continue;
+
+    /*
+     * The journal is a claim; the collection is the fact.
+     *
+     * PUBLISHED in a run journal only means the draft was written to src/content/blog. The commit and
+     * the deployment happen afterwards, and a step that failed in between leaves a journal entry for a
+     * publication nobody can read: on 2026-10-29 deepavali-price-scheme-2026-11-items-nov-4-10 was
+     * recorded PUBLISHED, never reached main, and made every later run exit in a second while the site
+     * gained nothing. So the answer comes from git HEAD, not from this file.
+     *
+     * A git failure is not "not published": if the check cannot run, say so and stop, because guessing
+     * in that direction republishes the same article and guessing the other way silently skips a day.
+     */
+    const slug = String(j.article ?? j.slug ?? "");
+    if (!slug) continue;
+    let inHead;
+    try {
+      inHead = execFileSync("git", ["cat-file", "-e", `HEAD:src/content/blog/${slug}.md`], {
+        cwd: ROOT,
+        stdio: "ignore",
+      });
+      return { slug, at: j.at };
+    } catch (e) {
+      if (e?.status === 128 || e?.status === 1) continue; // not in HEAD: the article never landed
+      throw new Error(`cannot tell whether ${slug} is published: git failed (${e?.message ?? e})`);
+    }
   }
   return null;
 }
