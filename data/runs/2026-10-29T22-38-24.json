@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T17:07:49.007Z",
+  "at": "2026-10-29T22:37:25.734Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,17 +28,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sabah-sarawak-special-grant-rm1-5-billion-2027-budget from /data/directive.json"
+      "detail": "federal-allocations-sabah-sarawak-increase-2027-budget from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/sabah-sarawak-special-grant-rm1-5-billion-2027-budget.md"
+      "detail": "draft at /data/drafts/federal-allocations-sabah-sarawak-increase-2027-budget.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/sabah-sarawak-special-grant-rm1-5-billion-2027-budget.md"
+      "detail": "staged at src/content/blog/federal-allocations-sabah-sarawak-increase-2027-budget.md"
     },
     {
       "name": "registry",
@@ -73,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "sabah-sarawak-special-grant-rm1-5-billion-2027-budget",
+  "article": "federal-allocations-sabah-sarawak-increase-2027-budget",
   "commit": null,
   "usage": {
     "calls": 2,
     "failed": 0,
-    "usd": 0.0088,
-    "promptTokens": 10328,
-    "completionTokens": 5445
+    "usd": 0.0033,
+    "promptTokens": 10139,
+    "completionTokens": 7947
   },
   "route": "script",
   "categoryActivity": {
@@ -88,5 +88,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 25
+  "seconds": 59
 }
