@@ -274,6 +274,10 @@ function duplicateScore(proposal, ledger) {
  */
 const CANDIDATES = [
   ["https://www.bnm.gov.my/pr", "bank-negara", "policy rate, reserves, exchange rate - English, the figures sit in the page body"],
+    ["https://www.bernama.com/bm/rss/news.rss", "bernama", "national news agency, RSS, dated items with body text"],
+    ["https://www.malaymail.com/feed/rss/malaysia", "malay-mail", "English-language daily, RSS with full body text"],
+    ["https://www.freemalaysiatoday.com/feed/", "fmt", "independent outlet, RSS with body text"],
+    ["https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=10416", "cna-asia", "regional coverage of Asia, RSS"],
   ["https://www.dosm.gov.my/portal-main/home", "dosm", "CPI, trade, GDP, employment - the monthly releases the index is built from"],
   ["https://www.mida.gov.my/media-release/feed/", "mida", "investment approvals as RSS, with ringgit amounts in the release body"],
   ["https://www.mof.gov.my/portal/en/news/speech", "ministry-of-finance", "the budget speech in English, on its own page rather than behind a language toggle"],
