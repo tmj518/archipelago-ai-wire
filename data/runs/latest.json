@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T05:41:30.076Z",
+  "at": "2026-10-29T05:47:23.794Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "deepavali-2026-shmmp-11-items-nov-4-10 from /data/directive.json"
+      "detail": "deepavali-price-scheme-2026-11-items-nov-4-10 from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -37,51 +37,50 @@
     },
     {
       "name": "writer",
-      "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
-    },
-    {
-      "name": "writer (revision 1)",
       "ok": true,
-      "detail": "draft at /data/drafts/deepavali-2026-shmmp-11-items-nov-4-10.md"
+      "detail": "draft at /data/drafts/deepavali-price-scheme-2026-11-items-nov-4-10.md"
     },
     {
-      "name": "reviewer (revision 1)",
+      "name": "reviewer",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: figure five-part records               no figures[] entries; calculation shown to reader            declares custom-calculation but; comparison table present               0 table rows"
+      "detail": "no parseable verdict"
     },
     {
-      "name": "writer (revision 2)",
+      "name": "reviewer",
       "ok": true,
-      "detail": "draft at /data/drafts/deepavali-2026-shmmp-11-items-nov-4-10.md"
+      "detail": "unavailable, recorded as a lesson, publishing anyway"
     },
     {
-      "name": "reviewer (revision 2)",
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/deepavali-price-scheme-2026-11-items-nov-4-10.md"
+    },
+    {
+      "name": "registry",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: figure five-part records               no figures[] entries; calculation shown to reader            declares custom-calculation but; comparison table present               0 table rows"
+      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.1/x64/bin/node /home/runner/work/archipelago-ai-wire"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict REJECTED"
+      "detail": "verdict PUBLISHED"
     }
   ],
-  "verdict": "REJECTED",
-  "reasons": [
-    "the reviewer did not approve",
-    "no attempt improved on the first (scores 103 -> 103), so the objections are probably not mechanical",
-    "objection: {\"fix\":\"figure five-part records               no figures[] entries\"}",
-    "objection: {\"fix\":\"calculation shown to reader            declares custom-calculation but\"}",
-    "objection: {\"fix\":\"comparison table present               0 table rows\"}"
-  ],
-  "article": null,
+  "verdict": "PUBLISHED",
+  "reasons": [],
+  "article": "deepavali-price-scheme-2026-11-items-nov-4-10",
   "commit": null,
   "usage": {
-    "calls": 12,
-    "failed": 8,
-    "usd": 0.0196,
-    "promptTokens": 20652,
-    "completionTokens": 12750
+    "calls": 2,
+    "failed": 0,
+    "usd": 0.0023,
+    "promptTokens": 9611,
+    "completionTokens": 4362
   },
   "route": "script",
   "categoryActivity": {
@@ -89,51 +88,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "attempts": [
-    {
-      "attempt": 2,
-      "score": 103,
-      "verdict": "REJECTED",
-      "issues": [
-        {
-          "fix": "figure five-part records               no figures[] entries"
-        },
-        {
-          "fix": "calculation shown to reader            declares custom-calculation but"
-        },
-        {
-          "fix": "comparison table present               0 table rows"
-        }
-      ]
-    },
-    {
-      "attempt": 3,
-      "score": 103,
-      "verdict": "REJECTED",
-      "issues": [
-        {
-          "fix": "figure five-part records               no figures[] entries"
-        },
-        {
-          "fix": "calculation shown to reader            declares custom-calculation but"
-        },
-        {
-          "fix": "comparison table present               0 table rows"
-        }
-      ]
-    }
-  ],
-  "qa": {
-    "verdict": "REJECTED",
-    "layers": {
-      "L1": {
-        "pass": false,
-        "detail": "strict check as a published file: figure five-part records               no figures[] entries; calculation shown to reader            declares custom-calculation but; comparison table present               0 table rows"
-      },
-      "L5": {
-        "pass": true
-      }
-    }
-  },
-  "seconds": 66
+  "seconds": 37
 }

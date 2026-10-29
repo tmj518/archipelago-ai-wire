@@ -1,0 +1,92 @@
+{
+  "at": "2026-10-29T05:47:23.794Z",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "absent, treated as a first run"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "3 of 15 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (2 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "deepavali-price-scheme-2026-11-items-nov-4-10 from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "6 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/deepavali-price-scheme-2026-11-items-nov-4-10.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
+      "ok": true,
+      "detail": "unavailable, recorded as a lesson, publishing anyway"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/deepavali-price-scheme-2026-11-items-nov-4-10.md"
+    },
+    {
+      "name": "registry",
+      "ok": false,
+      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.1/x64/bin/node /home/runner/work/archipelago-ai-wire"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict PUBLISHED"
+    }
+  ],
+  "verdict": "PUBLISHED",
+  "reasons": [],
+  "article": "deepavali-price-scheme-2026-11-items-nov-4-10",
+  "commit": null,
+  "usage": {
+    "calls": 2,
+    "failed": 0,
+    "usd": 0.0023,
+    "promptTokens": 9611,
+    "completionTokens": 4362
+  },
+  "route": "script",
+  "categoryActivity": {
+    "economy": 2,
+    "malaysia-impact": 1
+  },
+  "uncoveredSections": [],
+  "seconds": 37
+}
