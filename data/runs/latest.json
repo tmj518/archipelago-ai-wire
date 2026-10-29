@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T10:35:54.778Z",
+  "at": "2026-10-29T10:49:36.053Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "menara-tun-perak-sale-kuala-lumpur-landmark from /data/directive.json"
+      "detail": "menara-tun-perak-sale-maybank-hq-move from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -38,32 +38,32 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/menara-tun-perak-sale-kuala-lumpur-landmark.md"
+      "detail": "draft at /data/drafts/menara-tun-perak-sale-maybank-hq-move.md"
     },
     {
       "name": "reviewer",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: calculation shown to reader            declares custom-calculation but; no hedging words                       reportedly"
+      "detail": "REJECTED: L1 strict check as a published file: calculation shown to reader            section present but no fenced f; no hedging words                       might — in: It will tell you wh"
     },
     {
       "name": "writer (revision 1)",
       "ok": true,
-      "detail": "draft at /data/drafts/menara-tun-perak-sale-kuala-lumpur-landmark.md"
+      "detail": "draft at /data/drafts/menara-tun-perak-sale-maybank-hq-move.md"
     },
     {
       "name": "reviewer (revision 1)",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: no hedging words                       reportedly"
+      "detail": "REJECTED: L1 strict check as a published file: calculation shown to reader            section present but no fenced f; no hedging words                       might — in: It will tell you wh"
     },
     {
       "name": "writer (revision 2)",
       "ok": true,
-      "detail": "draft at /data/drafts/menara-tun-perak-sale-kuala-lumpur-landmark.md"
+      "detail": "draft at /data/drafts/menara-tun-perak-sale-maybank-hq-move.md"
     },
     {
       "name": "reviewer (revision 2)",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: no hedging words                       reportedly"
+      "detail": "REJECTED: L1 strict check as a published file: calculation shown to reader            section present but no fenced f; no hedging words                       might — in: It will tell you wh"
     },
     {
       "name": "state written",
@@ -73,16 +73,19 @@
   ],
   "verdict": "REJECTED",
   "reasons": [
-    "the reviewer did not approve"
+    "the reviewer did not approve",
+    "no attempt improved on the first (scores 102 -> 102 -> 102), so the objections are probably not mechanical",
+    "objection: {\"fix\":\"calculation shown to reader            section present but no fenced f\"}",
+    "objection: {\"fix\":\"no hedging words                       might — in: It will tell you wh\"}"
   ],
   "article": null,
   "commit": null,
   "usage": {
-    "calls": 8,
-    "failed": 4,
-    "usd": 0.0119,
-    "promptTokens": 22834,
-    "completionTokens": 10116
+    "calls": 10,
+    "failed": 6,
+    "usd": 0.0164,
+    "promptTokens": 24320,
+    "completionTokens": 12080
   },
   "route": "script",
   "categoryActivity": {
@@ -97,30 +100,36 @@
       "verdict": "REJECTED",
       "issues": [
         {
-          "fix": "calculation shown to reader            declares custom-calculation but"
+          "fix": "calculation shown to reader            section present but no fenced f"
         },
         {
-          "fix": "no hedging words                       reportedly"
+          "fix": "no hedging words                       might — in: It will tell you wh"
         }
       ]
     },
     {
       "attempt": 2,
-      "score": 101,
+      "score": 102,
       "verdict": "REJECTED",
       "issues": [
         {
-          "fix": "no hedging words                       reportedly"
+          "fix": "calculation shown to reader            section present but no fenced f"
+        },
+        {
+          "fix": "no hedging words                       might — in: It will tell you wh"
         }
       ]
     },
     {
       "attempt": 3,
-      "score": 101,
+      "score": 102,
       "verdict": "REJECTED",
       "issues": [
         {
-          "fix": "no hedging words                       reportedly"
+          "fix": "calculation shown to reader            section present but no fenced f"
+        },
+        {
+          "fix": "no hedging words                       might — in: It will tell you wh"
         }
       ]
     }
@@ -130,12 +139,12 @@
     "layers": {
       "L1": {
         "pass": false,
-        "detail": "strict check as a published file: no hedging words                       reportedly"
+        "detail": "strict check as a published file: calculation shown to reader            section present but no fenced f; no hedging words                       might — in: It will tell you wh"
       },
       "L5": {
         "pass": true
       }
     }
   },
-  "seconds": 59
+  "seconds": 70
 }
