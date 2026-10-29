@@ -34,11 +34,11 @@ export const SITE = {
    * "看懂世界，读懂大马". Kept in one object because the logo, the <title>, the meta description and the
    * footer all read from here - a brand that lives in five strings drifts within a month.
    */
-  name: "Malaysia Sees the World",
-  /** Rendered as "Malaysia <em>Sees the World</em>" in the logo. */
-  nameHead: "Malaysia",
-  nameTail: "Sees the World",
-  title: "Malaysia Sees the World — the world, explained",
+  name: "Malaysians Look at the World",
+  /** Rendered as "Malaysians <em>Look at the World</em>" in the logo. */
+  nameHead: "Malaysians",
+  nameTail: "Look at the World",
+  title: "Malaysians Look at the World — the world, explained",
   /** Kept under ~140 chars: this doubles as the meta description. */
   description:
     "What is happening in the world, why, and what it means for Malaysia — in plain language, with a source and a date on every figure.",
