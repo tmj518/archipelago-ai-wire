@@ -234,9 +234,41 @@ jobs:
           else
             node tools/record-publish.mjs --slug="$slug" --status=failed
           fi
-          node tools/lib/feishu-bitable.mjs --run-id="${GITHUB_RUN_ID}" --status="${{ job.status }}" --slug="$slug" --sha="${GITHUB_SHA:0:7}" || true
         env:
-          FEISHU_BITABLE_APP_TOKEN: ${{ secrets.FEISHU_BITABLE_APP_TOKEN }}
           FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
           FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
           FEISHU_CHAT_ID: ${{ secrets.FEISHU_CHAT_ID }}
+
+      # The console write is its own step, and it is not allowed to be silent. `|| true` was here
+      # before and it hid a shell error for two runs: the workflow was green and the table stayed
+      # empty. A failure now prints a warning, the captured output, and a summary block - and still
+      # does not fail the run, because a console that cannot be reached must not undo a published
+      # article.
+      - name: Record in the Feishu console
+        if: always()
+        continue-on-error: true
+        run: |
+          set +e
+          node tools/lib/feishu-bitable.mjs \
+            --run-id="${GITHUB_RUN_ID}" \
+            --status="${STATUS}" \
+            --slug="${SLUG}" \
+            --sha="${GITHUB_SHA}" > bitable.log 2>&1
+          code=$?
+          set -e
+          cat bitable.log
+          if [ "$code" -ne 0 ]; then
+            echo "::warning::feishu-bitable exited $code; the row is queued as pending_sync"
+            {
+              echo "### Feishu console write failed (exit $code)"
+              echo '```'
+              tail -20 bitable.log
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+        env:
+          STATUS: ${{ job.status }}
+          SLUG: ${{ github.ref_name }}
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_BITABLE_APP_TOKEN: ${{ secrets.FEISHU_BITABLE_APP_TOKEN }}
