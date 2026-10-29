@@ -1147,8 +1147,15 @@ if (published) {
     step("inbound links", true, `skipped: ${String(e.message).slice(0, 80)}`);
   }
 
-  run.verdict = "PUBLISHED";
-  run.article = slug;
+  /* One gate for the only success state in this file. An explicit approving verdict is
+     required; anything else keeps the run out of PUBLISHED whatever path led here. */
+  if (qa && qa.verdict === "APPROVED") {
+    run.verdict = "PUBLISHED";
+    run.article = slug;
+  } else {
+    run.verdict = "REJECTED";
+    run.reasons.push("refusing PUBLISHED: the review for this draft did not approve it");
+  }
 
   /*
    * Consume the directive, so tomorrow researches a new subject.
