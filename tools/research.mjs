@@ -617,7 +617,7 @@ Choose a subject in ${PRIMARY_SECTION} if the documents below genuinely support 
 the operator's rule says is furthest behind, so it takes precedence over a subject in a covered section.
 Your "category" field must be "${PRIMARY_SECTION}" if you take it.
 
-If the documents do not support a ${PRIMARY_SECTION} subject - fewer than two cost figures (a rate, an
+If the documents do not support a ${PRIMARY_SECTION} subject - no evidence of the kind the piece needs (a rate, an
 amount, a percentage, a quantity - not a date and not a document number) that appear
 verbatim, or no cost consequence an importer can act on - then choose what they do support and say so in
 "angle". Forcing an article out of material that cannot carry it produces the commodity summary this site
@@ -685,7 +685,7 @@ Return ONLY a JSON object:
 }
 
 Give five to eight figures. Every one needs an evidence excerpt that literally contains the value and
-literally appears in the document it names. If the documents do not support two cost figures, set
+literally appears in the document it names. If the documents do not support any of the three evidence types, set
 feasible to false and say so — that is a correct and useful answer, not a failure.`;
 
 /*
