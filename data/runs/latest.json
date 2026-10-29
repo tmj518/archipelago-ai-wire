@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T13:25:42.742Z",
+  "at": "2026-10-29T14:32:50.391Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,20 +28,30 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sabah-sarawak-allocations-rise-2027-budget from /data/directive.json"
+      "detail": "sabah-sarawak-special-grant-rm1-5-billion-2027-budget from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/sabah-sarawak-allocations-rise-2027-budget.md"
+      "detail": "draft at /data/drafts/sabah-sarawak-special-grant-rm1-5-billion-2027-budget.md"
     },
     {
       "name": "reviewer",
+      "ok": false,
+      "detail": "REJECTED: L1 strict check as a published file: RESULT: BLOCKED — 1 blocking rule(s). Fix them in the order listed; each one names the structure it checks and the edit that clears it."
+    },
+    {
+      "name": "writer (revision 1)",
+      "ok": true,
+      "detail": "draft at /data/drafts/sabah-sarawak-special-grant-rm1-5-billion-2027-budget.md"
+    },
+    {
+      "name": "reviewer (revision 1)",
       "ok": false,
       "detail": "no parseable verdict"
     },
@@ -53,7 +63,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/sabah-sarawak-allocations-rise-2027-budget.md"
+      "detail": "staged at src/content/blog/sabah-sarawak-special-grant-rm1-5-billion-2027-budget.md"
     },
     {
       "name": "registry",
@@ -73,14 +83,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "sabah-sarawak-allocations-rise-2027-budget",
+  "article": "sabah-sarawak-special-grant-rm1-5-billion-2027-budget",
   "commit": null,
   "usage": {
-    "calls": 3,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0033,
-    "promptTokens": 17291,
-    "completionTokens": 5110
+    "usd": 0.0156,
+    "promptTokens": 20354,
+    "completionTokens": 9207
   },
   "route": "script",
   "categoryActivity": {
@@ -88,5 +98,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 46
+  "seconds": 42
 }
