@@ -862,8 +862,8 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
       }) + "\n",
       "utf8",
     );
-    step("reviewer", true, "unavailable, recorded as a lesson, publishing anyway");
-    qaCode = 0;
+    step("reviewer", false, "unavailable - refusing to publish without a verdict");
+    qaCode = 1;
   }
 
   const score = failureScore(qa);
