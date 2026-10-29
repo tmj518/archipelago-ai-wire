@@ -523,7 +523,19 @@ if (!fetched.length) {
 
 /* ---------------------------------------------------------------- 2. the model proposes */
 
-const ledger = existsSync(LEDGER) ? loadLedger() : buildLedger();
+/*
+ * The ledger is a cache, and it can be stale.
+ *
+ * buildLedger() reads the actual collection; loadLedger() reads a file that nothing appends to on
+ * publish, so a dated ledger kept answering "3 published subjects" while src/content/blog held four -
+ * research then re-proposed the fourth, the publish guard refused the duplicate slug, and the run
+ * failed with nothing to show. Both are read and merged by slug, so the collection is always included.
+ */
+const fromArticles = buildLedger();
+const fromFile = existsSync(LEDGER) ? loadLedger() : [];
+const ledgerBySlug = new Map();
+for (const row of [...fromFile, ...fromArticles]) ledgerBySlug.set(String(row.slug ?? ""), row);
+const ledger = [...ledgerBySlug.values()].filter((r) => r.slug);
 console.log(`\n  ledger: ${ledger.length} published subject(s) to avoid repeating`);
 
 /*
