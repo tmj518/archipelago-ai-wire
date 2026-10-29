@@ -834,9 +834,19 @@ async function assembleFaq(article) {
         const m = re.exec(front);
         const value = (m?.[1] ?? "").trim();
         if (m && !allowed.includes(value)) {
-          const fallback = defaults[key] ?? allowed[0];
-          front = front.replace(re, `${key}: ${fallback}`);
-          coerced.push(`${key} ${value || "(empty)"} -> ${fallback}`);
+          /*
+           * search_intent is optional in the schema, so an unusable value is removed rather than
+           * replaced: the field is a label, not a fact, and dropping the line cannot fail the build.
+           * The others are required and get the default.
+           */
+          if (key === "search_intent") {
+            front = front.replace(re, "").replace(/\n{2,}/g, "\n");
+            coerced.push(`${key} ${value || "(empty)"} -> removed (optional)`);
+          } else {
+            const fallback = defaults[key] ?? allowed[0];
+            front = front.replace(re, `${key}: ${fallback}`);
+            coerced.push(`${key} ${value || "(empty)"} -> ${fallback}`);
+          }
         }
       }
       if (missing.length || coerced.length) {
