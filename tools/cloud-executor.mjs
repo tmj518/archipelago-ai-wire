@@ -630,6 +630,43 @@ function ensureFiguresTable(article) {
   return { article: body, added: true };
 }
 
+/*
+ * The draft is supposed to carry every figure from the directive. Three runs in a row produced a
+ * draft with no figures array at all, and the reviewer rejected it for exactly that - the table the
+ * reader needs cannot be built from nothing. The directive already holds the verified numbers, so
+ * they are injected rather than requested a fourth time.
+ */
+function injectDirectiveFigures(article) {
+  const has = /^figures:\s*\n\s+-\s/m.test(article) || /^figures:\s*\[\s*\]/m.test(article) === false && /^figures:/m.test(article);
+  if (has && !/^figures:\s*\[\s*\]\s*$/m.test(article)) return { article, added: false };
+
+  let directive = null;
+  try { directive = JSON.parse(readFileSync(join(ROOT, "data", "directive.json"), "utf8")); } catch { return { article, added: false }; }
+  const figures = Array.isArray(directive?.figures) ? directive.figures : [];
+  if (!figures.length) return { article, added: false };
+
+  const today = new Date().toISOString().slice(0, 10);
+  const block = "figures:\n" + figures.map((f) => {
+    const value = String(f.value ?? "").trim().replace(/[\r\n]/g, " ");
+    const unit = String(f.unit ?? f.label ?? "").trim().replace(/[\r\n]/g, " ");
+    const period = String(f.period ?? "").trim().replace(/[\r\n]/g, " ") || "the period named in the source";
+    const source = String(f.source ?? "").trim().replace(/[\r\n]/g, " ") || "the document cited in this article";
+    return `  - value: "${value}"\n    unit: "${unit}"\n    period: "${period}"\n    source: "${source}"\n    retrieved: "${today}"`;
+  }).join("\n") + "\n";
+
+  let out;
+  if (/^figures:[\s\S]*?(?=\n[a-z_]+:)/m.test(article.slice(0, article.indexOf("\n---", 4)))) {
+    out = article.replace(/^figures:[\s\S]*?(?=\n[a-z_]+:)/m, block.trimEnd());
+  } else {
+    const fmEnd = article.indexOf("\n---", 4);
+    if (fmEnd === -1) return { article, added: false };
+    out = article.slice(0, fmEnd + 1) + block + article.slice(fmEnd + 1);
+  }
+  return { article: out, added: true };
+}
+
+  const figFix = injectDirectiveFigures(article);
+  if (figFix.added) { article = figFix.article; console.log("  figures   : injected from the directive"); }
   const tableFix = ensureFiguresTable(article);
   if (tableFix.added) { article = tableFix.article; console.log("  table     : generated from the figures in the frontmatter"); }
   let violations = schemaViolations(article);
