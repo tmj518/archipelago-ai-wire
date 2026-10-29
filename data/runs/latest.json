@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T16:55:47.304Z",
+  "at": "2026-10-29T17:01:51.523Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "federal-allocations-sabah-sarawak-2027-budget from /data/directive.json"
+      "detail": "federal-allocations-sabah-sarawak-increase-2027 from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -37,11 +37,16 @@
     },
     {
       "name": "writer",
-      "ok": true,
-      "detail": "draft at /data/drafts/federal-allocations-sabah-sarawak-2027-budget.md"
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
-      "name": "reviewer",
+      "name": "writer (revision 1)",
+      "ok": true,
+      "detail": "draft at /data/drafts/federal-allocations-sabah-sarawak-increase-2027.md"
+    },
+    {
+      "name": "reviewer (revision 1)",
       "ok": false,
       "detail": "no parseable verdict"
     },
@@ -53,7 +58,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/federal-allocations-sabah-sarawak-2027-budget.md"
+      "detail": "staged at src/content/blog/federal-allocations-sabah-sarawak-increase-2027.md"
     },
     {
       "name": "registry",
@@ -73,14 +78,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "federal-allocations-sabah-sarawak-2027-budget",
+  "article": "federal-allocations-sabah-sarawak-increase-2027",
   "commit": null,
   "usage": {
-    "calls": 2,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0024,
-    "promptTokens": 10124,
-    "completionTokens": 4640
+    "usd": 0.0038,
+    "promptTokens": 13716,
+    "completionTokens": 8145
   },
   "route": "script",
   "categoryActivity": {
@@ -88,5 +93,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 37
+  "seconds": 71
 }
