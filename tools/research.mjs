@@ -690,15 +690,20 @@ WHAT MAKES A SUBJECT WORTH WRITING
   - a Malaysian consequence that can be NAMED: an industry, a kind of job, a price, a procedure, a group of
     people, an institution. "It could affect the Malaysian economy" is not a consequence; it is a sentence
     without a subject, and it is rejected.
-  - at least two figures (a rate, an amount, a percentage, a quantity - not a date, not a document number),
-    each of which appears verbatim in one of these documents
+  - evidence of one of two kinds: at least two figures that appear verbatim in these documents,
+    OR one dated change in a named official document (a rate, a rule, a tariff, a threshold, a
+    publication) even when it carries no quotable number. A policy change with a date is evidence;
+    a page of numbers without one is not
   - it is not already covered. The recently published subjects are listed below.
 
 WHAT IS REJECTED
   - a subject whose numbers are not in the documents below
   - a subject that repeats one of the listed articles, even under a different title
-  - a subject with no Malaysian carrier. Return feasible=false with reason_if_not="no Malaysian consequence"
-    rather than inventing a link between a foreign event and a Malaysian reader.
+  - a subject with no Malaysian carrier. A carrier is a link a reader can follow: a trade route,
+    an input price, a job, a cost, a rule that binds a Malaysian firm or household. The document
+    may state it, or you may derive it - but a derived link must be written as analysis, in plain
+    words, with the steps named, and never presented as the source's own conclusion. Only when no
+    such chain can be described at all: return feasible=false with reason_if_not="no Malaysian carrier described".
   - a subject that rests on race, religion or royalty. Those are reportable subjects, but this pipeline has no
     named human reviewer, and the gate quarantines them. Do not propose one automatically.
 ${BLUE_OCEAN_NOTE ? BLUE_OCEAN_NOTE + "\n\n" : ""}${sectionBlock}
