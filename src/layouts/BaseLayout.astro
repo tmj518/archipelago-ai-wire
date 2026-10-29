@@ -6,6 +6,7 @@ import { AUTHOR, CF_ANALYTICS_TOKEN, SITE } from "../consts";
 import { siteBlocks, webPageBlock } from "../lib/seo.mjs";
 import { fitDescription } from "../lib/meta";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import BookmarkPrompt from "../components/BookmarkPrompt.astro";
 
 /**
  * Site chrome + the SEO head.
@@ -233,6 +234,7 @@ const fittedDescription = fitDescription(description);
         <script type="application/ld+json" set:html={JSON.stringify(block)} />
       ))
     }
+    <BookmarkPrompt />
     <GoogleAnalytics />
   </head>
 

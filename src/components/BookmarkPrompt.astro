@@ -1,0 +1,99 @@
+---
+/**
+ * The bookmark prompt.
+ *
+ * Browsers do not let a page write itself into the bookmarks silently, so the button cannot simply
+ * "work". What it can do is tell the reader the two keystrokes that do work, and hand them the URL.
+ *
+ * Mounted once, in the layout: every element carrying `data-bookmark` opens it, so the header button
+ * and the hero button share one dialog and one id instead of each growing its own copy.
+ */
+---
+<div id="bookmark-prompt" class="bm" hidden>
+  <div class="bm__panel" role="dialog" aria-modal="false" aria-labelledby="bm-title">
+    <h2 id="bm-title" class="bm__title">Save this site for later</h2>
+    <p class="bm__lede">
+      A page cannot add itself to your bookmarks for you. Add Malaysia Sees the World with one of these:
+    </p>
+    <ul class="bm__keys">
+      <li><kbd>Ctrl</kbd> + <kbd>D</kbd> on Windows and Linux</li>
+      <li><kbd>⌘</kbd> + <kbd>D</kbd> on macOS</li>
+      <li>On mobile, open the browser menu and choose “Add to bookmarks” or the star icon</li>
+    </ul>
+    <label class="bm__url-label" for="bm-url">Or copy the address</label>
+    <div class="bm__url-row">
+      <input id="bm-url" class="bm__url" type="text" readonly />
+      <button type="button" class="bm__copy" data-bm-copy>Copy</button>
+    </div>
+    <p class="bm__status" data-bm-status role="status" aria-live="polite"></p>
+    <button type="button" class="bm__close" data-bm-close>Close</button>
+  </div>
+</div>
+
+<style>
+  .bm { position: fixed; inset: 0; z-index: 60; display: flex; align-items: flex-end; justify-content: center; padding: 16px; background: rgba(9, 20, 38, 0.32); }
+  .bm[hidden] { display: none; }
+  .bm__panel { position: relative; width: min(460px, 100%); background: #fff; color: #12203a; border-radius: 12px; padding: 20px 22px 18px; box-shadow: 0 18px 50px rgba(6, 16, 34, 0.28); }
+  .bm__title { margin: 0 0 8px; font-size: 1.05rem; }
+  .bm__lede { margin: 0 0 10px; font-size: 0.92rem; line-height: 1.5; color: #3d4a63; }
+  .bm__keys { margin: 0 0 14px; padding-left: 18px; font-size: 0.9rem; line-height: 1.7; color: #3d4a63; }
+  .bm__keys kbd { font-family: ui-monospace, monospace; background: #eef2f8; border: 1px solid #cfd8e6; border-radius: 4px; padding: 1px 5px; font-size: 0.85rem; }
+  .bm__url-label { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: #66748e; margin-bottom: 6px; }
+  .bm__url-row { display: flex; gap: 8px; }
+  .bm__url { flex: 1; min-width: 0; font-size: 0.85rem; padding: 8px 10px; border: 1px solid #cfd8e6; border-radius: 8px; background: #f7f9fc; color: #12203a; }
+  .bm__copy, .bm__close { border: 0; border-radius: 8px; cursor: pointer; font-size: 0.88rem; }
+  .bm__copy { padding: 8px 14px; background: #0f2a52; color: #fff; }
+  .bm__copy:focus-visible, .bm__close:focus-visible { outline: 3px solid #b4532a; outline-offset: 2px; }
+  .bm__status { min-height: 1.2em; margin: 8px 0 0; font-size: 0.82rem; color: #2f6b3a; }
+  .bm__close { display: block; margin: 12px 0 0 auto; padding: 6px 12px; background: #eef2f8; color: #12203a; }
+</style>
+
+<script>
+  (() => {
+    const box = document.getElementById("bookmark-prompt");
+    if (!box) return;
+    const input = box.querySelector("#bm-url");
+    const status = box.querySelector("[data-bm-status]");
+    const copyBtn = box.querySelector("[data-bm-copy]");
+    const closeBtn = box.querySelector("[data-bm-close]");
+    let opener = null;
+
+    const open = (trigger) => {
+      opener = trigger ?? null;
+      input.value = window.location.href;
+      status.textContent = "";
+      box.hidden = false;
+      copyBtn.focus();
+    };
+    const close = () => {
+      box.hidden = true;
+      if (opener && typeof opener.focus === "function") opener.focus();
+    };
+
+    /* One delegated listener: the header button, the hero button and anything else that carries the
+       attribute all open the same dialog, so a new placement needs no JavaScript. */
+    document.addEventListener("click", (e) => {
+      const trigger = e.target.closest("[data-bookmark]");
+      if (trigger) { e.preventDefault(); open(trigger); return; }
+      if (e.target.closest("[data-bm-close]")) { close(); return; }
+      if (e.target === box) close();
+    });
+
+    copyBtn.addEventListener("click", async () => {
+      const value = input.value;
+      try {
+        if (!navigator.clipboard?.writeText) throw new Error("no clipboard api");
+        await navigator.clipboard.writeText(value);
+        status.textContent = "Copied. Paste it wherever you keep links.";
+      } catch {
+        /* Say what happened and leave a usable path: select the text so Ctrl+C works. */
+        input.select();
+        status.textContent = "Copying was blocked. The address is selected — press Ctrl+C (⌘C on macOS).";
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !box.hidden) close();
+    });
+  })();
+</script>
