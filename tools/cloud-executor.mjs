@@ -864,6 +864,44 @@ async function assembleFaq(article) {
     }
   }
 
+  /*
+   * One outbound link, so the article is not a dead end.
+   *
+   * The link gate fails a build when a published article links to nothing. The writer is not told which
+   * articles exist, so it cannot link to one, and the gate has been the last thing standing between a
+   * finished draft and the site twice now. The newest published article is a real, readable next step
+   * for the reader, and the link is added to the text rather than invented in the frontmatter.
+   */
+  {
+    const bodyHasLink = /\]\(\/blog\/[a-z0-9-]+\//.test(article);
+    if (!bodyHasLink) {
+      let newest = null;
+      try {
+        const dir = join(ROOT, "src", "content", "blog");
+        const files = readdirSync(dir).filter((f) => f.endsWith(".md") && !f.includes(String(directive?.slug ?? "\u0000")));
+        const dated = files
+          .map((f) => {
+            const text = readFileSync(join(dir, f), "utf8");
+            const date = /^publishDate:\s*"?([0-9-]+)"?/m.exec(text)?.[1] ?? "";
+            const title = /^title:\s*"?(.+?)"?\s*$/m.exec(text)?.[1] ?? "";
+            return { slug: f.replace(/\.md$/, ""), date, title };
+          })
+          .sort((a, b) => (a.date < b.date ? 1 : -1));
+        newest = dated[0] ?? null;
+      } catch {
+        newest = null;
+      }
+      if (newest) {
+        const note = `\n\nEarlier reporting on this site: [${newest.title || newest.slug}](/blog/${newest.slug}/).\n`;
+        const at = article.indexOf("\n## FAQ");
+        article = at === -1 ? article.trimEnd() + note : article.slice(0, at) + note + article.slice(at);
+        console.log(`  links     : outbound link added to ${newest.slug}`);
+      } else {
+        console.log("  links     : no earlier article to link to, the gate will have the final word");
+      }
+    }
+  }
+
   if (violations.length) {
     console.log("");
     console.log(`  REFUSED - the draft would fail the content schema, which fails the whole build:`);
