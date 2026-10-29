@@ -954,6 +954,20 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     break;
   }
 
+  /*
+   * An unreadable review is not a review that found nothing to fix.
+   *
+   * It was being treated as "0 objections", so the writer was asked to rewrite twice for no
+   * stated reason, spending model calls to fix invisible problems - and the loop then reported
+   * a rejection whose cause was never printed. When the verdict cannot be parsed there is
+   * nothing to pass back, so the loop stops and says so.
+   */
+  if (reviewUnavailable) {
+    run.verdict = "REVIEW_UNPARSEABLE";
+    run.reasons.push("the reviewer returned no usable verdict; nothing was passed back to the writer");
+    break;
+  }
+
   if (attempt < MAX_ATTEMPTS) {
     /*
      * Pass the reviewer's own sentences to the writer, as a file rather than as arguments: the text is
