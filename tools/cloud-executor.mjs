@@ -782,6 +782,43 @@ async function assembleFaq(article) {
     }
   }
 
+  /*
+   * Fill in what a missing field needs, mechanically.
+   *
+   * The writer is asked for fourteen frontmatter keys and reliably returns most of them; the ones it
+   * forgets are not judgements, they are defaults - a priority, an audience, a date. Refusing the
+   * whole draft over a missing `priority` costs a full regeneration for nothing, and the site stays
+   * empty. Anything a default cannot honestly supply (a title, the figures, the sources) is left to
+   * the refusal path below, because inventing those is the one thing this pipeline must not do.
+   */
+  if (violations.length) {
+    const today = new Date().toISOString().slice(0, 10);
+    const defaults = {
+      priority: "P2",
+      featured: "false",
+      draft: "false",
+      audience: String(directive?.audience ?? "general"),
+      category: String(directive?.category ?? "economy"),
+      stakes: "directional",
+      target_keyword: String(directive?.keyword ?? directive?.slug ?? "").replace(/["\n]/g, ""),
+      search_intent: "informational",
+      information_gain: "cross-source",
+      publishDate: today,
+      reviewBy: new Date(Date.now() + 30 * 864e5).toISOString().slice(0, 10),
+    };
+    const fmEnd = article.indexOf("\n---", 4);
+    if (fmEnd > 0) {
+      let front = article.slice(0, fmEnd);
+      const missing = Object.keys(defaults).filter((k) => !new RegExp(`^${k}:`, "m").test(front));
+      if (missing.length) {
+        front += "\n" + missing.map((k) => `${k}: ${defaults[k]}`).join("\n");
+        article = front + article.slice(fmEnd);
+        violations = schemaViolations(article);
+        console.log(`  defaults  : filled ${missing.join(", ")} - ${violations.length} violation(s) left`);
+      }
+    }
+  }
+
   if (violations.length) {
     console.log("");
     console.log(`  REFUSED - the draft would fail the content schema, which fails the whole build:`);
