@@ -1,0 +1,92 @@
+{
+  "at": "2026-10-29T13:25:42.742Z",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "absent, treated as a first run"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "3 of 15 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (2 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "sabah-sarawak-allocations-rise-2027-budget from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "8 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/sabah-sarawak-allocations-rise-2027-budget.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "unavailable - LAUNCH MODE: publishing without a second opinion, recorded as a lesson"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/sabah-sarawak-allocations-rise-2027-budget.md"
+    },
+    {
+      "name": "registry",
+      "ok": false,
+      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.1/x64/bin/node /home/runner/work/archipelago-ai-wire"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "no candidate needed one"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict PUBLISHED"
+    }
+  ],
+  "verdict": "PUBLISHED",
+  "reasons": [],
+  "article": "sabah-sarawak-allocations-rise-2027-budget",
+  "commit": null,
+  "usage": {
+    "calls": 3,
+    "failed": 0,
+    "usd": 0.0033,
+    "promptTokens": 17291,
+    "completionTokens": 5110
+  },
+  "route": "script",
+  "categoryActivity": {
+    "economy": 2,
+    "malaysia-impact": 1
+  },
+  "uncoveredSections": [],
+  "seconds": 46
+}

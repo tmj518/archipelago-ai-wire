@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T13:15:38.950Z",
+  "at": "2026-10-29T13:25:42.742Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,46 +28,59 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sabah-sarawak-special-grant-rm1-5-billion-2027-budget from /data/directive.json"
+      "detail": "sabah-sarawak-allocations-rise-2027-budget from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
-      "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
+      "ok": true,
+      "detail": "draft at /data/drafts/sabah-sarawak-allocations-rise-2027-budget.md"
     },
     {
-      "name": "writer (revision 1)",
+      "name": "reviewer",
       "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
+      "detail": "no parseable verdict"
     },
     {
-      "name": "writer (revision 2)",
+      "name": "reviewer",
       "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
+      "detail": "unavailable - LAUNCH MODE: publishing without a second opinion, recorded as a lesson"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/sabah-sarawak-allocations-rise-2027-budget.md"
+    },
+    {
+      "name": "registry",
+      "ok": false,
+      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.1/x64/bin/node /home/runner/work/archipelago-ai-wire"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "no candidate needed one"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict WRITE-FAILED"
+      "detail": "verdict PUBLISHED"
     }
   ],
-  "verdict": "WRITE-FAILED",
-  "reasons": [
-    "the writer's draft violates the content schema on every attempt (3), so the limits are not reaching the model"
-  ],
-  "article": null,
+  "verdict": "PUBLISHED",
+  "reasons": [],
+  "article": "sabah-sarawak-allocations-rise-2027-budget",
   "commit": null,
   "usage": {
-    "calls": 4,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0183,
-    "promptTokens": 17982,
-    "completionTokens": 12237
+    "usd": 0.0033,
+    "promptTokens": 17291,
+    "completionTokens": 5110
   },
   "route": "script",
   "categoryActivity": {
@@ -75,5 +88,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 66
+  "seconds": 46
 }
