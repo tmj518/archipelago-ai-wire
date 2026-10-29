@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T12:06:13.476Z",
+  "at": "2026-10-29T12:21:25.371Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,12 +28,12 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sabah-sarawak-medical-officer-permanent-posts-november-2026 from /data/directive.json"
+      "detail": "sst-collections-rm67-billion-2026-gst-not-option from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
@@ -42,32 +42,47 @@
     },
     {
       "name": "writer (revision 1)",
+      "ok": true,
+      "detail": "draft at /data/drafts/sst-collections-rm67-billion-2026-gst-not-option.md"
+    },
+    {
+      "name": "reviewer (revision 1)",
       "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
+      "detail": "REJECTED: L1 strict check as a published file: calculation shown to reader            declares custom-calculation but"
     },
     {
       "name": "writer (revision 2)",
+      "ok": true,
+      "detail": "draft at /data/drafts/sst-collections-rm67-billion-2026-gst-not-option.md"
+    },
+    {
+      "name": "reviewer (revision 2)",
+      "ok": true,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
       "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
+      "detail": "unavailable - refusing to publish without a verdict"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict WRITE-FAILED"
+      "detail": "verdict REVIEW_UNPARSEABLE"
     }
   ],
-  "verdict": "WRITE-FAILED",
+  "verdict": "REVIEW_UNPARSEABLE",
   "reasons": [
-    "the writer's draft violates the content schema on every attempt (3), so the limits are not reaching the model"
+    "the reviewer returned no usable verdict; nothing was passed back to the writer"
   ],
   "article": null,
   "commit": null,
   "usage": {
     "calls": 5,
     "failed": 0,
-    "usd": 0.0188,
-    "promptTokens": 23454,
-    "completionTokens": 11369
+    "usd": 0.0186,
+    "promptTokens": 27550,
+    "completionTokens": 11209
   },
   "route": "script",
   "categoryActivity": {
@@ -75,5 +90,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 58
+  "seconds": 60
 }
