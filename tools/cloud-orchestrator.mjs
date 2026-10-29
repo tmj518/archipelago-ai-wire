@@ -1005,6 +1005,14 @@ if (!run.verdict && attempts.length && attempts[attempts.length - 1].verdict !==
   }
   if (attempts.length > 1 && usable.length && usable[usable.length - 1].score >= usable[0].score) {
     run.reasons.push(`no attempt improved on the first (scores ${usable.map((a) => a.score).join(" -> ")}), so the objections are probably not mechanical`);
+
+    /* The score alone says nothing a person can act on. Print the objections from the best attempt so the
+       run log answers "rejected for what" without opening the report on the runner. */
+    if (best && best.issues && best.issues.length) {
+      for (const issue of best.issues.slice(0, 6)) {
+        run.reasons.push(`objection: ${typeof issue === "string" ? issue : JSON.stringify(issue)}`);
+      }
+    }
   }
   run.qa = qa ? { verdict: qa.verdict, layers: Object.fromEntries(Object.entries(qa.layers).map(([k, l]) => [k, { pass: l.pass, detail: l.detail }])) } : null;
 }
