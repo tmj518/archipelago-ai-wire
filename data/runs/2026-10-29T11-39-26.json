@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T11:04:09.018Z",
+  "at": "2026-10-29T11:38:48.097Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,25 +28,20 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "moh-special-recruitment-750-medical-officers-sabah-sarawak from /data/directive.json"
+      "detail": "sst-collections-rise-2026-2027-budget-2027 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
-      "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
-    },
-    {
-      "name": "writer (revision 1)",
       "ok": true,
-      "detail": "draft at /data/drafts/moh-special-recruitment-750-medical-officers-sabah-sarawak.md"
+      "detail": "draft at /data/drafts/sst-collections-rise-2026-2027-budget-2027.md"
     },
     {
-      "name": "reviewer (revision 1)",
+      "name": "reviewer",
       "ok": false,
       "detail": "no parseable verdict"
     },
@@ -70,9 +65,9 @@
   "usage": {
     "calls": 5,
     "failed": 2,
-    "usd": 0.0065,
-    "promptTokens": 13543,
-    "completionTokens": 7257
+    "usd": 0.0055,
+    "promptTokens": 16463,
+    "completionTokens": 5790
   },
   "route": "script",
   "categoryActivity": {
@@ -80,5 +75,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 56
+  "seconds": 39
 }
