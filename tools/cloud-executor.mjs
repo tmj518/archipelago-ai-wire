@@ -795,8 +795,10 @@ async function assembleFaq(article) {
     const today = new Date().toISOString().slice(0, 10);
     const defaults = {
       priority: "P2",
-      featured: "false",
-      draft: "false",
+      /* Bare booleans: the content schema is zod and reads featured: "false" as a string, which is
+         what turned a finished, reviewed, built draft into InvalidContentEntryDataError. */
+      featured: false,
+      draft: false,
       audience: String(directive?.audience ?? "general"),
       category: String(directive?.category ?? "economy"),
       stakes: "directional",
