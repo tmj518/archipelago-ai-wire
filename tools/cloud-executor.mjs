@@ -674,7 +674,11 @@ function injectDirectiveFigures(article) {
 function downgradeCalculationClaim(article) {
   const declares = /information_gain:\s*"?custom-calculation"?/.test(article);
   const shows = /^##\s*How we calculated this/m.test(article);
-  if (!declares || shows) return { article, changed: false };
+  /* The section is only half the promise. A heading with no fenced block is the same mismatch the
+     reviewer rejects, one level further in: it was rejected twice as "section present but no fenced
+     formula" after the first version of this check passed it. */
+  const fenced = /```[\s\S]*?```/.test(article);
+  if (!declares || (shows && fenced)) return { article, changed: false };
   const out = article.replace(/information_gain:\s*"?custom-calculation"?/, 'information_gain: "cross-source"');
   return { article: out, changed: true };
 }
