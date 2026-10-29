@@ -665,6 +665,22 @@ function injectDirectiveFigures(article) {
   return { article: out, added: true };
 }
 
+/*
+ * A claim of custom-calculation is a promise to show the arithmetic. When the draft declares one and
+ * carries no "## How we calculated this" section there is nothing to check and the reviewer rejects on
+ * the mismatch. Inventing a formula would be worse than the rejection, so the honest repair is to stop
+ * claiming a calculation the piece does not contain.
+ */
+function downgradeCalculationClaim(article) {
+  const declares = /information_gain:\s*"?custom-calculation"?/.test(article);
+  const shows = /^##\s*How we calculated this/m.test(article);
+  if (!declares || shows) return { article, changed: false };
+  const out = article.replace(/information_gain:\s*"?custom-calculation"?/, 'information_gain: "cross-source"');
+  return { article: out, changed: true };
+}
+
+  const calcFix = downgradeCalculationClaim(article);
+  if (calcFix.changed) { article = calcFix.article; console.log("  calc      : claim downgraded to cross-source, no calculation section in the draft"); }
   const figFix = injectDirectiveFigures(article);
   if (figFix.added) { article = figFix.article; console.log("  figures   : injected from the directive"); }
   const tableFix = ensureFiguresTable(article);
