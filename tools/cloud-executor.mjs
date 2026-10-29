@@ -643,7 +643,23 @@ function injectDirectiveFigures(article) {
   if (has && !/^figures:\s*\[\s*\]\s*$/m.test(article)) return { article, added: false };
 
   let directive = null;
-  try { directive = JSON.parse(readFileSync(join(ROOT, "data", "directive.json"), "utf8")); } catch { return { article, added: false }; }
+  /* The run passes --directive-file=data/tmp/directive.json. Reading only data/directive.json
+     found nothing, so the injection never fired and the reviewer objected to a missing figures
+     array that was in the directive all along. */
+  const directivePaths = [
+    (process.argv.find((a) => a.startsWith("--directive-file=")) ?? "").slice("--directive-file=".length),
+    join(ROOT, "data", "tmp", "directive.json"),
+    join(ROOT, "data", "directive.json"),
+  ].filter(Boolean);
+  for (const directivePath of directivePaths) {
+    try {
+      directive = JSON.parse(readFileSync(directivePath, "utf8"));
+      break;
+    } catch {
+      continue;
+    }
+  }
+  if (!directive) return { article, added: false };
   const figures = Array.isArray(directive?.figures) ? directive.figures : [];
   if (!figures.length) return { article, added: false };
 
