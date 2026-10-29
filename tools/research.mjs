@@ -408,6 +408,24 @@ function articleLinks(indexFile, baseUrl, limit) {
   } catch {
     return [];
   }
+  /* An RSS or Atom feed is already a list of articles; its <link> elements are the
+     candidates. Treating a feed like an HTML index found nothing, which is why four feeds
+     were added and none produced a candidate. */
+  if (/<item[\s>]|<entry[\s>]/i.test(html)) {
+    const feedOut = [];
+    const seenFeed = new Set();
+    for (const m of html.matchAll(/<(?:item|entry)[^>]*>([\s\S]*?)<\/(?:item|entry)>/gi)) {
+      const inner = m[1];
+      const lm = /<link[^>]*href=["']([^"']+)["']/i.exec(inner) || /<link>\s*([^<\s]+)\s*<\/link>/i.exec(inner);
+      if (!lm) continue;
+      const href = lm[1].replace(/&amp;/g, "&").trim();
+      if (!href || seenFeed.has(href)) continue;
+      seenFeed.add(href);
+      feedOut.push(href);
+      if (feedOut.length >= limit) break;
+    }
+    if (feedOut.length) return feedOut;
+  }
   const base = new URL(baseUrl);
   const seen = new Set();
   const out = [];
