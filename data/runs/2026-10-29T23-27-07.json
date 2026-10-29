@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T23:18:28.349Z",
+  "at": "2026-10-29T23:25:50.743Z",
   "providers": [
     "volces",
     "deepseek"
@@ -37,11 +37,16 @@
     },
     {
       "name": "writer",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
+    },
+    {
+      "name": "writer (revision 1)",
       "ok": true,
       "detail": "draft at /data/drafts/pet-tax-relief-budget-2027-savings.md"
     },
     {
-      "name": "reviewer",
+      "name": "reviewer (revision 1)",
       "ok": true,
       "detail": "no parseable verdict"
     },
@@ -63,7 +68,7 @@
     {
       "name": "inbound links",
       "ok": true,
-      "detail": "1 older article(s) now link here"
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
@@ -76,11 +81,11 @@
   "article": "pet-tax-relief-budget-2027-savings",
   "commit": null,
   "usage": {
-    "calls": 3,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0074,
-    "promptTokens": 19788,
-    "completionTokens": 4704
+    "usd": 0.0051,
+    "promptTokens": 25467,
+    "completionTokens": 8161
   },
   "route": "script",
   "categoryActivity": {
@@ -88,5 +93,5 @@
     "malaysia-impact": 2
   },
   "uncoveredSections": [],
-  "seconds": 27
+  "seconds": 77
 }
