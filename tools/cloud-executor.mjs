@@ -790,8 +790,13 @@ async function assembleFaq(article) {
    * whole draft over a missing `priority` costs a full regeneration for nothing, and the site stays
    * empty. Anything a default cannot honestly supply (a title, the figures, the sources) is left to
    * the refusal path below, because inventing those is the one thing this pipeline must not do.
+   *
+   * UNCONDITIONAL. It used to run only when `schemaViolations()` returned something, and that check
+   * accepts an enum value zod later rejects - so the repair never ran, three runs in a row ended on
+   * the same Invalid option error, and the log never showed a single line from this block. The
+   * normalisation now runs on every draft; it is idempotent and cheap.
    */
-  if (violations.length) {
+  {
     const today = new Date().toISOString().slice(0, 10);
     const defaults = {
       priority: "P2",
