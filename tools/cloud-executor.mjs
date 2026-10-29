@@ -814,9 +814,37 @@ async function assembleFaq(article) {
       const missing = Object.keys(defaults).filter((k) => !new RegExp(`^${k}:`, "m").test(front));
       if (missing.length) {
         front += "\n" + missing.map((k) => `${k}: ${defaults[k]}`).join("\n");
+      }
+      /*
+       * A key that is present with a value zod does not accept fails the build exactly like a missing
+       * one, and the log names the field but nothing repairs it. The enumerated fields are coerced to a
+       * legal value here; the article keeps its own wording, only the label changes.
+       */
+      const enums = {
+        search_intent: ["informational", "transactional", "comparison"],
+        stakes: ["priced", "directional"],
+        priority: ["P0", "P1", "P2"],
+        category: CATEGORY_SLUGS,
+        audience: AUDIENCE_VALUES,
+        information_gain: ["custom-calculation", "cross-source", "own-data", "primary-source"],
+      };
+      const coerced = [];
+      for (const [key, allowed] of Object.entries(enums)) {
+        const re = new RegExp(`^${key}:[ \\t]*["']?([^"'\\n]*)["']?[ \\t]*$`, "m");
+        const m = re.exec(front);
+        const value = (m?.[1] ?? "").trim();
+        if (m && !allowed.includes(value)) {
+          const fallback = defaults[key] ?? allowed[0];
+          front = front.replace(re, `${key}: ${fallback}`);
+          coerced.push(`${key} ${value || "(empty)"} -> ${fallback}`);
+        }
+      }
+      if (missing.length || coerced.length) {
         article = front + article.slice(fmEnd);
         violations = schemaViolations(article);
-        console.log(`  defaults  : filled ${missing.join(", ")} - ${violations.length} violation(s) left`);
+        if (missing.length) console.log(`  defaults  : filled ${missing.join(", ")}`);
+        if (coerced.length) console.log(`  enums     : ${coerced.join("; ")}`);
+        console.log(`  schema    : ${violations.length} violation(s) left after repair`);
       }
     }
   }
