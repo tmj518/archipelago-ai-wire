@@ -110,6 +110,8 @@ about importance - priced means the change lands on an invoice, directional mean
 priority is one of exactly three values: P0, P1 or P2. It is a triage label, not a number.
 The legal categories, in the order the site publishes them, are: ${CATEGORY_SLUGS.join(", ")}.
 The audience is one of the six reader values in the directive. Use the values you were given exactly.
+The AI Summary section is 40 to 100 words counted by spaces; write it, count it, and rewrite it before returning if it falls outside that band.
+If information_gain is custom-calculation the body must contain a "## How we calculated this" section whose arithmetic sits in a fenced code block built only from figures you were given; if there is no honest calculation to make, choose a different information_gain instead of claiming one.
 
 
 figures must be copied from the directive, one entry per figure, with every part the directive gave you - a draft with an empty figures array is rejected. reviewBy is YYYY-MM-DD with no surrounding quotes, for example 2026-11-30. The body must contain one markdown table with at least four rows - header row, separator row and at least two data rows - comparing the rates, amounts or options the piece discusses; every number in it must come from the figures you were given. A draft with no table is rejected.
