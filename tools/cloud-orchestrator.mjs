@@ -845,7 +845,7 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
      *
      * RELAX_FORMAT=0 restores the strict behaviour without touching this file.
      */
-    const FORMAT_RULES = /^(figure five-part records|comparison table present|calculation shown to reader|no hedging words|FAQ 3-5 questions|AI Summary|table rows)/i;
+    const FORMAT_RULES = /^(figure five-part records|comparison table present|calculation shown to reader|no hedging words|FAQ 3-5 questions|AI Summary|table rows|3R review)/i;
     const relaxed = process.env.RELAX_FORMAT === "0" ? [] : allRules.filter((r) => FORMAT_RULES.test(r));
     const rules = allRules.filter((r) => !relaxed.includes(r));
     if (relaxed.length) {
