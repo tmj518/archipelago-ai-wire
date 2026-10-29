@@ -672,6 +672,10 @@ export async function ask({ role = "writer", model: modelOverride = "", messages
       };
     } catch (e) {
       const ms = Date.now() - started;
+      /* One line per failed attempt, with what actually failed. `the draft violates the schema`
+         was the visible symptom of twelve calls that never came back, and the log never said so. */
+      console.log(`       call failed: task=${taskKey} role=${role} provider=${providerName} ` +
+        `attempt=${attempt + 1}/${retries + 1} ${e?.cause?.code ?? e?.name ?? "error"}: ${String(e?.message ?? e).slice(0, 120)}`);
       lastError = `${e.cause?.code ?? e.name ?? "error"}: ${e.message}`;
       meter({ at: new Date().toISOString(), runId, taskKey, role, provider: providerName, keyName: cred.name, model: modelFor(p, role), ok: false, ms, error: lastError, attempt });
       /*
