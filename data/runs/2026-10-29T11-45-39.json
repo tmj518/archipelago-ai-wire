@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T11:38:48.097Z",
+  "at": "2026-10-29T11:45:07.944Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sst-collections-rise-2026-2027-budget-2027 from /data/directive.json"
+      "detail": "sst-collections-rm73-3-billion-2027-gst-not-option from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -38,7 +38,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/sst-collections-rise-2026-2027-budget-2027.md"
+      "detail": "draft at /data/drafts/sst-collections-rm73-3-billion-2027-gst-not-option.md"
     },
     {
       "name": "reviewer",
@@ -63,11 +63,11 @@
   "article": null,
   "commit": null,
   "usage": {
-    "calls": 5,
-    "failed": 2,
-    "usd": 0.0055,
-    "promptTokens": 16463,
-    "completionTokens": 5790
+    "calls": 9,
+    "failed": 6,
+    "usd": 0.0109,
+    "promptTokens": 17412,
+    "completionTokens": 5657
   },
   "route": "script",
   "categoryActivity": {
@@ -75,5 +75,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 39
+  "seconds": 31
 }
