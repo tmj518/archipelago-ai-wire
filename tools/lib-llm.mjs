@@ -490,7 +490,7 @@ function meter(entry) {
  * The existing callers pass no tools and read only `text`, so adding the field changes nothing for them.
  */
 export async function ask({ role = "writer", model: modelOverride = "", messages, system, temperature = 0.2, maxTokens = 8192, avoidProvider = null, retries = 2, tools = null, toolChoice = null, runId = null, taskKey = null }) {
-  const providerName = providerFor(role, avoidProvider);
+  let providerName = providerFor(role, avoidProvider);
 
   /*
    * The ceiling, checked before any request is made. It reads the meter rather than a counter in
@@ -539,6 +539,13 @@ export async function ask({ role = "writer", model: modelOverride = "", messages
 
   let lastError = "";
   for (let attempt = 0; attempt <= retries; attempt++) {
+    /* Re-resolved every attempt: a provider switch changes the host, the key and the model name
+       together, and retrying a switched provider against the old endpoint is the same timeout
+       wearing a different name. */
+    p = PROVIDERS[providerName];
+    cred = resolveKey(providerName, role);
+    if (cred?.value) key = cred.value;
+    body.model = modelFor(p, role);
     const started = Date.now();
     try {
       const r = await fetch(p.url, {
@@ -677,6 +684,26 @@ export async function ask({ role = "writer", model: modelOverride = "", messages
       console.log(`       call failed: task=${taskKey} role=${role} provider=${providerName} ` +
         `attempt=${attempt + 1}/${retries + 1} ${e?.cause?.code ?? e?.name ?? "error"}: ${String(e?.message ?? e).slice(0, 120)}`);
       lastError = `${e.cause?.code ?? e.name ?? "error"}: ${e.message}`;
+
+      /*
+       * A dead endpoint is not a bad request.
+       *
+       * volces answered ETIMEDOUT three times in a row from the runner and the run reported a schema
+       * failure, because retrying the same unreachable host cannot succeed and the last error was
+       * surfaced by whoever called us. Network faults and retryable 5xx switch to the other
+       * configured provider; an auth or parameter error does not, because the next provider would
+       * fail the same way and switching would hide it.
+       */
+      const netFault = /ETIMEDOUT|ECONNRESET|ENOTFOUND|EAI_AGAIN|ECONNREFUSED|socket hang up/i.test(lastError);
+      const serverFault = /\b(500|502|503|504)\b/.test(lastError);
+      if ((netFault || serverFault) && attempt < retries) {
+        const alt = providerFor(role, providerName);
+        if (alt && alt !== providerName) {
+          console.log(`       provider switch: ${providerName} -> ${alt} after ${lastError.slice(0, 80)}`);
+          providerName = alt;
+          continue;
+        }
+      }
       meter({ at: new Date().toISOString(), runId, taskKey, role, provider: providerName, keyName: cred.name, model: modelFor(p, role), ok: false, ms, error: lastError, attempt });
       /*
        * A timeout does not get a second attempt on the same provider.
