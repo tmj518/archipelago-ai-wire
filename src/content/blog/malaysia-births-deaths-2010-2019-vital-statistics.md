@@ -134,7 +134,7 @@ For family planning, the data gives Malaysian couples a factual basis for their 
 
 For businesses, the state-level data points to where demand is growing. Terengganu's high birth rate of 23.7 births per 1,000 population means demand for baby products, childcare and schools will hold up there. Pulau Pinang's low birth rate of 11.8 births per 1,000 population means that market is shrinking. Perak's high death rate of 7.6 deaths per 1,000 population signals a market for funeral services, estate planning and elder care.
 
-The interest rate environment matters here too. With the central bank holding the OPR at 2.75 per cent as inflation averages 1.8 per cent, the cost of borrowing for long-term investments — hospitals, retirement homes, infrastructure — remains relatively low. That is the window for building the infrastructure an ageing population needs. See [BNM holds OPR at 2.75% as inflation averages 1.8% in first seven months](/blog/bnm-holds-opr-at-2-75-percent-september-2026/).
+The interest rate environment matters here too. With the central bank holding the OPR at 2.75 per cent as inflation averages 1.8 per cent, the cost of borrowing for long-term investments — hospitals, retirement homes, infrastructure — remains relatively low. That is the window for building the infrastructure an ageing population needs. See BNM holds OPR at 2.75% as inflation averages 1.8% in first seven months.
 
 ## How confident
 
@@ -180,6 +180,8 @@ Deaths increase:
 
 ## The data point
 
+The export boom that pays for much of this is covered in [September's record trade figures](/blog/malaysia-exports-record-rm215-billion-september-2026/).
+
 | Measure | Figure |
 | --- | --- |
 | Live births, change 2010 to 2019 | -1.5% |
@@ -188,6 +190,8 @@ Deaths increase:
 | Crude death rate, 2010 to 2019 | 4.8 to 5.4 per 1,000 |
 | Total fertility rate | below replacement from 2015 |
 | Putrajaya crude death rate, 2019 | 2.0 per 1,000 |## The data point
+
+The export boom that pays for much of this is covered in [September's record trade figures](/blog/malaysia-exports-record-rm215-billion-september-2026/).
 
 > 2.0 children per woman — the total fertility rate, below replacement level, starting from 2015.
 
