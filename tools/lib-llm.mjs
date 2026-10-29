@@ -514,13 +514,13 @@ export async function ask({ role = "writer", model: modelOverride = "", messages
       need: needFor(role),
     };
   }
-  const p = PROVIDERS[providerName];
-  const cred = resolveKey(providerName, role);
+  let p = PROVIDERS[providerName];
+  let cred = resolveKey(providerName, role);
   if (!cred) {
     meter({ at: new Date().toISOString(), runId, taskKey, role, ok: false, provider: providerName, error: "no key for this role" });
     return { ok: false, error: `no key configured for role ${role} on ${providerName}`, need: keyNamesFor(providerName, role) };
   }
-  const key = cred.value;
+  let key = cred.value;
   const body = {
     model: modelFor(p, role),
     messages: system ? [{ role: "system", content: system }, ...messages] : messages,
