@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T11:45:07.944Z",
+  "at": "2026-10-29T12:06:13.476Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,46 +28,46 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sst-collections-rm73-3-billion-2027-gst-not-option from /data/directive.json"
+      "detail": "sabah-sarawak-medical-officer-permanent-posts-november-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
-      "ok": true,
-      "detail": "draft at /data/drafts/sst-collections-rm73-3-billion-2027-gst-not-option.md"
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
-      "name": "reviewer",
+      "name": "writer (revision 1)",
       "ok": false,
-      "detail": "no parseable verdict"
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
-      "name": "reviewer",
+      "name": "writer (revision 2)",
       "ok": false,
-      "detail": "unavailable - refusing to publish without a verdict"
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict REVIEW_UNPARSEABLE"
+      "detail": "verdict WRITE-FAILED"
     }
   ],
-  "verdict": "REVIEW_UNPARSEABLE",
+  "verdict": "WRITE-FAILED",
   "reasons": [
-    "the reviewer returned no usable verdict; nothing was passed back to the writer"
+    "the writer's draft violates the content schema on every attempt (3), so the limits are not reaching the model"
   ],
   "article": null,
   "commit": null,
   "usage": {
-    "calls": 9,
-    "failed": 6,
-    "usd": 0.0109,
-    "promptTokens": 17412,
-    "completionTokens": 5657
+    "calls": 5,
+    "failed": 0,
+    "usd": 0.0188,
+    "promptTokens": 23454,
+    "completionTokens": 11369
   },
   "route": "script",
   "categoryActivity": {
@@ -75,5 +75,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 31
+  "seconds": 58
 }
