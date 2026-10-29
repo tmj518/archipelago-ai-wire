@@ -254,6 +254,11 @@ jobs:
         continue-on-error: true
         run: |
           set +e
+          # The article this run published, by filename. github.ref_name gave "main" and a URL that
+          # 404s; the commit subject is only right when the message starts with "publish:".
+          SLUG=$(git log -1 --name-only --pretty=format: | sed -n "s#^src/content/blog/\(.*\)\.md$#\1#p" | head -1)
+          [ -z "$SLUG" ] && SLUG=$(ls -1t src/content/blog/*.md 2>/dev/null | head -1 | xargs -r basename | sed "s/\.md$//")
+          echo "slug: ${SLUG:-none}"
           node tools/lib/feishu-bitable.mjs \
             --run-id="${GITHUB_RUN_ID}" \
             --status="${STATUS}" \
@@ -273,7 +278,8 @@ jobs:
           fi
         env:
           STATUS: ${{ job.status }}
-          SLUG: ${{ github.ref_name }}
+          # github.ref_name is the branch - 'main' on every push - so the console row was written
+        # with 主题=main and a URL that 404s. The article's own filename is the only honest source.
           FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
           FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
           FEISHU_BITABLE_APP_TOKEN: ${{ secrets.FEISHU_BITABLE_APP_TOKEN }}

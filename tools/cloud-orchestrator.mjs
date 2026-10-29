@@ -175,7 +175,14 @@ function alreadyPublishedToday() {
         cwd: ROOT,
         stdio: "ignore",
       });
-      return { slug, at: j.at };
+      publishedToday.push({ slug, at: j.at });
+      /*
+       * One article a day was the rule while the pipeline was being built. The site shipped with three
+       * articles across six sections, so the rule now allows a quota: MAX_ARTICLES_PER_DAY, default 3.
+       * The guard still stops a duplicate run of the same day once the quota is spent, which is what it
+       * was written for.
+       */
+      if (publishedToday.length >= quota) return publishedToday[0];
     } catch (e) {
       if (e?.status === 128 || e?.status === 1) continue; // not in HEAD: the article never landed
       throw new Error(`cannot tell whether ${slug} is published: git failed (${e?.message ?? e})`);
@@ -183,6 +190,9 @@ function alreadyPublishedToday() {
   }
   return null;
 }
+
+const quota = Math.max(1, Number(process.env.MAX_ARTICLES_PER_DAY ?? 3) || 3);
+const publishedToday = [];
 
 const already = alreadyPublishedToday();
 if (already && !process.argv.includes("--force")) {
