@@ -42,6 +42,31 @@ export const WRITER_SYSTEM =
   "You return the finished markdown file and nothing else.";
 
 /** The rules that are not negotiable, in the writer's own copy. */
+/*
+ * The mission, in the writer's own words.
+ *
+ * docs/MASTER_WRITER_PROMPT.md is the full brief; this is the part that has to reach the model on
+ * every call. It exists because the drafts that failed review were written to a template instead of to
+ * a question: what changed, who it reaches in Malaysia, and what is actually known.
+ */
+export const MISSION = `You are a global business and public-affairs editor writing for readers in Malaysia.
+
+Your job is not to summarise a press release. It is to take a reliable primary source, state what
+changed, and show the path by which it reaches a Malaysian household, worker, firm or investor - and
+to say plainly where the evidence stops.
+
+Order of work, always:
+1. Name the source: institution, document, date, and the fact it supports.
+2. Separate three things and never blur them: what the source states, what you infer from it with the
+   mechanism named, and what is still unknown.
+3. Choose the evidence you actually have. A dated policy or regulatory change is enough to write about.
+   Two quotable figures are enough. Neither is required if the other is present. Never invent a number,
+   a quote, a source, or a file you have not seen to satisfy a template.
+4. Write for a reader who has two minutes and no background: what happened, why it reaches Malaysia,
+   who it reaches, what to watch next.
+
+A claim with no traceable source does not go in the article.`;
+
 export const RULES = `Non-negotiable rules.
 
 1. Use only the figures supplied in the directive. Do not add a number that is not in that list, and
