@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T12:28:18.458Z",
+  "at": "2026-10-29T12:42:24.486Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sst-collections-rise-rm67-billion-2026-gst-rejected from /data/directive.json"
+      "detail": "sst-collections-rm67-billion-2026-gst-not-option from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -37,47 +37,37 @@
     },
     {
       "name": "writer",
-      "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
-    },
-    {
-      "name": "writer (revision 1)",
       "ok": true,
-      "detail": "draft at /data/drafts/sst-collections-rise-rm67-billion-2026-gst-rejected.md"
+      "detail": "draft at /data/drafts/sst-collections-rm67-billion-2026-gst-not-option.md"
     },
     {
-      "name": "reviewer (revision 1)",
+      "name": "reviewer",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: calculation shown to reader            declares custom-calculation but; FAQ 3-5 questions, 80-150 word answers 0 questions"
+      "detail": "no parseable verdict"
     },
     {
-      "name": "writer (revision 2)",
-      "ok": true,
-      "detail": "draft at /data/drafts/sst-collections-rise-rm67-billion-2026-gst-rejected.md"
-    },
-    {
-      "name": "reviewer (revision 2)",
+      "name": "reviewer",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: FAQ 3-5 questions, 80-150 word answers 0 questions"
+      "detail": "unavailable - refusing to publish without a verdict"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict REJECTED"
+      "detail": "verdict REVIEW_UNPARSEABLE"
     }
   ],
-  "verdict": "REJECTED",
+  "verdict": "REVIEW_UNPARSEABLE",
   "reasons": [
-    "the reviewer did not approve"
+    "the reviewer returned no usable verdict; nothing was passed back to the writer"
   ],
   "article": null,
   "commit": null,
   "usage": {
-    "calls": 4,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0078,
-    "promptTokens": 19854,
-    "completionTokens": 10040
+    "usd": 0.0045,
+    "promptTokens": 10041,
+    "completionTokens": 5019
   },
   "route": "script",
   "categoryActivity": {
@@ -85,42 +75,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "attempts": [
-    {
-      "attempt": 2,
-      "score": 102,
-      "verdict": "REJECTED",
-      "issues": [
-        {
-          "fix": "calculation shown to reader            declares custom-calculation but"
-        },
-        {
-          "fix": "FAQ 3-5 questions, 80-150 word answers 0 questions"
-        }
-      ]
-    },
-    {
-      "attempt": 3,
-      "score": 101,
-      "verdict": "REJECTED",
-      "issues": [
-        {
-          "fix": "FAQ 3-5 questions, 80-150 word answers 0 questions"
-        }
-      ]
-    }
-  ],
-  "qa": {
-    "verdict": "REJECTED",
-    "layers": {
-      "L1": {
-        "pass": false,
-        "detail": "strict check as a published file: FAQ 3-5 questions, 80-150 word answers 0 questions"
-      },
-      "L5": {
-        "pass": true
-      }
-    }
-  },
-  "seconds": 79
+  "seconds": 41
 }
