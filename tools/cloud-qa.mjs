@@ -232,6 +232,13 @@ if (!mechanicallyClear) {
        *   fix_type   routes the repair. "research" means the article needs a document nobody fetched,
        *              and no amount of rewriting invents a real number - the loop must stop instead.
        */
+      /* The reply was coming back as prose often enough that the run ended REVIEW_UNPARSEABLE with
+         nothing to read. The shape is stated first and in one line, because a model asked for a
+         paragraph before the JSON writes the paragraph. */
+      "Answer with ONE JSON object and nothing else - no preamble, no explanation, no code fence. " +
+      "The first character of your reply must be { and the last must be }. " +
+      "Required keys: verdict (APPROVED or REJECTED), pass (true or false), issues (an array, " +
+      "empty when pass is true). Keep every string under 200 characters.\n\n" +
       "Your verdict must be machine-parseable and actionable. If pass is false, every issue MUST carry " +
       "all five fields:\n" +
       "{\n" +
@@ -334,6 +341,10 @@ Set pass to false if any check is false. Every issue needs all five fields.`,
      * ceiling, need opposite fixes. The head and tail are what tells them apart, and they go into the
      * report so they reach the notification rather than a log nobody opens.
      */
+      /* The report keeps the head and tail; the log did not, so every diagnosis of this failure
+         was a guess between prose and truncation. Print both where a person will see them. */
+      console.log(`  reviewer raw: ${r.parseError ?? "parse failed"} | tokens=${r.usage?.completion_tokens ?? "?"} | head=${String(r.head ?? "").replace(/\s+/g, " ").slice(0, 160)} | tail=${String(r.tail ?? "").replace(/\s+/g, " ").slice(0, 120)}`);
+
     report.layers.L5 = {
       pass: false,
       detail: `reviewer did not return JSON - ${r.parseError ?? "unknown reason"}`,
