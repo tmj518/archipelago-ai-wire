@@ -174,7 +174,12 @@ jobs:
           fi
           git config user.name "archipelago-publisher"
           git config user.email "publisher@users.noreply.github.com"
-          git add src/content src/lib data/outcomes logs/usage.jsonl
+          # git add fails the whole step when one path in the list does not exist in this commit, and
+          # data/outcomes does not exist until the first run writes one. That turned a finished,
+          # approved, built article into a red Publish step on 2026-10-29. Add what exists, skip the rest.
+          for p in src/content src/lib logs/usage.jsonl data/outcomes; do
+            [ -e "$p" ] && git add "$p" || true
+          done
           slug=$(git diff --cached --name-only | sed -n 's#^src/content/blog/\(.*\)\.md$#\1#p' | head -1)
           if [ -z "$slug" ]; then
             echo "::error::no article file staged; refusing to publish an empty change"
