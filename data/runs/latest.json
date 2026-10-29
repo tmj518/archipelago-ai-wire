@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T05:33:20.534Z",
+  "at": "2026-10-29T05:41:30.076Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,42 +28,37 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "home-ministry-flood-preparations-northeast-monsoon-2026 from /data/directive.json"
+      "detail": "deepavali-2026-shmmp-11-items-nov-4-10 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
-      "ok": true,
-      "detail": "draft at /data/drafts/home-ministry-flood-preparations-northeast-monsoon-2026.md"
-    },
-    {
-      "name": "reviewer",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: comparison table present               0 table rows"
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
       "name": "writer (revision 1)",
       "ok": true,
-      "detail": "draft at /data/drafts/home-ministry-flood-preparations-northeast-monsoon-2026.md"
+      "detail": "draft at /data/drafts/deepavali-2026-shmmp-11-items-nov-4-10.md"
     },
     {
       "name": "reviewer (revision 1)",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: comparison table present               0 table rows"
+      "detail": "REJECTED: L1 strict check as a published file: figure five-part records               no figures[] entries; calculation shown to reader            declares custom-calculation but; comparison table present               0 table rows"
     },
     {
       "name": "writer (revision 2)",
       "ok": true,
-      "detail": "draft at /data/drafts/home-ministry-flood-preparations-northeast-monsoon-2026.md"
+      "detail": "draft at /data/drafts/deepavali-2026-shmmp-11-items-nov-4-10.md"
     },
     {
       "name": "reviewer (revision 2)",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: comparison table present               0 table rows"
+      "detail": "REJECTED: L1 strict check as a published file: figure five-part records               no figures[] entries; calculation shown to reader            declares custom-calculation but; comparison table present               0 table rows"
     },
     {
       "name": "state written",
@@ -74,17 +69,19 @@
   "verdict": "REJECTED",
   "reasons": [
     "the reviewer did not approve",
-    "no attempt improved on the first (scores 101 -> 101 -> 101), so the objections are probably not mechanical",
+    "no attempt improved on the first (scores 103 -> 103), so the objections are probably not mechanical",
+    "objection: {\"fix\":\"figure five-part records               no figures[] entries\"}",
+    "objection: {\"fix\":\"calculation shown to reader            declares custom-calculation but\"}",
     "objection: {\"fix\":\"comparison table present               0 table rows\"}"
   ],
   "article": null,
   "commit": null,
   "usage": {
-    "calls": 4,
-    "failed": 0,
-    "usd": 0.0055,
-    "promptTokens": 23245,
-    "completionTokens": 10492
+    "calls": 12,
+    "failed": 8,
+    "usd": 0.0196,
+    "promptTokens": 20652,
+    "completionTokens": 12750
   },
   "route": "script",
   "categoryActivity": {
@@ -94,20 +91,16 @@
   "uncoveredSections": [],
   "attempts": [
     {
-      "attempt": 1,
-      "score": 101,
+      "attempt": 2,
+      "score": 103,
       "verdict": "REJECTED",
       "issues": [
         {
-          "fix": "comparison table present               0 table rows"
-        }
-      ]
-    },
-    {
-      "attempt": 2,
-      "score": 101,
-      "verdict": "REJECTED",
-      "issues": [
+          "fix": "figure five-part records               no figures[] entries"
+        },
+        {
+          "fix": "calculation shown to reader            declares custom-calculation but"
+        },
         {
           "fix": "comparison table present               0 table rows"
         }
@@ -115,9 +108,15 @@
     },
     {
       "attempt": 3,
-      "score": 101,
+      "score": 103,
       "verdict": "REJECTED",
       "issues": [
+        {
+          "fix": "figure five-part records               no figures[] entries"
+        },
+        {
+          "fix": "calculation shown to reader            declares custom-calculation but"
+        },
         {
           "fix": "comparison table present               0 table rows"
         }
@@ -129,12 +128,12 @@
     "layers": {
       "L1": {
         "pass": false,
-        "detail": "strict check as a published file: comparison table present               0 table rows"
+        "detail": "strict check as a published file: figure five-part records               no figures[] entries; calculation shown to reader            declares custom-calculation but; comparison table present               0 table rows"
       },
       "L5": {
         "pass": true
       }
     }
   },
-  "seconds": 87
+  "seconds": 66
 }

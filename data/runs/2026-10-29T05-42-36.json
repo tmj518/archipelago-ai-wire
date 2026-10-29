@@ -1,0 +1,139 @@
+{
+  "at": "2026-10-29T05:41:30.076Z",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "absent, treated as a first run"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "3 of 15 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (2 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "deepavali-2026-shmmp-11-items-nov-4-10 from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "6 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
+    },
+    {
+      "name": "writer (revision 1)",
+      "ok": true,
+      "detail": "draft at /data/drafts/deepavali-2026-shmmp-11-items-nov-4-10.md"
+    },
+    {
+      "name": "reviewer (revision 1)",
+      "ok": false,
+      "detail": "REJECTED: L1 strict check as a published file: figure five-part records               no figures[] entries; calculation shown to reader            declares custom-calculation but; comparison table present               0 table rows"
+    },
+    {
+      "name": "writer (revision 2)",
+      "ok": true,
+      "detail": "draft at /data/drafts/deepavali-2026-shmmp-11-items-nov-4-10.md"
+    },
+    {
+      "name": "reviewer (revision 2)",
+      "ok": false,
+      "detail": "REJECTED: L1 strict check as a published file: figure five-part records               no figures[] entries; calculation shown to reader            declares custom-calculation but; comparison table present               0 table rows"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict REJECTED"
+    }
+  ],
+  "verdict": "REJECTED",
+  "reasons": [
+    "the reviewer did not approve",
+    "no attempt improved on the first (scores 103 -> 103), so the objections are probably not mechanical",
+    "objection: {\"fix\":\"figure five-part records               no figures[] entries\"}",
+    "objection: {\"fix\":\"calculation shown to reader            declares custom-calculation but\"}",
+    "objection: {\"fix\":\"comparison table present               0 table rows\"}"
+  ],
+  "article": null,
+  "commit": null,
+  "usage": {
+    "calls": 12,
+    "failed": 8,
+    "usd": 0.0196,
+    "promptTokens": 20652,
+    "completionTokens": 12750
+  },
+  "route": "script",
+  "categoryActivity": {
+    "economy": 2,
+    "malaysia-impact": 1
+  },
+  "uncoveredSections": [],
+  "attempts": [
+    {
+      "attempt": 2,
+      "score": 103,
+      "verdict": "REJECTED",
+      "issues": [
+        {
+          "fix": "figure five-part records               no figures[] entries"
+        },
+        {
+          "fix": "calculation shown to reader            declares custom-calculation but"
+        },
+        {
+          "fix": "comparison table present               0 table rows"
+        }
+      ]
+    },
+    {
+      "attempt": 3,
+      "score": 103,
+      "verdict": "REJECTED",
+      "issues": [
+        {
+          "fix": "figure five-part records               no figures[] entries"
+        },
+        {
+          "fix": "calculation shown to reader            declares custom-calculation but"
+        },
+        {
+          "fix": "comparison table present               0 table rows"
+        }
+      ]
+    }
+  ],
+  "qa": {
+    "verdict": "REJECTED",
+    "layers": {
+      "L1": {
+        "pass": false,
+        "detail": "strict check as a published file: figure five-part records               no figures[] entries; calculation shown to reader            declares custom-calculation but; comparison table present               0 table rows"
+      },
+      "L5": {
+        "pass": true
+      }
+    }
+  },
+  "seconds": 66
+}
