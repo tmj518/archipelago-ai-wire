@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T14:32:50.391Z",
+  "at": "2026-10-29T16:55:47.304Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,30 +28,20 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sabah-sarawak-special-grant-rm1-5-billion-2027-budget from /data/directive.json"
+      "detail": "federal-allocations-sabah-sarawak-2027-budget from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/sabah-sarawak-special-grant-rm1-5-billion-2027-budget.md"
+      "detail": "draft at /data/drafts/federal-allocations-sabah-sarawak-2027-budget.md"
     },
     {
       "name": "reviewer",
-      "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: RESULT: BLOCKED — 1 blocking rule(s). Fix them in the order listed; each one names the structure it checks and the edit that clears it."
-    },
-    {
-      "name": "writer (revision 1)",
-      "ok": true,
-      "detail": "draft at /data/drafts/sabah-sarawak-special-grant-rm1-5-billion-2027-budget.md"
-    },
-    {
-      "name": "reviewer (revision 1)",
       "ok": false,
       "detail": "no parseable verdict"
     },
@@ -63,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/sabah-sarawak-special-grant-rm1-5-billion-2027-budget.md"
+      "detail": "staged at src/content/blog/federal-allocations-sabah-sarawak-2027-budget.md"
     },
     {
       "name": "registry",
@@ -73,7 +63,7 @@
     {
       "name": "inbound links",
       "ok": true,
-      "detail": "no candidate needed one"
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
@@ -83,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "sabah-sarawak-special-grant-rm1-5-billion-2027-budget",
+  "article": "federal-allocations-sabah-sarawak-2027-budget",
   "commit": null,
   "usage": {
-    "calls": 4,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0156,
-    "promptTokens": 20354,
-    "completionTokens": 9207
+    "usd": 0.0024,
+    "promptTokens": 10124,
+    "completionTokens": 4640
   },
   "route": "script",
   "categoryActivity": {
@@ -98,5 +88,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 42
+  "seconds": 37
 }
