@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T09:33:21.909Z",
+  "at": "2026-10-29T10:35:54.778Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,57 +28,42 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "airborneo-rural-air-services-sarawak-sabah-connectivity from /data/directive.json"
+      "detail": "menara-tun-perak-sale-kuala-lumpur-landmark from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "3 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/airborneo-rural-air-services-sarawak-sabah-connectivity.md"
+      "detail": "draft at /data/drafts/menara-tun-perak-sale-kuala-lumpur-landmark.md"
     },
     {
       "name": "reviewer",
       "ok": false,
-      "detail": "no parseable verdict"
-    },
-    {
-      "name": "reviewer",
-      "ok": false,
-      "detail": "unavailable - refusing to publish without a verdict"
+      "detail": "REJECTED: L1 strict check as a published file: calculation shown to reader            declares custom-calculation but; no hedging words                       reportedly"
     },
     {
       "name": "writer (revision 1)",
       "ok": true,
-      "detail": "draft at /data/drafts/airborneo-rural-air-services-sarawak-sabah-connectivity.md"
+      "detail": "draft at /data/drafts/menara-tun-perak-sale-kuala-lumpur-landmark.md"
     },
     {
       "name": "reviewer (revision 1)",
       "ok": false,
-      "detail": "no parseable verdict"
-    },
-    {
-      "name": "reviewer",
-      "ok": false,
-      "detail": "unavailable - refusing to publish without a verdict"
+      "detail": "REJECTED: L1 strict check as a published file: no hedging words                       reportedly"
     },
     {
       "name": "writer (revision 2)",
       "ok": true,
-      "detail": "draft at /data/drafts/airborneo-rural-air-services-sarawak-sabah-connectivity.md"
+      "detail": "draft at /data/drafts/menara-tun-perak-sale-kuala-lumpur-landmark.md"
     },
     {
       "name": "reviewer (revision 2)",
       "ok": false,
-      "detail": "no parseable verdict"
-    },
-    {
-      "name": "reviewer",
-      "ok": false,
-      "detail": "unavailable - refusing to publish without a verdict"
+      "detail": "REJECTED: L1 strict check as a published file: no hedging words                       reportedly"
     },
     {
       "name": "state written",
@@ -87,15 +72,17 @@
     }
   ],
   "verdict": "REJECTED",
-  "reasons": [],
+  "reasons": [
+    "the reviewer did not approve"
+  ],
   "article": null,
   "commit": null,
   "usage": {
-    "calls": 6,
-    "failed": 2,
-    "usd": 0.0089,
-    "promptTokens": 21440,
-    "completionTokens": 10195
+    "calls": 8,
+    "failed": 4,
+    "usd": 0.0119,
+    "promptTokens": 22834,
+    "completionTokens": 10116
   },
   "route": "script",
   "categoryActivity": {
@@ -103,5 +90,52 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 79
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": 102,
+      "verdict": "REJECTED",
+      "issues": [
+        {
+          "fix": "calculation shown to reader            declares custom-calculation but"
+        },
+        {
+          "fix": "no hedging words                       reportedly"
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "score": 101,
+      "verdict": "REJECTED",
+      "issues": [
+        {
+          "fix": "no hedging words                       reportedly"
+        }
+      ]
+    },
+    {
+      "attempt": 3,
+      "score": 101,
+      "verdict": "REJECTED",
+      "issues": [
+        {
+          "fix": "no hedging words                       reportedly"
+        }
+      ]
+    }
+  ],
+  "qa": {
+    "verdict": "REJECTED",
+    "layers": {
+      "L1": {
+        "pass": false,
+        "detail": "strict check as a published file: no hedging words                       reportedly"
+      },
+      "L5": {
+        "pass": true
+      }
+    }
+  },
+  "seconds": 59
 }
