@@ -658,6 +658,18 @@ export async function ask({ role = "writer", model: modelOverride = "", messages
         estimatedUsd: Number(cost.toFixed(6)),
         attempt,
       });
+      /*
+       * An empty completion is not a success.
+       *
+       * It came back ok:true with empty text, the reviewer's parser then reported that it had no JSON,
+       * and the run surfaced REVIEW_UNPARSEABLE - a description of the symptom that hid a call which
+       * returned nothing at all. Throwing here lets the existing retry and provider switch run, which
+       * is the only thing that can turn it into an answer.
+       */
+      if (!String(json?.choices?.[0]?.message?.content ?? "").trim() && !(json?.choices?.[0]?.message?.tool_calls ?? []).length) {
+        throw new Error("empty completion");
+      }
+
       return {
         ok: true,
         text: json?.choices?.[0]?.message?.content ?? "",
