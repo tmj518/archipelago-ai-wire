@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-29T05:47:23.794Z",
+  "at": "2026-10-29T09:33:21.909Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,17 +28,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "deepavali-price-scheme-2026-11-items-nov-4-10 from /data/directive.json"
+      "detail": "airborneo-rural-air-services-sarawak-sabah-connectivity from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "3 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/deepavali-price-scheme-2026-11-items-nov-4-10.md"
+      "detail": "draft at /data/drafts/airborneo-rural-air-services-sarawak-sabah-connectivity.md"
     },
     {
       "name": "reviewer",
@@ -47,40 +47,55 @@
     },
     {
       "name": "reviewer",
-      "ok": true,
-      "detail": "unavailable, recorded as a lesson, publishing anyway"
-    },
-    {
-      "name": "publish",
-      "ok": true,
-      "detail": "staged at src/content/blog/deepavali-price-scheme-2026-11-items-nov-4-10.md"
-    },
-    {
-      "name": "registry",
       "ok": false,
-      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.1/x64/bin/node /home/runner/work/archipelago-ai-wire"
+      "detail": "unavailable - refusing to publish without a verdict"
     },
     {
-      "name": "inbound links",
+      "name": "writer (revision 1)",
       "ok": true,
-      "detail": "2 older article(s) now link here"
+      "detail": "draft at /data/drafts/airborneo-rural-air-services-sarawak-sabah-connectivity.md"
+    },
+    {
+      "name": "reviewer (revision 1)",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "unavailable - refusing to publish without a verdict"
+    },
+    {
+      "name": "writer (revision 2)",
+      "ok": true,
+      "detail": "draft at /data/drafts/airborneo-rural-air-services-sarawak-sabah-connectivity.md"
+    },
+    {
+      "name": "reviewer (revision 2)",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "unavailable - refusing to publish without a verdict"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict PUBLISHED"
+      "detail": "verdict REJECTED"
     }
   ],
-  "verdict": "PUBLISHED",
+  "verdict": "REJECTED",
   "reasons": [],
-  "article": "deepavali-price-scheme-2026-11-items-nov-4-10",
+  "article": null,
   "commit": null,
   "usage": {
-    "calls": 2,
-    "failed": 0,
-    "usd": 0.0023,
-    "promptTokens": 9611,
-    "completionTokens": 4362
+    "calls": 6,
+    "failed": 2,
+    "usd": 0.0089,
+    "promptTokens": 21440,
+    "completionTokens": 10195
   },
   "route": "script",
   "categoryActivity": {
@@ -88,5 +103,5 @@
     "malaysia-impact": 1
   },
   "uncoveredSections": [],
-  "seconds": 37
+  "seconds": 79
 }

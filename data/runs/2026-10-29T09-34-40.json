@@ -1,0 +1,107 @@
+{
+  "at": "2026-10-29T09:33:21.909Z",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "absent, treated as a first run"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "3 of 15 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (2 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "airborneo-rural-air-services-sarawak-sabah-connectivity from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "3 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/airborneo-rural-air-services-sarawak-sabah-connectivity.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "unavailable - refusing to publish without a verdict"
+    },
+    {
+      "name": "writer (revision 1)",
+      "ok": true,
+      "detail": "draft at /data/drafts/airborneo-rural-air-services-sarawak-sabah-connectivity.md"
+    },
+    {
+      "name": "reviewer (revision 1)",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "unavailable - refusing to publish without a verdict"
+    },
+    {
+      "name": "writer (revision 2)",
+      "ok": true,
+      "detail": "draft at /data/drafts/airborneo-rural-air-services-sarawak-sabah-connectivity.md"
+    },
+    {
+      "name": "reviewer (revision 2)",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "unavailable - refusing to publish without a verdict"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict REJECTED"
+    }
+  ],
+  "verdict": "REJECTED",
+  "reasons": [],
+  "article": null,
+  "commit": null,
+  "usage": {
+    "calls": 6,
+    "failed": 2,
+    "usd": 0.0089,
+    "promptTokens": 21440,
+    "completionTokens": 10195
+  },
+  "route": "script",
+  "categoryActivity": {
+    "economy": 2,
+    "malaysia-impact": 1
+  },
+  "uncoveredSections": [],
+  "seconds": 79
+}
