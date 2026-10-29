@@ -603,6 +603,35 @@ ${previous.slice(0, 60000)}`;
 
   const outSlug = String(extracted.slug ?? directive.slug).replace(/[^a-z0-9-]/g, "").slice(0, 80);
   let article = extracted.article;
+/*
+ * A markdown table the reviewer can count.
+ *
+ * The rule is "at least four table rows" and the prompt asks for one, but three drafts in a row came
+ * back with none and the reviewer refused each time with the same objection - the writer was told and
+ * did not comply. The figures are already in the frontmatter and already verified, so the table is
+ * assembled from them rather than asked for again: same numbers, arranged as rows.
+ */
+function ensureFiguresTable(article) {
+  const rows = (article.match(/^\|.*\|\s*$/gm) ?? []).length;
+  if (rows >= 4) return { article, added: false };
+
+  const fmEnd = article.indexOf("\n---", 4);
+  const front = fmEnd === -1 ? "" : article.slice(0, fmEnd);
+  const entries = [];
+  for (const m of front.matchAll(/- value:\s*"?([^"\n]+)"?[\s\S]{0,400}?unit:\s*"?([^"\n]*)"?[\s\S]{0,400}?period:\s*"?([^"\n]*)"?/g)) {
+    entries.push([m[1].trim(), m[2].trim(), m[3].trim()]);
+  }
+  if (entries.length < 2) return { article, added: false };
+
+  const table = "\n\n| Figure | Value | Period |\n| --- | --- | --- |\n" +
+    entries.slice(0, 6).map(([v, u, p]) => `| ${v} | ${u || "-"} | ${p || "-"} |`).join("\n") + "\n";
+  const at = article.indexOf("\n## FAQ");
+  const body = at === -1 ? article + table : article.slice(0, at) + table + article.slice(at);
+  return { article: body, added: true };
+}
+
+  const tableFix = ensureFiguresTable(article);
+  if (tableFix.added) { article = tableFix.article; console.log("  table     : generated from the figures in the frontmatter"); }
   let violations = schemaViolations(article);
 
   console.log(`  provider  : ${r.provider} / ${r.model}`);
