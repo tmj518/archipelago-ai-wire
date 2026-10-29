@@ -1,6 +1,7 @@
 ---
 import { AUTHOR } from "../consts";
 import NewsletterForm from "./NewsletterForm.astro";
+import { SITE } from "../consts";
 import RelatedCard from "./RelatedCard.astro";
 import type { CardData } from "../lib/post";
 import type { Hub } from "../lib/topics";
@@ -50,7 +51,7 @@ const {
       </div>
     </div>
 
-    <NewsletterForm variant="inline" />
+    {SITE.newsletterEnabled && <NewsletterForm variant="inline" />}
 
     {/*
       Rendered whenever the index exists, which is always, rather than only when the article has

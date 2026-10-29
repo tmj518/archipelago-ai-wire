@@ -43,10 +43,10 @@ export const WHAT_YOU_GET = [
  * One, and only one, on the first screen. "Get the weekly brief" names what arrives instead of
  * asking for a favour, which is the difference between a subscription and a donation.
  */
-export const CTA = "Get the weekly brief";
+export const CTA = "Bookmark this site";
 
 /** The secondary line under the button, which sets expectations about frequency. */
-export const CTA_NOTE = "Free. One email a week. Unsubscribe in one click.";
+export const CTA_NOTE = "Save it once, come back any time. No email, no signup.";
 
 /** Sentence used where a page needs to say what the site refuses to do. */
 export const INDEPENDENCE = `Independent. No ads, no sponsors, no tracking. Published by ${SITE.name}.`;

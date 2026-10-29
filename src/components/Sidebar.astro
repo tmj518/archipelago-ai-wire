@@ -2,6 +2,7 @@
 import AdSlot from "./AdSlot.astro";
 import AuthorCard from "./AuthorCard.astro";
 import NewsletterForm from "./NewsletterForm.astro";
+import { SITE } from "../consts";
 import NumbersWidget, { type NumberItem } from "./NumbersWidget.astro";
 
 /**
@@ -31,8 +32,10 @@ const { numbers, showNumbers = true } = Astro.props;
     be a second, inline copy inside the hero: it inherited the light box styling, rendered as a navy
     bar on the navy hero, and repeated the frequency sentence the line above it already stated.
   */}
-  <div id="subscribe">
-    <NewsletterForm variant="box" />
-  </div>
+    {SITE.newsletterEnabled && (
+      <div id="subscribe">
+        <NewsletterForm variant="box" />
+      </div>
+    )}
   <AdSlot placement="sidebar" />
 </aside>

@@ -153,7 +153,7 @@ const bibtex =
         * exists on pages where a reader has something to have read. Triggered on depth of
         * reading rather than on a timer, and shown once, ever.
       */}
-      <SubscribeModal />
+      {SITE.newsletterEnabled && <SubscribeModal />}
 
       {
         data.youtube_id && (

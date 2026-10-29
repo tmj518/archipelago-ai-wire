@@ -42,6 +42,12 @@ export const SITE = {
   /** Kept under ~140 chars: this doubles as the meta description. */
   description:
     "What is happening in the world, why, and what it means for Malaysia — in plain language, with a source and a date on every figure.",
+  /*
+   * Visitor-facing newsletter UI is off while the product is content-first.
+   * The components and the mailto fallback stay in the tree so switching this back on is one
+   * boolean, not a rebuild. Every entry point reads this flag.
+   */
+  newsletterEnabled: false,
   language: "en",
   /**
    * Newsletter form target.
