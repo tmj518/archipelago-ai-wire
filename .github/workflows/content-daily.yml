@@ -199,10 +199,10 @@ jobs:
           for p in src/content src/lib logs/usage.jsonl data/outcomes; do
             [ -e "$p" ] && git add "$p" || true
           done
-          slug=$(git diff --cached --name-only | sed -n 's#^src/content/blog/\(.*\)\.md$#\1#p' | head -1)
-          # Publish the slug for the steps after this one. The console step used to re-derive it with
-          # `git log -1`, which at that moment still pointed at the previous commit, so the row named
-          # the article before last.
+          # The article this run ADDED, not the first .md that happens to be staged: backfill-links
+          # touches older articles in the same commit, so "first staged file" named the wrong article
+          # and the console row shipped with the previous slug while a new article went live.
+          slug=$(git diff --cached --name-status --diff-filter=A | sed -n 's#^A\t\(src/content/blog/.*\)\.md$#\1#p' | head -1 | xargs -r basename)
           echo "ARTICLE_SLUG=$slug" >> "$GITHUB_ENV"
           if [ -z "$slug" ]; then
             echo "::error::no article file staged; refusing to publish an empty change"
