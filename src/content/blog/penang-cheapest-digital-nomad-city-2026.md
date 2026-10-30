@@ -119,6 +119,8 @@ The ranking also points to a risk. If Penang becomes known as a cheap base, the 
 
 > Also read: [Penang targets one-year timeline for technology finance centre, sets up implementation office](/blog/penang-technology-finance-centre-one-year-timeline/)
 
+> Also read: [Shah Alam High Court rules condo management bodies cannot use house rules to ban pets outright](/blog/condo-pet-ban-house-rules-high-court-october-2026/)
+
 ## For you
 
 - **A co-working space or cafe in Penang:** the ranking is a marketing asset. Link to the study in your materials and make sure your space appears in searches for Penang digital nomad accommodation.
