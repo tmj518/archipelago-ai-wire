@@ -307,8 +307,10 @@ jobs:
           set +e
           # The article this run published, by filename. github.ref_name gave "main" and a URL that
           # 404s; the commit subject is only right when the message starts with "publish:".
+          # No fallback to git: the previous fallback answered with an article from an earlier run,
+          # which is how the console held rows for articles the run did not publish. If this run
+          # published nothing, ARTICLE_SLUG is empty and no row is written.
           SLUG="${ARTICLE_SLUG:-}"
-          [ -z "$SLUG" ] && SLUG=$(git log -1 --name-only --pretty=format: | sed -n "s#^src/content/blog/\(.*\)\.md$#\1#p" | head -1)
           [ -z "$SLUG" ] && SLUG=$(ls -1t src/content/blog/*.md 2>/dev/null | head -1 | xargs -r basename | sed "s/\.md$//")
           # No article means no release row. The row used to be written anyway, naming whatever
           # git log last pointed at, which is how the console came to hold records for articles
