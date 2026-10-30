@@ -148,6 +148,8 @@ The interest rate environment matters here too. With the central bank holding th
 
 > Also read: [Petronas revenue hits RM152.4b in H1 2026 on higher LNG sales and domestic production](/blog/petronas-rm1524b-revenue-h1-2026/)
 
+> Also read: [Penang targets one-year timeline for technology finance centre, sets up implementation office](/blog/penang-technology-finance-centre-one-year-timeline/)
+
 ## For you
 
 - **A couple planning a family:** the national average of 2.0 children per woman is below replacement level. Your family size decision, multiplied across millions of households, determines whether the population grows or shrinks.

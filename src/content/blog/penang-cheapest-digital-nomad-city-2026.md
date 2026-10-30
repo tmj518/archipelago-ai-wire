@@ -117,6 +117,8 @@ The ranking also points to a risk. If Penang becomes known as a cheap base, the 
 
 **What would change my mind.** A government or industry report showing the number of DE Rantau Pass holders actually staying in Penang, and their average monthly spending, would turn the inference into a measured fact. A rental price index for Penang's urban neighbourhoods would show whether the inflow is pushing up housing costs. Neither exists in the material cited here.
 
+> Also read: [Penang targets one-year timeline for technology finance centre, sets up implementation office](/blog/penang-technology-finance-centre-one-year-timeline/)
+
 ## For you
 
 - **A co-working space or cafe in Penang:** the ranking is a marketing asset. Link to the study in your materials and make sure your space appears in searches for Penang digital nomad accommodation.
