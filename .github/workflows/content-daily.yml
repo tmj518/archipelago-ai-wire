@@ -103,7 +103,7 @@ jobs:
       - name: Find a subject
         run: |
             set +e
-            node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-12}"
+            node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-16}"
             code=$?
             set -e
             if [ "$code" = "2" ]; then
