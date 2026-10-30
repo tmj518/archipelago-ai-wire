@@ -829,7 +829,7 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     const body = readFileSync(draftPath, "utf8").replace(/^draft:\s*true\s*$/m, "draft: false");
     writeFileSync(probe, body, "utf8");
     try {
-      execFileSync(process.execPath, [join(ROOT, "tools", "qa-check.mjs"), probe], {
+      execFileSync(process.execPath, [join(ROOT, "tools", "qa-check.mjs"), probe, "--json"], {
         encoding: "utf8",
         timeout: 120000,
         maxBuffer: 16 * 1024 * 1024,
@@ -841,8 +841,41 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     }
   } catch (e) {
     if (e.rehearsal) { /* harness stub, not a real draft */ } else {
-    const out = `${e.stdout ?? ""}${e.stderr ?? ""}`;
-    const allRules = (out.match(/✗ BLOCK\s+([^\n]{1,70})/g) ?? []).map((x) => x.replace(/✗ BLOCK\s+/, "").trim());
+    const stdout = String(e.stdout ?? "");
+    const stderr = String(e.stderr ?? "");
+    const out = stdout + stderr;
+    /*
+     * Ask the checker what it found, rather than reading its prose.
+     *
+     * The extractor used to require the literal prefix "✗ BLOCK", so when the checker reported one
+     * blocking rule the parser saw zero and the run could neither relax it by name nor say what it was -
+     * the log said "found 0 blocking rule(s)" and then failed. qa-check already emits a JSON summary;
+     * that is the source now. A rule that cannot be identified is kept as UNKNOWN_BLOCK_RULE and is
+     * never eligible for the format relaxation, because a rule nobody can name is not a rule anybody
+     * has agreed to wave through.
+     */
+    const jsonStart = stdout.lastIndexOf('\n{\n');
+    let summary = null;
+    if (jsonStart >= 0) {
+      try {
+        summary = JSON.parse(stdout.slice(jsonStart));
+      } catch {
+        summary = null;
+      }
+    }
+    const allRules = summary
+      ? (summary.results ?? []).filter((r) => r.level === "block" && !r.isDraft).map((r) => String(r.rule ?? "UNKNOWN_BLOCK_RULE"))
+      : [];
+    if (!allRules.length) {
+      const textRules = (out.match(/✗\s*BLOCK\s+(.{1,200})/g) ?? []).map((x) => x.replace(/✗\s*BLOCK\s+/, "").trim());
+      allRules.push(...(textRules.length ? textRules : ["UNKNOWN_BLOCK_RULE"]));
+    }
+    const cleanRules = [...new Set(allRules.filter(Boolean))];
+    console.log("  QA_EXIT_CODE   : " + (e.status ?? "signal"));
+    console.log("  QA_BLOCK_LINES : " + (cleanRules.length ? cleanRules.join(" | ") : "(none parsed)"));
+    console.log("  QA_PARSED_RULES: " + JSON.stringify(cleanRules));
+    console.log("  QA_STDOUT_TAIL : " + stdout.slice(-2000).replace(/\n/g, " ⏎ "));
+    console.log("  QA_STDERR_TAIL : " + stderr.slice(-800).replace(/\n/g, " ⏎ "));
     /*
      * Launch mode.
      *
