@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-30T02:28:40.971Z",
+  "at": "2026-10-30T02:56:15.884Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "budget-2027-policy-stage-passed-committee-nov-2-glc-bill from /data/directive.json"
+      "detail": "penang-cheapest-digital-nomad-city-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -38,52 +38,49 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/budget-2027-policy-stage-passed-committee-nov-2-glc-bill.md"
+      "detail": "draft at /data/drafts/penang-cheapest-digital-nomad-city-2026.md"
     },
     {
       "name": "reviewer",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: RESULT: BLOCKED — 1 blocking rule(s). Fix them in the order listed; each one names the structure it checks and the edit that clears it."
+      "detail": "no parseable verdict"
     },
     {
-      "name": "writer (revision 1)",
-      "ok": true,
-      "detail": "draft at /data/drafts/budget-2027-policy-stage-passed-committee-nov-2-glc-bill.md"
-    },
-    {
-      "name": "reviewer (revision 1)",
+      "name": "reviewer",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: RESULT: BLOCKED — 1 blocking rule(s). Fix them in the order listed; each one names the structure it checks and the edit that clears it."
+      "detail": "unavailable - LAUNCH MODE: publishing without a second opinion, recorded as a lesson"
     },
     {
-      "name": "writer (revision 2)",
+      "name": "publish",
       "ok": true,
-      "detail": "draft at /data/drafts/budget-2027-policy-stage-passed-committee-nov-2-glc-bill.md"
+      "detail": "staged at src/content/blog/penang-cheapest-digital-nomad-city-2026.md"
     },
     {
-      "name": "reviewer (revision 2)",
+      "name": "registry",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: RESULT: BLOCKED — 1 blocking rule(s). Fix them in the order listed; each one names the structure it checks and the edit that clears it."
+      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.1/x64/bin/node /home/runner/work/archipelago-ai-wire"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict REJECTED"
+      "detail": "verdict PUBLISHED"
     }
   ],
-  "verdict": "REJECTED",
-  "reasons": [
-    "the reviewer did not approve",
-    "no attempt improved on the first (scores 100 -> 100 -> 100), so the objections are probably not mechanical"
-  ],
-  "article": null,
+  "verdict": "PUBLISHED",
+  "reasons": [],
+  "article": "penang-cheapest-digital-nomad-city-2026",
   "commit": null,
   "usage": {
-    "calls": 6,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0129,
-    "promptTokens": 44335,
-    "completionTokens": 13929
+    "usd": 0.0062,
+    "promptTokens": 21857,
+    "completionTokens": 5320
   },
   "route": "script",
   "categoryActivity": {
@@ -92,37 +89,5 @@
     "work-education-family": 1
   },
   "uncoveredSections": [],
-  "attempts": [
-    {
-      "attempt": 1,
-      "score": 100,
-      "verdict": "REJECTED",
-      "issues": []
-    },
-    {
-      "attempt": 2,
-      "score": 100,
-      "verdict": "REJECTED",
-      "issues": []
-    },
-    {
-      "attempt": 3,
-      "score": 100,
-      "verdict": "REJECTED",
-      "issues": []
-    }
-  ],
-  "qa": {
-    "verdict": "REJECTED",
-    "layers": {
-      "L1": {
-        "pass": false,
-        "detail": "strict check as a published file: RESULT: BLOCKED — 1 blocking rule(s). Fix them in the order listed; each one names the structure it checks and the edit that clears it."
-      },
-      "L5": {
-        "pass": true
-      }
-    }
-  },
-  "seconds": 93
+  "seconds": 35
 }
