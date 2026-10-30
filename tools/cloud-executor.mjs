@@ -702,6 +702,24 @@ function downgradeCalculationClaim(article) {
 }
 
 /*
+ * A skeleton marker is a note the writer left for itself, and it blocks publication.
+ *
+ * The draft pet-tax-relief-budget-2027-savings arrived at 1,891 words with eight figures and one
+ * source and was refused for a single skeleton marker - the article was finished and one line of
+ * scaffolding made it unpublishable. The phrase is removed rather than the article, because the line
+ * itself carries no information a reader needs.
+ */
+function stripSkeletonMarkers(article) {
+  const before = article;
+  const cleaned = article
+    .replace(/^\s*.*\bskeleton placeholder\b.*$/gim, "")
+    .replace(/^\s*.*\bSAMPLE POST\b.*$/gim, "")
+    .replace(/^\s*.*\bplaceholder figure\b.*$/gim, "")
+    .replace(/\n{3,}/g, "\n\n");
+  return { article: cleaned, changed: cleaned !== before };
+}
+
+/*
  * The FAQ is content, not decoration.
  *
  * The reviewer asks for three to five questions with answers of eighty to a hundred and fifty words,
