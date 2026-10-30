@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-30T02:07:59.168Z",
+  "at": "2026-10-30T02:28:40.971Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "melaka-state-election-2026-nomination-polling-dates from /data/directive.json"
+      "detail": "budget-2027-policy-stage-passed-committee-nov-2-glc-bill from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -38,32 +38,32 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/melaka-state-election-2026-nomination-polling-dates.md"
+      "detail": "draft at /data/drafts/budget-2027-policy-stage-passed-committee-nov-2-glc-bill.md"
     },
     {
       "name": "reviewer",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: schema string limits                   description 307/300 — the Zod s"
+      "detail": "REJECTED: L1 strict check as a published file: RESULT: BLOCKED — 1 blocking rule(s). Fix them in the order listed; each one names the structure it checks and the edit that clears it."
     },
     {
       "name": "writer (revision 1)",
       "ok": true,
-      "detail": "draft at /data/drafts/melaka-state-election-2026-nomination-polling-dates.md"
+      "detail": "draft at /data/drafts/budget-2027-policy-stage-passed-committee-nov-2-glc-bill.md"
     },
     {
       "name": "reviewer (revision 1)",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: schema string limits                   description 307/300 — the Zod s"
+      "detail": "REJECTED: L1 strict check as a published file: RESULT: BLOCKED — 1 blocking rule(s). Fix them in the order listed; each one names the structure it checks and the edit that clears it."
     },
     {
       "name": "writer (revision 2)",
       "ok": true,
-      "detail": "draft at /data/drafts/melaka-state-election-2026-nomination-polling-dates.md"
+      "detail": "draft at /data/drafts/budget-2027-policy-stage-passed-committee-nov-2-glc-bill.md"
     },
     {
       "name": "reviewer (revision 2)",
       "ok": false,
-      "detail": "REJECTED: L1 strict check as a published file: schema string limits                   description 307/300 — the Zod s"
+      "detail": "REJECTED: L1 strict check as a published file: RESULT: BLOCKED — 1 blocking rule(s). Fix them in the order listed; each one names the structure it checks and the edit that clears it."
     },
     {
       "name": "state written",
@@ -74,17 +74,16 @@
   "verdict": "REJECTED",
   "reasons": [
     "the reviewer did not approve",
-    "no attempt improved on the first (scores 101 -> 101 -> 101), so the objections are probably not mechanical",
-    "objection: {\"fix\":\"schema string limits                   description 307/300 — the Zod s\"}"
+    "no attempt improved on the first (scores 100 -> 100 -> 100), so the objections are probably not mechanical"
   ],
   "article": null,
   "commit": null,
   "usage": {
     "calls": 6,
     "failed": 0,
-    "usd": 0.0259,
-    "promptTokens": 39028,
-    "completionTokens": 13988
+    "usd": 0.0129,
+    "promptTokens": 44335,
+    "completionTokens": 13929
   },
   "route": "script",
   "categoryActivity": {
@@ -96,33 +95,21 @@
   "attempts": [
     {
       "attempt": 1,
-      "score": 101,
+      "score": 100,
       "verdict": "REJECTED",
-      "issues": [
-        {
-          "fix": "schema string limits                   description 307/300 — the Zod s"
-        }
-      ]
+      "issues": []
     },
     {
       "attempt": 2,
-      "score": 101,
+      "score": 100,
       "verdict": "REJECTED",
-      "issues": [
-        {
-          "fix": "schema string limits                   description 307/300 — the Zod s"
-        }
-      ]
+      "issues": []
     },
     {
       "attempt": 3,
-      "score": 101,
+      "score": 100,
       "verdict": "REJECTED",
-      "issues": [
-        {
-          "fix": "schema string limits                   description 307/300 — the Zod s"
-        }
-      ]
+      "issues": []
     }
   ],
   "qa": {
@@ -130,12 +117,12 @@
     "layers": {
       "L1": {
         "pass": false,
-        "detail": "strict check as a published file: schema string limits                   description 307/300 — the Zod s"
+        "detail": "strict check as a published file: RESULT: BLOCKED — 1 blocking rule(s). Fix them in the order listed; each one names the structure it checks and the edit that clears it."
       },
       "L5": {
         "pass": true
       }
     }
   },
-  "seconds": 63
+  "seconds": 93
 }
