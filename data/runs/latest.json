@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-30T01:52:13.165Z",
+  "at": "2026-10-30T02:07:59.168Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,46 +28,63 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "penang-bayan-baru-sinkhole-road-closure-nov-7 from /data/directive.json"
+      "detail": "melaka-state-election-2026-nomination-polling-dates from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "4 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/melaka-state-election-2026-nomination-polling-dates.md"
+    },
+    {
+      "name": "reviewer",
       "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
+      "detail": "REJECTED: L1 strict check as a published file: schema string limits                   description 307/300 — the Zod s"
     },
     {
       "name": "writer (revision 1)",
+      "ok": true,
+      "detail": "draft at /data/drafts/melaka-state-election-2026-nomination-polling-dates.md"
+    },
+    {
+      "name": "reviewer (revision 1)",
       "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
+      "detail": "REJECTED: L1 strict check as a published file: schema string limits                   description 307/300 — the Zod s"
     },
     {
       "name": "writer (revision 2)",
+      "ok": true,
+      "detail": "draft at /data/drafts/melaka-state-election-2026-nomination-polling-dates.md"
+    },
+    {
+      "name": "reviewer (revision 2)",
       "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
+      "detail": "REJECTED: L1 strict check as a published file: schema string limits                   description 307/300 — the Zod s"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict WRITE-FAILED"
+      "detail": "verdict REJECTED"
     }
   ],
-  "verdict": "WRITE-FAILED",
+  "verdict": "REJECTED",
   "reasons": [
-    "the writer's draft violates the content schema on every attempt (3), so the limits are not reaching the model"
+    "the reviewer did not approve",
+    "no attempt improved on the first (scores 101 -> 101 -> 101), so the objections are probably not mechanical",
+    "objection: {\"fix\":\"schema string limits                   description 307/300 — the Zod s\"}"
   ],
   "article": null,
   "commit": null,
   "usage": {
     "calls": 6,
     "failed": 0,
-    "usd": 0.007,
-    "promptTokens": 37853,
-    "completionTokens": 10174
+    "usd": 0.0259,
+    "promptTokens": 39028,
+    "completionTokens": 13988
   },
   "route": "script",
   "categoryActivity": {
@@ -76,5 +93,49 @@
     "work-education-family": 1
   },
   "uncoveredSections": [],
-  "seconds": 97
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": 101,
+      "verdict": "REJECTED",
+      "issues": [
+        {
+          "fix": "schema string limits                   description 307/300 — the Zod s"
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "score": 101,
+      "verdict": "REJECTED",
+      "issues": [
+        {
+          "fix": "schema string limits                   description 307/300 — the Zod s"
+        }
+      ]
+    },
+    {
+      "attempt": 3,
+      "score": 101,
+      "verdict": "REJECTED",
+      "issues": [
+        {
+          "fix": "schema string limits                   description 307/300 — the Zod s"
+        }
+      ]
+    }
+  ],
+  "qa": {
+    "verdict": "REJECTED",
+    "layers": {
+      "L1": {
+        "pass": false,
+        "detail": "strict check as a published file: schema string limits                   description 307/300 — the Zod s"
+      },
+      "L5": {
+        "pass": true
+      }
+    }
+  },
+  "seconds": 63
 }
