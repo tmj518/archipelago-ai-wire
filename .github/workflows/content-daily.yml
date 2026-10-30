@@ -200,6 +200,10 @@ jobs:
             [ -e "$p" ] && git add "$p" || true
           done
           slug=$(git diff --cached --name-only | sed -n 's#^src/content/blog/\(.*\)\.md$#\1#p' | head -1)
+          # Publish the slug for the steps after this one. The console step used to re-derive it with
+          # `git log -1`, which at that moment still pointed at the previous commit, so the row named
+          # the article before last.
+          echo "ARTICLE_SLUG=$slug" >> "$GITHUB_ENV"
           if [ -z "$slug" ]; then
             echo "::error::no article file staged; refusing to publish an empty change"
             exit 1
@@ -275,7 +279,8 @@ jobs:
           set +e
           # The article this run published, by filename. github.ref_name gave "main" and a URL that
           # 404s; the commit subject is only right when the message starts with "publish:".
-          SLUG=$(git log -1 --name-only --pretty=format: | sed -n "s#^src/content/blog/\(.*\)\.md$#\1#p" | head -1)
+          SLUG="${ARTICLE_SLUG:-}"
+          [ -z "$SLUG" ] && SLUG=$(git log -1 --name-only --pretty=format: | sed -n "s#^src/content/blog/\(.*\)\.md$#\1#p" | head -1)
           [ -z "$SLUG" ] && SLUG=$(ls -1t src/content/blog/*.md 2>/dev/null | head -1 | xargs -r basename | sed "s/\.md$//")
           echo "slug: ${SLUG:-none}"
           node tools/lib/feishu-bitable.mjs \
