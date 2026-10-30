@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-30T00:03:56.063Z",
+  "at": "2026-10-30T00:33:51.711Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "pet-tax-relief-budget-2027-lifestyle-limit from /data/directive.json"
+      "detail": "pet-tax-relief-budget-2027-savings from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -37,16 +37,11 @@
     },
     {
       "name": "writer",
-      "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
-    },
-    {
-      "name": "writer (revision 1)",
       "ok": true,
-      "detail": "draft at /data/drafts/pet-tax-relief-budget-2027-lifestyle-limit.md"
+      "detail": "draft at /data/drafts/pet-tax-relief-budget-2027-savings.md"
     },
     {
-      "name": "reviewer (revision 1)",
+      "name": "reviewer",
       "ok": false,
       "detail": "no parseable verdict"
     },
@@ -58,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/pet-tax-relief-budget-2027-lifestyle-limit.md"
+      "detail": "staged at src/content/blog/pet-tax-relief-budget-2027-savings.md"
     },
     {
       "name": "registry",
@@ -68,7 +63,7 @@
     {
       "name": "inbound links",
       "ok": true,
-      "detail": "1 older article(s) now link here"
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
@@ -78,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "pet-tax-relief-budget-2027-lifestyle-limit",
+  "article": "pet-tax-relief-budget-2027-savings",
   "commit": null,
   "usage": {
-    "calls": 5,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0132,
-    "promptTokens": 28488,
-    "completionTokens": 9284
+    "usd": 0.0025,
+    "promptTokens": 12652,
+    "completionTokens": 4049
   },
   "route": "script",
   "categoryActivity": {
@@ -93,5 +88,5 @@
     "malaysia-impact": 2
   },
   "uncoveredSections": [],
-  "seconds": 73
+  "seconds": 35
 }
