@@ -202,7 +202,9 @@ jobs:
           # The article this run ADDED, not the first .md that happens to be staged: backfill-links
           # touches older articles in the same commit, so "first staged file" named the wrong article
           # and the console row shipped with the previous slug while a new article went live.
-          slug=$(git diff --cached --name-status --diff-filter=A | sed -n 's#^A\t\(src/content/blog/.*\)\.md$#\1#p' | head -1 | xargs -r basename)
+          # The generator writes the slug it published; git could not answer this question twice.
+          slug=$(cat data/tmp/last-slug.txt 2>/dev/null || true)
+          [ -z "$slug" ] && slug=$(git diff --cached --name-status --diff-filter=A | sed -n 's#^A\t\(src/content/blog/.*\)\.md$#\1#p' | head -1 | xargs -r basename)
           echo "ARTICLE_SLUG=$slug" >> "$GITHUB_ENV"
           if [ -z "$slug" ]; then
             echo "::error::no article file staged; refusing to publish an empty change"

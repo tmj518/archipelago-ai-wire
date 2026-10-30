@@ -1178,6 +1178,17 @@ if (wroteIt && qaCode === 0) {
     published = true;
     step("publish", true, `staged at src/content/blog/${slug}.md`);
     /*
+     * Leave the slug where the workflow can read it.
+     *
+     * The commit step tried to work it out afterwards with git, twice: "first staged .md" named an
+     * older article that backfill-links had touched, and "first added .md" fell through to the previous
+     * commit. This process is the only one that knows which article it wrote, so it writes it down.
+     */
+    try {
+      mkdirSync(join(ROOT, "data", "tmp"), { recursive: true });
+      writeFileSync(join(ROOT, "data", "tmp", "last-slug.txt"), slug, "utf8");
+    } catch {}
+    /*
      * HEDGE SANITIZER: two words, replaced before the gate reads the file.
      *
      * The blocked-word rule bans "may" and "could" because in a cost article they turn a statement into a guess. It is
