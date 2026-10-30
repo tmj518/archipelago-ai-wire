@@ -149,6 +149,8 @@ For the broader economy, the hold supports the growth forecast. The central bank
 
 **What would change my mind.** A change in the OPR at the next MPC meeting would change the picture. So would a sharp move in inflation. If headline inflation for the full year climbs well above the 1.8% seven-month average, the central bank would face pressure to raise rates. If growth falls below the 4%−5% forecast range, the pressure would be to cut. The 3 September statement gives no signal that either move is imminent, but the global environment is described as challenging, and external conditions can shift quickly.
 
+> Also read: [Budget 2027 pet tax relief: how much Malaysian pet owners can save](/blog/pet-tax-relief-budget-2027-savings/)
+
 ## For you
 
 - **A household paying a floating-rate housing loan:** your monthly instalment stays the same. The OPR hold means no new interest cost lands on your repayment schedule.

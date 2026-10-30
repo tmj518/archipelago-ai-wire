@@ -120,6 +120,8 @@ What is unknown: how much of the 54.5% is price rather than volume, and how much
 
 What would change this reading: if the detailed product breakdown for September shows that electrical and electronic products did not drive the increase, the inference in the previous section is wrong. If the next two monthly releases give back most of this gain, the record was a one-off rather than a turn.
 
+> Also read: [Budget 2027 pet tax relief: how much Malaysian pet owners can save](/blog/pet-tax-relief-budget-2027-savings/)
+
 ## For you
 
 - **If you work in manufacturing**, watch your employer's order book rather than the headline figure. Export value leads hiring by one to two quarters.
