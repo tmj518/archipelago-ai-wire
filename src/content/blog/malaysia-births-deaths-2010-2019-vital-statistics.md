@@ -144,6 +144,8 @@ The interest rate environment matters here too. With the central bank holding th
 
 **What would change my mind.** A reversal of the fertility decline would change the picture. If the TFR rises back above replacement level — above 2.1 children per woman — in future releases, the population would stabilise. A significant increase in immigration of working-age people would also offset the ageing trend. Conversely, if future data shows the death rate rising faster than the 29.1 per cent decade increase, the ageing process is accelerating beyond what this time series shows. The next DOSM releases covering 2020 to 2025 will show whether the pandemic disrupted or accelerated these trends.
 
+> Also read: [Penang named world's cheapest city for digital nomads, study finds](/blog/penang-cheapest-digital-nomad-city-2026/)
+
 ## For you
 
 - **A couple planning a family:** the national average of 2.0 children per woman is below replacement level. Your family size decision, multiplied across millions of households, determines whether the population grows or shrinks.

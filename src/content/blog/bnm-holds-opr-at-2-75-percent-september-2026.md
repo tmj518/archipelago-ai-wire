@@ -151,6 +151,8 @@ For the broader economy, the hold supports the growth forecast. The central bank
 
 > Also read: [Budget 2027 pet tax relief: how much Malaysian pet owners can save](/blog/pet-tax-relief-budget-2027-savings/)
 
+> Also read: [Penang named world's cheapest city for digital nomads, study finds](/blog/penang-cheapest-digital-nomad-city-2026/)
+
 ## For you
 
 - **A household paying a floating-rate housing loan:** your monthly instalment stays the same. The OPR hold means no new interest cost lands on your repayment schedule.
