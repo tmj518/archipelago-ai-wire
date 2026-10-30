@@ -1,0 +1,80 @@
+{
+  "at": "2026-10-30T01:52:13.165Z",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "absent, treated as a first run"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "5 of 15 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (3 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "penang-bayan-baru-sinkhole-road-closure-nov-7 from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "4 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
+    },
+    {
+      "name": "writer (revision 1)",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
+    },
+    {
+      "name": "writer (revision 2)",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict WRITE-FAILED"
+    }
+  ],
+  "verdict": "WRITE-FAILED",
+  "reasons": [
+    "the writer's draft violates the content schema on every attempt (3), so the limits are not reaching the model"
+  ],
+  "article": null,
+  "commit": null,
+  "usage": {
+    "calls": 6,
+    "failed": 0,
+    "usd": 0.007,
+    "promptTokens": 37853,
+    "completionTokens": 10174
+  },
+  "route": "script",
+  "categoryActivity": {
+    "economy": 2,
+    "malaysia-impact": 2,
+    "work-education-family": 1
+  },
+  "uncoveredSections": [],
+  "seconds": 97
+}
