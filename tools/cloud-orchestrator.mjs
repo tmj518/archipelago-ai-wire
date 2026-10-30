@@ -191,7 +191,7 @@ function alreadyPublishedToday() {
   return null;
 }
 
-const quota = Math.max(1, Number(process.env.MAX_ARTICLES_PER_DAY ?? 3) || 3);
+const quota = Math.max(1, Number(process.env.MAX_ARTICLES_PER_DAY ?? 2) || 2);
 const publishedToday = [];
 
 const already = alreadyPublishedToday();

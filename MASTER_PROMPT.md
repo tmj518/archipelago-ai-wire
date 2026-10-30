@@ -300,3 +300,32 @@ Nothing here is advisory. The gates are the standard, and they carry their own i
 *Everything else — the benchmark studies, the five-year plan, the source inventory with its reachability notes,
 the lessons log — is in `docs/`. Read it as a human, when you are deciding what to build next. The automation
 does not read it, and does not need to.*
+
+
+## Publishing cadence — the numbers the pipeline is held to
+
+These are targets, not aspirations. They live in this file because the automation reads this file on
+every run, so a rule that matters has to be here rather than in a planning document nobody opens.
+
+| Measure | Target |
+|---|---|
+| Minimum per day | 1 article |
+| Per section per week | 1 to 3 articles |
+| Whole site per week | 6 at the floor, 18 at the ceiling |
+
+Six sections. One article a week in each is the floor; three in each is the ceiling. A day with no
+article is a failure of the pipeline, not a quiet day — unless research genuinely found no subject, in
+which case the run records that fact and still writes its audit row.
+
+The cadence interacts with the daily quota: `MAX_ARTICLES_PER_DAY` must not allow more than 18 a week,
+so it is 2, and the weekly total is checked before the daily quota is spent.
+
+## Failure classification — every run names its own failure
+
+A run that ends in `FAILED` teaches nothing. Every run records one of:
+
+`NONE` (published or cleanly idle), `WRITER`, `REVIEWER`, `QA`, `BUILD`, `PUBLISH`, `VERIFY`, `ENV`.
+
+The class is derived from which step failed, written to the run summary, and recorded in the Feishu run
+log. Seven days of that data answers the question success counts cannot: which stage is actually costing
+the runs, and whether a retry recovers or merely repeats.

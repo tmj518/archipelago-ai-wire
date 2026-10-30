@@ -122,6 +122,7 @@ jobs:
           RESEARCH_SOURCES: ${{ vars.RESEARCH_SOURCES }}
 
       - name: Generate
+        id: gen
         if: env.SKIP_SUBJECT != '1'
         run: |
           # "exit 0 with nothing produced" is the failure mode that made this workflow look healthy
@@ -159,6 +160,7 @@ jobs:
       # skeleton marker and the step failed while this run's own article was clean. The slug is the
       # one the publish step will use, derived the same way so the two cannot disagree.
       - name: Quality gates on the draft
+        id: draftgate
         if: env.SKIP_SUBJECT != '1'
         run: |
           slug=$(git status --porcelain src/content/blog | sed -n 's#^?? src/content/blog/\(.*\)\.md$#\1#p' | head -1)
@@ -177,6 +179,7 @@ jobs:
           node tools/check-publish-ready.mjs "src/content/blog/$slug.md"
 
       - name: Build and gates
+        id: build
         run: |
           pnpm exec astro build
           node tools/gate.mjs --fresh
@@ -185,6 +188,7 @@ jobs:
       # merging it. Pushing to main is what makes Cloudflare Pages build the real site, and the
       # guard in tools/publish-guard.mjs is what keeps a re-run from publishing the same slug twice.
       - name: Publish
+        id: publish
         if: env.SKIP_SUBJECT != '1'
         run: |
           if git diff --quiet; then
@@ -217,6 +221,7 @@ jobs:
       # Pages needs a minute. If the URL never answers, the run fails and the alert workflow fires -
       # a deployment that silently 404s is the failure this step exists to catch.
       - name: Verify the article is live
+        id: verify
         if: env.SKIP_SUBJECT != '1'
         run: |
           slug=$(git log -1 --pretty=%s | sed -n 's/^publish: \(.*\)$/\1/p')
@@ -250,6 +255,27 @@ jobs:
           git push origin HEAD:main || true
         env:
           JOB_STATUS: ${{ job.status }}
+
+      # Every run names its own failure.
+      #
+      # "FAILED" tells nobody which stage to look at, and seven days of success counts cannot say which
+      # stage is costing the runs. The class is derived from the step conclusions above it and printed
+      # where the summary card can read it.
+      - name: Classify the failure
+        if: always()
+        run: |
+          class="NONE"
+          if [ "${{ job.status }}" != "success" ]; then
+            if [ "${{ steps.gen.outcome }}" != "success" ]; then class="WRITER"
+            elif [ "${{ steps.draftgate.outcome }}" != "success" ]; then class="QA"
+            elif [ "${{ steps.build.outcome }}" != "success" ]; then class="BUILD"
+            elif [ "${{ steps.publish.outcome }}" != "success" ]; then class="PUBLISH"
+            elif [ "${{ steps.verify.outcome }}" != "success" ]; then class="VERIFY"
+            else class="ENV"; fi
+          fi
+          echo "FAILURE_CLASS=$class" >> "$GITHUB_ENV"
+          echo "FAILURE_CLASS=$class" >> "$GITHUB_STEP_SUMMARY"
+          echo "failure class: $class"
 
       - name: Record and announce
         if: always()
