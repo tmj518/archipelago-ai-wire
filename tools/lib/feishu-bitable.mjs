@@ -14,6 +14,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const BASE = "https://open.feishu.cn/open-apis";
+const failureClass = (process.argv.find((a) => a.startsWith("--failure-class=")) ?? "").slice("--failure-class=".length);
 const T_RELEASES = "tbl64MskPT3HRDld";
 const T_DIM = "tblfVM49kksbUmVO";
 const T_EVIDENCE = "tblTiLgocRuDSK47";
@@ -91,7 +92,7 @@ async function main() {
     "日期": now.slice(0, 10), "主题": slug, "文章 URL": url, "最终状态": status, "commit SHA": sha, "最后更新": now,
   }, tok);
   const run = await upsert(appToken, T_RUNS, runId, {
-    "运行 ID": runId, "状态": status, "工作流阶段": "publish", "commit SHA": sha, "Actions 链接": url, "表格同步": "已同步", "本地补写": "否",
+    "运行 ID": runId, "状态": status, "工作流阶段": failureClass || "publish", "commit SHA": sha, "Actions 链接": url, "表格同步": "已同步", "本地补写": "否",
   }, tok);
   console.log(`  bitable: ok releases=${rel} runs=${run}`);
 

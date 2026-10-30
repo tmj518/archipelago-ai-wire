@@ -273,9 +273,22 @@ jobs:
             elif [ "${{ steps.verify.outcome }}" != "success" ]; then class="VERIFY"
             else class="ENV"; fi
           fi
+          # Two fields, two questions. FAILURE_CLASS says where it broke; RUN_OUTCOME says whether
+          # the system did its job. A quiet day did its job - it found nothing worth publishing and
+          # said so - and counting it as a failure would make the seven days unreadable.
+          if [ "${{ job.status }}" != "success" ]; then
+            outcome="FAILED"
+          elif [ -n "${ARTICLE_SLUG:-}" ] && [ "${{ steps.verify.outcome }}" = "success" ]; then
+            outcome="SUCCESS"
+          else
+            outcome="QUIET"
+          fi
           echo "FAILURE_CLASS=$class" >> "$GITHUB_ENV"
-          echo "FAILURE_CLASS=$class" >> "$GITHUB_STEP_SUMMARY"
-          echo "failure class: $class"
+          echo "RUN_OUTCOME=$outcome" >> "$GITHUB_ENV"
+          echo "| RUN_OUTCOME | FAILURE_CLASS |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---|---|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| $outcome | $class |" >> "$GITHUB_STEP_SUMMARY"
+          echo "outcome: $outcome  failure class: $class"
 
       - name: Record and announce
         if: always()
@@ -323,7 +336,8 @@ jobs:
           echo "slug: ${SLUG:-none}"
           node tools/lib/feishu-bitable.mjs \
             --run-id="${GITHUB_RUN_ID}" \
-            --status="${STATUS}" \
+            --status="${RUN_OUTCOME:-${STATUS}}" \
+            --failure-class="${FAILURE_CLASS:-}" \
             --slug="${SLUG}" \
             --sha="${GITHUB_SHA}" > bitable.log 2>&1
           code=$?
