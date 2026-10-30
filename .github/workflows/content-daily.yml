@@ -152,10 +152,25 @@ jobs:
           ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
           AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
 
+      # Only the article this run wrote.
+      #
+      # --all scans every draft in the folder, so a leftover file from an earlier failed attempt
+      # decided the outcome of this run: pet-tax-relief-budget-2027-lifestyle-limit carried one
+      # skeleton marker and the step failed while this run's own article was clean. The slug is the
+      # one the publish step will use, derived the same way so the two cannot disagree.
       - name: Quality gates on the draft
         run: |
-          node tools/qa-check.mjs --all
-          node tools/check-publish-ready.mjs --all
+          slug=$(git status --porcelain src/content/blog | sed -n 's#^?? src/content/blog/\(.*\)\.md$#\1#p' | head -1)
+          if [ -z "$slug" ]; then
+            slug=$(git status --porcelain src/content/blog | sed -n 's#^ M src/content/blog/\(.*\)\.md$#\1#p' | head -1)
+          fi
+          if [ -z "$slug" ]; then
+            echo "::error::this run wrote no article; nothing to gate"
+            exit 1
+          fi
+          echo "gating: $slug"
+          node tools/qa-check.mjs "src/content/blog/$slug.md"
+          node tools/check-publish-ready.mjs "src/content/blog/$slug.md"
 
       - name: Build and gates
         run: |
