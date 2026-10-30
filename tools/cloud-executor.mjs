@@ -709,6 +709,33 @@ function downgradeCalculationClaim(article) {
  * scaffolding made it unpublishable. The phrase is removed rather than the article, because the line
  * itself carries no information a reader needs.
  */
+/*
+ * Trim a frontmatter sentence field to the schema's ceiling, at a word boundary.
+ *
+ * description arrived at 307 characters against a limit of 300 and the whole article was refused -
+ * seven characters. The information is unchanged; the sentence is shortened to its last whole word.
+ */
+function trimToLimits(article) {
+  const fmEnd = article.indexOf("\n---", 4);
+  if (fmEnd <= 0) return { article, changed: false };
+  let front = article.slice(0, fmEnd);
+  const changed = [];
+  for (const [key, limit] of Object.entries(TEXT_LIMITS)) {
+    const re = new RegExp(`^(${key}:\\s*")([^"]*)(")$`, "m");
+    const m = front.match(re);
+    if (!m) continue;
+    const value = m[2];
+    if (value.length <= limit.max) continue;
+    const cut = value.slice(0, limit.max);
+    const at = cut.lastIndexOf(" ");
+    const trimmed = (at > limit.max * 0.6 ? cut.slice(0, at) : cut).replace(/[,;:\s]+$/, "");
+    front = front.replace(re, `$1${trimmed}$3`);
+    changed.push(`${key} ${value.length}->${trimmed.length}`);
+  }
+  if (!changed.length) return { article, changed: false };
+  return { article: front + article.slice(fmEnd), changed: true, detail: changed.join(", ") };
+}
+
 function stripSkeletonMarkers(article) {
   const before = article;
   const cleaned = article
@@ -768,6 +795,10 @@ async function assembleFaq(article) {
   if (tableFix.added) { article = tableFix.article; console.log("  table     : generated from the figures in the frontmatter"); }
   const faqFix = await assembleFaq(article);
   if (faqFix.added) { article = faqFix.article; console.log(`  faq       : ${faqFix.questions} questions assembled from the draft`); }
+  const skelFix2 = stripSkeletonMarkers(article);
+  if (skelFix2.changed) { article = skelFix2.article; console.log("  skeleton  : placeholder line removed"); }
+  const trimFix = trimToLimits(article);
+  if (trimFix.changed) { article = trimFix.article; console.log(`  trimmed   : ${trimFix.detail}`); }
   let violations = schemaViolations(article);
 
   console.log(`  provider  : ${r.provider} / ${r.model}`);
