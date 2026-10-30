@@ -284,6 +284,13 @@ jobs:
           SLUG="${ARTICLE_SLUG:-}"
           [ -z "$SLUG" ] && SLUG=$(git log -1 --name-only --pretty=format: | sed -n "s#^src/content/blog/\(.*\)\.md$#\1#p" | head -1)
           [ -z "$SLUG" ] && SLUG=$(ls -1t src/content/blog/*.md 2>/dev/null | head -1 | xargs -r basename | sed "s/\.md$//")
+          # No article means no release row. The row used to be written anyway, naming whatever
+          # git log last pointed at, which is how the console came to hold records for articles
+          # this run did not publish.
+          if [ -z "$SLUG" ]; then
+            echo "no article published this run - no release row to write"
+            exit 0
+          fi
           echo "slug: ${SLUG:-none}"
           node tools/lib/feishu-bitable.mjs \
             --run-id="${GITHUB_RUN_ID}" \
