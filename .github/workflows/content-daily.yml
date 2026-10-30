@@ -311,7 +311,8 @@ jobs:
           # which is how the console held rows for articles the run did not publish. If this run
           # published nothing, ARTICLE_SLUG is empty and no row is written.
           SLUG="${ARTICLE_SLUG:-}"
-          [ -z "$SLUG" ] && SLUG=$(ls -1t src/content/blog/*.md 2>/dev/null | head -1 | xargs -r basename | sed "s/\.md$//")
+          # No second fallback: the newest file in the folder is the previous article when this
+          # run wrote none, which is the false row this guard exists to stop.
           # No article means no release row. The row used to be written anyway, naming whatever
           # git log last pointed at, which is how the console came to hold records for articles
           # this run did not publish.
