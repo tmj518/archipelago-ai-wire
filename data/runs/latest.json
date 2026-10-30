@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-30T02:56:15.884Z",
+  "at": "2026-10-30T03:10:02.081Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,31 +18,31 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "5 of 15 net-new this week"
+      "detail": "6 of 15 net-new this week"
     },
     {
       "name": "sections covered this week",
       "ok": true,
-      "detail": "every section has a net-new article this week (3 sections)"
+      "detail": "every section has a net-new article this week (4 sections)"
     },
     {
       "name": "directive",
       "ok": true,
-      "detail": "penang-cheapest-digital-nomad-city-2026 from /data/directive.json"
+      "detail": "petronas-rm1524b-revenue-h1-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "2 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/penang-cheapest-digital-nomad-city-2026.md"
+      "detail": "draft at /data/drafts/petronas-rm1524b-revenue-h1-2026.md"
     },
     {
       "name": "reviewer",
-      "ok": false,
+      "ok": true,
       "detail": "no parseable verdict"
     },
     {
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/penang-cheapest-digital-nomad-city-2026.md"
+      "detail": "staged at src/content/blog/petronas-rm1524b-revenue-h1-2026.md"
     },
     {
       "name": "registry",
@@ -73,21 +73,22 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "penang-cheapest-digital-nomad-city-2026",
+  "article": "petronas-rm1524b-revenue-h1-2026",
   "commit": null,
   "usage": {
     "calls": 3,
     "failed": 0,
-    "usd": 0.0062,
-    "promptTokens": 21857,
-    "completionTokens": 5320
+    "usd": 0.0031,
+    "promptTokens": 20125,
+    "completionTokens": 3235
   },
   "route": "script",
   "categoryActivity": {
     "economy": 2,
     "malaysia-impact": 2,
+    "business-opportunities-risks": 1,
     "work-education-family": 1
   },
   "uncoveredSections": [],
-  "seconds": 35
+  "seconds": 37
 }
