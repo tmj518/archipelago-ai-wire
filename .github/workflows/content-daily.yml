@@ -175,6 +175,7 @@ jobs:
             exit 1
           fi
         env:
+          CONTENT_GENERATOR: ${{ vars.CONTENT_GENERATOR }}
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
           ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
