@@ -135,6 +135,16 @@ jobs:
           # Where the run actually is, and what research actually left behind. The 2026-11-01 run logged
           # "wrote /data/directive.json" and then failed this check fifteen milliseconds later, and the
           # log did not say which directory either side meant.
+          # The generator itself. This line was lost when the old directive check was replaced, and
+          # four runs then failed with WRITER because nothing ever ran - the log showed only the guard
+          # around it. It runs first, and the checks below judge what it left behind.
+          echo "generator: ${CONTENT_GENERATOR:-}"
+          if [ -z "${CONTENT_GENERATOR:-}" ]; then
+            echo "::error::CONTENT_GENERATOR is not set; nothing can run"
+            exit 1
+          fi
+          $CONTENT_GENERATOR
+          
           echo "pwd: $(pwd)"
           ls -la data 2>&1 | head -12
           ls -la data/directive.json data/tmp/directive.json 2>&1 | head -4
