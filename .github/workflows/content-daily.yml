@@ -154,8 +154,8 @@ jobs:
           echo "----- end of generator output -----"
           
           echo "pwd: $(pwd)"
-          ls -la data 2>&1 | head -12
-          ls -la data/directive.json data/tmp/directive.json 2>&1 | head -4
+          ls -la data 2>&1 | head -12 || true
+          ls -la data/directive.json data/tmp/directive.json 2>&1 | head -4 || true
           # The question is whether an article exists, not whether the directive still does.
           # The orchestrator consumes the directive once it has written the draft - so the 2026-11-01
           # run wrote a directive, published nothing, and then failed this check because the file it
