@@ -163,15 +163,23 @@ jobs:
           # An added file only. No regular expression, no quoting: the previous version used sed with
           # escaped parentheses inside a YAML block and the shell received an unterminated command, so
           # the variable was always empty and every run looked like a writer failure.
+          # The generator's exit code decides, not whether an article appeared.
+          # An exit of 0 with no article means research found nothing worth writing today - a quiet
+          # day, which the cadence allows. Only a non-zero exit is a failure. Before this, every
+          # quiet day was reported as WRITER, which is why the failure rate looked like half the runs.
+          if [ "$gen_status" -ne 0 ]; then
+            echo "::error::the generator exited $gen_status; see the output above"
+            exit 1
+          fi
           newfile=$(git diff --name-only --diff-filter=A -- src/content/blog | head -1)
           newfile=${newfile##*/}
           newfile=${newfile%.md}
           if [ -z "$newfile" ]; then
-            echo "NO-ARTICLE: the generator finished without writing a new article; nothing to publish"
-            echo "::error::the generator exited without producing an article (no directive, or nothing to write)"
-            echo "The pipeline will not publish. This is a configuration or source failure, not a quiet day." >&2
-            exit 1
+            echo "QUIET: the generator ran and found nothing worth publishing today."
+            echo "SKIP_SUBJECT=1" >> "$GITHUB_ENV"
+            exit 0
           fi
+          echo "wrote src/content/blog/$newfile.md"
           echo "wrote src/content/blog/$newfile.md"
           before=$(git status --porcelain -- src/content | wc -l)
           ${{ vars.CONTENT_GENERATOR }}
