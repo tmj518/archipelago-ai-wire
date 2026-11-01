@@ -70,3 +70,43 @@ migration decisions it drove are recorded in the commits on `migration/archipela
 It was removed rather than reorganised because a new publication that carries another publication's
 operating records is not a clean project; it is a project with an attic. Keeping it in Git is enough for
 anyone who needs to know how the current design was reached.
+
+## Handoff — 2026-11-01
+
+Last verified state, so the next session starts from evidence rather than memory.
+
+| Item | Value |
+|---|---|
+| commit | 1be625d |
+| verified run | 41291460917 — `outcome: QUIET`, `failure class: NONE`, conclusion success |
+| domain | www.ghiblistyled.com (old toolsai.club belongs to another project; do not touch) |
+| sources | 19 configured; Ars Technica and ASEAN verified contributing (`ok ars-technica-article`, `ok asean-secretariat-article`) |
+
+### What the quiet-day bug actually was
+
+Four faults stacked, each reported as `WRITER`:
+
+1. The `$CONTENT_GENERATOR` invocation line was deleted during an earlier edit — nothing ran.
+2. The Generate step's env block did not carry `CONTENT_GENERATOR` — the restored line ran empty.
+3. A legacy block survived the rewrite and ran the generator a second time, then failed when
+   `src/content` had no changes.
+4. `ls data/directive.json` exits non-zero when the file is absent — which is the normal quiet-day
+   state — and `bash -e` killed the step at the diagnostic, before the exit-code check.
+
+The rule now: exit 0 or 2 with no new article is QUIET; exit 0 with a new article continues; any other
+exit is FAILED/WRITER. Six "writer failures" today were this chain, not the writer.
+
+### Not done
+
+- Second-round source rotation (the per-run rotation exists; the in-run second pass does not).
+- `event_id` dedupe (similarity score only).
+- Six-domain classification.
+- Regression tests for the three run outcomes.
+
+### Next session, in order
+
+1. `tests/` case for QUIET / SUCCESS / WRITER-FAILED using the workflow's own logic.
+2. Second round: refactor the fetch loop in `tools/research.mjs` into a function so it can run twice
+   with different source subsets.
+3. `event_id` = hash of normalised subject + date + core fact, written to the ledger, dedupe by it.
+4. Map the model's category to the six sections.
