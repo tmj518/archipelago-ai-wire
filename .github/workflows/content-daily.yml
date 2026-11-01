@@ -138,11 +138,18 @@ jobs:
           echo "pwd: $(pwd)"
           ls -la data 2>&1 | head -12
           ls -la data/directive.json data/tmp/directive.json 2>&1 | head -4
-          if [ ! -s data/directive.json ] || ! grep -q '"slug"' data/directive.json; then
-            echo "NO-SUBJECT: the documents did not support an article today; nothing to write"
-            echo "SKIP_SUBJECT=1" >> "$GITHUB_ENV"
-            exit 0
+          # The question is whether an article exists, not whether the directive still does.
+          # The orchestrator consumes the directive once it has written the draft - so the 2026-11-01
+          # run wrote a directive, published nothing, and then failed this check because the file it
+          # was looking for had been legitimately deleted a moment earlier.
+          newfile=$(git status --porcelain src/content/blog | sed -n "s#^?? src/content/blog/\(.*\)\.md$#\1#p" | head -1)
+          if [ -z "$newfile" ]; then
+            echo "NO-ARTICLE: the generator finished without writing a new article; nothing to publish"
+            echo "::error::the generator exited without producing an article (no directive, or nothing to write)"
+            echo "The pipeline will not publish. This is a configuration or source failure, not a quiet day." >&2
+            exit 1
           fi
+          echo "wrote src/content/blog/$newfile.md"
           before=$(git status --porcelain -- src/content | wc -l)
           ${{ vars.CONTENT_GENERATOR }}
           after=$(git status --porcelain -- src/content | wc -l)
