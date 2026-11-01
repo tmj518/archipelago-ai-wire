@@ -143,7 +143,15 @@ jobs:
             echo "::error::CONTENT_GENERATOR is not set; nothing can run"
             exit 1
           fi
-          $CONTENT_GENERATOR
+          # Keep the generator's own output. The step judged the run by what it left on disk and
+          # printed none of why, so an early exit inside the orchestrator was invisible.
+          set -o pipefail
+          $CONTENT_GENERATOR 2>&1 | tee /tmp/gen.log
+          gen_status=$?
+          echo "generator exit: $gen_status"
+          echo "----- generator output (tail) -----"
+          tail -40 /tmp/gen.log 2>&1 || true
+          echo "----- end of generator output -----"
           
           echo "pwd: $(pwd)"
           ls -la data 2>&1 | head -12
