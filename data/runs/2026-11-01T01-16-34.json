@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-30T22:06:54.739Z",
+  "at": "2026-11-01T01:16:00.162Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "8 of 15 net-new this week"
+      "detail": "9 of 15 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,17 +28,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "condo-pet-ban-house-rules-high-court-october-2026 from /data/directive.json"
+      "detail": "kelantan-islamic-education-funding-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "5 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/condo-pet-ban-house-rules-high-court-october-2026.md"
+      "detail": "draft at /data/drafts/kelantan-islamic-education-funding-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/condo-pet-ban-house-rules-high-court-october-2026.md"
+      "detail": "staged at src/content/blog/kelantan-islamic-education-funding-2026.md"
     },
     {
       "name": "registry",
@@ -73,22 +73,22 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "condo-pet-ban-house-rules-high-court-october-2026",
+  "article": "kelantan-islamic-education-funding-2026",
   "commit": null,
   "usage": {
-    "calls": 3,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.011,
-    "promptTokens": 16991,
-    "completionTokens": 5805
+    "usd": 0.0141,
+    "promptTokens": 30149,
+    "completionTokens": 6940
   },
   "route": "script",
   "categoryActivity": {
     "economy": 3,
-    "malaysia-impact": 2,
+    "malaysia-impact": 3,
     "business-opportunities-risks": 2,
     "work-education-family": 1
   },
   "uncoveredSections": [],
-  "seconds": 29
+  "seconds": 34
 }
