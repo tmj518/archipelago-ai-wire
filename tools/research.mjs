@@ -329,7 +329,18 @@ const day = new Date().toISOString().slice(0, 10);
 mkdirSync(join(SOURCES_DIR, day), { recursive: true });
 
 const fetched = [];
-for (const [url, label, why] of CANDIDATES) {
+/*
+ * Rotate which sources are read.
+ *
+ * MAX_SOURCES is smaller than the registry, so a fixed order meant the tail was never fetched -
+ * the same few sources every day and the same narrow slice of the world. The list starts at a
+ * different point each run, so over a week every source is read and the corpus changes shape.
+ * This is not a second round inside one run; it is the cheap half of the same idea.
+ */
+const ROTATION = Number(process.env.SOURCE_ROTATION ?? Math.floor(Date.now() / 864e5)) || 0;
+const ROTATED = [...CANDIDATES.slice(ROTATION % CANDIDATES.length), ...CANDIDATES.slice(0, ROTATION % CANDIDATES.length)];
+console.log(`  rotation : starting at ${ROTATED[0][1]}`);
+for (const [url, label, why] of ROTATED) {
   if (fetched.length >= MAX_SOURCES) break;
   let out = "";
   try {
