@@ -329,3 +329,42 @@ A run that ends in `FAILED` teaches nothing. Every run records one of:
 The class is derived from which step failed, written to the run summary, and recorded in the Feishu run
 log. Seven days of that data answers the question success counts cannot: which stage is actually costing
 the runs, and whether a retry recovers or merely repeats.
+## Sources — configured, and what each one is for
+
+Seventeen sources are wired in `tools/research.mjs` (`CANDIDATES`). The list is here because the
+question "how many sources do we read" kept being answered from memory and the memory was wrong: it was
+said to be twenty-four, the registry held seventeen, and the run that ended quiet had read thirty-two
+articles from a corpus heavy with central-bank material.
+
+| # | Label | Source | What it is for |
+|---|---|---|---|
+| 1 | bank-negara | bnm.gov.my/pr | OPR, inflation, reserves, financial stability |
+| 2 | bernama | bernama.com RSS | national news agency, dated items with body text |
+| 3 | malay-mail | malaymail.com RSS | English-language daily |
+| 4 | fmt | freemalaysiatoday.com RSS | independent outlet |
+| 5 | cna-asia | channelnewsasia.com RSS | regional Asia coverage |
+| 6 | dosm | dosm.gov.my | GDP, jobs, wages, population, prices |
+| 7 | mida | mida.gov.my RSS | investment approvals, industrial policy |
+| 8 | ministry-of-finance | mof.gov.my | budget, tax, subsidies, public spending |
+| 9 | miti | miti.gov.my | trade, exports, industrial policy |
+| 10 | imf | imf.org | global outlook, country assessments |
+| 11 | federal-reserve | federalreserve.gov | US rates, dollar, financial conditions |
+| 12 | ecb | ecb.europa.eu | euro area rates and policy |
+| 13 | wto | wto.org | trade rules, disputes, notifications |
+| 14 | iseas | iseas.edu.sg | Southeast Asia analysis |
+| 15 | isis-malaysia | isis.org.my | Malaysian foreign and security policy |
+| 16 | customs-sst | mysst.customs.gov.my | SST rulings, customs procedure |
+| 17 | securities-commission | sc.com.my | capital markets, investment regulation |
+
+### What is missing, and it is the reason sections stay empty
+
+- **Technology and AI**: no source at all. This is why that section has never had an article.
+- **Global trade bodies beyond the WTO**: no ASEAN secretariat, no JETRO, no ADB.
+- **Company announcements**: no Bursa Malaysia filings, no exchange disclosures. Business and
+  capital stories therefore rest on press coverage rather than primary documents.
+
+### How to check what a run actually read
+
+Per-source archive counts are in the run log: each successful fetch prints `ok <label>-article`. A
+source listed above with no line in that log did not contribute, whatever the registry says. Add
+sources to `CANDIDATES`; do not describe them as configured until a run prints their `ok` line.
