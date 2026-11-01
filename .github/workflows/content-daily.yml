@@ -142,7 +142,12 @@ jobs:
           # The orchestrator consumes the directive once it has written the draft - so the 2026-11-01
           # run wrote a directive, published nothing, and then failed this check because the file it
           # was looking for had been legitimately deleted a moment earlier.
-          newfile=$(git status --porcelain src/content/blog | sed -n "s#^?? src/content/blog/\(.*\)\.md$#\1#p" | head -1)
+          # An added file only. No regular expression, no quoting: the previous version used sed with
+          # escaped parentheses inside a YAML block and the shell received an unterminated command, so
+          # the variable was always empty and every run looked like a writer failure.
+          newfile=$(git diff --name-only --diff-filter=A -- src/content/blog | head -1)
+          newfile=${newfile##*/}
+          newfile=${newfile%.md}
           if [ -z "$newfile" ]; then
             echo "NO-ARTICLE: the generator finished without writing a new article; nothing to publish"
             echo "::error::the generator exited without producing an article (no directive, or nothing to write)"
