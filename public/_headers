@@ -60,7 +60,7 @@
   #      dashboard change and cannot be made from this repository.
   #
   #        Cloudflare dashboard -> Caching -> Cache Rules -> Create rule
-  #          When incoming requests match : hostname equals www.toolsai.club
+  #          When incoming requests match : hostname equals www.ghiblistyled.com
   #          Then : Eligible for cache;  Edge TTL -> "Use cache-control header if present"
   #
   # The header is kept because the rule is useless without it: the rule defers to the origin's
