@@ -155,6 +155,8 @@ For the broader economy, the hold supports the growth forecast. The central bank
 
 > Also read: [Petronas revenue hits RM152.4b in H1 2026 on higher LNG sales and domestic production](/blog/petronas-rm1524b-revenue-h1-2026/)
 
+> Also read: [RM9.36m for 23 Kelantan Islamic schools, plus RM6.6m more for 42 others, says PM](/blog/kelantan-islamic-education-funding-2026/)
+
 ## For you
 
 - **A household paying a floating-rate housing loan:** your monthly instalment stays the same. The OPR hold means no new interest cost lands on your repayment schedule.

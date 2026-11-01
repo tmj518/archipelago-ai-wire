@@ -122,6 +122,8 @@ What would change this reading: if the detailed product breakdown for September 
 
 > Also read: [Budget 2027 pet tax relief: how much Malaysian pet owners can save](/blog/pet-tax-relief-budget-2027-savings/)
 
+> Also read: [RM9.36m for 23 Kelantan Islamic schools, plus RM6.6m more for 42 others, says PM](/blog/kelantan-islamic-education-funding-2026/)
+
 ## For you
 
 - **If you work in manufacturing**, watch your employer's order book rather than the headline figure. Export value leads hiring by one to two quarters.
