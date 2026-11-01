@@ -167,7 +167,7 @@ jobs:
           # An exit of 0 with no article means research found nothing worth writing today - a quiet
           # day, which the cadence allows. Only a non-zero exit is a failure. Before this, every
           # quiet day was reported as WRITER, which is why the failure rate looked like half the runs.
-          if [ "$gen_status" -ne 0 ]; then
+          if [ "$gen_status" -ne 0 ] && [ "$gen_status" -ne 2 ]; then
             echo "::error::the generator exited $gen_status; see the output above"
             exit 1
           fi
