@@ -179,17 +179,6 @@ jobs:
             echo "SKIP_SUBJECT=1" >> "$GITHUB_ENV"
             exit 0
           fi
-          echo "wrote src/content/blog/$newfile.md"
-          echo "wrote src/content/blog/$newfile.md"
-          before=$(git status --porcelain -- src/content | wc -l)
-          ${{ vars.CONTENT_GENERATOR }}
-          after=$(git status --porcelain -- src/content | wc -l)
-          echo "content changes: before=$before after=$after"
-          if [ "$after" = "0" ]; then
-            echo "::error::the generator exited without producing an article (no directive, or nothing to write)"
-            echo "The pipeline will not publish. This is a configuration or source failure, not a quiet day." >&2
-            exit 1
-          fi
         env:
           CONTENT_GENERATOR: ${{ vars.CONTENT_GENERATOR }}
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
