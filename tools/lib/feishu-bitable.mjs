@@ -60,7 +60,7 @@ async function main() {
   const status = arg("status", "unknown");
   const slug = arg("slug", "pipeline");
   const sha = (arg("sha", "") || process.env.GITHUB_SHA || "").slice(0, 7);
-  const url = slug && slug !== "pipeline" ? `https://www.toolsai.club/blog/${slug}/` : "";
+  const url = slug && slug !== "pipeline" ? `https://www.ghiblistyled.com/blog/${slug}/` : "";
   const appToken = process.env.FEISHU_BITABLE_APP_TOKEN ?? "";
   const appId = process.env.FEISHU_APP_ID ?? "";
   const appSecret = process.env.FEISHU_APP_SECRET ?? "";
@@ -129,7 +129,7 @@ async function main() {
         const latest = list[0];
         const fields = {
           "内容维度": cat, "已发布数量": list.length, "最近发布时间": latest.date,
-          "最近文章 URL": `https://www.toolsai.club/blog/${latest.slug}/`, "最近运行状态": status, "最后更新": now,
+          "最近文章 URL": `https://www.ghiblistyled.com/blog/${latest.slug}/`, "最近运行状态": status, "最后更新": now,
         };
         const hit = existing.find((r) => r.fields?.["内容维度"] === cat);
         const res = await fetch(

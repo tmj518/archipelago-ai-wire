@@ -334,16 +334,18 @@ record("a11y: the focus ring uses a design token", /:focus-visible\s*\{[^}]*outl
 
 /* ── the canonical domain (command 10, A) ──────────────────────────────────────────────────── */
 
-const CANON = "https://www.toolsai.club";
+const CANON = "https://www.ghiblistyled.com";
 const constsSrc = readFileSync(join(ROOT, "src/consts.ts"), "utf8");
 record("domain: SITE_URL defaults to the confirmed origin", constsSrc.includes(`"${CANON}"`));
 record("domain: the placeholder domain is gone from consts", !/archipelagoaiwire/.test(constsSrc));
-record("domain: the editorial address moved with the domain", /editor@toolsai\.club/.test(constsSrc));
+// The editorial address is deliberately empty: no mailbox exists on the new domain yet, and
+// inventing one would publish a contact route that cannot work.
+record("domain: no address is claimed until a mailbox exists", /email:\s*"",/.test(constsSrc));
 
 const redirectsSrc = readFileSync(join(ROOT, "public/_redirects"), "utf8");
 const ruleLines = redirectsSrc.split(/\r?\n/).filter((l) => l.trim() && !l.trim().startsWith("#"));
 record("redirects: exactly one rule", ruleLines.length === 1, ruleLines.join(" | "));
-record("redirects: bare domain 301s to www", /^https:\/\/toolsai\.club\/\*\s+https:\/\/www\.toolsai\.club\/:splat\s+301$/m.test(redirectsSrc));
+record("redirects: bare domain 301s to www", /^https:\/\/ghiblistyled\.com\/\*\s+https:\/\/www\.ghiblistyled\.com\/:splat\s+301$/m.test(redirectsSrc));
 record("redirects: the old project's domain is gone", !/landedmath/.test(redirectsSrc));
 record("redirects: no wildcard catch-all that would capture the canonical host", !/^\s*\/\*/m.test(redirectsSrc));
 

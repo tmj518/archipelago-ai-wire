@@ -96,7 +96,7 @@ record(
 
 /* ── the canonical domain (command 10, A) ─────────────────────────────────────────────────── */
 
-const CANON = "https://www.toolsai.club";
+const CANON = "https://www.ghiblistyled.com";
 const home = pageHtml("/");
 
 const canonical = /<link\s+rel="canonical"\s+href="([^"]+)"/.exec(home)?.[1] ?? "";
@@ -132,7 +132,7 @@ const shippedRedirects = join(DIST, "_redirects");
 if (existsSync(shippedRedirects)) {
   const r = readFileSync(shippedRedirects, "utf8");
   record("redirects: shipped to dist", true);
-  record("redirects: bare domain 301s to www", /^https:\/\/toolsai\.club\/\*\s+https:\/\/www\.toolsai\.club\/:splat\s+301$/m.test(r));
+  record("redirects: bare domain 301s to www", /^https:\/\/ghiblistyled\.com\/\*\s+https:\/\/www\.ghiblistyled\.com\/:splat\s+301$/m.test(r));
   record("redirects: the old domain is not shipped", !/landedmath/.test(r));
 } else {
   record("redirects: shipped to dist", false, "_redirects missing from dist");

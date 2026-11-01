@@ -31,7 +31,7 @@ if (!slug) {
   process.exit(0);
 }
 
-const url = flag("url", `https://www.toolsai.club/blog/${slug}/`);
+const url = flag("url", `https://www.ghiblistyled.com/blog/${slug}/`);
 const at = new Date().toISOString();
 const runId = process.env.GITHUB_RUN_ID ?? "";
 const sha = (process.env.GITHUB_SHA ?? "").slice(0, 7);

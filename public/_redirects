@@ -1,9 +1,9 @@
 # Cloudflare Pages redirects — copied verbatim into dist/ by Astro.
 #
-# Canonical host: www.toolsai.club
+# Canonical host: www.ghiblistyled.com
 #
 # The site answers on two names, and only one of them may serve content. If both
-# https://toolsai.club/ and https://www.toolsai.club/ return 200 with the same page, every URL exists
+# https://ghiblistyled.com/ and https://www.ghiblistyled.com/ return 200 with the same page, every URL exists
 # twice, the canonical tag and the host's own behaviour disagree, and a search engine is free to pick
 # either - which is the arrangement that splits a page's signals between two addresses. The canonical
 # constant in src/consts.ts names the www form; this file is what makes the other form stop answering.
@@ -24,4 +24,4 @@
 # The previous project's two rules were removed on 2026-10-26. They named the domain that project used,
 # which this project does not own, so they could never fire here - and leaving them in the file would
 # suggest the redirect had been configured when it had not.
-https://toolsai.club/* https://www.toolsai.club/:splat 301
+https://ghiblistyled.com/* https://www.ghiblistyled.com/:splat 301

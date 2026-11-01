@@ -3,7 +3,7 @@
 An independent Malaysian publication that helps people understand the world: what is happening, why it
 is happening, and what it means for Malaysia.
 
-**Canonical site:** https://www.toolsai.club
+**Canonical site:** https://www.ghiblistyled.com
 
 Every piece answers three questions — what happened, why now, and what it means here — and every figure
 carries a value, a unit, a period, a named source and the date it was retrieved. A claim that cannot be
@@ -69,7 +69,7 @@ pnpm preview        # serve the built output
 Environment variables (all optional; the build works without them):
 
 ```
-PUBLIC_SITE_URL                   canonical origin override (default https://www.toolsai.club)
+PUBLIC_SITE_URL                   canonical origin override (default https://www.ghiblistyled.com)
 PUBLIC_GA_ENABLED                 "true" to emit analytics at all; off unless set
 PUBLIC_GA_MEASUREMENT_ID          GA4 id, G-XXXXXXXXXX
 PUBLIC_GOOGLE_SITE_VERIFICATION   Search Console verification value

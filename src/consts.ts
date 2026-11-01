@@ -14,7 +14,7 @@ import taxonomy from "./lib/taxonomy.json";
 /**
  * The canonical origin.
  *
- * Confirmed by the project owner on 2026-10-26 as https://www.toolsai.club. The www form is the
+ * Confirmed by the project owner on 2026-10-26 as https://www.ghiblistyled.com. The www form is the
  * canonical one: the bare domain redirects to it (public/_redirects), so every canonical, og:url,
  * JSON-LD url and sitemap entry names the same single address. Two forms serving the same content is
  * the arrangement that splits a page's signals, and the redirect plus this constant are what prevent
@@ -25,7 +25,7 @@ import taxonomy from "./lib/taxonomy.json";
  * drifted to another origin fails rather than shipping quietly.
  */
 export const SITE_URL =
-  import.meta.env.PUBLIC_SITE_URL || "https://www.toolsai.club";
+  import.meta.env.PUBLIC_SITE_URL || "https://www.ghiblistyled.com";
 
 export const SITE = {
   url: SITE_URL,
@@ -143,10 +143,10 @@ export const AUTHOR = {
     "Archipelago AI Wire exists to help Malaysians understand the world: what is happening, why it is happening, and what it means here — for jobs, prices, businesses, students and households. Every figure carries a source and a retrieval date. Drafting is AI-assisted; every piece is reviewed against the source documents before publication, and corrections are recorded on the page.",
   /*
    * Moved with the domain on 2026-10-26: an editorial address on a domain the site no longer uses is
-   * a contact route that cannot work. Mail routing for toolsai.club is NOT configured yet - this is the
+   * a contact route that cannot work. Mail routing is NOT configured for this domain yet - this is the
    * address the site will use, not one that currently delivers. Set it up before launch.
    */
-  email: "editor@toolsai.club",
+  email: "",
 };
 
 /** Footer. */
