@@ -764,7 +764,13 @@ feasible to false and say so — that is a correct and useful answer, not a fail
  * The evidence check and the verification below run on the accepted proposal only, so a retry costs one model call
  * and no fetches.
  */
-const PROPOSAL_ATTEMPTS = 3;
+/* Six, not three.
+ *
+ * On 2026-10-31 all three proposals were OPR variants and the day ended QUIET while thirty-two
+ * articles sat unread: the corpus was dominated by central-bank documents, so three attempts
+ * searched one corner of it. More attempts cost no extra fetching.
+ */
+const PROPOSAL_ATTEMPTS = Number(process.env.PROPOSAL_ATTEMPTS ?? 6) || 6;
 const rejectedSubjects = [];
 let r = null;
 let proposal = null;
