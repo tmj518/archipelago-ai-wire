@@ -274,7 +274,7 @@ function duplicateScore(proposal, ledger) {
  */
 const CANDIDATES = [
   ["https://www.bnm.gov.my/pr", "bank-negara", "policy rate, reserves, exchange rate - English, the figures sit in the page body"],
-    ["https://www.bernama.com/bm/rss/news.rss", "bernama", "national news agency, RSS, dated items with body text"],
+    ["https://www.bernama.com/bm/news.php", "bernama", "national news agency, HTML index - its RSS endpoints return 404 from the runner"],
     ["https://www.malaymail.com/feed/rss/malaysia", "malay-mail", "English-language daily, RSS with full body text"],
     ["https://www.freemalaysiatoday.com/feed/", "fmt", "independent outlet, RSS with body text"],
     ["https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=10416", "cna-asia", "regional coverage of Asia, RSS"],
@@ -304,6 +304,8 @@ const CANDIDATES = [
    */
   ["https://mysst.customs.gov.my/", "customs-sst", "sales-and-service tax; English shell, Malay guidance documents"],
   ["https://www.sc.com.my/resources/media/media-release", "securities-commission", "regulator releases; listing is client-rendered"],
+    ["https://feeds.arstechnica.com/arstechnica/index", "ars-technica", "technology and AI industry reporting, RSS with body text"],
+    ["https://asean.org/feed/", "asean-secretariat", "regional trade and policy releases, RSS with body text"],
 ];
 
 if (!available().length) {
