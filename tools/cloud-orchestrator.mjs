@@ -178,15 +178,39 @@ function alreadyPublishedToday() {
       publishedToday.push({ slug, at: j.at });
       /*
        * One article a day was the rule while the pipeline was being built. The site shipped with three
-       * articles across six sections, so the rule now allows a quota: MAX_ARTICLES_PER_DAY, default 3.
-       * The guard still stops a duplicate run of the same day once the quota is spent, which is what it
-       * was written for.
+       * articles across six sections, so the rule now allows a quota: MAX_ARTICLES_PER_DAY, default 2.
        */
       if (publishedToday.length >= quota) return publishedToday[0];
     } catch (e) {
       if (e?.status === 128 || e?.status === 1) continue; // not in HEAD: the article never landed
       throw new Error(`cannot tell whether ${slug} is published: git failed (${e?.message ?? e})`);
     }
+  }
+  /*
+   * The journals are a history, not a count.
+   *
+   * A journal entry says a run once reported PUBLISHED for a slug whose file is in HEAD. It does not say
+   * the file was published today: the entry can be from a run whose article was dated yesterday, and a
+   * re-run of the same slug adds another entry. Counting entries exhausted the quota on 2026-11-02 with
+   * one article actually published, and every later run exited in a second reporting
+   * ALREADY PUBLISHED TODAY while a finished subject sat in the directive.
+   *
+   * The collection answers the question directly: how many articles carry today's date.
+   */
+  const articlesDir = join(ROOT, "src", "content", "blog");
+  if (existsSync(articlesDir)) {
+    const dated = readdirSync(articlesDir)
+      .filter((f) => f.endsWith(".md"))
+      .map((f) => {
+        try {
+          const text = readFileSync(join(articlesDir, f), "utf8");
+          return { slug: f.replace(/\.md$/, ""), date: /^publishDate:\s*"?([0-9-]+)"?/m.exec(text)?.[1] ?? "" };
+        } catch {
+          return null;
+        }
+      })
+      .filter((a) => a && a.date === beijing);
+    if (dated.length >= quota) return { slug: dated[0].slug, at: `${dated.length} article(s) dated ${beijing}` };
   }
   return null;
 }
