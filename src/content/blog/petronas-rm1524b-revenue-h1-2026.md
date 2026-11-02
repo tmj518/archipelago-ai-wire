@@ -94,6 +94,8 @@ The revenue figure also matters for Malaysia's export position. [Malaysia's expo
 
 **What would change my mind.** A published audited financial statement from Petronas for the first half of 2026 would confirm the revenue figure independently. A federal budget document showing the actual dividend received from Petronas would confirm the government revenue link. A tariff announcement from the Energy Commission would show how the revenue figure translates into household electricity prices.
 
+> Also read: [US finalises stress-test transparency rule: what it means for Malaysian banks' capital buffers](/blog/federal-reserve-stress-test-transparency-final-rule-2026/)
+
 ## For you
 
 - **A household paying for electricity:** Petronas' revenue is a signal of gas costs, and those costs feed into the electricity tariff. Watch for tariff announcements in the coming months.
