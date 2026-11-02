@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-02T04:59:36.736Z",
+  "at": "2026-11-02T05:40:39.574Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,27 +18,27 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "2 of 15 net-new this week"
+      "detail": "3 of 15 net-new this week"
     },
     {
       "name": "sections covered this week",
       "ok": true,
-      "detail": "every section has a net-new article this week (5 sections)"
+      "detail": "every section has a net-new article this week (6 sections)"
     },
     {
       "name": "directive",
       "ok": true,
-      "detail": "mcmc-scam-post-removal-requests-174099-october-2026 from /data/directive.json"
+      "detail": "service-tax-digital-services-amendment-regulations-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/mcmc-scam-post-removal-requests-174099-october-2026.md"
+      "detail": "draft at /data/drafts/service-tax-digital-services-amendment-regulations-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/mcmc-scam-post-removal-requests-174099-october-2026.md"
+      "detail": "staged at src/content/blog/service-tax-digital-services-amendment-regulations-2026.md"
     },
     {
       "name": "registry",
@@ -73,23 +73,24 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "mcmc-scam-post-removal-requests-174099-october-2026",
+  "article": "service-tax-digital-services-amendment-regulations-2026",
   "commit": null,
   "usage": {
-    "calls": 3,
+    "calls": 9,
     "failed": 0,
-    "usd": 0.0166,
-    "promptTokens": 36914,
-    "completionTokens": 6023
+    "usd": 0.0577,
+    "promptTokens": 160386,
+    "completionTokens": 13058
   },
   "route": "script",
   "categoryActivity": {
     "economy": 0,
     "malaysia-impact": 0,
     "work-education-family": 0,
+    "tech-ai": 1,
     "business-opportunities-risks": 1,
     "world": 1
   },
   "uncoveredSections": [],
-  "seconds": 32
+  "seconds": 29
 }
