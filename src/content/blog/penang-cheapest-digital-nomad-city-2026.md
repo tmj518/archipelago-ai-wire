@@ -127,6 +127,8 @@ The ranking also points to a risk. If Penang becomes known as a cheap base, the 
 
 > Also read: [Malaysia's platforms were asked to take down 174,099 scam posts this year, up from 102,113 all of last year](/blog/mcmc-scam-post-removal-requests-174099-october-2026/)
 
+> Also read: [JS-SEZ approved investments hit RM88.83bil, 45% realised, as Malaysia and Singapore set up joint committee](/blog/js-sez-rm88-8bil-approved-investments-jscmc-2026/)
+
 ## For you
 
 - **A co-working space or cafe in Penang:** the ranking is a marketing asset. Link to the study in your materials and make sure your space appears in searches for Penang digital nomad accommodation.

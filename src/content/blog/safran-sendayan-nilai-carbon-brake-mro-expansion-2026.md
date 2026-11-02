@@ -166,6 +166,8 @@ The gap of 60 people is the only headcount figure the release supports. It does 
 
 **What would change my mind.** A Safran or MIDA statement giving a headcount split between Nilai and Sendayan, or a job-classification list for the new roles, would replace the inference about which trades are hiring with a fact. A published start date for Nilai operations would tell a jobseeker when to apply. A figure for local supplier spend would turn the supplier paragraph from a reasonable expectation into a measured one. None of those is in the release, and this piece does not supply them.
 
+> Also read: [JS-SEZ approved investments hit RM88.83bil, 45% realised, as Malaysia and Singapore set up joint committee](/blog/js-sez-rm88-8bil-approved-investments-jscmc-2026/)
+
 ## For you
 
 - **A school leaver in Seremban or Nilai choosing a course:** the plants need machinists, furnace technicians and repair bench staff, so a vocational qualification in machining or aircraft maintenance is the entry ticket; the 2030 target date means the hiring window runs for several years, not one intake.
