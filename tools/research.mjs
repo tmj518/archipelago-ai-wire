@@ -746,6 +746,11 @@ WHAT MAKES A SUBJECT WORTH WRITING
     OR one dated change in a named official document (a rate, a rule, a tariff, a threshold, a
     publication) even when it carries no quotable number. A policy change with a date is evidence;
     a page of numbers without one is not
+  - For an EXPLAINER, a date is not required on its own. A named official document or a named
+    research publication is enough when it describes a mechanism a reader can follow - how a rule
+    changes an input price, a route, a job or a cost - provided the piece separates what the document
+    states from what you infer from it. That separation is the price of writing without a dated event:
+    an explainer that blurs the two is worse than no article.
   - it is not already covered. The recently published subjects are listed below.
 
 WHAT IS REJECTED
