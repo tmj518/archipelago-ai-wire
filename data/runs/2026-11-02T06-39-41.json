@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-02T05:40:39.574Z",
+  "at": "2026-11-02T06:39:06.712Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "3 of 15 net-new this week"
+      "detail": "4 of 15 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,17 +28,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "service-tax-digital-services-amendment-regulations-2026 from /data/directive.json"
+      "detail": "federal-reserve-stress-test-transparency-final-rule-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "1 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/service-tax-digital-services-amendment-regulations-2026.md"
+      "detail": "draft at /data/drafts/federal-reserve-stress-test-transparency-final-rule-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/service-tax-digital-services-amendment-regulations-2026.md"
+      "detail": "staged at src/content/blog/federal-reserve-stress-test-transparency-final-rule-2026.md"
     },
     {
       "name": "registry",
@@ -73,24 +73,24 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "service-tax-digital-services-amendment-regulations-2026",
+  "article": "federal-reserve-stress-test-transparency-final-rule-2026",
   "commit": null,
   "usage": {
-    "calls": 9,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0577,
-    "promptTokens": 160386,
-    "completionTokens": 13058
+    "usd": 0.0057,
+    "promptTokens": 42011,
+    "completionTokens": 3950
   },
   "route": "script",
   "categoryActivity": {
     "economy": 0,
     "malaysia-impact": 0,
     "work-education-family": 0,
-    "tech-ai": 1,
+    "tech-ai": 2,
     "business-opportunities-risks": 1,
     "world": 1
   },
   "uncoveredSections": [],
-  "seconds": 29
+  "seconds": 34
 }
