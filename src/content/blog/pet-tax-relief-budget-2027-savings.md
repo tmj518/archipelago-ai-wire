@@ -133,6 +133,8 @@ The relief does not cover food, toys or routine check-ups, based on the proposal
 
 **What would change my mind.** The passage of the budget without the pet relief provision, or an amendment that changes the eligible items or the limit. A clarification from the Inland Revenue Board on which procedures qualify, or a cap on the pet claim within the RM2,500 limit, would also change the calculation. Until the law is enacted, the relief is a proposal.
 
+> Also read: [Customs posted a 2026 amendment to the Service Tax (Digital Services) Regulations — what it changes for Malaysians](/blog/service-tax-digital-services-amendment-regulations-2026/)
+
 ## For you
 
 - **A salaried worker in the 11 per cent tax bracket:** a RM570 pet bill for vaccination and sterilisation returns RM62.70 at filing, if the proposal passes and you have room in the RM2,500 lifestyle limit.

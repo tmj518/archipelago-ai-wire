@@ -161,6 +161,8 @@ The averages differ by a factor of roughly 2.6 between the two years. That gap i
 
 **What would change my mind.** A published breakdown by institution, a per-student figure, or a statement from the Ministry of Education or a state Islamic education authority setting out how the money is disbursed would settle the questions this piece leaves open. So would a document linking the funding to the university-pathway commitment. None of those is in hand, and if one appears the averages above should be replaced with the actual distribution.
 
+> Also read: [Customs posted a 2026 amendment to the Service Tax (Digital Services) Regulations — what it changes for Malaysians](/blog/service-tax-digital-services-amendment-regulations-2026/)
+
 ## For you
 
 - **A parent weighing a pondok place for a child:** the published figures tell you the size of the federal envelope and the number of institutions sharing it, not what your child's school receives. Ask the school administration directly what it was allocated and what it spends it on.
