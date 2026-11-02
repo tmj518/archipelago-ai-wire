@@ -526,6 +526,7 @@ for (const page of fetched) {
   }
 }
 
+const MALAYSIAN_FIRST = /^(bank-negara|dosm|miti|ministry-of-finance|securities-commission|customs-sst|mida|bernama|malay-mail|fmt|isis-malaysia)/;
 if (articles.length) {
   /*
    * Articles first in the corpus. The model reads the first three entries, and a listing in that position is what
@@ -540,7 +541,6 @@ if (articles.length) {
  * the day ended quiet with thirty-two articles on disk - twelve of them from Malaysian sources it
  * never got to. Sorting is by who the document is about, not by who was fetched first.
  */
-const MALAYSIAN_FIRST = /^(bank-negara|dosm|miti|ministry-of-finance|securities-commission|customs-sst|mida|bernama|malay-mail|fmt|isis-malaysia)/;
 articles.sort((a, b) => {
   const am = MALAYSIAN_FIRST.test(String(a.label ?? "")) ? 0 : 1;
   const bm = MALAYSIAN_FIRST.test(String(b.label ?? "")) ? 0 : 1;
