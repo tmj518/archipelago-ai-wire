@@ -105,9 +105,19 @@ jobs:
             set +e
             node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-16}"
             code=$?
+            # Round 2. Exit 2 means every proposal was already published. Before calling the day
+            # quiet, read a different slice of the registry and ask again - the rotation offset puts
+            # the second pass past the first batch, so it sees sources the first pass led with.
+            # One retry, no loop: a second exit 2 is a quiet day.
+            if [ "$code" = "2" ]; then
+              echo "ROUND 2: all proposals were duplicates; re-reading a different source slice"
+              SOURCE_ROTATION=9 node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources=8
+              code=$?
+              echo "round 2 exit: $code"
+            fi
             set -e
             if [ "$code" = "2" ]; then
-              echo "DUPLICATE-SUBJECT: nothing new to write today; the run ends here and is green"
+              echo "DUPLICATE-SUBJECT: both rounds proposed only published subjects; the run ends here and is green"
               echo "SKIP_SUBJECT=1" >> "$GITHUB_ENV"
               exit 0
             fi
