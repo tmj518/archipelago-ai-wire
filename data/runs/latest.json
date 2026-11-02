@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-02T01:12:58.016Z",
+  "at": "2026-11-02T04:37:17.173Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,27 +18,27 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "0 of 15 net-new this week"
+      "detail": "1 of 15 net-new this week"
     },
     {
       "name": "sections covered this week",
       "ok": true,
-      "detail": "every section has a net-new article this week (4 sections)"
+      "detail": "every section has a net-new article this week (5 sections)"
     },
     {
       "name": "directive",
       "ok": true,
-      "detail": "thai-cambodia-border-closure-june-2025-malaysia-supply-chains from /data/directive.json"
+      "detail": "safran-sendayan-nilai-carbon-brake-mro-expansion-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/thai-cambodia-border-closure-june-2025-malaysia-supply-chains.md"
+      "detail": "draft at /data/drafts/safran-sendayan-nilai-carbon-brake-mro-expansion-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/thai-cambodia-border-closure-june-2025-malaysia-supply-chains.md"
+      "detail": "staged at src/content/blog/safran-sendayan-nilai-carbon-brake-mro-expansion-2026.md"
     },
     {
       "name": "registry",
@@ -73,22 +73,23 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "thai-cambodia-border-closure-june-2025-malaysia-supply-chains",
+  "article": "safran-sendayan-nilai-carbon-brake-mro-expansion-2026",
   "commit": null,
   "usage": {
-    "calls": 4,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0164,
-    "promptTokens": 36169,
-    "completionTokens": 6067
+    "usd": 0.0171,
+    "promptTokens": 37107,
+    "completionTokens": 6403
   },
   "route": "script",
   "categoryActivity": {
     "economy": 0,
     "malaysia-impact": 0,
     "work-education-family": 0,
-    "business-opportunities-risks": 0
+    "business-opportunities-risks": 0,
+    "world": 1
   },
   "uncoveredSections": [],
-  "seconds": 40
+  "seconds": 34
 }
