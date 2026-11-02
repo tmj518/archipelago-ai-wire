@@ -348,7 +348,9 @@ const fetched = [];
  * different point each run, so over a week every source is read and the corpus changes shape.
  * This is not a second round inside one run; it is the cheap half of the same idea.
  */
-const ROTATION = Number(process.env.SOURCE_ROTATION ?? Math.floor(Date.now() / 864e5)) || 0;
+/* Day and hour, so a second run on the same day reads a different slice rather than repeating the
+ * first one - a quiet morning and a quiet evening had been asking the same sources the same question. */
+const ROTATION = Number(process.env.SOURCE_ROTATION ?? (Math.floor(Date.now() / 864e5) + new Date().getHours())) || 0;
 const ROTATED = [...CANDIDATES.slice(ROTATION % CANDIDATES.length), ...CANDIDATES.slice(0, ROTATION % CANDIDATES.length)];
 console.log(`  rotation : starting at ${ROTATED[0][1]}`);
 for (const [url, label, why] of ROTATED) {
