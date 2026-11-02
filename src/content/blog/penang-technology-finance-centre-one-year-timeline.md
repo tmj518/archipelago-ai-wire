@@ -117,6 +117,8 @@ The timeline matters for planning. A company that wants to access the fund or th
 
 **What would change my mind.** A public announcement of the fund's governance structure and terms before year end would confirm the timeline is on track. A statement from Khazanah or InvestPenang on their roles would clarify the fund's operation. A delay past year end without explanation would suggest the governance work is taking longer than the state hoped. The one-year timeline for the PTFC itself is a target, not a commitment, and a public update on progress would show whether the target holds.
 
+> Also read: [Safran opens a carbon brake MRO centre in Nilai and doubles Sendayan output by 2028](/blog/safran-sendayan-nilai-carbon-brake-mro-expansion-2026/)
+
 ## For you
 
 - **A semiconductor or E&E SME owner in Penang:** the RM100 million strategic fund is a potential source of capital, and the year-end governance target gives a timeline for when terms should be public. Prepare a business plan and financial records now.
