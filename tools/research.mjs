@@ -816,6 +816,10 @@ Return ONLY a JSON object:
   "title_idea": "a plain declarative headline",
   "keyword": "the phrase a Malaysian reader would search",
   "category": "${CATEGORY_SLUGS.join(" | ")}",
+  /* The category follows the SUBJECT, not where the document was published. A Malaysian factory
+     opening reported by a foreign wire is a Malaysian business story, not world news - that mistake
+     filed the Safran plant in Sendayan under "world" on 2026-11-02. */
+  "category_rule": "choose by what the subject is about: a Malaysian company, investment, plant, job or price is business-opportunities-risks or economy; semiconductors, AI, data centres, software, or a technology rule is tech-ai even when the company is foreign; a foreign policy that reaches Malaysia through trade or prices is world or malaysia-impact; schools, universities, health, families and household costs are work-education-family",
   "audience": "${AUDIENCE_VALUES.join(" | ")}",
   "angle": "what the reader can decide or do differently after reading, in one sentence",
   "sourceHosts": ["hostnames you used"],
