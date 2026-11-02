@@ -57,7 +57,14 @@ const BUDGET = Number(flag("budget", "0.40"));
  * which the same two or three carried a rate, meant the subject pool was exhausted after two articles. The documents
  * were always there - the follow-up depth was not.
  */
-const MAX_SOURCES = Number(flag("sources", "6"));
+/*
+ * All of them, by default.
+ *
+ * The cap was there when the registry was small and a run cost real money per fetch. It is now the
+ * cheapest way to widen the corpus: every source is already in the list, and a run that reads
+ * sixteen of nineteen leaves three unread for no reason. The flag still works for a quick test.
+ */
+const MAX_SOURCES = Number(flag("sources", String(CANDIDATES.length)));
 
 const SOURCES_DIR = join(ROOT, "data", "sources");
 const LEDGER = join(ROOT, "data", "ledger.jsonl");
