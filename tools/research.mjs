@@ -603,17 +603,48 @@ const CORPUS_NOTE = [
   "more than an article assembled from navigation text.",
 ].join("\n");
 
-const corpus = fetched
-  .slice(0, 5)
+/*
+ * The corpus is the ARTICLES, not the index pages.
+ *
+ * This used to read the first five entries of `fetched` - the listing pages the crawler started from.
+ * Every run therefore handed the model five navigation pages, and the prompt's own instruction to
+ * "report infeasible if the corpus holds listings only" was being followed correctly on material that
+ * was, in fact, listings. Thirty-two article bodies sat on disk each run and the model saw none of
+ * them, which is why a day kept ending with "no dated change, no named document".
+ *
+ * The sample is round-robin across sources so one prolific source cannot take every slot, and the
+ * Malaysian sources lead because the sections that matter are about Malaysia.
+ */
+function pickCorpusArticles(limit = 8) {
+  const byLabel = new Map();
+  for (const a of articles) {
+    if (!byLabel.has(a.label)) byLabel.set(a.label, []);
+    byLabel.get(a.label).push(a);
+  }
+  const order = [...byLabel.keys()].sort((x, y) => {
+    const xm = MALAYSIAN_FIRST.test(x) ? 0 : 1;
+    const ym = MALAYSIAN_FIRST.test(y) ? 0 : 1;
+    return xm - ym;
+  });
+  const out = [];
+  for (let round = 0; round < 3 && out.length < limit; round++) {
+    for (const label of order) {
+      const list = byLabel.get(label) ?? [];
+      if (list[round]) out.push(list[round]);
+      if (out.length >= limit) break;
+    }
+  }
+  return out;
+}
+
+const corpusDocs = pickCorpusArticles(8);
+console.log(`  corpus   : ${corpusDocs.length} article(s) from ${new Set(corpusDocs.map((a) => a.label)).size} source(s)`);
+
+const corpus = corpusDocs
   .map((f) => {
     const p = join(ROOT, f.file);
     let body = "";
     try {
-      /*
-       * Decoded by charset rather than read as latin1. Latin1 kept the digits and destroyed every word around
-       * them, so the writer received pages where the figures existed and were unreadable - which reads as
-       * evidence and cannot be used.
-       */
       body = decodeHtml(readFileSync(p))
         .replace(/<script[\s\S]*?<\/script>/gi, " ")
         .replace(/<style[\s\S]*?<\/style>/gi, " ")
@@ -621,9 +652,9 @@ const corpus = fetched
         .replace(/&nbsp;|&#160;/g, " ")
         .replace(/\s+/g, " ")
         .trim()
-        .slice(0, 18000);
+        .slice(0, 12000);
     } catch {}
-    return `--- SOURCE: ${f.file}\nURL: ${f.url}\nWHY IT MATTERS: ${f.why}\n\n${body}\n`;
+    return `--- SOURCE: ${f.label} (${f.file})\nURL: ${f.url}\n\n${body}\n`;
   })
   .join("\n");
 
@@ -840,7 +871,7 @@ for (let attempt = 1; attempt <= PROPOSAL_ATTEMPTS; attempt++) {
     : "";
 
   console.log(
-    `  proposing a subject from ${Math.min(fetched.length, 5)} archived document(s)` +
+    `  proposing a subject from ${corpusDocs.length} archived article(s)` +
       (attempt > 1 ? ` (attempt ${attempt} of ${PROPOSAL_ATTEMPTS})` : "") +
       "...",
   );
