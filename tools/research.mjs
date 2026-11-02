@@ -39,6 +39,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, appendFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { askJson, available, summary as providerSummary, usageToday } from "./lib-llm.mjs";
 import { CATEGORY_SLUGS, AUDIENCE_VALUES } from "../src/lib/taxonomy.mjs";
 
@@ -1015,6 +1016,22 @@ const directive = {
   angle: proposal.angle,
   figures: proposal.figures,
   sources: proposal.sources,
+  /*
+   * A stable identity for the event, independent of the headline.
+   *
+   * Two articles about the same decision share the same actors and the same month whatever words
+   * the writer chooses, so the id is built from the source organisations and the month, not from
+   * the slug. It is written into the directive now so the ledger can carry it, and the ledger is
+   * what the next run's duplicate check reads. Existing rows have no id and keep working through
+   * the similarity score.
+   */
+  event_id: (() => {
+    const orgs = [...new Set([...(proposal.sources ?? []).flatMap((s) => orgTokens(s)),
+                              ...(proposal.sourceHosts ?? []).flatMap((h) => orgTokens(h))])].sort();
+    const month = String(proposal.effectiveDate ?? proposal.publishDate ?? new Date().toISOString()).slice(0, 7);
+    const key = `${orgs.slice(0, 3).join("+")}|${month}`;
+    return createHash("sha1").update(key).digest("hex").slice(0, 12);
+  })(),
 };
 
 if (DRY) {
