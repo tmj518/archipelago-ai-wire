@@ -1,2 +1,3 @@
 trigger: 2026-10-28T20:55:35Z
 run: 2 permission test
+trigger 2026-11-02T06:36:36Z - verifying the event-driven run publishes without a dispatch
