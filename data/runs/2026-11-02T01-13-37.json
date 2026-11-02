@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-02T01:06:40.848Z",
+  "at": "2026-11-02T01:12:58.016Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "thai-cambodia-border-closure-malaysia-supply-chain from /data/directive.json"
+      "detail": "thai-cambodia-border-closure-june-2025-malaysia-supply-chains from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -38,7 +38,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/thai-cambodia-border-closure-malaysia-supply-chain.md"
+      "detail": "draft at /data/drafts/thai-cambodia-border-closure-june-2025-malaysia-supply-chains.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/thai-cambodia-border-closure-malaysia-supply-chain.md"
+      "detail": "staged at src/content/blog/thai-cambodia-border-closure-june-2025-malaysia-supply-chains.md"
     },
     {
       "name": "registry",
@@ -73,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "thai-cambodia-border-closure-malaysia-supply-chain",
+  "article": "thai-cambodia-border-closure-june-2025-malaysia-supply-chains",
   "commit": null,
   "usage": {
     "calls": 4,
     "failed": 0,
-    "usd": 0.0163,
-    "promptTokens": 36052,
-    "completionTokens": 5990
+    "usd": 0.0164,
+    "promptTokens": 36169,
+    "completionTokens": 6067
   },
   "route": "script",
   "categoryActivity": {
@@ -90,5 +90,5 @@
     "business-opportunities-risks": 0
   },
   "uncoveredSections": [],
-  "seconds": 38
+  "seconds": 40
 }
