@@ -756,6 +756,12 @@ WHAT IS REJECTED
     may state it, or you may derive it - but a derived link must be written as analysis, in plain
     words, with the steps named, and never presented as the source's own conclusion. Only when no
     such chain can be described at all: return feasible=false with reason_if_not="no Malaysian carrier described".
+  - For the Tech & AI section specifically, a global technology event QUALIFIES when the chain can be
+    named even though the document never mentions Malaysia. Chip export controls reach Malaysian
+    packaging and testing plants; a data-centre build-out reaches Johor's power supply, water and
+    local hiring; an AI product change reaches the cost of a service a Malaysian firm buys. State the
+    chain as your analysis, name the industry and the place, and say plainly what is inferred. What is
+    NOT allowed is the empty version - "this could affect Malaysia" without naming who or through what.
   - a subject that rests on race, religion or royalty. Those are reportable subjects, but this pipeline has no
     named human reviewer, and the gate quarantines them. Do not propose one automatically.
 ${BLUE_OCEAN_NOTE ? BLUE_OCEAN_NOTE + "\n\n" : ""}${sectionBlock}
