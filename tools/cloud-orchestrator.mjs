@@ -180,7 +180,6 @@ function alreadyPublishedToday() {
        * One article a day was the rule while the pipeline was being built. The site shipped with three
        * articles across six sections, so the rule now allows a quota: MAX_ARTICLES_PER_DAY, default 2.
        */
-      if (publishedToday.length >= quota) return publishedToday[0];
     } catch (e) {
       if (e?.status === 128 || e?.status === 1) continue; // not in HEAD: the article never landed
       throw new Error(`cannot tell whether ${slug} is published: git failed (${e?.message ?? e})`);
