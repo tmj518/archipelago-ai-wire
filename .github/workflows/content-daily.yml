@@ -171,7 +171,9 @@ jobs:
             echo "::error::the generator exited $gen_status; see the output above"
             exit 1
           fi
-          newfile=$(git diff --name-only --diff-filter=A -- src/content/blog | head -1)
+          # Untracked files do not appear in git diff: the orchestrator writes the article into the
+          # working tree, so diff --diff-filter=A answered "none" while a finished article sat there.
+          newfile=$(git ls-files --others --exclude-standard src/content/blog | head -1)
           newfile=${newfile##*/}
           newfile=${newfile%.md}
           if [ -z "$newfile" ]; then
