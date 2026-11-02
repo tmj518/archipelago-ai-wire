@@ -153,6 +153,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [Thailand's border shutdown with Cambodia has run since June 2025, and the supply-chain damage it caused is the warning](/blog/thai-cambodia-border-closure-june-2025-malaysia-supply-chains/)
 
+> Also read: [Malaysia's platforms were asked to take down 174,099 scam posts this year, up from 102,113 all of last year](/blog/mcmc-scam-post-removal-requests-174099-october-2026/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.
