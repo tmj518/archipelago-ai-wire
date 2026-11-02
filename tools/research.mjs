@@ -64,7 +64,10 @@ const BUDGET = Number(flag("budget", "0.40"));
  * cheapest way to widen the corpus: every source is already in the list, and a run that reads
  * sixteen of nineteen leaves three unread for no reason. The flag still works for a quick test.
  */
-const MAX_SOURCES = Number(flag("sources", String(CANDIDATES.length)));
+/* 99 is "all of them": the registry is nineteen entries and CANDIDATES is declared further down,
+ * so reading its length here was a temporal-dead-zone error, not a value. The loop stops at the
+ * end of the list anyway. */
+const MAX_SOURCES = Number(flag("sources", "99"));
 
 const SOURCES_DIR = join(ROOT, "data", "sources");
 const LEDGER = join(ROOT, "data", "ledger.jsonl");
