@@ -519,7 +519,21 @@ if (articles.length) {
    * produced "no figure to write from".
    */
   fetched.unshift(...articles);
-  console.log(`\n  articles : ${articles.length} followed from the listings`);
+  /*
+ * Put Malaysia first.
+ *
+ * The corpus is read in order, and the 2026-11-02 scheduled run rotated its start to the Federal
+ * Reserve: the model saw four Fed releases first, reported "no Malaysian carrier is described", and
+ * the day ended quiet with thirty-two articles on disk - twelve of them from Malaysian sources it
+ * never got to. Sorting is by who the document is about, not by who was fetched first.
+ */
+const MALAYSIAN_FIRST = /^(bank-negara|dosm|miti|ministry-of-finance|securities-commission|customs-sst|mida|bernama|malay-mail|fmt|isis-malaysia)/;
+articles.sort((a, b) => {
+  const am = MALAYSIAN_FIRST.test(String(a.label ?? "")) ? 0 : 1;
+  const bm = MALAYSIAN_FIRST.test(String(b.label ?? "")) ? 0 : 1;
+  return am - bm;
+});
+console.log(`\n  articles : ${articles.length} followed from the listings`);
 } else {
   console.log("");
   console.log("  articles : none found behind the listings. A listing alone cannot support an article with five");
