@@ -380,7 +380,15 @@ jobs:
           # git log last pointed at, which is how the console came to hold records for articles
           # this run did not publish.
           if [ -z "$SLUG" ]; then
-            echo "no article published this run - no release row to write"
+            # A quiet day still happened. The release row is correctly absent, but the run has to
+            # leave a row or the console cannot tell a quiet day from a broken one - on 2026-11-03
+            # four of five scheduled runs left no trace at all.
+            node tools/lib/feishu-bitable.mjs \
+              --run-id="${GITHUB_RUN_ID}" \
+              --status="${RUN_OUTCOME:-QUIET}" \
+              --failure-class="${FAILURE_CLASS:-NONE}" \
+              --run-only || true
+            echo "quiet day: run row written, no release row (correct)"
             exit 0
           fi
           echo "slug: ${SLUG:-none}"

@@ -88,11 +88,23 @@ async function main() {
   }
 
   const now = new Date().toISOString().replace("T", " ").slice(0, 16);
-  const rel = await upsert(appToken, T_RELEASES, runId, {
-    "日期": now.slice(0, 10), "主题": slug, "文章 URL": url, "最终状态": status, "commit SHA": sha, "最后更新": now,
-  }, tok);
+  /*
+   * A run that published nothing still happened, and the console has to say so.
+   *
+   * The release row answers "what shipped" and is correctly absent on a quiet day. The run log answers
+   * "did the pipeline run, and how did it end" - and on 2026-11-03 four of five scheduled runs left no
+   * row at all, so the ledger could not tell a quiet day from a broken one without reading GitHub. In
+   * run-only mode the release row is skipped and the run row is always written.
+   */
+  const runOnly = process.argv.includes("--run-only");
+  let rel = "(skipped: no article this run)";
+  if (!runOnly) {
+    rel = await upsert(appToken, T_RELEASES, runId, {
+      "日期": now.slice(0, 10), "主题": slug, "文章 URL": url, "最终状态": status, "commit SHA": sha, "最后更新": now,
+    }, tok);
+  }
   const run = await upsert(appToken, T_RUNS, runId, {
-    "运行 ID": runId, "状态": status, "工作流阶段": failureClass || "publish", "commit SHA": sha, "Actions 链接": url, "表格同步": "已同步", "本地补写": "否",
+    "运行 ID": runId, "状态": status, "工作流阶段": failureClass || (runOnly ? "no-article" : "publish"), "commit SHA": sha, "Actions 链接": url, "表格同步": "已同步", "本地补写": "否",
   }, tok);
   console.log(`  bitable: ok releases=${rel} runs=${run}`);
 
