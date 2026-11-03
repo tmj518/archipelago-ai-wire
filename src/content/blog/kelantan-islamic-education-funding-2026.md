@@ -163,6 +163,8 @@ The averages differ by a factor of roughly 2.6 between the two years. That gap i
 
 > Also read: [Customs posted a 2026 amendment to the Service Tax (Digital Services) Regulations — what it changes for Malaysians](/blog/service-tax-digital-services-amendment-regulations-2026/)
 
+> Also read: [Malaysia sets QS Asia 2027 record: 55 universities ranked, 11 in top 100](/blog/qs-asia-2027-malaysia-55-universities-record/)
+
 ## For you
 
 - **A parent weighing a pondok place for a child:** the published figures tell you the size of the federal envelope and the number of institutions sharing it, not what your child's school receives. Ask the school administration directly what it was allocated and what it spends it on.

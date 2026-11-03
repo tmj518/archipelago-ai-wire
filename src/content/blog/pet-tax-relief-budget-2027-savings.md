@@ -135,6 +135,8 @@ The relief does not cover food, toys or routine check-ups, based on the proposal
 
 > Also read: [Customs posted a 2026 amendment to the Service Tax (Digital Services) Regulations — what it changes for Malaysians](/blog/service-tax-digital-services-amendment-regulations-2026/)
 
+> Also read: [Malaysia sets QS Asia 2027 record: 55 universities ranked, 11 in top 100](/blog/qs-asia-2027-malaysia-55-universities-record/)
+
 ## For you
 
 - **A salaried worker in the 11 per cent tax bracket:** a RM570 pet bill for vaccination and sterilisation returns RM62.70 at filing, if the proposal passes and you have room in the RM2,500 lifestyle limit.
