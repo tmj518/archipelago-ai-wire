@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-03T20:46:20.223Z",
+  "at": "2026-11-04T19:13:28.638Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "6 of 15 net-new this week"
+      "detail": "7 of 15 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "qs-asia-2027-malaysia-55-universities-record from /data/directive.json"
+      "detail": "enough-phone-kickstarter-small-smartphone-malaysia from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -38,11 +38,11 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/qs-asia-2027-malaysia-55-universities-record.md"
+      "detail": "draft at /data/drafts/enough-phone-kickstarter-small-smartphone-malaysia.md"
     },
     {
       "name": "reviewer",
-      "ok": true,
+      "ok": false,
       "detail": "no parseable verdict"
     },
     {
@@ -53,12 +53,12 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/qs-asia-2027-malaysia-55-universities-record.md"
+      "detail": "staged at src/content/blog/enough-phone-kickstarter-small-smartphone-malaysia.md"
     },
     {
       "name": "registry",
       "ok": false,
-      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.1/x64/bin/node /home/runner/work/archipelago-ai-wire"
+      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.2/x64/bin/node /home/runner/work/archipelago-ai-wire"
     },
     {
       "name": "inbound links",
@@ -73,24 +73,24 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "qs-asia-2027-malaysia-55-universities-record",
+  "article": "enough-phone-kickstarter-small-smartphone-malaysia",
   "commit": null,
   "usage": {
-    "calls": 3,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0053,
-    "promptTokens": 37021,
-    "completionTokens": 4241
+    "usd": 0.0119,
+    "promptTokens": 92093,
+    "completionTokens": 6152
   },
   "route": "script",
   "categoryActivity": {
     "economy": 1,
     "malaysia-impact": 0,
     "business-opportunities-risks": 2,
-    "work-education-family": 0,
+    "work-education-family": 1,
     "tech-ai": 2,
     "world": 1
   },
   "uncoveredSections": [],
-  "seconds": 40
+  "seconds": 35
 }
