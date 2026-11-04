@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-04T19:13:28.638Z",
+  "at": "2026-11-04T23:27:36.573Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,21 +28,21 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "enough-phone-kickstarter-small-smartphone-malaysia from /data/directive.json"
+      "detail": "vmware-vsphere-express-smb-virtualization-costs from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/enough-phone-kickstarter-small-smartphone-malaysia.md"
+      "detail": "draft at /data/drafts/vmware-vsphere-express-smb-virtualization-costs.md"
     },
     {
       "name": "reviewer",
-      "ok": false,
+      "ok": true,
       "detail": "no parseable verdict"
     },
     {
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/enough-phone-kickstarter-small-smartphone-malaysia.md"
+      "detail": "staged at src/content/blog/vmware-vsphere-express-smb-virtualization-costs.md"
     },
     {
       "name": "registry",
@@ -73,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "enough-phone-kickstarter-small-smartphone-malaysia",
+  "article": "vmware-vsphere-express-smb-virtualization-costs",
   "commit": null,
   "usage": {
-    "calls": 4,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0119,
-    "promptTokens": 92093,
-    "completionTokens": 6152
+    "usd": 0.0053,
+    "promptTokens": 37225,
+    "completionTokens": 4220
   },
   "route": "script",
   "categoryActivity": {
@@ -92,5 +92,5 @@
     "world": 1
   },
   "uncoveredSections": [],
-  "seconds": 35
+  "seconds": 40
 }
