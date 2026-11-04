@@ -615,7 +615,7 @@ const CORPUS_NOTE = [
  * The sample is round-robin across sources so one prolific source cannot take every slot, and the
  * Malaysian sources lead because the sections that matter are about Malaysia.
  */
-function pickCorpusArticles(limit = 8) {
+function pickCorpusArticles(limit = 12) {
   const byLabel = new Map();
   for (const a of articles) {
     if (!byLabel.has(a.label)) byLabel.set(a.label, []);
@@ -637,7 +637,7 @@ function pickCorpusArticles(limit = 8) {
   return out;
 }
 
-const corpusDocs = pickCorpusArticles(8);
+const corpusDocs = pickCorpusArticles(12);
 console.log(`  corpus   : ${corpusDocs.length} article(s) from ${new Set(corpusDocs.map((a) => a.label)).size} source(s)`);
 
 const corpus = corpusDocs
@@ -652,7 +652,7 @@ const corpus = corpusDocs
         .replace(/&nbsp;|&#160;/g, " ")
         .replace(/\s+/g, " ")
         .trim()
-        .slice(0, 12000);
+        .slice(0, 10000);
     } catch {}
     return `--- SOURCE: ${f.label} (${f.file})\nURL: ${f.url}\n\n${body}\n`;
   })
