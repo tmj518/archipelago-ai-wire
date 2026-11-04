@@ -165,6 +165,8 @@ The averages differ by a factor of roughly 2.6 between the two years. That gap i
 
 > Also read: [Malaysia sets QS Asia 2027 record: 55 universities ranked, 11 in top 100](/blog/qs-asia-2027-malaysia-55-universities-record/)
 
+> Also read: [VMware's new vSphere Express gives small Malaysian IT firms a cheaper path to stay on VMware](/blog/vmware-vsphere-express-smb-virtualization-costs/)
+
 ## For you
 
 - **A parent weighing a pondok place for a child:** the published figures tell you the size of the federal envelope and the number of institutions sharing it, not what your child's school receives. Ask the school administration directly what it was allocated and what it spends it on.

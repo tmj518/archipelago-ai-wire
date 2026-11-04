@@ -133,6 +133,8 @@ The wider Malaysian context is that digital fraud has become a routine cost of b
 
 **What would change my mind.** A published breakdown of the 174,099 requests by scam type, with AI-generated imagery as its own line, would confirm or shrink the inference. A median time-to-removal figure would tell a reader how long the exposure window actually is. And a figure for money lost to donation fraud, separate from the takedown count, would show whether the loop is closing faster than the losses are growing. None of those three numbers appears in the source.
 
+> Also read: [VMware's new vSphere Express gives small Malaysian IT firms a cheaper path to stay on VMware](/blog/vmware-vsphere-express-smb-virtualization-costs/)
+
 ## For you
 
 - **A household asked to donate to a distress appeal:** ask for the account name and match it against the organisation's registered name before transferring; a personal account behind a public cause is the warning sign.
