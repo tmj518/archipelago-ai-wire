@@ -135,6 +135,8 @@ The wider Malaysian context is that digital fraud has become a routine cost of b
 
 > Also read: [VMware's new vSphere Express gives small Malaysian IT firms a cheaper path to stay on VMware](/blog/vmware-vsphere-express-smb-virtualization-costs/)
 
+> Also read: [Sony revives 1979 Walkman headphones with USB-C — nostalgia meets modern audio in Malaysia](/blog/sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio/)
+
 ## For you
 
 - **A household asked to donate to a distress appeal:** ask for the account name and match it against the organisation's registered name before transferring; a personal account behind a public cause is the warning sign.

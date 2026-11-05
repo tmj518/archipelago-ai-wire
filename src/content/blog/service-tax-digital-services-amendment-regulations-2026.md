@@ -131,6 +131,8 @@ The third carrier is the local reseller. Many Malaysian firms buy foreign softwa
 
 **What would change my mind.** The text of the amendment itself, or a Customs guide or FAQ explaining it, would settle what changed, the rate, the effective date and the services covered. A provider's published notice to Malaysian customers about a change to tax on their invoices would confirm that the amendment has reached the billing stage. Absent those, the reader should treat the portal entry as a signal that a change exists, not as a statement of what the change is.
 
+> Also read: [Sony revives 1979 Walkman headphones with USB-C — nostalgia meets modern audio in Malaysia](/blog/sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio/)
+
 ## For you
 
 - **A household paying for streaming or music:** open your latest receipt from the provider and look for a Malaysian tax line. If there is one, the provider is registered and charging; if there is none, ask the provider's support desk whether Malaysian service tax applies to your plan.
