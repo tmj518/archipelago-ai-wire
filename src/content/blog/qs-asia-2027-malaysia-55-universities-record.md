@@ -132,6 +132,8 @@ The third carrier is the job market. Employers who use rankings as a filter will
 
 **What would change my mind.** A later edition of the QS Asia rankings showing Malaysia's count falling below 55, or a published count of international student enrolments that diverges sharply from the 260,000 projection, would change the picture. A direct statement from a Malaysian university that its record-high position did not change its application numbers would also weaken the link between ranking and recruitment.
 
+> Also read: [Budget 2027's i-Emas monthly EPF withdrawals: will they stop retirees running out of money?](/blog/epf-iemas-monthly-withdrawals-retirement-adequacy-2027/)
+
 ## For you
 
 - **A student choosing between local universities:** use the top-50 and top-100 lists as a shortlist, then compare course content and fees directly with each university, because the ranking does not measure teaching quality.
