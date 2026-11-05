@@ -131,6 +131,8 @@ The third carrier is the entrepreneur weighing a Johor location against a Klang 
 
 **What would change my mind.** A published breakdown of the RM88.83 billion by sector and location, or a later statement showing the realisation rate moving, would sharpen the picture. A blueprint in December 2026 that names specific incentives and sites would turn the forward-looking dates into something a firm can plan against. Until then, the single-source nature of these figures is the main limit on how far they carry.
 
+> Also read: [Ferrotec opens second Kulim plant, adding over 1,000 semiconductor jobs in Kedah](/blog/ferrotec-second-kulim-plant-semiconductor-jobs/)
+
 ## For you
 
 - **A small business owner in Johor:** the RM40.30 billion already realised is the part of the zone's money that is spending now, so supplier lists at the firms building there are the place to start, ahead of the December 2026 blueprint.

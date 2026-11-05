@@ -168,6 +168,8 @@ The gap of 60 people is the only headcount figure the release supports. It does 
 
 > Also read: [JS-SEZ approved investments hit RM88.83bil, 45% realised, as Malaysia and Singapore set up joint committee](/blog/js-sez-rm88-8bil-approved-investments-jscmc-2026/)
 
+> Also read: [Ferrotec opens second Kulim plant, adding over 1,000 semiconductor jobs in Kedah](/blog/ferrotec-second-kulim-plant-semiconductor-jobs/)
+
 ## For you
 
 - **A school leaver in Seremban or Nilai choosing a course:** the plants need machinists, furnace technicians and repair bench staff, so a vocational qualification in machining or aircraft maintenance is the entry ticket; the 2030 target date means the hiring window runs for several years, not one intake.
