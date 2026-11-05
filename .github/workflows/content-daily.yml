@@ -311,6 +311,16 @@ jobs:
       # "FAILED" tells nobody which stage to look at, and seven days of success counts cannot say which
       # stage is costing the runs. The class is derived from the step conclusions above it and printed
       # where the summary card can read it.
+      # The retry loop's own record: which rules rejected what, and how many attempts it took.
+      # Written to data/feedback by the executor, summarised here, and kept in the repository so
+      # next week's decisions start from counts instead of impressions.
+      - name: Rejection report
+        if: always()
+        continue-on-error: true
+        run: |
+          node tools/feedback-report.mjs || true
+          node tools/feedback-report.mjs --json > data/feedback/summary.json 2>/dev/null || true
+
       - name: Classify the failure
         if: always()
         run: |

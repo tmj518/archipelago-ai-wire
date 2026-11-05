@@ -167,6 +167,69 @@ function frontmatter(article) {
 }
 
 /** Every way this draft would fail the content schema, which fails the whole build. */
+/*
+ * Is the frontmatter YAML a parser would accept?
+ *
+ * A real parser when one is available, and a structural check when it is not: the failure that got
+ * through on 2026-11-04 was a list whose child keys were indented one level short, which the structural
+ * pass catches as "child key not indented under its dash".
+ */
+function frontmatterYamlProblems(article) {
+  const m = /^---\r?\n([\s\S]*?)\r?\n---/.exec(article);
+  if (!m) return ["no frontmatter block"];
+  const body = m[1];
+  const problems = [];
+  const lines = body.split(/\r?\n/);
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (/\t/.test(line)) problems.push(`tab character in the indentation on line ${i + 1}`);
+    if (!line.trim()) continue;
+    const indent = line.length - line.trimStart().length;
+    if (!/^(?:[A-Za-z_][\w-]*:|\s*-\s|\s+[A-Za-z_][\w-]*:|\s+-\s)/.test(line)) {
+      problems.push(`line ${i + 1} is neither a key nor a list item: ${line.trim().slice(0, 60)}`);
+      continue;
+    }
+    /* A list item's child keys must sit deeper than the dash. */
+    const dash = /^(\s*)-\s/.exec(line);
+    if (dash && i + 1 < lines.length) {
+      const next = lines[i + 1];
+      if (next.trim() && !/^(\s*)-\s/.test(next)) {
+        const nextIndent = next.length - next.trimStart().length;
+        if (nextIndent <= dash[1].length) {
+          problems.push(`line ${i + 2} starts a mapping under a dash but is not indented under it`);
+        }
+      }
+    }
+    const quotes = (line.match(/(?<!\\)"/g) ?? []).length;
+    if (quotes % 2) problems.push(`unbalanced quote on line ${i + 1}`);
+  }
+  return problems;
+}
+
+/*
+ * The feedback file: what was rejected, why, and what fixed it.
+ *
+ * The retry loop already passes objections back to the writer, but nothing recorded them, so the same
+ * rule could cost three attempts a week without anyone noticing. One file per slug, one entry per
+ * attempt, and the report below counts them.
+ */
+function recordFeedback(entry) {
+  try {
+    const dir = join(ROOT, "data", "feedback");
+    mkdirSync(dir, { recursive: true });
+    const file = join(dir, `${String(entry.slug || "unknown").replace(/[^a-z0-9-]/gi, "_")}.json`);
+    let prior = [];
+    if (existsSync(file)) {
+      try { prior = JSON.parse(readFileSync(file, "utf8")); } catch { prior = []; }
+    }
+    if (!Array.isArray(prior)) prior = [];
+    prior.push({ at: new Date().toISOString(), ...entry });
+    writeFileSync(file, JSON.stringify(prior, null, 2), "utf8");
+  } catch {
+    /* a log that cannot be written must not fail the run it was recording */
+  }
+}
+
 function schemaViolations(article) {
   const f = frontmatter(article);
   if (!f) return ["no frontmatter block: the file must open with --- on its own line and close it the same way"];
@@ -800,6 +863,28 @@ async function assembleFaq(article) {
   const trimFix = trimToLimits(article);
   if (trimFix.changed) { article = trimFix.article; console.log(`  trimmed   : ${trimFix.detail}`); }
   let violations = schemaViolations(article);
+
+  /*
+   * The frontmatter has to be YAML the build can parse, and that is checked here.
+   *
+   * On 2026-11-04 the writer produced `figures:` with a list whose child keys were indented one level
+   * short. Astro's YAML reader stopped at "bad indentation of a mapping entry", the whole build failed,
+   * and the run was classified BUILD - a writer defect reported at the last gate, where nothing can
+   * repair it. Anything that cannot be parsed is refused here, before it reaches the repository, and
+   * the reason is written to the feedback file so the retry has something specific to fix.
+   */
+  const yamlProblems = frontmatterYamlProblems(article);
+  if (yamlProblems.length) {
+    console.log("");
+    console.log(`  YAML      : the frontmatter will not parse - refusing before it reaches the repository`);
+    for (const p of yamlProblems) console.log(`      - ${p}`);
+    recordFeedback({ slug: outSlug, attempt: 1, rule: "frontmatter yaml", snippet: yamlProblems[0], fix: "re-indent the frontmatter lists so each child key sits two spaces under its dash", resolved: false, final: "refused-before-write" });
+    const reportPath = process.env.EXECUTOR_VIOLATIONS;
+    if (reportPath) {
+      writeFileSync(reportPath, JSON.stringify({ layers: { L5: { pass: false, issues: yamlProblems, summary: "the frontmatter is not valid YAML" } }, reasons: yamlProblems }, null, 2), "utf8");
+    }
+    process.exit(4);
+  }
 
   console.log(`  provider  : ${r.provider} / ${r.model}`);
   console.log(`  shape     : ${extracted.shape}`);
