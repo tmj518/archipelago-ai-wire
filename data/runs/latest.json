@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-05T19:20:00.449Z",
+  "at": "2026-11-05T23:31:55.153Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "9 of 15 net-new this week"
+      "detail": "10 of 15 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,21 +28,21 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "ferrotec-second-kulim-plant-semiconductor-jobs from /data/directive.json"
+      "detail": "sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/ferrotec-second-kulim-plant-semiconductor-jobs.md"
+      "detail": "draft at /data/drafts/sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio.md"
     },
     {
       "name": "reviewer",
-      "ok": false,
+      "ok": true,
       "detail": "no parseable verdict"
     },
     {
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/ferrotec-second-kulim-plant-semiconductor-jobs.md"
+      "detail": "staged at src/content/blog/sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio.md"
     },
     {
       "name": "registry",
@@ -73,24 +73,24 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "ferrotec-second-kulim-plant-semiconductor-jobs",
+  "article": "sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio",
   "commit": null,
   "usage": {
-    "calls": 2,
+    "calls": 12,
     "failed": 0,
-    "usd": 0.0054,
-    "promptTokens": 37048,
-    "completionTokens": 4711
+    "usd": 0.0323,
+    "promptTokens": 259828,
+    "completionTokens": 13423
   },
   "route": "script",
   "categoryActivity": {
     "economy": 1,
     "malaysia-impact": 0,
     "work-education-family": 2,
-    "business-opportunities-risks": 2,
+    "business-opportunities-risks": 3,
     "tech-ai": 3,
     "world": 1
   },
   "uncoveredSections": [],
-  "seconds": 37
+  "seconds": 39
 }
