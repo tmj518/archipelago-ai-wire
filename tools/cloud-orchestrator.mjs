@@ -717,6 +717,34 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
         : `exit ${writeCode}: ${whyItFailed(writeOut)}`,
   );
   if (!wroteIt) {
+    /*
+     * Say what the violations were.
+     *
+     * The step line said "violates the content schema" three times and the fields were in the
+     * executor's captured stdout, which nothing printed - so a refusal that knows exactly which field
+     * is wrong read like a mystery in the run log. The tail goes into the log, and the entries into the
+     * feedback file the report counts.
+     */
+    const tail = String(writeOut ?? "").split("\n").filter((l) => l.trim()).slice(-12);
+    if (tail.length) {
+      console.log("  writer output       :");
+      for (const line of tail) console.log(`    ${line.trim().slice(0, 160)}`);
+    }
+    try {
+      const ruleLines = tail.filter((l) => /^\s+- /.test(l) || /^\s+(SCHEMA|YAML)/.test(l));
+      if (ruleLines.length) {
+        const dir = join(ROOT, "data", "feedback");
+        mkdirSync(dir, { recursive: true });
+        const file = join(dir, `${slug}.json`);
+        let prior = [];
+        if (existsSync(file)) { try { prior = JSON.parse(readFileSync(file, "utf8")); } catch { prior = []; } }
+        if (!Array.isArray(prior)) prior = [];
+        prior.push({ at: new Date().toISOString(), slug, attempt, rule: ruleLines[0].trim().slice(0, 120), snippet: tail.join(" ").slice(0, 400), fix: "see the rule named above", resolved: false, final: "writer-refused" });
+        writeFileSync(file, JSON.stringify(prior, null, 2), "utf8");
+      }
+    } catch {
+      /* the log that cannot be written must not fail the run it describes */
+    }
     if (writeCode === 4 && attempt < MAX_ATTEMPTS) {
       /*
        * A schema violation is the most mechanically fixable rejection there is: the field, the actual
