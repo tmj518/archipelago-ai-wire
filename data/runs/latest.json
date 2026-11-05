@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-05T00:14:30.974Z",
+  "at": "2026-11-05T00:22:04.297Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,12 +28,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "epf-i-emas-monthly-withdrawals-budget-2027 from /data/directive.json"
+      "detail": "none at /data/directive.json"
+    },
+    {
+      "name": "research",
+      "ok": true,
+      "detail": "proposed macronix-rom-chip-exit-nintendo-cartridge-costs, 5 verified figure(s)"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "4 sourced figure(s)"
+      "detail": "5 sourced figure(s)"
     },
     {
       "name": "writer",
@@ -63,11 +68,11 @@
   "article": null,
   "commit": null,
   "usage": {
-    "calls": 5,
+    "calls": 8,
     "failed": 0,
-    "usd": 0.0244,
-    "promptTokens": 54896,
-    "completionTokens": 12010
+    "usd": 0.0125,
+    "promptTokens": 80986,
+    "completionTokens": 12769
   },
   "route": "script",
   "categoryActivity": {
@@ -79,5 +84,47 @@
     "world": 1
   },
   "uncoveredSections": [],
-  "seconds": 82
+  "researchLog": [
+    "  ok    securities-commission     1154103B  archived",
+    "  ok    ars-technica                78883B  archived",
+    "  ok    isis-malaysia-article     1567733B  article archived",
+    "  ok    isis-malaysia-article     1563459B  article archived",
+    "  ok    isis-malaysia-article     1562989B  article archived",
+    "  ok    isis-malaysia-article     1565623B  article archived",
+    "  ok    customs-sst-article        119094B  article archived",
+    "  skip  customs-sst-article             0B  not usable",
+    "  skip  customs-sst-article             0B  not usable",
+    "  skip  customs-sst-article             0B  not usable",
+    "  ok    securities-commission-article    18234B  article archived",
+    "  ok    securities-commission-article    55584B  article archived",
+    "  ok    securities-commission-article   116405B  article archived",
+    "       rejected: 116405 chars, 10109 numbers, nav 2.8/1k",
+    "  ok    securities-commission-article     1861B  article archived",
+    "       rejected: 68 chars, 1 numbers, nav 0.0/1k",
+    "  ok    ars-technica-article       152155B  article archived",
+    "  articles : 8 followed from the listings",
+    "  ledger: 18 published subject(s) to avoid repeating",
+    "  corpus   : 7 article(s) from 4 source(s)",
+    "  proposing a subject from 7 archived article(s)...",
+    "  stream      : the endpoint answered as SSE, 1110 delta(s) joined",
+    "  endpoint    : ep-20251220173606-gzxdg replied with 4243 characters but no document structure, trying the next one",
+    "  spent   : ~0.0026  (ceiling 0.40)",
+    "  model   : volces/ep-20251220173606-gzxdg",
+    "  feasible: true",
+    "  slug    : macronix-rom-chip-exit-nintendo-cartridge-costs",
+    "  keyword : Nintendo Switch cartridge price increase Macronix ROM chip",
+    "  duplicate check: score 0",
+    "  slug    : macronix-rom-chip-exit-nintendo-cartridge-costs",
+    "  keyword : Nintendo Switch cartridge price increase Macronix ROM chip",
+    "  category: tech-ai",
+    "  figures : 5",
+    "  evidence check:",
+    "    external figures : 0",
+    "    verified         : 0",
+    "    failed           : 0",
+    "  wrote /data/directive.json",
+    "  spend this run: ~$0.0026",
+    "  Next: node tools/cloud-orchestrator.mjs   (which will write, review and publish)"
+  ],
+  "seconds": 158
 }
