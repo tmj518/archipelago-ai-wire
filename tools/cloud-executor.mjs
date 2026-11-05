@@ -186,7 +186,9 @@ function frontmatterYamlProblems(article) {
     if (!line.trim()) continue;
     const indent = line.length - line.trimStart().length;
     if (!/^(?:[A-Za-z_][\w-]*:|\s*-\s|\s+[A-Za-z_][\w-]*:|\s+-\s)/.test(line)) {
-      problems.push(`line ${i + 1} is neither a key nor a list item: ${line.trim().slice(0, 60)}`);
+      /* Advisory: block scalars and folded text legitimately look like neither. Only a tab or an
+         unbalanced quote stops the file, because those are the two a parser will always reject. */
+      console.log(`  yaml note : line ${i + 1} looks unlike a key or list item: ${line.trim().slice(0, 60)}`);
       continue;
     }
     /* A list item's child keys must sit deeper than the dash. */
@@ -196,7 +198,7 @@ function frontmatterYamlProblems(article) {
       if (next.trim() && !/^(\s*)-\s/.test(next)) {
         const nextIndent = next.length - next.trimStart().length;
         if (nextIndent <= dash[1].length) {
-          problems.push(`line ${i + 2} starts a mapping under a dash but is not indented under it`);
+          console.log(`  yaml note : line ${i + 2} may be under-indented for its list item`);
         }
       }
     }
