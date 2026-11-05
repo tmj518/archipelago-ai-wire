@@ -166,6 +166,13 @@ jobs:
           echo "----- generator output (tail) -----"
           tail -40 /tmp/gen.log 2>&1 || true
           echo "----- end of generator output -----"
+          # Today's quota spent is not the same fact as nothing worth writing. The orchestrator says
+          # ALREADY PUBLISHED TODAY when the day's articles already exist, and that has to read as its
+          # own outcome or the seven-day count calls a full day an empty one.
+          if grep -q "ALREADY PUBLISHED TODAY" /tmp/gen.log 2>/dev/null; then
+            echo "QUOTA_MET=1" >> "$GITHUB_ENV"
+            echo "quota met: today's articles already exist"
+          fi
           
           echo "pwd: $(pwd)"
           ls -la data 2>&1 | head -12 || true
@@ -319,6 +326,7 @@ jobs:
         continue-on-error: true
         run: |
           node tools/feedback-report.mjs || true
+            mkdir -p data/feedback
           node tools/feedback-report.mjs --json > data/feedback/summary.json 2>/dev/null || true
 
       - name: Classify the failure
@@ -340,6 +348,10 @@ jobs:
             outcome="FAILED"
           elif [ -n "${ARTICLE_SLUG:-}" ] && [ "${{ steps.verify.outcome }}" = "success" ]; then
             outcome="SUCCESS"
+          elif [ "${QUOTA_MET:-0}" = "1" ]; then
+            # The day's articles already exist. That is not the same as having nothing to write, and
+            # the seven-day count has to keep them apart or a full day looks like an empty one.
+            outcome="QUOTA_MET"
           else
             outcome="QUIET"
           fi
