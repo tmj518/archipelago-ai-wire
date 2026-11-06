@@ -157,6 +157,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [Myanmar sets by-elections for April 4, 2027 in 39 constituencies, including war zones](/blog/myanmar-by-elections-april-2027-39-constituencies/)
 
+> Also read: [RM10,000 for every Malaysian family hit by Nepal-Tibet flood: who gets it first](/blog/malaysia-flood-victims-nepal-tibet-rm10000-aid/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.

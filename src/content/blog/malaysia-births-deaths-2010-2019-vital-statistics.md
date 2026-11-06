@@ -152,6 +152,8 @@ The interest rate environment matters here too. With the central bank holding th
 
 > Also read: [Shah Alam High Court rules condo management bodies cannot use house rules to ban pets outright](/blog/condo-pet-ban-house-rules-high-court-october-2026/)
 
+> Also read: [RM10,000 for every Malaysian family hit by Nepal-Tibet flood: who gets it first](/blog/malaysia-flood-victims-nepal-tibet-rm10000-aid/)
+
 ## For you
 
 - **A couple planning a family:** the national average of 2.0 children per woman is below replacement level. Your family size decision, multiplied across millions of households, determines whether the population grows or shrinks.
