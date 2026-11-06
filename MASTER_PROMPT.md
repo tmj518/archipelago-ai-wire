@@ -368,3 +368,32 @@ articles from a corpus heavy with central-bank material.
 Per-source archive counts are in the run log: each successful fetch prints `ok <label>-article`. A
 source listed above with no line in that log did not contribute, whatever the registry says. Add
 sources to `CANDIDATES`; do not describe them as configured until a run prints their `ok` line.
+## The lines, and what they are called
+
+Two automation lines will run in parallel. They must never be confused in a log, a ledger row or a
+conversation, so each has a fixed name from today.
+
+### A line — the publication
+
+**A线 · 大马看世界出版线** (`line: "A"`)
+
+The one built here: at 02:00 Malaysia time it reads nineteen sources, chooses one dated subject or a
+named document, writes it, gates it, builds it, publishes it, verifies the URL, and records the run in
+the Feishu console. Every article currently on the site came from this line.
+
+- Entry point: `.github/workflows/content-daily.yml` → `tools/cloud-orchestrator.mjs`
+- Outcomes: `SUCCESS` (published), `QUOTA_MET` (today's quota already published), `QUIET` (nothing worth
+  writing), `FAILED` (with `FAILURE_CLASS`)
+- The rule it keeps: a quiet day is not a failure, a full day is not a quiet day, and nothing publishes
+  without a traceable source.
+
+### B line — not this one
+
+**B线** is the second line the operator is about to open. It is deliberately unnamed here: its scope,
+its trigger and its outputs belong to whoever builds it, and guessing at them now would put a name on
+something that does not exist. When it starts, it records `line: "B"` everywhere A records `"A"`.
+
+### Why the names are fixed now
+
+Two lines writing to one console and one ledger will be indistinguishable within a week unless each row
+says which line produced it. The naming comes first, the second line second.
