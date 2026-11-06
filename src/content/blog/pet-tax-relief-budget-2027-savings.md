@@ -137,6 +137,8 @@ The relief does not cover food, toys or routine check-ups, based on the proposal
 
 > Also read: [Malaysia sets QS Asia 2027 record: 55 universities ranked, 11 in top 100](/blog/qs-asia-2027-malaysia-55-universities-record/)
 
+> Also read: [Health Ministry has filled 11,969 of 18,640 approved posts this year, with 4,253 officers only placed in 2027](/blog/moh-health-posts-11969-filled-2027-placement/)
+
 ## For you
 
 - **A salaried worker in the 11 per cent tax bracket:** a RM570 pet bill for vaccination and sterilisation returns RM62.70 at filing, if the proposal passes and you have room in the RM2,500 lifestyle limit.

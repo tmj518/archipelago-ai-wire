@@ -169,6 +169,8 @@ The averages differ by a factor of roughly 2.6 between the two years. That gap i
 
 > Also read: [Budget 2027's i-Emas monthly EPF withdrawals: will they stop retirees running out of money?](/blog/epf-iemas-monthly-withdrawals-retirement-adequacy-2027/)
 
+> Also read: [Health Ministry has filled 11,969 of 18,640 approved posts this year, with 4,253 officers only placed in 2027](/blog/moh-health-posts-11969-filled-2027-placement/)
+
 ## For you
 
 - **A parent weighing a pondok place for a child:** the published figures tell you the size of the federal envelope and the number of institutions sharing it, not what your child's school receives. Ask the school administration directly what it was allocated and what it spends it on.
