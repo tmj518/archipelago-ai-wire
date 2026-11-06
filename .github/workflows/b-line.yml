@@ -1,79 +1,106 @@
-# B线 — dormant until B_LINE_ENABLED is set.
+# B线 — a second content line on the same site, three days a week.
 #
-# The first line publishes to the Astro site on Cloudflare. This one publishes to a WordPress site over
-# its REST API, three days a week, one case study per run. It is gated on a repository variable so an
-# unfinished line cannot fail on a schedule and teach nobody anything.
+# The site deploys from git, so there is no publishing API to configure: a pushed article is a
+# published article. What B线 adds is a second brief - one real one-person business case, in English,
+# three times a week - run through the same gates as A线.
+#
+# It reuses the A线 pipeline on purpose. A second copy of the pipeline would be a second set of bugs.
 name: B line
 
 on:
   schedule:
-    # 05:00 UTC = 13:00 Asia/Singapore, Tuesday (2), Thursday (4), Saturday (6).
-    - cron: "0 5 * * 2,4,6"
+    # 18:00 UTC = 02:00 Asia/Singapore. Tuesday (2), Thursday (4), Saturday (6).
+    - cron: "0 18 * * 2,4,6"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: b-line
   cancel-in-progress: false
 
 jobs:
-  publish:
+  b-line:
     runs-on: ubuntu-24.04
-    if: vars.B_LINE_ENABLED == '1'
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v5
         with:
           node-version: 24
 
+      - run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Preflight
         run: |
           missing=""
-          [ -z "${B_LINE_ENABLED:-}" ] && missing="$missing B_LINE_ENABLED(variable)"
-          [ -z "${WP_SITE:-}" ] && missing="$missing WP_SITE(secret)"
-          [ -z "${WP_USER:-}" ] && missing="$missing WP_USER(secret)"
-          [ -z "${WP_APP_PASSWORD:-}" ] && missing="$missing WP_APP_PASSWORD(secret)"
-          [ -z "${WP_CATEGORY_ID:-}" ] && missing="$missing WP_CATEGORY_ID(secret)"
+          [ -z "${ARK_API_KEY:-}" ] && missing="$missing ARK_API_KEY"
+          [ -z "${DEEPSEEK_API_KEY:-}" ] && missing="$missing DEEPSEEK_API_KEY"
           if [ -n "$missing" ]; then
             echo "::error::B line is not configured:$missing"
             exit 1
           fi
-          if [ ! -s data/b-line/draft.md ]; then
-            echo "::error::no draft at data/b-line/draft.md - refusing to publish a placeholder"
+          if [ ! -s data/b-line/brief.md ]; then
+            echo "::error::no brief at data/b-line/brief.md"
             exit 1
           fi
-          echo "b-line: configuration present, draft present"
-        env:
-          B_LINE_ENABLED: ${{ vars.B_LINE_ENABLED }}
-          WP_SITE: ${{ secrets.WP_SITE }}
-          WP_USER: ${{ secrets.WP_USER }}
-          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
-          WP_CATEGORY_ID: ${{ secrets.WP_CATEGORY_ID }}
+          echo "b-line: brief present"
 
-      - name: Publish and verify
+      - name: Find a subject
         run: |
           set +e
-          node tools/b-line/publish-wp.mjs --file=data/b-line/draft.md
+          node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-10}"
           code=$?
           set -e
-          echo "publish exit: $code"
+          if [ "$code" != "0" ]; then
+            echo "b-line: research ended with $code - a quiet day, not a failure"
+            echo "B_SKIP=1" >> "$GITHUB_ENV"
+          fi
+
+      - name: Write and gate
+        if: env.B_SKIP != '1'
+        run: |
+          export B_LINE_BRIEF="$(cat data/b-line/brief.md)"
+          set +e
+          node tools/cloud-orchestrator.mjs
+          code=$?
+          set -e
+          echo "b-line orchestrator exit: $code"
           case "$code" in
-            0) echo "B_LINE_OUTCOME=SUCCESS" >> "$GITHUB_ENV" ;;
-            2) echo "B_LINE_OUTCOME=DUPLICATE" >> "$GITHUB_ENV" ;;
-            *) echo "B_LINE_OUTCOME=FAILED" >> "$GITHUB_ENV" ;;
+            0) echo "B_LINE_OUTCOME=OK" >> "$GITHUB_ENV" ;;
+            *) echo "B_LINE_OUTCOME=FAILED ($code)" >> "$GITHUB_ENV" ;;
           esac
         env:
-          WP_SITE: ${{ secrets.WP_SITE }}
-          WP_USER: ${{ secrets.WP_USER }}
-          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
-          WP_CATEGORY_ID: ${{ secrets.WP_CATEGORY_ID }}
+          B_LINE_BRIEF_PATH: data/b-line/brief.md
+          MAX_ARTICLES_PER_DAY: "1"
+          ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+          ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
+          CONTENT_GENERATOR: node tools/cloud-orchestrator.mjs
+
+      - name: Publish
+        if: env.B_SKIP != '1'
+        run: |
+          git config user.name "b-line-publisher"
+          git config user.email "publisher@users.noreply.github.com"
+          for p in src/content src/lib data/outcomes logs/usage.jsonl; do
+            [ -e "$p" ] && git add "$p" || true
+          done
+          if git diff --cached --quiet; then
+            echo "b-line: nothing to publish"
+            exit 0
+          fi
+          git commit -m "b-line: $(date -u +%Y-%m-%d) case study"
+          git push origin HEAD:main
 
       - name: Report
         if: always()
-        run: |
-          echo "B_LINE_OUTCOME=${B_LINE_OUTCOME:-UNKNOWN}" >> "$GITHUB_STEP_SUMMARY"
-          echo "draft: $(wc -c < data/b-line/draft.md 2>/dev/null || echo 0) bytes"
+        run: echo "B_LINE_OUTCOME=${B_LINE_OUTCOME:-QUIET}" >> "$GITHUB_STEP_SUMMARY"

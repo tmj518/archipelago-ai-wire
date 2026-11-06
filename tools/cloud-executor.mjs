@@ -647,9 +647,16 @@ ${previous.slice(0, 60000)}`;
 
   const r = await askJson({
     role: "writer",
+    /*
+     * B线 runs the same writer through a different brief.
+     *
+     * The second line is not a second codebase: it is the same pipeline asked for a different kind of
+     * article on different days. The brief arrives in B_LINE_BRIEF and is appended here, so A线's
+     * instructions stay exactly as they were and B线 cannot drift into them by copy-paste.
+     */
     system: `${MISSION}
 
-${WRITER_SYSTEM}`,
+${String(process.env.B_LINE_BRIEF ?? "").trim() ? String(process.env.B_LINE_BRIEF) + "\n\n" : ""}${WRITER_SYSTEM}`,
     messages: [{ role: "user", content: task }],
     maxTokens: 16384,
   });
