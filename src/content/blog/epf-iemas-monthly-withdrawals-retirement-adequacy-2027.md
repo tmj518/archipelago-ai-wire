@@ -122,6 +122,8 @@ The third carrier is the broader retirement system. If i-Emas keeps more money i
 
 **What would change my mind.** A published EPF implementation guide for i-Emas, with the exact monthly payout formula and the rules for accessing the balance in an emergency, would settle the practical questions. So would a breakdown of the survey showing how many retirees depleted their lump sums through discretionary spending versus essential expenses. Neither document is in the report.
 
+> Also read: [Myanmar sets by-elections for April 4, 2027 in 39 constituencies, including war zones](/blog/myanmar-by-elections-april-2027-39-constituencies/)
+
 ## For you
 
 - **A worker within five years of retirement:** the i-Emas choice will be yours to make. Compare the monthly amount against your fixed costs before you decide, and remember that the balance left with EPF keeps earning dividends.
