@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-06T10:15:13.161Z",
+  "at": "2026-11-06T18:45:50.642Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "11 of 15 net-new this week"
+      "detail": "12 of 15 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "myanmar-by-elections-april-2027-39-constituencies from /data/directive.json"
+      "detail": "malaysia-flood-victims-nepal-tibet-rm10000-aid from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -38,7 +38,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/myanmar-by-elections-april-2027-39-constituencies.md"
+      "detail": "draft at /data/drafts/malaysia-flood-victims-nepal-tibet-rm10000-aid.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/myanmar-by-elections-april-2027-39-constituencies.md"
+      "detail": "staged at src/content/blog/malaysia-flood-victims-nepal-tibet-rm10000-aid.md"
     },
     {
       "name": "registry",
@@ -73,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "myanmar-by-elections-april-2027-39-constituencies",
+  "article": "malaysia-flood-victims-nepal-tibet-rm10000-aid",
   "commit": null,
   "usage": {
-    "calls": 5,
+    "calls": 6,
     "failed": 0,
-    "usd": 0.0329,
-    "promptTokens": 93298,
-    "completionTokens": 7012
+    "usd": 0.0326,
+    "promptTokens": 108274,
+    "completionTokens": 8226
   },
   "route": "script",
   "categoryActivity": {
@@ -89,8 +89,8 @@
     "work-education-family": 2,
     "business-opportunities-risks": 3,
     "tech-ai": 4,
-    "world": 1
+    "world": 2
   },
   "uncoveredSections": [],
-  "seconds": 28
+  "seconds": 35
 }
