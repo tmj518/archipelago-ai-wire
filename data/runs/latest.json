@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-05T23:31:55.153Z",
+  "at": "2026-11-06T01:21:51.518Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "10 of 15 net-new this week"
+      "detail": "11 of 15 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,21 +28,21 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio from /data/directive.json"
+      "detail": "alpine-sshole-ssh-vulnerability-malaysia-linux-servers from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "5 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio.md"
+      "detail": "draft at /data/drafts/alpine-sshole-ssh-vulnerability-malaysia-linux-servers.md"
     },
     {
       "name": "reviewer",
-      "ok": true,
+      "ok": false,
       "detail": "no parseable verdict"
     },
     {
@@ -53,34 +53,31 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio.md"
+      "detail": "staged at src/content/blog/alpine-sshole-ssh-vulnerability-malaysia-linux-servers.md"
     },
     {
-      "name": "registry",
+      "name": "publish",
       "ok": false,
-      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.2/x64/bin/node /home/runner/work/archipelago-ai-wire"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
+      "detail": "rolled back after the gate: FAQ 3-5 questions, 80-150 word answers 0 questions"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict PUBLISHED"
+      "detail": "verdict REJECTED"
     }
   ],
-  "verdict": "PUBLISHED",
-  "reasons": [],
-  "article": "sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio",
+  "verdict": "REJECTED",
+  "reasons": [
+    "the staged article failed qa-check as a published file: FAQ 3-5 questions, 80-150 word answers 0 questions"
+  ],
+  "article": null,
   "commit": null,
   "usage": {
-    "calls": 12,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0323,
-    "promptTokens": 259828,
-    "completionTokens": 13423
+    "usd": 0.0086,
+    "promptTokens": 64787,
+    "completionTokens": 5387
   },
   "route": "script",
   "categoryActivity": {
@@ -88,9 +85,9 @@
     "malaysia-impact": 0,
     "work-education-family": 2,
     "business-opportunities-risks": 3,
-    "tech-ai": 3,
+    "tech-ai": 4,
     "world": 1
   },
   "uncoveredSections": [],
-  "seconds": 39
+  "seconds": 42
 }
