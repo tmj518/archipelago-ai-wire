@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-06T18:45:50.642Z",
+  "at": "2026-11-06T22:55:32.094Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "12 of 15 net-new this week"
+      "detail": "13 of 15 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,17 +28,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "malaysia-flood-victims-nepal-tibet-rm10000-aid from /data/directive.json"
+      "detail": "moh-health-posts-11969-filled-2027-placement from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/malaysia-flood-victims-nepal-tibet-rm10000-aid.md"
+      "detail": "draft at /data/drafts/moh-health-posts-11969-filled-2027-placement.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/malaysia-flood-victims-nepal-tibet-rm10000-aid.md"
+      "detail": "staged at src/content/blog/moh-health-posts-11969-filled-2027-placement.md"
     },
     {
       "name": "registry",
@@ -73,24 +73,24 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "malaysia-flood-victims-nepal-tibet-rm10000-aid",
+  "article": "moh-health-posts-11969-filled-2027-placement",
   "commit": null,
   "usage": {
-    "calls": 6,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0326,
-    "promptTokens": 108274,
-    "completionTokens": 8226
+    "usd": 0.0249,
+    "promptTokens": 60901,
+    "completionTokens": 7669
   },
   "route": "script",
   "categoryActivity": {
     "economy": 1,
-    "malaysia-impact": 0,
+    "malaysia-impact": 1,
     "work-education-family": 2,
     "business-opportunities-risks": 3,
     "tech-ai": 4,
     "world": 2
   },
   "uncoveredSections": [],
-  "seconds": 35
+  "seconds": 33
 }
