@@ -1,0 +1,79 @@
+# B线 — dormant until B_LINE_ENABLED is set.
+#
+# The first line publishes to the Astro site on Cloudflare. This one publishes to a WordPress site over
+# its REST API, three days a week, one case study per run. It is gated on a repository variable so an
+# unfinished line cannot fail on a schedule and teach nobody anything.
+name: B line
+
+on:
+  schedule:
+    # 05:00 UTC = 13:00 Asia/Singapore, Tuesday (2), Thursday (4), Saturday (6).
+    - cron: "0 5 * * 2,4,6"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: b-line
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    if: vars.B_LINE_ENABLED == '1'
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Preflight
+        run: |
+          missing=""
+          [ -z "${B_LINE_ENABLED:-}" ] && missing="$missing B_LINE_ENABLED(variable)"
+          [ -z "${WP_SITE:-}" ] && missing="$missing WP_SITE(secret)"
+          [ -z "${WP_USER:-}" ] && missing="$missing WP_USER(secret)"
+          [ -z "${WP_APP_PASSWORD:-}" ] && missing="$missing WP_APP_PASSWORD(secret)"
+          [ -z "${WP_CATEGORY_ID:-}" ] && missing="$missing WP_CATEGORY_ID(secret)"
+          if [ -n "$missing" ]; then
+            echo "::error::B line is not configured:$missing"
+            exit 1
+          fi
+          if [ ! -s data/b-line/draft.md ]; then
+            echo "::error::no draft at data/b-line/draft.md - refusing to publish a placeholder"
+            exit 1
+          fi
+          echo "b-line: configuration present, draft present"
+        env:
+          B_LINE_ENABLED: ${{ vars.B_LINE_ENABLED }}
+          WP_SITE: ${{ secrets.WP_SITE }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          WP_CATEGORY_ID: ${{ secrets.WP_CATEGORY_ID }}
+
+      - name: Publish and verify
+        run: |
+          set +e
+          node tools/b-line/publish-wp.mjs --file=data/b-line/draft.md
+          code=$?
+          set -e
+          echo "publish exit: $code"
+          case "$code" in
+            0) echo "B_LINE_OUTCOME=SUCCESS" >> "$GITHUB_ENV" ;;
+            2) echo "B_LINE_OUTCOME=DUPLICATE" >> "$GITHUB_ENV" ;;
+            *) echo "B_LINE_OUTCOME=FAILED" >> "$GITHUB_ENV" ;;
+          esac
+        env:
+          WP_SITE: ${{ secrets.WP_SITE }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          WP_CATEGORY_ID: ${{ secrets.WP_CATEGORY_ID }}
+
+      - name: Report
+        if: always()
+        run: |
+          echo "B_LINE_OUTCOME=${B_LINE_OUTCOME:-UNKNOWN}" >> "$GITHUB_STEP_SUMMARY"
+          echo "draft: $(wc -c < data/b-line/draft.md 2>/dev/null || echo 0) bytes"
