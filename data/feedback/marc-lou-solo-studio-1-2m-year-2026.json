@@ -1,0 +1,62 @@
+[
+  {
+    "at": "2026-11-07T02:06:06.039Z",
+    "slug": "marc-lou-solo-studio-1-2m-year-2026",
+    "attempt": 1,
+    "rule": "frontmatter yaml",
+    "snippet": "unbalanced quote on line 3",
+    "fix": "re-indent the frontmatter lists so each child key sits two spaces under its dash",
+    "resolved": false,
+    "final": "refused-before-write"
+  },
+  {
+    "at": "2026-11-07T02:06:06.050Z",
+    "slug": "marc-lou-solo-studio-1-2m-year-2026",
+    "attempt": 1,
+    "rule": "YAML      : the frontmatter will not parse - refusing before it reaches the repository",
+    "snippet": "    deepseek  writer=DEEPSEEK_API_KEY         reviewer=DEEPSEEK_API_KEY           deepseek-chat     roles: deepseek writes, deepseek reviews     review independent: no - the reviewer would use the writer's own model   figures handed over : 8   exemplars           : 2   stream      : the endpoint answered as SSE, 3441 delta(s) joined   fallback    : undefined produced nothing, deepseek-chat wrote t",
+    "fix": "see the rule named above",
+    "resolved": false,
+    "final": "writer-refused"
+  },
+  {
+    "at": "2026-11-07T02:06:29.953Z",
+    "slug": "marc-lou-solo-studio-1-2m-year-2026",
+    "attempt": 1,
+    "rule": "frontmatter yaml",
+    "snippet": "unbalanced quote on line 3",
+    "fix": "re-indent the frontmatter lists so each child key sits two spaces under its dash",
+    "resolved": false,
+    "final": "refused-before-write"
+  },
+  {
+    "at": "2026-11-07T02:06:29.961Z",
+    "slug": "marc-lou-solo-studio-1-2m-year-2026",
+    "attempt": 2,
+    "rule": "YAML      : the frontmatter will not parse - refusing before it reaches the repository",
+    "snippet": "    deepseek  writer=DEEPSEEK_API_KEY         reviewer=DEEPSEEK_API_KEY           deepseek-chat     roles: deepseek writes, deepseek reviews     review independent: no - the reviewer would use the writer's own model   figures handed over : 8   exemplars           : 2   stream      : the endpoint answered as SSE, 3138 delta(s) joined   fallback    : undefined produced nothing, deepseek-chat wrote t",
+    "fix": "see the rule named above",
+    "resolved": false,
+    "final": "writer-refused"
+  },
+  {
+    "at": "2026-11-07T02:06:55.300Z",
+    "slug": "marc-lou-solo-studio-1-2m-year-2026",
+    "attempt": 1,
+    "rule": "frontmatter yaml",
+    "snippet": "unbalanced quote on line 3",
+    "fix": "re-indent the frontmatter lists so each child key sits two spaces under its dash",
+    "resolved": false,
+    "final": "refused-before-write"
+  },
+  {
+    "at": "2026-11-07T02:06:55.309Z",
+    "slug": "marc-lou-solo-studio-1-2m-year-2026",
+    "attempt": 3,
+    "rule": "YAML      : the frontmatter will not parse - refusing before it reaches the repository",
+    "snippet": "    deepseek  writer=DEEPSEEK_API_KEY         reviewer=DEEPSEEK_API_KEY           deepseek-chat     roles: deepseek writes, deepseek reviews     review independent: no - the reviewer would use the writer's own model   figures handed over : 8   exemplars           : 2   stream      : the endpoint answered as SSE, 3360 delta(s) joined   fallback    : undefined produced nothing, deepseek-chat wrote t",
+    "fix": "see the rule named above",
+    "resolved": false,
+    "final": "writer-refused"
+  }
+]
