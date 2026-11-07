@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-07T00:34:20.199Z",
+  "at": "2026-11-07T21:40:22.782Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,27 +18,27 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "14 of 15 net-new this week"
+      "detail": "16 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
       "ok": true,
-      "detail": "every section has a net-new article this week (6 sections)"
+      "detail": "every section has a net-new article this week (7 sections)"
     },
     {
       "name": "directive",
       "ok": true,
-      "detail": "singapore-haze-mitigation-measures-end-november-2026 from /data/directive.json"
+      "detail": "dosm-digital-dissemination-primary-approach-may-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/singapore-haze-mitigation-measures-end-november-2026.md"
+      "detail": "draft at /data/drafts/dosm-digital-dissemination-primary-approach-may-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/singapore-haze-mitigation-measures-end-november-2026.md"
+      "detail": "staged at src/content/blog/dosm-digital-dissemination-primary-approach-may-2026.md"
     },
     {
       "name": "registry",
@@ -73,21 +73,22 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "singapore-haze-mitigation-measures-end-november-2026",
+  "article": "dosm-digital-dissemination-primary-approach-may-2026",
   "commit": null,
   "usage": {
-    "calls": 4,
+    "calls": 6,
     "failed": 0,
-    "usd": 0.0061,
-    "promptTokens": 44114,
-    "completionTokens": 4300
+    "usd": 0.0164,
+    "promptTokens": 127849,
+    "completionTokens": 8383
   },
   "route": "script",
   "categoryActivity": {
     "economy": 1,
-    "malaysia-impact": 1,
+    "malaysia-impact": 2,
     "work-education-family": 3,
     "business-opportunities-risks": 3,
+    "success-cases": 1,
     "tech-ai": 4,
     "world": 2
   },
