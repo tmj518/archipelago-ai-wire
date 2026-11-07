@@ -46,91 +46,26 @@ jobs:
       # A claim with no article beside it is a tombstone: publish-guard returns "duplicate" for that slug
       # for ever, so the article can never be written. On 2026-11-07 two B线 runs were refused on a claim
       # created by the run before them.
-      - name: Clear claims with no article
-        run: |
-          n=0
-          for f in src/content/blog/.claims/*.json; do
-            [ -e "$f" ] || continue
-            base=$(basename "$f" .json)
-            if [ ! -f "src/content/blog/$base.md" ]; then
-              rm -f "$f"; n=$((n+1)); echo "cleared stale claim: $base"
-            fi
-          done
-          echo "cleared $n stale claim(s)"
-
-      # B线 does not use A線's research: it asks which one-person case nobody has written yet, from a
-      # pool where every number has a source. Exit 2 means the pool is exhausted, which is a quiet day.
-      - name: Choose a case
-        run: |
-          set +e
-          node tools/b-line/select.mjs
-          code=$?
-          set -e
-          if [ "$code" != "0" ]; then
-            echo "b-line: no case left to write ($code) - a quiet day for this line, not a failure"
-            echo "B_SKIP=1" >> "$GITHUB_ENV"
-          fi
-        env:
-          ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
-          ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
-
-      # B线 writes with the same writer as A线 and publishes the file itself.
-      #
-      # The orchestrator exists to choose, review and guard. This line was told to publish without a
-      # review, and every attempt to make the orchestrator skip one ended in a rejection branch deeper
-      # inside it. So the line uses the writer directly: the directorate already carries the case and its
-      # figures, the writer returns a draft, the draft is copied into the collection and pushed. Fewer
-      # moving parts, and nothing that can silently overrule the instruction.
+      # One step. This line was asked to research, decide, write and publish - so it does, in one call,
+      # and nothing reviews, gates or claims a slug on the way. A线 keeps all of that; this line does not
+      # use it.
       - name: Write the article
         run: |
-          export B_LINE_BRIEF="$(cat data/b-line/brief.md)"
           set +e
-          node tools/cloud-executor.mjs --directive-file=data/directive.json
+          node tools/b-line/generate.mjs
           code=$?
           set -e
-          echo "b-line writer exit: $code"
-          if [ "$code" != "0" ]; then
-            echo "::error::the writer refused the draft (exit $code)"
-            ls -la data/drafts || true
-            exit "$code"
-          fi
-          ls -la data/drafts | tail -5
+          echo "b-line generate exit: $code"
+          case "$code" in
+            0) echo "B_LINE_OUTCOME=OK" >> "$GITHUB_ENV" ;;
+            2) echo "B_SKIP=1" >> "$GITHUB_ENV"; echo "B_LINE_OUTCOME=QUIET" >> "$GITHUB_ENV" ;;
+            *) echo "B_LINE_OUTCOME=FAILED:$code" >> "$GITHUB_ENV"; exit "$code" ;;
+          esac
         env:
-          B_LINE_BRIEF: ""
-          LAUNCH_MODE: "1"
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
           ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
-
-      - name: Publish the draft
-        run: |
-          slug=$(cat data/tmp/last-slug.txt 2>/dev/null || true)
-          if [ -z "$slug" ]; then
-            slug=$(node -e 'const d=require("./data/directive.json"); process.stdout.write(d.slug)')
-          fi
-          echo "slug: $slug"
-          src="data/drafts/$slug.md"
-          if [ ! -f "$src" ]; then
-            echo "::error::no draft at $src"; ls -la data/drafts | tail -10; exit 1
-          fi
-          cp "$src" "src/content/blog/$slug.md"
-          echo "ARTICLE_SLUG=$slug" >> "$GITHUB_ENV"
-          echo "wrote src/content/blog/$slug.md ($(wc -c < "src/content/blog/$slug.md") bytes)"
-
-      - name: Confirm the article exists
-        if: env.B_SKIP != '1'
-        run: |
-          ls -la data/tmp/last-slug.txt 2>/dev/null || echo "no last-slug.txt"
-          slug=$(cat data/tmp/last-slug.txt 2>/dev/null || true)
-          echo "orchestrator slug: ${slug:-none}"
-          if [ -n "$slug" ] && [ ! -f "src/content/blog/$slug.md" ]; then
-            echo "::error::the orchestrator reported $slug but src/content/blog/$slug.md does not exist"
-            ls -la src/content/blog | tail -20
-            exit 1
-          fi
 
       - name: Publish the article
         if: env.B_SKIP != '1'

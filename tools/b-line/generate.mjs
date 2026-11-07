@@ -1,0 +1,212 @@
+#!/usr/bin/env node
+/**
+ * B线 — one article, one model call, published to the Success Cases section.
+ *
+ * This line is deliberately not built like A线. A线 has a pipeline because a publication needs gates:
+ * a figure is checked against the document it cites, a build is failed rather than shipped. B线 was
+ * asked for something simpler - research the web, decide the subject, write it, publish it - so it is
+ * one step end to end. Nothing here reviews, gates, claims a slug or consults the orchestrator.
+ *
+ *   node tools/b-line/generate.mjs [--dry-run]
+ *
+ * Exit codes: 0 written, 2 nothing written (the model declined), 1 failure.
+ */
+import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
+import { ask } from "../lib-llm.mjs";
+
+const ROOT = process.cwd();
+const dryRun = process.argv.includes("--dry-run");
+const briefPath = join(ROOT, "data", "b-line", "brief.md");
+const brief = existsSync(briefPath) ? readFileSync(briefPath, "utf8") : "";
+if (!brief.trim()) {
+  console.error("  b-line: no brief at data/b-line/brief.md");
+  process.exit(1);
+}
+
+/* ---------------------------------------------------------------- research material */
+/*
+ * The sources are fetched, not remembered.
+ *
+ * B线's brief tells the writer to ground every claim in a document. Without a search API the honest
+ * way to give it documents is to fetch today's feeds and let it read them: real pages, real titles,
+ * real dates. The reader sees links; the writer cannot cite something that was not fetched.
+ */
+const FEEDS = [
+  ["indiehackers", "https://www.indiehackers.com/feed.xml"],
+  ["hn", "https://hnrss.org/frontpage?points=100"],
+  ["reddit-saas", "https://www.reddit.com/r/SaaS/.rss"],
+  ["reddit-indiehackers", "https://www.reddit.com/r/indiehackers/.rss"],
+  ["reddit-entrepreneur", "https://www.reddit.com/r/Entrepreneur/.rss"],
+  ["producthunt", "https://www.producthunt.com/feed"],
+];
+
+function strip(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;|&#160;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+async function fetchFeed([label, url]) {
+  try {
+    const res = await fetch(url, {
+      headers: { "user-agent": "Mozilla/5.0 (compatible; BLineBot/1.0)", accept: "application/rss+xml, application/xml, text/xml, */*" },
+      signal: AbortSignal.timeout(20000),
+    });
+    if (!res.ok) return null;
+    const xml = await res.text();
+    const items = [...xml.matchAll(/<item[\s\S]*?<\/item>/gi)].slice(0, 8).map((m) => m[0]);
+    const entries = items.map((item) => {
+      const title = strip(/<title[^>]*>([\s\S]*?)<\/title>/i.exec(item)?.[1] ?? "").slice(0, 200);
+      const link = /<link[^>]*>([\s\S]*?)<\/link>/i.exec(item)?.[1]?.trim() ?? "";
+      const date = strip(/<pubDate[^>]*>([\s\S]*?)<\/pubDate>/i.exec(item)?.[1] ?? "");
+      const body = strip(/<description[^>]*>([\s\S]*?)<\/description>/i.exec(item)?.[1] ?? /<content:encoded[^>]*>([\s\S]*?)<\/content:encoded>/i.exec(item)?.[1] ?? "").slice(0, 600);
+      return { title, link: link.replace(/<!\[CDATA\[|\]\]>/g, "").trim(), date, body };
+    }).filter((e) => e.title && e.link);
+    return { label, url, entries };
+  } catch {
+    return null;
+  }
+}
+
+const feeds = (await Promise.all(FEEDS.map(fetchFeed))).filter(Boolean);
+const totalEntries = feeds.reduce((a, f) => a + f.entries.length, 0);
+console.log(`  b-line: ${feeds.length} feed(s), ${totalEntries} item(s) fetched`);
+if (totalEntries < 5) {
+  console.error("  b-line: too little material to write from; refusing to invent");
+  process.exit(2);
+}
+
+const material = feeds
+  .map((f) => `### ${f.label} (${f.url})\n` + f.entries.map((e) => `- ${e.title}\n  ${e.link}\n  ${e.date}\n  ${e.body}`).join("\n"))
+  .join("\n\n")
+  .slice(0, 45000);
+
+/* ---------------------------------------------------------------- the previous titles */
+const blogDir = join(ROOT, "src", "content", "blog");
+const written = existsSync(blogDir)
+  ? readdirSync(blogDir).filter((f) => f.endsWith(".md")).map((f) => {
+      try {
+        return /^title:\s*"?(.*?)"?\s*$/m.exec(readFileSync(join(blogDir, f), "utf8"))?.[1] ?? f;
+      } catch {
+        return f;
+      }
+    })
+  : [];
+
+/* ---------------------------------------------------------------- one call */
+const prompt = `${brief}
+
+## Documents fetched for this run (today)
+
+${material}
+
+## Titles already published on this site (do not repeat any of them)
+
+${written.slice(0, 120).map((t) => `- ${t}`).join("\n")}
+
+---
+
+Answer in exactly this shape and nothing else:
+
+=== META ===
+title: (60 characters or fewer)
+slug: (kebab-case, English, distinctive)
+meta_description: (155 characters or fewer)
+focus_keyword:
+tags: (three to five, comma separated)
+why_this_topic: (two sentences)
+
+=== ARTICLE ===
+(the full article as plain HTML: h1, p, h2, table, h3/p for FAQ, h2 Sources with a ul of links)
+
+If the documents do not support an article that meets the brief, answer with exactly: NO-SUBJECT`;
+
+console.log("  b-line: asking the writer...");
+const started = Date.now();
+const r = await ask({
+  role: "writer",
+  system: "You are a senior content strategist and SEO editor. You write from the documents you are given and you never invent a person, a product, a number or a link.",
+  messages: [{ role: "user", content: prompt }],
+  maxTokens: 8192,
+  temperature: 0.4,
+});
+
+const text = String(r?.text ?? r?.content ?? "");
+console.log(`  b-line: writer returned ${text.length} chars in ${Math.round((Date.now() - started) / 1000)}s`);
+
+if (/NO-SUBJECT/i.test(text)) {
+  console.log("  b-line: the writer found nothing worth publishing today");
+  process.exit(2);
+}
+
+function block(name) {
+  const m = new RegExp(`===\\s*${name}\\s*===([\\s\\S]*?)(?:===|$)`, "i").exec(text);
+  return m ? m[1].trim() : "";
+}
+
+const metaRaw = block("META");
+const article = block("ARTICLE").replace(/^```html\s*/i, "").replace(/```\s*$/i, "").trim();
+if (!metaRaw || !article) {
+  console.error("  b-line: the answer was not in the agreed shape; nothing written");
+  process.exit(1);
+}
+
+const meta = {};
+for (const line of metaRaw.split("\n")) {
+  const m = /^([a-z_]+):\s*(.*)$/i.exec(line.trim());
+  if (m) meta[m[1].toLowerCase()] = m[2].trim();
+}
+
+const slug = (meta.slug || "").toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+if (!slug || !meta.title) {
+  console.error("  b-line: no slug or title in META; nothing written");
+  process.exit(1);
+}
+if (existsSync(join(blogDir, `${slug}.md`))) {
+  console.log(`  b-line: ${slug} already exists - nothing written`);
+  process.exit(2);
+}
+
+/* Frontmatter this collection accepts. No currency symbols inside quoted strings: a "$" in a quoted
+   value is what stopped the site building on 2026-11-07. */
+const today = new Date().toISOString().slice(0, 10);
+const clean = (s) => String(s ?? "").replace(/"/g, "'").replace(/\$/g, "USD ").replace(/\s+/g, " ").trim();
+const tags = (meta.tags || "solo-founder, case-study").split(",").map((t) => t.trim()).filter(Boolean).slice(0, 5);
+const number = written.length + 1;
+
+const file = `---
+articleNumber: ${number}
+title: "${clean(meta.title)}"
+description: "${clean(meta.meta_description)}"
+publishDate: ${today}
+reviewBy: ${new Date(Date.now() + 21 * 86400000).toISOString().slice(0, 10)}
+stakes: directional
+category: success-cases
+audience: general
+tags:
+${tags.map((t) => `  - ${t.toLowerCase().replace(/[^a-z0-9-]/g, "-")}`).join("\n")}
+---
+
+${article}
+`;
+
+if (dryRun) {
+  console.log(`  b-line: dry run - would write src/content/blog/${slug}.md (${article.length} chars)`);
+  console.log(`  title: ${clean(meta.title)}`);
+  process.exit(0);
+}
+
+mkdirSync(blogDir, { recursive: true });
+writeFileSync(join(blogDir, `${slug}.md`), file, "utf8");
+mkdirSync(join(ROOT, "data", "tmp"), { recursive: true });
+writeFileSync(join(ROOT, "data", "tmp", "last-slug.txt"), slug, "utf8");
+console.log(`  b-line: wrote src/content/blog/${slug}.md`);
+console.log(`  title: ${clean(meta.title)}`);
