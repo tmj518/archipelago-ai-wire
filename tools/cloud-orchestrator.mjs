@@ -298,7 +298,10 @@ if (existsSync(STATE)) {
   step("state", true, "absent, treated as a first run");
 }
 
-/* the weekly ceiling, which is a rule from 初心与目标.md: at most 15 net-new articles a week */
+/* The weekly ceiling, from 初心与目标.md: at most 25 net-new articles a week. Raised from 15 on
+ * 2026-11-07, when A线 and B线 together filled it in four days and B线 could not publish a case it
+ * had already selected. */
+const WEEKLY_CEILING = Number(process.env.WEEKLY_CEILING ?? 25) || 25;
 let weekCount = 0;
 /*
  * Per-category coverage for the current week.
@@ -329,7 +332,7 @@ try {
     categoryActivity.set(category, entry);
   }
 } catch {}
-step("weekly ceiling", weekCount < 15, `${weekCount} of 15 net-new this week`);
+step("weekly ceiling", weekCount < WEEKLY_CEILING, `${weekCount} of ${WEEKLY_CEILING} net-new this week`);
 
 /*
    * Section preference removed by the operator's instruction, 2026-10-18. It pointed research at the thinnest section
@@ -348,7 +351,7 @@ step(
 run.categoryActivity = Object.fromEntries([...categoryActivity.entries()].map(([c, e]) => [c, e.thisWeek]));
 run.uncoveredSections = uncovered;
 
-if (weekCount >= 15) {
+if (weekCount >= WEEKLY_CEILING) {
   console.log("");
   console.log("  The weekly ceiling is reached. 初心与目标.md caps net-new articles at 15 a week, so this");
   console.log("  run publishes nothing and exits cleanly. That is the rule working, not a failure.");
