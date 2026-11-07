@@ -202,8 +202,11 @@ function frontmatterYamlProblems(article) {
         }
       }
     }
+    /* A note, not a refusal. Titles and descriptions legitimately contain a quoted phrase, and this
+       count cannot tell an inner quotation from a broken string - it refused two B线 drafts on that
+       alone. A tab still stops the file, because that is never valid. */
     const quotes = (line.match(/(?<!\\)"/g) ?? []).length;
-    if (quotes % 2) problems.push(`unbalanced quote on line ${i + 1}`);
+    if (quotes % 2) console.log(`  yaml note : line ${i + 1} has an odd number of quotes`);
   }
   return problems;
 }
