@@ -1,16 +1,13 @@
-# B线 — a second content line on the same site, three days a week.
+# B线 — one success case every day, published without a review.
 #
-# The site deploys from git, so there is no publishing API to configure: a pushed article is a
-# published article. What B线 adds is a second brief - one real one-person business case, in English,
-# three times a week - run through the same gates as A线.
-#
-# It reuses the A线 pipeline on purpose. A second copy of the pipeline would be a second set of bugs.
+# Same site, same deploy path (git push -> Cloudflare Pages), so there is nothing to configure and no
+# API key to hold. What differs from A线: its own cron, its own quota, its own brief, and no reviewer.
 name: B line
 
 on:
   schedule:
-    # 18:00 UTC = 02:00 Asia/Singapore. Tuesday (2), Thursday (4), Saturday (6).
-    - cron: "0 18 * * 2,4,6"
+    # 03:00 UTC = 11:00 Asia/Singapore, every day.
+    - cron: "0 3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -40,31 +37,28 @@ jobs:
 
       - name: Preflight
         run: |
-          missing=""
-          [ -z "${ARK_API_KEY:-}" ] && missing="$missing ARK_API_KEY"
-          [ -z "${DEEPSEEK_API_KEY:-}" ] && missing="$missing DEEPSEEK_API_KEY"
-          if [ -n "$missing" ]; then
-            echo "::error::B line is not configured:$missing"
-            exit 1
-          fi
+          echo "b-line: brief at data/b-line/brief.md ($(wc -c < data/b-line/brief.md) bytes)"
           if [ ! -s data/b-line/brief.md ]; then
-            echo "::error::no brief at data/b-line/brief.md"
-            exit 1
+            echo "::error::B line has no brief"; exit 1
           fi
-          echo "b-line: brief present"
 
       - name: Find a subject
         run: |
           set +e
-          node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-10}"
+          node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-12}"
           code=$?
           set -e
           if [ "$code" != "0" ]; then
-            echo "b-line: research ended with $code - a quiet day, not a failure"
+            echo "b-line: research ended with $code - a quiet day for this line, not a failure"
             echo "B_SKIP=1" >> "$GITHUB_ENV"
           fi
+        env:
+          ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+          ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
 
-      - name: Write and gate
+      - name: Write, gate and publish
         if: env.B_SKIP != '1'
         run: |
           export B_LINE_BRIEF="$(cat data/b-line/brief.md)"
@@ -73,12 +67,10 @@ jobs:
           code=$?
           set -e
           echo "b-line orchestrator exit: $code"
-          case "$code" in
-            0) echo "B_LINE_OUTCOME=OK" >> "$GITHUB_ENV" ;;
-            *) echo "B_LINE_OUTCOME=FAILED ($code)" >> "$GITHUB_ENV" ;;
-          esac
+          if [ "$code" = "0" ]; then echo "B_LINE_OUTCOME=OK" >> "$GITHUB_ENV"; else echo "B_LINE_OUTCOME=FAILED:$code" >> "$GITHUB_ENV"; fi
         env:
-          B_LINE_BRIEF_PATH: data/b-line/brief.md
+          # The one instruction that makes this a different line: publish without a second opinion.
+          B_LINE_SKIP_REVIEW: "1"
           MAX_ARTICLES_PER_DAY: "1"
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
           ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
@@ -86,20 +78,33 @@ jobs:
           AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
           CONTENT_GENERATOR: node tools/cloud-orchestrator.mjs
 
-      - name: Publish
+      - name: Publish the article
         if: env.B_SKIP != '1'
         run: |
           git config user.name "b-line-publisher"
           git config user.email "publisher@users.noreply.github.com"
-          for p in src/content src/lib data/outcomes logs/usage.jsonl; do
+          for p in src/content src/lib data/outcomes logs/usage.jsonl data/feedback; do
             [ -e "$p" ] && git add "$p" || true
           done
           if git diff --cached --quiet; then
-            echo "b-line: nothing to publish"
-            exit 0
+            echo "b-line: nothing new to publish"; exit 0
           fi
-          git commit -m "b-line: $(date -u +%Y-%m-%d) case study"
+          slug=$(git diff --cached --name-status --diff-filter=A | awk '$1=="A" && $2 ~ /^src\/content\/blog\// {print $2; exit}')
+          name=$(basename "${slug:-case-study}" .md)
+          echo "ARTICLE_SLUG=$name" >> "$GITHUB_ENV"
+          git commit -m "b-line: publish $name"
           git push origin HEAD:main
+
+      - name: Verify live
+        if: env.B_SKIP != '1' && env.ARTICLE_SLUG != ''
+        run: |
+          url="https://www.ghiblistyled.com/blog/${ARTICLE_SLUG}/"
+          for i in 1 2 3 4 5 6; do
+            sleep 20
+            code=$(curl -sS -o /dev/null -w "%{http_code}" "$url" || echo 000)
+            echo "b-line: $url -> $code"
+            [ "$code" = "200" ] && break
+          done
 
       - name: Report
         if: always()

@@ -1,8 +1,7 @@
 {
   "version": 1,
-  "updated": "2026-10-26",
+  "updated": "2026-11-07",
   "note": "Single source of truth for every controlled vocabulary on the site. Read by src/consts.ts (through the Astro build) and by tools/*.mjs (through src/lib/taxonomy.mjs). Nothing else may define these lists. This file exists because the same enum lived in four places - consts.ts, content.config.ts, two copies inside qa-check.mjs, and a prose list in MASTER_PROMPT.md - and they drifted. See docs/验收报告_第一阶段_2026-10-26.md.",
-
   "categories": [
     {
       "slug": "world",
@@ -39,27 +38,66 @@
       "label": "Business Opportunities & Risks",
       "navLabel": "Business",
       "description": "Where a Malaysian firm can move and where it can be hurt: market access, supply-chain position, competition, regulation and financing. Every claim names the mechanism and the exposure — an opportunity with no named buyer and a risk with no named channel are both left out."
+    },
+    {
+      "slug": "success-cases",
+      "label": "Success Cases",
+      "navLabel": "Success Cases",
+      "description": "One person, one product, one honest account of how it makes money. Foreign case studies a Malaysian reader can copy."
     }
   ],
-
   "audiences": [
-    { "value": "general", "label": "Everyone" },
-    { "value": "students", "label": "Students & young people" },
-    { "value": "workers", "label": "Workers & professionals" },
-    { "value": "entrepreneurs", "label": "Entrepreneurs & businesses" },
-    { "value": "teachers", "label": "Teachers & researchers" },
-    { "value": "citizens", "label": "Citizens watching the country" }
+    {
+      "value": "general",
+      "label": "Everyone"
+    },
+    {
+      "value": "students",
+      "label": "Students & young people"
+    },
+    {
+      "value": "workers",
+      "label": "Workers & professionals"
+    },
+    {
+      "value": "entrepreneurs",
+      "label": "Entrepreneurs & businesses"
+    },
+    {
+      "value": "teachers",
+      "label": "Teachers & researchers"
+    },
+    {
+      "value": "citizens",
+      "label": "Citizens watching the country"
+    }
   ],
-
   "guideTopics": [
-    { "slug": "money", "label": "Money & tax" },
-    { "slug": "work", "label": "Work & skills" },
-    { "slug": "study", "label": "Study & education" },
-    { "slug": "business", "label": "Business & trade" },
-    { "slug": "daily-life", "label": "Daily life & costs" },
-    { "slug": "travel-docs", "label": "Travel & documents" }
+    {
+      "slug": "money",
+      "label": "Money & tax"
+    },
+    {
+      "slug": "work",
+      "label": "Work & skills"
+    },
+    {
+      "slug": "study",
+      "label": "Study & education"
+    },
+    {
+      "slug": "business",
+      "label": "Business & trade"
+    },
+    {
+      "slug": "daily-life",
+      "label": "Daily life & costs"
+    },
+    {
+      "slug": "travel-docs",
+      "label": "Travel & documents"
+    }
   ],
-
   "guideAudiences": [
     "general",
     "students",
@@ -68,22 +106,29 @@
     "teachers",
     "citizens"
   ],
-
-  "personas": ["malaysian-explainer"],
-
+  "personas": [
+    "malaysian-explainer"
+  ],
   "informationGain": [
     "custom-calculation",
     "cross-source",
     "own-data",
     "primary-source"
   ],
-
-  "searchIntent": ["informational", "transactional", "comparison"],
-
-  "stakes": ["priced", "directional"],
-
-  "priority": ["P0", "P1", "P2"],
-
+  "searchIntent": [
+    "informational",
+    "transactional",
+    "comparison"
+  ],
+  "stakes": [
+    "priced",
+    "directional"
+  ],
+  "priority": [
+    "P0",
+    "P1",
+    "P2"
+  ],
   "sections": [
     "What happened",
     "Why now",
