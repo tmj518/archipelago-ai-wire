@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-06T22:55:32.094Z",
+  "at": "2026-11-07T00:34:20.199Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "13 of 15 net-new this week"
+      "detail": "14 of 15 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,21 +28,21 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "moh-health-posts-11969-filled-2027-placement from /data/directive.json"
+      "detail": "singapore-haze-mitigation-measures-end-november-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/moh-health-posts-11969-filled-2027-placement.md"
+      "detail": "draft at /data/drafts/singapore-haze-mitigation-measures-end-november-2026.md"
     },
     {
       "name": "reviewer",
-      "ok": false,
+      "ok": true,
       "detail": "no parseable verdict"
     },
     {
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/moh-health-posts-11969-filled-2027-placement.md"
+      "detail": "staged at src/content/blog/singapore-haze-mitigation-measures-end-november-2026.md"
     },
     {
       "name": "registry",
@@ -73,24 +73,24 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "moh-health-posts-11969-filled-2027-placement",
+  "article": "singapore-haze-mitigation-measures-end-november-2026",
   "commit": null,
   "usage": {
     "calls": 4,
     "failed": 0,
-    "usd": 0.0249,
-    "promptTokens": 60901,
-    "completionTokens": 7669
+    "usd": 0.0061,
+    "promptTokens": 44114,
+    "completionTokens": 4300
   },
   "route": "script",
   "categoryActivity": {
     "economy": 1,
     "malaysia-impact": 1,
-    "work-education-family": 2,
+    "work-education-family": 3,
     "business-opportunities-risks": 3,
     "tech-ai": 4,
     "world": 2
   },
   "uncoveredSections": [],
-  "seconds": 33
+  "seconds": 43
 }
