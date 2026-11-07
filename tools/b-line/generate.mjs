@@ -24,6 +24,30 @@ if (!brief.trim()) {
   process.exit(1);
 }
 
+/* ---------------------------------------------------------------- the case pool */
+/*
+ * The pool is the memory of this line.
+ *
+ * Ten years is 3,650 articles, and the expensive mistake is writing the same founder twice. Each entry
+ * is one real person with a product and public numbers; an entry is marked used the moment its article
+ * is written, so the pool can only run down, never repeat. When it is empty the writer chooses from the
+ * fetched material and the new case is appended, which is how the pool grows without anyone editing it.
+ */
+const poolPath = join(ROOT, "data", "b-line", "cases.json");
+let pool = { cases: [] };
+if (existsSync(poolPath)) {
+  try {
+    pool = JSON.parse(readFileSync(poolPath, "utf8"));
+  } catch {
+    console.error("  b-line: data/b-line/cases.json is not readable; continuing without a pool");
+  }
+}
+if (!Array.isArray(pool.cases)) pool.cases = [];
+const pending = pool.cases.find((c) => c && c.used !== true);
+const caseNote = pending
+  ? `## The case to write about today\n\n${JSON.stringify(pending, null, 2)}\n\nWrite about THIS person and product. The documents below are for verification and for anything else the article needs; they do not replace the case.`
+  : `## No case left in the pool\n\nChoose the person yourself from the documents below. Report the case in the META block as case_person, case_product and case_data so it can be added to the pool.`;
+
 /* ---------------------------------------------------------------- research material */
 /*
  * The sources are fetched, not remembered.
@@ -103,6 +127,8 @@ const written = existsSync(blogDir)
 
 /* ---------------------------------------------------------------- one call */
 const prompt = `${brief}
+
+${caseNote}
 
 ## Documents fetched for this run (today)
 
@@ -208,5 +234,32 @@ mkdirSync(blogDir, { recursive: true });
 writeFileSync(join(blogDir, `${slug}.md`), file, "utf8");
 mkdirSync(join(ROOT, "data", "tmp"), { recursive: true });
 writeFileSync(join(ROOT, "data", "tmp", "last-slug.txt"), slug, "utf8");
+/*
+ * Record it. A case taken from the pool is marked used; a case the writer found itself is appended,
+ * with whatever it reported, so tomorrow cannot choose it again.
+ */
+try {
+  if (pending) {
+    pending.used = true;
+    pending.usedAt = today;
+    pending.articleSlug = slug;
+  } else {
+    pool.cases.push({
+      id: slug,
+      person: meta.case_person ?? "",
+      product: meta.case_product ?? "",
+      data: meta.case_data ?? "",
+      sources: [meta.focus_keyword ?? ""].filter(Boolean),
+      used: true,
+      usedAt: today,
+      articleSlug: slug,
+    });
+  }
+  writeFileSync(poolPath, JSON.stringify(pool, null, 2) + "\n", "utf8");
+  console.log(`  b-line: pool now ${pool.cases.filter((c) => c.used === true).length} used, ${pool.cases.filter((c) => c.used !== true).length} pending`);
+} catch {
+  console.log("  b-line: the pool could not be updated; the article is written regardless");
+}
+
 console.log(`  b-line: wrote src/content/blog/${slug}.md`);
 console.log(`  title: ${clean(meta.title)}`);

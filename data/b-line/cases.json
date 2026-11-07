@@ -1,0 +1,80 @@
+{
+  "note": "One real person per entry: who they are, what they sell, and the numbers that are checkable. An entry is marked used the moment its article is written, so ten years of daily articles cannot repeat a founder. When every entry is used the writer chooses from the day's fetched material and appends the new case itself - this file is a memory, not a gate.",
+  "updated": "2026-11-07",
+  "cases": [
+    {
+      "id": "marc-lou",
+      "person": "Marc Lou",
+      "product": "A portfolio of small software products: TrustMRR, DataFast, Ship or Die, ShipFast, CodeFast",
+      "where": "Solo, no employees and no investors since 2021",
+      "data": "1,234,900 US dollars over twelve months; TrustMRR 35,608 dollars a month; DataFast 29,188 a month; Ship or Die 16,397 a month; stated 90 per cent gross margin",
+      "sources": ["https://marclou.com/", "https://marclou.com/newsletter"],
+      "used": true,
+      "usedAt": "2026-11-07",
+      "articleSlug": "marc-lou-solo-studio-1-2m-year-2026"
+    },
+    {
+      "id": "damon-chen",
+      "person": "Damon Chen",
+      "product": "Testimonial.to, a video testimonial widget for SaaS sites",
+      "where": "Solo founder, United States",
+      "data": "Publicly discussed as a one-person product reaching six figures of annual recurring revenue; verify the current figure on the founder's own page before quoting it",
+      "sources": ["https://testimonial.to/", "https://www.indiehackers.com/"],
+      "used": false
+    },
+    {
+      "id": "tony-dinh",
+      "person": "Tony Dinh",
+      "product": "TypingMind, a front end for AI models, plus several smaller tools",
+      "where": "Solo developer, Vietnam",
+      "data": "Publicly discusses revenue in the hundreds of thousands of dollars a year across his products; take the figure from his own posts, not from an aggregator",
+      "sources": ["https://www.typingmind.com/", "https://tonydinh.com/"],
+      "used": false
+    },
+    {
+      "id": "danny-postma",
+      "person": "Danny Postma",
+      "product": "HeadshotPro, AI-generated professional headshots",
+      "where": "Solo founder, Netherlands",
+      "data": "Reported as a one-person business in the millions of dollars of annual revenue; confirm the latest figure on his own site or interview",
+      "sources": ["https://www.headshotpro.com/", "https://dannypostma.com/"],
+      "used": false
+    },
+    {
+      "id": "jon-yongfook",
+      "person": "Jon Yongfook",
+      "product": "Bannerbear, an API for generating images and videos from templates",
+      "where": "Solo founder, Singapore",
+      "data": "Runs a public open-startup revenue figure that is updated monthly; quote the month and the number together",
+      "sources": ["https://www.bannerbear.com/", "https://bannerbear.com/open"],
+      "used": false
+    },
+    {
+      "id": "pieter-levels",
+      "person": "Pieter Levels",
+      "product": "Nomad List and Remote OK, plus smaller experiments",
+      "where": "Solo, travelling, no employees",
+      "data": "Publishes revenue on an open page; quote the page and the date it was read",
+      "sources": ["https://levels.io/", "https://nomadlist.com/open"],
+      "used": false
+    },
+    {
+      "id": "arvid-kahl",
+      "person": "Arvid Kahl",
+      "product": "Wrote about and sold an audience business; now writes and advises on bootstrapping",
+      "where": "Bootstrapped founder, Germany",
+      "data": "His exit figure and the build-up to it are documented in his own writing; use those posts as the source",
+      "sources": ["https://thebootstrappedfounder.com/"],
+      "used": false
+    },
+    {
+      "id": "cs-allen",
+      "person": "CS Allen",
+      "product": "Indie Hackers (as its creator) - a community and interview archive about one-person businesses",
+      "where": "United States",
+      "data": "Use the interview archive itself as the source: each interview carries the founder's own numbers",
+      "sources": ["https://www.indiehackers.com/interviews"],
+      "used": false
+    }
+  ]
+}
