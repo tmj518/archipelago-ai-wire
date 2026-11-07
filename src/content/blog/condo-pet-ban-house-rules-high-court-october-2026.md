@@ -159,6 +159,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [RM10,000 for every Malaysian family hit by Nepal-Tibet flood: who gets it first](/blog/malaysia-flood-victims-nepal-tibet-rm10000-aid/)
 
+> Also read: [Singapore ends haze measures as Malaysia watches transboundary smoke season](/blog/singapore-haze-mitigation-measures-end-november-2026/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.

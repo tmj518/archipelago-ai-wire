@@ -154,6 +154,8 @@ The interest rate environment matters here too. With the central bank holding th
 
 > Also read: [RM10,000 for every Malaysian family hit by Nepal-Tibet flood: who gets it first](/blog/malaysia-flood-victims-nepal-tibet-rm10000-aid/)
 
+> Also read: [Singapore ends haze measures as Malaysia watches transboundary smoke season](/blog/singapore-haze-mitigation-measures-end-november-2026/)
+
 ## For you
 
 - **A couple planning a family:** the national average of 2.0 children per woman is below replacement level. Your family size decision, multiplied across millions of households, determines whether the population grows or shrinks.
