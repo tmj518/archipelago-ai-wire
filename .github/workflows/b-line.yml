@@ -43,14 +43,16 @@ jobs:
             echo "::error::B line has no brief"; exit 1
           fi
 
-      - name: Find a subject
+      # B线 does not use A線's research: it asks which one-person case nobody has written yet, from a
+      # pool where every number has a source. Exit 2 means the pool is exhausted, which is a quiet day.
+      - name: Choose a case
         run: |
           set +e
-          node tools/research.mjs --budget="${RESEARCH_BUDGET:-0.50}" --sources="${RESEARCH_SOURCES:-12}"
+          node tools/b-line/select.mjs
           code=$?
           set -e
           if [ "$code" != "0" ]; then
-            echo "b-line: research ended with $code - a quiet day for this line, not a failure"
+            echo "b-line: no case left to write ($code) - a quiet day for this line, not a failure"
             echo "B_SKIP=1" >> "$GITHUB_ENV"
           fi
         env:
