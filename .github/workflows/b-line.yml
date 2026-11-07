@@ -74,6 +74,8 @@ jobs:
         env:
           # The one instruction that makes this a different line: publish without a second opinion.
           B_LINE_SKIP_REVIEW: "1"
+          # A second article on a day A线 already published is the point of this line, not a duplicate.
+          SKIP_DAILY_GUARD: "1"
           MAX_ARTICLES_PER_DAY: "1"
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
           ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}

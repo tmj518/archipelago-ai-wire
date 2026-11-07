@@ -217,7 +217,15 @@ function alreadyPublishedToday() {
 const quota = Math.max(1, Number(process.env.MAX_ARTICLES_PER_DAY ?? 2) || 2);
 const publishedToday = [];
 
-const already = alreadyPublishedToday();
+/*
+ * The daily guard belongs to A线.
+ *
+ * It asks "has an article dated today been published", which is right for the publication line and
+ * wrong for a line whose whole purpose is a second article on the same day. On 2026-11-07 it stopped
+ * B线 with ALREADY PUBLISHED TODAY before the writer ran, because A线 had already published twice.
+ * SKIP_DAILY_GUARD is set by the B-line workflow and by nothing else.
+ */
+const already = process.env.SKIP_DAILY_GUARD === "1" ? null : alreadyPublishedToday();
 if (already && !process.argv.includes("--force")) {
   console.log("ALREADY PUBLISHED TODAY");
   console.log("  article : " + already.slug);
