@@ -1,8 +1,8 @@
 ---
 articleNumber: 45
-title: "Marc Lou made $1.23m in twelve months as a one-person studio. Here is the arithmetic"
-subtitle: "Forty-three products, zero employees and a stated 90 per cent gross margin: the case for a portfolio of small bets over one big one, and the part of it a"
-description: "Marc Lou's own revenue panel shows description: ",234,900 across the twelve months to November 2026, with TrustMRR at "5,608 a month, DataFast at Marc Lou's own revenue panel shows $1,234,900 across the twelve months to November 2026, with TrustMRR at $35,608 a month, DataFast at $29,188 and Ship or Die at $16,397. He has shipped 43 products solo since 2021, runs no employees and states a 90 per cent gross margin. The lesson for a Malaysian builder is the portfolio structure, not the total.9,188 and Ship or Die at description: "6,397. He has shipped 43 products solo since 2021, runs no employees and states a 90 per cent gross margin. The lesson for a Malaysian"
+title: "Marc Lou made 1.23 million dollars in twelve months as a one-person studio"
+subtitle: "Forty-three products, zero employees and a stated 90 per cent gross margin - the arithmetic of a portfolio run by one person"
+description: "Marc Lou reports 1.23 million US dollars over twelve months from forty-three solo products, with TrustMRR at 35,608 dollars a month and DataFast at 29,188. Here is what the portfolio actually shows about getting paid as one person."
 publishDate: 2026-11-07
 reviewBy: 2026-11-21
 stakes: directional
