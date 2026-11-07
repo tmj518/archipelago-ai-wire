@@ -94,7 +94,9 @@ jobs:
           if git diff --cached --quiet; then
             echo "b-line: nothing new to publish"; exit 0
           fi
-          slug=$(git diff --cached --name-status --diff-filter=A | awk '$1=="A" && $2 ~ /^src\/content\/blog\// {print $2; exit}')
+          # Only the article file itself: src/content/blog/.claims/<slug>.json also starts with that path and
+          # was captured as the slug on 2026-11-07, so the live check asked for <slug>.json and got 404.
+          slug=$(git diff --cached --name-status --diff-filter=A | awk '$1=="A" && $2 ~ /^src\/content\/blog\/[^/]+\.md$/ {print $2; exit}')
           name=$(basename "${slug:-case-study}" .md)
           echo "ARTICLE_SLUG=$name" >> "$GITHUB_ENV"
           git commit -m "b-line: publish $name"

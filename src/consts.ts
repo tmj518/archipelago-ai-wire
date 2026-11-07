@@ -85,6 +85,11 @@ export const NAV_LINKS = [
   { label: "Work & Family", href: "/category/work-education-family/" },
   { label: "Business", href: "/category/business-opportunities-risks/" },
   /*
+   * B线's section. Its own cron, its own case pool, one article a day: a reader who wants to see how
+   * somebody else made the thing work needs a door of their own, not a fourth item under Business.
+   */
+  { label: "Success Cases", href: "/category/success-cases/" },
+  /*
    * The practical-guide collection is the one section that is not a blog category. It answers a
    * different question for the same reader - "what do I actually do about this" - and it is kept
    * as a separate collection rather than a category because it has its own schema (steps, unit,
