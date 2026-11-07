@@ -43,6 +43,21 @@ jobs:
             echo "::error::B line has no brief"; exit 1
           fi
 
+      # A claim with no article beside it is a tombstone: publish-guard returns "duplicate" for that slug
+      # for ever, so the article can never be written. On 2026-11-07 two B线 runs were refused on a claim
+      # created by the run before them.
+      - name: Clear claims with no article
+        run: |
+          n=0
+          for f in src/content/blog/.claims/*.json; do
+            [ -e "$f" ] || continue
+            base=$(basename "$f" .json)
+            if [ ! -f "src/content/blog/$base.md" ]; then
+              rm -f "$f"; n=$((n+1)); echo "cleared stale claim: $base"
+            fi
+          done
+          echo "cleared $n stale claim(s)"
+
       # B线 does not use A線's research: it asks which one-person case nobody has written yet, from a
       # pool where every number has a source. Exit 2 means the pool is exhausted, which is a quiet day.
       - name: Choose a case
@@ -130,4 +145,10 @@ jobs:
 
       - name: Report
         if: always()
-        run: echo "B_LINE_OUTCOME=${B_LINE_OUTCOME:-QUIET}" >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          echo "B_LINE_OUTCOME=${B_LINE_OUTCOME:-QUIET}" >> "$GITHUB_STEP_SUMMARY"
+          # A green job that published nothing is worse than a red one: it says the line works.
+          case "${B_LINE_OUTCOME:-QUIET}" in
+            OK|QUIET) ;;
+            *) echo "::error::B line did not publish (${B_LINE_OUTCOME})"; exit 1 ;;
+          esac
