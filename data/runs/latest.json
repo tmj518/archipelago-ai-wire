@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-07T21:40:22.782Z",
+  "at": "2026-11-08T19:19:30.430Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "16 of 25 net-new this week"
+      "detail": "18 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,70 +28,47 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "dosm-digital-dissemination-primary-approach-may-2026 from /data/directive.json"
+      "detail": "sales-tax-rate-amendment-order-2026-customs from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
-      "ok": true,
-      "detail": "draft at /data/drafts/dosm-digital-dissemination-primary-approach-may-2026.md"
-    },
-    {
-      "name": "reviewer",
-      "ok": true,
-      "detail": "no parseable verdict"
-    },
-    {
-      "name": "reviewer",
       "ok": false,
-      "detail": "unavailable - LAUNCH MODE: publishing without a second opinion, recorded as a lesson"
-    },
-    {
-      "name": "publish",
-      "ok": true,
-      "detail": "staged at src/content/blog/dosm-digital-dissemination-primary-approach-may-2026.md"
-    },
-    {
-      "name": "registry",
-      "ok": false,
-      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.2/x64/bin/node /home/runner/work/archipelago-ai-wire"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
+      "detail": "exit 1: FAILED - spend limit reached: 0.0696 >= 0.06"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict PUBLISHED"
+      "detail": "verdict WRITE-FAILED"
     }
   ],
-  "verdict": "PUBLISHED",
-  "reasons": [],
-  "article": "dosm-digital-dissemination-primary-approach-may-2026",
+  "verdict": "WRITE-FAILED",
+  "reasons": [
+    "the writer did not produce sales-tax-rate-amendment-order-2026-customs.md on attempt 1"
+  ],
+  "article": null,
   "commit": null,
   "usage": {
-    "calls": 6,
-    "failed": 0,
-    "usd": 0.0164,
-    "promptTokens": 127849,
-    "completionTokens": 8383
+    "calls": 11,
+    "failed": 1,
+    "usd": 0.0696,
+    "promptTokens": 265825,
+    "completionTokens": 11507
   },
   "route": "script",
   "categoryActivity": {
     "economy": 1,
     "malaysia-impact": 2,
+    "success-cases": 3,
     "work-education-family": 3,
     "business-opportunities-risks": 3,
-    "success-cases": 1,
     "tech-ai": 4,
     "world": 2
   },
   "uncoveredSections": [],
-  "seconds": 43
+  "seconds": 0
 }
