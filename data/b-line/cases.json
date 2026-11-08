@@ -40,7 +40,9 @@
         "https://www.typingmind.com/",
         "https://tonydinh.com/"
       ],
-      "used": false
+      "used": true,
+      "usedAt": "2026-11-08",
+      "articleSlug": "tony-dinh-typingmind-one-person-ai-front-end"
     },
     {
       "id": "danny-postma",
