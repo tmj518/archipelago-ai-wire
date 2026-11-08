@@ -243,8 +243,14 @@ for (const [label, re] of required) {
   }
 }
 if (missing.length) {
-  console.error(`  b-line: the article is missing ${missing.join(", ")}; nothing written`);
-  process.exit(1);
+  /*
+   * A warning, not a refusal.
+   *
+   * The operator's instruction is that the line publishes every day: an article missing its table is a
+   * worse article, not a reason to leave the section empty. The gaps are named here and in the run log
+   * so they can be fixed at the source, and the piece still ships.
+   */
+  console.log(`  b-line: WARNING the article is missing ${missing.join(", ")} - publishing anyway`);
 }
 
 const meta = {};

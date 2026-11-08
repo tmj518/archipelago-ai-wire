@@ -7,7 +7,11 @@ name: B line
 on:
   schedule:
     # 03:00 UTC = 11:00 Asia/Singapore, every day.
+    # 11:00 Malaysia time is the intended slot, but GitHub scheduler is routinely hours late on
+    # this repository - A line has been seen five hours behind. A second schedule every two hours
+    # compensates: whichever fires first finds the day done and exits in seconds.
     - cron: "0 3 * * *"
+    - cron: "0 */2 * * *"
   workflow_dispatch:
 
 permissions:
@@ -36,7 +40,19 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # One article a day, whichever schedule fires first.
+      - name: Already published today
+        run: |
+          today=$(date -u +%Y-%m-%d)
+          n=$(grep -l '^category: success-cases' src/content/blog/*.md 2>/dev/null | xargs grep -l "^publishDate: $today" 2>/dev/null | wc -l)
+          echo "articles dated $today in success-cases: $n"
+          if [ "$n" -ge 1 ]; then
+            echo "B line already published today; exiting without spending anything"
+            echo "B_SKIP=1" >> "$GITHUB_ENV"
+          fi
+
       - name: Preflight
+        if: env.B_SKIP != '1'
         run: |
           echo "b-line: brief at data/b-line/brief.md ($(wc -c < data/b-line/brief.md) bytes)"
           if [ ! -s data/b-line/brief.md ]; then
