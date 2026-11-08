@@ -46,7 +46,10 @@ jobs:
       - name: Already published today
         run: |
           today=$(date -u +%Y-%m-%d)
-          n=$(grep -l '^category: success-cases' src/content/blog/*.md 2>/dev/null | xargs grep -l "^publishDate: $today" 2>/dev/null | wc -l)
+          # xargs -r: with no input, grep must not run and fail the step. A guard that turns red on
+          # every quiet run is worse than no guard.
+          n=$(grep -l '^category: success-cases' src/content/blog/*.md 2>/dev/null | xargs -r grep -l "^publishDate: $today" 2>/dev/null | wc -l || echo 0)
+          n=${n:-0}
           echo "articles dated $today in success-cases: $n"
           if [ "$n" -ge 1 ]; then
             echo "B line already published today; exiting without spending anything"
