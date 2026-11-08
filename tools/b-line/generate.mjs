@@ -57,12 +57,15 @@ const caseNote = pending
  * real dates. The reader sees links; the writer cannot cite something that was not fetched.
  */
 const FEEDS = [
-  ["indiehackers", "https://www.indiehackers.com/feed.xml"],
-  ["hn", "https://hnrss.org/frontpage?points=100"],
-  ["reddit-saas", "https://www.reddit.com/r/SaaS/.rss"],
-  ["reddit-indiehackers", "https://www.reddit.com/r/indiehackers/.rss"],
-  ["reddit-entrepreneur", "https://www.reddit.com/r/Entrepreneur/.rss"],
-  ["producthunt", "https://www.producthunt.com/feed"],
+  /* Only endpoints that actually answer.
+   *
+   * Reddit returns 403 to a server, Product Hunt's feed returns an empty document and Indie Hackers
+   * blocks the request - measured on 2026-11-08, all three at zero items. Hacker News through Algolia
+   * returns sixty stories and Lobsters twenty-five, so those are what this line reads. A feed that
+   * silently returns nothing is worse than one that fails: it looks like a quiet day. */
+  ["hn-frontpage", "https://hn.algolia.com/api/v1/search?tags=story&numericFilters=points%3E120&hitsPerPage=40"],
+  ["hn-recent", "https://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=points%3E60&hitsPerPage=40"],
+  ["lobsters", "https://lobste.rs/rss"],
 ];
 
 function strip(html) {
@@ -85,8 +88,19 @@ async function fetchFeed([label, url]) {
       signal: AbortSignal.timeout(20000),
     });
     if (!res.ok) return null;
-    const xml = await res.text();
-    const items = [...xml.matchAll(/<item[\s\S]*?<\/item>/gi)].slice(0, 8).map((m) => m[0]);
+    const body = await res.text();
+    /* Hacker News answers in JSON, the rest in RSS. Both become the same list. */
+    if (body.trimStart().startsWith("{")) {
+      const json = JSON.parse(body);
+      const hits = (json.hits ?? []).slice(0, 12).map((h) => ({
+        title: String(h.title ?? "").slice(0, 200),
+        link: h.url || `https://news.ycombinator.com/item?id=${h.objectID}`,
+        date: h.created_at ?? "",
+        body: `points ${h.points ?? "?"}, ${h.num_comments ?? "?"} comments`,
+      })).filter((e) => e.title && e.link);
+      return { label, url, entries: hits };
+    }
+    const items = [...body.matchAll(/<item[\s\S]*?<\/item>/gi)].slice(0, 8).map((m) => m[0]);
     const entries = items.map((item) => {
       const title = strip(/<title[^>]*>([\s\S]*?)<\/title>/i.exec(item)?.[1] ?? "").slice(0, 200);
       const link = /<link[^>]*>([\s\S]*?)<\/link>/i.exec(item)?.[1]?.trim() ?? "";
