@@ -209,6 +209,33 @@ if (!metaRaw || !article) {
   process.exit(1);
 }
 
+/*
+ * The six questions, checked before the file is written.
+ *
+ * The brief asks for them; on 2026-11-08 the first two articles answered some of them and skipped the
+ * rest. A structural check is cheaper than reading the article later and finding out.
+ */
+const required = [
+  ["a table", /<table[\s\S]*?<\/table>/i],
+  ["a What doesn't work section", /What\s*doesn'?t\s*work/i],
+  ["at least one FAQ", /<h3[\s\S]*?<\/h3>/i],
+  ["a Sources section", /Sources/i],
+  ["at least five links", /(<a\s[^>]*href)/gi],
+];
+const missing = [];
+for (const [label, re] of required) {
+  if (label === "at least five links") {
+    const links = (article.match(/<a\s[^>]*href/gi) ?? []).length;
+    if (links < 5) missing.push(`${label} (found ${links})`);
+  } else if (!re.test(article)) {
+    missing.push(label);
+  }
+}
+if (missing.length) {
+  console.error(`  b-line: the article is missing ${missing.join(", ")}; nothing written`);
+  process.exit(1);
+}
+
 const meta = {};
 for (const line of metaRaw.split("\n")) {
   const m = /^([a-z_]+):\s*(.*)$/i.exec(line.trim());
