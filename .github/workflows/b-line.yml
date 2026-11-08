@@ -11,7 +11,9 @@ on:
     # this repository - A line has been seen five hours behind. A second schedule every two hours
     # compensates: whichever fires first finds the day done and exits in seconds.
     - cron: "0 3 * * *"
-    - cron: "0 */2 * * *"
+    # Every twenty minutes while unattended operation is still unproven. The guard makes a wasted run
+    # cost ten seconds, and it is the only way to see a scheduled run fire today rather than tomorrow.
+    - cron: "*/20 * * * *"
   workflow_dispatch:
 
 permissions:
