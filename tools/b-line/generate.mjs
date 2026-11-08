@@ -103,9 +103,19 @@ async function fetchFeed([label, url]) {
 const feeds = (await Promise.all(FEEDS.map(fetchFeed))).filter(Boolean);
 const totalEntries = feeds.reduce((a, f) => a + f.entries.length, 0);
 console.log(`  b-line: ${feeds.length} feed(s), ${totalEntries} item(s) fetched`);
-if (totalEntries < 5) {
-  console.error("  b-line: too little material to write from; refusing to invent");
+/*
+ * The pool does not need the feeds.
+ *
+ * On 2026-11-08 three feeds answered and none of them parsed, so the run refused to write with a case
+ * sitting in the pool that already carries its own numbers and sources. Feeds are how the pool grows
+ * when it is empty; they are not a precondition for writing a case that is already documented.
+ */
+if (totalEntries < 5 && !pending) {
+  console.error("  b-line: no case in the pool and too little material to write from; refusing to invent");
   process.exit(2);
+}
+if (totalEntries < 5) {
+  console.log("  b-line: few or no documents today; writing the pooled case from its own documented figures");
 }
 
 const material = feeds
