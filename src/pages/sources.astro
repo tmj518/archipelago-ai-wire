@@ -217,7 +217,8 @@ const description =
                   <td><a href={`/blog/${r.slug}/`}>{r.title}</a></td>
                   <td class="tracker-num-cell">{r.sources}</td>
                   <td class="tracker-num-cell">{r.figures}</td>
-                  <td class="tracker-meta-cell">{r.gain.replace(/-/g, " ")}</td>
+                  <!-- A post without information_gain must not stop the build: this page is a table, not a gate. -->
+              <td class="tracker-meta-cell">{(r.gain ?? "").replace(/-/g, " ")}</td>
                 </tr>
               ))}
             </tbody>

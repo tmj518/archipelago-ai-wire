@@ -1,6 +1,7 @@
 ---
 articleNumber: 27
 title: "Damon Chen's Testimonial.to: One-Person SaaS Costs"
+subtitle: "What the documented pricing, the solo-founder model and the public write-ups actually show"
 description: "How Damon Chen runs Testimonial.to as a one-person SaaS, what the documented pricing shows, and where the solo model stops working."
 publishDate: 2026-11-08
 reviewBy: 2026-11-29
