@@ -24,30 +24,6 @@ if (!brief.trim()) {
   process.exit(1);
 }
 
-/* ---------------------------------------------------------------- the case pool */
-/*
- * The pool is the memory of this line.
- *
- * Ten years is 3,650 articles, and the expensive mistake is writing the same founder twice. Each entry
- * is one real person with a product and public numbers; an entry is marked used the moment its article
- * is written, so the pool can only run down, never repeat. When it is empty the writer chooses from the
- * fetched material and the new case is appended, which is how the pool grows without anyone editing it.
- */
-const poolPath = join(ROOT, "data", "b-line", "cases.json");
-let pool = { cases: [] };
-if (existsSync(poolPath)) {
-  try {
-    pool = JSON.parse(readFileSync(poolPath, "utf8"));
-  } catch {
-    console.error("  b-line: data/b-line/cases.json is not readable; continuing without a pool");
-  }
-}
-if (!Array.isArray(pool.cases)) pool.cases = [];
-const pending = pool.cases.find((c) => c && c.used !== true);
-const caseNote = pending
-  ? `## The case to write about today\n\n${JSON.stringify(pending, null, 2)}\n\nWrite about THIS person and product. The documents below are for verification and for anything else the article needs; they do not replace the case.`
-  : `## No case left in the pool\n\nChoose the person yourself from the documents below. Report the case in the META block as case_person, case_product and case_data so it can be added to the pool.`;
-
 /* ---------------------------------------------------------------- research material */
 /*
  * The sources are fetched, not remembered.
@@ -148,6 +124,41 @@ const written = existsSync(blogDir)
       }
     })
   : [];
+
+/* ---------------------------------------------------------------- the case pool */
+/*
+ * The pool is the memory of this line.
+ *
+ * Ten years is 3,650 articles, and the expensive mistake is writing the same founder twice. Each entry
+ * is one real person with a product and public numbers; an entry is marked used the moment its article
+ * is written, so the pool can only run down, never repeat. When it is empty the writer chooses from the
+ * fetched material and the new case is appended, which is how the pool grows without anyone editing it.
+ */
+const poolPath = join(ROOT, "data", "b-line", "cases.json");
+let pool = { cases: [] };
+if (existsSync(poolPath)) {
+  try {
+    pool = JSON.parse(readFileSync(poolPath, "utf8"));
+  } catch {
+    console.error("  b-line: data/b-line/cases.json is not readable; continuing without a pool");
+  }
+}
+if (!Array.isArray(pool.cases)) pool.cases = [];
+const pending = pool.cases.find((c) => {
+  if (!c || c.used === true) return false;
+  /*
+   * A person already written about is used, whatever the flag says.
+   *
+   * On 2026-11-08 the flag was right and the site still ended up with three Damon Chen articles: the
+   * pool file was not committed, so the next run read the old flag. The published titles are the fact;
+   * the flag is a copy of it. Checking the titles costs nothing and cannot drift.
+   */
+  const surname = String(c.person ?? "").split(" ").pop().toLowerCase();
+  return !written.some((t) => surname.length > 2 && String(t).toLowerCase().includes(surname));
+});
+const caseNote = pending
+  ? `## The case to write about today\n\n${JSON.stringify(pending, null, 2)}\n\nWrite about THIS person and product. The documents below are for verification and for anything else the article needs; they do not replace the case.`
+  : `## No case left in the pool\n\nChoose the person yourself from the documents below. Report the case in the META block as case_person, case_product and case_data so it can be added to the pool.`;
 
 /* ---------------------------------------------------------------- one call */
 const prompt = `${brief}
