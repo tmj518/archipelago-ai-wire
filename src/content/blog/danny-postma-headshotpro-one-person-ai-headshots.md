@@ -112,8 +112,4 @@ tags:
   <li><a href="https://ftrain.com/aboard-the-web-is-more-than-enough">Paul Ford, "The Web Is More Than Enough" — context on small independent web businesses</a></li>
 </ul>
 
-## Related cases
-
-- [Damon Chen's Testimonial.to: One-Person SaaS Costs](/blog/damon-chen-testimonial-to-solo-saas-costs/)
-- [Marc Lou made 1.23 million dollars in twelve months as a one-person studio](/blog/marc-lou-solo-studio-1-2m-year-2026/)
-- [Tony Dinh: TypingMind and the One-Person AI Front End](/blog/tony-dinh-typingmind-one-person-ai-front-end/)
+Related case: [Marc Lou made 1.23 million dollars in twelve months as a one-person studio](/blog/marc-lou-solo-studio-1-2m-year-2026/).

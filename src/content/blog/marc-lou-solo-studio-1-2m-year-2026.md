@@ -180,8 +180,4 @@ The structure: small products, dollar pricing where the customer is overseas, lo
 
 The number that matters in this case is not $1,234,900. It is 43. A one-person studio that shipped 43 products in five years and ended up with three that carry most of the revenue is a portfolio, and a portfolio is a structure a Malaysian reader can build without the luck, the country or the audience. The revenue is the outcome of the structure, not a thing to copy on its own. Build small, ship often, price in the currency your customer earns in, and keep each attempt cheap enough that the failures do not end the run.
 
-## Related cases
-
-- [Damon Chen's Testimonial.to: One-Person SaaS Costs](/blog/damon-chen-testimonial-to-solo-saas-costs/)
-- [Danny Postma's HeadshotPro: One-Person AI Headshots](/blog/danny-postma-headshotpro-one-person-ai-headshots/)
-- [Tony Dinh: TypingMind and the One-Person AI Front End](/blog/tony-dinh-typingmind-one-person-ai-front-end/)
+Related case: [Tony Dinh: TypingMind and the One-Person AI Front End](/blog/tony-dinh-typingmind-one-person-ai-front-end/).

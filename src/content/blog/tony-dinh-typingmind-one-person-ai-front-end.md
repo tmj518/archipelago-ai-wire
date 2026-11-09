@@ -105,8 +105,4 @@ tags:
   <li><a href="https://github.blog/changelog/2026-11-05-new-pull-request-overview-page-in-public-preview/">GitHub changelog — example of platform features absorbing third-party tooling</a></li>
 </ul>
 
-## Related cases
-
-- [Damon Chen's Testimonial.to: One-Person SaaS Costs](/blog/damon-chen-testimonial-to-solo-saas-costs/)
-- [Danny Postma's HeadshotPro: One-Person AI Headshots](/blog/danny-postma-headshotpro-one-person-ai-headshots/)
-- [Marc Lou made 1.23 million dollars in twelve months as a one-person studio](/blog/marc-lou-solo-studio-1-2m-year-2026/)
+Related case: [Damon Chen's Testimonial.to: One-Person SaaS Costs](/blog/damon-chen-testimonial-to-solo-saas-costs/).

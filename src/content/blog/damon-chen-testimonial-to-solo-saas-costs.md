@@ -90,8 +90,4 @@ tags:
 <h2>TEST CHECKLIST</h2>
 <p>A person should verify before this article is treated as tested: (1) the current entry-tier price and what each tier caps — testimonials, videos, branding removal, custom domain; (2) whether the free tier or trial requires a card, and whether exports carry a watermark; (3) the current revenue claim on the founder's own page, if it is to be quoted at all; (4) whether video hosting is bundled or billed separately. The table marks three rows <code>⚠️ verify</code> for exactly these reasons.</p>
 
-## Related cases
-
-- [Danny Postma's HeadshotPro: One-Person AI Headshots](/blog/danny-postma-headshotpro-one-person-ai-headshots/)
-- [Marc Lou made 1.23 million dollars in twelve months as a one-person studio](/blog/marc-lou-solo-studio-1-2m-year-2026/)
-- [Tony Dinh: TypingMind and the One-Person AI Front End](/blog/tony-dinh-typingmind-one-person-ai-front-end/)
+Related case: [Danny Postma's HeadshotPro: One-Person AI Headshots](/blog/danny-postma-headshotpro-one-person-ai-headshots/).
