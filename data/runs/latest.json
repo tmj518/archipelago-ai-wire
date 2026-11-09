@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-09T13:06:18.683Z",
+  "at": "2026-11-09T13:27:20.658Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,17 +28,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "melaka-paya-rumput-youth-jobs-salary-gap-election-2026 from /data/directive.json"
+      "detail": "malaysia-sales-tax-rate-amendment-order-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "4 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/melaka-paya-rumput-youth-jobs-salary-gap-election-2026.md"
+      "detail": "draft at /data/drafts/malaysia-sales-tax-rate-amendment-order-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,31 +53,34 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/melaka-paya-rumput-youth-jobs-salary-gap-election-2026.md"
+      "detail": "staged at src/content/blog/malaysia-sales-tax-rate-amendment-order-2026.md"
     },
     {
-      "name": "publish",
+      "name": "registry",
       "ok": false,
-      "detail": "rolled back after the gate: 3R review                              race, religion or roy"
+      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.2/x64/bin/node /home/runner/work/archipelago-ai-wire"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict REJECTED"
+      "detail": "verdict PUBLISHED"
     }
   ],
-  "verdict": "REJECTED",
-  "reasons": [
-    "the staged article failed qa-check as a published file: 3R review                              race, religion or roy"
-  ],
-  "article": null,
+  "verdict": "PUBLISHED",
+  "reasons": [],
+  "article": "malaysia-sales-tax-rate-amendment-order-2026",
   "commit": null,
   "usage": {
-    "calls": 6,
+    "calls": 7,
     "failed": 0,
-    "usd": 0.0161,
-    "promptTokens": 127764,
-    "completionTokens": 7399
+    "usd": 0.054,
+    "promptTokens": 158207,
+    "completionTokens": 10242
   },
   "route": "script",
   "categoryActivity": {
@@ -90,5 +93,5 @@
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 42
+  "seconds": 34
 }
