@@ -1,0 +1,94 @@
+{
+  "at": "2026-11-09T13:06:18.683Z",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "absent, treated as a first run"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "1 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "melaka-paya-rumput-youth-jobs-salary-gap-election-2026 from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "4 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/melaka-paya-rumput-youth-jobs-salary-gap-election-2026.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "unavailable - LAUNCH MODE: publishing without a second opinion, recorded as a lesson"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/melaka-paya-rumput-youth-jobs-salary-gap-election-2026.md"
+    },
+    {
+      "name": "publish",
+      "ok": false,
+      "detail": "rolled back after the gate: 3R review                              race, religion or roy"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict REJECTED"
+    }
+  ],
+  "verdict": "REJECTED",
+  "reasons": [
+    "the staged article failed qa-check as a published file: 3R review                              race, religion or roy"
+  ],
+  "article": null,
+  "commit": null,
+  "usage": {
+    "calls": 6,
+    "failed": 0,
+    "usd": 0.0161,
+    "promptTokens": 127764,
+    "completionTokens": 7399
+  },
+  "route": "script",
+  "categoryActivity": {
+    "economy": 0,
+    "malaysia-impact": 0,
+    "success-cases": 1,
+    "work-education-family": 0,
+    "business-opportunities-risks": 0,
+    "tech-ai": 0,
+    "world": 0
+  },
+  "uncoveredSections": [],
+  "seconds": 42
+}

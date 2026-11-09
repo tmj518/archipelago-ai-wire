@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-09T12:36:20.103Z",
+  "at": "2026-11-09T13:06:18.683Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,19 +28,57 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "none at /data/directive.json"
+      "detail": "melaka-paya-rumput-youth-jobs-salary-gap-election-2026 from /data/directive.json"
     },
     {
-      "name": "research",
+      "name": "directive figures",
+      "ok": true,
+      "detail": "4 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/melaka-paya-rumput-youth-jobs-salary-gap-election-2026.md"
+    },
+    {
+      "name": "reviewer",
       "ok": false,
-      "detail": "no verified subject today (exit 0)"
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "unavailable - LAUNCH MODE: publishing without a second opinion, recorded as a lesson"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/melaka-paya-rumput-youth-jobs-salary-gap-election-2026.md"
+    },
+    {
+      "name": "publish",
+      "ok": false,
+      "detail": "rolled back after the gate: 3R review                              race, religion or roy"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict REJECTED"
     }
   ],
-  "verdict": "NO-SUBJECT",
-  "reasons": [],
+  "verdict": "REJECTED",
+  "reasons": [
+    "the staged article failed qa-check as a published file: 3R review                              race, religion or roy"
+  ],
   "article": null,
   "commit": null,
-  "usage": null,
+  "usage": {
+    "calls": 6,
+    "failed": 0,
+    "usd": 0.0161,
+    "promptTokens": 127764,
+    "completionTokens": 7399
+  },
   "route": "script",
   "categoryActivity": {
     "economy": 0,
@@ -52,46 +90,5 @@
     "world": 0
   },
   "uncoveredSections": [],
-  "researchLog": [
-    "  ledger: 29 published subject(s) to avoid repeating",
-    "  corpus   : 7 article(s) from 3 source(s)",
-    "  proposing a subject from 7 archived article(s)...",
-    "  stream      : the endpoint answered as SSE, 993 delta(s) joined",
-    "  endpoint    : ep-20251220173606-gzxdg replied with 3509 characters but no document structure, trying the next one",
-    "  spent   : ~0.0021  (ceiling 0.40)",
-    "  model   : volces/ep-20251220173606-gzxdg",
-    "  feasible: true",
-    "  slug    : asean-tac-50-years-high-council-never-invoked",
-    "  keyword : ASEAN Treaty of Amity and Cooperation 50 years High Council",
-    "  duplicate check: score 6 against thai-cambodia-border-closure-june-2025-malaysia-supply-chains",
-    "      shared figure value(s): 2001",
-    "      shared institution(s): iseas, perspective",
-    "  REJECTED as a duplicate - trying another subject rather than ending the day.",
-    "  proposing a subject from 7 archived article(s) (attempt 2 of 6)...",
-    "       call failed: task=null role=planner provider=volces attempt=1/3 ETIMEDOUT: fetch failed",
-    "       provider switch: volces -> deepseek after ETIMEDOUT: fetch failed",
-    "  stream      : the endpoint answered as SSE, 1167 delta(s) joined",
-    "  endpoint    : ep-20251220173606-gzxdg replied with 4389 characters but no document structure, trying the next one",
-    "  spent   : ~0.0078  (ceiling 0.40)",
-    "  model   : deepseek/deepseek-chat",
-    "  feasible: true",
-    "  slug    : thai-cambodia-border-closure-june-2025-cambodian-workers-thailand",
-    "  keyword : Thailand Cambodia border closure 2025 Cambodian workers",
-    "  duplicate check: score 27 against thai-cambodia-border-closure-june-2025-malaysia-supply-chains",
-    "      shared figure value(s): june2025, 10september, 2001, 1999",
-    "      shared keyword stems: thailand, cambodia, border, closure",
-    "      shared institution(s): iseas, yusof, ishak, institute, perspective",
-    "  REJECTED as a duplicate - trying another subject rather than ending the day.",
-    "  proposing a subject from 7 archived article(s) (attempt 3 of 6)...",
-    "       call failed: task=null role=planner provider=volces attempt=1/3 ETIMEDOUT: fetch failed",
-    "       provider switch: volces -> deepseek after ETIMEDOUT: fetch failed",
-    "  stream      : the endpoint answered as SSE, 22 delta(s) joined",
-    "  endpoint    : ep-20251220173606-gzxdg replied with 76 characters but no document structure, trying the next one",
-    "  spent   : ~0.0122  (ceiling 0.40)",
-    "  model   : deepseek/deepseek-chat",
-    "  feasible: false",
-    "  reason  : no Malaysian carrier described",
-    "  The documents do not support an article today. That is the answer, and no directive was",
-    "  written. A day without a qualifying subject is a day without an article."
-  ]
+  "seconds": 42
 }
