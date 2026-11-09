@@ -54,7 +54,9 @@
         "https://www.headshotpro.com/",
         "https://dannypostma.com/"
       ],
-      "used": false
+      "used": true,
+      "usedAt": "2026-11-09",
+      "articleSlug": "danny-postma-headshotpro-one-person-ai-headshots"
     },
     {
       "id": "jon-yongfook",
