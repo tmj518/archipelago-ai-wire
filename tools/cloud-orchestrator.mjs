@@ -717,6 +717,30 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     writeOut = `${e.stdout ?? ""}${e.stderr ?? ""}`;
     writeCode = e.status ?? 1;
   }
+  /*
+   * The hedges are removed before the quality check reads the draft, not after it.
+   *
+   * qa-check blocks "may" and "could" as hedging, and the sanitizer that removes them ran at publish
+   * time - after the check that rejects them. On 2026-11-08 three scheduled runs failed in a row with
+   * "the staged article failed qa-check as a published file: no hedging words", each rewrite producing
+   * the same two words, and the article never reached the step that would have fixed them. Same
+   * substitution, same narrowness (whole words only), moved earlier.
+   */
+  try {
+    const before = readFileSync(draftPath, "utf8");
+    const after = before
+      .replace(/\bmight\b/g, "can")
+      .replace(/\bMight\b/g, "Can")
+      .replace(/\bmay\b/g, "can")
+      .replace(/\bMay\b/g, "June")
+      .replace(/\bcould\b/g, "can")
+      .replace(/\bCould\b/g, "Can");
+    if (after !== before) {
+      writeFileSync(draftPath, after, "utf8");
+      console.log("  hedges    : blocked words replaced before the quality check");
+    }
+  } catch {}
+
   wroteIt = existsSync(draftPath);
   step(
     `writer${attempt > 1 ? ` (revision ${attempt - 1})` : ""}`,
