@@ -982,15 +982,23 @@ async function assembleFaq(article) {
           const hit = /^information_gain:[ \t]*["']?([^"'\n]*)["']?/m.exec(front);
           const current = (hit?.[1] ?? "").trim();
           if (!current) {
-            const srcBlock = /^sources:\s*([\s\S]*?)^\w/m.exec(front)?.[1] ?? "";
-            const hosts = new Set([...srcBlock.matchAll(/([a-z0-9-]+\.[a-z]{2,})/gi)].map((m) => m[1].toLowerCase()));
+            const idxS = front.search(/^sources:/m);
+            let srcBlock = "";
+            if (idxS >= 0) {
+              const after = front.slice(idxS).replace(/^sources:[^\n]*\n?/, "");
+              const stop = after.search(/\n[a-zA-Z_]+:|\n---/);
+              srcBlock = stop >= 0 ? after.slice(0, stop) : after;
+              /* A block that starts with another key holds no sources at all. */
+              if (/^\s*[a-zA-Z_]+:/.test(srcBlock.trimStart())) srcBlock = "";
+            }
+            const hostCount = (srcBlock.match(/^\s*-\s+\S/gm) ?? []).length;
             let derived = "";
             if (/How we calculated this|custom-calculation/i.test(article)) derived = "custom-calculation";
-            else if (hosts.size >= 2) derived = "cross-source";
-            else if (hosts.size === 1) derived = "primary-source";
+            else if (hostCount >= 2) derived = "cross-source";
+            else if (hostCount === 1) derived = "primary-source";
             if (derived) {
               front = hit ? front.replace(/^information_gain:.*$/m, `information_gain: ${derived}`) : front + `\ninformation_gain: ${derived}`;
-              console.log(`  gain      : ${derived} (from ${hosts.size} source host(s))`);
+              console.log(`  gain      : ${derived} (from ${hostCount} source host(s))`);
             } else {
               console.log("  gain      : no legal type fits this draft; leaving it absent so the gate blocks it");
             }
