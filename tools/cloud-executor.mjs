@@ -1137,6 +1137,11 @@ async function assembleFaq(article) {
     console.log(`  number    : the draft said #${previous}, the collection needs #${assigned} - assigned #${assigned}`);
   }
   writeFileSync(outFile, withNumber, "utf8");
+  try {
+    const tf = readFileSync(outFile, "utf8");
+    const tv = /^information_gain:[^\n]*/m.exec(tf)?.[0] ?? "(absent)";
+    console.log("  TRACE " + "executor-write" + " -> " + tv + "  [" + outFile + "]");
+  } catch (e) { console.log("  TRACE " + "executor-write" + " unreadable: " + e.message); }
 
   const words = (article.split(/\n---\n/)[1] ?? "").split(/\s+/).filter(Boolean).length;
   console.log(`  written   : ${outFile.replace(/\\/g, "/").replace(ROOT.replace(/\\/g, "/") + "/", "")}`);

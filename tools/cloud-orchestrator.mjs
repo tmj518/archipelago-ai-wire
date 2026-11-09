@@ -882,6 +882,11 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
       setEnum("priority", "P2", PRIORITY_VALUES);
       if (repairs.length) {
         writeFileSync(draftPath, fm + rest, "utf8");
+        try {
+          const tf = readFileSync(draftPath, "utf8");
+          const tv = /^information_gain:[^\n]*/m.exec(tf)?.[0] ?? "(absent)";
+          console.log("  TRACE " + "orchestrator-repair" + " -> " + tv + "  [" + draftPath + "]");
+        } catch (e) { console.log("  TRACE " + "orchestrator-repair" + " unreadable: " + e.message); }
         console.log("  enum repair : " + repairs.join("; "));
       }
     }
@@ -1277,6 +1282,11 @@ if (wroteIt && qaCode === 0) {
        * fails loudly instead of reporting a publish that never happened.
        */
       const { publish, publishTaskKey } = await import("../src/lib/publish-guard.mjs");
+      try {
+        const tf = readFileSync(String(slug), "utf8");
+        const tv = /^information_gain:[^\n]*/m.exec(tf)?.[0] ?? "(absent)";
+        console.log("  TRACE " + "before-publish" + " -> " + tv + "  [" + String(slug) + "]");
+      } catch (e) { console.log("  TRACE " + "before-publish" + " unreadable: " + e.message); }
       const guarded = publish({
         dir: join(ROOT, "src", "content", "blog"),
         slug,
