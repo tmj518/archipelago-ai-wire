@@ -966,6 +966,36 @@ async function assembleFaq(article) {
       if (missing.length) {
         front += "\n" + missing.map((k) => `${k}: ${defaults[k]}`).join("\n");
       }
+        /*
+         * information_gain is derived from what the research actually was, never assigned wholesale.
+         *
+         * The default block above only adds a key that is absent - the regex matches an empty
+         * `information_gain:` line too, so a draft that emitted the field blank passed the missing check and
+         * then failed the gate with "(missing) is not one of custom-calculation, cross-source, own-data,
+         * primary-source". On 2026-11-09 that stopped three scheduled runs.
+         *
+         * The value is read from the draft: a stated calculation means custom-calculation, two or more
+         * distinct source hosts mean cross-source, one means primary-source. When none of those is true the
+         * field is left absent so the gate blocks it - the honest outcome, not a filled-in label.
+         */
+        {
+          const hit = /^information_gain:[ \t]*["']?([^"'\n]*)["']?/m.exec(front);
+          const current = (hit?.[1] ?? "").trim();
+          if (!current) {
+            const srcBlock = /^sources:\s*([\s\S]*?)^\w/m.exec(front)?.[1] ?? "";
+            const hosts = new Set([...srcBlock.matchAll(/([a-z0-9-]+\.[a-z]{2,})/gi)].map((m) => m[1].toLowerCase()));
+            let derived = "";
+            if (/How we calculated this|custom-calculation/i.test(article)) derived = "custom-calculation";
+            else if (hosts.size >= 2) derived = "cross-source";
+            else if (hosts.size === 1) derived = "primary-source";
+            if (derived) {
+              front = hit ? front.replace(/^information_gain:.*$/m, `information_gain: ${derived}`) : front + `\ninformation_gain: ${derived}`;
+              console.log(`  gain      : ${derived} (from ${hosts.size} source host(s))`);
+            } else {
+              console.log("  gain      : no legal type fits this draft; leaving it absent so the gate blocks it");
+            }
+          }
+        }
       /*
        * A key that is present with a value zod does not accept fails the build exactly like a missing
        * one, and the log names the field but nothing repairs it. The enumerated fields are coerced to a
