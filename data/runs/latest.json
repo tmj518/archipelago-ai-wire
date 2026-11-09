@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-09T10:31:14.640Z",
+  "at": "2026-11-09T11:49:46.784Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,7 +28,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "malaysia-vital-statistics-2019-births-deaths-trends from /data/directive.json"
+      "detail": "moh-85-emergency-medical-teams-387-personnel-monsoon-2026-2027 from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -38,7 +38,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/malaysia-vital-statistics-2019-births-deaths-trends.md"
+      "detail": "draft at /data/drafts/moh-85-emergency-medical-teams-387-personnel-monsoon-2026-2027.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/malaysia-vital-statistics-2019-births-deaths-trends.md"
+      "detail": "staged at src/content/blog/moh-85-emergency-medical-teams-387-personnel-monsoon-2026-2027.md"
     },
     {
       "name": "registry",
@@ -73,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "malaysia-vital-statistics-2019-births-deaths-trends",
+  "article": "moh-85-emergency-medical-teams-387-personnel-monsoon-2026-2027",
   "commit": null,
   "usage": {
-    "calls": 6,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0408,
-    "promptTokens": 151125,
-    "completionTokens": 9921
+    "usd": 0.0261,
+    "promptTokens": 68499,
+    "completionTokens": 6894
   },
   "route": "script",
   "categoryActivity": {
@@ -93,5 +93,5 @@
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 32
+  "seconds": 35
 }
