@@ -1,4 +1,5 @@
 ---
+information_gain: "cross-source"
 articleNumber: 29
 title: "Danny Postma's HeadshotPro: One-Person AI Headshots"
 description: "How Danny Postma built HeadshotPro, an AI headshot business run by one person in the Netherlands, and what solo founders can copy from it."

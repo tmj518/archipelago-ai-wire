@@ -1,4 +1,5 @@
 ---
+information_gain: "cross-source"
 articleNumber: 27
 title: "Damon Chen's Testimonial.to: One-Person SaaS Costs"
 subtitle: "What the documented pricing, the solo-founder model and the public write-ups actually show"

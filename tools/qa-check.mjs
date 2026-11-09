@@ -952,7 +952,17 @@ const PATHS = args.filter((a) => !a.startsWith("--"));
 let files;
 if (ALL) {
   const dir = "src/content/blog";
-  files = readdirSync(dir).filter((f) => f.endsWith(".md")).map((f) => join(dir, f));
+  /* B线 is out of scope for this gate: it shares the collection, not the standard. */
+  files = readdirSync(dir)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => join(dir, f))
+    .filter((f) => {
+      try {
+        return !/^category:\s*success-cases/m.test(readFileSync(f, "utf8"));
+      } catch {
+        return true;
+      }
+    });
 } else if (PATHS.length) {
   files = PATHS;
 } else {

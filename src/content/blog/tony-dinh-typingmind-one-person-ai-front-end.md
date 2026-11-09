@@ -1,4 +1,5 @@
 ---
+information_gain: "cross-source"
 articleNumber: 29
 title: "Tony Dinh: TypingMind and the One-Person AI Front End"
 description: "How solo developer Tony Dinh built TypingMind, a paid front end for AI models, and what his public posts reveal about pricing, distribution and limits."
