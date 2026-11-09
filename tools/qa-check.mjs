@@ -81,7 +81,7 @@ const BANNED_SENSITIVE = [
  * "Islamic" is excluded on purpose: Islamic finance is ordinary Malaysian economic vocabulary and
  * flagging it would put half the economy desk into manual review for no safety gain.
  */
-const THREE_R = /\b(race|racial|racism|religion|religious|royalty|royal institution|sultan|sultans|agong|bumiputera|muslim|muslims|halal|vernacular school|evangelis(m|t|ing))\b/i;
+import { THREE_R } from "./lib/three-r.mjs";
 
 /**
  * Document identifiers that count as citing a primary source. Kept as

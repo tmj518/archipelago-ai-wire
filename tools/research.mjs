@@ -38,6 +38,7 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync, appendFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { THREE_R } from "./lib/three-r.mjs";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { askJson, available, summary as providerSummary, usageToday } from "./lib-llm.mjs";
@@ -860,7 +861,6 @@ feasible to false and say so — that is a correct and useful answer, not a fail
 /* 3R subjects are quarantined by the gate. Screening the proposal here means the run tries another
    candidate instead of spending a writer call on a subject that cannot be published. The gate keeps
    its own rule; this only decides which subject to spend the next attempt on. */
-const THREE_R_TOPIC = /\b(race|racial|religion|religious|sultan|royalty|monarchy|agong|bumiputera|islam|muslim|christian|hindu|buddhist)\b/i;
 const PROPOSAL_ATTEMPTS = Number(process.env.PROPOSAL_ATTEMPTS ?? 6) || 6;
 const rejectedSubjects = [];
 let r = null;
@@ -937,7 +937,7 @@ for (let attempt = 1; attempt <= PROPOSAL_ATTEMPTS; attempt++) {
   console.log(`  duplicate check: score ${checkDup.score}${checkDup.against ? ` against ${checkDup.against}` : ""}`);
   if (checkDup.why?.length) for (const w of checkDup.why) console.log(`      ${w}`);
 
-  const threeR = THREE_R_TOPIC.exec(`${candidate.title_idea ?? ""} ${candidate.keyword ?? ""} ${candidate.angle ?? ""}`);
+  const threeR = THREE_R.exec(`${candidate.title_idea ?? ""} ${candidate.keyword ?? ""} ${candidate.angle ?? ""}`);
   if (threeR) {
     console.log(`  3R screen: "${threeR[0]}" in the proposal - trying another subject`);
     rejectedSubjects.push({ keyword: candidate.keyword, slug: candidate.slug, score: checkDup.score, why: ["3R: " + threeR[0]] });
