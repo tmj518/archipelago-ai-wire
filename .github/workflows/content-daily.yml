@@ -244,6 +244,11 @@ jobs:
       # The whole point: an article that passed every gate goes to production without a human
       # merging it. Pushing to main is what makes Cloudflare Pages build the real site, and the
       # guard in tools/publish-guard.mjs is what keeps a re-run from publishing the same slug twice.
+      # P0: an article that cannot build must not be committed. Two frontmatter faults reached
+      # main and stopped the whole deployment; the validator parses every changed article first.
+      - name: Validate the article
+        run: node tools/validate-article.mjs --changed
+
       - name: Publish
         id: publish
         if: env.SKIP_SUBJECT != '1'

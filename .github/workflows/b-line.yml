@@ -88,6 +88,11 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
 
+      # P0: an article that cannot build must not be committed. Two frontmatter faults reached
+      # main and stopped the whole deployment; the validator parses every changed article first.
+      - name: Validate the article
+        run: node tools/validate-article.mjs --changed
+
       - name: Publish the article
         if: env.B_SKIP != '1'
         run: |
