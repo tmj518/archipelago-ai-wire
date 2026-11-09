@@ -1,0 +1,94 @@
+{
+  "at": "2026-11-09T00:26:42.065Z",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "absent, treated as a first run"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "0 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "deepseek-harness-ai-agent-compute-demand-malaysia from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "7 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/deepseek-harness-ai-agent-compute-demand-malaysia.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "unavailable - LAUNCH MODE: publishing without a second opinion, recorded as a lesson"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/deepseek-harness-ai-agent-compute-demand-malaysia.md"
+    },
+    {
+      "name": "publish",
+      "ok": false,
+      "detail": "rolled back after the gate: no hedging words                       might — in: A chatbot"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict REJECTED"
+    }
+  ],
+  "verdict": "REJECTED",
+  "reasons": [
+    "the staged article failed qa-check as a published file: no hedging words                       might — in: A chatbot"
+  ],
+  "article": null,
+  "commit": null,
+  "usage": {
+    "calls": 3,
+    "failed": 0,
+    "usd": 0.0052,
+    "promptTokens": 33942,
+    "completionTokens": 5146
+  },
+  "route": "script",
+  "categoryActivity": {
+    "economy": 0,
+    "malaysia-impact": 0,
+    "success-cases": 0,
+    "work-education-family": 0,
+    "business-opportunities-risks": 0,
+    "tech-ai": 0,
+    "world": 0
+  },
+  "uncoveredSections": [],
+  "seconds": 41
+}
