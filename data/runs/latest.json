@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-09T13:46:13.056Z",
+  "at": "2026-11-09T21:50:57.783Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,17 +28,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "service-tax-construction-amendment-2026 from /data/directive.json"
+      "detail": "odyssey-cruise-ship-arrest-singapore-malaysia-cruise-industry from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "4 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/service-tax-construction-amendment-2026.md"
+      "detail": "draft at /data/drafts/odyssey-cruise-ship-arrest-singapore-malaysia-cruise-industry.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/service-tax-construction-amendment-2026.md"
+      "detail": "staged at src/content/blog/odyssey-cruise-ship-arrest-singapore-malaysia-cruise-industry.md"
     },
     {
       "name": "registry",
@@ -73,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "service-tax-construction-amendment-2026",
+  "article": "odyssey-cruise-ship-arrest-singapore-malaysia-cruise-industry",
   "commit": null,
   "usage": {
     "calls": 4,
     "failed": 0,
-    "usd": 0.0203,
-    "promptTokens": 69975,
-    "completionTokens": 6484
+    "usd": 0.0092,
+    "promptTokens": 68575,
+    "completionTokens": 5852
   },
   "route": "script",
   "categoryActivity": {
@@ -93,5 +93,5 @@
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 32
+  "seconds": 45
 }
