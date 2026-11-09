@@ -268,7 +268,17 @@ const args = process.argv.slice(2);
 let files;
 if (args[0] === "--all") {
   const dir = join(ROOT, "src", "content", "blog");
-  files = readdirSync(dir).filter((f) => f.endsWith(".md")).map((f) => join(dir, f));
+  /* B线 publishes without a reviewer by design; its safety checks live in qa-check. */
+  files = readdirSync(dir)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => join(dir, f))
+    .filter((f) => {
+      try {
+        return !/^category:\s*success-cases/m.test(readFileSync(f, "utf8"));
+      } catch {
+        return true;
+      }
+    });
 } else if (args.length) {
   files = args;
 } else {
