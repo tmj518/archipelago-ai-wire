@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-09T13:27:20.658Z",
+  "at": "2026-11-09T13:46:13.056Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,17 +28,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "malaysia-sales-tax-rate-amendment-order-2026 from /data/directive.json"
+      "detail": "service-tax-construction-amendment-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/malaysia-sales-tax-rate-amendment-order-2026.md"
+      "detail": "draft at /data/drafts/service-tax-construction-amendment-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/malaysia-sales-tax-rate-amendment-order-2026.md"
+      "detail": "staged at src/content/blog/service-tax-construction-amendment-2026.md"
     },
     {
       "name": "registry",
@@ -73,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "malaysia-sales-tax-rate-amendment-order-2026",
+  "article": "service-tax-construction-amendment-2026",
   "commit": null,
   "usage": {
-    "calls": 7,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.054,
-    "promptTokens": 158207,
-    "completionTokens": 10242
+    "usd": 0.0203,
+    "promptTokens": 69975,
+    "completionTokens": 6484
   },
   "route": "script",
   "categoryActivity": {
@@ -93,5 +93,5 @@
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 34
+  "seconds": 32
 }
