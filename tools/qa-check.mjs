@@ -266,7 +266,18 @@ function check(file) {
     return { value: first, unit: field("unit"), period: field("period"), source: field("source"), retrieved: field("retrieved") };
   });
 
- if (figureBlocks.length === 0) add("block", "figure five-part records", "no figures[] entries");
+ /*
+  * No figures is a failure only when the article makes a claim that needs one.
+  *
+  * This blocked every draft with an empty figures[] list, including articles that assert no
+  * numbers at all - the rule was written for cost pieces and had no branch for the case it was
+  * not written for. A draft that does carry a number and no record still blocks.
+  */
+ const numericClaims = body.match(/(?:RM|USD|MYR|SGD|[$\u20ac\u00a3])\s?\d|\b\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?\s?(?:%|per cent|percent)|\d+(?:\.\d+)?\s(?:million|billion|bn|mil)\b/gi) ?? [];
+ if (figureBlocks.length === 0) {
+   if (numericClaims.length === 0) add("pass", "figure five-part records", "NO_FIGURES: the article asserts no numbers");
+   else add("block", "figure five-part records", `no figures[] entries but ${numericClaims.length} numeric claim(s) in the body`);
+ }
   else if (incomplete === 0) add("pass", "figure five-part records", `${figureBlocks.length}/${figureBlocks.length} complete`);
   else add("block", "figure five-part records", `${incomplete} entries missing unit/period/source/retrieved`);
 
