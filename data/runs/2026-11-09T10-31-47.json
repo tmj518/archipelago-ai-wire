@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-09T00:26:42.065Z",
+  "at": "2026-11-09T10:31:14.640Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "0 of 25 net-new this week"
+      "detail": "1 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,17 +28,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "deepseek-harness-ai-agent-compute-demand-malaysia from /data/directive.json"
+      "detail": "malaysia-vital-statistics-2019-births-deaths-trends from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/deepseek-harness-ai-agent-compute-demand-malaysia.md"
+      "detail": "draft at /data/drafts/malaysia-vital-statistics-2019-births-deaths-trends.md"
     },
     {
       "name": "reviewer",
@@ -53,42 +53,45 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/deepseek-harness-ai-agent-compute-demand-malaysia.md"
+      "detail": "staged at src/content/blog/malaysia-vital-statistics-2019-births-deaths-trends.md"
     },
     {
-      "name": "publish",
+      "name": "registry",
       "ok": false,
-      "detail": "rolled back after the gate: no hedging words                       might — in: A chatbot"
+      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.2/x64/bin/node /home/runner/work/archipelago-ai-wire"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict REJECTED"
+      "detail": "verdict PUBLISHED"
     }
   ],
-  "verdict": "REJECTED",
-  "reasons": [
-    "the staged article failed qa-check as a published file: no hedging words                       might — in: A chatbot"
-  ],
-  "article": null,
+  "verdict": "PUBLISHED",
+  "reasons": [],
+  "article": "malaysia-vital-statistics-2019-births-deaths-trends",
   "commit": null,
   "usage": {
-    "calls": 3,
+    "calls": 6,
     "failed": 0,
-    "usd": 0.0052,
-    "promptTokens": 33942,
-    "completionTokens": 5146
+    "usd": 0.0408,
+    "promptTokens": 151125,
+    "completionTokens": 9921
   },
   "route": "script",
   "categoryActivity": {
     "economy": 0,
     "malaysia-impact": 0,
-    "success-cases": 0,
+    "success-cases": 1,
     "work-education-family": 0,
     "business-opportunities-risks": 0,
     "tech-ai": 0,
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 41
+  "seconds": 32
 }
