@@ -127,6 +127,8 @@ For Malaysian audio retailers, the MDR-3R is a niche product with a clear audien
 
 **What would change my mind.** A Sony Malaysia announcement of a local launch date and ringgit price would confirm the Malaysian distribution path. A statement from Sony that the MDR-3R is a limited release for specific markets only would change the picture. Without either, the Malaysian availability remains unconfirmed.
 
+> Also read: [Nvidia CEO scandal exposes chip flows through Singapore-linked firms — what it means for Malaysia's semiconductor plants](/blog/nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls/)
+
 ## For you
 
 - **A buyer nostalgic for the Walkman era:** the MDR-3R is a direct purchase at $60, and the ringgit cost will be higher once shipping and duties are added.
