@@ -107,3 +107,5 @@ tags:
   <li><a href="https://www.bannerbear.com/docs/">Bannerbear API documentation</a></li>
   <li><a href="https://www.bannerbear.com/blog/">Bannerbear blog</a></li>
 </ul>
+
+Related case: [Damon Chen's Testimonial.to: One-Person SaaS Costs](/blog/damon-chen-testimonial-to-solo-saas-costs/).
