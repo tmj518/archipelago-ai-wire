@@ -145,6 +145,8 @@ For a Malaysian worker, the practical question is whether their skills match wha
 
 **What would change my mind.** A subsequent MIDA or Ferrotec announcement reporting actual hiring numbers that fall short of the over 1,000 figure would change the jobs assessment. A report of supplier contracts awarded to Malaysian firms would confirm the supplier opportunity. A statement from Ferrotec about its production plans or export destinations would clarify how the plant fits into the global supply chain. Until such documents appear, the assessment rests on the single MIDA release.
 
+> Also read: [New customs guide changes how construction firms bill service tax](/blog/service-tax-construction-guide-amendment-november-2026/)
+
 ## For you
 
 - **An engineer or technician in Kedah:** the over 1,000 new high-value jobs are a direct hiring signal. Review the skills the plant needs, particularly CNC machine operation and automation, and update your resume to match.
