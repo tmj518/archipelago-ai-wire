@@ -171,6 +171,8 @@ The averages differ by a factor of roughly 2.6 between the two years. That gap i
 
 > Also read: [Health Ministry has filled 11,969 of 18,640 approved posts this year, with 4,253 officers only placed in 2027](/blog/moh-health-posts-11969-filled-2027-placement/)
 
+> Also read: [DOSM moves to digital-first statistics: what it means for researchers, businesses and students](/blog/dosm-digital-dissemination-primary-2026/)
+
 ## For you
 
 - **A parent weighing a pondok place for a child:** the published figures tell you the size of the federal envelope and the number of institutions sharing it, not what your child's school receives. Ask the school administration directly what it was allocated and what it spends it on.

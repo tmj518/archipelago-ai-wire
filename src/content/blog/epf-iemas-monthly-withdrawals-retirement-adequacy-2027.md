@@ -124,6 +124,8 @@ The third carrier is the broader retirement system. If i-Emas keeps more money i
 
 > Also read: [Myanmar sets by-elections for April 4, 2027 in 39 constituencies, including war zones](/blog/myanmar-by-elections-april-2027-39-constituencies/)
 
+> Also read: [DOSM moves to digital-first statistics: what it means for researchers, businesses and students](/blog/dosm-digital-dissemination-primary-2026/)
+
 ## For you
 
 - **A worker within five years of retirement:** the i-Emas choice will be yours to make. Compare the monthly amount against your fixed costs before you decide, and remember that the balance left with EPF keeps earning dividends.
