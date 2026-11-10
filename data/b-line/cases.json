@@ -68,7 +68,9 @@
         "https://www.bannerbear.com/",
         "https://bannerbear.com/open"
       ],
-      "used": false
+      "used": true,
+      "usedAt": "2026-11-10",
+      "articleSlug": "jon-yongfook-bannerbear-one-person-image-api"
     },
     {
       "id": "pieter-levels",
