@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-09T21:50:57.783Z",
+  "at": "2026-11-10T00:02:47.351Z",
   "providers": [
     "volces",
     "deepseek"
@@ -28,21 +28,21 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "odyssey-cruise-ship-arrest-singapore-malaysia-cruise-industry from /data/directive.json"
+      "detail": "dosm-digital-dissemination-primary-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "4 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/odyssey-cruise-ship-arrest-singapore-malaysia-cruise-industry.md"
+      "detail": "draft at /data/drafts/dosm-digital-dissemination-primary-2026.md"
     },
     {
       "name": "reviewer",
-      "ok": false,
+      "ok": true,
       "detail": "no parseable verdict"
     },
     {
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/odyssey-cruise-ship-arrest-singapore-malaysia-cruise-industry.md"
+      "detail": "staged at src/content/blog/dosm-digital-dissemination-primary-2026.md"
     },
     {
       "name": "registry",
@@ -73,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "odyssey-cruise-ship-arrest-singapore-malaysia-cruise-industry",
+  "article": "dosm-digital-dissemination-primary-2026",
   "commit": null,
   "usage": {
-    "calls": 4,
+    "calls": 7,
     "failed": 0,
-    "usd": 0.0092,
-    "promptTokens": 68575,
-    "completionTokens": 5852
+    "usd": 0.0198,
+    "promptTokens": 157452,
+    "completionTokens": 8920
   },
   "route": "script",
   "categoryActivity": {
@@ -93,5 +93,5 @@
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 45
+  "seconds": 41
 }
