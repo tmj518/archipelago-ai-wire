@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-10T00:02:47.351Z",
+  "at": "2026-11-10T21:10:21.488Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "1 of 25 net-new this week"
+      "detail": "3 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,17 +28,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "dosm-digital-dissemination-primary-2026 from /data/directive.json"
+      "detail": "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/dosm-digital-dissemination-primary-2026.md"
+      "detail": "draft at /data/drafts/nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/dosm-digital-dissemination-primary-2026.md"
+      "detail": "staged at src/content/blog/nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls.md"
     },
     {
       "name": "registry",
@@ -73,25 +73,25 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "dosm-digital-dissemination-primary-2026",
+  "article": "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls",
   "commit": null,
   "usage": {
-    "calls": 7,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0198,
-    "promptTokens": 157452,
-    "completionTokens": 8920
+    "usd": 0.0063,
+    "promptTokens": 44738,
+    "completionTokens": 4859
   },
   "route": "script",
   "categoryActivity": {
     "economy": 0,
     "malaysia-impact": 0,
-    "success-cases": 1,
-    "work-education-family": 0,
+    "success-cases": 2,
+    "work-education-family": 1,
     "business-opportunities-risks": 0,
     "tech-ai": 0,
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 41
+  "seconds": 42
 }
