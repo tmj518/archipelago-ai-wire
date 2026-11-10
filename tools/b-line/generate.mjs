@@ -299,7 +299,32 @@ if (dryRun) {
 }
 
 mkdirSync(blogDir, { recursive: true });
-writeFileSync(join(blogDir, `${slug}.md`), file, "utf8");
+/*
+ * A new case study links to the previous one.
+ *
+ * The site-wide link gate counts articles with no outbound link as orphans and fails the build over
+ * them - so every B线 article that ended without a link broke A线's next run. One link to the newest
+ * published case is enough, and it is what a reader wants anyway.
+ */
+try {
+  const prior = readdirSync(blogDir)
+    .filter((f) => f.endsWith(".md") && f !== `${slug}.md`)
+    .map((f) => {
+      const text = readFileSync(join(blogDir, f), "utf8");
+      return /^category:\s*success-cases/m.test(text)
+        ? { slug: f.replace(/\.md$/, ""), title: /^title:\s*"?(.*?)"?\s*$/m.exec(text)?.[1] ?? f }
+        : null;
+    })
+    .filter(Boolean);
+  if (prior.length) {
+    const link = `\nRelated case: [${prior[0].title}](/blog/${prior[0].slug}/).\n`;
+    writeFileSync(join(blogDir, `${slug}.md`), file + link, "utf8");
+    console.log(`  b-line: linked to ${prior[0].slug}`);
+  } else {
+  }
+} catch {
+}
+
 mkdirSync(join(ROOT, "data", "tmp"), { recursive: true });
 writeFileSync(join(ROOT, "data", "tmp", "last-slug.txt"), slug, "utf8");
 /*
