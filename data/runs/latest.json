@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-10T21:10:21.488Z",
+  "at": "2026-11-10T23:02:57.874Z",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "3 of 25 net-new this week"
+      "detail": "4 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -28,17 +28,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls from /data/directive.json"
+      "detail": "service-tax-construction-guide-amendment-november-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls.md"
+      "detail": "draft at /data/drafts/service-tax-construction-guide-amendment-november-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls.md"
+      "detail": "staged at src/content/blog/service-tax-construction-guide-amendment-november-2026.md"
     },
     {
       "name": "registry",
@@ -73,14 +73,14 @@
   ],
   "verdict": "PUBLISHED",
   "reasons": [],
-  "article": "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls",
+  "article": "service-tax-construction-guide-amendment-november-2026",
   "commit": null,
   "usage": {
-    "calls": 3,
+    "calls": 6,
     "failed": 0,
-    "usd": 0.0063,
-    "promptTokens": 44738,
-    "completionTokens": 4859
+    "usd": 0.0166,
+    "promptTokens": 131655,
+    "completionTokens": 7428
   },
   "route": "script",
   "categoryActivity": {
@@ -89,9 +89,9 @@
     "success-cases": 2,
     "work-education-family": 1,
     "business-opportunities-risks": 0,
-    "tech-ai": 0,
+    "tech-ai": 1,
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 42
+  "seconds": 36
 }
