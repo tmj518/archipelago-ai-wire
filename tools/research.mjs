@@ -861,7 +861,7 @@ feasible to false and say so — that is a correct and useful answer, not a fail
 /* 3R subjects are quarantined by the gate. Screening the proposal here means the run tries another
    candidate instead of spending a writer call on a subject that cannot be published. The gate keeps
    its own rule; this only decides which subject to spend the next attempt on. */
-const PROPOSAL_ATTEMPTS = Number(process.env.PROPOSAL_ATTEMPTS ?? 6) || 6;
+const PROPOSAL_ATTEMPTS = Number(process.env.PROPOSAL_ATTEMPTS ?? 8) || 8;
 const rejectedSubjects = [];
 let r = null;
 let proposal = null;

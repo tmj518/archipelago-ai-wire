@@ -353,6 +353,11 @@ jobs:
             outcome="FAILED"
           elif [ -n "${ARTICLE_SLUG:-}" ] && [ "${{ steps.verify.outcome }}" = "success" ]; then
             outcome="SUCCESS"
+          elif grep -qE "ALL_SUBJECTS_DUPLICATE|DUPLICATE-SUBJECT" /tmp/gen.log 2>/dev/null; then
+            # Every proposal was already published. That is a day with nothing new to write, not a
+            # failure - research exits 2 for exactly this reason and the pipeline used to report it as
+            # FAILED/QA, which made an exhausted subject pool look like a broken system.
+            outcome="QUIET"
           elif [ "${QUOTA_MET:-0}" = "1" ]; then
             # The day's articles already exist. That is not the same as having nothing to write, and
             # the seven-day count has to keep them apart or a full day looks like an empty one.
