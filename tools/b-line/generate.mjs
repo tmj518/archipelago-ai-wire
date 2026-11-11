@@ -301,30 +301,48 @@ const evidence = `${caseNote}\n\nDIRECTLY FETCHED CASE SOURCES\n${sourceMaterial
 let writerProvider = r.provider;
 let writerModel = r.model;
 let review = await reviewBLineArticle({ article, evidence, sourceDocuments, writerProvider, writerModel });
+let revisionCount = 0;
 
-if (!review.pass && review.canRevise && !review.needsHumanReview) {
+while (!review.pass && review.canRevise && !review.needsHumanReview && revisionCount < 2) {
   const feedback = review.feedback.join("\n- ");
-  console.log("  b-line: reviewer returned actionable feedback; requesting one evidence-bound revision");
+  console.log(`  b-line: reviewer feedback received; requesting evidence-bound revision ${revisionCount + 1}/2`);
   const revision = await ask({
     role: "writer",
     temperature: 0.2,
     maxTokens: 8192,
-    system: "Revise the supplied article using only the supplied source documents and reviewer feedback. Do not add facts, numbers, causal claims, sources, or citations from memory. If a numeric claim has no exact quote in a curated primary source, remove it or state only what the evidence supports. Preserve the required structure.",
-    messages: [{ role: "user", content: `REVIEWER FEEDBACK\n- ${feedback}\n\nSUPPLIED SOURCE DOCUMENTS\n${JSON.stringify(sourceDocuments, null, 2).slice(0, 30000)}\n\nCURRENT ARTICLE\n${article.slice(0, 30000)}\n\nReturn only the complete revised article HTML, with no commentary.` }],
+    system: [
+      "Revise the supplied article only from the supplied evidence and reviewer feedback. Never add a fact, number, causal claim, source, or citation from memory.",
+      "For unsupported numeric business claims, use an exact quote only when a supplied curated primary source contains it; otherwise remove the claim or accurately qualify it.",
+      "Return complete HTML for the article and preserve every required section exactly.",
+      "Required structure checklist: an HTML table; a section headed What doesn't work; at least one FAQ question in an h3; a Sources section; and at least five valid hyperlinks.",
+      "Before responding, count the links and confirm each required section remains. Return only the revised HTML, no commentary.",
+    ].join(" "),
+    messages: [{ role: "user", content: `REVIEWER / GATE FEEDBACK\n- ${feedback}\n\nSUPPLIED EVIDENCE (feed items are discovery material only; they cannot prove numeric business claims)\n${evidence.slice(0, 30000)}\n\nCURATED PRIMARY SOURCE DOCUMENTS\n${JSON.stringify(sourceDocuments, null, 2).slice(0, 30000)}\n\nCURRENT ARTICLE\n${article.slice(0, 30000)}\n\nReturn only the complete revised article HTML.` }],
   });
   let revised = String(revision?.text ?? revision?.content ?? "").trim();
   revised = revised.replace(/^```(?:html)?\s*/i, "").replace(/\s*```$/, "").trim();
   const wrappedArticle = /===\s*ARTICLE\s*===([\s\S]*?)(?:===|$)/i.exec(revised);
   if (wrappedArticle) revised = wrappedArticle[1].trim();
-  const revisedMissing = missingRequiredStructure(revised);
-  if (!revision?.ok || !revised || revisedMissing.length) {
-    console.error(`  b-line: writer revision failed structure checks: ${revisedMissing.join(", ") || revision?.error || "empty response"}`);
+  if (!revision?.ok || !revised) {
+    console.error(`  b-line: writer revision failed: ${revision?.error ?? "empty response"}`);
     process.exit(1);
   }
   article = revised;
   writerProvider = revision.provider;
   writerModel = revision.model;
-  console.log(`  b-line: revised draft returned by ${writerProvider ?? "unknown"}/${writerModel ?? "unknown"}; re-reviewing`);
+  revisionCount++;
+  const revisedMissing = missingRequiredStructure(revised);
+  if (revisedMissing.length) {
+    review = {
+      ...review,
+      canRevise: true,
+      feedback: [`Structure gate failed: ${revisedMissing.join(", ")}. Restore every required section and provide at least five hyperlinks.`],
+      reason: `structure gate failed after revision ${revisionCount}: ${revisedMissing.join(", ")}`,
+    };
+    console.error(`  b-line: revision ${revisionCount} failed structure gate: ${revisedMissing.join(", ")}`);
+    continue;
+  }
+  console.log(`  b-line: revision ${revisionCount} from ${writerProvider ?? "unknown"}/${writerModel ?? "unknown"}; sending for fresh review`);
   review = await reviewBLineArticle({ article, evidence, sourceDocuments, writerProvider, writerModel });
 }
 if (process.env.GITHUB_ENV) {
@@ -335,10 +353,10 @@ if (process.env.GITHUB_ENV) {
   appendFileSync(process.env.GITHUB_ENV, `B_LINE_REVIEWER_PROVIDER=${reviewerProvider}\nB_LINE_REVIEWER_MODEL=${reviewerModel}\nB_LINE_REVIEW_INDEPENDENCE_LEVEL=${independenceLevel}\nB_LINE_REVIEW_VERDICT=${reviewStatus}\n`, "utf8");
 }
 if (!review.pass) {
-  console.error(`  b-line: reviewer refused publication after at most one revision - ${review.reason}`);
+  console.error(`  b-line: reviewer refused publication after ${revisionCount} revision(s) - ${review.reason}`);
   process.exit(review.needsHumanReview ? 3 : 1);
 }
-console.log(`  b-line: reviewer approved after evidence-bound review via ${review.provider}/${review.model}`);
+console.log(`  b-line: reviewer approved after ${revisionCount} evidence-bound revision(s) via ${review.provider}/${review.model}`);
 
 /* Frontmatter this collection accepts. No currency symbols inside quoted strings: a "$" in a quoted
    value is what stopped the site building on 2026-11-07. */
