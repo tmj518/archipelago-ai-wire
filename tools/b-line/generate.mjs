@@ -173,7 +173,7 @@ async function fetchCaseSource(url) {
 }
 
 const caseSources = pending && Array.isArray(pending.sources)
-  ? (await Promise.all(pending.sources.slice(0, 4).map(fetchCaseSource))).filter(Boolean)
+  ? (await Promise.all(pending.sources.slice(0, 8).map(fetchCaseSource))).filter(Boolean)
   : [];
 if (pending && caseSources.length === 0) {
   console.error("  b-line: selected pool case has no retrievable source document; refusing to publish unverified claims");
