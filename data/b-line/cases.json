@@ -85,7 +85,7 @@
         "https://remoteok.com/faq",
         "https://nomads.com/"
       ],
-      "used": false,
+      "used": true,
       "primarySources": [
         "https://levels.io/passed-10m-revenue-investment-gains",
         "https://levels.io/biz-expenses-dropped-to-300",
@@ -98,7 +98,9 @@
         "Do not infer Nomad List/Nomads.com pricing or membership revenue, SEO strategy, nationality, audience overlap, or cross-promotion; the supplied sources do not establish those claims.",
         "If the source does not state a required business detail, write that it is not disclosed in the reviewed sources instead of guessing.",
         "Clearly label general advice as analysis, not as a claim about Pieter Levels' actual methods."
-      ]
+      ],
+      "usedAt": "2026-11-11",
+      "articleSlug": "pieter-levels-one-person-94-percent-profit"
     },
     {
       "id": "arvid-kahl",
