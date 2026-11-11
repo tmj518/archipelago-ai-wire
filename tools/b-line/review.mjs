@@ -40,7 +40,6 @@ export async function reviewBLineArticle({ article, evidence, sourceDocuments = 
   try {
     response = await askFn({
       role: "reviewer",
-      avoidProvider: writerProvider,
       retries: 1,
       temperature: 1,
       maxTokens: 4096,
