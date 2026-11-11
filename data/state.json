@@ -1,0 +1,29 @@
+{
+  "lastRun": "2026-11-11T04:03:15.917Z",
+  "lastVerdict": "FAILED",
+  "lastFinalizedRunId": "42956194319",
+  "lastFinalizedRunAttempt": 1,
+  "lastFinalizedKey": "42956194319:1",
+  "finalizedRuns": {
+    "42956194319": {
+      "runAttempt": 1,
+      "verdict": "FAILED",
+      "finalizationKey": "42956194319:1"
+    }
+  },
+  "publishedRunIds": [],
+  "published": 0,
+  "lastCommit": null,
+  "lastReviewer": {
+    "status": "NOT_RUN"
+  },
+  "lastRegistry": {
+    "status": "NOT_RUN"
+  },
+  "lastRecording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}
