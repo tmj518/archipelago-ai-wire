@@ -79,10 +79,14 @@
       "where": "Solo, travelling, no employees",
       "data": "Publishes revenue on an open page; quote the page and the date it was read",
       "sources": [
+        "https://levels.io/passed-10m-revenue-investment-gains",
         "https://levels.io/",
         "https://nomadlist.com/open"
       ],
-      "used": false
+      "used": false,
+      "primarySources": [
+        "https://levels.io/passed-10m-revenue-investment-gains"
+      ]
     },
     {
       "id": "arvid-kahl",
