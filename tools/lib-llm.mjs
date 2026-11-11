@@ -348,7 +348,7 @@ const ROLE_PREFERENCE = {
    *
    * deepseek stays second so a deployment with only a DeepSeek key still runs.
    */
-  writer: ["volces", "deepseek"],
+  writer: ["deepseek", "volces"],
   planner: ["volces", "deepseek"],
   /*
    * DeepSeek for the reviewer as well, and the operator's reasoning wins over mine here.
@@ -373,7 +373,7 @@ const ROLE_PREFERENCE = {
    * The independence rule is unchanged: a reviewer should not be the writer. What changed is that "not the writer"
    * can now be satisfied inside one provider, by a different model, and the report says which of the two it got.
    */
-  reviewer: ["volces", "deepseek"],
+  reviewer: ["deepseek", "volces"],
 };
 
 export function providerFor(role, avoid) {
