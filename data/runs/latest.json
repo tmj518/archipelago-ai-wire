@@ -1,30 +1,105 @@
 {
-  "at": "2026-11-11T04:03:15.917Z",
-  "route": "script",
-  "steps": [],
-  "reasons": [
-    "the workflow did not produce a report for this run",
-    "stale or missing run-attempt report was replaced with this failed workflow record"
+  "at": "2026-11-11T11:32:43.645Z",
+  "runId": "43012547942",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "workflow_dispatch",
+  "executionSha": "a795e9f99e8c37b813b5bcae31938265e496645d",
+  "providers": [
+    "volces",
+    "deepseek"
   ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "0 previous run(s), last 2026-11-11T04:03:15.917Z (FAILED)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "5 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "cooking-oil-price-control-incentive-rm15m-november-2026 from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "7 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/cooking-oil-price-control-incentive-rm15m-november-2026.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "unavailable - refusing to publish: no usable reviewer result"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict REVIEW_UNPARSEABLE"
+    }
+  ],
+  "verdict": "FAILED",
+  "reasons": [
+    "review unavailable; publication refused: no usable reviewer result",
+    "the reviewer returned no usable verdict; nothing was passed back to the writer"
+  ],
+  "article": null,
+  "commit": null,
+  "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
     "status": "NOT_RUN"
   },
-  "article": null,
-  "commit": null,
-  "orchestratorVerdict": "FAILED",
-  "runId": "42956194319",
-  "runAttempt": 1,
-  "finalizationKey": "42956194319:1",
-  "workflow": "Content day",
-  "event": "schedule",
-  "executionSha": "ab243eb1d150581e1bdfb82c841ba2205e44a578",
-  "finalizedAt": "2026-11-11T04:03:15.917Z",
-  "publicationStatus": "FAILED",
+  "usage": {
+    "calls": 4,
+    "failed": 0,
+    "usd": 0.013,
+    "promptTokens": 49154,
+    "completionTokens": 6939
+  },
+  "route": "script",
+  "categoryActivity": {
+    "economy": 0,
+    "malaysia-impact": 0,
+    "success-cases": 2,
+    "work-education-family": 1,
+    "business-opportunities-risks": 1,
+    "tech-ai": 1,
+    "world": 0
+  },
+  "uncoveredSections": [],
+  "seconds": 54,
+  "orchestratorVerdict": "REVIEW_UNPARSEABLE",
+  "finalizationKey": "43012547942:1",
+  "finalizedAt": "2026-11-11T11:33:53.874Z",
   "productionUrl": null,
-  "executionConclusion": "failure",
+  "executionConclusion": "success",
   "verifyOutcome": "skipped",
   "liveChecks": {
     "status": "skipped"
@@ -35,6 +110,5 @@
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },
-  "recordingFailure": false,
-  "verdict": "FAILED"
+  "recordingFailure": false
 }

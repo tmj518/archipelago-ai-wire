@@ -1,21 +1,31 @@
 {
-  "lastRun": "2026-11-11T04:03:15.917Z",
+  "lastRun": "2026-11-11T11:33:53.874Z",
   "lastVerdict": "FAILED",
-  "lastFinalizedRunId": "42956194319",
+  "lastArticle": null,
+  "runs": 1,
+  "published": 0,
+  "lastUsage": {
+    "calls": 4,
+    "failed": 0,
+    "usd": 0.013,
+    "promptTokens": 49154,
+    "completionTokens": 6939
+  },
+  "lastFinalizedRunId": "43012547942",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "42956194319:1",
+  "lastFinalizedKey": "43012547942:1",
   "finalizedRuns": {
-    "42956194319": {
+    "43012547942": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "42956194319:1"
+      "finalizationKey": "43012547942:1"
     }
   },
   "publishedRunIds": [],
-  "published": 0,
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
     "status": "NOT_RUN"
