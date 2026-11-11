@@ -80,14 +80,24 @@
       "data": "Publishes revenue on an open page; quote the page and the date it was read",
       "sources": [
         "https://levels.io/passed-10m-revenue-investment-gains",
-        "https://levels.io/",
-        "https://nomadlist.com/open",
-        "https://levels.io/how-to-build-bootstrapped-startup-without-funding"
+        "https://levels.io/biz-expenses-dropped-to-300",
+        "https://levels.io/how-to-build-bootstrapped-startup-without-funding",
+        "https://remoteok.com/faq",
+        "https://nomads.com/"
       ],
       "used": false,
       "primarySources": [
         "https://levels.io/passed-10m-revenue-investment-gains",
-        "https://levels.io/how-to-build-bootstrapped-startup-without-funding"
+        "https://levels.io/biz-expenses-dropped-to-300",
+        "https://levels.io/how-to-build-bootstrapped-startup-without-funding",
+        "https://remoteok.com/faq",
+        "https://nomads.com/"
+      ],
+      "writerConstraints": [
+        "Only include founder, product, revenue, costs, pricing, customer acquisition, geography, and operating-model details that are explicitly present in the fetched documents.",
+        "Do not infer Nomad List/Nomads.com pricing or membership revenue, SEO strategy, nationality, audience overlap, or cross-promotion; the supplied sources do not establish those claims.",
+        "If the source does not state a required business detail, write that it is not disclosed in the reviewed sources instead of guessing.",
+        "Clearly label general advice as analysis, not as a claim about Pieter Levels' actual methods."
       ]
     },
     {
