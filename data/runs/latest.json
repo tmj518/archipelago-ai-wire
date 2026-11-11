@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-11T11:32:43.645Z",
-  "runId": "43012547942",
+  "at": "2026-11-11T21:43:33.536Z",
+  "runId": "43105111858",
   "runAttempt": 1,
   "workflow": "Content day",
-  "event": "workflow_dispatch",
-  "executionSha": "a795e9f99e8c37b813b5bcae31938265e496645d",
+  "event": "schedule",
+  "executionSha": "92bf6cc94d235a17718e0e1e7b22b360fc801d51",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "0 previous run(s), last 2026-11-11T04:03:15.917Z (FAILED)"
+      "detail": "1 previous run(s), last 2026-11-11T11:33:53.874Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "5 of 25 net-new this week"
+      "detail": "6 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,7 +33,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "cooking-oil-price-control-incentive-rm15m-november-2026 from /data/directive.json"
+      "detail": "t-mobile-50gb-cap-low-income-broadband-settlement from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -42,11 +42,21 @@
     },
     {
       "name": "writer",
-      "ok": true,
-      "detail": "draft at /data/drafts/cooking-oil-price-control-incentive-rm15m-november-2026.md"
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
-      "name": "reviewer",
+      "name": "writer (revision 1)",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
+    },
+    {
+      "name": "writer (revision 2)",
+      "ok": true,
+      "detail": "draft at /data/drafts/t-mobile-50gb-cap-low-income-broadband-settlement.md"
+    },
+    {
+      "name": "reviewer (revision 2)",
       "ok": false,
       "detail": "no parseable verdict"
     },
@@ -77,27 +87,27 @@
     "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 4,
+    "calls": 9,
     "failed": 0,
-    "usd": 0.013,
-    "promptTokens": 49154,
-    "completionTokens": 6939
+    "usd": 0.0323,
+    "promptTokens": 118705,
+    "completionTokens": 14711
   },
   "route": "script",
   "categoryActivity": {
     "economy": 0,
     "malaysia-impact": 0,
-    "success-cases": 2,
+    "success-cases": 3,
     "work-education-family": 1,
     "business-opportunities-risks": 1,
     "tech-ai": 1,
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 54,
+  "seconds": 70,
   "orchestratorVerdict": "REVIEW_UNPARSEABLE",
-  "finalizationKey": "43012547942:1",
-  "finalizedAt": "2026-11-11T11:33:53.874Z",
+  "finalizationKey": "43105111858:1",
+  "finalizedAt": "2026-11-11T21:45:14.230Z",
   "productionUrl": null,
   "executionConclusion": "success",
   "verifyOutcome": "skipped",
