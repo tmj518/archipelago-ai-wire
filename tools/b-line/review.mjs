@@ -70,8 +70,26 @@ export async function reviewBLineArticle({ article, evidence, sourceDocuments = 
   if (!response?.ok) return { pass: false, reason: `review request failed: ${String(response?.error ?? "unavailable").slice(0, 180)}`, provider: response?.provider ?? null, model: response?.model ?? null, independenceLevel };
   if (!independent) return { pass: false, reason: `reviewer identity is unknown or the review call did not complete`, provider: response.provider, model: response.model, independenceLevel };
   if (!verdict) return { pass: false, reason: "reviewer response was not valid JSON", provider: response.provider, model: response.model };
-  if (!facts.pass) return { pass: false, reason: facts.reason, provider: response.provider, model: response.model, independenceLevel, facts, verdict };
-  if (!pass) return { pass: false, reason: String(verdict.summary ?? "reviewer rejected the draft or did not confirm required checks").slice(0, 220), provider: response.provider, model: response.model, independenceLevel, facts, verdict };
+  if (!pass) {
+    const feedback = [
+      String(verdict.summary ?? "Reviewer rejected the draft or did not confirm required checks").trim(),
+      ...(Array.isArray(verdict.issues) ? verdict.issues.map((issue) => String(issue).trim()) : []),
+      ...(facts.unsupportedClaims ?? []).map((claim) => `Unsupported numeric business claim: ${claim}`),
+      ...(!facts.pass ? [facts.reason] : []),
+      "Revise only from the supplied documents. For an unsupported numeric business claim, add an exact quote only if a supplied curated primary source contains it; otherwise remove or accurately qualify the claim. Never guess or invent a citation.",
+    ].filter(Boolean);
+    return {
+      pass: false,
+      canRevise: true,
+      feedback: [...new Set(feedback)].slice(0, 12),
+      reason: (!facts.pass ? facts.reason : String(verdict.summary ?? "reviewer rejected the draft or did not confirm required checks")).slice(0, 220),
+      provider: response.provider,
+      model: response.model,
+      independenceLevel,
+      facts,
+      verdict,
+    };
+  }
   return { pass: true, reason: "separate evidence-bound review approved", provider: response.provider, model: response.model, independenceLevel, facts, verdict };
 }
 

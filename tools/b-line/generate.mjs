@@ -239,7 +239,7 @@ function block(name) {
 }
 
 const metaRaw = block("META");
-const article = block("ARTICLE").replace(/^```html\s*/i, "").replace(/```\s*$/i, "").trim();
+let article = block("ARTICLE").replace(/^```html\s*/i, "").replace(/```\s*$/i, "").trim();
 if (!metaRaw || !article) {
   console.error("  b-line: the answer was not in the agreed shape; nothing written");
   process.exit(1);
@@ -258,15 +258,19 @@ const required = [
   ["a Sources section", /Sources/i],
   ["at least five links", /(<a\s[^>]*href)/gi],
 ];
-const missing = [];
-for (const [label, re] of required) {
-  if (label === "at least five links") {
-    const links = (article.match(/<a\s[^>]*href/gi) ?? []).length;
-    if (links < 5) missing.push(`${label} (found ${links})`);
-  } else if (!re.test(article)) {
-    missing.push(label);
+function missingRequiredStructure(candidate) {
+  const missing = [];
+  for (const [label, re] of required) {
+    if (label === "at least five links") {
+      const links = (candidate.match(/<a\s[^>]*href/gi) ?? []).length;
+      if (links < 5) missing.push(`${label} (found ${links})`);
+    } else if (!re.test(candidate)) {
+      missing.push(label);
+    }
   }
+  return missing;
 }
+const missing = missingRequiredStructure(article);
 if (missing.length) {
   console.error(`  b-line: refusing article; required structure is missing: ${missing.join(", ")}`);
   process.exit(1);
@@ -294,13 +298,35 @@ if (existsSync(join(blogDir, `${slug}.md`))) {
 const primarySourceUrls = new Set(Array.isArray(pending?.primarySources) ? pending.primarySources : []);
 const sourceDocuments = caseSources.map((source) => ({ ...source, primary: primarySourceUrls.has(source.url) }));
 const evidence = `${caseNote}\n\nDIRECTLY FETCHED CASE SOURCES\n${sourceMaterial}\n\nFETCHED FEED DOCUMENTS (DISCOVERY ONLY; NOT PRIMARY EVIDENCE FOR BUSINESS METRICS)\n${material}`;
-const review = await reviewBLineArticle({
-  article,
-  evidence,
-  sourceDocuments,
-  writerProvider: r.provider,
-  writerModel: r.model,
-});
+let writerProvider = r.provider;
+let writerModel = r.model;
+let review = await reviewBLineArticle({ article, evidence, sourceDocuments, writerProvider, writerModel });
+
+if (!review.pass && review.canRevise && !review.needsHumanReview) {
+  const feedback = review.feedback.join("\n- ");
+  console.log("  b-line: reviewer returned actionable feedback; requesting one evidence-bound revision");
+  const revision = await ask({
+    role: "writer",
+    temperature: 0.2,
+    maxTokens: 8192,
+    system: "Revise the supplied article using only the supplied source documents and reviewer feedback. Do not add facts, numbers, causal claims, sources, or citations from memory. If a numeric claim has no exact quote in a curated primary source, remove it or state only what the evidence supports. Preserve the required structure.",
+    messages: [{ role: "user", content: `REVIEWER FEEDBACK\n- ${feedback}\n\nSUPPLIED SOURCE DOCUMENTS\n${JSON.stringify(sourceDocuments, null, 2).slice(0, 30000)}\n\nCURRENT ARTICLE\n${article.slice(0, 30000)}\n\nReturn only the complete revised article HTML, with no commentary.` }],
+  });
+  let revised = String(revision?.text ?? revision?.content ?? "").trim();
+  revised = revised.replace(/^```(?:html)?\s*/i, "").replace(/\s*```$/, "").trim();
+  const wrappedArticle = /===\s*ARTICLE\s*===([\s\S]*?)(?:===|$)/i.exec(revised);
+  if (wrappedArticle) revised = wrappedArticle[1].trim();
+  const revisedMissing = missingRequiredStructure(revised);
+  if (!revision?.ok || !revised || revisedMissing.length) {
+    console.error(`  b-line: writer revision failed structure checks: ${revisedMissing.join(", ") || revision?.error || "empty response"}`);
+    process.exit(1);
+  }
+  article = revised;
+  writerProvider = revision.provider;
+  writerModel = revision.model;
+  console.log(`  b-line: revised draft returned by ${writerProvider ?? "unknown"}/${writerModel ?? "unknown"}; re-reviewing`);
+  review = await reviewBLineArticle({ article, evidence, sourceDocuments, writerProvider, writerModel });
+}
 if (process.env.GITHUB_ENV) {
   const reviewerProvider = /^[a-z0-9_-]+$/i.test(review.provider ?? "") ? review.provider : "unknown";
   const reviewerModel = /^[a-z0-9_.:-]+$/i.test(review.model ?? "") ? review.model : "unknown";
@@ -309,10 +335,10 @@ if (process.env.GITHUB_ENV) {
   appendFileSync(process.env.GITHUB_ENV, `B_LINE_REVIEWER_PROVIDER=${reviewerProvider}\nB_LINE_REVIEWER_MODEL=${reviewerModel}\nB_LINE_REVIEW_INDEPENDENCE_LEVEL=${independenceLevel}\nB_LINE_REVIEW_VERDICT=${reviewStatus}\n`, "utf8");
 }
 if (!review.pass) {
-  console.error(`  b-line: reviewer refused publication - ${review.reason}`);
+  console.error(`  b-line: reviewer refused publication after at most one revision - ${review.reason}`);
   process.exit(review.needsHumanReview ? 3 : 1);
 }
-console.log(`  b-line: independent reviewer approved at ${review.independenceLevel} level via ${review.provider}/${review.model}`);
+console.log(`  b-line: reviewer approved after evidence-bound review via ${review.provider}/${review.model}`);
 
 /* Frontmatter this collection accepts. No currency symbols inside quoted strings: a "$" in a quoted
    value is what stopped the site building on 2026-11-07. */

@@ -30,14 +30,15 @@ export function verifyClaimEvidence({ article, sourceDocuments = [], factChecks 
   if (!critical.length) return { pass: true, criticalClaims: [], reason: "no material numeric business claims detected" };
   if (!Array.isArray(sourceDocuments) || !Array.isArray(factChecks)) return { pass: false, criticalClaims: critical, reason: "source documents or fact-check map are missing" };
 
-  const verified = critical.every((claim) => factChecks.some((check) => {
+  const verifiedClaims = critical.filter((claim) => factChecks.some((check) => {
     if (typeof check?.claim !== "string" || !claim.toLowerCase().includes(check.claim.toLowerCase().trim())) return false;
     if (check.source_type !== "primary" || typeof check.quote !== "string" || !check.quote.trim()) return false;
     const doc = sourceDocuments.find((item) => item?.primary === true && item.url === check.source_url);
     if (!doc || !String(doc.body ?? "").toLowerCase().includes(check.quote.trim().toLowerCase())) return false;
     return true;
   }));
-  return verified
-    ? { pass: true, criticalClaims: critical, reason: "every detected material numeric business claim is mapped to a quote in a curated primary-source document" }
-    : { pass: false, criticalClaims: critical, reason: "a material numeric business claim lacks a matching quote from a curated primary-source document" };
+  const unsupportedClaims = critical.filter((claim) => !verifiedClaims.includes(claim));
+  return unsupportedClaims.length === 0
+    ? { pass: true, criticalClaims: critical, unsupportedClaims: [], reason: "every detected material numeric business claim is mapped to a quote in a curated primary-source document" }
+    : { pass: false, criticalClaims: critical, unsupportedClaims, reason: "a material numeric business claim lacks a matching quote from a curated primary-source document" };
 }
