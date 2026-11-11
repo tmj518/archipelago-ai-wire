@@ -42,7 +42,7 @@ export async function reviewBLineArticle({ article, evidence, sourceDocuments = 
       role: "reviewer",
       avoidProvider: writerProvider,
       retries: 1,
-      temperature: 0,
+      temperature: 1,
       maxTokens: 4096,
       system: [
         "You are the reviewer conducting a separate, independent fact-checking pass. You may be the same model as the writer; audit the draft from scratch against the supplied source documents, not from the writer’s reasoning.",
