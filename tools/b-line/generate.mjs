@@ -310,13 +310,14 @@ let revisionCount = 0;
 while (!review.pass && review.canRevise && !review.needsHumanReview && revisionCount < 2) {
   const feedback = review.feedback.join("\n- ");
   console.log(`  b-line: reviewer feedback received; requesting evidence-bound revision ${revisionCount + 1}/2`);
+  console.log(`  b-line: actionable review feedback: ${feedback.replace(/\\s+/g, " ").slice(0, 1800)}`);
   const revision = await ask({
     role: "writer",
     temperature: 1,
     maxTokens: 8192,
     system: [
       "Revise the supplied article only from the supplied evidence and reviewer feedback. Never add a fact, number, causal claim, source, or citation from memory.",
-      "For unsupported numeric business claims, use an exact quote only when a supplied curated primary source contains it; otherwise remove the claim or accurately qualify it.",
+      "For unsupported numeric business claims, use an exact quote only when a supplied curated primary source contains it; otherwise delete the entire unsupported sentence and every duplicate of that claim, including any table cell. Do not preserve it as a paraphrase or implication.",
       "Return complete HTML for the article and preserve every required section exactly.",
       "Required structure checklist: an HTML table; a section headed What doesn't work; at least one FAQ question in an h3; a Sources section; and at least five valid hyperlinks.",
       "Before responding, count the links and confirm each required section remains. Return only the revised HTML, no commentary.",
