@@ -233,7 +233,7 @@ subtitle     <= 160
 description  <= 300
 publishDate  YYYY-MM-DD
 reviewBy     YYYY-MM-DD - the date the underlying facts change, not an arbitrary interval
-category     world | malaysia-impact | economy | tech-ai | work-education-family | business-opportunities-risks
+category     world | malaysia-impact | economy | tech-ai | work-education-family | business-opportunities-risks | success-cases
 audience     general | students | workers | entrepreneurs | teachers | citizens
 stakes       priced | directional
 information_gain  custom-calculation | cross-source | own-data | primary-source
@@ -313,7 +313,7 @@ every run, so a rule that matters has to be here rather than in a planning docum
 | Per section per week | 1 to 3 articles |
 | Whole site per week | 6 at the floor, 18 at the ceiling |
 
-Six sections. One article a week in each is the floor; three in each is the ceiling. A day with no
+Seven categories. One article a week in each is the floor; three in each is the ceiling. A day with no
 article is a failure of the pipeline, not a quiet day — unless research genuinely found no subject, in
 which case the run records that fact and still writes its audit row.
 

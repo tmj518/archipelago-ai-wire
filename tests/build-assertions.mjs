@@ -23,6 +23,9 @@ import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
+const BLOG = join(ROOT, "src", "content", "blog");
+const GUIDES = join(ROOT, "src", "content", "guide");
+const categories = JSON.parse(readFileSync(join(ROOT, "src", "lib", "taxonomy.json"), "utf8")).categories;
 
 if (!existsSync(DIST)) {
   console.log("BUILD ASSERTIONS\n" + "=".repeat(78));
@@ -52,23 +55,43 @@ const pageFile = (p) => (p === "/" ? join(DIST, "index.html") : join(DIST, p.rep
 const pageHtml = (p) => (existsSync(pageFile(p)) ? readFileSync(pageFile(p), "utf8") : "");
 const hasNoindex = (p) => /<meta\s+name="robots"\s+content="[^"]*noindex/i.test(pageHtml(p));
 
-/* ── the six archive pages the audit named ─────────────────────────────────────────────────── */
+/* ── archive indexing follows the current published corpus, not a stale six-category snapshot ── */
 
-const ARCHIVES = [
-  "/category/world/",
-  "/category/malaysia-impact/",
-  "/category/economy/",
-  "/category/tech-ai/",
-  "/category/work-education-family/",
-  "/category/business-opportunities-risks/",
-  "/guide/",
-  "/topic/",
+function frontmatter(text) {
+  return /^---\r?\n([\s\S]*?)\r?\n---/m.exec(text)?.[1] ?? "";
+}
+const posts = readdirSync(BLOG).filter((f) => f.endsWith(".md")).map((f) => frontmatter(readFileSync(join(BLOG, f), "utf8")));
+const publishedPosts = posts.filter((fm) => !/^draft:\s*true\s*$/m.test(fm));
+const categoryCounts = new Map(categories.map((c) => [c.slug, 0]));
+const tagCounts = new Map();
+for (const fm of publishedPosts) {
+  const category = /^category:\s*([a-z0-9-]+)/m.exec(fm)?.[1];
+  if (categoryCounts.has(category)) categoryCounts.set(category, categoryCounts.get(category) + 1);
+  const tags = /^tags:\s*\r?\n((?:[ \t]+-\s*.*(?:\r?\n|$))*)/m.exec(fm)?.[1] ?? "";
+  for (const [, raw] of tags.matchAll(/^[ \t]+-\s*["']?(.*?)["']?\s*$/gm)) {
+    const slug = raw.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    if (slug) tagCounts.set(slug, (tagCounts.get(slug) ?? 0) + 1);
+  }
+}
+const topicCount = [...tagCounts.values()].filter((n) => n >= 2).length;
+const guideCount = existsSync(GUIDES)
+  ? readdirSync(GUIDES).filter((f) => f.endsWith(".md") && !/^draft:\s*true\s*$/m.test(frontmatter(readFileSync(join(GUIDES, f), "utf8")))).length
+  : 0;
+const archives = [
+  ...categories.map((c) => [`/category/${c.slug}/`, categoryCounts.get(c.slug)]),
+  ["/guide/", guideCount],
+  ["/topic/", topicCount],
 ];
 
-for (const path of ARCHIVES) {
+for (const [path, count] of archives) {
   record(`archive page exists: ${path}`, existsSync(pageFile(path)));
-  record(`empty archive is noindex: ${path}`, hasNoindex(path));
-  record(`empty archive is absent from the sitemap: ${path}`, !sitemapPaths.includes(path), sitemapPaths.includes(path) ? "still listed" : "");
+  if (count > 0) {
+    record(`active archive is indexable: ${path}`, !hasNoindex(path), `${count} item(s)`);
+    record(`active archive is in the sitemap: ${path}`, sitemapPaths.includes(path));
+  } else {
+    record(`empty archive is noindex: ${path}`, hasNoindex(path));
+    record(`empty archive is absent from the sitemap: ${path}`, !sitemapPaths.includes(path), sitemapPaths.includes(path) ? "still listed" : "");
+  }
 }
 
 /* ── pages that must stay indexable, and stay in the sitemap ───────────────────────────────── */

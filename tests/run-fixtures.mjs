@@ -370,19 +370,20 @@ record("ga: the component requires the explicit switch", /PUBLIC_GA_ENABLED/.tes
 record("ga: no measurement id is hardcoded in the component", !/G-[A-Z0-9]{10}/.test(gaSrc.replace(/G-X{10}/g, "")));
 record("ga: the previous project's id appears nowhere in source", !/N99G9FY6NZ/.test(gaSrc + constsSrc));
 
-/* ── the six columns (command 15) ──────────────────────────────────────────────────────────── */
+/* ── controlled category vocabulary ───────────────────────────────────────────────────────── */
 
-const SIX = [
+const CATEGORIES = [
   "world",
   "malaysia-impact",
   "economy",
   "tech-ai",
   "work-education-family",
   "business-opportunities-risks",
+  "success-cases",
 ];
-record("columns: exactly six categories are defined", tax.CATEGORY_SLUGS.length === 6, `${tax.CATEGORY_SLUGS.length}`);
-record("columns: the slugs are the six agreed ones, in order", tax.CATEGORY_SLUGS.join(",") === SIX.join(","), tax.CATEGORY_SLUGS.join(", "));
-record("columns: no slug is duplicated", new Set(tax.CATEGORY_SLUGS).size === tax.CATEGORY_SLUGS.length);
+record("categories: the seven current categories are defined", tax.CATEGORY_SLUGS.length === CATEGORIES.length, `${tax.CATEGORY_SLUGS.length}`);
+record("categories: the slugs match the approved taxonomy order", tax.CATEGORY_SLUGS.join(",") === CATEGORIES.join(","), tax.CATEGORY_SLUGS.join(", "));
+record("categories: no slug is duplicated", new Set(tax.CATEGORY_SLUGS).size === tax.CATEGORY_SLUGS.length);
 record(
   "columns: every category carries a label, a nav label and a description",
   tax.TAXONOMY.categories.every((c) => c.label?.trim() && c.navLabel?.trim() && c.description?.trim()),
@@ -390,9 +391,9 @@ record(
 
 const masterSrc = readFileSync(join(ROOT, "MASTER_PROMPT.md"), "utf8");
 const promptSrc = readFileSync(join(ROOT, "src/lib/writer-prompt.mjs"), "utf8");
-record("columns: MASTER_PROMPT names every one of the six", SIX.every((s) => masterSrc.includes(s)));
-record("columns: the writer prompt derives them from the taxonomy", /import \{[^}]*CATEGORY_SLUGS[^}]*\} from "\.\/taxonomy\.mjs"/.test(promptSrc));
-record("columns: the writer prompt states all six at build time", SIX.every((s) => prompt.STRUCTURE.includes(s)));
+record("categories: MASTER_PROMPT names every category", CATEGORIES.every((s) => masterSrc.includes(s)));
+record("categories: the writer prompt derives them from the taxonomy", /import \{[^}]*CATEGORY_SLUGS[^}]*\} from "\.\/taxonomy\.mjs"/.test(promptSrc));
+record("categories: the writer prompt states all values at build time", CATEGORIES.every((s) => prompt.STRUCTURE.includes(s)));
 
 /* ── the three analytical frameworks (command 15) ──────────────────────────────────────────── */
 

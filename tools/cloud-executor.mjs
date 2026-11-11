@@ -28,6 +28,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, copyFileSync } from "node:fs";
 import { join } from "node:path";
 import { askJson, summary as providerSummary } from "./lib-llm.mjs";
+import { hasHumanReviewField } from "./lib/review-metadata.mjs";
 /*
  * The frontmatter constraints live in one place so the prompt, this validator and the parity check all
  * read the same list. They were described in three places that could not check each other, and twice in
@@ -238,7 +239,11 @@ function recordFeedback(entry) {
 function schemaViolations(article) {
   const f = frontmatter(article);
   if (!f) return ["no frontmatter block: the file must open with --- on its own line and close it the same way"];
-  return violationsOf(f);
+  const violations = violationsOf(f);
+  if (hasHumanReviewField(article)) {
+    violations.push("human_review is reserved for a named human editor; automated writers cannot self-sign a 3R review");
+  }
+  return violations;
 }
 
 /**
@@ -1090,31 +1095,18 @@ async function assembleFaq(article) {
     console.log("");
     console.log(`  SCHEMA - ${violations.length} field(s) the build would refuse:`);
     for (const v of violations) console.log(`      - ${v}`);
-    /*
-     * Launch mode writes the draft anyway.
-     *
-     * Three runs in a row ended WRITE-FAILED here, and the article behind each one was complete: the
-     * complaint was always frontmatter, never the prose. The build step is the authority on whether a
-     * file is publishable - if it refuses, nothing is deployed and the run says so. Refusing earlier
-     * only guarantees that no article is written at all, which is the state the site was in for two
-     * days. LAUNCH_MODE=0 restores the refusal.
-     */
-    if (process.env.LAUNCH_MODE === "0") {
-      console.log("");
-      console.log("  Nothing was written. The limits are in src/content.config.ts and they apply to every");
-      console.log("  page, so a draft that breaks one takes the site down rather than the article.");
-      /* The violations are structured so the orchestrator can pass them back as a revision order. */
-      const reportPath = process.env.EXECUTOR_VIOLATIONS;
-      if (reportPath) {
-        writeFileSync(
-          reportPath,
-          JSON.stringify({ layers: { L5: { pass: false, issues: violations, summary: "the draft violates the content schema" } }, reasons: violations }, null, 2),
-          "utf8",
-        );
-      }
-      process.exit(4);
+    console.log("");
+    console.log("  Nothing was written. The content schema is a blocking quality gate in every mode.");
+    /* The violations are structured so the orchestrator can pass them back as a revision order. */
+    const reportPath = process.env.EXECUTOR_VIOLATIONS;
+    if (reportPath) {
+      writeFileSync(
+        reportPath,
+        JSON.stringify({ layers: { L5: { pass: false, issues: violations, summary: "the draft violates the content schema" } }, reasons: violations }, null, 2),
+        "utf8",
+      );
     }
-    console.log("  launch    : writing it anyway, the build decides whether it can ship");
+    process.exit(4);
   }
 
   mkdirSync(join(ROOT, "data", "drafts"), { recursive: true });

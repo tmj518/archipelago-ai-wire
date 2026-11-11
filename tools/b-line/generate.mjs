@@ -11,9 +11,10 @@
  *
  * Exit codes: 0 written, 2 nothing written (the model declined), 1 failure.
  */
-import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync, appendFileSync } from "node:fs";
 import { join } from "node:path";
 import { ask } from "../lib-llm.mjs";
+import { reviewBLineArticle } from "./review.mjs";
 
 const ROOT = process.cwd();
 const dryRun = process.argv.includes("--dry-run");
@@ -93,21 +94,6 @@ async function fetchFeed([label, url]) {
 const feeds = (await Promise.all(FEEDS.map(fetchFeed))).filter(Boolean);
 const totalEntries = feeds.reduce((a, f) => a + f.entries.length, 0);
 console.log(`  b-line: ${feeds.length} feed(s), ${totalEntries} item(s) fetched`);
-/*
- * The pool does not need the feeds.
- *
- * On 2026-11-08 three feeds answered and none of them parsed, so the run refused to write with a case
- * sitting in the pool that already carries its own numbers and sources. Feeds are how the pool grows
- * when it is empty; they are not a precondition for writing a case that is already documented.
- */
-if (totalEntries < 5 && !pending) {
-  console.error("  b-line: no case in the pool and too little material to write from; refusing to invent");
-  process.exit(2);
-}
-if (totalEntries < 5) {
-  console.log("  b-line: few or no documents today; writing the pooled case from its own documented figures");
-}
-
 const material = feeds
   .map((f) => `### ${f.label} (${f.url})\n` + f.entries.map((e) => `- ${e.title}\n  ${e.link}\n  ${e.date}\n  ${e.body}`).join("\n"))
   .join("\n\n")
@@ -156,14 +142,53 @@ const pending = pool.cases.find((c) => {
   const surname = String(c.person ?? "").split(" ").pop().toLowerCase();
   return !written.some((t) => surname.length > 2 && String(t).toLowerCase().includes(surname));
 });
+/* A quiet result is only valid after checking the existing pool. */
+if (totalEntries < 5 && !pending) {
+  console.error("  b-line: no case in the pool and too little material to write from; refusing to invent");
+  process.exit(2);
+}
+if (totalEntries < 5) {
+  console.log("  b-line: few or no documents today; relying on the selected case record and requiring review evidence");
+}
 const caseNote = pending
   ? `## The case to write about today\n\n${JSON.stringify(pending, null, 2)}\n\nWrite about THIS person and product. The documents below are for verification and for anything else the article needs; they do not replace the case.`
   : `## No case left in the pool\n\nChoose the person yourself from the documents below. Report the case in the META block as case_person, case_product and case_data so it can be added to the pool.`;
+
+async function fetchCaseSource(url) {
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== "https:" || parsed.username || parsed.password) return null;
+    const response = await fetch(parsed, {
+      headers: { "user-agent": "Mozilla/5.0 (compatible; BLineFactCheck/1.0)", accept: "text/html,application/xhtml+xml,text/plain,*/*" },
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!response.ok) return null;
+    const html = (await response.text()).slice(0, 500000);
+    const title = strip(/<title[^>]*>([\s\S]*?)<\/title>/i.exec(html)?.[1] ?? "").slice(0, 250);
+    const body = strip(html).slice(0, 5000);
+    return body.length >= 120 ? { url: parsed.href, title, body } : null;
+  } catch {
+    return null;
+  }
+}
+
+const caseSources = pending && Array.isArray(pending.sources)
+  ? (await Promise.all(pending.sources.slice(0, 4).map(fetchCaseSource))).filter(Boolean)
+  : [];
+if (pending && caseSources.length === 0) {
+  console.error("  b-line: selected pool case has no retrievable source document; refusing to publish unverified claims");
+  process.exit(1);
+}
+const sourceMaterial = caseSources.map((s) => `### ${s.title || s.url}\n${s.url}\n${s.body}`).join("\n\n");
 
 /* ---------------------------------------------------------------- one call */
 const prompt = `${brief}
 
 ${caseNote}
+
+## Directly fetched source documents for the selected case
+
+${sourceMaterial || "No pool case selected; use only the fetched feed documents below."}
 
 ## Documents fetched for this run (today)
 
@@ -243,14 +268,8 @@ for (const [label, re] of required) {
   }
 }
 if (missing.length) {
-  /*
-   * A warning, not a refusal.
-   *
-   * The operator's instruction is that the line publishes every day: an article missing its table is a
-   * worse article, not a reason to leave the section empty. The gaps are named here and in the run log
-   * so they can be fixed at the source, and the piece still ships.
-   */
-  console.log(`  b-line: WARNING the article is missing ${missing.join(", ")} - publishing anyway`);
+  console.error(`  b-line: refusing article; required structure is missing: ${missing.join(", ")}`);
+  process.exit(1);
 }
 
 const meta = {};
@@ -268,6 +287,32 @@ if (existsSync(join(blogDir, `${slug}.md`))) {
   console.log(`  b-line: ${slug} already exists - nothing written`);
   process.exit(2);
 }
+
+/* The source-based reviewer must approve before this draft is written or can be committed. */
+/* A fetched URL is not automatically primary. Only the case registry's explicit primarySources
+ * allowlist may support business metrics; RSS/feed extracts remain discovery material. */
+const primarySourceUrls = new Set(Array.isArray(pending?.primarySources) ? pending.primarySources : []);
+const sourceDocuments = caseSources.map((source) => ({ ...source, primary: primarySourceUrls.has(source.url) }));
+const evidence = `${caseNote}\n\nDIRECTLY FETCHED CASE SOURCES\n${sourceMaterial}\n\nFETCHED FEED DOCUMENTS (DISCOVERY ONLY; NOT PRIMARY EVIDENCE FOR BUSINESS METRICS)\n${material}`;
+const review = await reviewBLineArticle({
+  article,
+  evidence,
+  sourceDocuments,
+  writerProvider: r.provider,
+  writerModel: r.model,
+});
+if (process.env.GITHUB_ENV) {
+  const reviewerProvider = /^[a-z0-9_-]+$/i.test(review.provider ?? "") ? review.provider : "unknown";
+  const reviewerModel = /^[a-z0-9_.:-]+$/i.test(review.model ?? "") ? review.model : "unknown";
+  const independenceLevel = ["provider", "model", "same-model", "unknown"].includes(review.independenceLevel) ? review.independenceLevel : "unknown";
+  const reviewStatus = review.needsHumanReview ? "HUMAN_REVIEW_REQUIRED" : review.pass ? "APPROVED" : "REJECTED";
+  appendFileSync(process.env.GITHUB_ENV, `B_LINE_REVIEWER_PROVIDER=${reviewerProvider}\nB_LINE_REVIEWER_MODEL=${reviewerModel}\nB_LINE_REVIEW_INDEPENDENCE_LEVEL=${independenceLevel}\nB_LINE_REVIEW_VERDICT=${reviewStatus}\n`, "utf8");
+}
+if (!review.pass) {
+  console.error(`  b-line: reviewer refused publication - ${review.reason}`);
+  process.exit(review.needsHumanReview ? 3 : 1);
+}
+console.log(`  b-line: independent reviewer approved at ${review.independenceLevel} level via ${review.provider}/${review.model}`);
 
 /* Frontmatter this collection accepts. No currency symbols inside quoted strings: a "$" in a quoted
    value is what stopped the site building on 2026-11-07. */

@@ -16,6 +16,7 @@ import { proseWords, WORD_TARGET, hasCostTable } from "../src/lib/prose.mjs";
 import { guideFor } from "../src/lib/rule-guide.mjs";
 import { substantiveFigures, figuresShortfall } from "../src/lib/figures.mjs";
 import { MIN_SUBSTANTIVE } from "../src/lib/figure-limits.mjs";
+import { humanReviewBlockIsComplete } from "./lib/review-metadata.mjs";
 /*
  * The controlled vocabularies come from one file now.
  *
@@ -774,7 +775,7 @@ const V6_2_FROM = "2026-10-08";
    */
   const threeRText = `${fm}\n${body}`;
   const threeR = THREE_R.test(threeRText);
-  const reviewed = /^human_review:\s*$/m.test(fm) || /^human_review:\s*\{/m.test(fm) || /^\s+reviewer:\s*\S/m.test(fm);
+  const reviewed = humanReviewBlockIsComplete(fm);
   if (!threeR) {
     add("pass", "3R review", "no race, religion or royalty subject detected");
   } else if (reviewed) {
@@ -783,7 +784,7 @@ const V6_2_FROM = "2026-10-08";
     add(
       "block",
       "3R review",
-      "race, religion or royalty subject detected with no human_review recorded — quarantined until a named reviewer signs off",
+      "race, religion or royalty subject detected without a complete human_review reviewer/date block — quarantined until a human signs off",
     );
   }
 

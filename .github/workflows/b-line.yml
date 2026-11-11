@@ -1,7 +1,8 @@
-# B线 — one success case every day, published without a review.
+# B线 — one success case every day, with independent review and blocking quality gates.
 #
 # Same site, same deploy path (git push -> Cloudflare Pages), so there is nothing to configure and no
-# API key to hold. What differs from A线: its own cron, its own quota, its own brief, and no reviewer.
+# Same site and deploy path as A线. B线 has its own schedule, quota and brief, but shares the fact-checking
+# and pre-publish safety standard: missing review evidence or failed gates stop publication.
 name: B line
 
 on:
@@ -54,6 +55,7 @@ jobs:
           if [ "$n" -ge 1 ]; then
             echo "B line already published today; exiting without spending anything"
             echo "B_SKIP=1" >> "$GITHUB_ENV"
+            echo "B_LINE_OUTCOME=QUIET" >> "$GITHUB_ENV"
           fi
 
       - name: Preflight
@@ -64,13 +66,10 @@ jobs:
             echo "::error::B line has no brief"; exit 1
           fi
 
-      # A claim with no article beside it is a tombstone: publish-guard returns "duplicate" for that slug
-      # for ever, so the article can never be written. On 2026-11-07 two B线 runs were refused on a claim
-      # created by the run before them.
-      # One step. This line was asked to research, decide, write and publish - so it does, in one call,
-      # and nothing reviews, gates or claims a slug on the way. A线 keeps all of that; this line does not
-      # use it.
+      # Generate only after retrieving current source material; the generator requires an independent
+      # source-based reviewer before it writes an article.
       - name: Write the article
+        if: env.B_SKIP != '1'
         run: |
           set +e
           node tools/b-line/generate.mjs
@@ -78,9 +77,10 @@ jobs:
           set -e
           echo "b-line generate exit: $code"
           case "$code" in
-            0) echo "B_LINE_OUTCOME=OK" >> "$GITHUB_ENV" ;;
+            0) echo "B_LINE_OUTCOME=GENERATED" >> "$GITHUB_ENV" ;;
             2) echo "B_SKIP=1" >> "$GITHUB_ENV"; echo "B_LINE_OUTCOME=QUIET" >> "$GITHUB_ENV" ;;
-            *) echo "B_LINE_OUTCOME=FAILED:$code" >> "$GITHUB_ENV"; exit "$code" ;;
+            3) echo "B_LINE_OUTCOME=REVIEW_HUMAN_REQUIRED" >> "$GITHUB_ENV"; exit 1 ;;
+            *) echo "B_LINE_OUTCOME=FAILED_GENERATION" >> "$GITHUB_ENV"; exit "$code" ;;
           esac
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
@@ -88,47 +88,82 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
 
-      # P0: an article that cannot build must not be committed. Two frontmatter faults reached
-      # main and stopped the whole deployment; the validator parses every changed article first.
-      - name: Validate the article
-        run: node tools/validate-article.mjs --changed
+      # All blocking checks run against the generated article and full site before any commit.
+      - name: Validate and gate the article
+        if: env.B_SKIP != '1'
+        run: |
+          set -euo pipefail
+          slug=$(cat data/tmp/last-slug.txt)
+          if ! [[ "$slug" =~ ^[a-z0-9]+([a-z0-9-]*[a-z0-9])?$ ]]; then
+            echo "::error::invalid or missing generated slug"
+            echo "B_LINE_OUTCOME=FAILED_VALIDATION" >> "$GITHUB_ENV"
+            exit 1
+          fi
+          article="src/content/blog/${slug}.md"
+          test -s "$article"
+          echo "ARTICLE_SLUG=$slug" >> "$GITHUB_ENV"
+          node tools/validate-article.mjs --changed || { echo "B_LINE_OUTCOME=FAILED_VALIDATION" >> "$GITHUB_ENV"; exit 1; }
+          node tools/qa-check.mjs "$article" || { echo "B_LINE_OUTCOME=FAILED_QUALITY_GATE" >> "$GITHUB_ENV"; exit 1; }
+          pnpm exec astro build || { echo "B_LINE_OUTCOME=FAILED_BUILD" >> "$GITHUB_ENV"; exit 1; }
+          node tools/gate.mjs --fresh || { echo "B_LINE_OUTCOME=FAILED_SITE_GATE" >> "$GITHUB_ENV"; exit 1; }
+          echo "B_LINE_OUTCOME=QUALITY_PASSED" >> "$GITHUB_ENV"
 
       - name: Publish the article
         if: env.B_SKIP != '1'
         run: |
+          set -euo pipefail
+          slug="$ARTICLE_SLUG"
+          test -n "$slug"
+          test -s "src/content/blog/${slug}.md"
           git config user.name "b-line-publisher"
           git config user.email "publisher@users.noreply.github.com"
-          for p in src/content src/lib data/outcomes logs/usage.jsonl data/feedback data/b-line/cases.json; do
-            [ -e "$p" ] && git add "$p" || true
-          done
+          git add -- "src/content/blog/${slug}.md" data/b-line/cases.json
           if git diff --cached --quiet; then
-            echo "b-line: nothing new to publish"; exit 0
+            echo "::error::no article or case-pool change staged; refusing a false success"
+            exit 1
           fi
-          # Only the article file itself: src/content/blog/.claims/<slug>.json also starts with that path and
-          # was captured as the slug on 2026-11-07, so the live check asked for <slug>.json and got 404.
-          slug=$(git diff --cached --name-status --diff-filter=A | awk '$1=="A" && $2 ~ /^src\/content\/blog\/[^/]+\.md$/ {print $2; exit}')
-          name=$(basename "${slug:-case-study}" .md)
-          echo "ARTICLE_SLUG=$name" >> "$GITHUB_ENV"
-          git commit -m "b-line: publish $name"
-          git push origin HEAD:main
+          staged_paths=$(git diff --cached --name-only)
+          unexpected=""
+          while IFS= read -r staged; do
+            case "$staged" in
+              "src/content/blog/${slug}.md"|"data/b-line/cases.json") ;;
+              "") ;;
+              *) unexpected="${unexpected}${staged}"$'\n' ;;
+            esac
+          done <<< "$staged_paths"
+          if [ -n "$unexpected" ]; then
+            echo "::error::unexpected paths staged: $unexpected"
+            exit 1
+          fi
+          git commit -m "b-line: publish $slug" || { echo "B_LINE_OUTCOME=FAILED_COMMIT" >> "$GITHUB_ENV"; exit 1; }
+          sha=$(git rev-parse HEAD)
+          git push origin HEAD:main || { echo "B_LINE_LOCAL_COMMIT=$sha" >> "$GITHUB_ENV"; echo "B_LINE_OUTCOME=FAILED_PUSH" >> "$GITHUB_ENV"; exit 1; }
+          echo "B_LINE_PUBLISH_COMMIT=$sha" >> "$GITHUB_ENV"
+          echo "B_LINE_OUTCOME=COMMITTED" >> "$GITHUB_ENV"
 
-      - name: Verify live
+      - name: Verify live article, Sitemap and RSS
         if: env.B_SKIP != '1' && env.ARTICLE_SLUG != ''
         run: |
-          url="https://www.ghiblistyled.com/blog/${ARTICLE_SLUG}/"
-          for i in 1 2 3 4 5 6; do
-            sleep 20
-            code=$(curl -sS -o /dev/null -w "%{http_code}" "$url" || echo 000)
-            echo "b-line: $url -> $code"
-            [ "$code" = "200" ] && break
-          done
+          node tools/verify-publication.mjs --slug="$ARTICLE_SLUG" || { echo "B_LINE_OUTCOME=FAILED_LIVE_VERIFY" >> "$GITHUB_ENV"; exit 1; }
+          echo "B_LINE_VERIFY_STATUS=ARTICLE_CANONICAL_TITLE_BODY_SITEMAP_RSS_VERIFIED" >> "$GITHUB_ENV"
+          echo "B_LINE_VERIFIED_URL=https://www.ghiblistyled.com/blog/${ARTICLE_SLUG}/" >> "$GITHUB_ENV"
+          echo "B_LINE_OUTCOME=PUBLISHED" >> "$GITHUB_ENV"
+          exit 0
+        env:
+          VERIFY_ATTEMPTS: "6"
+          VERIFY_DELAY_MS: "20000"
 
       - name: Report
         if: always()
         run: |
-          echo "B_LINE_OUTCOME=${B_LINE_OUTCOME:-QUIET}" >> "$GITHUB_STEP_SUMMARY"
-          # A green job that published nothing is worse than a red one: it says the line works.
-          case "${B_LINE_OUTCOME:-QUIET}" in
-            OK|QUIET) ;;
-            *) echo "::error::B line did not publish (${B_LINE_OUTCOME})"; exit 1 ;;
+          outcome="${B_LINE_OUTCOME:-FAILED}"
+          echo "B line outcome: $outcome" >> "$GITHUB_STEP_SUMMARY"
+          echo "run ID: ${GITHUB_RUN_ID}; attempt: ${GITHUB_RUN_ATTEMPT}; head SHA: ${GITHUB_SHA}" >> "$GITHUB_STEP_SUMMARY"
+          echo "failure classification: $outcome" >> "$GITHUB_STEP_SUMMARY"
+          echo "publish commit: ${B_LINE_PUBLISH_COMMIT:-none}" >> "$GITHUB_STEP_SUMMARY"
+          echo "reviewer: ${B_LINE_REVIEWER_PROVIDER:-unknown}/${B_LINE_REVIEWER_MODEL:-unknown} level=${B_LINE_REVIEW_INDEPENDENCE_LEVEL:-unknown} (${B_LINE_REVIEW_VERDICT:-unknown})" >> "$GITHUB_STEP_SUMMARY"
+          echo "verified URL: ${B_LINE_VERIFIED_URL:-none}; URL/Sitemap/RSS: ${B_LINE_VERIFY_STATUS:-not-run}" >> "$GITHUB_STEP_SUMMARY"
+          case "$outcome" in
+            PUBLISHED|QUIET) ;;
+            *) echo "::error::B line did not reach a verified published or quiet terminal state ($outcome)"; exit 1 ;;
           esac

@@ -17,18 +17,19 @@ let pass = 0;
 const fails = [];
 const rec = (n, ok, d = "") => (ok ? pass++ : fails.push(n + (d ? "  — " + d : "")));
 
-/* 1. PUBLISHED must not be assigned outside an APPROVED check. */
-const publishedLines = src.split("\n").filter((l) => /run\.verdict = "PUBLISHED"/.test(l));
-rec("success state is assigned exactly once", publishedLines.length === 1, `${publishedLines.length} assignments`);
-const around = src.slice(Math.max(src.indexOf('run.verdict = "PUBLISHED";') - 400, 0), src.indexOf('run.verdict = "PUBLISHED";') + 40);
-rec("success state is behind an APPROVED check", /qa\.verdict === "APPROVED"/.test(around), "guard missing");
+/* 1. The orchestrator may only prepare a draft; Actions finalizes PUBLISHED after commit and live check. */
+const readyLines = src.split("\n").filter((l) => /run\.verdict = "READY_FOR_PUBLISH"/.test(l));
+rec("ready state is assigned exactly once", readyLines.length === 1, `${readyLines.length} assignments`);
+const around = src.slice(Math.max(src.indexOf('run.verdict = "READY_FOR_PUBLISH";') - 500, 0), src.indexOf('run.verdict = "READY_FOR_PUBLISH";') + 50);
+rec("ready state requires reviewer and registry", /qa\.verdict === "APPROVED"/.test(around) && /run\.reviewer\.status === "APPROVED"/.test(around) && /run\.registry\.status === "REBUILT"/.test(around), "review or registry guard missing");
 
 /* 2. An unreadable review must not zero the failure code. */
-rec("unavailable review keeps qaCode non-zero", !/unavailable[^\n]*publishing anyway/.test(src), "publish-anyway branch is back");
+rec("review outage cannot be converted into approval", !/LAUNCH_MODE !== "0"/.test(src) && !/B_LINE_SKIP_REVIEW/.test(src), "review bypass is back");
 
 /* 3. The reviewer's objections must reach the log. */
-rec("objections are printed into the run reasons", /objection: \$\{/.test(src), "reason printing missing");
+rec("reviewer rejection is not an advisory publish path", !/kind: "published-despite-review"/.test(src) && !/advisory only - publishing/.test(src), "objection bypass is back");
+rec("review outages fail the run", /review unavailable; publication refused/.test(src) && /"REVIEW_UNAVAILABLE"/.test(src), "unavailable verdict not recorded");
 
 console.log(`\n${pass}/${pass + fails.length} passed`);
 if (fails.length) { console.log(fails.join("\n")); process.exit(1); }
-console.log("RESULT: PASS — no path reaches PUBLISHED without an approving verdict");
+console.log("RESULT: PASS — PUBLISHED is finalized only after review, registry, commit and live verification");

@@ -221,8 +221,8 @@ export function available() {
 }
 
 /**
- * Whether two roles would use the same credential, which is the condition that makes a second review
- * ceremonial rather than independent.
+ * Configured role separation level. `provider` and `model` are eligible second-opinion levels;
+ * `credential` is diagnostic only and is not sufficient for unattended publication.
  */
 export function reviewIsIndependent() {
   /*
@@ -243,7 +243,9 @@ export function reviewIsIndependent() {
    *
    * A different model is a real second opinion - it fails differently - but it shares the account, the rate limit
    * and the bill. A different credential on the same model is not a second opinion at all: the same weights asked
-   * the same question return the same mistake with a different prompt wrapped round it.
+   * the same question return the same mistake with a different prompt wrapped round it. Runtime
+   * publish gates accept only provider/model separation and compare the actual call identities; this
+   * resolver classifies configured fallbacks, not execution evidence.
    */
   const wModel = modelFor(PROVIDERS[writer], "writer");
   const rModel = modelFor(PROVIDERS[reviewer], "reviewer");

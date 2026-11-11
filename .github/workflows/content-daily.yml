@@ -263,7 +263,7 @@ jobs:
           # data/outcomes does not exist until the first run writes one. That turned a finished,
           # approved, built article into a red Publish step on 2026-10-29. Add what exists, skip the rest.
           for p in src/content src/lib logs/usage.jsonl data/outcomes; do
-            [ -e "$p" ] && git add "$p" || true
+            if [ -e "$p" ]; then git add "$p"; fi
           done
           # The article this run ADDED, not the first .md that happens to be staged: backfill-links
           # touches older articles in the same commit, so "first staged file" named the wrong article
@@ -278,45 +278,23 @@ jobs:
           fi
           git commit -m "publish: ${slug}"
           git push origin HEAD:main
+          commit_sha=$(git rev-parse HEAD)
+          echo "ARTICLE_COMMIT=$commit_sha" >> "$GITHUB_ENV"
+          echo "commit_sha=$commit_sha" >> "$GITHUB_OUTPUT"
           echo "published: https://www.ghiblistyled.com/blog/${slug}/" >> "$GITHUB_STEP_SUMMARY"
 
       # Pages needs a minute. If the URL never answers, the run fails and the alert workflow fires -
       # a deployment that silently 404s is the failure this step exists to catch.
-      - name: Verify the article is live
+      - name: Verify article, Sitemap and RSS are live
         id: verify
         if: env.SKIP_SUBJECT != '1'
         run: |
-          slug=$(git log -1 --pretty=%s | sed -n 's/^publish: \(.*\)$/\1/p')
-          url="https://www.ghiblistyled.com/blog/${slug}/"
-          echo "waiting for $url"
-          for i in $(seq 1 20); do
-            code=$(curl -s -o /dev/null -w "%{http_code}" "$url" || true)
-            echo "attempt $i: $code"
-            [ "$code" = "200" ] && exit 0
-            sleep 15
-          done
-          echo "::error::$url did not return 200 within five minutes"
-          exit 1
+          test -n "${ARTICLE_SLUG:-}"
+          node tools/verify-publication.mjs --slug="$ARTICLE_SLUG"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # The run's own record, committed back. Without this the only way to learn what happened is the
-      # Actions API, and the token available here cannot read it. Git is the channel that works.
-      - name: Record the outcome
-        if: always()
-        continue-on-error: true
-        run: |
-          mkdir -p data/runs
-          printf '{"at":"%s","sha":"%s","run":"%s","status":"%s"}\n' \
-            "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "${GITHUB_SHA::7}" "${GITHUB_RUN_ID}" "${JOB_STATUS}" \
-            > "data/runs/$(date -u +%Y%m%dT%H%M%S)-${GITHUB_RUN_ID}.json"
-          git config user.name "archipelago-publisher"
-          git config user.email "publisher@users.noreply.github.com"
-          git add data/runs
-          git commit -m "run: record ${GITHUB_RUN_ID} ${JOB_STATUS}" || exit 0
-          git push origin HEAD:main || true
-        env:
-          JOB_STATUS: ${{ job.status }}
+          VERIFY_ATTEMPTS: "20"
+          VERIFY_DELAY_MS: "15000"
 
       # Every run names its own failure.
       #
@@ -327,12 +305,14 @@ jobs:
       # Written to data/feedback by the executor, summarised here, and kept in the repository so
       # next week's decisions start from counts instead of impressions.
       - name: Rejection report
+        id: rejection
         if: always()
         continue-on-error: true
         run: |
-          node tools/feedback-report.mjs || true
-            mkdir -p data/feedback
-          node tools/feedback-report.mjs --json > data/feedback/summary.json 2>/dev/null || true
+          set -euo pipefail
+          node tools/feedback-report.mjs
+          mkdir -p data/feedback
+          node tools/feedback-report.mjs --json > data/feedback/summary.json
 
       - name: Classify the failure
         if: always()
@@ -373,15 +353,20 @@ jobs:
           echo "outcome: $outcome  failure class: $class"
 
       - name: Record and announce
+        id: release_record
         if: always()
         continue-on-error: true
         run: |
-          slug=$(git log -1 --pretty=%s | sed -n 's/^publish: \(.*\)$/\1/p')
-          if [ -z "$slug" ]; then slug=$(ls -1 src/content/blog 2>/dev/null | tail -1 | sed 's/\.md$//'); fi
+          slug="${ARTICLE_SLUG:-}"
           if [ -z "$slug" ]; then
-            node tools/record-publish.mjs --slug=pipeline --status=failed || true
-          elif [ "${{ job.status }}" = "success" ]; then
+            echo "RELEASE_RECORD_STATUS=SKIPPED_NO_ARTICLE" >> "$GITHUB_ENV"
+            echo "release record: SKIPPED (this run published no article)" >> "$GITHUB_STEP_SUMMARY"
+          elif [ "${RUN_OUTCOME:-UNKNOWN}" = "SUCCESS" ]; then
             node tools/record-publish.mjs --slug="$slug" --status=published
+            echo "RELEASE_RECORD_STATUS=RECORDED" >> "$GITHUB_ENV"
+          elif [ "${{ job.status }}" = "success" ]; then
+            echo "::error::article exists but RUN_OUTCOME=${RUN_OUTCOME:-UNKNOWN}; refusing a published ledger row"
+            exit 1
           else
             node tools/record-publish.mjs --slug="$slug" --status=failed
           fi
@@ -396,6 +381,7 @@ jobs:
       # does not fail the run, because a console that cannot be reached must not undo a published
       # article.
       - name: Record in the Feishu console
+        id: feishu_console
         if: always()
         continue-on-error: true
         run: |
@@ -419,7 +405,14 @@ jobs:
               --run-id="${GITHUB_RUN_ID}" \
               --status="${RUN_OUTCOME:-QUIET}" \
               --failure-class="${FAILURE_CLASS:-NONE}" \
-              --run-only || true
+              --run-only > bitable.log 2>&1
+            code=$?
+            cat bitable.log
+            if [ "$code" -ne 0 ]; then
+              echo "::warning::Feishu run row failed (exit $code); publication outcome is unchanged"
+              echo "### Feishu run ledger: FAILED (exit $code)" >> "$GITHUB_STEP_SUMMARY"
+              exit "$code"
+            fi
             echo "quiet day: run row written, no release row (correct)"
             exit 0
           fi
@@ -441,6 +434,7 @@ jobs:
               tail -20 bitable.log
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
+            exit "$code"
           fi
         env:
           STATUS: ${{ job.status }}
@@ -449,3 +443,47 @@ jobs:
           FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
           FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
           FEISHU_BITABLE_APP_TOKEN: ${{ secrets.FEISHU_BITABLE_APP_TOKEN }}
+
+      # Feishu/telemetry failures are recorded without changing a verified publication verdict.
+      - name: Finalize run publication receipt
+        if: always()
+        run: node tools/finalize-run.mjs
+        env:
+          JOB_STATUS: ${{ job.status }}
+          VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+          PUBLISH_COMMIT: ${{ steps.publish.outputs.commit_sha }}
+          REJECTION_REPORT_OUTCOME: ${{ steps.rejection.outcome }}
+          FEISHU_RELEASE_OUTCOME: ${{ env.RELEASE_RECORD_STATUS || steps.release_record.outcome }}
+          FEISHU_RUN_LEDGER_OUTCOME: ${{ steps.feishu_console.outcome }}
+
+      # A ledger push failure must be visible, but cannot roll back an article already deployed.
+      - name: Persist final run receipt
+        id: runrecord
+        if: always()
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          mkdir -p data/runs
+          record_path="data/runs/$(date -u +%Y%m%dT%H%M%S)-${GITHUB_RUN_ID}-attempt-${GITHUB_RUN_ATTEMPT}.json"
+          jq --arg at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --arg sha "$GITHUB_SHA" --arg run "$GITHUB_RUN_ID" \
+            --arg run_attempt "$GITHUB_RUN_ATTEMPT" --arg workflow_status "$JOB_STATUS" \
+            '{at:$at,sha:$sha,run:$run,run_attempt:$run_attempt,workflow_status:$workflow_status,verdict:.verdict,publication_status:.publicationStatus,article:.article,commit:.commit,reviewer:.reviewer,registry:.registry,live_checks:.liveChecks,recording:.recording}' \
+            data/runs/latest.json > "$record_path"
+          git config user.name "archipelago-publisher"
+          git config user.email "publisher@users.noreply.github.com"
+          git add data/runs data/state.json
+          git commit -m "run: record ${GITHUB_RUN_ID} attempt ${GITHUB_RUN_ATTEMPT} ${JOB_STATUS}"
+          git push origin HEAD:main
+          echo "Run receipt commit pushed successfully for ${GITHUB_RUN_ID}/${GITHUB_RUN_ATTEMPT}." >> "$GITHUB_STEP_SUMMARY"
+        env:
+          JOB_STATUS: ${{ job.status }}
+
+      - name: Report final receipt persistence
+        if: always()
+        run: |
+          if [ "${{ steps.runrecord.outcome }}" = "success" ]; then
+            echo "- GitHub run receipt persistence: RECORDED" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- GitHub run receipt persistence: FAILED (article publication result is unchanged; remote receipt may be stale)" >> "$GITHUB_STEP_SUMMARY"
+          fi

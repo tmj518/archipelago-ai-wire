@@ -8,10 +8,11 @@ name: Alert on failure
 
 on:
   workflow_run:
-    workflows: ["Data refresh", "Content day", "Daily health", "CI"]
+    workflows: ["Data refresh", "Content day", "Daily health", "CI", "B line"]
     types: [completed]
 
 permissions:
+  actions: read
   contents: read
 
 jobs:
@@ -58,8 +59,28 @@ jobs:
 
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Classify failed job and step
+        id: failure_steps
+        if: always()
+        run: |
+          set +e
+          details=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${SOURCE_RUN_ID}/jobs" --jq '[.jobs[]? | select(.conclusion == "failure") | .name + ": " + ([.steps[]? | select(.conclusion == "failure") | .name] | join(", "))] | join("; ")' 2>failure-details.err)
+          code=$?
+          if [ "$code" -ne 0 ] || [ -z "$details" ]; then
+            echo "steps=UNKNOWN" >> "$GITHUB_OUTPUT"
+            echo "- failed job/step classification: UNKNOWN (Actions API exit $code; see alert run log)" >> "$GITHUB_STEP_SUMMARY"
+          else
+            details=$(printf '%s' "$details" | tr '\n' ' ' | cut -c1-1000)
+            echo "steps=$details" >> "$GITHUB_OUTPUT"
+            echo "- failed job/step classification: $details" >> "$GITHUB_STEP_SUMMARY"
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
+
 
       - name: Send the card
+        if: always()
         run: |
           if [ -z "${FEISHU_WEBHOOK:-}" ]; then
             echo "::error::FEISHU_WEBHOOK is not set; no card sent - the failure is recorded in this run summary"
@@ -70,4 +91,4 @@ jobs:
           FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
           FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
           GITHUB_WORKFLOW: ${{ github.event.workflow_run.name }}
-          FAILED_STEP: ${{ github.event.workflow_run.name }} (${{ github.event.workflow_run.conclusion }})
+          FAILED_STEP: "${{ github.event.workflow_run.name }} (${{ github.event.workflow_run.conclusion }}; run ${{ github.event.workflow_run.id }}, attempt ${{ github.event.workflow_run.run_attempt }}; failed steps: ${{ steps.failure_steps.outputs.steps || 'UNKNOWN' }})"

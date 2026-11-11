@@ -233,17 +233,43 @@ if (already && !process.argv.includes("--force")) {
   console.log("");
   console.log("  The backup cron fired after the primary one had already done the work.");
   console.log("  Exiting 0 so the run is green and costs nothing. --force overrides this.");
+  const quietRun = {
+    at: new Date().toISOString(),
+    route: "script",
+    runId: process.env.GITHUB_RUN_ID ?? null,
+    runAttempt: Number(process.env.GITHUB_RUN_ATTEMPT) || null,
+    workflow: process.env.GITHUB_WORKFLOW ?? null,
+    event: process.env.GITHUB_EVENT_NAME ?? null,
+    executionSha: process.env.GITHUB_SHA ?? null,
+    steps: [{ name: "daily quota", ok: true, detail: `already published today: ${already.slug}` }],
+    verdict: "QUIET",
+    publicationStatus: "QUIET",
+    article: already.slug,
+    commit: null,
+    reviewer: { status: "NOT_RUN" },
+    registry: { status: "NOT_RUN" },
+    reasons: [],
+  };
+  writeRunReport(quietRun);
   process.exit(0);
 }
 
 const run = {
   at: new Date().toISOString(),
+  runId: process.env.GITHUB_RUN_ID ?? null,
+  runAttempt: Number(process.env.GITHUB_RUN_ATTEMPT) || null,
+  workflow: process.env.GITHUB_WORKFLOW ?? null,
+  event: process.env.GITHUB_EVENT_NAME ?? null,
+  executionSha: process.env.GITHUB_SHA ?? null,
   providers: available(),
   steps: [],
   verdict: null,
   reasons: [],
   article: null,
   commit: null,
+  publicationStatus: "NOT_STAGED",
+  reviewer: { status: "NOT_RUN" },
+  registry: { status: "NOT_RUN" },
   usage: null,
 };
 const step = (name, ok, detail) => {
@@ -804,10 +830,17 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
   }
 
   let qaOut = "";
+  /* Use the provider the writer actually reported after provider fallback. The configured provider
+   * order is not execution evidence: `ask()` may fall back, and independence must compare the
+   * reviewer with the provider that produced this draft. If the writer did not report one, pass an
+   * explicit unknown value; cloud-qa fails closed when independence cannot be established. */
+  const writerIdentity = /^\s*provider\s*:\s*([^/\s]+)\s*\/\s*([^\s]+)\s*$/mi.exec(writeOut);
+  const writerProvider = writerIdentity?.[1] ?? "unknown";
+  const writerModel = writerIdentity?.[2] ?? "unknown";
   try {
     qaOut = execFileSync(
       process.execPath,
-      [join(ROOT, "tools", "cloud-qa.mjs"), `--draft=${draftPath}`, "--json", `--directive-file=${directiveFile}`, `--writer-provider=${run.providers.includes("volces") ? "volces" : run.providers[0]}`],
+      [join(ROOT, "tools", "cloud-qa.mjs"), `--draft=${draftPath}`, "--json", `--directive-file=${directiveFile}`, `--writer-provider=${writerProvider}`, `--writer-model=${writerModel}`],
       { encoding: "utf8", timeout: 1800000, maxBuffer: 64 * 1024 * 1024 },
     );
     qaCode = 0;
@@ -1022,71 +1055,23 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     : "no parseable verdict";
   step(`reviewer${attempt > 1 ? ` (revision ${attempt - 1})` : ""}`, qaCode === 0, qa ? `${qa.verdict}: ${failedDetail}` : failedDetail);
 
-  /*
-   * A review that produced nothing is a warning, not a stop.
-   *
-   * The operator's instruction: if the reviewer fails or its answer cannot be read, publish anyway and
-   * record that the review was unavailable. The article exists, it compiles and the structural checks
-   * passed; a pipeline that ships nothing because its second opinion timed out has nothing to evaluate.
-   *
-   * "Record" is the part that makes it safe. The fact goes into data/lessons.jsonl, and the writer's
-   * prompt reads that file on the next run - so an unavailable review is carried forward into the next
-   * article rather than forgotten. A warning nobody reads is the same as no warning.
-   *
-   * A review that ran and rejected the draft is a different matter: that is a judgement, and it still
-   * stops the publication.
-   */
-  /*
-   * B线 publishes without a second opinion by instruction, not by accident.
-   *
-   * A线 stops when the reviewer cannot be read; B线 was asked to write and publish directly.
-   * The two must not be confused, so the switch is its own variable and the run says which line
-   * it is in its reasons.
-   */
-  const skipReview = process.env.B_LINE_SKIP_REVIEW === "1";
-  if (skipReview && qa && qa.verdict !== "APPROVED") {
-    qa.layers = qa.layers ?? {};
-    qa.layers.L5 = { pass: true, detail: "B线: review skipped by instruction", issues: [] };
-    qa.layers.L1 = qa.layers.L1 ?? { pass: true, detail: "no L1 report", issues: [] };
-    qa.verdict = "APPROVED";
-    qaCode = 0;
-    run.reasons.push("B线: reviewer skipped by instruction");
+  const reviewDetail = qa?.layers?.L5?.detail ?? "no usable reviewer result";
+  const reviewUnavailable = !qa || !qa.layers?.L5 || /review call failed|reviewer did not return JSON|reviewer.*unavailable|no parseable verdict/i.test(reviewDetail);
+  if (reviewUnavailable) {
+    step("reviewer", false, `unavailable - refusing to publish: ${reviewDetail.slice(0, 160)}`);
+    qaCode = 1;
+    run.reasons.push(`review unavailable; publication refused: ${reviewDetail}`);
   }
-  const reviewUnavailable = !qa || !qa.layers?.L5 || qa.layers.L5.detail?.startsWith("reviewer did not return JSON");
-  if (reviewUnavailable && wroteIt && qa?.layers?.build?.pass !== false && qa?.layers?.L1?.pass !== false) {
-    appendFileSync(
-      join(ROOT, "data", "lessons.jsonl"),
-      JSON.stringify({
-        at: new Date().toISOString(),
-        slug,
-        kind: "review-unavailable",
-        detail: qa?.layers?.L5?.detail ?? "no QA report at all",
-        action: "published without a second opinion; the next writer prompt reads this file",
-      }) + "\n",
-      "utf8",
-    );
-    /*
-     * Launch mode.
-     *
-     * The operator's instruction is explicit: get the pipeline running end to end and get articles
-     * published, because a site with three articles teaches nothing about the pipeline. An unavailable
-     * review is still not an approval, so it is recorded as its own fact - the lesson file, the run
-     * reasons and the Feishu row all say the second opinion was missing - and LAUNCH_MODE=0 restores
-     * the refusal without touching this code.
-     */
-    if (process.env.LAUNCH_MODE !== "0") {
-      step("reviewer", false, "unavailable - LAUNCH MODE: publishing without a second opinion, recorded as a lesson");
-      qa = qa ?? { verdict: "APPROVED", layers: {} };
-      qa.layers = qa.layers ?? {};
-      qa.layers.L5 = { pass: true, detail: "review unavailable in launch mode", issues: [] };
-      qa.layers.L1 = qa.layers.L1 ?? { pass: true, detail: "no L1 report", issues: [] };
-      qa.verdict = "APPROVED";
-      qaCode = 0;
-    } else {
-      step("reviewer", false, "unavailable - refusing to publish without a verdict");
-      qaCode = 1;
-    }
-  }
+  run.reviewer = qa?.layers?.L5
+    ? {
+        status: qa.layers.L5.pass === true && qa.layers.L5.independent === true ? "APPROVED" : reviewUnavailable ? "UNAVAILABLE" : "REJECTED",
+        providerModel: qa.layers.L5.reviewer ?? null,
+        independent: qa.layers.L5.independent === true,
+        independenceLevel: qa.layers.L5.independenceLevel ?? "unknown",
+        writerIdentity: qa.layers.L5.writer ?? "unknown/unknown",
+        detail: reviewDetail.slice(0, 240),
+      }
+    : { status: "UNAVAILABLE", detail: reviewDetail.slice(0, 240) };
 
   const score = failureScore(qa);
   attempts.push({ attempt, score, verdict: qa?.verdict ?? null, issues: qa?.layers?.L5?.issues ?? [], reasons: qa?.reasons ?? [] });
@@ -1196,44 +1181,8 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
  * outside it, after `qaCode` read outside its scope and `qaCode` never initialised on the break path.
  * The guard is explicit about it because the pattern keeps recurring.
  */
-/*
- * The loop is out of attempts. Publish if the site would stand up, and say what the reviewer thought.
- *
- * This used to set REJECTED unconditionally, so a draft that compiled, passed the structural gates and
- * passed the audit failed to publish because a model withheld approval. The reviewer's findings still reach
- * the notification and still feed the next prompt; they no longer decide.
- */
-const mechanicalOk =
-  wroteIt &&
-  qa?.layers?.build?.pass !== false &&
-  qa?.layers?.L1?.pass !== false &&
-  qa?.layers?.L2?.pass !== false;
-const reviewObjections = qa?.layers?.L5?.pass === false ? (qa?.layers?.L5?.issues ?? []).map((i) => (typeof i === "object" ? i.why || i.rule : String(i))) : [];
-
-if (!run.verdict && mechanicalOk && reviewObjections.length) {
-  appendFileSync(
-    join(ROOT, "data", "lessons.jsonl"),
-    JSON.stringify({
-      at: new Date().toISOString(),
-      slug,
-      kind: "published-despite-review",
-      detail: reviewObjections.slice(0, 3).join(" | ").slice(0, 400),
-      action: "the mechanical checks passed and the article was published; the next writer prompt reads this",
-    }) + "\n",
-    "utf8",
-  );
-  step("reviewer", true, `${reviewObjections.length} objection(s), advisory only - publishing`);
-  run.reviewAdvisory = reviewObjections.slice(0, 6);
-  /*
-   * qaCode gates the publish step below, so it has to be cleared as well as the verdict. Clearing the
-   * verdict alone left the report claiming a publication that never happened - the collection stayed empty
-   * while the log said "publishing".
-   */
-  qaCode = 0;
-  run.verdict = "";
-}
-
-if (!run.verdict && attempts.length && attempts[attempts.length - 1].verdict !== "APPROVED" && !mechanicalOk) {
+/* Reviewer rejection and reviewer outage both block publication, even when mechanical checks pass. */
+if (!run.verdict && attempts.length && attempts[attempts.length - 1].verdict !== "APPROVED") {
   /*
    * Report which attempt was closest, not only which was last. Three revisions that each score worse is
    * a finding about the loop, and it is invisible if only the final attempt is described.
@@ -1242,7 +1191,7 @@ if (!run.verdict && attempts.length && attempts[attempts.length - 1].verdict !==
   const best = usable.length ? usable.reduce((a, b) => (b.score < a.score ? b : a)) : null;
   const last = attempts[attempts.length - 1];
   run.attempts = attempts.map((a) => ({ attempt: a.attempt, score: a.score, verdict: a.verdict, issues: a.issues.slice(0, 6) }));
-  run.verdict = "REJECTED";
+  run.verdict = run.reviewer.status === "UNAVAILABLE" ? "REVIEW_UNAVAILABLE" : "REJECTED";
   run.reasons.push(...(last.reasons.length ? last.reasons : ["the reviewer did not approve"]));
   if (best && last.score !== null && best.score < last.score) {
     run.reasons.push(
@@ -1387,8 +1336,10 @@ if (published) {
   try {
     execFileSync(process.execPath, [join(ROOT, "tools", "build-instruments.mjs")], { encoding: "utf8", timeout: 600000 });
     step("registry", true, "rebuilt");
+    run.registry = { status: "REBUILT" };
   } catch (e) {
     step("registry", false, `rebuild failed: ${String(e.message).slice(0, 100)}`);
+    run.registry = { status: "FAILED", detail: String(e.message).slice(0, 180) };
   }
   /*
    * Inbound links. Every article is written with outbound links and none with inbound ones, because the
@@ -1411,12 +1362,14 @@ if (published) {
 
   /* One gate for the only success state in this file. An explicit approving verdict is
      required; anything else keeps the run out of PUBLISHED whatever path led here. */
-  if (qa && qa.verdict === "APPROVED") {
-    run.verdict = "PUBLISHED";
+  if (qa && qa.verdict === "APPROVED" && run.reviewer.status === "APPROVED" && run.registry.status === "REBUILT") {
+    run.verdict = "READY_FOR_PUBLISH";
+    run.publicationStatus = "DRAFT_STAGED";
     run.article = slug;
   } else {
-    run.verdict = "REJECTED";
-    run.reasons.push("refusing PUBLISHED: the review for this draft did not approve it");
+    run.verdict = run.registry.status === "FAILED" ? "REGISTRY_FAILED" : run.reviewer.status === "UNAVAILABLE" ? "REVIEW_UNAVAILABLE" : "REJECTED";
+    run.publicationStatus = "FAILED";
+    run.reasons.push(`refusing publication: reviewer=${run.reviewer.status}, registry=${run.registry.status}`);
   }
 
   /*
@@ -1455,7 +1408,7 @@ try {
         lastVerdict: run.verdict,
         lastArticle: run.article ?? state.lastArticle,
         runs: (state.runs ?? 0) + 1,
-        published: (state.published ?? 0) + (published ? 1 : 0),
+        published: state.published ?? 0,
         lastUsage: run.usage,
       },
       null,
@@ -1492,4 +1445,4 @@ console.log(`  report  : ${REPORT.replace(ROOT, "")}`);
  * rejection with nothing published is a failure the operator should hear about. An idle run is
  * neither, and exits 0 so that a quiet day does not read as a broken pipeline.
  */
-process.exit(run.verdict === "REJECTED" || run.verdict === "WRITE-FAILED" || run.verdict === "THIN-DIRECTIVE" ? 1 : 0);
+process.exit(["REJECTED", "REVIEW_UNAVAILABLE", "REGISTRY_FAILED", "WRITE-FAILED", "THIN-DIRECTIVE"].includes(run.verdict) ? 1 : 0);

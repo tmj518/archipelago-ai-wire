@@ -17,23 +17,23 @@
  *
  * ## The limitation this module states rather than hides
  *
- * The reviewing model reads the draft and the figure records. It does not read the source documents,
- * so it cannot tell a real number from an invented one that carries a real-looking citation. What it
- * can judge is whether the article's own claims are consistent, whether the arithmetic follows from
- * the figures given, whether the confidence section admits what it should, and whether anything
- * crosses a risk line. That is worth having and it is not the same as verification. The distinction
- * is printed on every run so nobody downstream mistakes one for the other.
+ * L5 receives the research directive's archived, exact source excerpts and checks every figure against
+ * them. Code verifies that the excerpt/value matches the archived file and that L5 returns the exact
+ * excerpt and URL. L5 does not receive the complete documents; this proves the citation excerpt exists,
+ * not that its context was interpreted correctly or that the source is authoritative.
  *
  * ## Independence
  *
- * The reviewer prefers a different provider from the writer. A model reviewing its own output shares
- * its blind spots; if only one key is present the run proceeds and says the review was not
- * independent, because a silent downgrade is worse than a reported one.
+ * Publish eligibility requires provider-level or model-level independence. The same provider with a
+ * different model is a permitted second opinion; a different credential alone is not. Missing or
+ * unknown run-time identities fail closed.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { execFileSync } from "node:child_process";
 import { askJson, summary as providerSummary, usageToday } from "./lib-llm.mjs";
+import { isAcceptableReviewIndependence, reviewIndependenceLevel } from "./lib/review-independence.mjs";
+import { loadDirectiveSourceEvidence, verifyDirectiveSourceChecks } from "./lib/source-evidence.mjs";
 
 const ROOT = process.cwd();
 const BLOG = join(ROOT, "src", "content", "blog");
@@ -198,6 +198,10 @@ if (audit) {
 
 const mechanicallyClear = Object.values(report.layers).every((l) => l.pass);
 let review = null;
+const directiveFileForEvidence = flag("directive-file", null);
+const sourceEvidence = directiveFileForEvidence
+  ? loadDirectiveSourceEvidence({ directivePath: directiveFileForEvidence, root: ROOT })
+  : { ok: false, reason: "no research directive was supplied" };
 
 if (!mechanicallyClear) {
   /*
@@ -207,6 +211,9 @@ if (!mechanicallyClear) {
    */
   report.layers.L5 = { pass: false, detail: "not run - an earlier layer failed" };
   report.reasons.push(...Object.entries(report.layers).filter(([, l]) => !l.pass).map(([k, l]) => `${k}: ${l.detail}`));
+} else if (!sourceEvidence.ok) {
+  report.layers.L5 = { pass: false, detail: `not run - archived source evidence unavailable: ${sourceEvidence.reason}`, sourceEvidenceStatus: "UNAVAILABLE" };
+  report.reasons.push(`L5: no archived research evidence to verify claims: ${sourceEvidence.reason}`);
 } else {
   const directiveFile = flag("directive-file", null);
   const directive = directiveFile && existsSync(directiveFile) ? readFileSync(directiveFile, "utf8").slice(0, 8000) : "";
@@ -214,9 +221,10 @@ if (!mechanicallyClear) {
     role: "reviewer",
     system:
       "You are the reviewer for an English trade-cost publication. You are not the writer. You decide " +
-      "whether a draft may be published unattended. You are shown the draft and the figures it was " +
-      "given; you are NOT shown the source documents, so you cannot confirm that a cited figure is " +
-      "real - judge only what the draft itself asserts and whether it is internally sound. Be hostile " +
+      "whether a draft may be published unattended. You are shown the draft and research-verified exact excerpts " +
+      "from this run's archived documents for each figure. Verify each article figure against only the matching " +
+      "excerpt; do not use memory. This checks excerpt citation, not the full document's context or the truth of its issuer. " +
+      "Reject material claims that are not represented by the supplied figure evidence. Be hostile " +
       "to unsupported claims, invented experience, and any drift into political, religious, military " +
       "or reputation commentary. Return only JSON.\n\n" +
       /*
@@ -260,10 +268,12 @@ if (!mechanicallyClear) {
       "  1. Never return a bare pass=false. Always cite at least one issue with a snippet.\n" +
       "  2. Order issues most severe first. issues[0] is the blocker.\n" +
       "  3. Quote the draft exactly. A snippet that does not appear in the draft is useless.\n" +
-      "  4. Do NOT flag a fact merely because you cannot confirm it. You cannot see the source\n" +
-      "     documents. Flag only: internal inconsistency, arithmetic not derivable from the figures\n" +
+      "  4. Compare every material figure claim with the supplied archived excerpt. Return one source_checks entry per figure, " +
+      "using its exact evidence_index, figure_value, source_url and verbatim quote. If any archive excerpt is missing, " +
+      "does not support its listed value, or does not match the draft, reject.\n" +
+      "  5. Also flag: internal inconsistency, arithmetic not derivable from the figures\n" +
       "     given, a dishonest confidence section, invented experience, or the risk line being crossed.\n" +
-      "  5. After the JSON object, on its own line, write exactly one of:\n" +
+      "  6. After the JSON object, on its own line, write exactly one of:\n" +
       "       VERDICT: APPROVED\n" +
       "       VERDICT: REJECTED\n" +
       "     Nothing after it. This line is read when the JSON cannot be parsed - it has saved a\n" +
@@ -271,7 +281,7 @@ if (!mechanicallyClear) {
     messages: [
       {
         role: "user",
-        content: `${directive ? `THE DIRECTIVE THE WRITER WAS GIVEN\n${directive}\n\n` : ""}THE DRAFT\n${text.slice(0, 60000)}\n\nAnswer with a JSON object:
+        content: `${directive ? `THE DIRECTIVE THE WRITER WAS GIVEN\n${directive}\n\n` : ""}RUN-VERIFIED ARCHIVED SOURCE EXCERPTS (each archive and value were checked locally; do not infer beyond the excerpts)\n${JSON.stringify(sourceEvidence.documents, null, 2)}\n\nTHE DRAFT\n${text.slice(0, 60000)}\n\nAnswer with a JSON object:
 {
   "pass": true or false,
   "checks": {
@@ -285,9 +295,12 @@ if (!mechanicallyClear) {
   "issues": [
     { "check": "...", "rule": "...", "snippet": "...", "why": "...", "fix_type": "..." }
   ],
+  "source_checks": [
+    { "evidence_index": 0, "figure_value": "exact figure value", "source_url": "exact URL", "quote": "the full exact archived excerpt", "supported": true }
+  ],
   "summary": "one sentence"
 }
-Set pass to false if any check is false. Every issue needs all five fields.`,
+Include exactly one source_checks entry per supplied figure, and set pass false if any figure is not supported. Every issue needs all five fields.`,
       },
     ],
     /*
@@ -390,8 +403,16 @@ Set pass to false if any check is false. Every issue needs all five fields.`,
       checks: r.json.checks ?? {},
       issues,
       summary: r.json.summary ?? "",
-      reviewer: `${r.provider}/${r.model}`,
-      independent: r.provider !== (flag("writer-provider", null) ?? r.provider),
+      reviewer: `${r.provider ?? "unknown"}/${r.model ?? "unknown"}`,
+      writer: `${flag("writer-provider", "unknown")}/${flag("writer-model", "unknown")}`,
+      independenceLevel: reviewIndependenceLevel(
+        { provider: flag("writer-provider", "unknown"), model: flag("writer-model", "unknown") },
+        { provider: r.provider, model: r.model },
+      ),
+      independent: isAcceptableReviewIndependence(reviewIndependenceLevel(
+        { provider: flag("writer-provider", "unknown"), model: flag("writer-model", "unknown") },
+        { provider: r.provider, model: r.model },
+      )),
     };
     if (r.json.pass !== true) {
       for (const i of issues) {
@@ -410,8 +431,13 @@ Set pass to false if any check is false. Every issue needs all five fields.`,
       }
     }
     if (!report.layers.L5.independent) {
-      report.reasons.push(`L5: the review used ${r.provider}, the same provider as the writer, so it is not an independent check`);
+      report.reasons.push(`L5: reviewer independence level ${report.layers.L5.independenceLevel ?? "unknown"} is below provider/model`);
     }
+    const sourceChecksPass = verifyDirectiveSourceChecks(sourceEvidence.documents, review?.source_checks);
+    report.layers.L5.sourceEvidenceStatus = sourceChecksPass ? "ARCHIVED_EXCERPT_MATCH" : "MISSING_OR_MISMATCHED_SOURCE_CHECKS";
+    report.layers.L5.sourceEvidenceFigures = sourceEvidence.documents.length;
+    report.layers.L5.pass = report.layers.L5.pass === true && sourceChecksPass;
+    if (!sourceChecksPass) report.reasons.push("L5: source-backed claim check is missing, incomplete, or does not exactly match the run's archived evidence excerpts");
   }
 }
 
@@ -429,6 +455,11 @@ report.verdict = Object.entries(report.layers)
   .every(([, l]) => l.pass)
   ? "APPROVED"
   : "REJECTED";
+/* Provider-level or model-level independence is required; credential-only is insufficient. */
+if (report.layers.L5 && report.layers.L5.independent !== true) {
+  report.verdict = "REJECTED";
+  report.reasons.push(`L5: reviewer independence level ${report.layers.L5.independenceLevel ?? "unknown"} is below provider/model; refusing unattended publication`);
+}
 
 if (AS_JSON) {
   console.log(JSON.stringify(report, null, 2));
@@ -449,10 +480,8 @@ if (AS_JSON) {
   console.log(`\n  verdict : ${report.verdict}`);
   console.log(`  usage today: ${u.calls} call(s), ${u.failed} failed, ~$${u.usd}, ${u.promptTokens} in / ${u.completionTokens} out`);
   console.log("");
-  console.log("  LIMIT: the reviewer read the draft, not the source documents. It can judge whether the");
-  console.log("  article is internally sound; it cannot tell a real figure from an invented one that");
-  console.log("  carries a real-looking citation. That is what the archived sources are for, and closing");
-  console.log("  that gap is the P2 evidence check specified in audit_protocol.md.");
+  console.log("  LIMIT: L5 checks exact excerpts from this run's archived sources, not the full document context;");
+  console.log("  the archive quote gate does not prove that an issuer is authoritative or that the interpretation is correct.");
 }
 
 if (report.verdict === "REJECTED") {
