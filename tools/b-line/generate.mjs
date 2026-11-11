@@ -308,7 +308,7 @@ while (!review.pass && review.canRevise && !review.needsHumanReview && revisionC
   console.log(`  b-line: reviewer feedback received; requesting evidence-bound revision ${revisionCount + 1}/2`);
   const revision = await ask({
     role: "writer",
-    temperature: 0.2,
+    temperature: 1,
     maxTokens: 8192,
     system: [
       "Revise the supplied article only from the supplied evidence and reviewer feedback. Never add a fact, number, causal claim, source, or citation from memory.",
