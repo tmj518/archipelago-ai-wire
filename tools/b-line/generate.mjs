@@ -222,11 +222,15 @@ const r = await ask({
   system: "You are a senior content strategist and SEO editor. You write from the documents you are given and you never invent a person, a product, a number or a link.",
   messages: [{ role: "user", content: prompt }],
   maxTokens: 8192,
-  temperature: 0.4,
+  temperature: 1,
 });
 
+if (!r?.ok) {
+  console.error(`  b-line: writer request failed (${r?.provider ?? "unknown"}/${r?.model ?? "unknown"}): ${String(r?.error ?? "unavailable").slice(0, 180)}`);
+  process.exit(1);
+}
 const text = String(r?.text ?? r?.content ?? "");
-console.log(`  b-line: writer returned ${text.length} chars in ${Math.round((Date.now() - started) / 1000)}s`);
+console.log(`  b-line: writer returned ${text.length} chars in ${Math.round((Date.now() - started) / 1000)}s via ${r.provider}/${r.model}`);
 
 if (/NO-SUBJECT/i.test(text)) {
   console.log("  b-line: the writer found nothing worth publishing today");
