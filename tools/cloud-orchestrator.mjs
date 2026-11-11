@@ -1141,16 +1141,6 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
    * a rejection whose cause was never printed. When the verdict cannot be parsed there is
    * nothing to pass back, so the loop stops and says so.
    */
-  if (reviewUnavailable && skipReview) {
-    /*
-     * B線 was told to publish without a review. A reviewer that returns nothing is the expected case
-     * there, not a reason to throw away a finished article - which is what happened three times on
-     * 2026-11-07 while the switch above only rewrote a verdict that this branch never read.
-     */
-    console.log("  reviewer   : skipped for B线 by instruction; publishing the draft");
-    run.reasons.push("B线: reviewer skipped by instruction");
-    continue;
-  }
   if (reviewUnavailable) {
     run.verdict = "REVIEW_UNPARSEABLE";
     run.reasons.push("the reviewer returned no usable verdict; nothing was passed back to the writer");

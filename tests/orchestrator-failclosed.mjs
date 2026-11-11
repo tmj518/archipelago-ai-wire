@@ -25,6 +25,7 @@ rec("ready state requires reviewer and registry", /qa\.verdict === "APPROVED"/.t
 
 /* 2. An unreadable review must not zero the failure code. */
 rec("review outage cannot be converted into approval", !/LAUNCH_MODE !== "0"/.test(src) && !/B_LINE_SKIP_REVIEW/.test(src), "review bypass is back");
+rec("review outage has no undefined review-bypass flag", !/\bskipReview\b/.test(src), "undeclared bypass reference remains");
 
 /* 3. The reviewer's objections must reach the log. */
 rec("reviewer rejection is not an advisory publish path", !/kind: "published-despite-review"/.test(src) && !/advisory only - publishing/.test(src), "objection bypass is back");

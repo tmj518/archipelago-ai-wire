@@ -34,30 +34,33 @@ jobs:
           pnpm install --frozen-lockfile
 
       - name: Record the failure
-
         if: always()
-
         run: |
-
           {
-
-            echo "## Failure record"
-
-            echo ""
-
-            echo "- workflow: `${{ github.event.workflow_run.name }}`"
-
-            echo "- conclusion: `${{ github.event.workflow_run.conclusion }}`"
-
-            echo "- run: `${{ github.event.workflow_run.html_url }}`"
-
-            echo "- attempt: `${{ github.event.workflow_run.run_attempt }}`"
-
-            echo "- branch: `${{ github.event.workflow_run.head_branch }}`"
-
-            echo "- note: recorded whether or not the card is delivered"
-
+            printf '%s\n' '## Failure record' ''
+            printf '%s' '- workflow: '
+            printf '%s' "$SOURCE_WORKFLOW" | tr '\r\n' ' '
+            printf '\n'
+            printf '%s' '- conclusion: '
+            printf '%s' "$SOURCE_CONCLUSION" | tr '\r\n' ' '
+            printf '\n'
+            printf '%s' '- run: '
+            printf '%s' "$SOURCE_RUN_URL" | tr '\r\n' ' '
+            printf '\n'
+            printf '%s' '- attempt: '
+            printf '%s' "$SOURCE_RUN_ATTEMPT" | tr '\r\n' ' '
+            printf '\n'
+            printf '%s' '- branch: '
+            printf '%s' "$SOURCE_BRANCH" | tr '\r\n' ' '
+            printf '\n'
+            printf '%s\n' '- note: recorded whether or not the card is delivered'
           } >> "$GITHUB_STEP_SUMMARY"
+        env:
+          SOURCE_WORKFLOW: ${{ github.event.workflow_run.name }}
+          SOURCE_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          SOURCE_RUN_URL: ${{ github.event.workflow_run.html_url }}
+          SOURCE_RUN_ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
+          SOURCE_BRANCH: ${{ github.event.workflow_run.head_branch }}
 
       - name: Classify failed job and step
         id: failure_steps
