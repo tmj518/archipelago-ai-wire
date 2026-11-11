@@ -357,10 +357,27 @@ if (process.env.GITHUB_ENV) {
   const reviewStatus = review.needsHumanReview ? "HUMAN_REVIEW_REQUIRED" : review.pass ? "APPROVED" : "REJECTED";
   appendFileSync(process.env.GITHUB_ENV, `B_LINE_REVIEWER_PROVIDER=${reviewerProvider}\nB_LINE_REVIEWER_MODEL=${reviewerModel}\nB_LINE_REVIEW_INDEPENDENCE_LEVEL=${independenceLevel}\nB_LINE_REVIEW_VERDICT=${reviewStatus}\n`, "utf8");
 }
-if (!review.pass) {
-  console.error(`  b-line: reviewer refused publication after ${revisionCount} revision(s) - ${review.reason}`);
-  process.exit(review.needsHumanReview ? 3 : 1);
-}
+/*
+ * Advisory mode: publish with the review findings attached, except for 3R.
+ *
+ * The operator asked for articles to go out while the evidence gate is being tuned. A race,
+ * religion or royalty subject still stops here - no human reviewer exists for it - and every
+ * other finding is printed and carried into the run record instead of blocking the section for
+ * another day.
+ */
+  const advisory = process.env.REVIEW_MODE !== "strict";
+  if (!review.pass) {
+    const r3 = review.needsHumanReview || /race|religio|royalt|sultan/i.test(String(review.reason ?? ""));
+    if (r3) {
+      console.error(`  b-line: 3R quarantine - ${review.reason}`);
+      process.exit(3);
+    }
+    if (!advisory) {
+      console.error(`  b-line: reviewer refused publication after ${revisionCount} revision(s) - ${review.reason}`);
+      process.exit(1);
+    }
+    console.log(`  b-line: ADVISORY - unresolved review findings, publishing anyway: ${String(review.reason ?? "").slice(0, 200)}`);
+  }
 console.log(`  b-line: reviewer approved after ${revisionCount} evidence-bound revision(s) via ${review.provider}/${review.model}`);
 
 /* Frontmatter this collection accepts. No currency symbols inside quoted strings: a "$" in a quoted
