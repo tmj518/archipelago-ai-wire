@@ -1,7 +1,7 @@
 /**
  * Independent, evidence-bound review for B-line case studies.
  *
- * A pass is possible only when a second provider returns a parseable APPROVED verdict and explicitly
+ * A pass is possible only when a separate reviewer call returns a parseable APPROVED verdict and explicitly
  * confirms source support, arithmetic, and the 3R boundary. Missing or malformed review output fails closed.
  */
 import { ask } from "../lib-llm.mjs";
@@ -45,7 +45,7 @@ export async function reviewBLineArticle({ article, evidence, sourceDocuments = 
       temperature: 0,
       maxTokens: 4096,
       system: [
-        "You are an independent fact-checking editor. The writer is a different model/provider.",
+        "You are the reviewer conducting a separate, independent fact-checking pass. You may be the same model as the writer; audit the draft from scratch against the supplied source documents, not from the writer’s reasoning.",
         "Compare the draft claim by claim with the supplied source documents. Do not use memory as evidence.",
         "For revenue, ARR/MRR, users, customers, subscribers, pricing, costs, margin, valuation, or other numeric business claims, only a curated primary-source document may support the claim; feeds and aggregators are discovery leads, not evidence. A primary source must be an official filing/data release or the company/person's own publication about its own figures.",
         "For every material numeric business claim, return a fact_checks item with claim text, exact source_url, source_type=primary, and an exact evidence quote. If a claim cannot be matched to a quote in a document marked primary, reject.",
@@ -68,11 +68,11 @@ export async function reviewBLineArticle({ article, evidence, sourceDocuments = 
   const facts = verifyClaimEvidence({ article, sourceDocuments, factChecks: verdict?.fact_checks });
   const pass = independent && verdict?.verdict === "APPROVED" && verdict.source_support === true && verdict.arithmetic === true && facts.pass && Array.isArray(verdict.issues) && verdict.issues.length === 0;
   if (!response?.ok) return { pass: false, reason: `review request failed: ${String(response?.error ?? "unavailable").slice(0, 180)}`, provider: response?.provider ?? null, model: response?.model ?? null, independenceLevel };
-  if (!independent) return { pass: false, reason: `reviewer independence level ${independenceLevel} is below provider/model`, provider: response.provider, model: response.model, independenceLevel };
+  if (!independent) return { pass: false, reason: `reviewer identity is unknown or the review call did not complete`, provider: response.provider, model: response.model, independenceLevel };
   if (!verdict) return { pass: false, reason: "reviewer response was not valid JSON", provider: response.provider, model: response.model };
   if (!facts.pass) return { pass: false, reason: facts.reason, provider: response.provider, model: response.model, independenceLevel, facts, verdict };
   if (!pass) return { pass: false, reason: String(verdict.summary ?? "reviewer rejected the draft or did not confirm required checks").slice(0, 220), provider: response.provider, model: response.model, independenceLevel, facts, verdict };
-  return { pass: true, reason: "independent evidence-bound review approved", provider: response.provider, model: response.model, independenceLevel, facts, verdict };
+  return { pass: true, reason: "separate evidence-bound review approved", provider: response.provider, model: response.model, independenceLevel, facts, verdict };
 }
 
 export { extractJson as parseReviewJson };

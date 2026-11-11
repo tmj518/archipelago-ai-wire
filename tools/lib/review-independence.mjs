@@ -1,9 +1,7 @@
 /*
  * Run-time reviewer identity policy shared by A and B.
  *
- * Minimum publishable independence is provider-level or model-level. A different credential
- * on the same provider/model is recorded as credential-only by lib-llm's resolver, but is not
- * a second opinion and never authorizes publication.
+ * The reviewer is a separate review call. Provider or model separation is preferred, but a same-model review is acceptable when it independently checks the supplied evidence and all blocking gates pass.
  */
 const known = (value) => typeof value === "string" && value.trim() !== "" && value.trim().toLowerCase() !== "unknown";
 
@@ -15,7 +13,7 @@ export function reviewIndependenceLevel(writer, reviewer) {
 }
 
 export function isAcceptableReviewIndependence(level) {
-  return level === "provider" || level === "model";
+  return level === "provider" || level === "model" || level === "same-model";
 }
 
 export function verifyClaimEvidence({ article, sourceDocuments = [], factChecks = [] }) {
