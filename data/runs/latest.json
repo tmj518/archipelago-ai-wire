@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-11T21:43:33.536Z",
-  "runId": "43105111858",
+  "at": "2026-11-12T00:19:32.356Z",
+  "runId": "43126228794",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "92bf6cc94d235a17718e0e1e7b22b360fc801d51",
+  "executionSha": "fbc2dd5f1cdf2499fca0b47eda259eafe2069855",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "1 previous run(s), last 2026-11-11T11:33:53.874Z (FAILED)"
+      "detail": "2 previous run(s), last 2026-11-11T21:45:14.230Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,30 +33,20 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "t-mobile-50gb-cap-low-income-broadband-settlement from /data/directive.json"
+      "detail": "budget-2027-stamp-duty-exemption-abandoned-housing-rehabilitation from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
-      "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
-    },
-    {
-      "name": "writer (revision 1)",
-      "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
-    },
-    {
-      "name": "writer (revision 2)",
       "ok": true,
-      "detail": "draft at /data/drafts/t-mobile-50gb-cap-low-income-broadband-settlement.md"
+      "detail": "draft at /data/drafts/budget-2027-stamp-duty-exemption-abandoned-housing-rehabilitation.md"
     },
     {
-      "name": "reviewer (revision 2)",
+      "name": "reviewer",
       "ok": false,
       "detail": "no parseable verdict"
     },
@@ -87,11 +77,11 @@
     "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 9,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0323,
-    "promptTokens": 118705,
-    "completionTokens": 14711
+    "usd": 0.0108,
+    "promptTokens": 38187,
+    "completionTokens": 5555
   },
   "route": "script",
   "categoryActivity": {
@@ -104,12 +94,12 @@
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 70,
+  "seconds": 24,
   "orchestratorVerdict": "REVIEW_UNPARSEABLE",
-  "finalizationKey": "43105111858:1",
-  "finalizedAt": "2026-11-11T21:45:14.230Z",
+  "finalizationKey": "43126228794:1",
+  "finalizedAt": "2026-11-12T00:20:21.847Z",
   "productionUrl": null,
-  "executionConclusion": "success",
+  "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {
     "status": "skipped"
