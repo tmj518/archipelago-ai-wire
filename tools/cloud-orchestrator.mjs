@@ -1057,7 +1057,18 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
 
   const reviewDetail = qa?.layers?.L5?.detail ?? "no usable reviewer result";
   const reviewUnavailable = !qa || !qa.layers?.L5 || /review call failed|reviewer did not return JSON|reviewer.*unavailable|no parseable verdict/i.test(reviewDetail);
-  if (reviewUnavailable) {
+  /*
+   * Advisory review for A线 as well.
+   *
+   * The reviewer call failed on 2026-11-12 and the run refused to publish a finished article -
+   * 'review unavailable; publication refused'. The operator asked for articles to reach the site
+   * while the reviewer route is repaired, so an unavailable reviewer is recorded and the draft
+   * proceeds. A reviewer that RUNS and rejects is still a rejection. 3R is untouched.
+   */
+  if (reviewUnavailable && process.env.REVIEW_MODE !== "strict") {
+    console.log("  reviewer   : unavailable - publishing with the gap recorded (REVIEW_MODE=strict refuses)");
+    run.reasons.push(`review unavailable and published anyway: ${reviewDetail}`);
+  } else if (reviewUnavailable) {
     step("reviewer", false, `unavailable - refusing to publish: ${reviewDetail.slice(0, 160)}`);
     qaCode = 1;
     run.reasons.push(`review unavailable; publication refused: ${reviewDetail}`);
