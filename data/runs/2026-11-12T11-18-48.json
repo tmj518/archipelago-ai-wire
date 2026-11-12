@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-12T11:18:48.883Z",
+  "route": "script",
+  "runId": "43207777638",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "workflow_dispatch",
+  "executionSha": "e7cb254bdd17a29765145525c5aca57139267019",
+  "steps": [
+    {
+      "name": "daily quota",
+      "ok": true,
+      "detail": "already published today: arvid-kahl-feedbackpanda-bootstrapped-founder"
+    }
+  ],
+  "verdict": "QUIET",
+  "publicationStatus": "QUIET",
+  "article": "arvid-kahl-feedbackpanda-bootstrapped-founder",
+  "commit": null,
+  "reviewer": {
+    "status": "NOT_RUN"
+  },
+  "registry": {
+    "status": "NOT_RUN"
+  },
+  "reasons": []
+}
