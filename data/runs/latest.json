@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-12T08:09:23.147Z",
-  "runId": "43180466367",
+  "at": "2026-11-12T10:38:33.940Z",
+  "runId": "43201919024",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "workflow_dispatch",
-  "executionSha": "7ea6e5bd17695e3215ea7d23c55d606896eefe92",
+  "executionSha": "6e5d2b3e3d5f99f3c69b3d76e8a4d0074c7cb3d8",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "9 previous run(s), last 2026-11-12T06:34:37.040Z (FAILED)"
+      "detail": "10 previous run(s), last 2026-11-12T08:09:59.866Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "national-ai-readiness-week-2026-five-million-ai-ready-malaysians from /data/directive.json"
+      "detail": "sarawak-art-rembus-northbank-pilot-launch-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "5 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/national-ai-readiness-week-2026-five-million-ai-ready-malaysians.md"
+      "detail": "draft at /data/drafts/sarawak-art-rembus-northbank-pilot-launch-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,12 +53,12 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/national-ai-readiness-week-2026-five-million-ai-ready-malaysians.md"
+      "detail": "staged at src/content/blog/sarawak-art-rembus-northbank-pilot-launch-2026.md"
     },
     {
       "name": "registry",
-      "ok": false,
-      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.2/x64/bin/node /home/runner/work/archipelago-ai-wire"
+      "ok": true,
+      "detail": "rebuilt"
     },
     {
       "name": "inbound links",
@@ -68,14 +68,14 @@
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict REGISTRY_FAILED"
+      "detail": "verdict REVIEW_UNAVAILABLE"
     }
   ],
   "verdict": "FAILED",
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve",
-    "refusing publication: reviewer=UNAVAILABLE, registry=FAILED"
+    "refusing publication: reviewer=UNAVAILABLE, registry=REBUILT"
   ],
   "article": null,
   "commit": null,
@@ -85,15 +85,14 @@
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "FAILED",
-    "detail": "Command failed: /opt/hostedtoolcache/node/24.22.2/x64/bin/node /home/runner/work/archipelago-ai-wire/archipelago-ai-wire/tools/build-instruments.mjs\nnode:fs:2482\n    return binding"
+    "status": "REBUILT"
   },
   "usage": {
-    "calls": 2,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0162,
-    "promptTokens": 38081,
-    "completionTokens": 5350
+    "usd": 0.0113,
+    "promptTokens": 40976,
+    "completionTokens": 5172
   },
   "route": "script",
   "categoryActivity": {
@@ -116,9 +115,9 @@
   ],
   "qa": null,
   "seconds": 28,
-  "orchestratorVerdict": "REGISTRY_FAILED",
-  "finalizationKey": "43180466367:1",
-  "finalizedAt": "2026-11-12T08:09:59.866Z",
+  "orchestratorVerdict": "REVIEW_UNAVAILABLE",
+  "finalizationKey": "43201919024:1",
+  "finalizedAt": "2026-11-12T10:39:09.839Z",
   "productionUrl": null,
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",

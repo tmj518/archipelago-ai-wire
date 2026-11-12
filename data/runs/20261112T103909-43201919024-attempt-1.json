@@ -1,9 +1,9 @@
 {
-  "at": "2026-11-11T21:45:14Z",
-  "sha": "92bf6cc94d235a17718e0e1e7b22b360fc801d51",
-  "run": "43105111858",
+  "at": "2026-11-12T10:39:09Z",
+  "sha": "6e5d2b3e3d5f99f3c69b3d76e8a4d0074c7cb3d8",
+  "run": "43201919024",
   "run_attempt": "1",
-  "workflow_status": "success",
+  "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
   "article": null,
@@ -13,7 +13,7 @@
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "live_checks": {
     "status": "skipped"

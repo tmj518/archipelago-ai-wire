@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-12T08:09:59.866Z",
+  "lastRun": "2026-11-12T10:39:09.839Z",
   "lastVerdict": "FAILED",
   "lastArticle": null,
-  "runs": 10,
+  "runs": 11,
   "published": 0,
   "lastUsage": {
-    "calls": 2,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0162,
-    "promptTokens": 38081,
-    "completionTokens": 5350
+    "usd": 0.0113,
+    "promptTokens": 40976,
+    "completionTokens": 5172
   },
-  "lastFinalizedRunId": "43180466367",
+  "lastFinalizedRunId": "43201919024",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43180466367:1",
+  "lastFinalizedKey": "43201919024:1",
   "finalizedRuns": {
-    "43180466367": {
+    "43201919024": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43180466367:1"
+      "finalizationKey": "43201919024:1"
     }
   },
   "publishedRunIds": [],
@@ -28,8 +28,7 @@
     "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "FAILED",
-    "detail": "Command failed: /opt/hostedtoolcache/node/24.22.2/x64/bin/node /home/runner/work/archipelago-ai-wire/archipelago-ai-wire/tools/build-instruments.mjs\nnode:fs:2482\n    return binding"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
