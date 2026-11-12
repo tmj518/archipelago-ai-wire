@@ -1,9 +1,9 @@
 {
-  "at": "2026-11-11T11:33:53Z",
-  "sha": "a795e9f99e8c37b813b5bcae31938265e496645d",
-  "run": "43012547942",
+  "at": "2026-11-12T08:09:59Z",
+  "sha": "7ea6e5bd17695e3215ea7d23c55d606896eefe92",
+  "run": "43180466367",
   "run_attempt": "1",
-  "workflow_status": "success",
+  "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
   "article": null,
@@ -13,7 +13,8 @@
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "FAILED",
+    "detail": "Command failed: /opt/hostedtoolcache/node/24.22.2/x64/bin/node /home/runner/work/archipelago-ai-wire/archipelago-ai-wire/tools/build-instruments.mjs\nnode:fs:2482\n    return binding"
   },
   "live_checks": {
     "status": "skipped"

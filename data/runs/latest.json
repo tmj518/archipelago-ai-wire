@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-12T06:34:01.416Z",
-  "runId": "43168827257",
+  "at": "2026-11-12T08:09:23.147Z",
+  "runId": "43180466367",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "workflow_dispatch",
-  "executionSha": "f8efcfa1751d13e8d981f73c416d17d4be3d5e8b",
+  "executionSha": "7ea6e5bd17695e3215ea7d23c55d606896eefe92",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "8 previous run(s), last 2026-11-12T06:25:58.100Z (FAILED)"
+      "detail": "9 previous run(s), last 2026-11-12T06:34:37.040Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "malaysia-ccus-roadmap-end-november-2026-kuantan-kerteh from /data/directive.json"
+      "detail": "national-ai-readiness-week-2026-five-million-ai-ready-malaysians from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/malaysia-ccus-roadmap-end-november-2026-kuantan-kerteh.md"
+      "detail": "draft at /data/drafts/national-ai-readiness-week-2026-five-million-ai-ready-malaysians.md"
     },
     {
       "name": "reviewer",
@@ -51,16 +51,31 @@
       "detail": "no parseable verdict"
     },
     {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/national-ai-readiness-week-2026-five-million-ai-ready-malaysians.md"
+    },
+    {
+      "name": "registry",
+      "ok": false,
+      "detail": "rebuild failed: Command failed: /opt/hostedtoolcache/node/24.22.2/x64/bin/node /home/runner/work/archipelago-ai-wire"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
       "name": "state written",
       "ok": true,
-      "detail": "verdict REVIEW_UNAVAILABLE"
+      "detail": "verdict REGISTRY_FAILED"
     }
   ],
   "verdict": "FAILED",
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
-    "review unavailable; publishing anyway (REVIEW_MODE!=strict)",
-    "the reviewer did not approve"
+    "the reviewer did not approve",
+    "refusing publication: reviewer=UNAVAILABLE, registry=FAILED"
   ],
   "article": null,
   "commit": null,
@@ -70,14 +85,15 @@
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "FAILED",
+    "detail": "Command failed: /opt/hostedtoolcache/node/24.22.2/x64/bin/node /home/runner/work/archipelago-ai-wire/archipelago-ai-wire/tools/build-instruments.mjs\nnode:fs:2482\n    return binding"
   },
   "usage": {
-    "calls": 3,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0165,
-    "promptTokens": 38930,
-    "completionTokens": 5479
+    "usd": 0.0162,
+    "promptTokens": 38081,
+    "completionTokens": 5350
   },
   "route": "script",
   "categoryActivity": {
@@ -99,10 +115,10 @@
     }
   ],
   "qa": null,
-  "seconds": 29,
-  "orchestratorVerdict": "REVIEW_UNAVAILABLE",
-  "finalizationKey": "43168827257:1",
-  "finalizedAt": "2026-11-12T06:34:37.040Z",
+  "seconds": 28,
+  "orchestratorVerdict": "REGISTRY_FAILED",
+  "finalizationKey": "43180466367:1",
+  "finalizedAt": "2026-11-12T08:09:59.866Z",
   "productionUrl": null,
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",
