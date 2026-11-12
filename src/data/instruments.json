@@ -1,0 +1,1974 @@
+{
+  "generated": "2026-11-12",
+  "instruments": [
+    {
+      "id": "bernama-citing-miti-19-oct-2026",
+      "source": "Bernama citing MITI, 19 Oct 2026",
+      "figures": [
+        {
+          "articleSlug": "malaysia-exports-record-rm215-billion-september-2026",
+          "articleNum": 0,
+          "value": "215.11",
+          "unit": "RM billion",
+          "period": "September 2026",
+          "source": "Bernama citing MITI, 19 Oct 2026",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "malaysia-exports-record-rm215-billion-september-2026",
+          "articleNum": 0,
+          "value": "396.5",
+          "unit": "RM billion",
+          "period": "September 2026",
+          "source": "Bernama citing MITI, 19 Oct 2026",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "malaysia-exports-record-rm215-billion-september-2026",
+          "articleNum": 0,
+          "value": "181.39",
+          "unit": "RM billion",
+          "period": "September 2026",
+          "source": "Bernama citing MITI, 19 Oct 2026",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "malaysia-exports-record-rm215-billion-september-2026",
+          "articleNum": 0,
+          "value": "33.72",
+          "unit": "RM billion",
+          "period": "September 2026",
+          "source": "Bernama citing MITI, 19 Oct 2026",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "malaysia-exports-record-rm215-billion-september-2026",
+          "articleNum": 0,
+          "value": "21.45",
+          "unit": "RM billion",
+          "period": "September 2026",
+          "source": "Bernama citing MITI, 19 Oct 2026",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "malaysia-exports-record-rm215-billion-september-2026",
+          "articleNum": 0,
+          "value": "38.03",
+          "unit": "RM billion",
+          "period": "September 2026",
+          "source": "Bernama citing MITI, 19 Oct 2026",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "malaysia-exports-record-rm215-billion-september-2026",
+          "articleNum": 0,
+          "value": "59.55",
+          "unit": "RM billion",
+          "period": "September 2026",
+          "source": "Bernama citing MITI, 19 Oct 2026",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "malaysia-exports-record-rm215-billion-september-2026",
+          "articleNum": 0,
+          "value": "2.91",
+          "unit": "RM trillion",
+          "period": "January to September 2026",
+          "source": "Bernama citing MITI, 19 Oct 2026",
+          "retrieved": "2026-10-29"
+        }
+      ],
+      "articleNums": [
+        0
+      ],
+      "articleSlugs": [
+        "malaysia-exports-record-rm215-billion-september-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "department-of-statistics-malaysia-dosm",
+      "source": "Department of Statistics Malaysia (DOSM)",
+      "figures": [
+        {
+          "articleSlug": "malaysia-births-deaths-2010-2019-vital-statistics",
+          "articleNum": 22,
+          "value": "1.5 per cent",
+          "unit": "percentage decrease in live births",
+          "period": "2010 to 2019",
+          "source": "Department of Statistics Malaysia (DOSM)",
+          "retrieved": "2026-10-28"
+        },
+        {
+          "articleSlug": "malaysia-births-deaths-2010-2019-vital-statistics",
+          "articleNum": 22,
+          "value": "29.1 per cent",
+          "unit": "percentage increase in deaths",
+          "period": "2010 to 2019",
+          "source": "Department of Statistics Malaysia (DOSM)",
+          "retrieved": "2026-10-28"
+        },
+        {
+          "articleSlug": "malaysia-births-deaths-2010-2019-vital-statistics",
+          "articleNum": 22,
+          "value": "15.2 births",
+          "unit": "crude birth rate per 1,000 population",
+          "period": "2019",
+          "source": "Department of Statistics Malaysia (DOSM)",
+          "retrieved": "2026-10-28"
+        },
+        {
+          "articleSlug": "malaysia-births-deaths-2010-2019-vital-statistics",
+          "articleNum": 22,
+          "value": "5.4 deaths",
+          "unit": "crude death rate per 1,000 population",
+          "period": "2019",
+          "source": "Department of Statistics Malaysia (DOSM)",
+          "retrieved": "2026-10-28"
+        },
+        {
+          "articleSlug": "malaysia-births-deaths-2010-2019-vital-statistics",
+          "articleNum": 22,
+          "value": "2.0 children",
+          "unit": "total fertility rate (TFR) per woman aged 15-49",
+          "period": "starting from 2015",
+          "source": "Department of Statistics Malaysia (DOSM)",
+          "retrieved": "2026-10-28"
+        },
+        {
+          "articleSlug": "malaysia-births-deaths-2010-2019-vital-statistics",
+          "articleNum": 22,
+          "value": "20,504 deaths",
+          "unit": "highest number of deaths by age group",
+          "period": "2019",
+          "source": "Department of Statistics Malaysia (DOSM)",
+          "retrieved": "2026-10-28"
+        },
+        {
+          "articleSlug": "malaysia-births-deaths-2010-2019-vital-statistics",
+          "articleNum": 22,
+          "value": "7.6 deaths",
+          "unit": "highest crude death rate per 1,000 population",
+          "period": "2019",
+          "source": "Department of Statistics Malaysia (DOSM)",
+          "retrieved": "2026-10-28"
+        },
+        {
+          "articleSlug": "malaysia-births-deaths-2010-2019-vital-statistics",
+          "articleNum": 22,
+          "value": "23.7 births",
+          "unit": "highest crude birth rate per 1,000 population",
+          "period": "2019",
+          "source": "Department of Statistics Malaysia (DOSM)",
+          "retrieved": "2026-10-28"
+        }
+      ],
+      "articleNums": [
+        22
+      ],
+      "articleSlugs": [
+        "malaysia-births-deaths-2010-2019-vital-statistics"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "mida-media-release",
+      "source": "MIDA media release",
+      "figures": [
+        {
+          "articleSlug": "ferrotec-second-kulim-plant-semiconductor-jobs",
+          "articleNum": 39,
+          "value": "over 1,000",
+          "unit": "new high-value jobs",
+          "period": "2026",
+          "source": "MIDA media release",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "ferrotec-second-kulim-plant-semiconductor-jobs",
+          "articleNum": 39,
+          "value": "RM1.9 billion",
+          "unit": "cumulative investment for the two Kulim plants",
+          "period": "2024-2026",
+          "source": "MIDA media release",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "ferrotec-second-kulim-plant-semiconductor-jobs",
+          "articleNum": 39,
+          "value": "RM900 million",
+          "unit": "initial investment in first Kulim facility",
+          "period": "January 2024",
+          "source": "MIDA media release",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "ferrotec-second-kulim-plant-semiconductor-jobs",
+          "articleNum": 39,
+          "value": "RM1 billion",
+          "unit": "additional investment for expansion in Kulim",
+          "period": "2026",
+          "source": "MIDA media release",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "ferrotec-second-kulim-plant-semiconductor-jobs",
+          "articleNum": 39,
+          "value": "over 2,200",
+          "unit": "people employed at Kulim operations",
+          "period": "2026",
+          "source": "MIDA media release",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "ferrotec-second-kulim-plant-semiconductor-jobs",
+          "articleNum": 39,
+          "value": "nearly one million",
+          "unit": "square feet of highly automated manufacturing space",
+          "period": "2026",
+          "source": "MIDA media release",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "ferrotec-second-kulim-plant-semiconductor-jobs",
+          "articleNum": 39,
+          "value": "over 700",
+          "unit": "high-precision CNC machines",
+          "period": "2026",
+          "source": "MIDA media release",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "ferrotec-second-kulim-plant-semiconductor-jobs",
+          "articleNum": 39,
+          "value": "28 October 2026",
+          "unit": "date of official opening of Plant 2",
+          "period": "2026",
+          "source": "MIDA media release",
+          "retrieved": "2026-11-05"
+        }
+      ],
+      "articleNums": [
+        39
+      ],
+      "articleSlugs": [
+        "ferrotec-second-kulim-plant-semiconductor-jobs"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "mida-media-release-on-safran-landing-systems",
+      "source": "MIDA media release on Safran Landing Systems",
+      "figures": [
+        {
+          "articleSlug": "safran-sendayan-nilai-carbon-brake-mro-expansion-2026",
+          "articleNum": 31,
+          "value": "€134 million",
+          "unit": "investment in the Sendayan facility expansion",
+          "period": "announced 28 October 2026",
+          "source": "MIDA media release on Safran Landing Systems",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "safran-sendayan-nilai-carbon-brake-mro-expansion-2026",
+          "articleNum": 31,
+          "value": "7,000 square meters",
+          "unit": "additional advanced manufacturing space at Sendayan",
+          "period": "announced 28 October 2026",
+          "source": "MIDA media release on Safran Landing Systems",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "safran-sendayan-nilai-carbon-brake-mro-expansion-2026",
+          "articleNum": 31,
+          "value": "160 people",
+          "unit": "current employees at the Sendayan site",
+          "period": "as of 28 October 2026",
+          "source": "MIDA media release on Safran Landing Systems",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "safran-sendayan-nilai-carbon-brake-mro-expansion-2026",
+          "articleNum": 31,
+          "value": "€2 million",
+          "unit": "investment in the new Nilai MRO centre",
+          "period": "announced 28 October 2026",
+          "source": "MIDA media release on Safran Landing Systems",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "safran-sendayan-nilai-carbon-brake-mro-expansion-2026",
+          "articleNum": 31,
+          "value": "1,000 square meter",
+          "unit": "floor area of the new Nilai MRO centre",
+          "period": "announced 28 October 2026",
+          "source": "MIDA media release on Safran Landing Systems",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "safran-sendayan-nilai-carbon-brake-mro-expansion-2026",
+          "articleNum": 31,
+          "value": "220 employees",
+          "unit": "planned workforce in Malaysia across industrial and MRO operations",
+          "period": "by 2030",
+          "source": "MIDA media release on Safran Landing Systems",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "safran-sendayan-nilai-carbon-brake-mro-expansion-2026",
+          "articleNum": 31,
+          "value": "60%",
+          "unit": "reduction in greenhouse gas emissions at the Sendayan site",
+          "period": "between 2018 and 2025",
+          "source": "MIDA media release on Safran Landing Systems",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "safran-sendayan-nilai-carbon-brake-mro-expansion-2026",
+          "articleNum": 31,
+          "value": "20 kilometers",
+          "unit": "distance from the Nilai MRO centre to Sendayan",
+          "period": "as of 28 October 2026",
+          "source": "MIDA media release on Safran Landing Systems",
+          "retrieved": "2026-11-02"
+        }
+      ],
+      "articleNums": [
+        31
+      ],
+      "articleSlugs": [
+        "safran-sendayan-nilai-carbon-brake-mro-expansion-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "ministry-of-health-statement-reported-by-malay-mail",
+      "source": "Ministry of Health statement, reported by Malay Mail",
+      "figures": [
+        {
+          "articleSlug": "moh-health-posts-11969-filled-2027-placement",
+          "articleNum": 43,
+          "value": "11,969",
+          "unit": "posts filled",
+          "period": "2026",
+          "source": "Ministry of Health statement, reported by Malay Mail",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "moh-health-posts-11969-filled-2027-placement",
+          "articleNum": 43,
+          "value": "18,640",
+          "unit": "approved positions",
+          "period": "2026",
+          "source": "Ministry of Health statement, reported by Malay Mail",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "moh-health-posts-11969-filled-2027-placement",
+          "articleNum": 43,
+          "value": "64.21 per cent",
+          "unit": "share of approved posts filled",
+          "period": "2026",
+          "source": "Ministry of Health statement, reported by Malay Mail",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "moh-health-posts-11969-filled-2027-placement",
+          "articleNum": 43,
+          "value": "6,671",
+          "unit": "posts still being filled",
+          "period": "2026",
+          "source": "Ministry of Health statement, reported by Malay Mail",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "moh-health-posts-11969-filled-2027-placement",
+          "articleNum": 43,
+          "value": "2,418",
+          "unit": "officers expected to complete procedures this year",
+          "period": "2026",
+          "source": "Ministry of Health statement, reported by Malay Mail",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "moh-health-posts-11969-filled-2027-placement",
+          "articleNum": 43,
+          "value": "4,253",
+          "unit": "officers to be placed next year",
+          "period": "2027",
+          "source": "Ministry of Health statement, reported by Malay Mail",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "moh-health-posts-11969-filled-2027-placement",
+          "articleNum": 43,
+          "value": "3,061",
+          "unit": "officers appointed this year but placed early next year",
+          "period": "2026-2027",
+          "source": "Ministry of Health statement, reported by Malay Mail",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "moh-health-posts-11969-filled-2027-placement",
+          "articleNum": 43,
+          "value": "1,192",
+          "unit": "officers whose appointment and placement finish in 2027",
+          "period": "2027",
+          "source": "Ministry of Health statement, reported by Malay Mail",
+          "retrieved": "2026-11-06"
+        }
+      ],
+      "articleNums": [
+        43
+      ],
+      "articleSlugs": [
+        "moh-health-posts-11969-filled-2027-placement"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "royal-malaysian-customs-department-mysst-portal",
+      "source": "Royal Malaysian Customs Department, MySST portal",
+      "figures": [
+        {
+          "articleSlug": "service-tax-construction-guide-amendment-november-2026",
+          "articleNum": 48,
+          "value": "06/11/2026",
+          "unit": "date of publication",
+          "period": "2026-11-06",
+          "source": "Royal Malaysian Customs Department, MySST portal",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "service-tax-construction-guide-amendment-november-2026",
+          "articleNum": 48,
+          "value": "19/03/2026",
+          "unit": "date of original guide",
+          "period": "2026-03-19",
+          "source": "Royal Malaysian Customs Department, MySST portal",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "service-tax-construction-guide-amendment-november-2026",
+          "articleNum": 48,
+          "value": "Service Tax Policy No. 6/2024 (Amendment No.3)",
+          "unit": "policy document",
+          "period": "2026-11-03",
+          "source": "Royal Malaysian Customs Department, MySST portal",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "service-tax-construction-guide-amendment-november-2026",
+          "articleNum": 48,
+          "value": "Service Tax Policy No. 3/2026 (Amendment No.1)",
+          "unit": "policy document",
+          "period": "2026-11-03",
+          "source": "Royal Malaysian Customs Department, MySST portal",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "service-tax-construction-guide-amendment-november-2026",
+          "articleNum": 48,
+          "value": "Service Tax (Digital Services) (Amendment) Regulations 2026",
+          "unit": "regulation",
+          "period": "2026-10-27",
+          "source": "Royal Malaysian Customs Department, MySST portal",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "service-tax-construction-guide-amendment-november-2026",
+          "articleNum": 48,
+          "value": "Service Tax Policy No. 6/2026 (Amendment No.1)",
+          "unit": "policy document",
+          "period": "2026-10-26",
+          "source": "Royal Malaysian Customs Department, MySST portal",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "service-tax-construction-guide-amendment-november-2026",
+          "articleNum": 48,
+          "value": "Sales Tax (Imposition Of Sales Tax In Respect Of Designated Areas) (Amendment) Order 2025",
+          "unit": "order",
+          "period": "2026-10-22",
+          "source": "Royal Malaysian Customs Department, MySST portal",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "service-tax-construction-guide-amendment-november-2026",
+          "articleNum": 48,
+          "value": "Service Tax Policy No. 6/2026",
+          "unit": "policy document",
+          "period": "2026-10-07",
+          "source": "Royal Malaysian Customs Department, MySST portal",
+          "retrieved": "2026-11-10"
+        }
+      ],
+      "articleNums": [
+        48
+      ],
+      "articleSlugs": [
+        "service-tax-construction-guide-amendment-november-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "economy-minister-akmal-nasir-as-reported-by-fmt",
+      "source": "Economy Minister Akmal Nasir, as reported by FMT",
+      "figures": [
+        {
+          "articleSlug": "js-sez-rm88-8bil-approved-investments-jscmc-2026",
+          "articleNum": 35,
+          "value": "RM88.83 billion",
+          "unit": "approved investments",
+          "period": "January 2025 to June 2026",
+          "source": "Economy Minister Akmal Nasir, as reported by FMT",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "js-sez-rm88-8bil-approved-investments-jscmc-2026",
+          "articleNum": 35,
+          "value": "28,755",
+          "unit": "potential jobs",
+          "period": "January 2025 to June 2026",
+          "source": "Economy Minister Akmal Nasir, as reported by FMT",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "js-sez-rm88-8bil-approved-investments-jscmc-2026",
+          "articleNum": 35,
+          "value": "45%",
+          "unit": "share of approved investments realised",
+          "period": "as of June 2026",
+          "source": "Economy Minister Akmal Nasir, as reported by FMT",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "js-sez-rm88-8bil-approved-investments-jscmc-2026",
+          "articleNum": 35,
+          "value": "RM40.30 billion",
+          "unit": "realised investments",
+          "period": "as of June 2026",
+          "source": "Economy Minister Akmal Nasir, as reported by FMT",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "js-sez-rm88-8bil-approved-investments-jscmc-2026",
+          "articleNum": 35,
+          "value": "12,796",
+          "unit": "jobs from realised projects",
+          "period": "as of June 2026",
+          "source": "Economy Minister Akmal Nasir, as reported by FMT",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "js-sez-rm88-8bil-approved-investments-jscmc-2026",
+          "articleNum": 35,
+          "value": "first quarter of 2027",
+          "unit": "timing for joint investment forum",
+          "period": "Q1 2027",
+          "source": "Economy Minister Akmal Nasir, as reported by FMT",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "js-sez-rm88-8bil-approved-investments-jscmc-2026",
+          "articleNum": 35,
+          "value": "December 2026",
+          "unit": "target launch of JS-SEZ blueprint",
+          "period": "December 2026",
+          "source": "Economy Minister Akmal Nasir, as reported by FMT",
+          "retrieved": "2026-11-02"
+        }
+      ],
+      "articleNums": [
+        35
+      ],
+      "articleSlugs": [
+        "js-sez-rm88-8bil-approved-investments-jscmc-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "finance-minister-ii-amir-hamzah-azizan-dewan-rakyat-via",
+      "source": "Finance Minister II Amir Hamzah Azizan, Dewan Rakyat, via Bernama/Malay Mail",
+      "figures": [
+        {
+          "articleSlug": "sabah-sarawak-special-grants-2027-budget",
+          "articleNum": 23,
+          "value": "RM1.5 billion",
+          "unit": "Sabah interim special grant",
+          "period": "2026 (up from 2021)",
+          "source": "Finance Minister II Amir Hamzah Azizan, Dewan Rakyat, via Bernama/Malay Mail",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "sabah-sarawak-special-grants-2027-budget",
+          "articleNum": 23,
+          "value": "RM1.5 billion",
+          "unit": "Sarawak interim special grant",
+          "period": "2026 (up from 2022)",
+          "source": "Finance Minister II Amir Hamzah Azizan, Dewan Rakyat, via Bernama/Malay Mail",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "sabah-sarawak-special-grants-2027-budget",
+          "articleNum": 23,
+          "value": "RM18.7 billion",
+          "unit": "total federal allocation to Sabah",
+          "period": "2027 Budget",
+          "source": "Finance Minister II Amir Hamzah Azizan, Dewan Rakyat, via Bernama/Malay Mail",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "sabah-sarawak-special-grants-2027-budget",
+          "articleNum": 23,
+          "value": "RM16.2 billion",
+          "unit": "total federal allocation to Sarawak",
+          "period": "2027 Budget",
+          "source": "Finance Minister II Amir Hamzah Azizan, Dewan Rakyat, via Bernama/Malay Mail",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "sabah-sarawak-special-grants-2027-budget",
+          "articleNum": 23,
+          "value": "RM270 million",
+          "unit": "Ecological Fiscal Transfer (EFT) allocation",
+          "period": "2027 Budget (up from RM150 million in 2023)",
+          "source": "Finance Minister II Amir Hamzah Azizan, Dewan Rakyat, via Bernama/Malay Mail",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "sabah-sarawak-special-grants-2027-budget",
+          "articleNum": 23,
+          "value": "RM5.6 billion",
+          "unit": "MARRIS allocation",
+          "period": "2026 (up from RM5.2 billion in 2023)",
+          "source": "Finance Minister II Amir Hamzah Azizan, Dewan Rakyat, via Bernama/Malay Mail",
+          "retrieved": "2026-10-29"
+        },
+        {
+          "articleSlug": "sabah-sarawak-special-grants-2027-budget",
+          "articleNum": 23,
+          "value": "RM459.8 billion",
+          "unit": "projected federal expenditure",
+          "period": "2027 (up from revised RM444.1 billion in 2026)",
+          "source": "Finance Minister II Amir Hamzah Azizan, Dewan Rakyat, via Bernama/Malay Mail",
+          "retrieved": "2026-10-29"
+        }
+      ],
+      "articleNums": [
+        23
+      ],
+      "articleSlugs": [
+        "sabah-sarawak-special-grants-2027-budget"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "vital-statistics-time-series-malaysia-2010-2019-dosm",
+      "source": "Vital Statistics Time Series, Malaysia, 2010-2019 (DOSM)",
+      "figures": [
+        {
+          "articleSlug": "dosm-digital-dissemination-primary-2026",
+          "articleNum": 46,
+          "value": "501,303",
+          "unit": "births",
+          "period": "2010",
+          "source": "Vital Statistics Time Series, Malaysia, 2010-2019 (DOSM)",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "dosm-digital-dissemination-primary-2026",
+          "articleNum": 46,
+          "value": "493,749",
+          "unit": "births",
+          "period": "2019",
+          "source": "Vital Statistics Time Series, Malaysia, 2010-2019 (DOSM)",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "dosm-digital-dissemination-primary-2026",
+          "articleNum": 46,
+          "value": "17.5",
+          "unit": "crude birth rate per 1,000 population",
+          "period": "2010",
+          "source": "Vital Statistics Time Series, Malaysia, 2010-2019 (DOSM)",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "dosm-digital-dissemination-primary-2026",
+          "articleNum": 46,
+          "value": "15.2",
+          "unit": "crude birth rate per 1,000 population",
+          "period": "2019",
+          "source": "Vital Statistics Time Series, Malaysia, 2010-2019 (DOSM)",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "dosm-digital-dissemination-primary-2026",
+          "articleNum": 46,
+          "value": "2.0",
+          "unit": "total fertility rate (children per woman)",
+          "period": "2015 onwards",
+          "source": "Vital Statistics Time Series, Malaysia, 2010-2019 (DOSM)",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "dosm-digital-dissemination-primary-2026",
+          "articleNum": 46,
+          "value": "175,725",
+          "unit": "deaths",
+          "period": "2019",
+          "source": "Vital Statistics Time Series, Malaysia, 2010-2019 (DOSM)",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "dosm-digital-dissemination-primary-2026",
+          "articleNum": 46,
+          "value": "136,109",
+          "unit": "deaths",
+          "period": "2010",
+          "source": "Vital Statistics Time Series, Malaysia, 2010-2019 (DOSM)",
+          "retrieved": "2026-11-10"
+        }
+      ],
+      "articleNums": [
+        46
+      ],
+      "articleSlugs": [
+        "dosm-digital-dissemination-primary-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "ars-technica-article-on-sony-mdr-3r",
+      "source": "Ars Technica article on Sony MDR-3R",
+      "figures": [
+        {
+          "articleSlug": "sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio",
+          "articleNum": 40,
+          "value": "1979",
+          "unit": "year",
+          "period": "when the original MDR-3 headphones debuted",
+          "source": "Ars Technica article on Sony MDR-3R",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio",
+          "articleNum": 40,
+          "value": "23 mm",
+          "unit": "driver size",
+          "period": "for the new MDR-3R headphones",
+          "source": "Ars Technica article on Sony MDR-3R",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio",
+          "articleNum": 40,
+          "value": "$60",
+          "unit": "US dollars",
+          "period": "retail price at launch",
+          "source": "Ars Technica article on Sony MDR-3R",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio",
+          "articleNum": 40,
+          "value": "MDR-3R",
+          "unit": "model name",
+          "period": "current product",
+          "source": "Ars Technica article on Sony MDR-3R",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio",
+          "articleNum": 40,
+          "value": "USB-C",
+          "unit": "connector type",
+          "period": "current product feature",
+          "source": "Ars Technica article on Sony MDR-3R",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio",
+          "articleNum": 40,
+          "value": "in-line remote control and an integrated microphone",
+          "unit": "features",
+          "period": "current product",
+          "source": "Ars Technica article on Sony MDR-3R",
+          "retrieved": "2026-11-05"
+        }
+      ],
+      "articleNums": [
+        40
+      ],
+      "articleSlugs": [
+        "sony-mdr-3r-usb-c-walkman-headphones-malaysia-retro-audio"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "cna-article",
+      "source": "CNA article",
+      "figures": [
+        {
+          "articleSlug": "singapore-haze-mitigation-measures-end-november-2026",
+          "articleNum": 44,
+          "value": "Nov 7",
+          "unit": "date",
+          "period": "2026",
+          "source": "CNA article",
+          "retrieved": "2026-11-07"
+        },
+        {
+          "articleSlug": "singapore-haze-mitigation-measures-end-november-2026",
+          "articleNum": 44,
+          "value": "Nov 12",
+          "unit": "date",
+          "period": "2026",
+          "source": "CNA article",
+          "retrieved": "2026-11-07"
+        },
+        {
+          "articleSlug": "singapore-haze-mitigation-measures-end-november-2026",
+          "articleNum": 44,
+          "value": "2015",
+          "unit": "year",
+          "period": "historical",
+          "source": "CNA article",
+          "retrieved": "2026-11-07"
+        },
+        {
+          "articleSlug": "singapore-haze-mitigation-measures-end-november-2026",
+          "articleNum": 44,
+          "value": "two months",
+          "unit": "duration",
+          "period": "2026",
+          "source": "CNA article",
+          "retrieved": "2026-11-07"
+        },
+        {
+          "articleSlug": "singapore-haze-mitigation-measures-end-november-2026",
+          "articleNum": 44,
+          "value": "N95 mask distribution",
+          "unit": "measure",
+          "period": "2026",
+          "source": "CNA article",
+          "retrieved": "2026-11-07"
+        },
+        {
+          "articleSlug": "singapore-haze-mitigation-measures-end-november-2026",
+          "articleNum": 44,
+          "value": "Haze Task Force",
+          "unit": "institution",
+          "period": "2026",
+          "source": "CNA article",
+          "retrieved": "2026-11-07"
+        }
+      ],
+      "articleNums": [
+        44
+      ],
+      "articleSlugs": [
+        "singapore-haze-mitigation-measures-end-november-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "iseas-perspective-2026-77-puangthong-pawakapan",
+      "source": "ISEAS Perspective 2026/77, Puangthong Pawakapan",
+      "figures": [
+        {
+          "articleSlug": "thai-cambodia-border-closure-june-2025-malaysia-supply-chains",
+          "articleNum": 30,
+          "value": "June 2025",
+          "unit": "start date of the complete closure of all Thai-Cambodian border checkpoints",
+          "period": "from June 2025",
+          "source": "ISEAS Perspective 2026/77, Puangthong Pawakapan",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "thai-cambodia-border-closure-june-2025-malaysia-supply-chains",
+          "articleNum": 30,
+          "value": "10 September",
+          "unit": "date a foreign government formally asked Thailand and Cambodia to reopen specific crossings",
+          "period": "2026",
+          "source": "ISEAS Perspective 2026/77, Puangthong Pawakapan",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "thai-cambodia-border-closure-june-2025-malaysia-supply-chains",
+          "articleNum": 30,
+          "value": "100,000",
+          "unit": "Cambodian workers the eastern region's agricultural sector relies on",
+          "period": "as described in the 2026 article",
+          "source": "ISEAS Perspective 2026/77, Puangthong Pawakapan",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "thai-cambodia-border-closure-june-2025-malaysia-supply-chains",
+          "articleNum": 30,
+          "value": "1999",
+          "unit": "year Cambodia joined ASEAN, the last time relations fractured this badly",
+          "period": "1999",
+          "source": "ISEAS Perspective 2026/77, Puangthong Pawakapan",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "thai-cambodia-border-closure-june-2025-malaysia-supply-chains",
+          "articleNum": 30,
+          "value": "2001",
+          "unit": "year of the Memorandum of Understanding on overlapping Gulf of Thailand claims that Thailand unilaterally abrogated",
+          "period": "2001 MOU, abrogated under the Anutin administration",
+          "source": "ISEAS Perspective 2026/77, Puangthong Pawakapan",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "thai-cambodia-border-closure-june-2025-malaysia-supply-chains",
+          "articleNum": 30,
+          "value": "29 August",
+          "unit": "date the Thai Constitutional Court dismissed Prime Minister Paetongtarn from office",
+          "period": "2025",
+          "source": "ISEAS Perspective 2026/77, Puangthong Pawakapan",
+          "retrieved": "2026-11-02"
+        }
+      ],
+      "articleNums": [
+        30
+      ],
+      "articleSlugs": [
+        "thai-cambodia-border-closure-june-2025-malaysia-supply-chains"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "malay-mail-report",
+      "source": "Malay Mail report",
+      "figures": [
+        {
+          "articleSlug": "malaysia-flood-victims-nepal-tibet-rm10000-aid",
+          "articleNum": 42,
+          "value": "1,451",
+          "unit": "total lives claimed by the flood and debris flow",
+          "period": "as of 6 November 2026",
+          "source": "Malay Mail report",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "malaysia-flood-victims-nepal-tibet-rm10000-aid",
+          "articleNum": 42,
+          "value": "5,700",
+          "unit": "individuals still reported missing",
+          "period": "as of 6 November 2026",
+          "source": "Malay Mail report",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "malaysia-flood-victims-nepal-tibet-rm10000-aid",
+          "articleNum": 42,
+          "value": "600",
+          "unit": "foreign nationals among the missing",
+          "period": "as of 6 November 2026",
+          "source": "Malay Mail report",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "malaysia-flood-victims-nepal-tibet-rm10000-aid",
+          "articleNum": 42,
+          "value": "26 August",
+          "unit": "date of the flood and debris flow",
+          "period": "2026",
+          "source": "Malay Mail report",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "pet-tax-relief-budget-2027-savings",
+          "articleNum": 24,
+          "value": "RM60 to RM92",
+          "unit": "ringgit",
+          "period": "current prices",
+          "source": "Malay Mail report",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "pet-tax-relief-budget-2027-savings",
+          "articleNum": 24,
+          "value": "RM80",
+          "unit": "ringgit",
+          "period": "current price",
+          "source": "Malay Mail report",
+          "retrieved": "2026-10-30"
+        }
+      ],
+      "articleNums": [
+        24,
+        42
+      ],
+      "articleSlugs": [
+        "malaysia-flood-victims-nepal-tibet-rm10000-aid",
+        "pet-tax-relief-budget-2027-savings"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "qs-world-university-rankings-asia-2027",
+      "source": "QS World University Rankings Asia 2027",
+      "figures": [
+        {
+          "articleSlug": "qs-asia-2027-malaysia-55-universities-record",
+          "articleNum": 36,
+          "value": "55",
+          "unit": "Malaysian universities featured in QS Asia 2027",
+          "period": "2027 edition",
+          "source": "QS World University Rankings Asia 2027",
+          "retrieved": "2026-11-03"
+        },
+        {
+          "articleSlug": "qs-asia-2027-malaysia-55-universities-record",
+          "articleNum": 36,
+          "value": "11",
+          "unit": "Malaysian universities in top 100 in Asia",
+          "period": "2027 edition",
+          "source": "QS World University Rankings Asia 2027",
+          "retrieved": "2026-11-03"
+        },
+        {
+          "articleSlug": "qs-asia-2027-malaysia-55-universities-record",
+          "articleNum": 36,
+          "value": "8",
+          "unit": "Malaysian universities in top 50 in Asia",
+          "period": "2027 edition",
+          "source": "QS World University Rankings Asia 2027",
+          "retrieved": "2026-11-03"
+        },
+        {
+          "articleSlug": "qs-asia-2027-malaysia-55-universities-record",
+          "articleNum": 36,
+          "value": "17th",
+          "unit": "Rank of Universiti Malaya in Asia",
+          "period": "2027 edition",
+          "source": "QS World University Rankings Asia 2027",
+          "retrieved": "2026-11-03"
+        },
+        {
+          "articleSlug": "qs-asia-2027-malaysia-55-universities-record",
+          "articleNum": 36,
+          "value": "1722",
+          "unit": "Universities evaluated in QS Asia 2027",
+          "period": "2027 edition",
+          "source": "QS World University Rankings Asia 2027",
+          "retrieved": "2026-11-03"
+        },
+        {
+          "articleSlug": "qs-asia-2027-malaysia-55-universities-record",
+          "articleNum": 36,
+          "value": "12",
+          "unit": "Private Malaysian universities achieving record-high positions",
+          "period": "2027 edition",
+          "source": "QS World University Rankings Asia 2027",
+          "retrieved": "2026-11-03"
+        }
+      ],
+      "articleNums": [
+        36
+      ],
+      "articleSlugs": [
+        "qs-asia-2027-malaysia-55-universities-record"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "royal-malaysian-customs-department-jkdm-sst-portal-latest-an",
+      "source": "Royal Malaysian Customs Department (JKDM) SST portal, Latest Announcements",
+      "figures": [
+        {
+          "articleSlug": "service-tax-digital-services-amendment-regulations-2026",
+          "articleNum": 33,
+          "value": "27/10/2026",
+          "unit": "date of announcement",
+          "period": "2026",
+          "source": "Royal Malaysian Customs Department (JKDM) SST portal, Latest Announcements",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "service-tax-digital-services-amendment-regulations-2026",
+          "articleNum": 33,
+          "value": "26/10/2026",
+          "unit": "date of announcement",
+          "period": "2026",
+          "source": "Royal Malaysian Customs Department (JKDM) SST portal, Latest Announcements",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "service-tax-digital-services-amendment-regulations-2026",
+          "articleNum": 33,
+          "value": "07/10/2026",
+          "unit": "date of announcement",
+          "period": "2026",
+          "source": "Royal Malaysian Customs Department (JKDM) SST portal, Latest Announcements",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "service-tax-digital-services-amendment-regulations-2026",
+          "articleNum": 33,
+          "value": "17/06/2025",
+          "unit": "date of announcement",
+          "period": "2025",
+          "source": "Royal Malaysian Customs Department (JKDM) SST portal, Latest Announcements",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "service-tax-digital-services-amendment-regulations-2026",
+          "articleNum": 33,
+          "value": "27/02/2026",
+          "unit": "date of announcement",
+          "period": "2026",
+          "source": "Royal Malaysian Customs Department (JKDM) SST portal, Latest Announcements",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "service-tax-digital-services-amendment-regulations-2026",
+          "articleNum": 33,
+          "value": "17/04/2026",
+          "unit": "date of announcement",
+          "period": "2026",
+          "source": "Royal Malaysian Customs Department (JKDM) SST portal, Latest Announcements",
+          "retrieved": "2026-11-02"
+        }
+      ],
+      "articleNums": [
+        33
+      ],
+      "articleSlugs": [
+        "service-tax-digital-services-amendment-regulations-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "malay-mail-article",
+      "source": "Malay Mail article",
+      "figures": [
+        {
+          "articleSlug": "kelantan-islamic-education-funding-2026",
+          "articleNum": 29,
+          "value": "RM9.36 million",
+          "unit": "Malaysian ringgit",
+          "period": "2025",
+          "source": "Malay Mail article",
+          "retrieved": "2026-11-01"
+        },
+        {
+          "articleSlug": "kelantan-islamic-education-funding-2026",
+          "articleNum": 29,
+          "value": "23",
+          "unit": "institutions",
+          "period": "2025",
+          "source": "Malay Mail article",
+          "retrieved": "2026-11-01"
+        },
+        {
+          "articleSlug": "kelantan-islamic-education-funding-2026",
+          "articleNum": 29,
+          "value": "RM6.628 million",
+          "unit": "Malaysian ringgit",
+          "period": "2026",
+          "source": "Malay Mail article",
+          "retrieved": "2026-11-01"
+        },
+        {
+          "articleSlug": "kelantan-islamic-education-funding-2026",
+          "articleNum": 29,
+          "value": "42",
+          "unit": "institutions",
+          "period": "2026",
+          "source": "Malay Mail article",
+          "retrieved": "2026-11-01"
+        },
+        {
+          "articleSlug": "kelantan-islamic-education-funding-2026",
+          "articleNum": 29,
+          "value": "RM200,000",
+          "unit": "Malaysian ringgit",
+          "period": "2026-11-01",
+          "source": "Malay Mail article",
+          "retrieved": "2026-11-01"
+        }
+      ],
+      "articleNums": [
+        29
+      ],
+      "articleSlugs": [
+        "kelantan-islamic-education-funding-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "malay-mail-illustration",
+      "source": "Malay Mail illustration",
+      "figures": [
+        {
+          "articleSlug": "pet-tax-relief-budget-2027-savings",
+          "articleNum": 24,
+          "value": "RM570",
+          "unit": "ringgit",
+          "period": "illustrative household costs",
+          "source": "Malay Mail illustration",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "pet-tax-relief-budget-2027-savings",
+          "articleNum": 24,
+          "value": "11 per cent",
+          "unit": "tax rate",
+          "period": "2026/2027",
+          "source": "Malay Mail illustration",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "pet-tax-relief-budget-2027-savings",
+          "articleNum": 24,
+          "value": "RM62.70",
+          "unit": "ringgit",
+          "period": "illustrative savings",
+          "source": "Malay Mail illustration",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "pet-tax-relief-budget-2027-savings",
+          "articleNum": 24,
+          "value": "18 per cent",
+          "unit": "tax rate",
+          "period": "2026/2027",
+          "source": "Malay Mail illustration",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "pet-tax-relief-budget-2027-savings",
+          "articleNum": 24,
+          "value": "RM102.60",
+          "unit": "ringgit",
+          "period": "illustrative savings",
+          "source": "Malay Mail illustration",
+          "retrieved": "2026-10-30"
+        }
+      ],
+      "articleNums": [
+        24
+      ],
+      "articleSlugs": [
+        "pet-tax-relief-budget-2027-savings"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "bank-negara-malaysia-monetary-policy-statement",
+      "source": "Bank Negara Malaysia Monetary Policy Statement",
+      "figures": [
+        {
+          "articleSlug": "bnm-holds-opr-at-2-75-percent-september-2026",
+          "articleNum": 21,
+          "value": "2.75%",
+          "unit": "Overnight Policy Rate",
+          "period": "as of 3 September 2026",
+          "source": "Bank Negara Malaysia Monetary Policy Statement",
+          "retrieved": "2026-10-28"
+        },
+        {
+          "articleSlug": "bnm-holds-opr-at-2-75-percent-september-2026",
+          "articleNum": 21,
+          "value": "5.7%",
+          "unit": "Malaysian GDP growth",
+          "period": "first half of 2026",
+          "source": "Bank Negara Malaysia Monetary Policy Statement",
+          "retrieved": "2026-10-28"
+        },
+        {
+          "articleSlug": "bnm-holds-opr-at-2-75-percent-september-2026",
+          "articleNum": 21,
+          "value": "1.8%",
+          "unit": "headline inflation average",
+          "period": "first seven months of 2026",
+          "source": "Bank Negara Malaysia Monetary Policy Statement",
+          "retrieved": "2026-10-28"
+        },
+        {
+          "articleSlug": "bnm-holds-opr-at-2-75-percent-september-2026",
+          "articleNum": 21,
+          "value": "2%",
+          "unit": "core inflation average",
+          "period": "first seven months of 2026",
+          "source": "Bank Negara Malaysia Monetary Policy Statement",
+          "retrieved": "2026-10-28"
+        }
+      ],
+      "articleNums": [
+        21
+      ],
+      "articleSlugs": [
+        "bnm-holds-opr-at-2-75-percent-september-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "click-intelligence-study",
+      "source": "Click Intelligence study",
+      "figures": [
+        {
+          "articleSlug": "penang-cheapest-digital-nomad-city-2026",
+          "articleNum": 25,
+          "value": "26",
+          "unit": "cities covered",
+          "period": "2026",
+          "source": "Click Intelligence study",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "penang-cheapest-digital-nomad-city-2026",
+          "articleNum": 25,
+          "value": "€850",
+          "unit": "monthly cost of living including rent",
+          "period": "2026",
+          "source": "Click Intelligence study",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "penang-cheapest-digital-nomad-city-2026",
+          "articleNum": 25,
+          "value": "RM3,860",
+          "unit": "approximate monthly cost in ringgit",
+          "period": "2026",
+          "source": "Click Intelligence study",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "penang-cheapest-digital-nomad-city-2026",
+          "articleNum": 25,
+          "value": "25",
+          "unit": "cities beaten by Penang",
+          "period": "2026",
+          "source": "Click Intelligence study",
+          "retrieved": "2026-10-30"
+        }
+      ],
+      "articleNums": [
+        25
+      ],
+      "articleSlugs": [
+        "penang-cheapest-digital-nomad-city-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "malaysian-communications-and-multimedia-commission-mcmc-stat",
+      "source": "Malaysian Communications and Multimedia Commission (MCMC) statistics, cited by Deputy Communications Minister Teo Nie Ching",
+      "figures": [
+        {
+          "articleSlug": "mcmc-scam-post-removal-requests-174099-october-2026",
+          "articleNum": 32,
+          "value": "174,099",
+          "unit": "requests to social media platforms to remove scam-related posts, as of 15 October 2026",
+          "period": "as of 15 October 2026",
+          "source": "Malaysian Communications and Multimedia Commission (MCMC) statistics, cited by Deputy Communications Minister Teo Nie Ching",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "mcmc-scam-post-removal-requests-174099-october-2026",
+          "articleNum": 32,
+          "value": "102,113",
+          "unit": "requests to remove scam-related posts throughout the previous year",
+          "period": "full year before 2026",
+          "source": "Malaysian Communications and Multimedia Commission (MCMC) statistics, cited by Deputy Communications Minister Teo Nie Ching",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "mcmc-scam-post-removal-requests-174099-october-2026",
+          "articleNum": 32,
+          "value": "170,633",
+          "unit": "scam-related posts removed this year",
+          "period": "as of 15 October 2026",
+          "source": "Malaysian Communications and Multimedia Commission (MCMC) statistics, cited by Deputy Communications Minister Teo Nie Ching",
+          "retrieved": "2026-11-02"
+        },
+        {
+          "articleSlug": "mcmc-scam-post-removal-requests-174099-october-2026",
+          "articleNum": 32,
+          "value": "98 per cent",
+          "unit": "compliance rate of platforms with removal requests",
+          "period": "as of 15 October 2026",
+          "source": "Malaysian Communications and Multimedia Commission (MCMC) statistics, cited by Deputy Communications Minister Teo Nie Ching",
+          "retrieved": "2026-11-02"
+        }
+      ],
+      "articleNums": [
+        32
+      ],
+      "articleSlugs": [
+        "mcmc-scam-post-removal-requests-174099-october-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "marc-lou-personal-site-product-list",
+      "source": "Marc Lou personal site, product list",
+      "figures": [
+        {
+          "articleSlug": "marc-lou-solo-studio-1-2m-year-2026",
+          "articleNum": 45,
+          "value": "35608",
+          "unit": "USD per month",
+          "period": "last 30 days, November 2026",
+          "source": "Marc Lou personal site, product list",
+          "retrieved": "2026-11-07"
+        },
+        {
+          "articleSlug": "marc-lou-solo-studio-1-2m-year-2026",
+          "articleNum": 45,
+          "value": "29188",
+          "unit": "USD per month",
+          "period": "last 30 days, November 2026",
+          "source": "Marc Lou personal site, product list",
+          "retrieved": "2026-11-07"
+        },
+        {
+          "articleSlug": "marc-lou-solo-studio-1-2m-year-2026",
+          "articleNum": 45,
+          "value": "16397",
+          "unit": "USD per month",
+          "period": "last 30 days, November 2026",
+          "source": "Marc Lou personal site, product list",
+          "retrieved": "2026-11-07"
+        },
+        {
+          "articleSlug": "marc-lou-solo-studio-1-2m-year-2026",
+          "articleNum": 45,
+          "value": "1146",
+          "unit": "USD per month",
+          "period": "last 30 days, November 2026",
+          "source": "Marc Lou personal site, product list",
+          "retrieved": "2026-11-07"
+        }
+      ],
+      "articleNums": [
+        45
+      ],
+      "articleSlugs": [
+        "marc-lou-solo-studio-1-2m-year-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "the-information-cited-by-reuters-via-free-malaysia-today",
+      "source": "The Information, cited by Reuters via Free Malaysia Today",
+      "figures": [
+        {
+          "articleSlug": "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls",
+          "articleNum": 47,
+          "value": "US$7.5 billion",
+          "unit": "value of Nvidia chip shipments to Chinese firms facilitated by Alice Huang",
+          "period": "reported 11 November 2026",
+          "source": "The Information, cited by Reuters via Free Malaysia Today",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls",
+          "articleNum": 47,
+          "value": "240,000",
+          "unit": "H100, H200 and A100 chips moved into China",
+          "period": "reported 11 November 2026",
+          "source": "The Information, cited by Reuters via Free Malaysia Today",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls",
+          "articleNum": 47,
+          "value": "2023",
+          "unit": "year Shanghai Century Litong secured preferred cloud partner status with Nvidia",
+          "period": "2023",
+          "source": "The Information, cited by Reuters via Free Malaysia Today",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls",
+          "articleNum": 47,
+          "value": "Singapore",
+          "unit": "jurisdiction where Megaspeed was registered",
+          "period": "reported 11 November 2026",
+          "source": "The Information, cited by Reuters via Free Malaysia Today",
+          "retrieved": "2026-11-10"
+        }
+      ],
+      "articleNums": [
+        47
+      ],
+      "articleSlugs": [
+        "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "bank-negara-malaysia-monetary-policy-statement-july-2026",
+      "source": "Bank Negara Malaysia Monetary Policy Statement (July 2026)",
+      "figures": [
+        {
+          "articleSlug": "bnm-holds-opr-at-2-75-percent-september-2026",
+          "articleNum": 21,
+          "value": "4%−5%",
+          "unit": "2026 growth forecast range",
+          "period": "2026",
+          "source": "Bank Negara Malaysia Monetary Policy Statement (July 2026)",
+          "retrieved": "2026-10-28"
+        },
+        {
+          "articleSlug": "bnm-holds-opr-at-2-75-percent-september-2026",
+          "articleNum": 21,
+          "value": "1.7%",
+          "unit": "headline inflation average",
+          "period": "first five months of 2026",
+          "source": "Bank Negara Malaysia Monetary Policy Statement (July 2026)",
+          "retrieved": "2026-10-28"
+        },
+        {
+          "articleSlug": "bnm-holds-opr-at-2-75-percent-september-2026",
+          "articleNum": 21,
+          "value": "2.1%",
+          "unit": "core inflation average",
+          "period": "first five months of 2026",
+          "source": "Bank Negara Malaysia Monetary Policy Statement (July 2026)",
+          "retrieved": "2026-10-28"
+        }
+      ],
+      "articleNums": [
+        21
+      ],
+      "articleSlugs": [
+        "bnm-holds-opr-at-2-75-percent-september-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "marc-lou-personal-site",
+      "source": "Marc Lou personal site",
+      "figures": [
+        {
+          "articleSlug": "marc-lou-solo-studio-1-2m-year-2026",
+          "articleNum": 45,
+          "value": "43",
+          "unit": "products",
+          "period": "2021 to November 2026",
+          "source": "Marc Lou personal site",
+          "retrieved": "2026-11-07"
+        },
+        {
+          "articleSlug": "marc-lou-solo-studio-1-2m-year-2026",
+          "articleNum": 45,
+          "value": "90",
+          "unit": "percent",
+          "period": "2026",
+          "source": "Marc Lou personal site",
+          "retrieved": "2026-11-07"
+        },
+        {
+          "articleSlug": "marc-lou-solo-studio-1-2m-year-2026",
+          "articleNum": 45,
+          "value": "0",
+          "unit": "employees",
+          "period": "2026",
+          "source": "Marc Lou personal site",
+          "retrieved": "2026-11-07"
+        }
+      ],
+      "articleNums": [
+        45
+      ],
+      "articleSlugs": [
+        "marc-lou-solo-studio-1-2m-year-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "penang-chief-minister-chow-kon-yeow-state-legislative-assemb",
+      "source": "Penang Chief Minister Chow Kon Yeow, state legislative assembly",
+      "figures": [
+        {
+          "articleSlug": "penang-technology-finance-centre-one-year-timeline",
+          "articleNum": 27,
+          "value": "one year",
+          "unit": "timeline for establishing PTFC",
+          "period": "from 30 Oct 2026",
+          "source": "Penang Chief Minister Chow Kon Yeow, state legislative assembly",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "penang-technology-finance-centre-one-year-timeline",
+          "articleNum": 27,
+          "value": "RM100 million",
+          "unit": "strategic fund amount",
+          "period": "targeted by year end 2026",
+          "source": "Penang Chief Minister Chow Kon Yeow, state legislative assembly",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "penang-technology-finance-centre-one-year-timeline",
+          "articleNum": 27,
+          "value": "two years",
+          "unit": "original timeline for PTFC",
+          "period": "before 30 Oct 2026",
+          "source": "Penang Chief Minister Chow Kon Yeow, state legislative assembly",
+          "retrieved": "2026-10-30"
+        }
+      ],
+      "articleNums": [
+        27
+      ],
+      "articleSlugs": [
+        "penang-technology-finance-centre-one-year-timeline"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "reuters-via-free-malaysia-today",
+      "source": "Reuters via Free Malaysia Today",
+      "figures": [
+        {
+          "articleSlug": "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls",
+          "articleNum": 47,
+          "value": "US$470 billion",
+          "unit": "market value wiped out over two sessions",
+          "period": "two days ending 11 November 2026",
+          "source": "Reuters via Free Malaysia Today",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls",
+          "articleNum": 47,
+          "value": "6%",
+          "unit": "share price decline on Tuesday",
+          "period": "11 November 2026",
+          "source": "Reuters via Free Malaysia Today",
+          "retrieved": "2026-11-10"
+        },
+        {
+          "articleSlug": "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls",
+          "articleNum": 47,
+          "value": "4.3%",
+          "unit": "share price decline on Monday",
+          "period": "10 November 2026",
+          "source": "Reuters via Free Malaysia Today",
+          "retrieved": "2026-11-10"
+        }
+      ],
+      "articleNums": [
+        47
+      ],
+      "articleSlugs": [
+        "nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "strata-management-act-2013-as-cited-in-the-court",
+      "source": "Strata Management Act 2013, as cited in the court report",
+      "figures": [
+        {
+          "articleSlug": "condo-pet-ban-house-rules-high-court-october-2026",
+          "articleNum": 28,
+          "value": "2013",
+          "unit": "year of the Strata Management Act cited by the applicant",
+          "period": "statute in force at the time of the ruling",
+          "source": "Strata Management Act 2013, as cited in the court report",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "condo-pet-ban-house-rules-high-court-october-2026",
+          "articleNum": 28,
+          "value": "70(2)",
+          "unit": "section of the Strata Management Act 2013 cited",
+          "period": "statute in force at the time of the ruling",
+          "source": "Strata Management Act 2013, as cited in the court report",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "condo-pet-ban-house-rules-high-court-october-2026",
+          "articleNum": 28,
+          "value": "150",
+          "unit": "section of the Strata Management Act 2013 cited",
+          "period": "statute in force at the time of the ruling",
+          "source": "Strata Management Act 2013, as cited in the court report",
+          "retrieved": "2026-10-30"
+        }
+      ],
+      "articleNums": [
+        28
+      ],
+      "articleSlugs": [
+        "condo-pet-ban-house-rules-high-court-october-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "versa-save-advertisement-in-malay-mail",
+      "source": "Versa Save advertisement in Malay Mail",
+      "figures": [
+        {
+          "articleSlug": "epf-iemas-monthly-withdrawals-retirement-adequacy-2027",
+          "articleNum": 38,
+          "value": "4.2%",
+          "unit": "fixed rate p.a. offered by Versa Save (advertisement, not EPF dividend)",
+          "period": "210 days, as advertised in article",
+          "source": "Versa Save advertisement in Malay Mail",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "epf-iemas-monthly-withdrawals-retirement-adequacy-2027",
+          "articleNum": 38,
+          "value": "RM10",
+          "unit": "free cash bonus for signing up with code VERSAMM10",
+          "period": "promotion, as advertised in article",
+          "source": "Versa Save advertisement in Malay Mail",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "epf-iemas-monthly-withdrawals-retirement-adequacy-2027",
+          "articleNum": 38,
+          "value": "RM100",
+          "unit": "minimum cash-in amount for Versa Save promotion",
+          "period": "promotion, as advertised in article",
+          "source": "Versa Save advertisement in Malay Mail",
+          "retrieved": "2026-11-05"
+        }
+      ],
+      "articleNums": [
+        38
+      ],
+      "articleSlugs": [
+        "epf-iemas-monthly-withdrawals-retirement-adequacy-2027"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "vmware-announcement-as-reported-by-ars-technica",
+      "source": "VMware announcement, as reported by Ars Technica",
+      "figures": [
+        {
+          "articleSlug": "vmware-vsphere-express-smb-virtualization-costs",
+          "articleNum": 37,
+          "value": "vSphere Express",
+          "unit": "product name",
+          "period": "announced November 4, 2026",
+          "source": "VMware announcement, as reported by Ars Technica",
+          "retrieved": "2026-11-04"
+        },
+        {
+          "articleSlug": "vmware-vsphere-express-smb-virtualization-costs",
+          "articleNum": 37,
+          "value": "vMotion",
+          "unit": "feature",
+          "period": "included in vSphere Express",
+          "source": "VMware announcement, as reported by Ars Technica",
+          "retrieved": "2026-11-04"
+        },
+        {
+          "articleSlug": "vmware-vsphere-express-smb-virtualization-costs",
+          "articleNum": 37,
+          "value": "high availability",
+          "unit": "feature",
+          "period": "included in vSphere Express",
+          "source": "VMware announcement, as reported by Ars Technica",
+          "retrieved": "2026-11-04"
+        }
+      ],
+      "articleNums": [
+        37
+      ],
+      "articleSlugs": [
+        "vmware-vsphere-express-smb-virtualization-costs"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "federal-constitution-as-cited-in-the-court-report",
+      "source": "Federal Constitution, as cited in the court report",
+      "figures": [
+        {
+          "articleSlug": "condo-pet-ban-house-rules-high-court-october-2026",
+          "articleNum": 28,
+          "value": "8",
+          "unit": "article of the Federal Constitution cited on proportionality",
+          "period": "constitutional provision cited in the 30 October 2026 ruling",
+          "source": "Federal Constitution, as cited in the court report",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "condo-pet-ban-house-rules-high-court-october-2026",
+          "articleNum": 28,
+          "value": "13",
+          "unit": "article of the Federal Constitution cited on property rights",
+          "period": "constitutional provision cited in the 30 October 2026 ruling",
+          "source": "Federal Constitution, as cited in the court report",
+          "retrieved": "2026-10-30"
+        }
+      ],
+      "articleNums": [
+        28
+      ],
+      "articleSlugs": [
+        "condo-pet-ban-house-rules-high-court-october-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "fmt-afp",
+      "source": "FMT/AFP",
+      "figures": [
+        {
+          "articleSlug": "myanmar-by-elections-april-2027-39-constituencies",
+          "articleNum": 41,
+          "value": "2021",
+          "unit": "year of the military coup that ousted Aung San Suu Kyi's government",
+          "period": "2021",
+          "source": "FMT/AFP",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "myanmar-by-elections-april-2027-39-constituencies",
+          "articleNum": 41,
+          "value": "sixth year",
+          "unit": "duration of the civil war",
+          "period": "as of November 2026",
+          "source": "FMT/AFP",
+          "retrieved": "2026-11-06"
+        }
+      ],
+      "articleNums": [
+        41
+      ],
+      "articleSlugs": [
+        "myanmar-by-elections-april-2027-39-constituencies"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "lee-heng-guie-economist-quoted-in-malay-mail",
+      "source": "Lee Heng Guie, economist, quoted in Malay Mail",
+      "figures": [
+        {
+          "articleSlug": "epf-iemas-monthly-withdrawals-retirement-adequacy-2027",
+          "articleNum": 38,
+          "value": "97 per cent",
+          "unit": "share of Malaysians who withdrew EPF savings in a lump sum at age 55 or 60",
+          "period": "survey cited in article, 2026",
+          "source": "Lee Heng Guie, economist, quoted in Malay Mail",
+          "retrieved": "2026-11-05"
+        },
+        {
+          "articleSlug": "epf-iemas-monthly-withdrawals-retirement-adequacy-2027",
+          "articleNum": 38,
+          "value": "three to five years",
+          "unit": "time period in which many retirees deplete lump-sum EPF savings",
+          "period": "survey cited in article, 2026",
+          "source": "Lee Heng Guie, economist, quoted in Malay Mail",
+          "retrieved": "2026-11-05"
+        }
+      ],
+      "articleNums": [
+        38
+      ],
+      "articleSlugs": [
+        "epf-iemas-monthly-withdrawals-retirement-adequacy-2027"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "petronas",
+      "source": "Petronas",
+      "figures": [
+        {
+          "articleSlug": "petronas-rm1524b-revenue-h1-2026",
+          "articleNum": 26,
+          "value": "RM152.4 billion",
+          "unit": "revenue",
+          "period": "first half of 2026",
+          "source": "Petronas",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "petronas-rm1524b-revenue-h1-2026",
+          "articleNum": 26,
+          "value": "1,000",
+          "unit": "initiatives",
+          "period": "2020 to last year",
+          "source": "Petronas",
+          "retrieved": "2026-10-30"
+        }
+      ],
+      "articleNums": [
+        26
+      ],
+      "articleSlugs": [
+        "petronas-rm1524b-revenue-h1-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "shah-alam-high-court-as-reported-by-bernama-via",
+      "source": "Shah Alam High Court, as reported by Bernama via Malay Mail",
+      "figures": [
+        {
+          "articleSlug": "condo-pet-ban-house-rules-high-court-october-2026",
+          "articleNum": 28,
+          "value": "9.0",
+          "unit": "house rule number declared partly invalid",
+          "period": "ruling dated 30 October 2026",
+          "source": "Shah Alam High Court, as reported by Bernama via Malay Mail",
+          "retrieved": "2026-10-30"
+        },
+        {
+          "articleSlug": "condo-pet-ban-house-rules-high-court-october-2026",
+          "articleNum": 28,
+          "value": "three",
+          "unit": "cats kept by the applicant",
+          "period": "subject of the 30 October 2026 ruling",
+          "source": "Shah Alam High Court, as reported by Bernama via Malay Mail",
+          "retrieved": "2026-10-30"
+        }
+      ],
+      "articleNums": [
+        28
+      ],
+      "articleSlugs": [
+        "condo-pet-ban-house-rules-high-court-october-2026"
+      ],
+      "modelOutput": false
+    },
+    {
+      "id": "union-election-commission-via-fmt-afp",
+      "source": "Union Election Commission, via FMT/AFP",
+      "figures": [
+        {
+          "articleSlug": "myanmar-by-elections-april-2027-39-constituencies",
+          "articleNum": 41,
+          "value": "April 4, 2027",
+          "unit": "date of by-elections",
+          "period": "2027",
+          "source": "Union Election Commission, via FMT/AFP",
+          "retrieved": "2026-11-06"
+        },
+        {
+          "articleSlug": "myanmar-by-elections-april-2027-39-constituencies",
+          "articleNum": 41,
+          "value": "39",
+          "unit": "constituencies holding by-elections",
+          "period": "April 2027",
+          "source": "Union Election Commission, via FMT/AFP",
+          "retrieved": "2026-11-06"
+        }
+      ],
+      "articleNums": [
+        41
+      ],
+      "articleSlugs": [
+        "myanmar-by-elections-april-2027-39-constituencies"
+      ],
+      "modelOutput": false
+    }
+  ]
+}

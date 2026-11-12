@@ -1,4 +1,5 @@
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { dirname } from "node:path";
 
 /**
  * Rebuild the instrument registry with a correct frontmatter parser.
@@ -262,6 +263,9 @@ if (CHECK_ONLY) {
   process.exit(1);
 }
 
+/* src/data does not exist in a fresh checkout, and writing into a missing directory is what
+   failed the publish step after the article had already been staged. */
+mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, serialised, "utf8");
 
 console.log("\nREGISTRY\n" + "=".repeat(80));
