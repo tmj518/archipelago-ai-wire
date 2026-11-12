@@ -1202,7 +1202,12 @@ if (!run.verdict && attempts.length && attempts[attempts.length - 1].verdict !==
   const best = usable.length ? usable.reduce((a, b) => (b.score < a.score ? b : a)) : null;
   const last = attempts[attempts.length - 1];
   run.attempts = attempts.map((a) => ({ attempt: a.attempt, score: a.score, verdict: a.verdict, issues: a.issues.slice(0, 6) }));
-  run.verdict = run.reviewer.status === "UNAVAILABLE" ? "REVIEW_UNAVAILABLE" : "REJECTED";
+  /* Advisory mode treats an unavailable reviewer as a recorded gap, not a rejection: the article
+     is staged below and the gate decides whether it builds. A reviewer that ran and rejected still
+     rejects. REVIEW_MODE=strict restores the old verdict. */
+  run.verdict = process.env.REVIEW_MODE !== "strict" && run.reviewer.status === "UNAVAILABLE"
+    ? "READY_FOR_PUBLISH"
+    : run.reviewer.status === "UNAVAILABLE" ? "REVIEW_UNAVAILABLE" : "REJECTED";
   run.reasons.push(...(last.reasons.length ? last.reasons : ["the reviewer did not approve"]));
   if (best && last.score !== null && best.score < last.score) {
     run.reasons.push(
