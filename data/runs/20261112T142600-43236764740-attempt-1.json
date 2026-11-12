@@ -1,16 +1,15 @@
 {
-  "at": "2026-11-12T03:42:26Z",
-  "sha": "3bfcb1c5107877499c36cf5fb23090bf268e74fe",
-  "run": "43149666563",
+  "at": "2026-11-12T14:26:00Z",
+  "sha": "f6d1d1bd89160ed3ebff06f20453717b9a6a0449",
+  "run": "43236764740",
   "run_attempt": "1",
   "workflow_status": "success",
-  "verdict": "FAILED",
-  "publication_status": "FAILED",
-  "article": null,
+  "verdict": "QUIET",
+  "publication_status": "QUIET",
+  "article": "arvid-kahl-feedbackpanda-bootstrapped-founder",
   "commit": null,
   "reviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "registry": {
     "status": "NOT_RUN"
