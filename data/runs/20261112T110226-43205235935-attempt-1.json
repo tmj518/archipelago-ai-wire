@@ -1,19 +1,19 @@
 {
-  "at": "2026-11-12T03:22:52Z",
-  "sha": "249dd952a4b1536a1172a0d737da72d04d0e2fbe",
-  "run": "43147414421",
+  "at": "2026-11-12T11:02:26Z",
+  "sha": "3c3bbb1a752ac5e7e4e1f656dc9a5fffc438e53c",
+  "run": "43205235935",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": null,
+  "article": "selangor-flood-coordination-rm3000-aid-november-2026",
   "commit": null,
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "live_checks": {
     "status": "skipped"

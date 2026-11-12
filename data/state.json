@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-12T10:53:06.616Z",
+  "lastRun": "2026-11-12T11:02:26.181Z",
   "lastVerdict": "FAILED",
-  "lastArticle": null,
-  "runs": 12,
+  "lastArticle": "selangor-flood-coordination-rm3000-aid-november-2026",
+  "runs": 13,
   "published": 0,
   "lastUsage": {
     "calls": 3,
     "failed": 0,
-    "usd": 0.0102,
-    "promptTokens": 40505,
-    "completionTokens": 4002
+    "usd": 0.0254,
+    "promptTokens": 68482,
+    "completionTokens": 6324
   },
-  "lastFinalizedRunId": "43203943275",
+  "lastFinalizedRunId": "43205235935",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43203943275:1",
+  "lastFinalizedKey": "43205235935:1",
   "finalizedRuns": {
-    "43203943275": {
+    "43205235935": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43203943275:1"
+      "finalizationKey": "43205235935:1"
     }
   },
   "publishedRunIds": [],

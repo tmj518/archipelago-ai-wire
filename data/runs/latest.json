@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-12T10:52:34.477Z",
-  "runId": "43203943275",
+  "at": "2026-11-12T11:01:31.902Z",
+  "runId": "43205235935",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "workflow_dispatch",
-  "executionSha": "0472692c45e9121c9f4082d0c2a44ae93eb1b449",
+  "executionSha": "3c3bbb1a752ac5e7e4e1f656dc9a5fffc438e53c",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "11 previous run(s), last 2026-11-12T10:39:09.839Z (FAILED)"
+      "detail": "12 previous run(s), last 2026-11-12T10:53:06.616Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sarawak-art-rembus-northbank-pilot-launch-2026 from /data/directive.json"
+      "detail": "selangor-flood-coordination-rm3000-aid-november-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "3 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/sarawak-art-rembus-northbank-pilot-launch-2026.md"
+      "detail": "draft at /data/drafts/selangor-flood-coordination-rm3000-aid-november-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/sarawak-art-rembus-northbank-pilot-launch-2026.md"
+      "detail": "staged at src/content/blog/selangor-flood-coordination-rm3000-aid-november-2026.md"
     },
     {
       "name": "registry",
@@ -68,16 +68,16 @@
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict REVIEW_UNAVAILABLE"
+      "detail": "verdict READY_FOR_PUBLISH"
     }
   ],
   "verdict": "FAILED",
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve",
-    "refusing publication: reviewer=UNAVAILABLE, registry=REBUILT"
+    "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": null,
+  "article": "selangor-flood-coordination-rm3000-aid-november-2026",
   "commit": null,
   "publicationStatus": "FAILED",
   "reviewer": {
@@ -90,9 +90,9 @@
   "usage": {
     "calls": 3,
     "failed": 0,
-    "usd": 0.0102,
-    "promptTokens": 40505,
-    "completionTokens": 4002
+    "usd": 0.0254,
+    "promptTokens": 68482,
+    "completionTokens": 6324
   },
   "route": "script",
   "categoryActivity": {
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 26,
-  "orchestratorVerdict": "REVIEW_UNAVAILABLE",
-  "finalizationKey": "43203943275:1",
-  "finalizedAt": "2026-11-12T10:53:06.616Z",
-  "productionUrl": null,
+  "seconds": 28,
+  "orchestratorVerdict": "READY_FOR_PUBLISH",
+  "finalizationKey": "43205235935:1",
+  "finalizedAt": "2026-11-12T11:02:26.181Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/selangor-flood-coordination-rm3000-aid-november-2026/",
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {

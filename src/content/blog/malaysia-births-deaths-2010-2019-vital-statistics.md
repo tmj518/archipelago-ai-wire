@@ -156,6 +156,8 @@ The interest rate environment matters here too. With the central bank holding th
 
 > Also read: [Singapore ends haze measures as Malaysia watches transboundary smoke season](/blog/singapore-haze-mitigation-measures-end-november-2026/)
 
+> Also read: [Selangor flood response gets a federal meeting, a RM3,000 household payout and a drainage upgrade order](/blog/selangor-flood-coordination-rm3000-aid-november-2026/)
+
 ## For you
 
 - **A couple planning a family:** the national average of 2.0 children per woman is below replacement level. Your family size decision, multiplied across millions of households, determines whether the population grows or shrinks.
