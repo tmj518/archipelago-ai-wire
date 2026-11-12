@@ -1,0 +1,117 @@
+{
+  "at": "2026-11-12T21:42:19.753Z",
+  "runId": "43312470657",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "schedule",
+  "executionSha": "2cd47ca9f69ded33955e64ff6afc62bf50282556",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "13 previous run(s), last 2026-11-12T14:26:00.483Z (QUIET)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "8 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "eppendorf-penang-plant-2028-life-sciences-manufacturing from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "7 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/eppendorf-penang-plant-2028-life-sciences-manufacturing.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/eppendorf-penang-plant-2028-life-sciences-manufacturing.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict READY_FOR_PUBLISH"
+    }
+  ],
+  "verdict": "READY_FOR_PUBLISH",
+  "reasons": [
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve"
+  ],
+  "article": "eppendorf-penang-plant-2028-life-sciences-manufacturing",
+  "commit": null,
+  "publicationStatus": "DRAFT_STAGED",
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "usage": {
+    "calls": 2,
+    "failed": 0,
+    "usd": 0.0157,
+    "promptTokens": 37433,
+    "completionTokens": 5048
+  },
+  "route": "script",
+  "categoryActivity": {
+    "success-cases": 4,
+    "economy": 0,
+    "malaysia-impact": 1,
+    "work-education-family": 1,
+    "business-opportunities-risks": 1,
+    "tech-ai": 1,
+    "world": 0
+  },
+  "uncoveredSections": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 25
+}

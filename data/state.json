@@ -1,43 +1,34 @@
 {
-  "lastRun": "2026-11-12T14:26:00.483Z",
-  "lastVerdict": "QUIET",
-  "lastArticle": "selangor-flood-coordination-rm3000-aid-november-2026",
-  "runs": 13,
+  "lastRun": "2026-11-12T21:43:25.965Z",
+  "lastVerdict": "FAILED",
+  "lastArticle": "eppendorf-penang-plant-2028-life-sciences-manufacturing",
+  "runs": 14,
   "published": 0,
   "lastUsage": {
-    "calls": 3,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0254,
-    "promptTokens": 68482,
-    "completionTokens": 6324
+    "usd": 0.0157,
+    "promptTokens": 37433,
+    "completionTokens": 5048
   },
-  "lastFinalizedRunId": "43236764740",
+  "lastFinalizedRunId": "43312470657",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43236764740:1",
+  "lastFinalizedKey": "43312470657:1",
   "finalizedRuns": {
-    "43205235935": {
+    "43312470657": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43205235935:1"
-    },
-    "43207777638": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "43207777638:1"
-    },
-    "43236764740": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "43236764740:1"
+      "finalizationKey": "43312470657:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",

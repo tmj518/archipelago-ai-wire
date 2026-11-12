@@ -133,6 +133,8 @@ The third carrier is the entrepreneur weighing a Johor location against a Klang 
 
 > Also read: [Ferrotec opens second Kulim plant, adding over 1,000 semiconductor jobs in Kedah](/blog/ferrotec-second-kulim-plant-semiconductor-jobs/)
 
+> Also read: [Eppendorf breaks ground on its first Southeast Asian factory in Penang, with production to start in 2028](/blog/eppendorf-penang-plant-2028-life-sciences-manufacturing/)
+
 ## For you
 
 - **A small business owner in Johor:** the RM40.30 billion already realised is the part of the zone's money that is spending now, so supplier lists at the firms building there are the place to start, ahead of the December 2026 blueprint.

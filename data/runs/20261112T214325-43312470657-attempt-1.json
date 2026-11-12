@@ -1,19 +1,19 @@
 {
-  "at": "2026-11-12T05:13:07Z",
-  "sha": "a4e63217e3830fe3cd74d1e12ec83f9a25b73ebe",
-  "run": "43159517255",
+  "at": "2026-11-12T21:43:25Z",
+  "sha": "2cd47ca9f69ded33955e64ff6afc62bf50282556",
+  "run": "43312470657",
   "run_attempt": "1",
-  "workflow_status": "success",
+  "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": null,
+  "article": "eppendorf-penang-plant-2028-life-sciences-manufacturing",
   "commit": null,
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "live_checks": {
     "status": "skipped"

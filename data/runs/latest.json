@@ -1,34 +1,125 @@
 {
-  "at": "2026-11-12T14:25:44.296Z",
-  "route": "script",
-  "runId": "43236764740",
+  "at": "2026-11-12T21:42:19.753Z",
+  "runId": "43312470657",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "f6d1d1bd89160ed3ebff06f20453717b9a6a0449",
+  "executionSha": "2cd47ca9f69ded33955e64ff6afc62bf50282556",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
   "steps": [
     {
-      "name": "daily quota",
+      "name": "providers",
       "ok": true,
-      "detail": "already published today: arvid-kahl-feedbackpanda-bootstrapped-founder"
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "13 previous run(s), last 2026-11-12T14:26:00.483Z (QUIET)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "8 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "eppendorf-penang-plant-2028-life-sciences-manufacturing from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "7 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/eppendorf-penang-plant-2028-life-sciences-manufacturing.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/eppendorf-penang-plant-2028-life-sciences-manufacturing.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict READY_FOR_PUBLISH"
     }
   ],
-  "verdict": "QUIET",
-  "publicationStatus": "QUIET",
-  "article": "arvid-kahl-feedbackpanda-bootstrapped-founder",
+  "verdict": "FAILED",
+  "reasons": [
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve",
+    "publication not finalized: independent reviewer approval is missing"
+  ],
+  "article": "eppendorf-penang-plant-2028-life-sciences-manufacturing",
   "commit": null,
+  "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
-  "reasons": [],
-  "orchestratorVerdict": "QUIET",
-  "finalizationKey": "43236764740:1",
-  "finalizedAt": "2026-11-12T14:26:00.483Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/arvid-kahl-feedbackpanda-bootstrapped-founder/",
-  "executionConclusion": "success",
+  "usage": {
+    "calls": 2,
+    "failed": 0,
+    "usd": 0.0157,
+    "promptTokens": 37433,
+    "completionTokens": 5048
+  },
+  "route": "script",
+  "categoryActivity": {
+    "success-cases": 4,
+    "economy": 0,
+    "malaysia-impact": 1,
+    "work-education-family": 1,
+    "business-opportunities-risks": 1,
+    "tech-ai": 1,
+    "world": 0
+  },
+  "uncoveredSections": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 25,
+  "orchestratorVerdict": "READY_FOR_PUBLISH",
+  "finalizationKey": "43312470657:1",
+  "finalizedAt": "2026-11-12T21:43:25.965Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/eppendorf-penang-plant-2028-life-sciences-manufacturing/",
+  "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {
     "status": "skipped"
