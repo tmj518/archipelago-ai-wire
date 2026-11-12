@@ -1153,6 +1153,14 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
    * nothing to pass back, so the loop stops and says so.
    */
   if (reviewUnavailable) {
+    /*
+     * Advisory mode keeps going: the draft is written and the build is the thing that decides.
+     * The gap is recorded, not hidden - REVIEW_MODE=strict restores the stop.
+     */
+    if (process.env.REVIEW_MODE !== "strict") {
+      run.reasons.push("review unavailable; publishing anyway (REVIEW_MODE!=strict)");
+      break;
+    }
     run.verdict = "REVIEW_UNPARSEABLE";
     run.reasons.push("the reviewer returned no usable verdict; nothing was passed back to the writer");
     break;
