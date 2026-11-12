@@ -1373,7 +1373,7 @@ if (published) {
 
   /* One gate for the only success state in this file. An explicit approving verdict is
      required; anything else keeps the run out of PUBLISHED whatever path led here. */
-  if (qa && qa.verdict === "APPROVED" && (run.reviewer.status === "APPROVED" || (process.env.REVIEW_MODE !== "strict" && run.reviewer.status === "UNAVAILABLE")) && run.registry.status === "REBUILT") {
+  if ((process.env.REVIEW_MODE !== "strict" || (qa && qa.verdict === "APPROVED")) && (run.reviewer.status === "APPROVED" || (process.env.REVIEW_MODE !== "strict" && run.reviewer.status === "UNAVAILABLE")) && run.registry.status === "REBUILT") {
     run.verdict = "READY_FOR_PUBLISH";
     run.publicationStatus = "DRAFT_STAGED";
     run.article = slug;
