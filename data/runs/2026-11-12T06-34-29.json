@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-12T06:25:11.028Z",
-  "runId": "43167737680",
+  "at": "2026-11-12T06:34:01.416Z",
+  "runId": "43168827257",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "workflow_dispatch",
-  "executionSha": "e7169e9ff32cdf7ea8e466ee9fcc9f51b247fc6b",
+  "executionSha": "f8efcfa1751d13e8d981f73c416d17d4be3d5e8b",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "7 previous run(s), last 2026-11-12T05:13:07.770Z (FAILED)"
+      "detail": "8 previous run(s), last 2026-11-12T06:25:58.100Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "malaysia-battery-safety-certification-bess-pilot-kapar from /data/directive.json"
+      "detail": "malaysia-ccus-roadmap-end-november-2026-kuantan-kerteh from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/malaysia-battery-safety-certification-bess-pilot-kapar.md"
+      "detail": "draft at /data/drafts/malaysia-ccus-roadmap-end-november-2026-kuantan-kerteh.md"
     },
     {
       "name": "reviewer",
@@ -53,13 +53,14 @@
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict REVIEW_UNPARSEABLE"
+      "detail": "verdict REVIEW_UNAVAILABLE"
     }
   ],
-  "verdict": "REVIEW_UNPARSEABLE",
+  "verdict": "REVIEW_UNAVAILABLE",
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
-    "the reviewer returned no usable verdict; nothing was passed back to the writer"
+    "review unavailable; publishing anyway (REVIEW_MODE!=strict)",
+    "the reviewer did not approve"
   ],
   "article": null,
   "commit": null,
@@ -72,11 +73,11 @@
     "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 2,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0107,
-    "promptTokens": 37311,
-    "completionTokens": 5693
+    "usd": 0.0165,
+    "promptTokens": 38930,
+    "completionTokens": 5479
   },
   "route": "script",
   "categoryActivity": {
@@ -89,5 +90,14 @@
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 28
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 29
 }
