@@ -1,9 +1,9 @@
 {
-  "at": "2026-11-12T06:25:58Z",
-  "sha": "e7169e9ff32cdf7ea8e466ee9fcc9f51b247fc6b",
-  "run": "43167737680",
+  "at": "2026-11-12T23:26:17Z",
+  "sha": "6509b429d1334c849704473a95517a93ad662fa8",
+  "run": "43328326819",
   "run_attempt": "1",
-  "workflow_status": "success",
+  "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
   "article": null,

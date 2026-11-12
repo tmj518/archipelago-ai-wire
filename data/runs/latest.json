@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-12T21:42:19.753Z",
-  "runId": "43312470657",
+  "at": "2026-11-12T23:25:26.689Z",
+  "runId": "43328326819",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "2cd47ca9f69ded33955e64ff6afc62bf50282556",
+  "executionSha": "6509b429d1334c849704473a95517a93ad662fa8",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "13 previous run(s), last 2026-11-12T14:26:00.483Z (QUIET)"
+      "detail": "14 previous run(s), last 2026-11-12T21:43:25.965Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "8 of 25 net-new this week"
+      "detail": "9 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,7 +33,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "eppendorf-penang-plant-2028-life-sciences-manufacturing from /data/directive.json"
+      "detail": "american-cancer-society-psa-screening-guidelines-malaysia-men from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -43,7 +43,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/eppendorf-penang-plant-2028-life-sciences-manufacturing.md"
+      "detail": "draft at /data/drafts/american-cancer-society-psa-screening-guidelines-malaysia-men.md"
     },
     {
       "name": "reviewer",
@@ -53,17 +53,12 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/eppendorf-penang-plant-2028-life-sciences-manufacturing.md"
+      "detail": "staged at src/content/blog/american-cancer-society-psa-screening-guidelines-malaysia-men.md"
     },
     {
-      "name": "registry",
-      "ok": true,
-      "detail": "rebuilt"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
+      "name": "publish",
+      "ok": false,
+      "detail": "rolled back after the gate: 3R review                              race, religion or roy"
     },
     {
       "name": "state written",
@@ -75,9 +70,10 @@
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve",
+    "the staged article failed qa-check as a published file: 3R review                              race, religion or roy",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "eppendorf-penang-plant-2028-life-sciences-manufacturing",
+  "article": null,
   "commit": null,
   "publicationStatus": "FAILED",
   "reviewer": {
@@ -85,14 +81,14 @@
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 2,
+    "calls": 7,
     "failed": 0,
-    "usd": 0.0157,
-    "promptTokens": 37433,
-    "completionTokens": 5048
+    "usd": 0.0499,
+    "promptTokens": 181558,
+    "completionTokens": 10841
   },
   "route": "script",
   "categoryActivity": {
@@ -100,7 +96,7 @@
     "economy": 0,
     "malaysia-impact": 1,
     "work-education-family": 1,
-    "business-opportunities-risks": 1,
+    "business-opportunities-risks": 2,
     "tech-ai": 1,
     "world": 0
   },
@@ -114,11 +110,11 @@
     }
   ],
   "qa": null,
-  "seconds": 25,
+  "seconds": 24,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "43312470657:1",
-  "finalizedAt": "2026-11-12T21:43:25.965Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/eppendorf-penang-plant-2028-life-sciences-manufacturing/",
+  "finalizationKey": "43328326819:1",
+  "finalizedAt": "2026-11-12T23:26:17.355Z",
+  "productionUrl": null,
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {

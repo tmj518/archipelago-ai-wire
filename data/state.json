@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-12T21:43:25.965Z",
+  "lastRun": "2026-11-12T23:26:17.355Z",
   "lastVerdict": "FAILED",
   "lastArticle": "eppendorf-penang-plant-2028-life-sciences-manufacturing",
-  "runs": 14,
+  "runs": 15,
   "published": 0,
   "lastUsage": {
-    "calls": 2,
+    "calls": 7,
     "failed": 0,
-    "usd": 0.0157,
-    "promptTokens": 37433,
-    "completionTokens": 5048
+    "usd": 0.0499,
+    "promptTokens": 181558,
+    "completionTokens": 10841
   },
-  "lastFinalizedRunId": "43312470657",
+  "lastFinalizedRunId": "43328326819",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43312470657:1",
+  "lastFinalizedKey": "43328326819:1",
   "finalizedRuns": {
-    "43312470657": {
+    "43328326819": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43312470657:1"
+      "finalizationKey": "43328326819:1"
     }
   },
   "publishedRunIds": [],
@@ -28,7 +28,7 @@
     "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
