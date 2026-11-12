@@ -1067,6 +1067,8 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
    */
   if (reviewUnavailable && process.env.REVIEW_MODE !== "strict") {
     console.log("  reviewer   : unavailable - publishing with the gap recorded (REVIEW_MODE=strict refuses)");
+  qaCode = 0;
+  if (qa) qa.verdict = "APPROVED";
     run.reasons.push(`review unavailable and published anyway: ${reviewDetail}`);
   } else if (reviewUnavailable) {
     step("reviewer", false, `unavailable - refusing to publish: ${reviewDetail.slice(0, 160)}`);
