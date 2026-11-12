@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-12T03:22:00.139Z",
-  "runId": "43147414421",
+  "at": "2026-11-12T03:33:05.143Z",
+  "runId": "43148706314",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "workflow_dispatch",
-  "executionSha": "249dd952a4b1536a1172a0d737da72d04d0e2fbe",
+  "executionSha": "39c70e026776f650d919ee3d258dea4ea2450173",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "3 previous run(s), last 2026-11-12T00:20:21.847Z (FAILED)"
+      "detail": "4 previous run(s), last 2026-11-12T03:22:52.269Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "6 of 25 net-new this week"
+      "detail": "7 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -38,7 +38,7 @@
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "5 sourced figure(s)"
+      "detail": "4 sourced figure(s)"
     },
     {
       "name": "writer",
@@ -72,22 +72,22 @@
     "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 2,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0097,
-    "promptTokens": 35815,
-    "completionTokens": 4609
+    "usd": 0.0103,
+    "promptTokens": 38056,
+    "completionTokens": 4532
   },
   "route": "script",
   "categoryActivity": {
+    "success-cases": 4,
     "economy": 0,
     "malaysia-impact": 0,
-    "success-cases": 3,
     "work-education-family": 1,
     "business-opportunities-risks": 1,
     "tech-ai": 1,
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 25
+  "seconds": 27
 }
