@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-12T00:19:32.356Z",
-  "runId": "43126228794",
+  "at": "2026-11-12T03:22:00.139Z",
+  "runId": "43147414421",
   "runAttempt": 1,
   "workflow": "Content day",
-  "event": "schedule",
-  "executionSha": "fbc2dd5f1cdf2499fca0b47eda259eafe2069855",
+  "event": "workflow_dispatch",
+  "executionSha": "249dd952a4b1536a1172a0d737da72d04d0e2fbe",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "2 previous run(s), last 2026-11-11T21:45:14.230Z (FAILED)"
+      "detail": "3 previous run(s), last 2026-11-12T00:20:21.847Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,27 +33,22 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "budget-2027-stamp-duty-exemption-abandoned-housing-rehabilitation from /data/directive.json"
+      "detail": "epf-i-sayang-non-citizen-wives-extension-study from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "5 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/budget-2027-stamp-duty-exemption-abandoned-housing-rehabilitation.md"
+      "detail": "draft at /data/drafts/epf-i-sayang-non-citizen-wives-extension-study.md"
     },
     {
       "name": "reviewer",
       "ok": false,
       "detail": "no parseable verdict"
-    },
-    {
-      "name": "reviewer",
-      "ok": false,
-      "detail": "unavailable - refusing to publish: no usable reviewer result"
     },
     {
       "name": "state written",
@@ -63,7 +58,7 @@
   ],
   "verdict": "FAILED",
   "reasons": [
-    "review unavailable; publication refused: no usable reviewer result",
+    "review unavailable and published anyway: no usable reviewer result",
     "the reviewer returned no usable verdict; nothing was passed back to the writer"
   ],
   "article": null,
@@ -79,9 +74,9 @@
   "usage": {
     "calls": 2,
     "failed": 0,
-    "usd": 0.0108,
-    "promptTokens": 38187,
-    "completionTokens": 5555
+    "usd": 0.0097,
+    "promptTokens": 35815,
+    "completionTokens": 4609
   },
   "route": "script",
   "categoryActivity": {
@@ -94,10 +89,10 @@
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 24,
+  "seconds": 25,
   "orchestratorVerdict": "REVIEW_UNPARSEABLE",
-  "finalizationKey": "43126228794:1",
-  "finalizedAt": "2026-11-12T00:20:21.847Z",
+  "finalizationKey": "43147414421:1",
+  "finalizedAt": "2026-11-12T03:22:52.269Z",
   "productionUrl": null,
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",
