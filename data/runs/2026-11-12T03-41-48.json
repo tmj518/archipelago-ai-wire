@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-12T03:33:05.143Z",
-  "runId": "43148706314",
+  "at": "2026-11-12T03:41:23.797Z",
+  "runId": "43149666563",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "workflow_dispatch",
-  "executionSha": "39c70e026776f650d919ee3d258dea4ea2450173",
+  "executionSha": "3bfcb1c5107877499c36cf5fb23090bf268e74fe",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "4 previous run(s), last 2026-11-12T03:22:52.269Z (FAILED)"
+      "detail": "5 previous run(s), last 2026-11-12T03:33:56.654Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "epf-i-sayang-non-citizen-wives-extension-study from /data/directive.json"
+      "detail": "epf-i-sayang-non-citizen-wives-expansion-study-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "4 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/epf-i-sayang-non-citizen-wives-extension-study.md"
+      "detail": "draft at /data/drafts/epf-i-sayang-non-citizen-wives-expansion-study-2026.md"
     },
     {
       "name": "reviewer",
@@ -72,11 +72,11 @@
     "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 3,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0103,
-    "promptTokens": 38056,
-    "completionTokens": 4532
+    "usd": 0.0154,
+    "promptTokens": 36365,
+    "completionTokens": 5084
   },
   "route": "script",
   "categoryActivity": {
@@ -89,5 +89,5 @@
     "world": 0
   },
   "uncoveredSections": [],
-  "seconds": 27
+  "seconds": 25
 }
