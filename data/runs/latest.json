@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-12T05:12:13.271Z",
-  "runId": "43159517255",
+  "at": "2026-11-12T06:25:11.028Z",
+  "runId": "43167737680",
   "runAttempt": 1,
   "workflow": "Content day",
-  "event": "schedule",
-  "executionSha": "a4e63217e3830fe3cd74d1e12ec83f9a25b73ebe",
+  "event": "workflow_dispatch",
+  "executionSha": "e7169e9ff32cdf7ea8e466ee9fcc9f51b247fc6b",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "6 previous run(s), last 2026-11-12T03:42:26.962Z (FAILED)"
+      "detail": "7 previous run(s), last 2026-11-12T05:13:07.770Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,7 +33,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "malaysia-china-trade-deficit-rm191-5-billion-local-suppliers from /data/directive.json"
+      "detail": "malaysia-battery-safety-certification-bess-pilot-kapar from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -43,7 +43,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/malaysia-china-trade-deficit-rm191-5-billion-local-suppliers.md"
+      "detail": "draft at /data/drafts/malaysia-battery-safety-certification-bess-pilot-kapar.md"
     },
     {
       "name": "reviewer",
@@ -72,11 +72,11 @@
     "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 3,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0166,
-    "promptTokens": 38334,
-    "completionTokens": 5695
+    "usd": 0.0107,
+    "promptTokens": 37311,
+    "completionTokens": 5693
   },
   "route": "script",
   "categoryActivity": {
@@ -91,8 +91,8 @@
   "uncoveredSections": [],
   "seconds": 28,
   "orchestratorVerdict": "REVIEW_UNPARSEABLE",
-  "finalizationKey": "43159517255:1",
-  "finalizedAt": "2026-11-12T05:13:07.770Z",
+  "finalizationKey": "43167737680:1",
+  "finalizedAt": "2026-11-12T06:25:58.100Z",
   "productionUrl": null,
   "executionConclusion": "success",
   "verifyOutcome": "skipped",

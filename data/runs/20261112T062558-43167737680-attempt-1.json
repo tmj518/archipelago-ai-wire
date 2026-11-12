@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-12T06:25:58Z",
+  "sha": "e7169e9ff32cdf7ea8e466ee9fcc9f51b247fc6b",
+  "run": "43167737680",
+  "run_attempt": "1",
+  "workflow_status": "success",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
+  "article": null,
+  "commit": null,
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "NOT_RUN"
+  },
+  "live_checks": {
+    "status": "skipped"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}
