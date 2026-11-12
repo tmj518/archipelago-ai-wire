@@ -785,6 +785,14 @@ WHAT MAKES A SUBJECT WORTH WRITING
     an explainer that blurs the two is worse than no article.
   - it is not already covered. The recently published subjects are listed below.
 
+SELECTION IS DELIBERATELY WIDE
+The operator's instruction is that any industry, sector or country qualifies when the information, news, technology, business or policy reaches Malaysia directly or indirectly.
+- Direct: a Malaysian firm, plant, job, price, rule, household cost, or a Malaysian institution acts.
+- Indirect: a foreign decision changes what a Malaysian pays, can buy, can sell, can work in, or the risk they carry. Name the channel - a traded input, a customer, a competitor, a licensing rule, a shipping route, a funding market.
+- The only subjects refused are race, religion and royalty (quarantined, no human reviewer here), and subjects already published.
+- Do not narrow yourself to the six existing sections, to trade policy, or to central-bank news. A technology shift, a corporate investment, a commodity move, a labour-market change, a supply-chain reroute, a tax rule in another country: all qualify if the Malaysian consequence can be named.
+- Duplication is judged by subject, not by source: one event is one article. New information on an old event is a new subject only when the facts changed - a new figure, a new decision, a new date.
+
 WHAT IS REJECTED
   - a subject whose numbers are not in the documents below
   - a subject that repeats one of the listed articles, even under a different title
