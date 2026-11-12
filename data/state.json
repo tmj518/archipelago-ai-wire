@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-12T03:42:26.962Z",
+  "lastRun": "2026-11-12T05:13:07.770Z",
   "lastVerdict": "FAILED",
   "lastArticle": null,
-  "runs": 6,
+  "runs": 7,
   "published": 0,
   "lastUsage": {
-    "calls": 2,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0154,
-    "promptTokens": 36365,
-    "completionTokens": 5084
+    "usd": 0.0166,
+    "promptTokens": 38334,
+    "completionTokens": 5695
   },
-  "lastFinalizedRunId": "43149666563",
+  "lastFinalizedRunId": "43159517255",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43149666563:1",
+  "lastFinalizedKey": "43159517255:1",
   "finalizedRuns": {
-    "43149666563": {
+    "43159517255": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43149666563:1"
+      "finalizationKey": "43159517255:1"
     }
   },
   "publishedRunIds": [],
