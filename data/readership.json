@@ -1,0 +1,7 @@
+{
+  "note": "Readership per slug, so selection stops being a guess. Source is GA4 page views over 28 days; until that export lands, the numbers here are what the site can prove from its own logs, and the field is empty on purpose rather than filled with guesses.",
+  "window_days": 28,
+  "source": "ga4:pageviews",
+  "updated": "2026-11-12",
+  "readership": {}
+}

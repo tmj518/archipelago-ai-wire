@@ -1,3 +1,4 @@
+import { SITE_RULES_TEXT } from "../../tools/lib/site-rules.mjs";
 /**
  * The writer's brain, in one place.
  *
@@ -181,3 +182,7 @@ Also required:
 
 Blocked words, case-insensitive, anywhere in the file: may, could, might, possibly, arguably.
 Note that this catches the month May as well. Write dates as "24 September 2026" and never "May 2026".`;
+
+
+/* The rules a reader would notice, shared with the reviewer so the two cannot drift. */
+export const SITE_RULES_BLOCK = `\nSITE RULES\n${SITE_RULES_TEXT}\n`;

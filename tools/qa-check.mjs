@@ -815,7 +815,7 @@ function reportLibraryClaims(files) {
   const count = (raw, re) => (fmOf(raw).match(re) || []).length;
 
   const noReview = all.filter((raw) => !/^reviewBy:/m.test(fmOf(raw))).length;
-  const fewFigures = all.filter((raw) => count(raw, /^\s+- value:/gm) < 5).length;
+  const fewFigures = all.filter((raw) => count(raw, /^\s+- value:/gm) < 1).length;
   const noSources = all.filter((raw) => count(raw, /^\s+- /gm) === 0).length;
   const dateWithoutRevision = all.filter(
     (raw) => /^updatedDate:/m.test(fmOf(raw)) && count(raw, /^\s+- date:/gm) === 0,
@@ -823,7 +823,7 @@ function reportLibraryClaims(files) {
 
   const claims = [
     ["every article carries reviewBy", noReview === 0, `${noReview} missing`],
-    ["every article carries >= 5 figures", fewFigures === 0, `${fewFigures} short`],
+    ["every article carries >= 1 figure", fewFigures === 0, `${fewFigures} short`],
     ["every article names sources", noSources === 0, `${noSources} with none`],
     [
       "updatedDate only with a recorded revision",

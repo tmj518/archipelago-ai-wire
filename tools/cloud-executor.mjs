@@ -46,7 +46,7 @@ import { substantiveFigures } from "../src/lib/figures.mjs";
  * documentation, so the executable instructions are imported from src/lib/writer-prompt.mjs and are
  * checked against the taxonomy by tests/run-fixtures.mjs.
  */
-import { STRUCTURE, RULES, WRITER_SYSTEM, MISSION } from "../src/lib/writer-prompt.mjs";
+import { STRUCTURE, RULES, WRITER_SYSTEM, MISSION, SITE_RULES_BLOCK } from "../src/lib/writer-prompt.mjs";
 import { CATEGORY_SLUGS, AUDIENCE_VALUES, categoryLabel } from "../src/lib/taxonomy.mjs";
 
 const ROOT = process.cwd();
@@ -664,7 +664,7 @@ ${previous.slice(0, 60000)}`;
      */
     system: `${MISSION}
 
-${String(process.env.B_LINE_BRIEF ?? "").trim() ? String(process.env.B_LINE_BRIEF) + "\n\n" : ""}${WRITER_SYSTEM}`,
+${String(process.env.B_LINE_BRIEF ?? "").trim() ? String(process.env.B_LINE_BRIEF) + "\n\n" : ""}${WRITER_SYSTEM}${SITE_RULES_BLOCK}`,
     messages: [{ role: "user", content: task }],
     maxTokens: 16384,
   });
