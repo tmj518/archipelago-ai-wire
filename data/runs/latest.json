@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-12T10:38:33.940Z",
-  "runId": "43201919024",
+  "at": "2026-11-12T10:52:34.477Z",
+  "runId": "43203943275",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "workflow_dispatch",
-  "executionSha": "6e5d2b3e3d5f99f3c69b3d76e8a4d0074c7cb3d8",
+  "executionSha": "0472692c45e9121c9f4082d0c2a44ae93eb1b449",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "10 previous run(s), last 2026-11-12T08:09:59.866Z (FAILED)"
+      "detail": "11 previous run(s), last 2026-11-12T10:39:09.839Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -38,7 +38,7 @@
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "5 sourced figure(s)"
+      "detail": "3 sourced figure(s)"
     },
     {
       "name": "writer",
@@ -90,9 +90,9 @@
   "usage": {
     "calls": 3,
     "failed": 0,
-    "usd": 0.0113,
-    "promptTokens": 40976,
-    "completionTokens": 5172
+    "usd": 0.0102,
+    "promptTokens": 40505,
+    "completionTokens": 4002
   },
   "route": "script",
   "categoryActivity": {
@@ -114,10 +114,10 @@
     }
   ],
   "qa": null,
-  "seconds": 28,
+  "seconds": 26,
   "orchestratorVerdict": "REVIEW_UNAVAILABLE",
-  "finalizationKey": "43201919024:1",
-  "finalizedAt": "2026-11-12T10:39:09.839Z",
+  "finalizationKey": "43203943275:1",
+  "finalizedAt": "2026-11-12T10:53:06.616Z",
   "productionUrl": null,
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",

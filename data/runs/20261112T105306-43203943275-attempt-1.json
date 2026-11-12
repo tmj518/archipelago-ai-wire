@@ -1,7 +1,7 @@
 {
-  "at": "2026-11-12T00:20:21Z",
-  "sha": "fbc2dd5f1cdf2499fca0b47eda259eafe2069855",
-  "run": "43126228794",
+  "at": "2026-11-12T10:53:06Z",
+  "sha": "0472692c45e9121c9f4082d0c2a44ae93eb1b449",
+  "run": "43203943275",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
@@ -13,7 +13,7 @@
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "live_checks": {
     "status": "skipped"
