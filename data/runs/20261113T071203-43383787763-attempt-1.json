@@ -1,12 +1,12 @@
 {
-  "at": "2026-11-12T14:26:00Z",
-  "sha": "f6d1d1bd89160ed3ebff06f20453717b9a6a0449",
-  "run": "43236764740",
+  "at": "2026-11-13T07:12:03Z",
+  "sha": "84e4cf4b2fe611c3c265172538ae27333c22ebd5",
+  "run": "43383787763",
   "run_attempt": "1",
   "workflow_status": "success",
   "verdict": "QUIET",
   "publication_status": "QUIET",
-  "article": "arvid-kahl-feedbackpanda-bootstrapped-founder",
+  "article": "eppendorf-penang-plant-2028-life-sciences-manufacturing",
   "commit": null,
   "reviewer": {
     "status": "NOT_RUN"
