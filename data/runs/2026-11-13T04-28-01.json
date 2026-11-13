@@ -1,11 +1,11 @@
 {
-  "at": "2026-11-13T01:44:24.253Z",
+  "at": "2026-11-13T04:28:01.301Z",
   "route": "script",
-  "runId": "43346829447",
+  "runId": "43365481377",
   "runAttempt": 1,
   "workflow": "Content day",
-  "event": "workflow_dispatch",
-  "executionSha": "dae20020f32a3ce0b3e229043aa36c7244a21996",
+  "event": "schedule",
+  "executionSha": "aa280e82dd1b150a4e2e1b2b017585e37c4d73fb",
   "steps": [
     {
       "name": "daily quota",
