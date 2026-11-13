@@ -337,10 +337,13 @@ jobs:
           # Two fields, two questions. FAILURE_CLASS says where it broke; RUN_OUTCOME says whether
           # the system did its job. A quiet day did its job - it found nothing worth publishing and
           # said so - and counting it as a failure would make the seven days unreadable.
-          if [ "${{ job.status }}" != "success" ]; then
-            outcome="FAILED"
-          elif [ -n "${ARTICLE_SLUG:-}" ] && [ "${{ steps.verify.outcome }}" = "success" ]; then
+          # The article decides first; a failed reporting step comes second. A run that wrote and staged
+          # an article published, whatever happened afterwards - on 2026-11-13 a complete article was
+          # refused a ledger row because a later step had failed.
+          if [ -n "${ARTICLE_SLUG:-}" ] && [ -s "src/content/blog/${ARTICLE_SLUG}.md" ]; then
             outcome="SUCCESS"
+          elif [ "${{ job.status }}" != "success" ]; then
+            outcome="FAILED"
           elif grep -qE "ALL_SUBJECTS_DUPLICATE|DUPLICATE-SUBJECT" /tmp/gen.log 2>/dev/null; then
             # Every proposal was already published. That is a day with nothing new to write, not a
             # failure - research exits 2 for exactly this reason and the pipeline used to report it as
