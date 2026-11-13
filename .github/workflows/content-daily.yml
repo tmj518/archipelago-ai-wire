@@ -63,7 +63,9 @@ jobs:
           missing=""
           [ -z "${ARK_API_KEY:-}" ] && missing="$missing ARK_API_KEY(secret)"
           [ -z "${ARK_MODEL:-}" ] && missing="$missing ARK_MODEL(variable)"
-          [ -z "${CONTENT_GENERATOR:-}" ] && missing="$missing CONTENT_GENERATOR(variable)"
+          # The generator command now has a default in the env block, so an empty variable is not a
+          # configuration error any more.
+          true
           if [ -n "$missing" ]; then
             echo "::error::content generation is not configured:$missing"
             echo "No article was generated. This is a configuration failure, not a content failure." >&2
@@ -81,7 +83,10 @@ jobs:
           ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           ARK_BASE_URL: ${{ secrets.ARK_BASE_URL }}
-          CONTENT_GENERATOR: ${{ vars.CONTENT_GENERATOR }}
+          # The variable was empty on 2026-11-13 and every scheduled run died at 'CONTENT_GENERATOR is
+          # not set'. The command is not a secret and the pipeline has exactly one entry point, so the
+          # workflow carries the default and the variable only overrides it.
+          CONTENT_GENERATOR: ${{ vars.CONTENT_GENERATOR || 'node tools/cloud-orchestrator.mjs' }}
           ARK_MODEL: ${{ vars.ARK_MODEL }}
 
       # The missing link in the chain. cloud-orchestrator decides *whether* to publish; it does not
@@ -203,7 +208,10 @@ jobs:
             exit 0
           fi
         env:
-          CONTENT_GENERATOR: ${{ vars.CONTENT_GENERATOR }}
+          # The variable was empty on 2026-11-13 and every scheduled run died at 'CONTENT_GENERATOR is
+          # not set'. The command is not a secret and the pipeline has exactly one entry point, so the
+          # workflow carries the default and the variable only overrides it.
+          CONTENT_GENERATOR: ${{ vars.CONTENT_GENERATOR || 'node tools/cloud-orchestrator.mjs' }}
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
           ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
