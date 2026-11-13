@@ -1,19 +1,19 @@
 {
-  "at": "2026-11-12T06:34:37Z",
-  "sha": "f8efcfa1751d13e8d981f73c416d17d4be3d5e8b",
-  "run": "43168827257",
+  "at": "2026-11-13T01:10:19Z",
+  "sha": "95528e7898d5eeec0879822a6fb373e1ad263101",
+  "run": "43342415566",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": null,
+  "article": "federal-reserve-check-fees-2027-malaysia-banks",
   "commit": null,
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "live_checks": {
     "status": "skipped"

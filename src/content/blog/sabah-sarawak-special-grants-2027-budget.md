@@ -157,6 +157,8 @@ The last line is the one to sit with. The two state envelopes together are more 
 
 **What would change my mind.** A published formula, or a statement from the finance ministry or the Sabah and Sarawak state governments naming the settled amount and the review date, would move this from an interim story to a permanent one. A breakdown of what the RM18.7 billion and RM16.2 billion actually contain — how much is development spending, how much is operating, how much is the special grant itself — would sharpen the picture considerably. None of that is in the document I have.
 
+> Also read: [US Fed to raise check fees for banks in 2027 — what it means for Malaysian banks' dollar clearing costs](/blog/federal-reserve-check-fees-2027-malaysia-banks/)
+
 ## For you
 
 - **A household in a rural Sabah or Sarawak district:** the MARRIS line at RM5.6 billion in 2026 is the road maintenance budget, and it is the line that decides whether the road to your nearest clinic is repaired this year.

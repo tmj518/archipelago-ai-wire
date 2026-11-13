@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-12T23:25:26.689Z",
-  "runId": "43328326819",
+  "at": "2026-11-13T01:09:34.824Z",
+  "runId": "43342415566",
   "runAttempt": 1,
   "workflow": "Content day",
-  "event": "schedule",
-  "executionSha": "6509b429d1334c849704473a95517a93ad662fa8",
+  "event": "workflow_dispatch",
+  "executionSha": "95528e7898d5eeec0879822a6fb373e1ad263101",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "14 previous run(s), last 2026-11-12T21:43:25.965Z (FAILED)"
+      "detail": "15 previous run(s), last 2026-11-12T23:26:17.355Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "american-cancer-society-psa-screening-guidelines-malaysia-men from /data/directive.json"
+      "detail": "federal-reserve-check-fees-2027-malaysia-banks from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "2 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/american-cancer-society-psa-screening-guidelines-malaysia-men.md"
+      "detail": "draft at /data/drafts/federal-reserve-check-fees-2027-malaysia-banks.md"
     },
     {
       "name": "reviewer",
@@ -53,12 +53,17 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/american-cancer-society-psa-screening-guidelines-malaysia-men.md"
+      "detail": "staged at src/content/blog/federal-reserve-check-fees-2027-malaysia-banks.md"
     },
     {
-      "name": "publish",
-      "ok": false,
-      "detail": "rolled back after the gate: 3R review                              race, religion or roy"
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
@@ -70,10 +75,9 @@
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve",
-    "the staged article failed qa-check as a published file: 3R review                              race, religion or roy",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": null,
+  "article": "federal-reserve-check-fees-2027-malaysia-banks",
   "commit": null,
   "publicationStatus": "FAILED",
   "reviewer": {
@@ -81,14 +85,14 @@
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "usage": {
-    "calls": 7,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0499,
-    "promptTokens": 181558,
-    "completionTokens": 10841
+    "usd": 0.0186,
+    "promptTokens": 66685,
+    "completionTokens": 4979
   },
   "route": "script",
   "categoryActivity": {
@@ -110,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 24,
+  "seconds": 27,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "43328326819:1",
-  "finalizedAt": "2026-11-12T23:26:17.355Z",
-  "productionUrl": null,
+  "finalizationKey": "43342415566:1",
+  "finalizedAt": "2026-11-13T01:10:19.729Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/federal-reserve-check-fees-2027-malaysia-banks/",
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {

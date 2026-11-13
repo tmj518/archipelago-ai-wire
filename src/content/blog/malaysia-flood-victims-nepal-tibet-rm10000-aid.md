@@ -128,6 +128,8 @@ For context on how Malaysian public money is allocated to states and groups, see
 
 **What would change my mind.** A Nadma statement setting out the documents a family must produce, a deadline for claims, or a rule for families whose relative is later confirmed dead would change the practical advice in this article. A second official source confirming the payment order would move that detail from single-document to corroborated. If the government later extends the payment beyond the 54 confirmed victims, the section on the missing would need rewriting.
 
+> Also read: [US Fed to raise check fees for banks in 2027 — what it means for Malaysian banks' dollar clearing costs](/blog/federal-reserve-check-fees-2027-malaysia-banks/)
+
 ## For you
 
 - **A household with a confirmed victim in the family:** the payment is RM10,000, paid through Nadma. Work out where your family sits in the order — spouse first, then parents, then children — and have that person ready to deal with the agency.

@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-12T23:26:17.355Z",
+  "lastRun": "2026-11-13T01:10:19.729Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "eppendorf-penang-plant-2028-life-sciences-manufacturing",
-  "runs": 15,
+  "lastArticle": "federal-reserve-check-fees-2027-malaysia-banks",
+  "runs": 16,
   "published": 0,
   "lastUsage": {
-    "calls": 7,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0499,
-    "promptTokens": 181558,
-    "completionTokens": 10841
+    "usd": 0.0186,
+    "promptTokens": 66685,
+    "completionTokens": 4979
   },
-  "lastFinalizedRunId": "43328326819",
+  "lastFinalizedRunId": "43342415566",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43328326819:1",
+  "lastFinalizedKey": "43342415566:1",
   "finalizedRuns": {
-    "43328326819": {
+    "43342415566": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43328326819:1"
+      "finalizationKey": "43342415566:1"
     }
   },
   "publishedRunIds": [],
@@ -28,7 +28,7 @@
     "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
