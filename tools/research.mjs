@@ -231,7 +231,18 @@ function duplicateScore(proposal, ledger) {
      * notification timelines was called a duplicate of a cellulose-ethers anti-dumping case.
      */
     const sameMeasure = sharedKw.filter((w) => /^(ad|vd|safeguard|duty|tariff|quota|subsidy|screening|registration|licence|certificate|threshold|rebate)/.test(w)).length;
-    const strong = sharedVals.length >= 1 || (sameMeasure >= 2 && sharedOrg.length >= 1);
+    /*
+     * A shared figure is not enough on its own.
+     *
+     * Every DOSM release repeats the same background numbers, so one shared value turned eight fresh
+     * subjects into duplicates on 2026-11-13 and the day ended with nothing written. Two figures plus
+     * a shared institution, or a figure plus a shared measure word, is a duplicate; a single recycled
+     * context number is a new subject.
+     */
+    const strong =
+      (sharedVals.length >= 2 && sharedOrg.length >= 1) ||
+      (sharedVals.length >= 1 && sameMeasure.length >= 1) ||
+      (sameMeasure.length >= 2 && sharedOrg.length >= 1);
     const score = strong ? sharedVals.length * 3 + sameMeasure * 2 + sharedOrg.length : 0;
     if (score > best.score) {
       best = {
