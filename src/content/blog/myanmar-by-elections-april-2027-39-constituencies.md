@@ -130,6 +130,8 @@ For the wider regional picture of how conflict reshapes supply chains, see our r
 
 > Also read: [US Federal Reserve sets 2027 meeting dates: what it means for Malaysian borrowers and ringgit](/blog/federal-reserve-2027-fomc-schedule-malaysia-markets/)
 
+> Also read: [US FAA's third-ever nationwide ground stop: what it means for Malaysia's airlines and air cargo](/blog/faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines/)
+
 ## For you
 
 - **A Malaysian student following Southeast Asia:** the date to note is April 4, 2027. What to watch is not the result but whether voting actually takes place in the one-third of seats where the last poll was cancelled for security reasons.

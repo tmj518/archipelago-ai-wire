@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-13T21:09:57.380Z",
-  "runId": "43507746646",
+  "at": "2026-11-13T23:26:21.088Z",
+  "runId": "43526814353",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "1282b6ac5ef87313869351c6987ea7243d8b7132",
+  "executionSha": "032e9f08e3a447b687a48b5a97c502552573abeb",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "16 previous run(s), last 2026-11-13T13:44:41.883Z (QUIET)"
+      "detail": "17 previous run(s), last 2026-11-13T21:10:50.556Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "10 of 25 net-new this week"
+      "detail": "11 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "federal-reserve-2027-fomc-schedule-malaysia-markets from /data/directive.json"
+      "detail": "faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/federal-reserve-2027-fomc-schedule-malaysia-markets.md"
+      "detail": "draft at /data/drafts/faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/federal-reserve-2027-fomc-schedule-malaysia-markets.md"
+      "detail": "staged at src/content/blog/faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines.md"
     },
     {
       "name": "registry",
@@ -76,7 +76,7 @@
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve"
   ],
-  "article": "federal-reserve-2027-fomc-schedule-malaysia-markets",
+  "article": "faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines",
   "commit": null,
   "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
@@ -87,11 +87,11 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 7,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0265,
-    "promptTokens": 181728,
-    "completionTokens": 7687
+    "usd": 0.0241,
+    "promptTokens": 79159,
+    "completionTokens": 7490
   },
   "route": "script",
   "categoryActivity": {
@@ -100,8 +100,8 @@
     "malaysia-impact": 2,
     "work-education-family": 1,
     "business-opportunities-risks": 2,
-    "tech-ai": 1,
-    "world": 0
+    "world": 1,
+    "tech-ai": 1
   },
   "uncoveredSections": [],
   "attempts": [
@@ -113,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 23
+  "seconds": 29
 }

@@ -1,18 +1,19 @@
 {
-  "at": "2026-11-13T01:23:45Z",
-  "sha": "5c16cba770f5afd7ef42b6b771651a0e3a6b0bc9",
-  "run": "43344270562",
+  "at": "2026-11-13T23:27:05Z",
+  "sha": "032e9f08e3a447b687a48b5a97c502552573abeb",
+  "run": "43526814353",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": null,
+  "article": "faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines",
   "commit": null,
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "live_checks": {
     "status": "skipped"

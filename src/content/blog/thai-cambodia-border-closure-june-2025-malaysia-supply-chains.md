@@ -138,6 +138,8 @@ For the wider regional picture, Malaysia's own trade performance is tracked in [
 
 > Also read: [US Federal Reserve sets 2027 meeting dates: what it means for Malaysian borrowers and ringgit](/blog/federal-reserve-2027-fomc-schedule-malaysia-markets/)
 
+> Also read: [US FAA's third-ever nationwide ground stop: what it means for Malaysia's airlines and air cargo](/blog/faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines/)
+
 ## For you
 
 - **A Malaysian exporter with a single land route:** list every input and finished good that crosses a border, name the country on each side, and mark the ones where a government, not a market, decides whether the crossing opens. The ISEAS paper shows a closure lasting from June 2025 into late 2026, which is long enough to justify a second supplier.

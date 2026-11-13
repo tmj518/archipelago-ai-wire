@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-13T21:10:50.556Z",
+  "lastRun": "2026-11-13T23:27:05.084Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "federal-reserve-2027-fomc-schedule-malaysia-markets",
-  "runs": 17,
+  "lastArticle": "faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines",
+  "runs": 18,
   "published": 0,
   "lastUsage": {
-    "calls": 7,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0265,
-    "promptTokens": 181728,
-    "completionTokens": 7687
+    "usd": 0.0241,
+    "promptTokens": 79159,
+    "completionTokens": 7490
   },
-  "lastFinalizedRunId": "43507746646",
+  "lastFinalizedRunId": "43526814353",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43507746646:1",
+  "lastFinalizedKey": "43526814353:1",
   "finalizedRuns": {
-    "43507746646": {
+    "43526814353": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43507746646:1"
+      "finalizationKey": "43526814353:1"
     }
   },
   "publishedRunIds": [],
