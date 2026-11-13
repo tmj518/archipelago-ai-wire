@@ -1,124 +1,29 @@
 {
-  "at": "2026-11-13T01:09:34.824Z",
-  "runId": "43342415566",
-  "runAttempt": 1,
-  "workflow": "Content day",
-  "event": "workflow_dispatch",
-  "executionSha": "95528e7898d5eeec0879822a6fb373e1ad263101",
-  "providers": [
-    "volces",
-    "deepseek"
-  ],
-  "steps": [
-    {
-      "name": "providers",
-      "ok": true,
-      "detail": "volces, deepseek"
-    },
-    {
-      "name": "state",
-      "ok": true,
-      "detail": "15 previous run(s), last 2026-11-12T23:26:17.355Z (FAILED)"
-    },
-    {
-      "name": "weekly ceiling",
-      "ok": true,
-      "detail": "9 of 25 net-new this week"
-    },
-    {
-      "name": "sections covered this week",
-      "ok": true,
-      "detail": "every section has a net-new article this week (7 sections)"
-    },
-    {
-      "name": "directive",
-      "ok": true,
-      "detail": "federal-reserve-check-fees-2027-malaysia-banks from /data/directive.json"
-    },
-    {
-      "name": "directive figures",
-      "ok": true,
-      "detail": "2 sourced figure(s)"
-    },
-    {
-      "name": "writer",
-      "ok": true,
-      "detail": "draft at /data/drafts/federal-reserve-check-fees-2027-malaysia-banks.md"
-    },
-    {
-      "name": "reviewer",
-      "ok": false,
-      "detail": "no parseable verdict"
-    },
-    {
-      "name": "publish",
-      "ok": true,
-      "detail": "staged at src/content/blog/federal-reserve-check-fees-2027-malaysia-banks.md"
-    },
-    {
-      "name": "registry",
-      "ok": true,
-      "detail": "rebuilt"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
-    },
-    {
-      "name": "state written",
-      "ok": true,
-      "detail": "verdict READY_FOR_PUBLISH"
-    }
-  ],
-  "verdict": "FAILED",
+  "at": "2026-11-13T01:23:45.977Z",
+  "route": "script",
+  "steps": [],
   "reasons": [
-    "review unavailable and published anyway: no usable reviewer result",
-    "the reviewer did not approve",
-    "publication not finalized: independent reviewer approval is missing"
+    "the workflow did not produce a report for this run",
+    "stale or missing run-attempt report was replaced with this failed workflow record"
   ],
-  "article": "federal-reserve-check-fees-2027-malaysia-banks",
-  "commit": null,
-  "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
-  "usage": {
-    "calls": 4,
-    "failed": 0,
-    "usd": 0.0186,
-    "promptTokens": 66685,
-    "completionTokens": 4979
-  },
-  "route": "script",
-  "categoryActivity": {
-    "success-cases": 4,
-    "economy": 0,
-    "malaysia-impact": 1,
-    "work-education-family": 1,
-    "business-opportunities-risks": 2,
-    "tech-ai": 1,
-    "world": 0
-  },
-  "uncoveredSections": [],
-  "attempts": [
-    {
-      "attempt": 1,
-      "score": null,
-      "verdict": null,
-      "issues": []
-    }
-  ],
-  "qa": null,
-  "seconds": 27,
-  "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "43342415566:1",
-  "finalizedAt": "2026-11-13T01:10:19.729Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/federal-reserve-check-fees-2027-malaysia-banks/",
+  "article": null,
+  "commit": null,
+  "orchestratorVerdict": "FAILED",
+  "runId": "43344270562",
+  "runAttempt": 1,
+  "finalizationKey": "43344270562:1",
+  "workflow": "Content day",
+  "event": "workflow_dispatch",
+  "executionSha": "5c16cba770f5afd7ef42b6b771651a0e3a6b0bc9",
+  "finalizedAt": "2026-11-13T01:23:45.977Z",
+  "publicationStatus": "FAILED",
+  "productionUrl": null,
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {
@@ -130,5 +35,6 @@
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },
-  "recordingFailure": false
+  "recordingFailure": false,
+  "verdict": "FAILED"
 }
