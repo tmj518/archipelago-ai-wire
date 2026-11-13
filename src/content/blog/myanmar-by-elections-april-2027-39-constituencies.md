@@ -128,6 +128,8 @@ For the wider regional picture of how conflict reshapes supply chains, see our r
 
 **What would change my mind.** A report showing that opposition candidates stood and campaigned in the security-cancelled constituencies, that turnout there was comparable to the national figure, and that independent monitors were allowed to observe would move this from papering over to a genuine political opening. So would a statement from ASEAN or a member government treating the by-election as a step toward dialogue with the resistance. None of that is in the document.
 
+> Also read: [US Federal Reserve sets 2027 meeting dates: what it means for Malaysian borrowers and ringgit](/blog/federal-reserve-2027-fomc-schedule-malaysia-markets/)
+
 ## For you
 
 - **A Malaysian student following Southeast Asia:** the date to note is April 4, 2027. What to watch is not the result but whether voting actually takes place in the one-third of seats where the last poll was cancelled for security reasons.

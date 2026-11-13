@@ -1,73 +1,34 @@
 {
-  "lastRun": "2026-11-13T13:44:41.883Z",
-  "lastVerdict": "QUIET",
-  "lastArticle": "federal-reserve-check-fees-2027-malaysia-banks",
-  "runs": 16,
+  "lastRun": "2026-11-13T21:10:50.556Z",
+  "lastVerdict": "FAILED",
+  "lastArticle": "federal-reserve-2027-fomc-schedule-malaysia-markets",
+  "runs": 17,
   "published": 0,
   "lastUsage": {
-    "calls": 4,
+    "calls": 7,
     "failed": 0,
-    "usd": 0.0186,
-    "promptTokens": 66685,
-    "completionTokens": 4979
+    "usd": 0.0265,
+    "promptTokens": 181728,
+    "completionTokens": 7687
   },
-  "lastFinalizedRunId": "43436027791",
+  "lastFinalizedRunId": "43507746646",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43436027791:1",
+  "lastFinalizedKey": "43507746646:1",
   "finalizedRuns": {
-    "43342415566": {
+    "43507746646": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43342415566:1"
-    },
-    "43344270562": {
-      "runAttempt": 1,
-      "verdict": "FAILED",
-      "finalizationKey": "43344270562:1"
-    },
-    "43346829447": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "43346829447:1"
-    },
-    "43365481377": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "43365481377:1"
-    },
-    "43376003259": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "43376003259:1"
-    },
-    "43377069491": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "43377069491:1"
-    },
-    "43383787763": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "43383787763:1"
-    },
-    "43384845258": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "43384845258:1"
-    },
-    "43436027791": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "43436027791:1"
+      "finalizationKey": "43507746646:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",

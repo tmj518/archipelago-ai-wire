@@ -136,6 +136,8 @@ For the wider regional picture, Malaysia's own trade performance is tracked in [
 
 **What would change my mind.** A later ISEAS paper or a Thai or Cambodian government statement recording that specific crossings reopened would date the closure's end and change the timeline. A document naming the foreign government that made the 10 September request would sharpen the picture of who is pressing for reopening. A Malaysian trade dataset showing exports or imports routed through the Thai-Cambodian corridor would turn the mechanism in this piece into a measured figure. Any of the three would move a claim here from inference to confirmed.
 
+> Also read: [US Federal Reserve sets 2027 meeting dates: what it means for Malaysian borrowers and ringgit](/blog/federal-reserve-2027-fomc-schedule-malaysia-markets/)
+
 ## For you
 
 - **A Malaysian exporter with a single land route:** list every input and finished good that crosses a border, name the country on each side, and mark the ones where a government, not a market, decides whether the crossing opens. The ISEAS paper shows a closure lasting from June 2025 into late 2026, which is long enough to justify a second supplier.

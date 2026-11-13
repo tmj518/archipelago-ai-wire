@@ -1,12 +1,12 @@
 {
-  "at": "2026-11-13T01:10:19Z",
-  "sha": "95528e7898d5eeec0879822a6fb373e1ad263101",
-  "run": "43342415566",
+  "at": "2026-11-13T21:10:50Z",
+  "sha": "1282b6ac5ef87313869351c6987ea7243d8b7132",
+  "run": "43507746646",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "federal-reserve-check-fees-2027-malaysia-banks",
+  "article": "federal-reserve-2027-fomc-schedule-malaysia-markets",
   "commit": null,
   "reviewer": {
     "status": "UNAVAILABLE",
