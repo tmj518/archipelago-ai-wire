@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-13T06:05:18Z",
+  "sha": "e07998392a06d136cb2b8a501500ecba97edbdcc",
+  "run": "43376003259",
+  "run_attempt": "1",
+  "workflow_status": "success",
+  "verdict": "QUIET",
+  "publication_status": "QUIET",
+  "article": "eppendorf-penang-plant-2028-life-sciences-manufacturing",
+  "commit": null,
+  "reviewer": {
+    "status": "NOT_RUN"
+  },
+  "registry": {
+    "status": "NOT_RUN"
+  },
+  "live_checks": {
+    "status": "skipped"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}
