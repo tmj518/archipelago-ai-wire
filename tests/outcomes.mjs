@@ -47,8 +47,8 @@ rec("round 2 runs once", (wf.match(/SOURCE_ROTATION=9 node tools\/research\.mjs/
 /* 4. Status is two fields, not one. */
 rec("outcome and class are separate", /RUN_OUTCOME=\$outcome/.test(wf) && /FAILURE_CLASS=\$class/.test(wf));
 rec(
-  "success needs an article and a passing live check",
-  /elif \[ -n "\$\{ARTICLE_SLUG:-\}" \] && \[ "\$\{\{ steps\.verify\.outcome \}\}" = "success" \]/.test(wf),
+    "a written article is published even if a later step failed",
+    /if \[ -n "\$\{ARTICLE_SLUG:-\}" \] && \[ -s "src\/content\/blog\/\$\{ARTICLE_SLUG\}\.md" \]/.test(wf)
 );
 
 /* 5. event identity does not depend on the headline. */
