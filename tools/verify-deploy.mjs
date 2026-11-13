@@ -36,11 +36,11 @@ async function getJson(url) {
 
 try {
   /* The project is found by the domain it serves, not by a name guessed here. */
-  const projects = await getJson(api("/pages/projects?per_page=100"));
+  const projects = await getJson(api("/pages/projects"));
   const project = (projects ?? []).find((p) => (p.domains ?? []).some((d) => String(d).includes("ghiblistyled")));
   if (!project) throw new Error("no Pages project serving ghiblistyled.com");
 
-  const deployments = await getJson(api(`/pages/projects/${project.name}/deployments?per_page=5`));
+  const deployments = await getJson(api(`/pages/projects/${project.name}/deployments`));
   const live = (deployments ?? []).find((d) => (d.environment ?? d.latest_stage?.name) === "production") ?? deployments?.[0];
   if (!live) throw new Error(`no deployments for ${project.name}`);
 
