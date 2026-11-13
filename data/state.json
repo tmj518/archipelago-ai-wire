@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-13T07:21:07.820Z",
+  "lastRun": "2026-11-13T13:44:41.883Z",
   "lastVerdict": "QUIET",
   "lastArticle": "federal-reserve-check-fees-2027-malaysia-banks",
   "runs": 16,
@@ -11,9 +11,9 @@
     "promptTokens": 66685,
     "completionTokens": 4979
   },
-  "lastFinalizedRunId": "43384845258",
+  "lastFinalizedRunId": "43436027791",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43384845258:1",
+  "lastFinalizedKey": "43436027791:1",
   "finalizedRuns": {
     "43342415566": {
       "runAttempt": 1,
@@ -54,6 +54,11 @@
       "runAttempt": 1,
       "verdict": "QUIET",
       "finalizationKey": "43384845258:1"
+    },
+    "43436027791": {
+      "runAttempt": 1,
+      "verdict": "QUIET",
+      "finalizationKey": "43436027791:1"
     }
   },
   "publishedRunIds": [],
