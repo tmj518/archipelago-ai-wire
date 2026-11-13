@@ -87,7 +87,10 @@ jobs:
           ARK_MODEL: ${{ vars.ARK_MODEL }}
           ARK_REVIEW_API_KEY: ${{ secrets.ARK_REVIEW_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT }}
+          # The spend ceiling defaulted to 0.06 and a run that tried eight duplicate subjects hit it before
+          # writing: 'FAILED - spend limit reached: 0.0613 >= 0.06'. The default is 0.50 and the
+          # variable only overrides it.
+          AGENT_USD_LIMIT: ${{ vars.AGENT_USD_LIMIT || '0.50' }}
 
       # All blocking checks run against the generated article and full site before any commit.
       - name: Validate and gate the article

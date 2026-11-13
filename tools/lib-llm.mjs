@@ -503,7 +503,7 @@ export async function ask({ role = "writer", model: modelOverride = "", messages
    * spend" rather than zero. A true cap needs a lock or a single writer; neither exists here.
    */
   const spentToday = spendToday();
-  const budget = budgetDecision(spentToday, process.env.AGENT_USD_LIMIT ?? "");
+  const budget = budgetDecision(spentToday, process.env.AGENT_USD_LIMIT || "0.5");
   if (!budget.allowed) {
     meter({ at: new Date().toISOString(), runId, taskKey, role, ok: false, error: budget.reason, errorClass: "budget" });
     return { ok: false, error: budget.reason, spent: spentToday, limit: Number(process.env.AGENT_USD_LIMIT) };

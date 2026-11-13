@@ -164,7 +164,7 @@ const PREP_TURNS = 4;
  * nine of a clean run. The ceiling is checked after every tool call, and reaching it ends the loop the same way the
  * turn limit does: the newest draft is submitted and the verdict says how.
  */
-const USD_LIMIT = Number(process.env.AGENT_USD_LIMIT ?? 0.06);
+const USD_LIMIT = Number(process.env.AGENT_USD_LIMIT ?? 0.5);
 let spentUsd = 0;
 
 const DRY = args.includes("--dry-run");
