@@ -162,6 +162,15 @@ jobs:
           VERIFY_ATTEMPTS: "6"
           VERIFY_DELAY_MS: "20000"
 
+      # Fourth layer: what Cloudflare is actually serving. Green logs twice meant a 404 page.
+      - name: Verify the deployment matches this commit
+        if: always()
+        continue-on-error: true
+        run: node tools/verify-deploy.mjs --sha="${{ github.sha }}"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
       - name: Report
         if: always()
         run: |
