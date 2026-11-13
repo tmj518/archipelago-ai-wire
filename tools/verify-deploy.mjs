@@ -65,6 +65,31 @@ try {
     console.log("  result     : MATCH - the site is serving this commit");
     process.exit(0);
   }
+
+  /*
+   * The two SHAs will almost never be equal, and that is not a fault.
+   *
+   * Every run commits its own record at the end, so main is always one commit ahead of whatever
+   * Cloudflare last built - those commits change data/, not the site. What matters is whether anything
+   * under src/ changed between the deployed commit and this one: if nothing did, the reader is looking
+   * at the current site.
+   */
+  try {
+    const { execFileSync } = await import("node:child_process");
+    const changed = execFileSync("git", ["diff", "--name-only", deployedSha, want, "--", "src/"], {
+      encoding: "utf8",
+    }).trim();
+    if (!changed) {
+      console.log("  result     : MATCH - the site is serving this commit; nothing under src/ changed since");
+      process.exit(0);
+    }
+    console.log("  result     : MISMATCH - src/ changed since the deployed commit:");
+    for (const line of changed.split("\n").slice(0, 8)) console.log(`      ${line}`);
+    process.exit(1);
+  } catch (e) {
+    console.log(`  result     : UNKNOWN - could not compare histories (${String(e.message).slice(0, 80)})`);
+    process.exit(0);
+  }
   console.log("  result     : MISMATCH - the site is serving a different commit than this run built");
   process.exit(1);
 } catch (e) {
