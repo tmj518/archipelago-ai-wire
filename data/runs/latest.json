@@ -1,124 +1,29 @@
 {
-  "at": "2026-11-14T19:41:28.989Z",
-  "runId": "43633199985",
-  "runAttempt": 1,
-  "workflow": "Content day",
-  "event": "schedule",
-  "executionSha": "87b716f969404294b8ec76f83260946fbaab4034",
-  "providers": [
-    "volces",
-    "deepseek"
-  ],
-  "steps": [
-    {
-      "name": "providers",
-      "ok": true,
-      "detail": "volces, deepseek"
-    },
-    {
-      "name": "state",
-      "ok": true,
-      "detail": "20 previous run(s), last 2026-11-14T12:50:21.335Z (FAILED)"
-    },
-    {
-      "name": "weekly ceiling",
-      "ok": true,
-      "detail": "14 of 25 net-new this week"
-    },
-    {
-      "name": "sections covered this week",
-      "ok": true,
-      "detail": "every section has a net-new article this week (7 sections)"
-    },
-    {
-      "name": "directive",
-      "ok": true,
-      "detail": "fullerton-health-migrant-worker-data-breach-malaysian-workers from /data/directive.json"
-    },
-    {
-      "name": "directive figures",
-      "ok": true,
-      "detail": "5 sourced figure(s)"
-    },
-    {
-      "name": "writer",
-      "ok": true,
-      "detail": "draft at /data/drafts/fullerton-health-migrant-worker-data-breach-malaysian-workers.md"
-    },
-    {
-      "name": "reviewer",
-      "ok": false,
-      "detail": "no parseable verdict"
-    },
-    {
-      "name": "publish",
-      "ok": true,
-      "detail": "staged at src/content/blog/fullerton-health-migrant-worker-data-breach-malaysian-workers.md"
-    },
-    {
-      "name": "registry",
-      "ok": true,
-      "detail": "rebuilt"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
-    },
-    {
-      "name": "state written",
-      "ok": true,
-      "detail": "verdict READY_FOR_PUBLISH"
-    }
-  ],
-  "verdict": "FAILED",
+  "at": "2026-11-14T22:11:57.001Z",
+  "route": "script",
+  "steps": [],
   "reasons": [
-    "review unavailable and published anyway: no usable reviewer result",
-    "the reviewer did not approve",
-    "publication not finalized: independent reviewer approval is missing"
+    "the workflow did not produce a report for this run",
+    "stale or missing run-attempt report was replaced with this failed workflow record"
   ],
-  "article": "fullerton-health-migrant-worker-data-breach-malaysian-workers",
-  "commit": null,
-  "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
-  "usage": {
-    "calls": 7,
-    "failed": 0,
-    "usd": 0.0553,
-    "promptTokens": 161234,
-    "completionTokens": 10701
-  },
-  "route": "script",
-  "categoryActivity": {
-    "success-cases": 4,
-    "malaysia-impact": 3,
-    "economy": 0,
-    "work-education-family": 1,
-    "business-opportunities-risks": 3,
-    "world": 2,
-    "tech-ai": 1
-  },
-  "uncoveredSections": [],
-  "attempts": [
-    {
-      "attempt": 1,
-      "score": null,
-      "verdict": null,
-      "issues": []
-    }
-  ],
-  "qa": null,
-  "seconds": 32,
-  "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "43633199985:1",
-  "finalizedAt": "2026-11-14T19:42:27.802Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/fullerton-health-migrant-worker-data-breach-malaysian-workers/",
+  "article": null,
+  "commit": null,
+  "orchestratorVerdict": "FAILED",
+  "runId": "43646554253",
+  "runAttempt": 1,
+  "finalizationKey": "43646554253:1",
+  "workflow": "Content day",
+  "event": "schedule",
+  "executionSha": "281ac1f37a6a50ff58f0304fd7eb7f7d7f66f9e8",
+  "finalizedAt": "2026-11-14T22:11:57.001Z",
+  "publicationStatus": "FAILED",
+  "productionUrl": null,
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {
@@ -130,5 +35,6 @@
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },
-  "recordingFailure": false
+  "recordingFailure": false,
+  "verdict": "FAILED"
 }

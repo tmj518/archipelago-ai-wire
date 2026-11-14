@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-14T19:42:27.802Z",
+  "lastRun": "2026-11-14T22:11:57.001Z",
   "lastVerdict": "FAILED",
   "lastArticle": "fullerton-health-migrant-worker-data-breach-malaysian-workers",
   "runs": 21,
@@ -11,24 +11,28 @@
     "promptTokens": 161234,
     "completionTokens": 10701
   },
-  "lastFinalizedRunId": "43633199985",
+  "lastFinalizedRunId": "43646554253",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43633199985:1",
+  "lastFinalizedKey": "43646554253:1",
   "finalizedRuns": {
     "43633199985": {
       "runAttempt": 1,
       "verdict": "FAILED",
       "finalizationKey": "43633199985:1"
+    },
+    "43646554253": {
+      "runAttempt": 1,
+      "verdict": "FAILED",
+      "finalizationKey": "43646554253:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "lastRegistry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
