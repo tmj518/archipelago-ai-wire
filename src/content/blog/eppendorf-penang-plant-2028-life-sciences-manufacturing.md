@@ -137,6 +137,8 @@ The wider Malaysian read is about position in a supply chain. Malaysia is not th
 
 **What would change my mind.** A later MIDA or Eppendorf statement revising the headcount, the investment figure or the 2028 production date. A published vendor or tender list showing where construction and fit-out contracts went. Evidence that the plant's production roles are being filled from outside Penang, which would weaken the local-skills argument. Any of these would move the piece.
 
+> Also read: [Customs issued a new sales-tax exemption guide under Item 58A on 10 November 2026 — here is who it covers](/blog/malaysia-sales-tax-exemption-guide-item-58a-november-2026/)
+
 ## For you
 
 - **A Penang technician or engineer:** the hiring window opens around 2028, so the training you take in 2027 is the one that counts; cleanroom practice, calibration and quality documentation are the transferable skills.

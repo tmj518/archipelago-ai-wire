@@ -135,6 +135,8 @@ The third carrier is the entrepreneur weighing a Johor location against a Klang 
 
 > Also read: [Eppendorf breaks ground on its first Southeast Asian factory in Penang, with production to start in 2028](/blog/eppendorf-penang-plant-2028-life-sciences-manufacturing/)
 
+> Also read: [Customs issued a new sales-tax exemption guide under Item 58A on 10 November 2026 — here is who it covers](/blog/malaysia-sales-tax-exemption-guide-item-58a-november-2026/)
+
 ## For you
 
 - **A small business owner in Johor:** the RM40.30 billion already realised is the part of the zone's money that is spending now, so supplier lists at the firms building there are the place to start, ahead of the December 2026 blueprint.

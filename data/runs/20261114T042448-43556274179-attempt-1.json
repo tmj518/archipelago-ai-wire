@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-14T04:24:48Z",
+  "sha": "c1dd829b1674ad6d7fada4960ecc00662fabae00",
+  "run": "43556274179",
+  "run_attempt": "1",
+  "workflow_status": "failure",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
+  "article": "malaysia-sales-tax-exemption-guide-item-58a-november-2026",
+  "commit": null,
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "live_checks": {
+    "status": "skipped"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}

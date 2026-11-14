@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-13T23:26:21.088Z",
-  "runId": "43526814353",
+  "at": "2026-11-14T04:24:04.606Z",
+  "runId": "43556274179",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "032e9f08e3a447b687a48b5a97c502552573abeb",
+  "executionSha": "c1dd829b1674ad6d7fada4960ecc00662fabae00",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "17 previous run(s), last 2026-11-13T21:10:50.556Z (FAILED)"
+      "detail": "18 previous run(s), last 2026-11-13T23:27:05.084Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "11 of 25 net-new this week"
+      "detail": "12 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,7 +33,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines from /data/directive.json"
+      "detail": "malaysia-sales-tax-exemption-guide-item-58a-november-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -43,7 +43,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines.md"
+      "detail": "draft at /data/drafts/malaysia-sales-tax-exemption-guide-item-58a-november-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines.md"
+      "detail": "staged at src/content/blog/malaysia-sales-tax-exemption-guide-item-58a-november-2026.md"
     },
     {
       "name": "registry",
@@ -76,7 +76,7 @@
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve"
   ],
-  "article": "faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines",
+  "article": "malaysia-sales-tax-exemption-guide-item-58a-november-2026",
   "commit": null,
   "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
@@ -87,11 +87,11 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 5,
+    "calls": 6,
     "failed": 0,
-    "usd": 0.0241,
-    "promptTokens": 79159,
-    "completionTokens": 7490
+    "usd": 0.0393,
+    "promptTokens": 127453,
+    "completionTokens": 9235
   },
   "route": "script",
   "categoryActivity": {
@@ -100,7 +100,7 @@
     "malaysia-impact": 2,
     "work-education-family": 1,
     "business-opportunities-risks": 2,
-    "world": 1,
+    "world": 2,
     "tech-ai": 1
   },
   "uncoveredSections": [],
@@ -113,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 29
+  "seconds": 27
 }

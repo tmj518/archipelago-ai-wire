@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-13T23:27:05.084Z",
+  "lastRun": "2026-11-14T04:24:48.955Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "faa-nationwide-ground-stop-ai-air-traffic-malaysia-airlines",
-  "runs": 18,
+  "lastArticle": "malaysia-sales-tax-exemption-guide-item-58a-november-2026",
+  "runs": 19,
   "published": 0,
   "lastUsage": {
-    "calls": 5,
+    "calls": 6,
     "failed": 0,
-    "usd": 0.0241,
-    "promptTokens": 79159,
-    "completionTokens": 7490
+    "usd": 0.0393,
+    "promptTokens": 127453,
+    "completionTokens": 9235
   },
-  "lastFinalizedRunId": "43526814353",
+  "lastFinalizedRunId": "43556274179",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43526814353:1",
+  "lastFinalizedKey": "43556274179:1",
   "finalizedRuns": {
-    "43526814353": {
+    "43556274179": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43526814353:1"
+      "finalizationKey": "43556274179:1"
     }
   },
   "publishedRunIds": [],
