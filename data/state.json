@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-14T04:24:48.955Z",
+  "lastRun": "2026-11-14T12:50:21.335Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "malaysia-sales-tax-exemption-guide-item-58a-november-2026",
-  "runs": 19,
+  "lastArticle": "asean-cybersecurity-cooperation-strategy-2026-2030-malaysia",
+  "runs": 20,
   "published": 0,
   "lastUsage": {
-    "calls": 6,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0393,
-    "promptTokens": 127453,
-    "completionTokens": 9235
+    "usd": 0.0169,
+    "promptTokens": 39402,
+    "completionTokens": 5671
   },
-  "lastFinalizedRunId": "43556274179",
+  "lastFinalizedRunId": "43596538040",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43556274179:1",
+  "lastFinalizedKey": "43596538040:1",
   "finalizedRuns": {
-    "43556274179": {
+    "43596538040": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43556274179:1"
+      "finalizationKey": "43596538040:1"
     }
   },
   "publishedRunIds": [],

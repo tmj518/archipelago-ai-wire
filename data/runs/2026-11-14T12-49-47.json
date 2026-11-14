@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-14T04:24:04.606Z",
-  "runId": "43556274179",
+  "at": "2026-11-14T12:49:19.344Z",
+  "runId": "43596538040",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "c1dd829b1674ad6d7fada4960ecc00662fabae00",
+  "executionSha": "fadcac10cacb8302182ee8663496748d9da2acef",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "18 previous run(s), last 2026-11-13T23:27:05.084Z (FAILED)"
+      "detail": "19 previous run(s), last 2026-11-14T04:24:48.955Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "12 of 25 net-new this week"
+      "detail": "13 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "malaysia-sales-tax-exemption-guide-item-58a-november-2026 from /data/directive.json"
+      "detail": "asean-cybersecurity-cooperation-strategy-2026-2030-malaysia from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/malaysia-sales-tax-exemption-guide-item-58a-november-2026.md"
+      "detail": "draft at /data/drafts/asean-cybersecurity-cooperation-strategy-2026-2030-malaysia.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/malaysia-sales-tax-exemption-guide-item-58a-november-2026.md"
+      "detail": "staged at src/content/blog/asean-cybersecurity-cooperation-strategy-2026-2030-malaysia.md"
     },
     {
       "name": "registry",
@@ -76,7 +76,7 @@
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve"
   ],
-  "article": "malaysia-sales-tax-exemption-guide-item-58a-november-2026",
+  "article": "asean-cybersecurity-cooperation-strategy-2026-2030-malaysia",
   "commit": null,
   "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
@@ -87,11 +87,11 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 6,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0393,
-    "promptTokens": 127453,
-    "completionTokens": 9235
+    "usd": 0.0169,
+    "promptTokens": 39402,
+    "completionTokens": 5671
   },
   "route": "script",
   "categoryActivity": {
@@ -99,7 +99,7 @@
     "economy": 0,
     "malaysia-impact": 2,
     "work-education-family": 1,
-    "business-opportunities-risks": 2,
+    "business-opportunities-risks": 3,
     "world": 2,
     "tech-ai": 1
   },
@@ -113,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 27
+  "seconds": 28
 }

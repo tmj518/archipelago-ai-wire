@@ -129,6 +129,8 @@ For readers tracking how government aid reaches households after a disaster, the
 
 **What would change my mind.** A published list of the four key actions that names different measures, or a statement of the aid conditions that ties eligibility to something other than flood impact, would change the reading above. A later report showing the drainage works already under construction, rather than ordered, would change the judgement that the plan is an instruction rather than a completed fix. A revised evacuee count would change the scale described here.
 
+> Also read: [Malaysia pushes Asean to implement its 2026–2030 cybersecurity strategy as online scams and smuggling surge](/blog/asean-cybersecurity-cooperation-strategy-2026-2030-malaysia/)
+
 ## For you
 
 - **A household in Petaling or Kuala Selangor:** the RM3,000 special aid is addressed to eligible heads of household subject to set conditions, and the report does not list those conditions, so check with the state or your local office before assuming you qualify.

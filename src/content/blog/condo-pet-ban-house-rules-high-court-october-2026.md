@@ -163,6 +163,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [Selangor flood response gets a federal meeting, a RM3,000 household payout and a drainage upgrade order](/blog/selangor-flood-coordination-rm3000-aid-november-2026/)
 
+> Also read: [Malaysia pushes Asean to implement its 2026–2030 cybersecurity strategy as online scams and smuggling surge](/blog/asean-cybersecurity-cooperation-strategy-2026-2030-malaysia/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.
