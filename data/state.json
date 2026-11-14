@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-14T12:50:21.335Z",
+  "lastRun": "2026-11-14T19:42:27.802Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "asean-cybersecurity-cooperation-strategy-2026-2030-malaysia",
-  "runs": 20,
+  "lastArticle": "fullerton-health-migrant-worker-data-breach-malaysian-workers",
+  "runs": 21,
   "published": 0,
   "lastUsage": {
-    "calls": 3,
+    "calls": 7,
     "failed": 0,
-    "usd": 0.0169,
-    "promptTokens": 39402,
-    "completionTokens": 5671
+    "usd": 0.0553,
+    "promptTokens": 161234,
+    "completionTokens": 10701
   },
-  "lastFinalizedRunId": "43596538040",
+  "lastFinalizedRunId": "43633199985",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43596538040:1",
+  "lastFinalizedKey": "43633199985:1",
   "finalizedRuns": {
-    "43596538040": {
+    "43633199985": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43596538040:1"
+      "finalizationKey": "43633199985:1"
     }
   },
   "publishedRunIds": [],

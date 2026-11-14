@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-14T19:42:27Z",
+  "sha": "87b716f969404294b8ec76f83260946fbaab4034",
+  "run": "43633199985",
+  "run_attempt": "1",
+  "workflow_status": "failure",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
+  "article": "fullerton-health-migrant-worker-data-breach-malaysian-workers",
+  "commit": null,
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "live_checks": {
+    "status": "skipped"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}

@@ -131,6 +131,8 @@ For readers tracking how government aid reaches households after a disaster, the
 
 > Also read: [Malaysia pushes Asean to implement its 2026–2030 cybersecurity strategy as online scams and smuggling surge](/blog/asean-cybersecurity-cooperation-strategy-2026-2030-malaysia/)
 
+> Also read: [A Singapore clinic breach exposed 140,000 migrant worker records — and Malaysian workers hold the same kind of pass](/blog/fullerton-health-migrant-worker-data-breach-malaysian-workers/)
+
 ## For you
 
 - **A household in Petaling or Kuala Selangor:** the RM3,000 special aid is addressed to eligible heads of household subject to set conditions, and the report does not list those conditions, so check with the state or your local office before assuming you qualify.

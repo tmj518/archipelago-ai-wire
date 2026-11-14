@@ -165,6 +165,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [Malaysia pushes Asean to implement its 2026–2030 cybersecurity strategy as online scams and smuggling surge](/blog/asean-cybersecurity-cooperation-strategy-2026-2030-malaysia/)
 
+> Also read: [A Singapore clinic breach exposed 140,000 migrant worker records — and Malaysian workers hold the same kind of pass](/blog/fullerton-health-migrant-worker-data-breach-malaysian-workers/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.
