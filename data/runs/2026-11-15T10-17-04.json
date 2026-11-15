@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-15T00:37:18.462Z",
-  "runId": "43658911956",
+  "at": "2026-11-15T10:16:33.226Z",
+  "runId": "43703130305",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "00b091e4616fdfa388d4ed29d4afca2e0dd9ebe8",
+  "executionSha": "6b9eb471c076371f2e19297571381c103b2cd5bb",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "21 previous run(s), last 2026-11-14T22:11:57.001Z (FAILED)"
+      "detail": "22 previous run(s), last 2026-11-15T00:38:09.794Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "15 of 25 net-new this week"
+      "detail": "16 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "service-tax-policy-3-2026-amendment-november-2026 from /data/directive.json"
+      "detail": "kedah-budget-2027-rm1-34-billion-water-supply-deficit from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/service-tax-policy-3-2026-amendment-november-2026.md"
+      "detail": "draft at /data/drafts/kedah-budget-2027-rm1-34-billion-water-supply-deficit.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/service-tax-policy-3-2026-amendment-november-2026.md"
+      "detail": "staged at src/content/blog/kedah-budget-2027-rm1-34-billion-water-supply-deficit.md"
     },
     {
       "name": "registry",
@@ -76,7 +76,7 @@
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve"
   ],
-  "article": "service-tax-policy-3-2026-amendment-november-2026",
+  "article": "kedah-budget-2027-rm1-34-billion-water-supply-deficit",
   "commit": null,
   "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
@@ -87,17 +87,17 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 4,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0261,
-    "promptTokens": 68773,
-    "completionTokens": 6835
+    "usd": 0.021,
+    "promptTokens": 47568,
+    "completionTokens": 7440
   },
   "route": "script",
   "categoryActivity": {
     "success-cases": 4,
     "malaysia-impact": 4,
-    "economy": 0,
+    "economy": 1,
     "work-education-family": 1,
     "business-opportunities-risks": 3,
     "world": 2,
@@ -113,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 27
+  "seconds": 32
 }

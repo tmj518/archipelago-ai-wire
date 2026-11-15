@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-15T00:38:09.794Z",
+  "lastRun": "2026-11-15T10:17:29.442Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "service-tax-policy-3-2026-amendment-november-2026",
-  "runs": 22,
+  "lastArticle": "kedah-budget-2027-rm1-34-billion-water-supply-deficit",
+  "runs": 23,
   "published": 0,
   "lastUsage": {
-    "calls": 4,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0261,
-    "promptTokens": 68773,
-    "completionTokens": 6835
+    "usd": 0.021,
+    "promptTokens": 47568,
+    "completionTokens": 7440
   },
-  "lastFinalizedRunId": "43658911956",
+  "lastFinalizedRunId": "43703130305",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43658911956:1",
+  "lastFinalizedKey": "43703130305:1",
   "finalizedRuns": {
-    "43658911956": {
+    "43703130305": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43658911956:1"
+      "finalizationKey": "43703130305:1"
     }
   },
   "publishedRunIds": [],
