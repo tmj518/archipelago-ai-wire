@@ -140,6 +140,8 @@ For the domestic side of the same problem, the record of platform takedown reque
 
 **What would change my mind.** A published text of the 2026–2030 strategy naming the agencies obliged to share, the channel they use and a response time would move the information-exchange claim from inference to fact. A recorded operational outcome, such as a joint operation with a stated result, would do the same for the border claim. A statement from the home ministry or the police on how many cross-border requests Malaysia makes and how many are answered would settle the question the household actually cares about.
 
+> Also read: [Selangor flood hotspots down 82.9% in 10 years, but 1,399 still in relief centres](/blog/selangor-flood-hotspots-drop-829-percent-2026/)
+
 ## For you
 
 - **A household that has been scammed:** file the police report and keep the phone number and bank account details. The regional strategy's value to you is the speed of the request it sends abroad, so ask the investigating officer whether a cross-border request has been made.

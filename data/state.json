@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-15T10:17:29.442Z",
+  "lastRun": "2026-11-15T18:22:15.689Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "kedah-budget-2027-rm1-34-billion-water-supply-deficit",
-  "runs": 23,
+  "lastArticle": "selangor-flood-hotspots-drop-829-percent-2026",
+  "runs": 24,
   "published": 0,
   "lastUsage": {
-    "calls": 3,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.021,
-    "promptTokens": 47568,
-    "completionTokens": 7440
+    "usd": 0.0182,
+    "promptTokens": 76950,
+    "completionTokens": 7573
   },
-  "lastFinalizedRunId": "43703130305",
+  "lastFinalizedRunId": "43746081091",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43703130305:1",
+  "lastFinalizedKey": "43746081091:1",
   "finalizedRuns": {
-    "43703130305": {
+    "43746081091": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43703130305:1"
+      "finalizationKey": "43746081091:1"
     }
   },
   "publishedRunIds": [],

@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-15T10:16:33.226Z",
-  "runId": "43703130305",
+  "at": "2026-11-15T18:21:21.744Z",
+  "runId": "43746081091",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "6b9eb471c076371f2e19297571381c103b2cd5bb",
+  "executionSha": "7f0ea7d2bfc91f4540453f3a5842a97d849faf84",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "22 previous run(s), last 2026-11-15T00:38:09.794Z (FAILED)"
+      "detail": "23 previous run(s), last 2026-11-15T10:17:29.442Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "16 of 25 net-new this week"
+      "detail": "17 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "kedah-budget-2027-rm1-34-billion-water-supply-deficit from /data/directive.json"
+      "detail": "selangor-flood-hotspots-drop-829-percent-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/kedah-budget-2027-rm1-34-billion-water-supply-deficit.md"
+      "detail": "draft at /data/drafts/selangor-flood-hotspots-drop-829-percent-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/kedah-budget-2027-rm1-34-billion-water-supply-deficit.md"
+      "detail": "staged at src/content/blog/selangor-flood-hotspots-drop-829-percent-2026.md"
     },
     {
       "name": "registry",
@@ -77,7 +77,7 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "kedah-budget-2027-rm1-34-billion-water-supply-deficit",
+  "article": "selangor-flood-hotspots-drop-829-percent-2026",
   "commit": null,
   "publicationStatus": "FAILED",
   "reviewer": {
@@ -88,17 +88,17 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 3,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.021,
-    "promptTokens": 47568,
-    "completionTokens": 7440
+    "usd": 0.0182,
+    "promptTokens": 76950,
+    "completionTokens": 7573
   },
   "route": "script",
   "categoryActivity": {
     "success-cases": 4,
     "malaysia-impact": 4,
-    "economy": 1,
+    "economy": 2,
     "work-education-family": 1,
     "business-opportunities-risks": 3,
     "world": 2,
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 32,
+  "seconds": 30,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "43703130305:1",
-  "finalizedAt": "2026-11-15T10:17:29.442Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/kedah-budget-2027-rm1-34-billion-water-supply-deficit/",
+  "finalizationKey": "43746081091:1",
+  "finalizedAt": "2026-11-15T18:22:15.689Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/selangor-flood-hotspots-drop-829-percent-2026/",
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {

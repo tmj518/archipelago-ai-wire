@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-15T18:22:15Z",
+  "sha": "7f0ea7d2bfc91f4540453f3a5842a97d849faf84",
+  "run": "43746081091",
+  "run_attempt": "1",
+  "workflow_status": "failure",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
+  "article": "selangor-flood-hotspots-drop-829-percent-2026",
+  "commit": null,
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "live_checks": {
+    "status": "skipped"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}
