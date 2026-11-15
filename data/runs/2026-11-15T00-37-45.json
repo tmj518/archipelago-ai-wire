@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-14T19:41:28.989Z",
-  "runId": "43633199985",
+  "at": "2026-11-15T00:37:18.462Z",
+  "runId": "43658911956",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "87b716f969404294b8ec76f83260946fbaab4034",
+  "executionSha": "00b091e4616fdfa388d4ed29d4afca2e0dd9ebe8",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "20 previous run(s), last 2026-11-14T12:50:21.335Z (FAILED)"
+      "detail": "21 previous run(s), last 2026-11-14T22:11:57.001Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "14 of 25 net-new this week"
+      "detail": "15 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "fullerton-health-migrant-worker-data-breach-malaysian-workers from /data/directive.json"
+      "detail": "service-tax-policy-3-2026-amendment-november-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "5 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/fullerton-health-migrant-worker-data-breach-malaysian-workers.md"
+      "detail": "draft at /data/drafts/service-tax-policy-3-2026-amendment-november-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/fullerton-health-migrant-worker-data-breach-malaysian-workers.md"
+      "detail": "staged at src/content/blog/service-tax-policy-3-2026-amendment-november-2026.md"
     },
     {
       "name": "registry",
@@ -76,7 +76,7 @@
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve"
   ],
-  "article": "fullerton-health-migrant-worker-data-breach-malaysian-workers",
+  "article": "service-tax-policy-3-2026-amendment-november-2026",
   "commit": null,
   "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
@@ -87,16 +87,16 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 7,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0553,
-    "promptTokens": 161234,
-    "completionTokens": 10701
+    "usd": 0.0261,
+    "promptTokens": 68773,
+    "completionTokens": 6835
   },
   "route": "script",
   "categoryActivity": {
     "success-cases": 4,
-    "malaysia-impact": 3,
+    "malaysia-impact": 4,
     "economy": 0,
     "work-education-family": 1,
     "business-opportunities-risks": 3,
@@ -113,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 32
+  "seconds": 27
 }

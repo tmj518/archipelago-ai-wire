@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-15T00:38:09Z",
+  "sha": "00b091e4616fdfa388d4ed29d4afca2e0dd9ebe8",
+  "run": "43658911956",
+  "run_attempt": "1",
+  "workflow_status": "failure",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
+  "article": "service-tax-policy-3-2026-amendment-november-2026",
+  "commit": null,
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "live_checks": {
+    "status": "skipped"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}

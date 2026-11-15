@@ -1,38 +1,34 @@
 {
-  "lastRun": "2026-11-14T22:11:57.001Z",
+  "lastRun": "2026-11-15T00:38:09.794Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "fullerton-health-migrant-worker-data-breach-malaysian-workers",
-  "runs": 21,
+  "lastArticle": "service-tax-policy-3-2026-amendment-november-2026",
+  "runs": 22,
   "published": 0,
   "lastUsage": {
-    "calls": 7,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0553,
-    "promptTokens": 161234,
-    "completionTokens": 10701
+    "usd": 0.0261,
+    "promptTokens": 68773,
+    "completionTokens": 6835
   },
-  "lastFinalizedRunId": "43646554253",
+  "lastFinalizedRunId": "43658911956",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43646554253:1",
+  "lastFinalizedKey": "43658911956:1",
   "finalizedRuns": {
-    "43633199985": {
+    "43658911956": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43633199985:1"
-    },
-    "43646554253": {
-      "runAttempt": 1,
-      "verdict": "FAILED",
-      "finalizationKey": "43646554253:1"
+      "finalizationKey": "43658911956:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",

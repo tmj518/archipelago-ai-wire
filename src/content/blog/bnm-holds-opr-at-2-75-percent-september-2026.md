@@ -159,6 +159,8 @@ For the broader economy, the hold supports the growth forecast. The central bank
 
 > Also read: [US finalises stress-test transparency rule: what it means for Malaysian banks' capital buffers](/blog/federal-reserve-stress-test-transparency-final-rule-2026/)
 
+> Also read: [Customs amended Service Tax Policy No. 3/2026 on 3 November 2026 — here is what changed for Malaysian service businesses](/blog/service-tax-policy-3-2026-amendment-november-2026/)
+
 ## For you
 
 - **A household paying a floating-rate housing loan:** your monthly instalment stays the same. The OPR hold means no new interest cost lands on your repayment schedule.

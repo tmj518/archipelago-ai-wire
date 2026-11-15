@@ -1,29 +1,124 @@
 {
-  "at": "2026-11-14T22:11:57.001Z",
-  "route": "script",
-  "steps": [],
-  "reasons": [
-    "the workflow did not produce a report for this run",
-    "stale or missing run-attempt report was replaced with this failed workflow record"
-  ],
-  "reviewer": {
-    "status": "NOT_RUN"
-  },
-  "registry": {
-    "status": "NOT_RUN"
-  },
-  "article": null,
-  "commit": null,
-  "orchestratorVerdict": "FAILED",
-  "runId": "43646554253",
+  "at": "2026-11-15T00:37:18.462Z",
+  "runId": "43658911956",
   "runAttempt": 1,
-  "finalizationKey": "43646554253:1",
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "281ac1f37a6a50ff58f0304fd7eb7f7d7f66f9e8",
-  "finalizedAt": "2026-11-14T22:11:57.001Z",
+  "executionSha": "00b091e4616fdfa388d4ed29d4afca2e0dd9ebe8",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "21 previous run(s), last 2026-11-14T22:11:57.001Z (FAILED)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "15 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "service-tax-policy-3-2026-amendment-november-2026 from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "7 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/service-tax-policy-3-2026-amendment-november-2026.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/service-tax-policy-3-2026-amendment-november-2026.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict READY_FOR_PUBLISH"
+    }
+  ],
+  "verdict": "FAILED",
+  "reasons": [
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve",
+    "publication not finalized: independent reviewer approval is missing"
+  ],
+  "article": "service-tax-policy-3-2026-amendment-november-2026",
+  "commit": null,
   "publicationStatus": "FAILED",
-  "productionUrl": null,
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "usage": {
+    "calls": 4,
+    "failed": 0,
+    "usd": 0.0261,
+    "promptTokens": 68773,
+    "completionTokens": 6835
+  },
+  "route": "script",
+  "categoryActivity": {
+    "success-cases": 4,
+    "malaysia-impact": 4,
+    "economy": 0,
+    "work-education-family": 1,
+    "business-opportunities-risks": 3,
+    "world": 2,
+    "tech-ai": 1
+  },
+  "uncoveredSections": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 27,
+  "orchestratorVerdict": "READY_FOR_PUBLISH",
+  "finalizationKey": "43658911956:1",
+  "finalizedAt": "2026-11-15T00:38:09.794Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/service-tax-policy-3-2026-amendment-november-2026/",
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {
@@ -35,6 +130,5 @@
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },
-  "recordingFailure": false,
-  "verdict": "FAILED"
+  "recordingFailure": false
 }

@@ -124,6 +124,8 @@ What would change this reading: if the detailed product breakdown for September 
 
 > Also read: [RM9.36m for 23 Kelantan Islamic schools, plus RM6.6m more for 42 others, says PM](/blog/kelantan-islamic-education-funding-2026/)
 
+> Also read: [Customs amended Service Tax Policy No. 3/2026 on 3 November 2026 — here is what changed for Malaysian service businesses](/blog/service-tax-policy-3-2026-amendment-november-2026/)
+
 ## For you
 
 - **If you work in manufacturing**, watch your employer's order book rather than the headline figure. Export value leads hiring by one to two quarters.
