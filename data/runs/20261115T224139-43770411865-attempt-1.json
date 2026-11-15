@@ -1,12 +1,12 @@
 {
-  "at": "2026-11-13T21:10:50Z",
-  "sha": "1282b6ac5ef87313869351c6987ea7243d8b7132",
-  "run": "43507746646",
+  "at": "2026-11-15T22:41:39Z",
+  "sha": "44372a60a44bf0b4592962e042705842413e5fe9",
+  "run": "43770411865",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "federal-reserve-2027-fomc-schedule-malaysia-markets",
+  "article": "ubisoft-singapore-layoffs-malaysia-game-industry",
   "commit": null,
   "reviewer": {
     "status": "UNAVAILABLE",

@@ -172,6 +172,8 @@ The gap of 60 people is the only headcount figure the release supports. It does 
 
 > Also read: [New customs guide changes how construction firms bill service tax](/blog/service-tax-construction-guide-amendment-november-2026/)
 
+> Also read: [Ubisoft cuts 70 jobs in Singapore: what it signals for Malaysia's game developers](/blog/ubisoft-singapore-layoffs-malaysia-game-industry/)
+
 ## For you
 
 - **A school leaver in Seremban or Nilai choosing a course:** the plants need machinists, furnace technicians and repair bench staff, so a vocational qualification in machining or aircraft maintenance is the entry ticket; the 2030 target date means the hiring window runs for several years, not one intake.

@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-15T18:21:21.744Z",
-  "runId": "43746081091",
+  "at": "2026-11-15T22:40:54.398Z",
+  "runId": "43770411865",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "7f0ea7d2bfc91f4540453f3a5842a97d849faf84",
+  "executionSha": "44372a60a44bf0b4592962e042705842413e5fe9",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "23 previous run(s), last 2026-11-15T10:17:29.442Z (FAILED)"
+      "detail": "24 previous run(s), last 2026-11-15T18:22:15.689Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "17 of 25 net-new this week"
+      "detail": "18 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "selangor-flood-hotspots-drop-829-percent-2026 from /data/directive.json"
+      "detail": "ubisoft-singapore-layoffs-malaysia-game-industry from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "2 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/selangor-flood-hotspots-drop-829-percent-2026.md"
+      "detail": "draft at /data/drafts/ubisoft-singapore-layoffs-malaysia-game-industry.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/selangor-flood-hotspots-drop-829-percent-2026.md"
+      "detail": "staged at src/content/blog/ubisoft-singapore-layoffs-malaysia-game-industry.md"
     },
     {
       "name": "registry",
@@ -76,7 +76,7 @@
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve"
   ],
-  "article": "selangor-flood-hotspots-drop-829-percent-2026",
+  "article": "ubisoft-singapore-layoffs-malaysia-game-industry",
   "commit": null,
   "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
@@ -87,16 +87,16 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 4,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0182,
-    "promptTokens": 76950,
-    "completionTokens": 7573
+    "usd": 0.0192,
+    "promptTokens": 122883,
+    "completionTokens": 5891
   },
   "route": "script",
   "categoryActivity": {
     "success-cases": 4,
-    "malaysia-impact": 4,
+    "malaysia-impact": 5,
     "economy": 2,
     "work-education-family": 1,
     "business-opportunities-risks": 3,
@@ -113,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 30
+  "seconds": 23
 }

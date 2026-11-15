@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-15T18:22:15.689Z",
+  "lastRun": "2026-11-15T22:41:39.645Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "selangor-flood-hotspots-drop-829-percent-2026",
-  "runs": 24,
+  "lastArticle": "ubisoft-singapore-layoffs-malaysia-game-industry",
+  "runs": 25,
   "published": 0,
   "lastUsage": {
-    "calls": 4,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0182,
-    "promptTokens": 76950,
-    "completionTokens": 7573
+    "usd": 0.0192,
+    "promptTokens": 122883,
+    "completionTokens": 5891
   },
-  "lastFinalizedRunId": "43746081091",
+  "lastFinalizedRunId": "43770411865",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43746081091:1",
+  "lastFinalizedKey": "43770411865:1",
   "finalizedRuns": {
-    "43746081091": {
+    "43770411865": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43746081091:1"
+      "finalizationKey": "43770411865:1"
     }
   },
   "publishedRunIds": [],

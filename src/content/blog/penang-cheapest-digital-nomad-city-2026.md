@@ -131,6 +131,8 @@ The ranking also points to a risk. If Penang becomes known as a cheap base, the 
 
 > Also read: [Eppendorf breaks ground on its first Southeast Asian factory in Penang, with production to start in 2028](/blog/eppendorf-penang-plant-2028-life-sciences-manufacturing/)
 
+> Also read: [Ubisoft cuts 70 jobs in Singapore: what it signals for Malaysia's game developers](/blog/ubisoft-singapore-layoffs-malaysia-game-industry/)
+
 ## For you
 
 - **A co-working space or cafe in Penang:** the ranking is a marketing asset. Link to the study in your materials and make sure your space appears in searches for Penang digital nomad accommodation.
