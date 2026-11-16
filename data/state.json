@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-16T00:38:00.774Z",
+  "lastRun": "2026-11-16T10:28:46.976Z",
   "lastVerdict": "QUIET",
   "lastArticle": "ubisoft-singapore-layoffs-malaysia-game-industry",
   "runs": 25,
@@ -11,9 +11,9 @@
     "promptTokens": 122883,
     "completionTokens": 5891
   },
-  "lastFinalizedRunId": "43781237431",
+  "lastFinalizedRunId": "43848885918",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43781237431:1",
+  "lastFinalizedKey": "43848885918:1",
   "finalizedRuns": {
     "43770411865": {
       "runAttempt": 1,
@@ -24,6 +24,11 @@
       "runAttempt": 1,
       "verdict": "QUIET",
       "finalizationKey": "43781237431:1"
+    },
+    "43848885918": {
+      "runAttempt": 1,
+      "verdict": "QUIET",
+      "finalizationKey": "43848885918:1"
     }
   },
   "publishedRunIds": [],
