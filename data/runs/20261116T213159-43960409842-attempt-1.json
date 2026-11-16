@@ -1,12 +1,12 @@
 {
-  "at": "2026-11-14T12:50:21Z",
-  "sha": "fadcac10cacb8302182ee8663496748d9da2acef",
-  "run": "43596538040",
+  "at": "2026-11-16T21:31:59Z",
+  "sha": "0bbe17ab339d3bb25686cb805b652cd784965efd",
+  "run": "43960409842",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "asean-cybersecurity-cooperation-strategy-2026-2030-malaysia",
+  "article": "selangor-flood-hotspots-56-northeast-monsoon-2026",
   "commit": null,
   "reviewer": {
     "status": "UNAVAILABLE",

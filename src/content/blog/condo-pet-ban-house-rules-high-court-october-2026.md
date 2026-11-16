@@ -169,6 +169,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [Selangor flood hotspots down 82.9% in 10 years, but 1,399 still in relief centres](/blog/selangor-flood-hotspots-drop-829-percent-2026/)
 
+> Also read: [Selangor maps 56 flood hotspots and 232 flood-prone areas as Northeast Monsoon begins](/blog/selangor-flood-hotspots-56-northeast-monsoon-2026/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.

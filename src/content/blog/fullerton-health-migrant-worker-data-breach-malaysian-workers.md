@@ -126,6 +126,8 @@ For readers tracking how Malaysia handles the same problem on its own side of th
 
 **What would change my mind.** A statement from Fullerton Health or from a Singapore authority naming the nationalities in the affected set, or a breakdown of the exposed fields that differs from the list above. A confirmed report that medical or financial data was in fact exposed would change the risk assessment entirely. And a notification from an employer to its Malaysian workers confirming enrolment would move the Malaysian link from inference to fact.
 
+> Also read: [Selangor maps 56 flood hotspots and 232 flood-prone areas as Northeast Monsoon begins](/blog/selangor-flood-hotspots-56-northeast-monsoon-2026/)
+
 ## For you
 
 - **A Malaysian on a Singapore work pass right now:** ask your employer whether you are enrolled in the Migrant Worker Primary Care Plan, and read the provider's notice for what it asks affected individuals to do. Your name, FIN, date of birth, phone, email and home address are the fields at issue.

@@ -1,43 +1,34 @@
 {
-  "lastRun": "2026-11-16T10:28:46.976Z",
-  "lastVerdict": "QUIET",
-  "lastArticle": "ubisoft-singapore-layoffs-malaysia-game-industry",
-  "runs": 25,
+  "lastRun": "2026-11-16T21:31:59.020Z",
+  "lastVerdict": "FAILED",
+  "lastArticle": "selangor-flood-hotspots-56-northeast-monsoon-2026",
+  "runs": 26,
   "published": 0,
   "lastUsage": {
-    "calls": 5,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0192,
-    "promptTokens": 122883,
-    "completionTokens": 5891
+    "usd": 0.0145,
+    "promptTokens": 65285,
+    "completionTokens": 7242
   },
-  "lastFinalizedRunId": "43848885918",
+  "lastFinalizedRunId": "43960409842",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43848885918:1",
+  "lastFinalizedKey": "43960409842:1",
   "finalizedRuns": {
-    "43770411865": {
+    "43960409842": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43770411865:1"
-    },
-    "43781237431": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "43781237431:1"
-    },
-    "43848885918": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "43848885918:1"
+      "finalizationKey": "43960409842:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",

@@ -1,0 +1,117 @@
+{
+  "at": "2026-11-16T21:31:02.283Z",
+  "runId": "43960409842",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "schedule",
+  "executionSha": "0bbe17ab339d3bb25686cb805b652cd784965efd",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "25 previous run(s), last 2026-11-16T10:28:46.976Z (QUIET)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "2 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "selangor-flood-hotspots-56-northeast-monsoon-2026 from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "8 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/selangor-flood-hotspots-56-northeast-monsoon-2026.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/selangor-flood-hotspots-56-northeast-monsoon-2026.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict READY_FOR_PUBLISH"
+    }
+  ],
+  "verdict": "READY_FOR_PUBLISH",
+  "reasons": [
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve"
+  ],
+  "article": "selangor-flood-hotspots-56-northeast-monsoon-2026",
+  "commit": null,
+  "publicationStatus": "DRAFT_STAGED",
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "usage": {
+    "calls": 3,
+    "failed": 0,
+    "usd": 0.0145,
+    "promptTokens": 65285,
+    "completionTokens": 7242
+  },
+  "route": "script",
+  "categoryActivity": {
+    "success-cases": 0,
+    "malaysia-impact": 0,
+    "economy": 1,
+    "work-education-family": 0,
+    "business-opportunities-risks": 1,
+    "world": 0,
+    "tech-ai": 0
+  },
+  "uncoveredSections": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 27
+}
