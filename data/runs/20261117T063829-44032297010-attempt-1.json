@@ -1,19 +1,19 @@
 {
-  "at": "2026-11-16T21:31:59Z",
-  "sha": "0bbe17ab339d3bb25686cb805b652cd784965efd",
-  "run": "43960409842",
+  "at": "2026-11-17T06:38:29Z",
+  "sha": "c1a0ac65ffcabf21807b33c5cbbb3808435012dd",
+  "run": "44032297010",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "selangor-flood-hotspots-56-northeast-monsoon-2026",
+  "article": null,
   "commit": null,
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "live_checks": {
     "status": "skipped"
