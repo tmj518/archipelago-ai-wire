@@ -1,19 +1,18 @@
 {
-  "at": "2026-11-17T01:48:14Z",
-  "sha": "cfc2ce9de51b4513d920ee68f80a3761c95a9e9f",
-  "run": "43997890639",
+  "at": "2026-11-17T06:45:24Z",
+  "sha": "c612326b3b9a941e65d0041e29e5ee5a6af3d427",
+  "run": "44033262440",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "klscah-land-premium-rm1000-99-year-lease-renewal",
+  "article": null,
   "commit": null,
   "reviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "live_checks": {
     "status": "skipped"

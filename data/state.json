@@ -1,31 +1,30 @@
 {
-  "lastRun": "2026-11-17T06:38:29.333Z",
+  "lastRun": "2026-11-17T06:45:24.063Z",
   "lastVerdict": "FAILED",
   "lastArticle": "mida-approved-investments-9m-2026-johor-data-centres",
-  "runs": 32,
+  "runs": 33,
   "published": 0,
   "lastUsage": {
-    "calls": 2,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0101,
-    "promptTokens": 38470,
-    "completionTokens": 4634
+    "usd": 0.014,
+    "promptTokens": 115018,
+    "completionTokens": 4658
   },
-  "lastFinalizedRunId": "44032297010",
+  "lastFinalizedRunId": "44033262440",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44032297010:1",
+  "lastFinalizedKey": "44033262440:1",
   "finalizedRuns": {
-    "44032297010": {
+    "44033262440": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44032297010:1"
+      "finalizationKey": "44033262440:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "lastRegistry": {
     "status": "NOT_RUN"

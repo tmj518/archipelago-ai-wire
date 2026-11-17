@@ -1,0 +1,86 @@
+{
+  "at": "2026-11-17T06:45:16.477Z",
+  "runId": "44033262440",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "workflow_dispatch",
+  "executionSha": "c612326b3b9a941e65d0041e29e5ee5a6af3d427",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "32 previous run(s), last 2026-11-17T06:38:29.333Z (FAILED)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "7 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "china-chip-curbs-csi-semiconductor-rally-malaysia-tech from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "7 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": false,
+      "detail": "exit 2: REFUSED - the directive carries a value the schema does not accept."
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict WRITE-FAILED"
+    }
+  ],
+  "verdict": "WRITE-FAILED",
+  "reasons": [
+    "the writer did not produce china-chip-curbs-csi-semiconductor-rally-malaysia-tech.md on attempt 1"
+  ],
+  "article": null,
+  "commit": null,
+  "publicationStatus": "NOT_STAGED",
+  "reviewer": {
+    "status": "NOT_RUN"
+  },
+  "registry": {
+    "status": "NOT_RUN"
+  },
+  "usage": {
+    "calls": 4,
+    "failed": 0,
+    "usd": 0.014,
+    "promptTokens": 115018,
+    "completionTokens": 4658
+  },
+  "route": "script",
+  "categoryActivity": {
+    "success-cases": 0,
+    "malaysia-impact": 2,
+    "work-education-family": 1,
+    "economy": 1,
+    "business-opportunities-risks": 2,
+    "world": 0,
+    "tech-ai": 1
+  },
+  "uncoveredSections": [],
+  "seconds": 0
+}
