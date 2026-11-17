@@ -87,6 +87,8 @@ The third carrier is the borrower. A bank that lends more steadily lends more pr
 
 **What would change my mind.** The full text of the final rule, when published, would show the new calculation method and the effective date. A statement from Bank Negara Malaysia, the central bank, about how the rule affects Malaysian banks would confirm the domestic link. A quarterly report from a Malaysian banking group with US operations, showing its capital position, would show the effect in numbers.
 
+> Also read: [Malaysia's domestic manufacturers doubled their approved investment in nine months — here is where the RM37.8 billion](/blog/mida-9m-2026-domestic-manufacturing-investment-82-7-percent/)
+
 ## For you
 
 - **A bank employee in Malaysia:** your employer's global capital pool is steadier if it has US operations, which removes one reason for a sudden cost-cutting round. Watch the group's quarterly capital disclosures for the effect.
