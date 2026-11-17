@@ -1,15 +1,16 @@
 {
-  "at": "2026-11-16T10:28:46Z",
-  "sha": "d4bad0d246e6f78ed87815a45c722ed37f2dec81",
-  "run": "43848885918",
+  "at": "2026-11-17T06:29:53Z",
+  "sha": "7eefafea474d083c291dcc04ca69ff7f98d06cc0",
+  "run": "44031278381",
   "run_attempt": "1",
-  "workflow_status": "success",
-  "verdict": "QUIET",
-  "publication_status": "QUIET",
-  "article": "service-tax-policy-3-2026-amendment-november-2026",
+  "workflow_status": "failure",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
+  "article": null,
   "commit": null,
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
     "status": "NOT_RUN"

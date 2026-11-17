@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-17T06:20:08.374Z",
-  "runId": "44030262370",
+  "at": "2026-11-17T06:28:50.577Z",
+  "runId": "44031278381",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "workflow_dispatch",
-  "executionSha": "c535e2dff47ef1a050ee9f1c2e23b33eaba564a2",
+  "executionSha": "7eefafea474d083c291dcc04ca69ff7f98d06cc0",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "29 previous run(s), last 2026-11-17T06:11:48.662Z (FAILED)"
+      "detail": "30 previous run(s), last 2026-11-17T06:21:06.030Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "6 of 25 net-new this week"
+      "detail": "7 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "mida-approved-investments-9m-2026-johor-data-centres from /data/directive.json"
+      "detail": "anwar-macron-asean-power-grid-undersea-cable-france from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/mida-approved-investments-9m-2026-johor-data-centres.md"
+      "detail": "draft at /data/drafts/anwar-macron-asean-power-grid-undersea-cable-france.md"
     },
     {
       "name": "reviewer",
@@ -53,17 +53,12 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/mida-approved-investments-9m-2026-johor-data-centres.md"
+      "detail": "staged at src/content/blog/anwar-macron-asean-power-grid-undersea-cable-france.md"
     },
     {
-      "name": "registry",
-      "ok": true,
-      "detail": "rebuilt"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
+      "name": "publish",
+      "ok": false,
+      "detail": "rolled back after the gate: 3R review                              race, religion or roy"
     },
     {
       "name": "state written",
@@ -74,24 +69,25 @@
   "verdict": "READY_FOR_PUBLISH",
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
-    "the reviewer did not approve"
+    "the reviewer did not approve",
+    "the staged article failed qa-check as a published file: 3R review                              race, religion or roy"
   ],
-  "article": "mida-approved-investments-9m-2026-johor-data-centres",
+  "article": null,
   "commit": null,
-  "publicationStatus": "DRAFT_STAGED",
+  "publicationStatus": "NOT_STAGED",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 2,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0164,
-    "promptTokens": 39189,
-    "completionTokens": 5311
+    "usd": 0.0231,
+    "promptTokens": 97438,
+    "completionTokens": 7024
   },
   "route": "script",
   "categoryActivity": {
@@ -99,7 +95,7 @@
     "malaysia-impact": 2,
     "work-education-family": 1,
     "economy": 1,
-    "business-opportunities-risks": 1,
+    "business-opportunities-risks": 2,
     "world": 0,
     "tech-ai": 1
   },
@@ -113,5 +109,5 @@
     }
   ],
   "qa": null,
-  "seconds": 25
+  "seconds": 27
 }
