@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-17T12:59:59.496Z",
-  "runId": "44088000967",
+  "at": "2026-11-17T15:24:42.261Z",
+  "runId": "44113564805",
   "runAttempt": 1,
   "workflow": "Content day",
-  "event": "workflow_dispatch",
-  "executionSha": "c0e8aed9e565bcb7299f23327c4ea684b879704c",
+  "event": "schedule",
+  "executionSha": "0d39afcdc94c4da783fb17a869fba9e5fa4c4c32",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "38 previous run(s), last 2026-11-17T12:52:12.052Z (FAILED)"
+      "detail": "39 previous run(s), last 2026-11-17T13:05:54.790Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "10 of 25 net-new this week"
+      "detail": "11 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "mida-9m-2026-domestic-manufacturing-investment-82-7-percent from /data/directive.json"
+      "detail": "grok-bot-proactive-check-ins-malaysia-ai-agent-governance from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/mida-9m-2026-domestic-manufacturing-investment-82-7-percent.md"
+      "detail": "draft at /data/drafts/grok-bot-proactive-check-ins-malaysia-ai-agent-governance.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/mida-9m-2026-domestic-manufacturing-investment-82-7-percent.md"
+      "detail": "staged at src/content/blog/grok-bot-proactive-check-ins-malaysia-ai-agent-governance.md"
     },
     {
       "name": "registry",
@@ -77,8 +77,8 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "mida-9m-2026-domestic-manufacturing-investment-82-7-percent",
-  "commit": "d6d0ddfacb77997628d0fd0bc77f6652d424735c",
+  "article": "grok-bot-proactive-check-ins-malaysia-ai-agent-governance",
+  "commit": "0d309efd2d8cbe7aa59e2de6a8c6f66af4a59f93",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
@@ -88,18 +88,18 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 8,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0577,
-    "promptTokens": 174932,
-    "completionTokens": 13894
+    "usd": 0.0259,
+    "promptTokens": 70072,
+    "completionTokens": 6365
   },
   "route": "script",
   "categoryActivity": {
     "malaysia-impact": 4,
     "success-cases": 0,
     "work-education-family": 1,
-    "economy": 1,
+    "economy": 2,
     "business-opportunities-risks": 2,
     "world": 1,
     "tech-ai": 1
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 35,
+  "seconds": 28,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "44088000967:1",
-  "finalizedAt": "2026-11-17T13:05:54.790Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/mida-9m-2026-domestic-manufacturing-investment-82-7-percent/",
+  "finalizationKey": "44113564805:1",
+  "finalizedAt": "2026-11-17T15:30:22.296Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/grok-bot-proactive-check-ins-malaysia-ai-agent-governance/",
   "executionConclusion": "failure",
   "verifyOutcome": "failure",
   "liveChecks": {

@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-17T13:05:54.790Z",
+  "lastRun": "2026-11-17T15:30:22.296Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "mida-9m-2026-domestic-manufacturing-investment-82-7-percent",
-  "runs": 39,
+  "lastArticle": "grok-bot-proactive-check-ins-malaysia-ai-agent-governance",
+  "runs": 40,
   "published": 0,
   "lastUsage": {
-    "calls": 8,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0577,
-    "promptTokens": 174932,
-    "completionTokens": 13894
+    "usd": 0.0259,
+    "promptTokens": 70072,
+    "completionTokens": 6365
   },
-  "lastFinalizedRunId": "44088000967",
+  "lastFinalizedRunId": "44113564805",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44088000967:1",
+  "lastFinalizedKey": "44113564805:1",
   "finalizedRuns": {
-    "44088000967": {
+    "44113564805": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44088000967:1"
+      "finalizationKey": "44113564805:1"
     }
   },
   "publishedRunIds": [],
