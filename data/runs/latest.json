@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-17T11:29:12.088Z",
-  "runId": "44074063670",
+  "at": "2026-11-17T11:37:30.871Z",
+  "runId": "44075401794",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "workflow_dispatch",
-  "executionSha": "60b8ab69cb252d1ae9b1d286eec38226280c6bab",
+  "executionSha": "7556b747ab225d1d0450214215d2a21e8e44b020",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "34 previous run(s), last 2026-11-17T09:25:16.876Z (FAILED)"
+      "detail": "35 previous run(s), last 2026-11-17T11:29:19.628Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,43 +33,66 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "us-troop-review-europe-5000-brigade-indo-pacific-malaysia-defence from /data/directive.json"
+      "detail": "us-troop-redeployment-germany-asia-malaysia-defence from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "5 sourced figure(s)"
     },
     {
       "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/us-troop-redeployment-germany-asia-malaysia-defence.md"
+    },
+    {
+      "name": "reviewer",
       "ok": false,
-      "detail": "exit 1: FAILED - spend limit reached: 0.0612 >= 0.06"
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/us-troop-redeployment-germany-asia-malaysia-defence.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict WRITE-FAILED"
+      "detail": "verdict READY_FOR_PUBLISH"
     }
   ],
   "verdict": "FAILED",
   "reasons": [
-    "the writer did not produce us-troop-review-europe-5000-brigade-indo-pacific-malaysia-defence.md on attempt 1"
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve",
+    "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": null,
+  "article": "us-troop-redeployment-germany-asia-malaysia-defence",
   "commit": null,
   "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "usage": {
-    "calls": 9,
-    "failed": 1,
-    "usd": 0.0612,
-    "promptTokens": 184104,
-    "completionTokens": 10428
+    "calls": 4,
+    "failed": 0,
+    "usd": 0.0134,
+    "promptTokens": 57679,
+    "completionTokens": 6142
   },
   "route": "script",
   "categoryActivity": {
@@ -82,11 +105,20 @@
     "tech-ai": 1
   },
   "uncoveredSections": [],
-  "seconds": 0,
-  "orchestratorVerdict": "WRITE-FAILED",
-  "finalizationKey": "44074063670:1",
-  "finalizedAt": "2026-11-17T11:29:19.628Z",
-  "productionUrl": null,
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 29,
+  "orchestratorVerdict": "READY_FOR_PUBLISH",
+  "finalizationKey": "44075401794:1",
+  "finalizedAt": "2026-11-17T11:38:30.177Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/us-troop-redeployment-germany-asia-malaysia-defence/",
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {

@@ -139,6 +139,8 @@ For context on how a single regulatory decision abroad travels into a Malaysian 
 
 **What would change my mind.** A later FAA statement naming the cause of the 13 November 2026 stop, or a statement that the AI tool was involved, would move the cause from inference to fact. A notice from Malaysia Airlines or another carrier serving US routes giving specific schedule changes would replace the general mechanism with a named consequence. A figure for the number of flights affected, or the length of the stop, would let a reader size the delay rather than merely expect one. None of those is in the document retrieved on 13 November 2026.
 
+> Also read: [US troop review can shift 5,000 soldiers from Germany to Asia: what it means for Malaysia's defence calculus](/blog/us-troop-redeployment-germany-asia-malaysia-defence/)
+
 ## For you
 
 - **A traveller with a US itinerary:** check your airline's schedule before you leave for the airport, and check it again on the day, because a halted departure in the US delays the aircraft that operates your return or onward leg.

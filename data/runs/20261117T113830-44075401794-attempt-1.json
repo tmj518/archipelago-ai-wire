@@ -1,18 +1,19 @@
 {
-  "at": "2026-11-17T05:57:41Z",
-  "sha": "7a2514820369150333a4c44849596efcad563770",
-  "run": "44027482613",
+  "at": "2026-11-17T11:38:30Z",
+  "sha": "7556b747ab225d1d0450214215d2a21e8e44b020",
+  "run": "44075401794",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": null,
+  "article": "us-troop-redeployment-germany-asia-malaysia-defence",
   "commit": null,
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "live_checks": {
     "status": "skipped"
