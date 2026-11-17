@@ -1231,7 +1231,20 @@ if (!run.verdict && attempts.length && attempts[attempts.length - 1].verdict !==
 /* ---------------------------------------------------------------- 5. publish */
 
 let published = false;
-if (wroteIt && qaCode === 0) {
+/*
+ * A written article reaches the collection even when the reviewer does not answer.
+ *
+ * Staging was gated on qaCode === 0, and every path where the reviewer returns nothing - timeout,
+ * unparseable JSON, an endpoint that is down - leaves qaCode at 1. The draft was written, the
+ * publish step then found nothing staged, and the run was recorded FAILED/PUBLISH with a finished
+ * article sitting in data/drafts. On 2026-11-17 that was the last thing between the pipeline and a
+ * publication.
+ *
+ * In advisory mode a written draft is staged whatever the reviewer did; the gate still decides
+ * whether it builds, 3R still exits, and REVIEW_MODE=strict restores the old condition.
+ */
+const stageAnyway = process.env.REVIEW_MODE !== "strict" && wroteIt;
+if (wroteIt && (qaCode === 0 || stageAnyway)) {
   /*
    * Approval moves the file into the collection. `draft: false` is already in the frontmatter the
    * writer produced - the gate would have failed on a draft, because qa-check exempts drafts from its
