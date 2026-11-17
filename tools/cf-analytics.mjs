@@ -38,17 +38,35 @@ if (!token || !account) {
 }
 
 const since = new Date(Date.now() - 28 * 864e5).toISOString().slice(0, 10);
+
+/* Zone-level numbers cover the whole site; the RUM dataset only sees pages that carry the beacon. */
+async function zoneId() {
+  if (process.env.CLOUDFLARE_ZONE_ID) return process.env.CLOUDFLARE_ZONE_ID;
+  const res = await fetch(`https://api.cloudflare.com/client/v4/zones?name=${HOST.replace(/^www\./, "")}`, {
+    headers: { authorization: `Bearer ${token}` },
+  });
+  const body = await res.json();
+  if (!res.ok || body.success === false) throw new Error(body.errors?.map((e) => e.message).join("; ") ?? `HTTP ${res.status}`);
+  const zone = (body.result ?? [])[0];
+  if (!zone) throw new Error("zone not found");
+  return zone.id;
+}
+
 const query = `
-query($account: String!, $since: Date!, $host: String!) {
+query($zone: String!, $since: Date!) {
   viewer {
-    accounts(filter: { accountTag: $account }) {
-      rumPageloadEventsAdaptiveGroups(
+    zones(filter: { zoneTag: $zone }) {
+      httpRequests1dGroups(limit: 100, filter: { date_geq: $since }, orderBy: [sum_requests_DESC]) {
+        sum { requests }
+        dimensions { date }
+      }
+      httpRequestsAdaptiveGroups(
         limit: 1000
-        filter: { date_geq: $since, requestHost: $host }
+        filter: { datetime_geq: $since, requestSource: "eyeball" }
         orderBy: [count_DESC]
       ) {
         count
-        dimensions { requestPath }
+        dimensions { clientRequestPath }
       }
     }
   }
@@ -56,17 +74,20 @@ query($account: String!, $since: Date!, $host: String!) {
 
 let rows = [];
 try {
+  const zone = await zoneId();
   const res = await fetch("https://api.cloudflare.com/client/v4/graphql", {
     method: "POST",
     headers: { authorization: `Bearer ${token}`, "content-type": "application/json" },
-    body: JSON.stringify({ query, variables: { account, since, host: HOST } }),
+    body: JSON.stringify({ query, variables: { zone, since } }),
   });
   const body = await res.json();
   if (!res.ok || body.errors?.length) {
     const why = body.errors?.map((e) => e.message).join("; ") ?? `HTTP ${res.status}`;
     throw new Error(why);
   }
-  rows = body.data?.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups ?? [];
+  const z = body.data?.viewer?.zones?.[0] ?? {};
+  rows = (z.httpRequestsAdaptiveGroups ?? []).map((r) => ({ count: r.count, dimensions: { requestPath: r.dimensions?.clientRequestPath } }));
+  console.log(`  total      : ${(z.httpRequests1dGroups ?? []).reduce((a, g) => a + (g.sum?.requests ?? 0), 0)} request(s) in 28 days`);
 } catch (e) {
   console.log(`  analytics  : UNKNOWN - ${String(e.message).slice(0, 200)}`);
   process.exit(0);
