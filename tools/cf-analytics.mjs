@@ -69,7 +69,7 @@ for (const row of rows) {
   readership[m[1]] = (readership[m[1]] ?? 0) + Number(row.count ?? 0);
 }
 
-const articles = [...readership.entries()].sort((a, b) => b[1] - a[1]);
+const articles = Object.entries(readership).sort((a, b) => b[1] - a[1]);
 console.log(`  analytics  : ${articles.length} article(s) read in the last 28 days`);
 for (const [slug, views] of articles.slice(0, 5)) console.log(`      ${String(views).padStart(6)}  ${slug}`);
 
