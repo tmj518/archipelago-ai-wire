@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-17T04:42:52.385Z",
-  "runId": "44018841309",
+  "at": "2026-11-17T04:51:09.514Z",
+  "runId": "44019757168",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "workflow_dispatch",
-  "executionSha": "60d4e5a1723d0fc51a337381ce60e7680e88a7a1",
+  "executionSha": "93e6dd891f210e68d9c35a99355fc0618b8a6f8a",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "27 previous run(s), last 2026-11-17T01:48:14.186Z (FAILED)"
+      "detail": "28 previous run(s), last 2026-11-17T04:43:42.771Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "4 of 25 net-new this week"
+      "detail": "5 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "mcmc-deepfake-takedowns-13883-2026 from /data/directive.json"
+      "detail": "asean-families-report-2026-malaysia-households from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "5 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/mcmc-deepfake-takedowns-13883-2026.md"
+      "detail": "draft at /data/drafts/asean-families-report-2026-malaysia-households.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/mcmc-deepfake-takedowns-13883-2026.md"
+      "detail": "staged at src/content/blog/asean-families-report-2026-malaysia-households.md"
     },
     {
       "name": "registry",
@@ -76,7 +76,7 @@
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve"
   ],
-  "article": "mcmc-deepfake-takedowns-13883-2026",
+  "article": "asean-families-report-2026-malaysia-households",
   "commit": null,
   "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
@@ -87,11 +87,11 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 2,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0107,
-    "promptTokens": 38108,
-    "completionTokens": 5365
+    "usd": 0.0301,
+    "promptTokens": 101161,
+    "completionTokens": 7167
   },
   "route": "script",
   "categoryActivity": {
@@ -101,7 +101,7 @@
     "work-education-family": 0,
     "business-opportunities-risks": 1,
     "world": 0,
-    "tech-ai": 0
+    "tech-ai": 1
   },
   "uncoveredSections": [],
   "attempts": [
@@ -113,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 24
+  "seconds": 25
 }

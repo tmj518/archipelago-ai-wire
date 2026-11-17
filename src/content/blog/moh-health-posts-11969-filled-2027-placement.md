@@ -143,6 +143,8 @@ Readers tracking how public money reaches households can follow the same logic i
 
 **What would change my mind.** A breakdown of the 6,671 posts in process by state, hospital and profession would replace the national queue with a local one, and would show whether the 2027 tranche is spread evenly or concentrated in particular states. A statement on the status and pay of officers appointed but not yet placed would change the reading of the waiting cost. And a figure for how many of the 6,671 posts remain unfilled after the 2,418 and 4,253 groups are counted would close the gap this article cannot close.
 
+> Also read: [ASEAN families report: Malaysians marrying later, having fewer children, but family ties remain strong](/blog/asean-families-report-2026-malaysia-households/)
+
 ## For you
 
 - **A newly qualified doctor or nurse waiting on a posting:** the national queue is 6,671 posts in process, of which 4,253 officers are placed in 2027. The statement does not name your hospital, so the number tells you the size of the wait, not its length for you.

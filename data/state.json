@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-17T04:43:42.771Z",
+  "lastRun": "2026-11-17T04:51:50.401Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "mcmc-deepfake-takedowns-13883-2026",
-  "runs": 28,
+  "lastArticle": "asean-families-report-2026-malaysia-households",
+  "runs": 29,
   "published": 0,
   "lastUsage": {
-    "calls": 2,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0107,
-    "promptTokens": 38108,
-    "completionTokens": 5365
+    "usd": 0.0301,
+    "promptTokens": 101161,
+    "completionTokens": 7167
   },
-  "lastFinalizedRunId": "44018841309",
+  "lastFinalizedRunId": "44019757168",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44018841309:1",
+  "lastFinalizedKey": "44019757168:1",
   "finalizedRuns": {
-    "44018841309": {
+    "44019757168": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44018841309:1"
+      "finalizationKey": "44019757168:1"
     }
   },
   "publishedRunIds": [],

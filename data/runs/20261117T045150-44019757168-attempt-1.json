@@ -1,12 +1,12 @@
 {
-  "at": "2026-11-15T00:38:09Z",
-  "sha": "00b091e4616fdfa388d4ed29d4afca2e0dd9ebe8",
-  "run": "43658911956",
+  "at": "2026-11-17T04:51:50Z",
+  "sha": "93e6dd891f210e68d9c35a99355fc0618b8a6f8a",
+  "run": "44019757168",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "service-tax-policy-3-2026-amendment-november-2026",
+  "article": "asean-families-report-2026-malaysia-households",
   "commit": null,
   "reviewer": {
     "status": "UNAVAILABLE",
