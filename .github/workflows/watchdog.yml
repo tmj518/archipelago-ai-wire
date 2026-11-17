@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: read
+  actions: write
 
 jobs:
   freshness:
@@ -56,6 +57,18 @@ jobs:
           print(f"::error::nothing published for {age} days - the newest article is {name} ({newest})")
           sys.exit(1)
           PY
+
+      # Auto-recovery: a quiet day is fine, a dead pipeline is not. If the collection has gone stale the
+      # A line is asked to run once more before anyone is woken up. The dispatch is recorded so a run
+      # that recovers is not mistaken for a healthy day.
+      - name: Ask the A line to run again
+        id: revive
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "collection is stale - dispatching Content day"
+          gh workflow run content-daily.yml --ref main && echo "revived=1" >> "$GITHUB_ENV" || echo "dispatch failed"
 
       - name: Which line last succeeded
         if: always()
