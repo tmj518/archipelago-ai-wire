@@ -139,6 +139,8 @@ The wider Malaysian context is that digital fraud has become a routine cost of b
 
 > Also read: [Nvidia CEO scandal exposes chip flows through Singapore-linked firms — what it means for Malaysia's semiconductor plants](/blog/nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls/)
 
+> Also read: [Grok Bot acted on employee accounts while laptops were shut — what Malaysian firms deploying AI agents need to write](/blog/grok-bot-proactive-check-ins-malaysia-ai-agent-governance/)
+
 ## For you
 
 - **A household asked to donate to a distress appeal:** ask for the account name and match it against the organisation's registered name before transferring; a personal account behind a public cause is the warning sign.
