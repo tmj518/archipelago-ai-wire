@@ -43,8 +43,13 @@ jobs:
       - name: Preflight credentials
         run: |
           missing=""
-          [ -z "${GSC_CREDENTIALS:-}" ] && missing="$missing GSC_CREDENTIALS"
-          [ -z "${GSC_SITE_URL:-}" ] && missing="$missing GSC_SITE_URL"
+          # GSC needs a Google service account that does not exist yet. Its absence is reported and the
+          # Cloudflare half still runs; a red run every day for a feature that is not configured is
+          # noise, and noise is how a real failure gets missed.
+          if [ -z "${GSC_CREDENTIALS:-}" ] || [ -z "${GSC_SITE_URL:-}" ]; then
+            echo "::warning::GSC is not configured (needs GSC_CREDENTIALS and GSC_SITE_URL); skipping that half"
+            SKIP_GSC=1
+          fi
           [ -z "${CF_ACCOUNT_ID:-}" ] && missing="$missing CF_ACCOUNT_ID"
           [ -z "${CF_API_TOKEN:-}" ] && missing="$missing CF_API_TOKEN"
           [ -z "${SITE_HOST:-}" ] && missing="$missing SITE_HOST"
@@ -57,8 +62,8 @@ jobs:
         env:
           GSC_CREDENTIALS: ${{ secrets.GSC_CREDENTIALS }}
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_API_TOKEN }}
           SITE_HOST: ${{ secrets.SITE_HOST }}
 
       - name: Search Console report
@@ -71,8 +76,8 @@ jobs:
       - name: Cloudflare Web Analytics snapshot
         run: node tools/analytics.mjs --fetch --days=28
         env:
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_API_TOKEN }}
           SITE_HOST: ${{ secrets.SITE_HOST }}
 
       - name: What was collected
