@@ -54,6 +54,14 @@ jobs:
           corepack enable
           pnpm install --frozen-lockfile
 
+      # Readership refresh, so the next subject choice can weigh what people actually opened.
+      - name: Refresh readership numbers
+        continue-on-error: true
+        run: node tools/cf-analytics.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
       - name: Preflight
         run: |
           # What the code actually needs: a key, an endpoint id (Ark's `model` field takes an ep-...
