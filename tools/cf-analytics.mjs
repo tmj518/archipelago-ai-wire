@@ -63,7 +63,7 @@ query($zone: String!, $since: Date!) {
       }
       httpRequestsAdaptiveGroups(
         limit: 1000
-        filter: { datetime_geq: $since, requestSource: "eyeball" }
+        filter: { datetime_geq: $since }
         orderBy: [count_DESC]
       ) {
         count
