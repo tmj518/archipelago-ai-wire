@@ -97,6 +97,8 @@ The action for a Malaysian business is procedural and cheap. Ask the bank what i
 
 **What would change my mind.** A published fee schedule from the Federal Reserve Banks showing the old and new prices for check services would replace the inference about direction with a number. A statement from a Malaysian bank or from Bank Negara Malaysia about cross-border payment charges would show whether the pass-through happens and how fast. And if the Federal Reserve's own text, on a fuller reading, shows the check service changes are administrative rather than a price increase, the premise of this piece narrows to a repricing of payment services generally rather than check clearing specifically.
 
+> Also read: [KL heritage land premium cut from RM4.67m to RM1,000: what it means for property owners](/blog/klscah-land-premium-rm1000-99-year-lease-renewal/)
+
 ## For you
 
 - **A small exporter paid by US check:** ask your bank what it charges to collect a dollar check and whether that charge changes for items cleared after 1 January 2027; the collection fee comes straight off what you receive.

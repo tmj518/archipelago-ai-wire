@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-16T21:31:59.020Z",
+  "lastRun": "2026-11-17T01:48:14.186Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "selangor-flood-hotspots-56-northeast-monsoon-2026",
-  "runs": 26,
+  "lastArticle": "klscah-land-premium-rm1000-99-year-lease-renewal",
+  "runs": 27,
   "published": 0,
   "lastUsage": {
     "calls": 3,
     "failed": 0,
-    "usd": 0.0145,
-    "promptTokens": 65285,
-    "completionTokens": 7242
+    "usd": 0.0142,
+    "promptTokens": 66351,
+    "completionTokens": 6264
   },
-  "lastFinalizedRunId": "43960409842",
+  "lastFinalizedRunId": "43997890639",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43960409842:1",
+  "lastFinalizedKey": "43997890639:1",
   "finalizedRuns": {
-    "43960409842": {
+    "43997890639": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43960409842:1"
+      "finalizationKey": "43997890639:1"
     }
   },
   "publishedRunIds": [],

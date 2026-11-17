@@ -1,12 +1,12 @@
 {
-  "at": "2026-11-14T19:42:27Z",
-  "sha": "87b716f969404294b8ec76f83260946fbaab4034",
-  "run": "43633199985",
+  "at": "2026-11-17T01:48:14Z",
+  "sha": "cfc2ce9de51b4513d920ee68f80a3761c95a9e9f",
+  "run": "43997890639",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "fullerton-health-migrant-worker-data-breach-malaysian-workers",
+  "article": "klscah-land-premium-rm1000-99-year-lease-renewal",
   "commit": null,
   "reviewer": {
     "status": "UNAVAILABLE",

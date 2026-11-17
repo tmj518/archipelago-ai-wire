@@ -130,6 +130,8 @@ For context on how Malaysian public money is allocated to states and groups, see
 
 > Also read: [US Fed to raise check fees for banks in 2027 — what it means for Malaysian banks' dollar clearing costs](/blog/federal-reserve-check-fees-2027-malaysia-banks/)
 
+> Also read: [KL heritage land premium cut from RM4.67m to RM1,000: what it means for property owners](/blog/klscah-land-premium-rm1000-99-year-lease-renewal/)
+
 ## For you
 
 - **A household with a confirmed victim in the family:** the payment is RM10,000, paid through Nadma. Work out where your family sits in the order — spouse first, then parents, then children — and have that person ready to deal with the agency.

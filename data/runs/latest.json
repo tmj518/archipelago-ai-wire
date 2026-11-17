@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-16T21:31:02.283Z",
-  "runId": "43960409842",
+  "at": "2026-11-17T01:47:10.194Z",
+  "runId": "43997890639",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "0bbe17ab339d3bb25686cb805b652cd784965efd",
+  "executionSha": "cfc2ce9de51b4513d920ee68f80a3761c95a9e9f",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "25 previous run(s), last 2026-11-16T10:28:46.976Z (QUIET)"
+      "detail": "26 previous run(s), last 2026-11-16T21:31:59.020Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "2 of 25 net-new this week"
+      "detail": "3 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,7 +33,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "selangor-flood-hotspots-56-northeast-monsoon-2026 from /data/directive.json"
+      "detail": "klscah-land-premium-rm1000-99-year-lease-renewal from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -43,7 +43,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/selangor-flood-hotspots-56-northeast-monsoon-2026.md"
+      "detail": "draft at /data/drafts/klscah-land-premium-rm1000-99-year-lease-renewal.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/selangor-flood-hotspots-56-northeast-monsoon-2026.md"
+      "detail": "staged at src/content/blog/klscah-land-premium-rm1000-99-year-lease-renewal.md"
     },
     {
       "name": "registry",
@@ -77,7 +77,7 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "selangor-flood-hotspots-56-northeast-monsoon-2026",
+  "article": "klscah-land-premium-rm1000-99-year-lease-renewal",
   "commit": null,
   "publicationStatus": "FAILED",
   "reviewer": {
@@ -90,14 +90,14 @@
   "usage": {
     "calls": 3,
     "failed": 0,
-    "usd": 0.0145,
-    "promptTokens": 65285,
-    "completionTokens": 7242
+    "usd": 0.0142,
+    "promptTokens": 66351,
+    "completionTokens": 6264
   },
   "route": "script",
   "categoryActivity": {
     "success-cases": 0,
-    "malaysia-impact": 0,
+    "malaysia-impact": 1,
     "economy": 1,
     "work-education-family": 0,
     "business-opportunities-risks": 1,
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 27,
+  "seconds": 28,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "43960409842:1",
-  "finalizedAt": "2026-11-16T21:31:59.020Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/selangor-flood-hotspots-56-northeast-monsoon-2026/",
+  "finalizationKey": "43997890639:1",
+  "finalizedAt": "2026-11-17T01:48:14.186Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/klscah-land-premium-rm1000-99-year-lease-renewal/",
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {
