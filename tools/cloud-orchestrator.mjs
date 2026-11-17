@@ -203,12 +203,12 @@ function alreadyPublishedToday() {
       .map((f) => {
         try {
           const text = readFileSync(join(articlesDir, f), "utf8");
-          return { slug: f.replace(/\.md$/, ""), date: /^publishDate:\s*"?([0-9-]+)"?/m.exec(text)?.[1] ?? "" };
+          return { slug: f.replace(/\.md$/, ""), date: /^publishDate:\s*"?([0-9-]+)"?/m.exec(text)?.[1] ?? "" , success: /^category:\s*success-cases/m.test(text) };
         } catch {
           return null;
         }
       })
-      .filter((a) => a && a.date === beijing);
+      .filter((a) => a && a.date === beijing && a.success !== true);
     if (dated.length >= quota) return { slug: dated[0].slug, at: `${dated.length} article(s) dated ${beijing}` };
   }
   return null;
