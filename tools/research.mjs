@@ -724,7 +724,42 @@ function blueOcean() {
     return null;
   }
 }
-const blue = blueOcean();
+/*
+ * What people actually opened.
+ *
+ * Cloudflare analytics writes data/readership.json every run; nothing read it until now, so the only
+ * judge of a subject was whether it passed the gate. A subject that serves a theme readers open is
+ * worth more than one that is merely publishable. The numbers are evidence, not instruction: a
+ * zero-read piece is not a banned topic, it is a signal that the angle did not land.
+ */
+const readership = (() => {
+  try {
+    const j = JSON.parse(readFileSync(join(ROOT, "data", "readership.json"), "utf8"));
+    return j && typeof j.readership === "object" ? j.readership : null;
+  } catch {
+    return null;
+  }
+})();
+
+const READERSHIP_NOTE = (() => {
+  if (!readership || Object.keys(readership).length === 0) return "";
+  const rows = Object.entries(readership).sort((a, b) => b[1] - a[1]);
+  const top = rows.filter(([, n]) => n > 0).slice(0, 5);
+  if (top.length === 0) return "";
+  const zero = rows.filter(([, n]) => n === 0).slice(0, 5);
+  return [
+    "WHAT READERS ACTUALLY OPENED (last 28 days)",
+    "",
+    "Most read:",
+    ...top.map(([slug, n]) => `  - ${slug}  ${n} view(s)`),
+    "",
+    ...(zero.length ? ["Published and never opened:", ...zero.map(([slug]) => `  - ${slug}`), ""] : []),
+    "Prefer subjects that serve the themes behind the most-read pieces. A page nobody opened is evidence",
+    "that the angle did not land, not that the topic is banned. Never propose the same subject again;",
+    "aim at what the readers of the top pieces wanted next.",
+  ].join("\n");
+})();
+
 
 const BLUE_OCEAN_NOTE = blue
   ? [
@@ -820,7 +855,7 @@ WHAT IS REJECTED
     NOT allowed is the empty version - "this could affect Malaysia" without naming who or through what.
   - a subject that rests on race, religion or royalty. Those are reportable subjects, but this pipeline has no
     named human reviewer, and the gate quarantines them. Do not propose one automatically.
-${BLUE_OCEAN_NOTE ? BLUE_OCEAN_NOTE + "\n\n" : ""}${sectionBlock}
+${BLUE_OCEAN_NOTE ? BLUE_OCEAN_NOTE + "\n\n" : ""}${READERSHIP_NOTE ? READERSHIP_NOTE + "\n\n" : ""}${sectionBlock}
 THE SOURCES
 
 ${corpus}
