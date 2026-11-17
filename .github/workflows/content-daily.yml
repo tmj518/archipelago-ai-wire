@@ -289,7 +289,10 @@ jobs:
           # git add fails the whole step when one path in the list does not exist in this commit, and
           # data/outcomes does not exist until the first run writes one. That turned a finished,
           # approved, built article into a red Publish step on 2026-10-29. Add what exists, skip the rest.
-          for p in src/content src/lib logs/usage.jsonl data/outcomes; do
+          # logs/ is gitignored, so `git add logs/usage.jsonl` exits 1 and killed the step after the
+          # article was staged - "paths are ignored ... Process completed with exit code 1".
+          # Only tracked-by-design paths are added, and the ignored ones are skipped silently.
+          for p in src/content src/lib data/outcomes; do
             if [ -e "$p" ]; then git add "$p"; fi
           done
           # The article this run ADDED, not the first .md that happens to be staged: backfill-links
