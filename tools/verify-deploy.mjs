@@ -37,8 +37,19 @@ async function getJson(url) {
 try {
   /* The project is found by the domain it serves, not by a name guessed here. */
   const projects = await getJson(api("/pages/projects"));
-  const project = (projects ?? []).find((p) => (p.domains ?? []).some((d) => String(d).includes("ghiblistyled")));
-  if (!project) throw new Error("no Pages project serving ghiblistyled.com");
+  /*
+   * This account serves several sites. The project is matched on an exact hostname, never on a
+   * substring, and an ambiguous match stops the check instead of picking one - guessing here would
+   * report another site's deployment as this one's and quietly certify the wrong thing.
+   */
+  const WANT = ["www.ghiblistyled.com", "ghiblistyled.com"];
+  const matches = (projects ?? []).filter((p) =>
+    (p.domains ?? []).some((d) => WANT.includes(String(d).toLowerCase())),
+  );
+  if (matches.length === 0) throw new Error(`no Pages project serving ${WANT[0]}`);
+  if (matches.length > 1) throw new Error(`ambiguous: ${matches.length} projects serve ${WANT[0]}: ${matches.map((p) => p.name).join(", ")}`);
+  const project = matches[0];
+  console.log(`  matched on : exact hostname ${WANT[0]}`);
 
   const deployments = await getJson(api(`/pages/projects/${project.name}/deployments`));
   const live = (deployments ?? []).find((d) => (d.environment ?? d.latest_stage?.name) === "production") ?? deployments?.[0];

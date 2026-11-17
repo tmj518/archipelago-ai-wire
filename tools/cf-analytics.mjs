@@ -19,7 +19,18 @@ const ROOT = process.cwd();
 const token = process.env.CLOUDFLARE_API_TOKEN ?? "";
 const account = process.env.CLOUDFLARE_ACCOUNT_ID ?? "";
 const dryRun = process.argv.includes("--dry-run");
+if (FORBIDDEN_HOSTS.includes(HOST)) {
+  console.log("  analytics  : refusing to read another project's host");
+  process.exit(0);
+}
+
+/*
+ * One site, one hostname. This Cloudflare account serves several projects, and an unqualified
+ * analytics query would blend another site's readers into this one's numbers. The host is exact,
+ * and toolsai.club belongs to a different project that must never be read here.
+ */
 const HOST = "www.ghiblistyled.com";
+const FORBIDDEN_HOSTS = ["toolsai.club", "www.toolsai.club"];
 
 if (!token || !account) {
   console.log("  analytics  : UNKNOWN - CLOUDFLARE_API_TOKEN or CLOUDFLARE_ACCOUNT_ID is not set");
