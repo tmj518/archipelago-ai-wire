@@ -1,34 +1,33 @@
 {
-  "lastRun": "2026-11-17T12:23:30.297Z",
+  "lastRun": "2026-11-17T12:52:12.052Z",
   "lastVerdict": "FAILED",
   "lastArticle": "ambulance-procurement-delay-115-units-2024",
-  "runs": 37,
+  "runs": 38,
   "published": 0,
   "lastUsage": {
-    "calls": 5,
+    "calls": 11,
     "failed": 0,
-    "usd": 0.0182,
-    "promptTokens": 86365,
-    "completionTokens": 7407
+    "usd": 0.0471,
+    "promptTokens": 242095,
+    "completionTokens": 11662
   },
-  "lastFinalizedRunId": "44082118012",
+  "lastFinalizedRunId": "44086497025",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44082118012:1",
+  "lastFinalizedKey": "44086497025:1",
   "finalizedRuns": {
-    "44082118012": {
+    "44086497025": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44082118012:1"
+      "finalizationKey": "44086497025:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "lastRegistry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",

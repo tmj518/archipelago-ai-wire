@@ -1,0 +1,133 @@
+{
+  "at": "2026-11-17T12:51:29.924Z",
+  "runId": "44086497025",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "workflow_dispatch",
+  "executionSha": "daecd707329d633d563e23ecc3ac1436c8118600",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "37 previous run(s), last 2026-11-17T12:23:30.297Z (FAILED)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "10 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "none at /data/directive.json"
+    },
+    {
+      "name": "research",
+      "ok": true,
+      "detail": "proposed eu-france-belgium-deficit-debt-2027-malaysia-bonds, 8 verified figure(s)"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "8 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": false,
+      "detail": "exit 2: REFUSED - the directive carries a value the schema does not accept."
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict WRITE-FAILED"
+    }
+  ],
+  "verdict": "WRITE-FAILED",
+  "reasons": [
+    "the writer did not produce eu-france-belgium-deficit-debt-2027-malaysia-bonds.md on attempt 1"
+  ],
+  "article": null,
+  "commit": null,
+  "publicationStatus": "NOT_STAGED",
+  "reviewer": {
+    "status": "NOT_RUN"
+  },
+  "registry": {
+    "status": "NOT_RUN"
+  },
+  "usage": {
+    "calls": 11,
+    "failed": 0,
+    "usd": 0.0471,
+    "promptTokens": 242095,
+    "completionTokens": 11662
+  },
+  "route": "script",
+  "categoryActivity": {
+    "malaysia-impact": 4,
+    "success-cases": 0,
+    "work-education-family": 1,
+    "economy": 1,
+    "business-opportunities-risks": 2,
+    "world": 1,
+    "tech-ai": 1
+  },
+  "uncoveredSections": [],
+  "researchLog": [
+    "  ok    fmt-article                225260B  article archived",
+    "  ok    fmt-article                225349B  article archived",
+    "  articles : 8 followed from the listings",
+    "  ledger: 55 published subject(s) to avoid repeating",
+    "  corpus   : 8 article(s) from 3 source(s)",
+    "  proposing a subject from 8 archived article(s)...",
+    "       call failed: task=null role=planner provider=volces attempt=1/3 ETIMEDOUT: fetch failed",
+    "       provider switch: volces -> deepseek after ETIMEDOUT: fetch failed",
+    "  stream      : the endpoint answered as SSE, 1387 delta(s) joined",
+    "  endpoint    : ep-20251220173606-gzxdg replied with 4837 characters but no document structure, trying the next one",
+    "  spent   : ~0.0050  (ceiling 0.40)",
+    "  model   : deepseek/deepseek-chat",
+    "  feasible: true",
+    "  slug    : opr-hold-2-75-november-2026-inflation-2027",
+    "  keyword : Bank Negara OPR 2.75% November 2026 inflation 2027",
+    "  duplicate check: score 20 against bnm-holds-opr-at-2-75-percent-september-2026",
+    "      shared figure value(s): 2.75, 1.8, 5.7, 4−5",
+    "      shared keyword stems: bank, negara",
+    "      shared institution(s): bank, negara, malaysia, monetary, policy",
+    "  REJECTED as a duplicate - trying another subject rather than ending the day.",
+    "  proposing a subject from 8 archived article(s) (attempt 2 of 8)...",
+    "  stream      : the endpoint answered as SSE, 1269 delta(s) joined",
+    "  endpoint    : ep-20251220173606-gzxdg replied with 4331 characters but no document structure, trying the next one",
+    "  spent   : ~0.0067  (ceiling 0.40)",
+    "  model   : volces/ep-20251220173606-gzxdg",
+    "  feasible: true",
+    "  slug    : eu-france-belgium-deficit-debt-2027-malaysia-bonds",
+    "  keyword : EU France Belgium deficit debt Malaysia bonds",
+    "  duplicate check: score 0",
+    "  slug    : eu-france-belgium-deficit-debt-2027-malaysia-bonds",
+    "  keyword : EU France Belgium deficit debt Malaysia bonds",
+    "  category: world",
+    "  figures : 8",
+    "  evidence check:",
+    "    external figures : 0",
+    "    verified         : 0",
+    "    failed           : 0",
+    "  wrote /data/directive.json",
+    "  spend this run: ~$0.0067",
+    "  Next: node tools/cloud-orchestrator.mjs   (which will write, review and publish)"
+  ],
+  "seconds": 36
+}

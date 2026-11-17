@@ -1,7 +1,7 @@
 {
-  "at": "2026-11-17T06:29:53Z",
-  "sha": "7eefafea474d083c291dcc04ca69ff7f98d06cc0",
-  "run": "44031278381",
+  "at": "2026-11-17T12:52:12Z",
+  "sha": "daecd707329d633d563e23ecc3ac1436c8118600",
+  "run": "44086497025",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
@@ -9,8 +9,7 @@
   "article": null,
   "commit": null,
   "reviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "registry": {
     "status": "NOT_RUN"
