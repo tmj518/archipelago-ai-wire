@@ -1,12 +1,12 @@
 {
-  "at": "2026-11-17T06:11:48Z",
-  "sha": "2ee824bf6cfdc81a1868089f097cc26e3b11e0f1",
-  "run": "44029206521",
+  "at": "2026-11-17T12:12:59Z",
+  "sha": "c4c029706fe369fa3caf2b1a3ae1b7b4c837b414",
+  "run": "44080699083",
   "run_attempt": "1",
-  "workflow_status": "failure",
-  "verdict": "FAILED",
-  "publication_status": "FAILED",
-  "article": null,
+  "workflow_status": "success",
+  "verdict": "QUIET",
+  "publication_status": "QUIET",
+  "article": "mida-approved-investments-9m-2026-johor-data-centres",
   "commit": null,
   "reviewer": {
     "status": "NOT_RUN"
