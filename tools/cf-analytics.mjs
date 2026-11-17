@@ -38,7 +38,8 @@ if (!token || !account) {
   process.exit(0);
 }
 
-const since = new Date(Date.now() - 28 * 864e5).toISOString().slice(0, 10);
+/* The adaptive dataset wants a full timestamp, not a date: "not an iso8601" was the error. */
+const since = new Date(Date.now() - 28 * 864e5).toISOString();
 
 /* Zone-level numbers cover the whole site; the RUM dataset only sees pages that carry the beacon. */
 async function zoneId() {
@@ -54,10 +55,10 @@ async function zoneId() {
 }
 
 const query = `
-query($zone: String!, $since: Date!) {
+query($zone: String!, $since: Time!) {
   viewer {
     zones(filter: { zoneTag: $zone }) {
-      httpRequests1dGroups(limit: 100, filter: { date_geq: $since }, orderBy: [sum_requests_DESC]) {
+      httpRequests1dGroups(limit: 100, orderBy: [sum_requests_DESC]) {
         sum { requests }
         dimensions { date }
       }
