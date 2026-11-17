@@ -58,10 +58,6 @@ const query = `
 query($zone: String!, $since: Time!) {
   viewer {
     zones(filter: { zoneTag: $zone }) {
-      httpRequests1dGroups(limit: 100, orderBy: [sum_requests_DESC]) {
-        sum { requests }
-        dimensions { date }
-      }
       httpRequestsAdaptiveGroups(
         limit: 1000
         filter: { datetime_geq: $since }
@@ -89,7 +85,6 @@ try {
   }
   const z = body.data?.viewer?.zones?.[0] ?? {};
   rows = (z.httpRequestsAdaptiveGroups ?? []).map((r) => ({ count: r.count, dimensions: { requestPath: r.dimensions?.clientRequestPath } }));
-  console.log(`  total      : ${(z.httpRequests1dGroups ?? []).reduce((a, g) => a + (g.sum?.requests ?? 0), 0)} request(s) in 28 days`);
 } catch (e) {
   console.log(`  analytics  : UNKNOWN - ${String(e.message).slice(0, 200)}`);
   process.exit(0);
