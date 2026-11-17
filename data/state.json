@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-17T04:51:50.401Z",
+  "lastRun": "2026-11-17T05:57:41.742Z",
   "lastVerdict": "FAILED",
   "lastArticle": "asean-families-report-2026-malaysia-households",
   "runs": 29,
@@ -11,24 +11,28 @@
     "promptTokens": 101161,
     "completionTokens": 7167
   },
-  "lastFinalizedRunId": "44019757168",
+  "lastFinalizedRunId": "44027482613",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44019757168:1",
+  "lastFinalizedKey": "44027482613:1",
   "finalizedRuns": {
     "44019757168": {
       "runAttempt": 1,
       "verdict": "FAILED",
       "finalizationKey": "44019757168:1"
+    },
+    "44027482613": {
+      "runAttempt": 1,
+      "verdict": "FAILED",
+      "finalizationKey": "44027482613:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "lastRegistry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
