@@ -1,6 +1,6 @@
 {
-  "lastRun": "2026-11-17T11:38:30.177Z",
-  "lastVerdict": "FAILED",
+  "lastRun": "2026-11-17T11:55:16.633Z",
+  "lastVerdict": "QUIET",
   "lastArticle": "us-troop-redeployment-germany-asia-malaysia-defence",
   "runs": 36,
   "published": 0,
@@ -11,24 +11,28 @@
     "promptTokens": 57679,
     "completionTokens": 6142
   },
-  "lastFinalizedRunId": "44075401794",
+  "lastFinalizedRunId": "44077898207",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44075401794:1",
+  "lastFinalizedKey": "44077898207:1",
   "finalizedRuns": {
     "44075401794": {
       "runAttempt": 1,
       "verdict": "FAILED",
       "finalizationKey": "44075401794:1"
+    },
+    "44077898207": {
+      "runAttempt": 1,
+      "verdict": "QUIET",
+      "finalizationKey": "44077898207:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "lastRegistry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",

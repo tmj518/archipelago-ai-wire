@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-17T11:54:47.701Z",
+  "route": "script",
+  "runId": "44077898207",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "workflow_dispatch",
+  "executionSha": "98ae8688f595f1979008bd9614a8c0555f694f1a",
+  "steps": [
+    {
+      "name": "daily quota",
+      "ok": true,
+      "detail": "already published today: mida-approved-investments-9m-2026-johor-data-centres"
+    }
+  ],
+  "verdict": "QUIET",
+  "publicationStatus": "QUIET",
+  "article": "mida-approved-investments-9m-2026-johor-data-centres",
+  "commit": null,
+  "reviewer": {
+    "status": "NOT_RUN"
+  },
+  "registry": {
+    "status": "NOT_RUN"
+  },
+  "reasons": []
+}
