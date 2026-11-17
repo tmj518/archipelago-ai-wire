@@ -455,6 +455,23 @@ async function main() {
    * check and the schema agree by construction.
    */
   const bad = [];
+  /*
+   * A free-text category or audience is repaired, not refused.
+   *
+   * The subject chooser writes its own words when the taxonomy does not fit - 'trade-policy',
+   * 'tech', 'both' - and the refusal below then killed the run after a finished directive, with the
+   * article unwritten. The nearest legal value is always available and the substitution is printed,
+   * so the writer's habit stays visible while the day still publishes.
+   */
+  if (!CATEGORY_SLUGS.includes(directive.category)) {
+    const near = CATEGORY_SLUGS.find((c) => String(directive.category ?? "").toLowerCase().includes(c.split("-")[0]));
+    console.log(`  category    : "${directive.category}" is not a section; using ${near ?? CATEGORY_SLUGS[0]}`);
+    directive.category = near ?? CATEGORY_SLUGS[0];
+  }
+  if (!AUDIENCE_VALUES.includes(directive.audience)) {
+    console.log(`  audience    : "${directive.audience}" is not a value; using general`);
+    directive.audience = AUDIENCE_VALUES.includes("general") ? "general" : AUDIENCE_VALUES[0];
+  }
   if (!CATEGORY_SLUGS.includes(directive.category)) bad.push(["category", directive.category, CATEGORY_SLUGS]);
   if (!AUDIENCE_VALUES.includes(directive.audience)) bad.push(["audience", directive.audience, AUDIENCE_VALUES]);
   if (bad.length) {
