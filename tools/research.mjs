@@ -760,6 +760,8 @@ const READERSHIP_NOTE = (() => {
   ].join("\n");
 })();
 
+  const blue = blueOcean();
+
 
 const BLUE_OCEAN_NOTE = blue
   ? [
