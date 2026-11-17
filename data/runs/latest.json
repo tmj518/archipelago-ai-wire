@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-17T06:45:16.477Z",
-  "runId": "44033262440",
+  "at": "2026-11-17T09:24:25.169Z",
+  "runId": "44054912006",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "workflow_dispatch",
-  "executionSha": "c612326b3b9a941e65d0041e29e5ee5a6af3d427",
+  "executionSha": "8468a27de2a1b10bfc7c232dc39956d250fc87a8",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "32 previous run(s), last 2026-11-17T06:38:29.333Z (FAILED)"
+      "detail": "33 previous run(s), last 2026-11-17T06:45:24.063Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,43 +33,66 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "china-chip-curbs-csi-semiconductor-rally-malaysia-tech from /data/directive.json"
+      "detail": "sia-a350-smoke-rockhampton-cabin-safety-malaysia-aviation from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "5 sourced figure(s)"
     },
     {
       "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/sia-a350-smoke-rockhampton-cabin-safety-malaysia-aviation.md"
+    },
+    {
+      "name": "reviewer",
       "ok": false,
-      "detail": "exit 2: REFUSED - the directive carries a value the schema does not accept."
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/sia-a350-smoke-rockhampton-cabin-safety-malaysia-aviation.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict WRITE-FAILED"
+      "detail": "verdict READY_FOR_PUBLISH"
     }
   ],
   "verdict": "FAILED",
   "reasons": [
-    "the writer did not produce china-chip-curbs-csi-semiconductor-rally-malaysia-tech.md on attempt 1"
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve",
+    "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": null,
+  "article": "sia-a350-smoke-rockhampton-cabin-safety-malaysia-aviation",
   "commit": null,
   "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "usage": {
-    "calls": 4,
+    "calls": 6,
     "failed": 0,
-    "usd": 0.014,
-    "promptTokens": 115018,
-    "completionTokens": 4658
+    "usd": 0.0292,
+    "promptTokens": 151332,
+    "completionTokens": 8886
   },
   "route": "script",
   "categoryActivity": {
@@ -82,11 +105,20 @@
     "tech-ai": 1
   },
   "uncoveredSections": [],
-  "seconds": 0,
-  "orchestratorVerdict": "WRITE-FAILED",
-  "finalizationKey": "44033262440:1",
-  "finalizedAt": "2026-11-17T06:45:24.063Z",
-  "productionUrl": null,
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 25,
+  "orchestratorVerdict": "READY_FOR_PUBLISH",
+  "finalizationKey": "44054912006:1",
+  "finalizedAt": "2026-11-17T09:25:16.876Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/sia-a350-smoke-rockhampton-cabin-safety-malaysia-aviation/",
   "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {

@@ -1,12 +1,12 @@
 {
-  "at": "2026-11-17T04:43:42Z",
-  "sha": "60d4e5a1723d0fc51a337381ce60e7680e88a7a1",
-  "run": "44018841309",
+  "at": "2026-11-17T09:25:16Z",
+  "sha": "8468a27de2a1b10bfc7c232dc39956d250fc87a8",
+  "run": "44054912006",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "mcmc-deepfake-takedowns-13883-2026",
+  "article": "sia-a350-smoke-rockhampton-cabin-safety-malaysia-aviation",
   "commit": null,
   "reviewer": {
     "status": "UNAVAILABLE",

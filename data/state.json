@@ -1,33 +1,34 @@
 {
-  "lastRun": "2026-11-17T06:45:24.063Z",
+  "lastRun": "2026-11-17T09:25:16.876Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "mida-approved-investments-9m-2026-johor-data-centres",
-  "runs": 33,
+  "lastArticle": "sia-a350-smoke-rockhampton-cabin-safety-malaysia-aviation",
+  "runs": 34,
   "published": 0,
   "lastUsage": {
-    "calls": 4,
+    "calls": 6,
     "failed": 0,
-    "usd": 0.014,
-    "promptTokens": 115018,
-    "completionTokens": 4658
+    "usd": 0.0292,
+    "promptTokens": 151332,
+    "completionTokens": 8886
   },
-  "lastFinalizedRunId": "44033262440",
+  "lastFinalizedRunId": "44054912006",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44033262440:1",
+  "lastFinalizedKey": "44054912006:1",
   "finalizedRuns": {
-    "44033262440": {
+    "44054912006": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44033262440:1"
+      "finalizationKey": "44054912006:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",

@@ -171,6 +171,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [Selangor maps 56 flood hotspots and 232 flood-prone areas as Northeast Monsoon begins](/blog/selangor-flood-hotspots-56-northeast-monsoon-2026/)
 
+> Also read: [SIA A350 diverted twice in a week for cabin smoke: what it means for Malaysia's aviation maintenance and safety checks](/blog/sia-a350-smoke-rockhampton-cabin-safety-malaysia-aviation/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.

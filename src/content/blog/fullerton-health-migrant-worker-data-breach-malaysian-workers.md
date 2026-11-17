@@ -128,6 +128,8 @@ For readers tracking how Malaysia handles the same problem on its own side of th
 
 > Also read: [Selangor maps 56 flood hotspots and 232 flood-prone areas as Northeast Monsoon begins](/blog/selangor-flood-hotspots-56-northeast-monsoon-2026/)
 
+> Also read: [SIA A350 diverted twice in a week for cabin smoke: what it means for Malaysia's aviation maintenance and safety checks](/blog/sia-a350-smoke-rockhampton-cabin-safety-malaysia-aviation/)
+
 ## For you
 
 - **A Malaysian on a Singapore work pass right now:** ask your employer whether you are enrolled in the Migrant Worker Primary Care Plan, and read the provider's notice for what it asks affected individuals to do. Your name, FIN, date of birth, phone, email and home address are the fields at issue.
