@@ -130,6 +130,8 @@ For readers tracking how Malaysia handles the same problem on its own side of th
 
 > Also read: [SIA A350 diverted twice in a week for cabin smoke: what it means for Malaysia's aviation maintenance and safety checks](/blog/sia-a350-smoke-rockhampton-cabin-safety-malaysia-aviation/)
 
+> Also read: [Health Ministry blames contractor for ambulance shortage: 115 of 590 delivered by end-2024](/blog/ambulance-procurement-delay-115-units-2024/)
+
 ## For you
 
 - **A Malaysian on a Singapore work pass right now:** ask your employer whether you are enrolled in the Migrant Worker Primary Care Plan, and read the provider's notice for what it asks affected individuals to do. Your name, FIN, date of birth, phone, email and home address are the fields at issue.

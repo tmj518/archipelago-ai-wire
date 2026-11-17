@@ -1,43 +1,34 @@
 {
-  "lastRun": "2026-11-17T12:12:59.117Z",
-  "lastVerdict": "QUIET",
-  "lastArticle": "us-troop-redeployment-germany-asia-malaysia-defence",
-  "runs": 36,
+  "lastRun": "2026-11-17T12:23:30.297Z",
+  "lastVerdict": "FAILED",
+  "lastArticle": "ambulance-procurement-delay-115-units-2024",
+  "runs": 37,
   "published": 0,
   "lastUsage": {
-    "calls": 4,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0134,
-    "promptTokens": 57679,
-    "completionTokens": 6142
+    "usd": 0.0182,
+    "promptTokens": 86365,
+    "completionTokens": 7407
   },
-  "lastFinalizedRunId": "44080699083",
+  "lastFinalizedRunId": "44082118012",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44080699083:1",
+  "lastFinalizedKey": "44082118012:1",
   "finalizedRuns": {
-    "44075401794": {
+    "44082118012": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44075401794:1"
-    },
-    "44077898207": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "44077898207:1"
-    },
-    "44080699083": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "44080699083:1"
+      "finalizationKey": "44082118012:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",

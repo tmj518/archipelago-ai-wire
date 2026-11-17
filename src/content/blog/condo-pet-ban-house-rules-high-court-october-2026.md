@@ -173,6 +173,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [SIA A350 diverted twice in a week for cabin smoke: what it means for Malaysia's aviation maintenance and safety checks](/blog/sia-a350-smoke-rockhampton-cabin-safety-malaysia-aviation/)
 
+> Also read: [Health Ministry blames contractor for ambulance shortage: 115 of 590 delivered by end-2024](/blog/ambulance-procurement-delay-115-units-2024/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.

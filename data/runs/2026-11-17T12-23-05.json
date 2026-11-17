@@ -1,0 +1,117 @@
+{
+  "at": "2026-11-17T12:22:35.353Z",
+  "runId": "44082118012",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "workflow_dispatch",
+  "executionSha": "63b58a76e7d46d2d20704300235e492561d44857",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "36 previous run(s), last 2026-11-17T12:12:59.117Z (QUIET)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "9 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "ambulance-procurement-delay-115-units-2024 from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "5 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/ambulance-procurement-delay-115-units-2024.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/ambulance-procurement-delay-115-units-2024.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict READY_FOR_PUBLISH"
+    }
+  ],
+  "verdict": "READY_FOR_PUBLISH",
+  "reasons": [
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve"
+  ],
+  "article": "ambulance-procurement-delay-115-units-2024",
+  "commit": null,
+  "publicationStatus": "DRAFT_STAGED",
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "usage": {
+    "calls": 5,
+    "failed": 0,
+    "usd": 0.0182,
+    "promptTokens": 86365,
+    "completionTokens": 7407
+  },
+  "route": "script",
+  "categoryActivity": {
+    "success-cases": 0,
+    "malaysia-impact": 3,
+    "work-education-family": 1,
+    "economy": 1,
+    "business-opportunities-risks": 2,
+    "world": 1,
+    "tech-ai": 1
+  },
+  "uncoveredSections": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 30
+}

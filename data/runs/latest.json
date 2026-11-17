@@ -1,34 +1,125 @@
 {
-  "at": "2026-11-17T12:12:29.412Z",
-  "route": "script",
-  "runId": "44080699083",
+  "at": "2026-11-17T12:22:35.353Z",
+  "runId": "44082118012",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "workflow_dispatch",
-  "executionSha": "c4c029706fe369fa3caf2b1a3ae1b7b4c837b414",
+  "executionSha": "63b58a76e7d46d2d20704300235e492561d44857",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
   "steps": [
     {
-      "name": "daily quota",
+      "name": "providers",
       "ok": true,
-      "detail": "already published today: mida-approved-investments-9m-2026-johor-data-centres"
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "36 previous run(s), last 2026-11-17T12:12:59.117Z (QUIET)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "9 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "ambulance-procurement-delay-115-units-2024 from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "5 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/ambulance-procurement-delay-115-units-2024.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/ambulance-procurement-delay-115-units-2024.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict READY_FOR_PUBLISH"
     }
   ],
-  "verdict": "QUIET",
-  "publicationStatus": "QUIET",
-  "article": "mida-approved-investments-9m-2026-johor-data-centres",
+  "verdict": "FAILED",
+  "reasons": [
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve",
+    "publication not finalized: independent reviewer approval is missing"
+  ],
+  "article": "ambulance-procurement-delay-115-units-2024",
   "commit": null,
+  "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
-  "reasons": [],
-  "orchestratorVerdict": "QUIET",
-  "finalizationKey": "44080699083:1",
-  "finalizedAt": "2026-11-17T12:12:59.117Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/mida-approved-investments-9m-2026-johor-data-centres/",
-  "executionConclusion": "success",
+  "usage": {
+    "calls": 5,
+    "failed": 0,
+    "usd": 0.0182,
+    "promptTokens": 86365,
+    "completionTokens": 7407
+  },
+  "route": "script",
+  "categoryActivity": {
+    "success-cases": 0,
+    "malaysia-impact": 3,
+    "work-education-family": 1,
+    "economy": 1,
+    "business-opportunities-risks": 2,
+    "world": 1,
+    "tech-ai": 1
+  },
+  "uncoveredSections": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 30,
+  "orchestratorVerdict": "READY_FOR_PUBLISH",
+  "finalizationKey": "44082118012:1",
+  "finalizedAt": "2026-11-17T12:23:30.297Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/ambulance-procurement-delay-115-units-2024/",
+  "executionConclusion": "failure",
   "verifyOutcome": "skipped",
   "liveChecks": {
     "status": "skipped"

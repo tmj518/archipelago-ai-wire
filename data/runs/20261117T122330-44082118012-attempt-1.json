@@ -1,12 +1,12 @@
 {
-  "at": "2026-11-17T06:21:06Z",
-  "sha": "c535e2dff47ef1a050ee9f1c2e23b33eaba564a2",
-  "run": "44030262370",
+  "at": "2026-11-17T12:23:30Z",
+  "sha": "63b58a76e7d46d2d20704300235e492561d44857",
+  "run": "44082118012",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "mida-approved-investments-9m-2026-johor-data-centres",
+  "article": "ambulance-procurement-delay-115-units-2024",
   "commit": null,
   "reviewer": {
     "status": "UNAVAILABLE",
