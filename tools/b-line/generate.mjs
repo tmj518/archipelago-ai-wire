@@ -176,8 +176,27 @@ const caseSources = pending && Array.isArray(pending.sources)
   ? (await Promise.all(pending.sources.slice(0, 8).map(fetchCaseSource))).filter(Boolean)
   : [];
 if (pending && caseSources.length === 0) {
-  console.error("  b-line: selected pool case has no retrievable source document; refusing to publish unverified claims");
-  process.exit(1);
+  /*
+   * A case whose sources cannot be fetched is retired, not fatal.
+   *
+   * The pool keeps entries whose URLs have since died. Refusing to write about them is right; ending
+   * the whole run is not - on 2026-11-16 this single line produced four failed B line runs in a row
+   * while the same dead case kept being selected. The case is marked spent so the next run picks
+   * another, and the run reports QUIET instead of FAILED because nothing is broken.
+   */
+  console.log("  b-line: the selected case has no retrievable source; retiring it and ending quietly");
+  try {
+    const poolPath2 = join(ROOT, "data", "b-line", "cases.json");
+    const pool2 = JSON.parse(readFileSync(poolPath2, "utf8"));
+    const hit = (pool2.cases ?? []).find((c) => c && c.id === pending?.id);
+    if (hit) {
+      hit.used = true;
+      hit.retired = "sources unreachable";
+      writeFileSync(poolPath2, JSON.stringify(pool2, null, 2) + "\n", "utf8");
+      console.log(`  b-line: retired ${hit.id} from the pool`);
+    }
+  } catch {}
+  process.exit(2);
 }
 const sourceMaterial = caseSources.map((s) => `### ${s.title || s.url}\n${s.url}\n${s.body}`).join("\n\n");
 
