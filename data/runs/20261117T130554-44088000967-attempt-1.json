@@ -1,26 +1,26 @@
 {
-  "at": "2026-11-17T06:38:29Z",
-  "sha": "c1a0ac65ffcabf21807b33c5cbbb3808435012dd",
-  "run": "44032297010",
+  "at": "2026-11-17T13:05:54Z",
+  "sha": "c0e8aed9e565bcb7299f23327c4ea684b879704c",
+  "run": "44088000967",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": null,
-  "commit": null,
+  "article": "mida-9m-2026-domestic-manufacturing-investment-82-7-percent",
+  "commit": "d6d0ddfacb77997628d0fd0bc77f6652d424735c",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "live_checks": {
-    "status": "skipped"
+    "status": "failure"
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }

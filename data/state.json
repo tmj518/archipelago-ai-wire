@@ -1,37 +1,38 @@
 {
-  "lastRun": "2026-11-17T12:52:12.052Z",
+  "lastRun": "2026-11-17T13:05:54.790Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "ambulance-procurement-delay-115-units-2024",
-  "runs": 38,
+  "lastArticle": "mida-9m-2026-domestic-manufacturing-investment-82-7-percent",
+  "runs": 39,
   "published": 0,
   "lastUsage": {
-    "calls": 11,
+    "calls": 8,
     "failed": 0,
-    "usd": 0.0471,
-    "promptTokens": 242095,
-    "completionTokens": 11662
+    "usd": 0.0577,
+    "promptTokens": 174932,
+    "completionTokens": 13894
   },
-  "lastFinalizedRunId": "44086497025",
+  "lastFinalizedRunId": "44088000967",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44086497025:1",
+  "lastFinalizedKey": "44088000967:1",
   "finalizedRuns": {
-    "44086497025": {
+    "44088000967": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44086497025:1"
+      "finalizationKey": "44088000967:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }

@@ -1,0 +1,117 @@
+{
+  "at": "2026-11-17T12:59:59.496Z",
+  "runId": "44088000967",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "workflow_dispatch",
+  "executionSha": "c0e8aed9e565bcb7299f23327c4ea684b879704c",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "38 previous run(s), last 2026-11-17T12:52:12.052Z (FAILED)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "10 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "mida-9m-2026-domestic-manufacturing-investment-82-7-percent from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "8 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/mida-9m-2026-domestic-manufacturing-investment-82-7-percent.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/mida-9m-2026-domestic-manufacturing-investment-82-7-percent.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict READY_FOR_PUBLISH"
+    }
+  ],
+  "verdict": "READY_FOR_PUBLISH",
+  "reasons": [
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve"
+  ],
+  "article": "mida-9m-2026-domestic-manufacturing-investment-82-7-percent",
+  "commit": null,
+  "publicationStatus": "DRAFT_STAGED",
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "usage": {
+    "calls": 8,
+    "failed": 0,
+    "usd": 0.0577,
+    "promptTokens": 174932,
+    "completionTokens": 13894
+  },
+  "route": "script",
+  "categoryActivity": {
+    "malaysia-impact": 4,
+    "success-cases": 0,
+    "work-education-family": 1,
+    "economy": 1,
+    "business-opportunities-risks": 2,
+    "world": 1,
+    "tech-ai": 1
+  },
+  "uncoveredSections": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 35
+}
