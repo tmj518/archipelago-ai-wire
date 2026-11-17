@@ -763,6 +763,43 @@ const READERSHIP_NOTE = (() => {
   const blue = blueOcean();
 
 
+/*
+ * Demand, measured outside this site.
+ *
+ * Readership here is too thin to steer anything - 37 articles read in 28 days is noise. What the wider
+ * tech and business audience is actually opening is measurable, and it is a fairer weight than three
+ * page views: stories that gathered real discussion on Hacker News in the past week are stories people
+ * are thinking about. This is a signal, not an instruction - the Malaysian consequence still decides.
+ */
+async function demandNote() {
+  try {
+    const since = Math.floor((Date.now() - 7 * 864e5) / 1000);
+    const url = `https://hn.algolia.com/api/v1/search?tags=story&numericFilters=points%3E120,created_at_i%3E${since}&hitsPerPage=15`;
+    const res = await fetch(url, { headers: { "user-agent": "Mozilla/5.0 (compatible; ArchipelagoResearch/1.0)" } });
+    if (!res.ok) return "";
+    const body = await res.json();
+    const rows = (body.hits ?? [])
+      .filter((h) => h.title)
+      .slice(0, 10)
+      .map((h) => `  - ${h.title}  (${h.points} points, ${h.num_comments ?? 0} comments)`);
+    if (rows.length === 0) return "";
+    return [
+      "DEMAND OUTSIDE THIS SITE (Hacker News, last 7 days, 120+ points)",
+      "",
+      ...rows,
+      "",
+      "A subject that serves one of these themes has a larger audience than one that only serves our own",
+      "back catalogue. Use this as weight, not as instruction: the Malaysian consequence still decides",
+      "whether a subject is worth writing, and a popular foreign story with no nameable Malaysian channel",
+      "is still rejected.",
+    ].join("\n");
+  } catch {
+    return "";
+  }
+}
+
+const DEMAND_NOTE = await demandNote();
+
 const BLUE_OCEAN_NOTE = blue
   ? [
       "BLUE OCEAN — QUERIES THAT ALREADY EARN IMPRESSIONS AND NO CLICKS",
@@ -857,7 +894,7 @@ WHAT IS REJECTED
     NOT allowed is the empty version - "this could affect Malaysia" without naming who or through what.
   - a subject that rests on race, religion or royalty. Those are reportable subjects, but this pipeline has no
     named human reviewer, and the gate quarantines them. Do not propose one automatically.
-${BLUE_OCEAN_NOTE ? BLUE_OCEAN_NOTE + "\n\n" : ""}${READERSHIP_NOTE ? READERSHIP_NOTE + "\n\n" : ""}${sectionBlock}
+${BLUE_OCEAN_NOTE ? BLUE_OCEAN_NOTE + "\n\n" : ""}${READERSHIP_NOTE ? READERSHIP_NOTE + "\n\n" : ""}${DEMAND_NOTE ? DEMAND_NOTE + "\n\n" : ""}${sectionBlock}
 THE SOURCES
 
 ${corpus}
