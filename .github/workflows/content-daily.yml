@@ -275,7 +275,9 @@ jobs:
         id: publish
         if: env.SKIP_SUBJECT != '1'
         run: |
-          if git diff --quiet; then
+          # git diff ignores untracked files, and a new article is untracked - so this guard fired on
+          # every run that had just written one, with the file sitting in the workspace.
+          if [ -z "$(git status --porcelain)" ]; then
             echo "::error::nothing to publish after a successful generation - refusing to report success"
             exit 1
           fi
