@@ -1,0 +1,67 @@
+# Freshness watchdog.
+#
+# The publishing workflows report their own failures, but nothing noticed a day where every run was
+# green and no article appeared - which is exactly what happened on 2026-11-13: the generator variable
+# was empty, every run died before research, and each one recorded a plausible-looking status. This
+# checks the only question a reader cares about: has anything been published recently, from either
+# line?
+name: Watchdog
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  freshness:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: The newest article must be less than 36 hours old
+        run: |
+          python3 - <<'PY'
+          import os, re, sys, datetime, pathlib
+
+          d = pathlib.Path("src/content/blog")
+          dates = []
+          for f in d.glob("*.md"):
+              t = f.read_text(encoding="utf-8", errors="replace")
+              m = re.search(r"^publishDate:\s*\"?([0-9]{4}-[0-9]{2}-[0-9]{2})", t, re.M)
+              if m:
+                  dates.append((m.group(1), f.name))
+
+          if not dates:
+              print("::error::no publishDate found in the collection at all")
+              sys.exit(1)
+
+          dates.sort()
+          newest, name = dates[-1]
+          today = datetime.date.today()
+          age = (today - datetime.date.fromisoformat(newest)).days
+          print(f"newest article : {name}")
+          print(f"publishDate    : {newest}  ({age} day(s) ago)")
+
+          # A publishDate is a date, not a timestamp, so 0 and 1 are both "today or yesterday".
+          if age <= 1:
+              print("result         : FRESH")
+              sys.exit(0)
+
+          print(f"::error::nothing published for {age} days - the newest article is {name} ({newest})")
+          sys.exit(1)
+          PY
+
+      - name: Which line last succeeded
+        if: always()
+        run: |
+          echo "recent publish commits:" >> "$GITHUB_STEP_SUMMARY"
+          git log --since="3 days ago" --oneline --grep="publish:" | head -10 >> "$GITHUB_STEP_SUMMARY" || true
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "recent site runs:" >> "$GITHUB_STEP_SUMMARY"
+          git log --since="3 days ago" --oneline --grep="run: record" | head -10 >> "$GITHUB_STEP_SUMMARY" || true
