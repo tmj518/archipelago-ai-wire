@@ -233,6 +233,7 @@ jobs:
           # writing: 'FAILED - spend limit reached: 0.0613 >= 0.06'. The default is 0.50 and the
           # variable only overrides it.
           AGENT_USD_LIMIT: "0.50"
+          MAX_ARTICLES_PER_DAY: "5"
 
       # Only the article this run wrote.
       #
