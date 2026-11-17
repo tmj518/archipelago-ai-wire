@@ -49,6 +49,7 @@ jobs:
           if [ -z "${GSC_CREDENTIALS:-}" ] || [ -z "${GSC_SITE_URL:-}" ]; then
             echo "::warning::GSC is not configured (needs GSC_CREDENTIALS and GSC_SITE_URL); skipping that half"
             SKIP_GSC=1
+            echo "SKIP_GSC=1" >> "$GITHUB_ENV"
           fi
           [ -z "${CF_ACCOUNT_ID:-}" ] && missing="$missing CF_ACCOUNT_ID"
           [ -z "${CF_API_TOKEN:-}" ] && missing="$missing CF_API_TOKEN"
@@ -68,6 +69,8 @@ jobs:
           SITE_HOST: ${{ secrets.SITE_HOST }}
 
       - name: Search Console report
+        # The Google half has no credentials yet; skip it instead of failing the daily run.
+        if: env.SKIP_GSC != '1'
         run: node tools/gsc-report.mjs --days=28 --json
         env:
           GSC_CREDENTIALS: ${{ secrets.GSC_CREDENTIALS }}
