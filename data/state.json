@@ -1,48 +1,34 @@
 {
-  "lastRun": "2026-11-17T06:11:48.662Z",
+  "lastRun": "2026-11-17T06:21:06.030Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "asean-families-report-2026-malaysia-households",
-  "runs": 29,
+  "lastArticle": "mida-approved-investments-9m-2026-johor-data-centres",
+  "runs": 30,
   "published": 0,
   "lastUsage": {
-    "calls": 5,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0301,
-    "promptTokens": 101161,
-    "completionTokens": 7167
+    "usd": 0.0164,
+    "promptTokens": 39189,
+    "completionTokens": 5311
   },
-  "lastFinalizedRunId": "44029206521",
+  "lastFinalizedRunId": "44030262370",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44029206521:1",
+  "lastFinalizedKey": "44030262370:1",
   "finalizedRuns": {
-    "44019757168": {
+    "44030262370": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44019757168:1"
-    },
-    "44027482613": {
-      "runAttempt": 1,
-      "verdict": "FAILED",
-      "finalizationKey": "44027482613:1"
-    },
-    "44028016100": {
-      "runAttempt": 1,
-      "verdict": "FAILED",
-      "finalizationKey": "44028016100:1"
-    },
-    "44029206521": {
-      "runAttempt": 1,
-      "verdict": "FAILED",
-      "finalizationKey": "44029206521:1"
+      "finalizationKey": "44030262370:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",

@@ -1,12 +1,12 @@
 {
-  "at": "2026-11-15T22:41:39Z",
-  "sha": "44372a60a44bf0b4592962e042705842413e5fe9",
-  "run": "43770411865",
+  "at": "2026-11-17T06:21:06Z",
+  "sha": "c535e2dff47ef1a050ee9f1c2e23b33eaba564a2",
+  "run": "44030262370",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "ubisoft-singapore-layoffs-malaysia-game-industry",
+  "article": "mida-approved-investments-9m-2026-johor-data-centres",
   "commit": null,
   "reviewer": {
     "status": "UNAVAILABLE",

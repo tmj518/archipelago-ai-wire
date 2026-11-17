@@ -139,6 +139,8 @@ The wider Malaysian read is about position in a supply chain. Malaysia is not th
 
 > Also read: [Customs issued a new sales-tax exemption guide under Item 58A on 10 November 2026 — here is who it covers](/blog/malaysia-sales-tax-exemption-guide-item-58a-november-2026/)
 
+> Also read: [Malaysia approved RM350.4 billion in investments in nine months of 2026, with Johor taking the largest share](/blog/mida-approved-investments-9m-2026-johor-data-centres/)
+
 ## For you
 
 - **A Penang technician or engineer:** the hiring window opens around 2028, so the training you take in 2027 is the one that counts; cleanroom practice, calibration and quality documentation are the transferable skills.

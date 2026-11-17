@@ -98,6 +98,8 @@ For context on how regional investment decisions reach Malaysian workers, see ou
 
 **What would change my mind.** A figure showing how many Malaysian studios hold contracts with the same publisher, or a statement from a named Malaysian studio about its own pipeline, would turn the inference into evidence. So would data on regional studio employment across several markets, which would let a reader see whether the cut is one event or part of a measured trend. Without any of those, the honest reading is that one studio cut 70 jobs, the report says the sector is tightening, and the Malaysian consequence is a risk to manage rather than a loss already booked.
 
+> Also read: [Malaysia approved RM350.4 billion in investments in nine months of 2026, with Johor taking the largest share](/blog/mida-approved-investments-9m-2026-johor-data-centres/)
+
 ## For you
 
 - **A developer weighing a move to a regional hub:** ask which project and which publisher the role sits under, and how long the contract runs, before accepting. The 70-job cut at one studio is the reason to ask, not a reason to stay put.
