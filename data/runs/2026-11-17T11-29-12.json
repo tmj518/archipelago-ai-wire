@@ -1,0 +1,86 @@
+{
+  "at": "2026-11-17T11:29:12.088Z",
+  "runId": "44074063670",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "workflow_dispatch",
+  "executionSha": "60b8ab69cb252d1ae9b1d286eec38226280c6bab",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "34 previous run(s), last 2026-11-17T09:25:16.876Z (FAILED)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "8 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "us-troop-review-europe-5000-brigade-indo-pacific-malaysia-defence from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "6 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": false,
+      "detail": "exit 1: FAILED - spend limit reached: 0.0612 >= 0.06"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict WRITE-FAILED"
+    }
+  ],
+  "verdict": "WRITE-FAILED",
+  "reasons": [
+    "the writer did not produce us-troop-review-europe-5000-brigade-indo-pacific-malaysia-defence.md on attempt 1"
+  ],
+  "article": null,
+  "commit": null,
+  "publicationStatus": "NOT_STAGED",
+  "reviewer": {
+    "status": "NOT_RUN"
+  },
+  "registry": {
+    "status": "NOT_RUN"
+  },
+  "usage": {
+    "calls": 9,
+    "failed": 1,
+    "usd": 0.0612,
+    "promptTokens": 184104,
+    "completionTokens": 10428
+  },
+  "route": "script",
+  "categoryActivity": {
+    "success-cases": 0,
+    "malaysia-impact": 3,
+    "work-education-family": 1,
+    "economy": 1,
+    "business-opportunities-risks": 2,
+    "world": 0,
+    "tech-ai": 1
+  },
+  "uncoveredSections": [],
+  "seconds": 0
+}

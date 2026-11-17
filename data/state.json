@@ -1,34 +1,33 @@
 {
-  "lastRun": "2026-11-17T09:25:16.876Z",
+  "lastRun": "2026-11-17T11:29:19.628Z",
   "lastVerdict": "FAILED",
   "lastArticle": "sia-a350-smoke-rockhampton-cabin-safety-malaysia-aviation",
-  "runs": 34,
+  "runs": 35,
   "published": 0,
   "lastUsage": {
-    "calls": 6,
-    "failed": 0,
-    "usd": 0.0292,
-    "promptTokens": 151332,
-    "completionTokens": 8886
+    "calls": 9,
+    "failed": 1,
+    "usd": 0.0612,
+    "promptTokens": 184104,
+    "completionTokens": 10428
   },
-  "lastFinalizedRunId": "44054912006",
+  "lastFinalizedRunId": "44074063670",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44054912006:1",
+  "lastFinalizedKey": "44074063670:1",
   "finalizedRuns": {
-    "44054912006": {
+    "44074063670": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44054912006:1"
+      "finalizationKey": "44074063670:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "lastRegistry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",

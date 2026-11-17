@@ -1,19 +1,18 @@
 {
-  "at": "2026-11-17T04:51:50Z",
-  "sha": "93e6dd891f210e68d9c35a99355fc0618b8a6f8a",
-  "run": "44019757168",
+  "at": "2026-11-17T11:29:19Z",
+  "sha": "60b8ab69cb252d1ae9b1d286eec38226280c6bab",
+  "run": "44074063670",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "asean-families-report-2026-malaysia-households",
+  "article": null,
   "commit": null,
   "reviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "live_checks": {
     "status": "skipped"
