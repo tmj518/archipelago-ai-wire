@@ -52,7 +52,8 @@ jobs:
           fi
           [ -z "${CF_ACCOUNT_ID:-}" ] && missing="$missing CF_ACCOUNT_ID"
           [ -z "${CF_API_TOKEN:-}" ] && missing="$missing CF_API_TOKEN"
-          [ -z "${SITE_HOST:-}" ] && missing="$missing SITE_HOST"
+          # The host is not a secret; the workflow serves exactly one site.
+          SITE_HOST="${SITE_HOST:-www.ghiblistyled.com}"
           if [ -n "$missing" ]; then
             echo "::error::missing credentials:$missing"
             echo "Nothing was collected. Configure them in Settings -> Secrets and variables -> Actions." >&2
