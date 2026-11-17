@@ -132,6 +132,8 @@ The third carrier is jobs. Malaysia's semiconductor packaging and testing indust
 
 **What would change my mind.** A statement from US authorities naming Malaysian companies in an enforcement action would confirm the Malaysian link. A statement from Nvidia denying the report, or showing that the shipments were legal, would change the picture. A US enforcement action against Megaspeed or Century Litong that does not mention Malaysia would suggest the Malaysian connection is weaker than the geography implies. The report is one source, and it cites two people who know Alice Huang. No Malaysian regulator or company has commented.
 
+> Also read: [MCMC takedown of 13,883 deepfakes since 2024: what it means for Malaysian users and platforms](/blog/mcmc-deepfake-takedowns-13883-2026/)
+
 ## For you
 
 - **A worker in a Malaysian packaging and testing plant:** your employer's compliance paperwork can grow if US authorities tighten checks on Southeast Asian chip routes. Ask your supervisor whether the plant has updated its export documentation procedures.

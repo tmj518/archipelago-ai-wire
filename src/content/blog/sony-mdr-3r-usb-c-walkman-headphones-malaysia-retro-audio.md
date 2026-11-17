@@ -129,6 +129,8 @@ For Malaysian audio retailers, the MDR-3R is a niche product with a clear audien
 
 > Also read: [Nvidia CEO scandal exposes chip flows through Singapore-linked firms — what it means for Malaysia's semiconductor plants](/blog/nvidia-ceo-affair-chip-shipments-malaysia-semiconductor-export-controls/)
 
+> Also read: [MCMC takedown of 13,883 deepfakes since 2024: what it means for Malaysian users and platforms](/blog/mcmc-deepfake-takedowns-13883-2026/)
+
 ## For you
 
 - **A buyer nostalgic for the Walkman era:** the MDR-3R is a direct purchase at $60, and the ringgit cost will be higher once shipping and duties are added.

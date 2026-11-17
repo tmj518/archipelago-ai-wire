@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-17T01:48:14.186Z",
+  "lastRun": "2026-11-17T04:43:42.771Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "klscah-land-premium-rm1000-99-year-lease-renewal",
-  "runs": 27,
+  "lastArticle": "mcmc-deepfake-takedowns-13883-2026",
+  "runs": 28,
   "published": 0,
   "lastUsage": {
-    "calls": 3,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0142,
-    "promptTokens": 66351,
-    "completionTokens": 6264
+    "usd": 0.0107,
+    "promptTokens": 38108,
+    "completionTokens": 5365
   },
-  "lastFinalizedRunId": "43997890639",
+  "lastFinalizedRunId": "44018841309",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "43997890639:1",
+  "lastFinalizedKey": "44018841309:1",
   "finalizedRuns": {
-    "43997890639": {
+    "44018841309": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "43997890639:1"
+      "finalizationKey": "44018841309:1"
     }
   },
   "publishedRunIds": [],

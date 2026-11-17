@@ -1,18 +1,19 @@
 {
-  "at": "2026-11-14T22:11:57Z",
-  "sha": "281ac1f37a6a50ff58f0304fd7eb7f7d7f66f9e8",
-  "run": "43646554253",
+  "at": "2026-11-17T04:43:42Z",
+  "sha": "60d4e5a1723d0fc51a337381ce60e7680e88a7a1",
+  "run": "44018841309",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": null,
+  "article": "mcmc-deepfake-takedowns-13883-2026",
   "commit": null,
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "live_checks": {
     "status": "skipped"
