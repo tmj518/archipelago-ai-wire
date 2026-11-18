@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-18T19:56:53Z",
+  "sha": "95a3f28087e8e89e774bf1f98264e3a69356fac7",
+  "run": "44384061580",
+  "run_attempt": "1",
+  "workflow_status": "failure",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
+  "article": "best-buy-blu-ray-return-physical-media-malaysia",
+  "commit": "9c9240ee88c2c38b7ccbc5af5f4a3ab4e4d092ce",
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "live_checks": {
+    "status": "failure"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "RECORDED",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}

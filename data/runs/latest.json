@@ -1,41 +1,132 @@
 {
-  "at": "2026-11-18T10:58:06.443Z",
-  "route": "script",
-  "runId": "44290038342",
+  "at": "2026-11-18T19:50:42.680Z",
+  "runId": "44384061580",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "797c139ec4d7f58dd914c4852c6c853ef6fc9d5e",
+  "executionSha": "95a3f28087e8e89e774bf1f98264e3a69356fac7",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
   "steps": [
     {
-      "name": "daily quota",
+      "name": "providers",
       "ok": true,
-      "detail": "already published today: asean-families-report-2026-malaysia-households"
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "40 previous run(s), last 2026-11-18T10:58:32.578Z (QUIET)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "12 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "best-buy-blu-ray-return-physical-media-malaysia from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "5 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/best-buy-blu-ray-return-physical-media-malaysia.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/best-buy-blu-ray-return-physical-media-malaysia.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict READY_FOR_PUBLISH"
     }
   ],
-  "verdict": "QUIET",
-  "publicationStatus": "QUIET",
-  "article": "asean-families-report-2026-malaysia-households",
-  "commit": null,
+  "verdict": "FAILED",
+  "reasons": [
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve",
+    "publication not finalized: independent reviewer approval is missing"
+  ],
+  "article": "best-buy-blu-ray-return-physical-media-malaysia",
+  "commit": "9c9240ee88c2c38b7ccbc5af5f4a3ab4e4d092ce",
+  "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
-  "reasons": [],
-  "orchestratorVerdict": "QUIET",
-  "finalizationKey": "44290038342:1",
-  "finalizedAt": "2026-11-18T10:58:32.578Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/asean-families-report-2026-malaysia-households/",
-  "executionConclusion": "success",
-  "verifyOutcome": "skipped",
+  "usage": {
+    "calls": 3,
+    "failed": 0,
+    "usd": 0.014,
+    "promptTokens": 68023,
+    "completionTokens": 5987
+  },
+  "route": "script",
+  "categoryActivity": {
+    "malaysia-impact": 4,
+    "success-cases": 0,
+    "work-education-family": 1,
+    "economy": 2,
+    "business-opportunities-risks": 2,
+    "world": 1,
+    "tech-ai": 2
+  },
+  "uncoveredSections": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 40,
+  "orchestratorVerdict": "READY_FOR_PUBLISH",
+  "finalizationKey": "44384061580:1",
+  "finalizedAt": "2026-11-18T19:56:53.345Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/best-buy-blu-ray-return-physical-media-malaysia/",
+  "executionConclusion": "failure",
+  "verifyOutcome": "failure",
   "liveChecks": {
-    "status": "skipped"
+    "status": "failure"
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },

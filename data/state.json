@@ -1,52 +1,38 @@
 {
-  "lastRun": "2026-11-18T10:58:32.578Z",
-  "lastVerdict": "QUIET",
-  "lastArticle": "grok-bot-proactive-check-ins-malaysia-ai-agent-governance",
-  "runs": 40,
+  "lastRun": "2026-11-18T19:56:53.345Z",
+  "lastVerdict": "FAILED",
+  "lastArticle": "best-buy-blu-ray-return-physical-media-malaysia",
+  "runs": 41,
   "published": 0,
   "lastUsage": {
-    "calls": 4,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0259,
-    "promptTokens": 70072,
-    "completionTokens": 6365
+    "usd": 0.014,
+    "promptTokens": 68023,
+    "completionTokens": 5987
   },
-  "lastFinalizedRunId": "44290038342",
+  "lastFinalizedRunId": "44384061580",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44290038342:1",
+  "lastFinalizedKey": "44384061580:1",
   "finalizedRuns": {
-    "44113564805": {
+    "44384061580": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44113564805:1"
-    },
-    "44206672559": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "44206672559:1"
-    },
-    "44210540035": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "44210540035:1"
-    },
-    "44290038342": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "44290038342:1"
+      "finalizationKey": "44384061580:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }
