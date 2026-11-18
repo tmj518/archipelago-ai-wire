@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-18T10:58:32Z",
+  "sha": "797c139ec4d7f58dd914c4852c6c853ef6fc9d5e",
+  "run": "44290038342",
+  "run_attempt": "1",
+  "workflow_status": "success",
+  "verdict": "QUIET",
+  "publication_status": "QUIET",
+  "article": "asean-families-report-2026-malaysia-households",
+  "commit": null,
+  "reviewer": {
+    "status": "NOT_RUN"
+  },
+  "registry": {
+    "status": "NOT_RUN"
+  },
+  "live_checks": {
+    "status": "skipped"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}
