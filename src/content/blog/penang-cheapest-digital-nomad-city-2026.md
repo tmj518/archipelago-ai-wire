@@ -133,6 +133,8 @@ The ranking also points to a risk. If Penang becomes known as a cheap base, the 
 
 > Also read: [Ubisoft cuts 70 jobs in Singapore: what it signals for Malaysia's game developers](/blog/ubisoft-singapore-layoffs-malaysia-game-industry/)
 
+> Also read: [Best Buy brings back Blu-rays: what the physical media revival means for Malaysian collectors and retailers](/blog/best-buy-blu-ray-return-physical-media-malaysia/)
+
 ## For you
 
 - **A co-working space or cafe in Penang:** the ranking is a marketing asset. Link to the study in your materials and make sure your space appears in searches for Penang digital nomad accommodation.

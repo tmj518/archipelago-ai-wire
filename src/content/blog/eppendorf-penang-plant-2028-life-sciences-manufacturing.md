@@ -141,6 +141,8 @@ The wider Malaysian read is about position in a supply chain. Malaysia is not th
 
 > Also read: [Malaysia approved RM350.4 billion in investments in nine months of 2026, with Johor taking the largest share](/blog/mida-approved-investments-9m-2026-johor-data-centres/)
 
+> Also read: [Best Buy brings back Blu-rays: what the physical media revival means for Malaysian collectors and retailers](/blog/best-buy-blu-ray-return-physical-media-malaysia/)
+
 ## For you
 
 - **A Penang technician or engineer:** the hiring window opens around 2028, so the training you take in 2027 is the one that counts; cleanroom practice, calibration and quality documentation are the transferable skills.
