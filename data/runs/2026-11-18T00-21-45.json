@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-18T00:21:45.828Z",
+  "route": "script",
+  "runId": "44206672559",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "schedule",
+  "executionSha": "492ceab51ceb3bf6676deb6a21d6ee25053e33e1",
+  "steps": [
+    {
+      "name": "daily quota",
+      "ok": true,
+      "detail": "already published today: asean-families-report-2026-malaysia-households"
+    }
+  ],
+  "verdict": "QUIET",
+  "publicationStatus": "QUIET",
+  "article": "asean-families-report-2026-malaysia-households",
+  "commit": null,
+  "reviewer": {
+    "status": "NOT_RUN"
+  },
+  "registry": {
+    "status": "NOT_RUN"
+  },
+  "reasons": []
+}

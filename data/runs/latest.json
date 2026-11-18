@@ -1,132 +1,41 @@
 {
-  "at": "2026-11-17T15:24:42.261Z",
-  "runId": "44113564805",
+  "at": "2026-11-18T00:21:45.828Z",
+  "route": "script",
+  "runId": "44206672559",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "0d39afcdc94c4da783fb17a869fba9e5fa4c4c32",
-  "providers": [
-    "volces",
-    "deepseek"
-  ],
+  "executionSha": "492ceab51ceb3bf6676deb6a21d6ee25053e33e1",
   "steps": [
     {
-      "name": "providers",
+      "name": "daily quota",
       "ok": true,
-      "detail": "volces, deepseek"
-    },
-    {
-      "name": "state",
-      "ok": true,
-      "detail": "39 previous run(s), last 2026-11-17T13:05:54.790Z (FAILED)"
-    },
-    {
-      "name": "weekly ceiling",
-      "ok": true,
-      "detail": "11 of 25 net-new this week"
-    },
-    {
-      "name": "sections covered this week",
-      "ok": true,
-      "detail": "every section has a net-new article this week (7 sections)"
-    },
-    {
-      "name": "directive",
-      "ok": true,
-      "detail": "grok-bot-proactive-check-ins-malaysia-ai-agent-governance from /data/directive.json"
-    },
-    {
-      "name": "directive figures",
-      "ok": true,
-      "detail": "6 sourced figure(s)"
-    },
-    {
-      "name": "writer",
-      "ok": true,
-      "detail": "draft at /data/drafts/grok-bot-proactive-check-ins-malaysia-ai-agent-governance.md"
-    },
-    {
-      "name": "reviewer",
-      "ok": false,
-      "detail": "no parseable verdict"
-    },
-    {
-      "name": "publish",
-      "ok": true,
-      "detail": "staged at src/content/blog/grok-bot-proactive-check-ins-malaysia-ai-agent-governance.md"
-    },
-    {
-      "name": "registry",
-      "ok": true,
-      "detail": "rebuilt"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
-    },
-    {
-      "name": "state written",
-      "ok": true,
-      "detail": "verdict READY_FOR_PUBLISH"
+      "detail": "already published today: asean-families-report-2026-malaysia-households"
     }
   ],
-  "verdict": "FAILED",
-  "reasons": [
-    "review unavailable and published anyway: no usable reviewer result",
-    "the reviewer did not approve",
-    "publication not finalized: independent reviewer approval is missing"
-  ],
-  "article": "grok-bot-proactive-check-ins-malaysia-ai-agent-governance",
-  "commit": "0d309efd2d8cbe7aa59e2de6a8c6f66af4a59f93",
-  "publicationStatus": "FAILED",
+  "verdict": "QUIET",
+  "publicationStatus": "QUIET",
+  "article": "asean-families-report-2026-malaysia-households",
+  "commit": null,
   "reviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
-  "usage": {
-    "calls": 4,
-    "failed": 0,
-    "usd": 0.0259,
-    "promptTokens": 70072,
-    "completionTokens": 6365
-  },
-  "route": "script",
-  "categoryActivity": {
-    "malaysia-impact": 4,
-    "success-cases": 0,
-    "work-education-family": 1,
-    "economy": 2,
-    "business-opportunities-risks": 2,
-    "world": 1,
-    "tech-ai": 1
-  },
-  "uncoveredSections": [],
-  "attempts": [
-    {
-      "attempt": 1,
-      "score": null,
-      "verdict": null,
-      "issues": []
-    }
-  ],
-  "qa": null,
-  "seconds": 28,
-  "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "44113564805:1",
-  "finalizedAt": "2026-11-17T15:30:22.296Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/grok-bot-proactive-check-ins-malaysia-ai-agent-governance/",
-  "executionConclusion": "failure",
-  "verifyOutcome": "failure",
+  "reasons": [],
+  "orchestratorVerdict": "QUIET",
+  "finalizationKey": "44206672559:1",
+  "finalizedAt": "2026-11-18T00:22:07.739Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/asean-families-report-2026-malaysia-households/",
+  "executionConclusion": "success",
+  "verifyOutcome": "skipped",
   "liveChecks": {
-    "status": "failure"
+    "status": "skipped"
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },

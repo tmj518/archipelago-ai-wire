@@ -1,6 +1,6 @@
 {
-  "lastRun": "2026-11-17T15:30:22.296Z",
-  "lastVerdict": "FAILED",
+  "lastRun": "2026-11-18T00:22:07.739Z",
+  "lastVerdict": "QUIET",
   "lastArticle": "grok-bot-proactive-check-ins-malaysia-ai-agent-governance",
   "runs": 40,
   "published": 0,
@@ -11,28 +11,32 @@
     "promptTokens": 70072,
     "completionTokens": 6365
   },
-  "lastFinalizedRunId": "44113564805",
+  "lastFinalizedRunId": "44206672559",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44113564805:1",
+  "lastFinalizedKey": "44206672559:1",
   "finalizedRuns": {
     "44113564805": {
       "runAttempt": 1,
       "verdict": "FAILED",
       "finalizationKey": "44113564805:1"
+    },
+    "44206672559": {
+      "runAttempt": 1,
+      "verdict": "QUIET",
+      "finalizationKey": "44206672559:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "lastRegistry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }
