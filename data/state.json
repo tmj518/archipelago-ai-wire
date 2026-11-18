@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-18T00:22:07.739Z",
+  "lastRun": "2026-11-18T00:48:36.394Z",
   "lastVerdict": "QUIET",
   "lastArticle": "grok-bot-proactive-check-ins-malaysia-ai-agent-governance",
   "runs": 40,
@@ -11,9 +11,9 @@
     "promptTokens": 70072,
     "completionTokens": 6365
   },
-  "lastFinalizedRunId": "44206672559",
+  "lastFinalizedRunId": "44210540035",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44206672559:1",
+  "lastFinalizedKey": "44210540035:1",
   "finalizedRuns": {
     "44113564805": {
       "runAttempt": 1,
@@ -24,6 +24,11 @@
       "runAttempt": 1,
       "verdict": "QUIET",
       "finalizationKey": "44206672559:1"
+    },
+    "44210540035": {
+      "runAttempt": 1,
+      "verdict": "QUIET",
+      "finalizationKey": "44210540035:1"
     }
   },
   "publishedRunIds": [],
