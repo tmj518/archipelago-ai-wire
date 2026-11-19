@@ -122,6 +122,8 @@ For readers in flood-prone states, the timing matters. Selangor has mapped 56 fl
 
 > Also read: [ECRL's Genting Tunnel is now Southeast Asia's longest rail tunnel — what it means for East Coast travel times](/blog/ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia/)
 
+> Also read: [ECRL's first phase launches on 12 December with no transport minister in office — here is what that means for the 523km](/blog/ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy/)
+
 ## For you
 
 - **A household in a district outside the big cities:** the ambulance that covers your area is drawn from a fleet the ministry says is short by hundreds of vehicles, so the practical step is to know your nearest clinic's emergency number and your own transport options before you need them.

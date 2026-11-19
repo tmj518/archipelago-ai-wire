@@ -177,6 +177,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [ECRL's Genting Tunnel is now Southeast Asia's longest rail tunnel — what it means for East Coast travel times](/blog/ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia/)
 
+> Also read: [ECRL's first phase launches on 12 December with no transport minister in office — here is what that means for the 523km](/blog/ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.
