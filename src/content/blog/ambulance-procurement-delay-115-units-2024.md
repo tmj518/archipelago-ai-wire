@@ -124,6 +124,8 @@ For readers in flood-prone states, the timing matters. Selangor has mapped 56 fl
 
 > Also read: [ECRL's first phase launches on 12 December with no transport minister in office — here is what that means for the 523km](/blog/ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy/)
 
+> Also read: [ECRL's Genting Tunnel: 16.39 km under the Titiwangsa, 6.2 minutes at 160 km/h](/blog/ecrl-genting-tunnel-engineering-160-kph-6-minutes/)
+
 ## For you
 
 - **A household in a district outside the big cities:** the ambulance that covers your area is drawn from a fleet the ministry says is short by hundreds of vehicles, so the practical step is to know your nearest clinic's emergency number and your own transport options before you need them.

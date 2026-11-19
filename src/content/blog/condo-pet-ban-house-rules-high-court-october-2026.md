@@ -179,6 +179,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [ECRL's first phase launches on 12 December with no transport minister in office — here is what that means for the 523km](/blog/ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy/)
 
+> Also read: [ECRL's Genting Tunnel: 16.39 km under the Titiwangsa, 6.2 minutes at 160 km/h](/blog/ecrl-genting-tunnel-engineering-160-kph-6-minutes/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.
