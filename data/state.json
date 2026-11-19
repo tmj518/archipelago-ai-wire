@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-19T11:07:18.879Z",
+  "lastRun": "2026-11-19T19:56:15.909Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy",
-  "runs": 44,
+  "lastArticle": "ecrl-genting-tunnel-engineering-160-kph-6-minutes",
+  "runs": 45,
   "published": 0,
   "lastUsage": {
-    "calls": 3,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0213,
-    "promptTokens": 48483,
-    "completionTokens": 7466
+    "usd": 0.0113,
+    "promptTokens": 40492,
+    "completionTokens": 5820
   },
-  "lastFinalizedRunId": "44510541497",
+  "lastFinalizedRunId": "44602167389",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44510541497:1",
+  "lastFinalizedKey": "44602167389:1",
   "finalizedRuns": {
-    "44510541497": {
+    "44602167389": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44510541497:1"
+      "finalizationKey": "44602167389:1"
     }
   },
   "publishedRunIds": [],

@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-19T11:01:15.369Z",
-  "runId": "44510541497",
+  "at": "2026-11-19T19:50:24.804Z",
+  "runId": "44602167389",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "83e4f3823c63fc94cc5713a1b3474ef246ce8bf8",
+  "executionSha": "ecf525527efd05adb69706d563b1aa269980d6cf",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "43 previous run(s), last 2026-11-19T02:18:01.087Z (FAILED)"
+      "detail": "44 previous run(s), last 2026-11-19T11:07:18.879Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "14 of 25 net-new this week"
+      "detail": "15 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,7 +33,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy from /data/directive.json"
+      "detail": "ecrl-genting-tunnel-engineering-160-kph-6-minutes from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -43,7 +43,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy.md"
+      "detail": "draft at /data/drafts/ecrl-genting-tunnel-engineering-160-kph-6-minutes.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy.md"
+      "detail": "staged at src/content/blog/ecrl-genting-tunnel-engineering-160-kph-6-minutes.md"
     },
     {
       "name": "registry",
@@ -77,8 +77,8 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy",
-  "commit": "e35a9eba6c3885e2647dfac6e99f48bc6455c63c",
+  "article": "ecrl-genting-tunnel-engineering-160-kph-6-minutes",
+  "commit": "99b851d97deb5ab886a1237e6c72154daedf2189",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
@@ -88,15 +88,15 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 3,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0213,
-    "promptTokens": 48483,
-    "completionTokens": 7466
+    "usd": 0.0113,
+    "promptTokens": 40492,
+    "completionTokens": 5820
   },
   "route": "script",
   "categoryActivity": {
-    "malaysia-impact": 5,
+    "malaysia-impact": 6,
     "success-cases": 0,
     "work-education-family": 1,
     "business-opportunities-risks": 3,
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 36,
+  "seconds": 26,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "44510541497:1",
-  "finalizedAt": "2026-11-19T11:07:18.879Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy/",
+  "finalizationKey": "44602167389:1",
+  "finalizedAt": "2026-11-19T19:56:15.909Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/ecrl-genting-tunnel-engineering-160-kph-6-minutes/",
   "executionConclusion": "failure",
   "verifyOutcome": "failure",
   "liveChecks": {

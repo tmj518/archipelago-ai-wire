@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-17T13:05:54Z",
-  "sha": "c0e8aed9e565bcb7299f23327c4ea684b879704c",
-  "run": "44088000967",
+  "at": "2026-11-19T19:56:15Z",
+  "sha": "ecf525527efd05adb69706d563b1aa269980d6cf",
+  "run": "44602167389",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "mida-9m-2026-domestic-manufacturing-investment-82-7-percent",
-  "commit": "d6d0ddfacb77997628d0fd0bc77f6652d424735c",
+  "article": "ecrl-genting-tunnel-engineering-160-kph-6-minutes",
+  "commit": "99b851d97deb5ab886a1237e6c72154daedf2189",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
