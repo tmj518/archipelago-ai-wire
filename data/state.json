@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-19T02:18:01.087Z",
+  "lastRun": "2026-11-19T11:07:18.879Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia",
-  "runs": 43,
+  "lastArticle": "ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy",
+  "runs": 44,
   "published": 0,
   "lastUsage": {
-    "calls": 2,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.012,
-    "promptTokens": 42499,
-    "completionTokens": 6226
+    "usd": 0.0213,
+    "promptTokens": 48483,
+    "completionTokens": 7466
   },
-  "lastFinalizedRunId": "44442268575",
+  "lastFinalizedRunId": "44510541497",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44442268575:1",
+  "lastFinalizedKey": "44510541497:1",
   "finalizedRuns": {
-    "44442268575": {
+    "44510541497": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44442268575:1"
+      "finalizationKey": "44510541497:1"
     }
   },
   "publishedRunIds": [],

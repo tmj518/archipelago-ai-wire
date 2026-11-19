@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-19T02:11:40.791Z",
-  "runId": "44442268575",
+  "at": "2026-11-19T11:01:15.369Z",
+  "runId": "44510541497",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "624c369602010703abc73e7e08d39c1c4c5f6a42",
+  "executionSha": "83e4f3823c63fc94cc5713a1b3474ef246ce8bf8",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "42 previous run(s), last 2026-11-19T00:07:58.499Z (FAILED)"
+      "detail": "43 previous run(s), last 2026-11-19T02:18:01.087Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "13 of 25 net-new this week"
+      "detail": "14 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,7 +33,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia from /data/directive.json"
+      "detail": "ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -43,7 +43,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia.md"
+      "detail": "draft at /data/drafts/ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia.md"
+      "detail": "staged at src/content/blog/ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy.md"
     },
     {
       "name": "registry",
@@ -77,8 +77,8 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia",
-  "commit": "6474c0fea0d31bb6989b86f5e0888dd03e9067f4",
+  "article": "ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy",
+  "commit": "e35a9eba6c3885e2647dfac6e99f48bc6455c63c",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
@@ -88,15 +88,15 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 2,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.012,
-    "promptTokens": 42499,
-    "completionTokens": 6226
+    "usd": 0.0213,
+    "promptTokens": 48483,
+    "completionTokens": 7466
   },
   "route": "script",
   "categoryActivity": {
-    "malaysia-impact": 4,
+    "malaysia-impact": 5,
     "success-cases": 0,
     "work-education-family": 1,
     "business-opportunities-risks": 3,
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 47,
+  "seconds": 36,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "44442268575:1",
-  "finalizedAt": "2026-11-19T02:18:01.087Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia/",
+  "finalizationKey": "44510541497:1",
+  "finalizedAt": "2026-11-19T11:07:18.879Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy/",
   "executionConclusion": "failure",
   "verifyOutcome": "failure",
   "liveChecks": {

@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-19T11:07:18Z",
+  "sha": "83e4f3823c63fc94cc5713a1b3474ef246ce8bf8",
+  "run": "44510541497",
+  "run_attempt": "1",
+  "workflow_status": "failure",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
+  "article": "ecrl-phase-1-launch-12-december-2026-transport-minister-vacancy",
+  "commit": "e35a9eba6c3885e2647dfac6e99f48bc6455c63c",
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "live_checks": {
+    "status": "failure"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "RECORDED",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}
