@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-17T12:23:30Z",
-  "sha": "63b58a76e7d46d2d20704300235e492561d44857",
-  "run": "44082118012",
+  "at": "2026-11-19T02:18:01Z",
+  "sha": "624c369602010703abc73e7e08d39c1c4c5f6a42",
+  "run": "44442268575",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "ambulance-procurement-delay-115-units-2024",
-  "commit": null,
+  "article": "ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia",
+  "commit": "6474c0fea0d31bb6989b86f5e0888dd03e9067f4",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
@@ -16,11 +16,11 @@
     "status": "REBUILT"
   },
   "live_checks": {
-    "status": "skipped"
+    "status": "failure"
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }

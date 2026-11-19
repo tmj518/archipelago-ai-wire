@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-19T00:05:39.223Z",
-  "runId": "44425950520",
+  "at": "2026-11-19T02:11:40.791Z",
+  "runId": "44442268575",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "ab3df2c33e81aa89136cc9f5d4c7ee865135ccbf",
+  "executionSha": "624c369602010703abc73e7e08d39c1c4c5f6a42",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "41 previous run(s), last 2026-11-18T19:56:53.345Z (FAILED)"
+      "detail": "42 previous run(s), last 2026-11-19T00:07:58.499Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,7 +33,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "hungary-tao-abolition-football-funding-model-lessons from /data/directive.json"
+      "detail": "ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -42,44 +42,57 @@
     },
     {
       "name": "writer",
-      "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
+      "ok": true,
+      "detail": "draft at /data/drafts/ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia.md"
     },
     {
-      "name": "writer (revision 1)",
+      "name": "reviewer",
       "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
+      "detail": "no parseable verdict"
     },
     {
-      "name": "writer (revision 2)",
-      "ok": false,
-      "detail": "refused: the draft violates the content schema and would fail the whole build"
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict WRITE-FAILED"
+      "detail": "verdict READY_FOR_PUBLISH"
     }
   ],
   "verdict": "FAILED",
   "reasons": [
-    "the writer's draft violates the content schema on every attempt (3), so the limits are not reaching the model"
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve",
+    "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": null,
-  "commit": null,
+  "article": "ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia",
+  "commit": "6474c0fea0d31bb6989b86f5e0888dd03e9067f4",
   "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "usage": {
-    "calls": 5,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0278,
-    "promptTokens": 63868,
-    "completionTokens": 15104
+    "usd": 0.012,
+    "promptTokens": 42499,
+    "completionTokens": 6226
   },
   "route": "script",
   "categoryActivity": {
@@ -92,19 +105,28 @@
     "tech-ai": 2
   },
   "uncoveredSections": [],
-  "seconds": 132,
-  "orchestratorVerdict": "WRITE-FAILED",
-  "finalizationKey": "44425950520:1",
-  "finalizedAt": "2026-11-19T00:07:58.499Z",
-  "productionUrl": null,
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 47,
+  "orchestratorVerdict": "READY_FOR_PUBLISH",
+  "finalizationKey": "44442268575:1",
+  "finalizedAt": "2026-11-19T02:18:01.087Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia/",
   "executionConclusion": "failure",
-  "verifyOutcome": "skipped",
+  "verifyOutcome": "failure",
   "liveChecks": {
-    "status": "skipped"
+    "status": "failure"
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },
