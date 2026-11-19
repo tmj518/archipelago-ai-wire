@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-18T19:50:42.680Z",
-  "runId": "44384061580",
+  "at": "2026-11-19T00:05:39.223Z",
+  "runId": "44425950520",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "95a3f28087e8e89e774bf1f98264e3a69356fac7",
+  "executionSha": "ab3df2c33e81aa89136cc9f5d4c7ee865135ccbf",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "40 previous run(s), last 2026-11-18T10:58:32.578Z (QUIET)"
+      "detail": "41 previous run(s), last 2026-11-18T19:56:53.345Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "12 of 25 net-new this week"
+      "detail": "13 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,100 +33,78 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "best-buy-blu-ray-return-physical-media-malaysia from /data/directive.json"
+      "detail": "hungary-tao-abolition-football-funding-model-lessons from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "5 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
-      "ok": true,
-      "detail": "draft at /data/drafts/best-buy-blu-ray-return-physical-media-malaysia.md"
-    },
-    {
-      "name": "reviewer",
       "ok": false,
-      "detail": "no parseable verdict"
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
-      "name": "publish",
-      "ok": true,
-      "detail": "staged at src/content/blog/best-buy-blu-ray-return-physical-media-malaysia.md"
+      "name": "writer (revision 1)",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
-      "name": "registry",
-      "ok": true,
-      "detail": "rebuilt"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
+      "name": "writer (revision 2)",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict READY_FOR_PUBLISH"
+      "detail": "verdict WRITE-FAILED"
     }
   ],
   "verdict": "FAILED",
   "reasons": [
-    "review unavailable and published anyway: no usable reviewer result",
-    "the reviewer did not approve",
-    "publication not finalized: independent reviewer approval is missing"
+    "the writer's draft violates the content schema on every attempt (3), so the limits are not reaching the model"
   ],
-  "article": "best-buy-blu-ray-return-physical-media-malaysia",
-  "commit": "9c9240ee88c2c38b7ccbc5af5f4a3ab4e4d092ce",
+  "article": null,
+  "commit": null,
   "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 3,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.014,
-    "promptTokens": 68023,
-    "completionTokens": 5987
+    "usd": 0.0278,
+    "promptTokens": 63868,
+    "completionTokens": 15104
   },
   "route": "script",
   "categoryActivity": {
     "malaysia-impact": 4,
     "success-cases": 0,
     "work-education-family": 1,
+    "business-opportunities-risks": 3,
     "economy": 2,
-    "business-opportunities-risks": 2,
     "world": 1,
     "tech-ai": 2
   },
   "uncoveredSections": [],
-  "attempts": [
-    {
-      "attempt": 1,
-      "score": null,
-      "verdict": null,
-      "issues": []
-    }
-  ],
-  "qa": null,
-  "seconds": 40,
-  "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "44384061580:1",
-  "finalizedAt": "2026-11-18T19:56:53.345Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/best-buy-blu-ray-return-physical-media-malaysia/",
+  "seconds": 132,
+  "orchestratorVerdict": "WRITE-FAILED",
+  "finalizationKey": "44425950520:1",
+  "finalizedAt": "2026-11-19T00:07:58.499Z",
+  "productionUrl": null,
   "executionConclusion": "failure",
-  "verifyOutcome": "failure",
+  "verifyOutcome": "skipped",
   "liveChecks": {
-    "status": "failure"
+    "status": "skipped"
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },
