@@ -120,6 +120,8 @@ For readers in flood-prone states, the timing matters. Selangor has mapped 56 fl
 
 **What would change my mind.** A published contract award showing the supplier's delivery schedule and penalty terms; a ministry breakdown of where the 475 missing vehicles were meant to be based; or a statement that the 989 figure already includes the 400 funded under Budget 2027. Any of those would move the analysis from a gap in the record to a dated plan. Until then, the honest position is that the size of the hole is documented and the timetable for filling it is not.
 
+> Also read: [ECRL's Genting Tunnel is now Southeast Asia's longest rail tunnel — what it means for East Coast travel times](/blog/ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia/)
+
 ## For you
 
 - **A household in a district outside the big cities:** the ambulance that covers your area is drawn from a fleet the ministry says is short by hundreds of vehicles, so the practical step is to know your nearest clinic's emergency number and your own transport options before you need them.

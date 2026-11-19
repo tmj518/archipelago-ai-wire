@@ -175,6 +175,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [Health Ministry blames contractor for ambulance shortage: 115 of 590 delivered by end-2024](/blog/ambulance-procurement-delay-115-units-2024/)
 
+> Also read: [ECRL's Genting Tunnel is now Southeast Asia's longest rail tunnel — what it means for East Coast travel times](/blog/ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.
