@@ -181,6 +181,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [ECRL's Genting Tunnel: 16.39 km under the Titiwangsa, 6.2 minutes at 160 km/h](/blog/ecrl-genting-tunnel-engineering-160-kph-6-minutes/)
 
+> Also read: [ECRL passenger service starts next month: what to expect onboard](/blog/ecrl-passenger-service-december-2026-onboard-amenities/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.

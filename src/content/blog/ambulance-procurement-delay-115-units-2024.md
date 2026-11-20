@@ -126,6 +126,8 @@ For readers in flood-prone states, the timing matters. Selangor has mapped 56 fl
 
 > Also read: [ECRL's Genting Tunnel: 16.39 km under the Titiwangsa, 6.2 minutes at 160 km/h](/blog/ecrl-genting-tunnel-engineering-160-kph-6-minutes/)
 
+> Also read: [ECRL passenger service starts next month: what to expect onboard](/blog/ecrl-passenger-service-december-2026-onboard-amenities/)
+
 ## For you
 
 - **A household in a district outside the big cities:** the ambulance that covers your area is drawn from a fleet the ministry says is short by hundreds of vehicles, so the practical step is to know your nearest clinic's emergency number and your own transport options before you need them.
