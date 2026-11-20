@@ -129,6 +129,8 @@ For readers who want the wider regional picture, the [Asean cybersecurity cooper
 
 **What would change my mind.** An official announcement from the US Department of Defense naming the destination of any redeployed brigade, and its size, would replace the speculation with a fact. A statement from Malaysia's defence ministry or armed forces on how the shift affects planning would move the Malaysian section from inference to confirmed. And a decision that sends the brigade to Poland rather than Asia would remove the regional consequence entirely, leaving this a European story with no Malaysian carrier.
 
+> Also read: [US Army delays blowing up 68 barrels of lead azide in Iowa; modelling put the plume 100 miles north](/blog/us-army-lead-azide-delay-iowa-toxic-plume-malaysia/)
+
 ## For you
 
 - **A taxpayer watching the federal budget:** defence competes with everything else for the same money, so a less stable region is a reason the defence line gets harder to cut, and the trade-off shows up in what else is funded.
