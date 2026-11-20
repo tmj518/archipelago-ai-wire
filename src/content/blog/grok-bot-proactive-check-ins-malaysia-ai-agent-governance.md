@@ -134,6 +134,8 @@ The fourth carrier is the market for local integration work. Firms that write th
 
 **What would change my mind.** A vendor statement showing the proactive messages toggle shipped off by default, or a support response that disabled the behaviour rather than exposing a switch, would undercut the reading that the default favours capability over consent. Evidence that the 31 requests were all refused at the gateway, with no data returned, would shrink the exposure. A Malaysian incident report showing an agent reading employee accounts without a log would move this from inference to confirmed for local firms.
 
+> Also read: [US regulator blocks California from enforcing phone service rules — what it signals for Malaysia's telecom transition](/blog/fcc-preempts-california-phone-rules-att-malaysia-telecom/)
+
 ## For you
 
 - **A Malaysian SME owner about to install an AI assistant:** ask the vendor, in writing, for the default state of every autonomous behaviour and for the log of outbound requests. If the answer is a dashboard you do not control, you do not have a log.

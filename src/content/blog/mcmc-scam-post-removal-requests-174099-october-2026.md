@@ -141,6 +141,8 @@ The wider Malaysian context is that digital fraud has become a routine cost of b
 
 > Also read: [Grok Bot acted on employee accounts while laptops were shut — what Malaysian firms deploying AI agents need to write](/blog/grok-bot-proactive-check-ins-malaysia-ai-agent-governance/)
 
+> Also read: [US regulator blocks California from enforcing phone service rules — what it signals for Malaysia's telecom transition](/blog/fcc-preempts-california-phone-rules-att-malaysia-telecom/)
+
 ## For you
 
 - **A household asked to donate to a distress appeal:** ask for the account name and match it against the organisation's registered name before transferring; a personal account behind a public cause is the warning sign.
