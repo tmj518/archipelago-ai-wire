@@ -1,37 +1,38 @@
 {
-  "lastRun": "2026-11-20T02:02:49.986Z",
+  "lastRun": "2026-11-20T10:55:18.794Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "ecrl-passenger-service-december-2026-onboard-amenities",
-  "runs": 47,
+  "lastArticle": "uk-be-ready-stockpile-campaign-malaysia-food-exporters",
+  "runs": 48,
   "published": 0,
   "lastUsage": {
-    "calls": 6,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0296,
-    "promptTokens": 113587,
-    "completionTokens": 13022
+    "usd": 0.0269,
+    "promptTokens": 71057,
+    "completionTokens": 7059
   },
-  "lastFinalizedRunId": "44657414410",
+  "lastFinalizedRunId": "44722141190",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44657414410:1",
+  "lastFinalizedKey": "44722141190:1",
   "finalizedRuns": {
-    "44657414410": {
+    "44722141190": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44657414410:1"
+      "finalizationKey": "44722141190:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }

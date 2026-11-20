@@ -1,0 +1,117 @@
+{
+  "at": "2026-11-20T10:49:35.236Z",
+  "runId": "44722141190",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "schedule",
+  "executionSha": "5a057f9453c344567e7d7655eb799b1cbf75b248",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "47 previous run(s), last 2026-11-20T02:02:49.986Z (FAILED)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "17 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "uk-be-ready-stockpile-campaign-malaysia-food-exporters from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "6 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/uk-be-ready-stockpile-campaign-malaysia-food-exporters.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/uk-be-ready-stockpile-campaign-malaysia-food-exporters.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict READY_FOR_PUBLISH"
+    }
+  ],
+  "verdict": "READY_FOR_PUBLISH",
+  "reasons": [
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve"
+  ],
+  "article": "uk-be-ready-stockpile-campaign-malaysia-food-exporters",
+  "commit": null,
+  "publicationStatus": "DRAFT_STAGED",
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "usage": {
+    "calls": 4,
+    "failed": 0,
+    "usd": 0.0269,
+    "promptTokens": 71057,
+    "completionTokens": 7059
+  },
+  "route": "script",
+  "categoryActivity": {
+    "malaysia-impact": 8,
+    "success-cases": 0,
+    "work-education-family": 1,
+    "business-opportunities-risks": 3,
+    "economy": 2,
+    "world": 1,
+    "tech-ai": 2
+  },
+  "uncoveredSections": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 27
+}
