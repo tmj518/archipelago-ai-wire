@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-20T00:28:08.904Z",
-  "runId": "44645864861",
+  "at": "2026-11-20T02:00:36.778Z",
+  "runId": "44657414410",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "f0f5a7e136333ca9d98563c79b45583e472d9ce1",
+  "executionSha": "00fbecf9a84a8274df938c0662cfaf2e6110a08f",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "45 previous run(s), last 2026-11-19T19:56:15.909Z (FAILED)"
+      "detail": "46 previous run(s), last 2026-11-20T00:34:01.545Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "16 of 25 net-new this week"
+      "detail": "17 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,70 +33,57 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "ecrl-passenger-service-december-2026-onboard-amenities from /data/directive.json"
+      "detail": "anthropic-ipo-ai-valuation-malaysia-tech-spending from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "3 sourced figure(s)"
     },
     {
       "name": "writer",
-      "ok": true,
-      "detail": "draft at /data/drafts/ecrl-passenger-service-december-2026-onboard-amenities.md"
-    },
-    {
-      "name": "reviewer",
       "ok": false,
-      "detail": "no parseable verdict"
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
-      "name": "publish",
-      "ok": true,
-      "detail": "staged at src/content/blog/ecrl-passenger-service-december-2026-onboard-amenities.md"
+      "name": "writer (revision 1)",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
-      "name": "registry",
-      "ok": true,
-      "detail": "rebuilt"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
+      "name": "writer (revision 2)",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict READY_FOR_PUBLISH"
+      "detail": "verdict WRITE-FAILED"
     }
   ],
   "verdict": "FAILED",
   "reasons": [
-    "review unavailable and published anyway: no usable reviewer result",
-    "the reviewer did not approve",
-    "publication not finalized: independent reviewer approval is missing"
+    "the writer's draft violates the content schema on every attempt (3), so the limits are not reaching the model"
   ],
-  "article": "ecrl-passenger-service-december-2026-onboard-amenities",
-  "commit": "674da8dc0c21edcd37450665dc8bf1177ed570be",
+  "article": null,
+  "commit": null,
   "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 2,
+    "calls": 6,
     "failed": 0,
-    "usd": 0.0102,
-    "promptTokens": 37878,
-    "completionTokens": 4657
+    "usd": 0.0296,
+    "promptTokens": 113587,
+    "completionTokens": 13022
   },
   "route": "script",
   "categoryActivity": {
-    "malaysia-impact": 7,
+    "malaysia-impact": 8,
     "success-cases": 0,
     "work-education-family": 1,
     "business-opportunities-risks": 3,
@@ -105,28 +92,19 @@
     "tech-ai": 2
   },
   "uncoveredSections": [],
-  "attempts": [
-    {
-      "attempt": 1,
-      "score": null,
-      "verdict": null,
-      "issues": []
-    }
-  ],
-  "qa": null,
-  "seconds": 26,
-  "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "44645864861:1",
-  "finalizedAt": "2026-11-20T00:34:01.545Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/ecrl-passenger-service-december-2026-onboard-amenities/",
+  "seconds": 126,
+  "orchestratorVerdict": "WRITE-FAILED",
+  "finalizationKey": "44657414410:1",
+  "finalizedAt": "2026-11-20T02:02:49.986Z",
+  "productionUrl": null,
   "executionConclusion": "failure",
-  "verifyOutcome": "failure",
+  "verifyOutcome": "skipped",
   "liveChecks": {
-    "status": "failure"
+    "status": "skipped"
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },

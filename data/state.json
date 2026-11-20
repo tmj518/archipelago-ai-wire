@@ -1,38 +1,37 @@
 {
-  "lastRun": "2026-11-20T00:34:01.545Z",
+  "lastRun": "2026-11-20T02:02:49.986Z",
   "lastVerdict": "FAILED",
   "lastArticle": "ecrl-passenger-service-december-2026-onboard-amenities",
-  "runs": 46,
+  "runs": 47,
   "published": 0,
   "lastUsage": {
-    "calls": 2,
+    "calls": 6,
     "failed": 0,
-    "usd": 0.0102,
-    "promptTokens": 37878,
-    "completionTokens": 4657
+    "usd": 0.0296,
+    "promptTokens": 113587,
+    "completionTokens": 13022
   },
-  "lastFinalizedRunId": "44645864861",
+  "lastFinalizedRunId": "44657414410",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44645864861:1",
+  "lastFinalizedKey": "44657414410:1",
   "finalizedRuns": {
-    "44645864861": {
+    "44657414410": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44645864861:1"
+      "finalizationKey": "44657414410:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "lastRegistry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }
