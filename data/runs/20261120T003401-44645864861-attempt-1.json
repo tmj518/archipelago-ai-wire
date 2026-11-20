@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-17T15:30:22Z",
-  "sha": "0d39afcdc94c4da783fb17a869fba9e5fa4c4c32",
-  "run": "44113564805",
+  "at": "2026-11-20T00:34:01Z",
+  "sha": "f0f5a7e136333ca9d98563c79b45583e472d9ce1",
+  "run": "44645864861",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "grok-bot-proactive-check-ins-malaysia-ai-agent-governance",
-  "commit": "0d309efd2d8cbe7aa59e2de6a8c6f66af4a59f93",
+  "article": "ecrl-passenger-service-december-2026-onboard-amenities",
+  "commit": "674da8dc0c21edcd37450665dc8bf1177ed570be",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"

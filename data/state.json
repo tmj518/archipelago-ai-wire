@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-19T19:56:15.909Z",
+  "lastRun": "2026-11-20T00:34:01.545Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "ecrl-genting-tunnel-engineering-160-kph-6-minutes",
-  "runs": 45,
+  "lastArticle": "ecrl-passenger-service-december-2026-onboard-amenities",
+  "runs": 46,
   "published": 0,
   "lastUsage": {
     "calls": 2,
     "failed": 0,
-    "usd": 0.0113,
-    "promptTokens": 40492,
-    "completionTokens": 5820
+    "usd": 0.0102,
+    "promptTokens": 37878,
+    "completionTokens": 4657
   },
-  "lastFinalizedRunId": "44602167389",
+  "lastFinalizedRunId": "44645864861",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44602167389:1",
+  "lastFinalizedKey": "44645864861:1",
   "finalizedRuns": {
-    "44602167389": {
+    "44645864861": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44602167389:1"
+      "finalizationKey": "44645864861:1"
     }
   },
   "publishedRunIds": [],
