@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-20T19:36:38Z",
+  "sha": "7d8583a24a113753a2b7d9b22073684cf8f39e9e",
+  "run": "44802454401",
+  "run_attempt": "1",
+  "workflow_status": "failure",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
+  "article": "us-army-lead-azide-delay-iowa-toxic-plume-malaysia",
+  "commit": "54b332da81eda41a17a7655b79707e7b22628753",
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "live_checks": {
+    "status": "failure"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "RECORDED",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}

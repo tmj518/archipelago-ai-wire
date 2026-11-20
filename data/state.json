@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-20T10:55:18.794Z",
+  "lastRun": "2026-11-20T19:36:38.124Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "uk-be-ready-stockpile-campaign-malaysia-food-exporters",
-  "runs": 48,
+  "lastArticle": "us-army-lead-azide-delay-iowa-toxic-plume-malaysia",
+  "runs": 49,
   "published": 0,
   "lastUsage": {
-    "calls": 4,
+    "calls": 7,
     "failed": 0,
-    "usd": 0.0269,
-    "promptTokens": 71057,
-    "completionTokens": 7059
+    "usd": 0.051,
+    "promptTokens": 188113,
+    "completionTokens": 10357
   },
-  "lastFinalizedRunId": "44722141190",
+  "lastFinalizedRunId": "44802454401",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44722141190:1",
+  "lastFinalizedKey": "44802454401:1",
   "finalizedRuns": {
-    "44722141190": {
+    "44802454401": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44722141190:1"
+      "finalizationKey": "44802454401:1"
     }
   },
   "publishedRunIds": [],
