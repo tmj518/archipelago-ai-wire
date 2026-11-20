@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-20T19:36:38.124Z",
+  "lastRun": "2026-11-20T23:58:23.417Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "us-army-lead-azide-delay-iowa-toxic-plume-malaysia",
-  "runs": 49,
+  "lastArticle": "fcc-preempts-california-phone-rules-att-malaysia-telecom",
+  "runs": 50,
   "published": 0,
   "lastUsage": {
-    "calls": 7,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.051,
-    "promptTokens": 188113,
-    "completionTokens": 10357
+    "usd": 0.0173,
+    "promptTokens": 98605,
+    "completionTokens": 6595
   },
-  "lastFinalizedRunId": "44802454401",
+  "lastFinalizedRunId": "44839565530",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44802454401:1",
+  "lastFinalizedKey": "44839565530:1",
   "finalizedRuns": {
-    "44802454401": {
+    "44839565530": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44802454401:1"
+      "finalizationKey": "44839565530:1"
     }
   },
   "publishedRunIds": [],

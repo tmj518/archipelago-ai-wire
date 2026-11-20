@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-18T19:56:53Z",
-  "sha": "95a3f28087e8e89e774bf1f98264e3a69356fac7",
-  "run": "44384061580",
+  "at": "2026-11-20T23:58:23Z",
+  "sha": "4ccb8d86e90b8a1efc9478af7206c469221d0da0",
+  "run": "44839565530",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "best-buy-blu-ray-return-physical-media-malaysia",
-  "commit": "9c9240ee88c2c38b7ccbc5af5f4a3ab4e4d092ce",
+  "article": "fcc-preempts-california-phone-rules-att-malaysia-telecom",
+  "commit": "df451e95995495502116f1f888bcdee0364f6a2f",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"

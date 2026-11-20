@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-20T19:30:47.492Z",
-  "runId": "44802454401",
+  "at": "2026-11-20T23:52:32.023Z",
+  "runId": "44839565530",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "7d8583a24a113753a2b7d9b22073684cf8f39e9e",
+  "executionSha": "4ccb8d86e90b8a1efc9478af7206c469221d0da0",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "48 previous run(s), last 2026-11-20T10:55:18.794Z (FAILED)"
+      "detail": "49 previous run(s), last 2026-11-20T19:36:38.124Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "18 of 25 net-new this week"
+      "detail": "19 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "us-army-lead-azide-delay-iowa-toxic-plume-malaysia from /data/directive.json"
+      "detail": "fcc-preempts-california-phone-rules-att-malaysia-telecom from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "5 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/us-army-lead-azide-delay-iowa-toxic-plume-malaysia.md"
+      "detail": "draft at /data/drafts/fcc-preempts-california-phone-rules-att-malaysia-telecom.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/us-army-lead-azide-delay-iowa-toxic-plume-malaysia.md"
+      "detail": "staged at src/content/blog/fcc-preempts-california-phone-rules-att-malaysia-telecom.md"
     },
     {
       "name": "registry",
@@ -77,8 +77,8 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "us-army-lead-azide-delay-iowa-toxic-plume-malaysia",
-  "commit": "54b332da81eda41a17a7655b79707e7b22628753",
+  "article": "fcc-preempts-california-phone-rules-att-malaysia-telecom",
+  "commit": "df451e95995495502116f1f888bcdee0364f6a2f",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
@@ -88,11 +88,11 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 7,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.051,
-    "promptTokens": 188113,
-    "completionTokens": 10357
+    "usd": 0.0173,
+    "promptTokens": 98605,
+    "completionTokens": 6595
   },
   "route": "script",
   "categoryActivity": {
@@ -101,7 +101,7 @@
     "work-education-family": 1,
     "business-opportunities-risks": 4,
     "economy": 2,
-    "world": 1,
+    "world": 2,
     "tech-ai": 2
   },
   "uncoveredSections": [],
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 26,
+  "seconds": 24,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "44802454401:1",
-  "finalizedAt": "2026-11-20T19:36:38.124Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/us-army-lead-azide-delay-iowa-toxic-plume-malaysia/",
+  "finalizationKey": "44839565530:1",
+  "finalizedAt": "2026-11-20T23:58:23.417Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/fcc-preempts-california-phone-rules-att-malaysia-telecom/",
   "executionConclusion": "failure",
   "verifyOutcome": "failure",
   "liveChecks": {
