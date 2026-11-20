@@ -121,6 +121,8 @@ The third carrier is the secondhand market. Discs hold resale value in a way tha
 
 **What would change my mind.** A published Best Buy statement naming the number of titles it plans to carry, or a second US retailer re-entering disc sales, would turn the test reading into a trend. A DEG figure showing 4K Blu-ray spending falling in the next reporting period would undercut the premium-niche reading entirely. On the Malaysian side, a local distributor announcing a wider 4K range, or a specialist shop publishing its import volumes, would confirm the channel; without one, the Malaysian consequence stays a mechanism rather than a measured effect.
 
+> Also read: [Britain told households to stock three days of food; Malaysia's tinned-food and UHT exporters just got a demand signal](/blog/uk-be-ready-stockpile-campaign-malaysia-food-exporters/)
+
 ## For you
 
 - **A Malaysian household with a 4K television:** the disc you buy is imported, so watch local specialist shop listings and online importers for new 4K titles rather than assuming a wide release reaches Malaysia on the same week as the US.

@@ -100,6 +100,8 @@ For context on how regional investment decisions reach Malaysian workers, see ou
 
 > Also read: [Malaysia approved RM350.4 billion in investments in nine months of 2026, with Johor taking the largest share](/blog/mida-approved-investments-9m-2026-johor-data-centres/)
 
+> Also read: [Britain told households to stock three days of food; Malaysia's tinned-food and UHT exporters just got a demand signal](/blog/uk-be-ready-stockpile-campaign-malaysia-food-exporters/)
+
 ## For you
 
 - **A developer weighing a move to a regional hub:** ask which project and which publisher the role sits under, and how long the contract runs, before accepting. The 70-job cut at one studio is the reason to ask, not a reason to stay put.
