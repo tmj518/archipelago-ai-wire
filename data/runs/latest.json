@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-21T10:32:08.590Z",
-  "runId": "44894610177",
+  "at": "2026-11-21T18:34:56.230Z",
+  "runId": "44935982050",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "4ae233962bd3f20eb1db29a434200812847d9716",
+  "executionSha": "3de5a8b3b03f1b0a35637394a538845b67657298",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "51 previous run(s), last 2026-11-21T02:02:00.013Z (FAILED)"
+      "detail": "52 previous run(s), last 2026-11-21T10:38:22.802Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "21 of 25 net-new this week"
+      "detail": "22 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "micron-malaysia-ai-upskilling-256gb-lpdram-socamm2 from /data/directive.json"
+      "detail": "federal-reserve-2025-debit-card-report-malaysia-interchange from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "5 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/micron-malaysia-ai-upskilling-256gb-lpdram-socamm2.md"
+      "detail": "draft at /data/drafts/federal-reserve-2025-debit-card-report-malaysia-interchange.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/micron-malaysia-ai-upskilling-256gb-lpdram-socamm2.md"
+      "detail": "staged at src/content/blog/federal-reserve-2025-debit-card-report-malaysia-interchange.md"
     },
     {
       "name": "registry",
@@ -77,8 +77,8 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "micron-malaysia-ai-upskilling-256gb-lpdram-socamm2",
-  "commit": "693abdfd2f140b3d238947e47c6c1b085e771836",
+  "article": "federal-reserve-2025-debit-card-report-malaysia-interchange",
+  "commit": "71840543d648deb6d84c6571c3d45381bb58037c",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
@@ -88,11 +88,11 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 5,
+    "calls": 14,
     "failed": 0,
-    "usd": 0.0194,
-    "promptTokens": 83064,
-    "completionTokens": 7945
+    "usd": 0.0712,
+    "promptTokens": 371577,
+    "completionTokens": 16572
   },
   "route": "script",
   "categoryActivity": {
@@ -102,7 +102,7 @@
     "business-opportunities-risks": 4,
     "economy": 2,
     "world": 2,
-    "tech-ai": 3
+    "tech-ai": 4
   },
   "uncoveredSections": [],
   "attempts": [
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 37,
+  "seconds": 30,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "44894610177:1",
-  "finalizedAt": "2026-11-21T10:38:22.802Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/micron-malaysia-ai-upskilling-256gb-lpdram-socamm2/",
+  "finalizationKey": "44935982050:1",
+  "finalizedAt": "2026-11-21T18:40:47.786Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/federal-reserve-2025-debit-card-report-malaysia-interchange/",
   "executionConclusion": "failure",
   "verifyOutcome": "failure",
   "liveChecks": {

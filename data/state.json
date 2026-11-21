@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-21T10:38:22.802Z",
+  "lastRun": "2026-11-21T18:40:47.786Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "micron-malaysia-ai-upskilling-256gb-lpdram-socamm2",
-  "runs": 52,
+  "lastArticle": "federal-reserve-2025-debit-card-report-malaysia-interchange",
+  "runs": 53,
   "published": 0,
   "lastUsage": {
-    "calls": 5,
+    "calls": 14,
     "failed": 0,
-    "usd": 0.0194,
-    "promptTokens": 83064,
-    "completionTokens": 7945
+    "usd": 0.0712,
+    "promptTokens": 371577,
+    "completionTokens": 16572
   },
-  "lastFinalizedRunId": "44894610177",
+  "lastFinalizedRunId": "44935982050",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44894610177:1",
+  "lastFinalizedKey": "44935982050:1",
   "finalizedRuns": {
-    "44894610177": {
+    "44935982050": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44894610177:1"
+      "finalizationKey": "44935982050:1"
     }
   },
   "publishedRunIds": [],
