@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-20T23:52:32.023Z",
-  "runId": "44839565530",
+  "at": "2026-11-21T01:55:58.497Z",
+  "runId": "44852816578",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "4ccb8d86e90b8a1efc9478af7206c469221d0da0",
+  "executionSha": "2ee40f8bfcbb79a3b31c2f822d2885087fda1b04",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "49 previous run(s), last 2026-11-20T19:36:38.124Z (FAILED)"
+      "detail": "50 previous run(s), last 2026-11-20T23:58:23.417Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "19 of 25 net-new this week"
+      "detail": "20 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "fcc-preempts-california-phone-rules-att-malaysia-telecom from /data/directive.json"
+      "detail": "ecrl-first-ride-east-coast-tourism-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "5 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/fcc-preempts-california-phone-rules-att-malaysia-telecom.md"
+      "detail": "draft at /data/drafts/ecrl-first-ride-east-coast-tourism-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/fcc-preempts-california-phone-rules-att-malaysia-telecom.md"
+      "detail": "staged at src/content/blog/ecrl-first-ride-east-coast-tourism-2026.md"
     },
     {
       "name": "registry",
@@ -77,8 +77,8 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "fcc-preempts-california-phone-rules-att-malaysia-telecom",
-  "commit": "df451e95995495502116f1f888bcdee0364f6a2f",
+  "article": "ecrl-first-ride-east-coast-tourism-2026",
+  "commit": "64e993d712dd41eed3f301a30535cf83aea8f957",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
@@ -88,11 +88,11 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 4,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0173,
-    "promptTokens": 98605,
-    "completionTokens": 6595
+    "usd": 0.0152,
+    "promptTokens": 50910,
+    "completionTokens": 6693
   },
   "route": "script",
   "categoryActivity": {
@@ -102,7 +102,7 @@
     "business-opportunities-risks": 4,
     "economy": 2,
     "world": 2,
-    "tech-ai": 2
+    "tech-ai": 3
   },
   "uncoveredSections": [],
   "attempts": [
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 24,
+  "seconds": 35,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "44839565530:1",
-  "finalizedAt": "2026-11-20T23:58:23.417Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/fcc-preempts-california-phone-rules-att-malaysia-telecom/",
+  "finalizationKey": "44852816578:1",
+  "finalizedAt": "2026-11-21T02:02:00.013Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/ecrl-first-ride-east-coast-tourism-2026/",
   "executionConclusion": "failure",
   "verifyOutcome": "failure",
   "liveChecks": {

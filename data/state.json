@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-20T23:58:23.417Z",
+  "lastRun": "2026-11-21T02:02:00.013Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "fcc-preempts-california-phone-rules-att-malaysia-telecom",
-  "runs": 50,
+  "lastArticle": "ecrl-first-ride-east-coast-tourism-2026",
+  "runs": 51,
   "published": 0,
   "lastUsage": {
-    "calls": 4,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0173,
-    "promptTokens": 98605,
-    "completionTokens": 6595
+    "usd": 0.0152,
+    "promptTokens": 50910,
+    "completionTokens": 6693
   },
-  "lastFinalizedRunId": "44839565530",
+  "lastFinalizedRunId": "44852816578",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44839565530:1",
+  "lastFinalizedKey": "44852816578:1",
   "finalizedRuns": {
-    "44839565530": {
+    "44852816578": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44839565530:1"
+      "finalizationKey": "44852816578:1"
     }
   },
   "publishedRunIds": [],

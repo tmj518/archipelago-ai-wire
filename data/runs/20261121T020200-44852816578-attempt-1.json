@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-21T02:02:00Z",
+  "sha": "2ee40f8bfcbb79a3b31c2f822d2885087fda1b04",
+  "run": "44852816578",
+  "run_attempt": "1",
+  "workflow_status": "failure",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
+  "article": "ecrl-first-ride-east-coast-tourism-2026",
+  "commit": "64e993d712dd41eed3f301a30535cf83aea8f957",
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "live_checks": {
+    "status": "failure"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "RECORDED",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}
