@@ -136,6 +136,8 @@ The fourth carrier is the market for local integration work. Firms that write th
 
 > Also read: [US regulator blocks California from enforcing phone service rules — what it signals for Malaysia's telecom transition](/blog/fcc-preempts-california-phone-rules-att-malaysia-telecom/)
 
+> Also read: [Micron Malaysia: from factory floor to AI, and a world-first 256GB memory module made in Penang](/blog/micron-malaysia-ai-upskilling-256gb-lpdram-socamm2/)
+
 ## For you
 
 - **A Malaysian SME owner about to install an AI assistant:** ask the vendor, in writing, for the default state of every autonomous behaviour and for the log of outbound requests. If the answer is a dashboard you do not control, you do not have a log.

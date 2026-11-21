@@ -117,6 +117,8 @@ The third carrier is price. A customer moved from a regulated copper line to a f
 
 **What would change my mind.** A published MCMC or Telekom Malaysia document setting out a copper retirement timetable, the treatment of customers still on copper, and the price of the replacement service would replace the inference with a fact. So would evidence that Malaysia's universal service obligation already covers the gap the US case exposes. Without either, the Malaysian section describes a mechanism, not a measured outcome.
 
+> Also read: [Micron Malaysia: from factory floor to AI, and a world-first 256GB memory module made in Penang](/blog/micron-malaysia-ai-upskilling-256gb-lpdram-socamm2/)
+
 ## For you
 
 - **A household still on a copper landline:** the US case shows the sequence to watch. When an operator asks for relief from its obligation to serve you, the question to ask your provider is what replaces the line, at what price, and on what date. Ask before the copper is switched off, not after.
