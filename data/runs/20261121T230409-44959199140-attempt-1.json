@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-19T19:56:15Z",
-  "sha": "ecf525527efd05adb69706d563b1aa269980d6cf",
-  "run": "44602167389",
+  "at": "2026-11-21T23:04:09Z",
+  "sha": "43e66491488bb120782dc94202510867bf7945f9",
+  "run": "44959199140",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "ecrl-genting-tunnel-engineering-160-kph-6-minutes",
-  "commit": "99b851d97deb5ab886a1237e6c72154daedf2189",
+  "article": "dosm-bnm-data-sharing-collaboration-2026",
+  "commit": "82f1b0b97f76b0b3371f8ab7f33b398c161796e1",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"

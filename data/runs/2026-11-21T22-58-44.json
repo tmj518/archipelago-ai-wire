@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-21T18:34:56.230Z",
-  "runId": "44935982050",
+  "at": "2026-11-21T22:58:18.176Z",
+  "runId": "44959199140",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "3de5a8b3b03f1b0a35637394a538845b67657298",
+  "executionSha": "43e66491488bb120782dc94202510867bf7945f9",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "52 previous run(s), last 2026-11-21T10:38:22.802Z (FAILED)"
+      "detail": "53 previous run(s), last 2026-11-21T18:40:47.786Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "22 of 25 net-new this week"
+      "detail": "23 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "federal-reserve-2025-debit-card-report-malaysia-interchange from /data/directive.json"
+      "detail": "dosm-bnm-data-sharing-collaboration-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "5 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/federal-reserve-2025-debit-card-report-malaysia-interchange.md"
+      "detail": "draft at /data/drafts/dosm-bnm-data-sharing-collaboration-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/federal-reserve-2025-debit-card-report-malaysia-interchange.md"
+      "detail": "staged at src/content/blog/dosm-bnm-data-sharing-collaboration-2026.md"
     },
     {
       "name": "registry",
@@ -76,7 +76,7 @@
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve"
   ],
-  "article": "federal-reserve-2025-debit-card-report-malaysia-interchange",
+  "article": "dosm-bnm-data-sharing-collaboration-2026",
   "commit": null,
   "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
@@ -87,11 +87,11 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 14,
+    "calls": 9,
     "failed": 0,
-    "usd": 0.0712,
-    "promptTokens": 371577,
-    "completionTokens": 16572
+    "usd": 0.0346,
+    "promptTokens": 231483,
+    "completionTokens": 12276
   },
   "route": "script",
   "categoryActivity": {
@@ -99,7 +99,7 @@
     "success-cases": 0,
     "work-education-family": 1,
     "business-opportunities-risks": 4,
-    "economy": 2,
+    "economy": 3,
     "world": 2,
     "tech-ai": 4
   },
@@ -113,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 30
+  "seconds": 27
 }

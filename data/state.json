@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-21T18:40:47.786Z",
+  "lastRun": "2026-11-21T23:04:09.575Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "federal-reserve-2025-debit-card-report-malaysia-interchange",
-  "runs": 53,
+  "lastArticle": "dosm-bnm-data-sharing-collaboration-2026",
+  "runs": 54,
   "published": 0,
   "lastUsage": {
-    "calls": 14,
+    "calls": 9,
     "failed": 0,
-    "usd": 0.0712,
-    "promptTokens": 371577,
-    "completionTokens": 16572
+    "usd": 0.0346,
+    "promptTokens": 231483,
+    "completionTokens": 12276
   },
-  "lastFinalizedRunId": "44935982050",
+  "lastFinalizedRunId": "44959199140",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44935982050:1",
+  "lastFinalizedKey": "44959199140:1",
   "finalizedRuns": {
-    "44935982050": {
+    "44959199140": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44935982050:1"
+      "finalizationKey": "44959199140:1"
     }
   },
   "publishedRunIds": [],
