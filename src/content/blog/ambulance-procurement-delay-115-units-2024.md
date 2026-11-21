@@ -128,6 +128,8 @@ For readers in flood-prone states, the timing matters. Selangor has mapped 56 fl
 
 > Also read: [ECRL passenger service starts next month: what to expect onboard](/blog/ecrl-passenger-service-december-2026-onboard-amenities/)
 
+> Also read: [First ECRL ride: How the new rail link changes travel to Pahang, Terengganu and Kelantan](/blog/ecrl-first-ride-east-coast-tourism-2026/)
+
 ## For you
 
 - **A household in a district outside the big cities:** the ambulance that covers your area is drawn from a fleet the ministry says is short by hundreds of vehicles, so the practical step is to know your nearest clinic's emergency number and your own transport options before you need them.
