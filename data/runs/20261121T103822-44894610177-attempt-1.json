@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-19T02:18:01Z",
-  "sha": "624c369602010703abc73e7e08d39c1c4c5f6a42",
-  "run": "44442268575",
+  "at": "2026-11-21T10:38:22Z",
+  "sha": "4ae233962bd3f20eb1db29a434200812847d9716",
+  "run": "44894610177",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "ecrl-genting-tunnel-longest-rail-tunnel-southeast-asia",
-  "commit": "6474c0fea0d31bb6989b86f5e0888dd03e9067f4",
+  "article": "micron-malaysia-ai-upskilling-256gb-lpdram-socamm2",
+  "commit": "693abdfd2f140b3d238947e47c6c1b085e771836",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"

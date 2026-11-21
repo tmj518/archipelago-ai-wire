@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-21T02:02:00.013Z",
+  "lastRun": "2026-11-21T10:38:22.802Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "ecrl-first-ride-east-coast-tourism-2026",
-  "runs": 51,
+  "lastArticle": "micron-malaysia-ai-upskilling-256gb-lpdram-socamm2",
+  "runs": 52,
   "published": 0,
   "lastUsage": {
-    "calls": 3,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0152,
-    "promptTokens": 50910,
-    "completionTokens": 6693
+    "usd": 0.0194,
+    "promptTokens": 83064,
+    "completionTokens": 7945
   },
-  "lastFinalizedRunId": "44852816578",
+  "lastFinalizedRunId": "44894610177",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44852816578:1",
+  "lastFinalizedKey": "44894610177:1",
   "finalizedRuns": {
-    "44852816578": {
+    "44894610177": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44852816578:1"
+      "finalizationKey": "44894610177:1"
     }
   },
   "publishedRunIds": [],
