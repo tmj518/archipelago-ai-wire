@@ -130,6 +130,8 @@ For readers in flood-prone states, the timing matters. Selangor has mapped 56 fl
 
 > Also read: [First ECRL ride: How the new rail link changes travel to Pahang, Terengganu and Kelantan](/blog/ecrl-first-ride-east-coast-tourism-2026/)
 
+> Also read: [DOSM and Bank Negara deepen data-sharing on GDP, BOP and labour market](/blog/dosm-bnm-data-sharing-collaboration-2026/)
+
 ## For you
 
 - **A household in a district outside the big cities:** the ambulance that covers your area is drawn from a fleet the ministry says is short by hundreds of vehicles, so the practical step is to know your nearest clinic's emergency number and your own transport options before you need them.

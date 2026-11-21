@@ -185,6 +185,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [First ECRL ride: How the new rail link changes travel to Pahang, Terengganu and Kelantan](/blog/ecrl-first-ride-east-coast-tourism-2026/)
 
+> Also read: [DOSM and Bank Negara deepen data-sharing on GDP, BOP and labour market](/blog/dosm-bnm-data-sharing-collaboration-2026/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.
