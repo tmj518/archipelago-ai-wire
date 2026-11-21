@@ -98,6 +98,8 @@ The revenue figure also matters for Malaysia's export position. [Malaysia's expo
 
 > Also read: [Malaysia's domestic manufacturers doubled their approved investment in nine months — here is where the RM37.8 billion](/blog/mida-9m-2026-domestic-manufacturing-investment-82-7-percent/)
 
+> Also read: [US debit card fee report shows what Malaysian card networks can learn](/blog/federal-reserve-2025-debit-card-report-malaysia-interchange/)
+
 ## For you
 
 - **A household paying for electricity:** Petronas' revenue is a signal of gas costs, and those costs feed into the electricity tariff. Watch for tariff announcements in the coming months.
