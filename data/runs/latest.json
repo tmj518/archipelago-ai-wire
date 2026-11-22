@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-22T18:54:57.847Z",
-  "runId": "45057587275",
+  "at": "2026-11-22T23:27:10.173Z",
+  "runId": "45083191508",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "3c53673580836c7b3c12dc611650773208596e21",
+  "executionSha": "1ab0827873314df1430b0d220a74e04b1ab36d0f",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "55 previous run(s), last 2026-11-22T10:39:35.764Z (QUIET)"
+      "detail": "55 previous run(s), last 2026-11-22T18:55:20.361Z (QUIET)"
     },
     {
       "name": "weekly ceiling",
@@ -55,8 +55,8 @@
   },
   "uncoveredSections": [],
   "orchestratorVerdict": "CEILING",
-  "finalizationKey": "45057587275:1",
-  "finalizedAt": "2026-11-22T18:55:20.361Z",
+  "finalizationKey": "45083191508:1",
+  "finalizedAt": "2026-11-22T23:27:35.433Z",
   "productionUrl": null,
   "executionConclusion": "success",
   "verifyOutcome": "skipped",

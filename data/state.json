@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-22T18:55:20.361Z",
+  "lastRun": "2026-11-22T23:27:35.433Z",
   "lastVerdict": "QUIET",
   "lastArticle": "banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost",
   "runs": 55,
@@ -11,9 +11,9 @@
     "promptTokens": 73838,
     "completionTokens": 6374
   },
-  "lastFinalizedRunId": "45057587275",
+  "lastFinalizedRunId": "45083191508",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45057587275:1",
+  "lastFinalizedKey": "45083191508:1",
   "finalizedRuns": {
     "44968506770": {
       "runAttempt": 1,
@@ -29,6 +29,11 @@
       "runAttempt": 1,
       "verdict": "QUIET",
       "finalizationKey": "45057587275:1"
+    },
+    "45083191508": {
+      "runAttempt": 1,
+      "verdict": "QUIET",
+      "finalizationKey": "45083191508:1"
     }
   },
   "publishedRunIds": [],
