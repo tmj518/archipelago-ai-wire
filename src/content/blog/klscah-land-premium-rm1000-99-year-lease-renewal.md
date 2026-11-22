@@ -159,6 +159,8 @@ Approved premium as a share of the earlier assessment:
 
 The implied administrative charge of RM860 is a residual: the report states the total and two of its components, so the third follows by subtraction. It is not a separately reported figure.
 
+> Also read: [Banglo289 spends RM50,000 a month on fresh coconut milk to keep Malay cuisine authentic](/blog/banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost/)
+
 ## For you
 
 - **A leasehold property owner in Kuala Lumpur:** the premium on your renewal is an assessed figure, and the assessment depends on the land-use category recorded for your land. Check the category on your title before you negotiate, because the category is the lever this case turned.

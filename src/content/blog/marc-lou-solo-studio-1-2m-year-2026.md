@@ -151,6 +151,8 @@ Stated gross margin: 90 per cent
 
 **What would change my mind.** A payment-processor export or an audited statement showing a materially different twelve-month total would change the headline. Evidence that the 40 products outside the top few earn nothing, or cost more to run than they return, would weaken the portfolio argument and turn the case into a story about one or two products with a long tail of attempts. A breakdown of hours worked per product would change the cost side of the picture entirely.
 
+> Also read: [Banglo289 spends RM50,000 a month on fresh coconut milk to keep Malay cuisine authentic](/blog/banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost/)
+
 ## For you
 
 - **A Malaysian developer with a day job:** the copyable move is the shipping cadence, not the revenue. One small product every few months, each cheap enough to abandon, builds the portfolio without risking the salary.
