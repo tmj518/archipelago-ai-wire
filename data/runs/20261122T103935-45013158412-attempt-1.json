@@ -1,11 +1,11 @@
 {
-  "at": "2026-11-20T02:02:50Z",
-  "sha": "00fbecf9a84a8274df938c0662cfaf2e6110a08f",
-  "run": "44657414410",
+  "at": "2026-11-22T10:39:35Z",
+  "sha": "c461e056cdd4a6b6dae76759e855c55b42991bfc",
+  "run": "45013158412",
   "run_attempt": "1",
-  "workflow_status": "failure",
-  "verdict": "FAILED",
-  "publication_status": "FAILED",
+  "workflow_status": "success",
+  "verdict": "QUIET",
+  "publication_status": "QUIET",
   "article": null,
   "commit": null,
   "reviewer": {

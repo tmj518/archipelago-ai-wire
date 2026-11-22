@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-22T00:51:29.511Z",
-  "runId": "44968506770",
+  "at": "2026-11-22T10:39:08.104Z",
+  "runId": "45013158412",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "0ae18121b2b65981a4d934740cb32d25f1a06405",
+  "executionSha": "c461e056cdd4a6b6dae76759e855c55b42991bfc",
   "providers": [
     "volces",
     "deepseek"
@@ -18,86 +18,35 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "54 previous run(s), last 2026-11-21T23:04:09.575Z (FAILED)"
+      "detail": "55 previous run(s), last 2026-11-22T00:57:26.527Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
-      "ok": true,
-      "detail": "24 of 25 net-new this week"
+      "ok": false,
+      "detail": "25 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
       "ok": true,
       "detail": "every section has a net-new article this week (7 sections)"
-    },
-    {
-      "name": "directive",
-      "ok": true,
-      "detail": "banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost from /data/directive.json"
-    },
-    {
-      "name": "directive figures",
-      "ok": true,
-      "detail": "6 sourced figure(s)"
-    },
-    {
-      "name": "writer",
-      "ok": true,
-      "detail": "draft at /data/drafts/banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost.md"
-    },
-    {
-      "name": "reviewer",
-      "ok": false,
-      "detail": "no parseable verdict"
-    },
-    {
-      "name": "publish",
-      "ok": true,
-      "detail": "staged at src/content/blog/banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost.md"
-    },
-    {
-      "name": "registry",
-      "ok": true,
-      "detail": "rebuilt"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
-    },
-    {
-      "name": "state written",
-      "ok": true,
-      "detail": "verdict READY_FOR_PUBLISH"
     }
   ],
-  "verdict": "FAILED",
-  "reasons": [
-    "review unavailable and published anyway: no usable reviewer result",
-    "the reviewer did not approve",
-    "publication not finalized: independent reviewer approval is missing"
-  ],
-  "article": "banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost",
-  "commit": "654c6aefb68f6d64710c894edbbedb533dc7f56f",
-  "publicationStatus": "FAILED",
+  "verdict": "QUIET",
+  "reasons": [],
+  "article": null,
+  "commit": null,
+  "publicationStatus": "QUIET",
   "reviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
-  "usage": {
-    "calls": 4,
-    "failed": 0,
-    "usd": 0.0154,
-    "promptTokens": 73838,
-    "completionTokens": 6374
-  },
+  "usage": null,
   "route": "script",
   "categoryActivity": {
     "malaysia-impact": 10,
-    "success-cases": 0,
+    "success-cases": 1,
     "work-education-family": 1,
     "business-opportunities-risks": 4,
     "economy": 3,
@@ -105,28 +54,18 @@
     "tech-ai": 4
   },
   "uncoveredSections": [],
-  "attempts": [
-    {
-      "attempt": 1,
-      "score": null,
-      "verdict": null,
-      "issues": []
-    }
-  ],
-  "qa": null,
-  "seconds": 30,
-  "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "44968506770:1",
-  "finalizedAt": "2026-11-22T00:57:26.527Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost/",
-  "executionConclusion": "failure",
-  "verifyOutcome": "failure",
+  "orchestratorVerdict": "CEILING",
+  "finalizationKey": "45013158412:1",
+  "finalizedAt": "2026-11-22T10:39:35.764Z",
+  "productionUrl": null,
+  "executionConclusion": "success",
+  "verifyOutcome": "skipped",
   "liveChecks": {
-    "status": "failure"
+    "status": "skipped"
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },

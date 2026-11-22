@@ -1,6 +1,6 @@
 {
-  "lastRun": "2026-11-22T00:57:26.527Z",
-  "lastVerdict": "FAILED",
+  "lastRun": "2026-11-22T10:39:35.764Z",
+  "lastVerdict": "QUIET",
   "lastArticle": "banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost",
   "runs": 55,
   "published": 0,
@@ -11,28 +11,32 @@
     "promptTokens": 73838,
     "completionTokens": 6374
   },
-  "lastFinalizedRunId": "44968506770",
+  "lastFinalizedRunId": "45013158412",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "44968506770:1",
+  "lastFinalizedKey": "45013158412:1",
   "finalizedRuns": {
     "44968506770": {
       "runAttempt": 1,
       "verdict": "FAILED",
       "finalizationKey": "44968506770:1"
+    },
+    "45013158412": {
+      "runAttempt": 1,
+      "verdict": "QUIET",
+      "finalizationKey": "45013158412:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "lastRegistry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }

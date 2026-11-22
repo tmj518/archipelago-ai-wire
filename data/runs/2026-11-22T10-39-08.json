@@ -1,0 +1,57 @@
+{
+  "at": "2026-11-22T10:39:08.104Z",
+  "runId": "45013158412",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "schedule",
+  "executionSha": "c461e056cdd4a6b6dae76759e855c55b42991bfc",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "55 previous run(s), last 2026-11-22T00:57:26.527Z (FAILED)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": false,
+      "detail": "25 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    }
+  ],
+  "verdict": "CEILING",
+  "reasons": [],
+  "article": null,
+  "commit": null,
+  "publicationStatus": "NOT_STAGED",
+  "reviewer": {
+    "status": "NOT_RUN"
+  },
+  "registry": {
+    "status": "NOT_RUN"
+  },
+  "usage": null,
+  "route": "script",
+  "categoryActivity": {
+    "malaysia-impact": 10,
+    "success-cases": 1,
+    "work-education-family": 1,
+    "business-opportunities-risks": 4,
+    "economy": 3,
+    "world": 2,
+    "tech-ai": 4
+  },
+  "uncoveredSections": []
+}
