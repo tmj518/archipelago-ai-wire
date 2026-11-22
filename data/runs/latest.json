@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-21T22:58:18.176Z",
-  "runId": "44959199140",
+  "at": "2026-11-22T00:51:29.511Z",
+  "runId": "44968506770",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "43e66491488bb120782dc94202510867bf7945f9",
+  "executionSha": "0ae18121b2b65981a4d934740cb32d25f1a06405",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "53 previous run(s), last 2026-11-21T18:40:47.786Z (FAILED)"
+      "detail": "54 previous run(s), last 2026-11-21T23:04:09.575Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "23 of 25 net-new this week"
+      "detail": "24 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "dosm-bnm-data-sharing-collaboration-2026 from /data/directive.json"
+      "detail": "banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/dosm-bnm-data-sharing-collaboration-2026.md"
+      "detail": "draft at /data/drafts/banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/dosm-bnm-data-sharing-collaboration-2026.md"
+      "detail": "staged at src/content/blog/banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost.md"
     },
     {
       "name": "registry",
@@ -77,8 +77,8 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "dosm-bnm-data-sharing-collaboration-2026",
-  "commit": "82f1b0b97f76b0b3371f8ab7f33b398c161796e1",
+  "article": "banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost",
+  "commit": "654c6aefb68f6d64710c894edbbedb533dc7f56f",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
@@ -88,15 +88,15 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 9,
+    "calls": 4,
     "failed": 0,
-    "usd": 0.0346,
-    "promptTokens": 231483,
-    "completionTokens": 12276
+    "usd": 0.0154,
+    "promptTokens": 73838,
+    "completionTokens": 6374
   },
   "route": "script",
   "categoryActivity": {
-    "malaysia-impact": 9,
+    "malaysia-impact": 10,
     "success-cases": 0,
     "work-education-family": 1,
     "business-opportunities-risks": 4,
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 27,
+  "seconds": 30,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "44959199140:1",
-  "finalizedAt": "2026-11-21T23:04:09.575Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/dosm-bnm-data-sharing-collaboration-2026/",
+  "finalizationKey": "44968506770:1",
+  "finalizedAt": "2026-11-22T00:57:26.527Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost/",
   "executionConclusion": "failure",
   "verifyOutcome": "failure",
   "liveChecks": {

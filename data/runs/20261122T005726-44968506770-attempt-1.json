@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-20T00:34:01Z",
-  "sha": "f0f5a7e136333ca9d98563c79b45583e472d9ce1",
-  "run": "44645864861",
+  "at": "2026-11-22T00:57:26Z",
+  "sha": "0ae18121b2b65981a4d934740cb32d25f1a06405",
+  "run": "44968506770",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "ecrl-passenger-service-december-2026-onboard-amenities",
-  "commit": "674da8dc0c21edcd37450665dc8bf1177ed570be",
+  "article": "banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost",
+  "commit": "654c6aefb68f6d64710c894edbbedb533dc7f56f",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
