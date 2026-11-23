@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-23T11:43:07.113Z",
+  "lastRun": "2026-11-23T23:16:55.963Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "glp1-drugs-farmland-food-prices-malaysia-palm-oil",
-  "runs": 57,
+  "lastArticle": "singapore-banks-physical-gold-retail-investors-malaysia",
+  "runs": 58,
   "published": 0,
   "lastUsage": {
     "calls": 2,
     "failed": 0,
-    "usd": 0.0099,
-    "promptTokens": 38755,
-    "completionTokens": 4223
+    "usd": 0.0094,
+    "promptTokens": 32501,
+    "completionTokens": 4475
   },
-  "lastFinalizedRunId": "45166554021",
+  "lastFinalizedRunId": "45286322855",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45166554021:1",
+  "lastFinalizedKey": "45286322855:1",
   "finalizedRuns": {
-    "45166554021": {
+    "45286322855": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "45166554021:1"
+      "finalizationKey": "45286322855:1"
     }
   },
   "publishedRunIds": [],

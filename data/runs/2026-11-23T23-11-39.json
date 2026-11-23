@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-23T11:37:15.999Z",
-  "runId": "45166554021",
+  "at": "2026-11-23T23:11:15.830Z",
+  "runId": "45286322855",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "7c120922f78281e95bc49a3b464a46dc93a657fb",
+  "executionSha": "222c91d93ecc539f317661e697eca7c6cf03f83e",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "56 previous run(s), last 2026-11-23T01:25:48.219Z (FAILED)"
+      "detail": "57 previous run(s), last 2026-11-23T11:43:07.113Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "2 of 25 net-new this week"
+      "detail": "3 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,7 +33,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "glp1-drugs-farmland-food-prices-malaysia-palm-oil from /data/directive.json"
+      "detail": "singapore-banks-physical-gold-retail-investors-malaysia from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -43,7 +43,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/glp1-drugs-farmland-food-prices-malaysia-palm-oil.md"
+      "detail": "draft at /data/drafts/singapore-banks-physical-gold-retail-investors-malaysia.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/glp1-drugs-farmland-food-prices-malaysia-palm-oil.md"
+      "detail": "staged at src/content/blog/singapore-banks-physical-gold-retail-investors-malaysia.md"
     },
     {
       "name": "registry",
@@ -76,7 +76,7 @@
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve"
   ],
-  "article": "glp1-drugs-farmland-food-prices-malaysia-palm-oil",
+  "article": "singapore-banks-physical-gold-retail-investors-malaysia",
   "commit": null,
   "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
@@ -89,9 +89,9 @@
   "usage": {
     "calls": 2,
     "failed": 0,
-    "usd": 0.0099,
-    "promptTokens": 38755,
-    "completionTokens": 4223
+    "usd": 0.0094,
+    "promptTokens": 32501,
+    "completionTokens": 4475
   },
   "route": "script",
   "categoryActivity": {
@@ -100,7 +100,7 @@
     "work-education-family": 1,
     "business-opportunities-risks": 0,
     "economy": 0,
-    "world": 0,
+    "world": 1,
     "tech-ai": 0
   },
   "uncoveredSections": [],
@@ -113,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 25
+  "seconds": 24
 }

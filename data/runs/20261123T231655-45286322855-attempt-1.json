@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-21T10:38:22Z",
-  "sha": "4ae233962bd3f20eb1db29a434200812847d9716",
-  "run": "44894610177",
+  "at": "2026-11-23T23:16:55Z",
+  "sha": "222c91d93ecc539f317661e697eca7c6cf03f83e",
+  "run": "45286322855",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "micron-malaysia-ai-upskilling-256gb-lpdram-socamm2",
-  "commit": "693abdfd2f140b3d238947e47c6c1b085e771836",
+  "article": "singapore-banks-physical-gold-retail-investors-malaysia",
+  "commit": "035bcb57f03d79c6ab12f36637eb21cab91c1be0",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
