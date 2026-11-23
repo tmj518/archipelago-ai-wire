@@ -1,52 +1,38 @@
 {
-  "lastRun": "2026-11-22T23:27:35.433Z",
-  "lastVerdict": "QUIET",
-  "lastArticle": "banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost",
-  "runs": 55,
+  "lastRun": "2026-11-23T01:25:48.219Z",
+  "lastVerdict": "FAILED",
+  "lastArticle": "socso-gig-worker-matching-incentives-budget-2027",
+  "runs": 56,
   "published": 0,
   "lastUsage": {
-    "calls": 4,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0154,
-    "promptTokens": 73838,
-    "completionTokens": 6374
+    "usd": 0.0116,
+    "promptTokens": 39948,
+    "completionTokens": 6088
   },
-  "lastFinalizedRunId": "45083191508",
+  "lastFinalizedRunId": "45093702710",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45083191508:1",
+  "lastFinalizedKey": "45093702710:1",
   "finalizedRuns": {
-    "44968506770": {
+    "45093702710": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "44968506770:1"
-    },
-    "45013158412": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "45013158412:1"
-    },
-    "45057587275": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "45057587275:1"
-    },
-    "45083191508": {
-      "runAttempt": 1,
-      "verdict": "QUIET",
-      "finalizationKey": "45083191508:1"
+      "finalizationKey": "45093702710:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }

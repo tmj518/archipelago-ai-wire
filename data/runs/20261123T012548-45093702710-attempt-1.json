@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-20T23:58:23Z",
-  "sha": "4ccb8d86e90b8a1efc9478af7206c469221d0da0",
-  "run": "44839565530",
+  "at": "2026-11-23T01:25:48Z",
+  "sha": "8c94763abae5e15d271d4002ef3f450e7de549ef",
+  "run": "45093702710",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "fcc-preempts-california-phone-rules-att-malaysia-telecom",
-  "commit": "df451e95995495502116f1f888bcdee0364f6a2f",
+  "article": "socso-gig-worker-matching-incentives-budget-2027",
+  "commit": "d60350b49985f24998cc7a258a7b8a0bd16793c0",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"

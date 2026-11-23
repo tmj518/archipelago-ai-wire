@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-22T23:27:10.173Z",
-  "runId": "45083191508",
+  "at": "2026-11-23T01:19:46.957Z",
+  "runId": "45093702710",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "1ab0827873314df1430b0d220a74e04b1ab36d0f",
+  "executionSha": "8c94763abae5e15d271d4002ef3f450e7de549ef",
   "providers": [
     "volces",
     "deepseek"
@@ -18,54 +18,115 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "55 previous run(s), last 2026-11-22T18:55:20.361Z (QUIET)"
+      "detail": "55 previous run(s), last 2026-11-22T23:27:35.433Z (QUIET)"
     },
     {
       "name": "weekly ceiling",
-      "ok": false,
-      "detail": "25 of 25 net-new this week"
+      "ok": true,
+      "detail": "1 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
       "ok": true,
       "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "socso-gig-worker-matching-incentives-budget-2027 from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "8 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": true,
+      "detail": "draft at /data/drafts/socso-gig-worker-matching-incentives-budget-2027.md"
+    },
+    {
+      "name": "reviewer",
+      "ok": false,
+      "detail": "no parseable verdict"
+    },
+    {
+      "name": "publish",
+      "ok": true,
+      "detail": "staged at src/content/blog/socso-gig-worker-matching-incentives-budget-2027.md"
+    },
+    {
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict READY_FOR_PUBLISH"
     }
   ],
-  "verdict": "QUIET",
-  "reasons": [],
-  "article": null,
-  "commit": null,
-  "publicationStatus": "QUIET",
+  "verdict": "FAILED",
+  "reasons": [
+    "review unavailable and published anyway: no usable reviewer result",
+    "the reviewer did not approve",
+    "publication not finalized: independent reviewer approval is missing"
+  ],
+  "article": "socso-gig-worker-matching-incentives-budget-2027",
+  "commit": "d60350b49985f24998cc7a258a7b8a0bd16793c0",
+  "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
-  "usage": null,
+  "usage": {
+    "calls": 2,
+    "failed": 0,
+    "usd": 0.0116,
+    "promptTokens": 39948,
+    "completionTokens": 6088
+  },
   "route": "script",
   "categoryActivity": {
-    "malaysia-impact": 10,
+    "malaysia-impact": 0,
     "success-cases": 1,
-    "work-education-family": 1,
-    "business-opportunities-risks": 4,
-    "economy": 3,
-    "world": 2,
-    "tech-ai": 4
+    "work-education-family": 0,
+    "business-opportunities-risks": 0,
+    "economy": 0,
+    "world": 0,
+    "tech-ai": 0
   },
   "uncoveredSections": [],
-  "orchestratorVerdict": "CEILING",
-  "finalizationKey": "45083191508:1",
-  "finalizedAt": "2026-11-22T23:27:35.433Z",
-  "productionUrl": null,
-  "executionConclusion": "success",
-  "verifyOutcome": "skipped",
+  "attempts": [
+    {
+      "attempt": 1,
+      "score": null,
+      "verdict": null,
+      "issues": []
+    }
+  ],
+  "qa": null,
+  "seconds": 43,
+  "orchestratorVerdict": "READY_FOR_PUBLISH",
+  "finalizationKey": "45093702710:1",
+  "finalizedAt": "2026-11-23T01:25:48.219Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/socso-gig-worker-matching-incentives-budget-2027/",
+  "executionConclusion": "failure",
+  "verifyOutcome": "failure",
   "liveChecks": {
-    "status": "skipped"
+    "status": "failure"
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },
