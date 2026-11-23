@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-23T01:19:46.957Z",
-  "runId": "45093702710",
+  "at": "2026-11-23T11:37:15.999Z",
+  "runId": "45166554021",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "8c94763abae5e15d271d4002ef3f450e7de549ef",
+  "executionSha": "7c120922f78281e95bc49a3b464a46dc93a657fb",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "55 previous run(s), last 2026-11-22T23:27:35.433Z (QUIET)"
+      "detail": "56 previous run(s), last 2026-11-23T01:25:48.219Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "1 of 25 net-new this week"
+      "detail": "2 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "socso-gig-worker-matching-incentives-budget-2027 from /data/directive.json"
+      "detail": "glp1-drugs-farmland-food-prices-malaysia-palm-oil from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "4 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/socso-gig-worker-matching-incentives-budget-2027.md"
+      "detail": "draft at /data/drafts/glp1-drugs-farmland-food-prices-malaysia-palm-oil.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/socso-gig-worker-matching-incentives-budget-2027.md"
+      "detail": "staged at src/content/blog/glp1-drugs-farmland-food-prices-malaysia-palm-oil.md"
     },
     {
       "name": "registry",
@@ -76,7 +76,7 @@
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve"
   ],
-  "article": "socso-gig-worker-matching-incentives-budget-2027",
+  "article": "glp1-drugs-farmland-food-prices-malaysia-palm-oil",
   "commit": null,
   "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
@@ -89,15 +89,15 @@
   "usage": {
     "calls": 2,
     "failed": 0,
-    "usd": 0.0116,
-    "promptTokens": 39948,
-    "completionTokens": 6088
+    "usd": 0.0099,
+    "promptTokens": 38755,
+    "completionTokens": 4223
   },
   "route": "script",
   "categoryActivity": {
     "malaysia-impact": 0,
     "success-cases": 1,
-    "work-education-family": 0,
+    "work-education-family": 1,
     "business-opportunities-risks": 0,
     "economy": 0,
     "world": 0,
@@ -113,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 43
+  "seconds": 25
 }

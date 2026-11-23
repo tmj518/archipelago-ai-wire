@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-21T02:02:00Z",
-  "sha": "2ee40f8bfcbb79a3b31c2f822d2885087fda1b04",
-  "run": "44852816578",
+  "at": "2026-11-23T11:43:07Z",
+  "sha": "7c120922f78281e95bc49a3b464a46dc93a657fb",
+  "run": "45166554021",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "ecrl-first-ride-east-coast-tourism-2026",
-  "commit": "64e993d712dd41eed3f301a30535cf83aea8f957",
+  "article": "glp1-drugs-farmland-food-prices-malaysia-palm-oil",
+  "commit": "dccb3c6c32b5a9925bed45c4fbd35fc431dd26c4",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"

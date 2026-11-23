@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-23T01:25:48.219Z",
+  "lastRun": "2026-11-23T11:43:07.113Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "socso-gig-worker-matching-incentives-budget-2027",
-  "runs": 56,
+  "lastArticle": "glp1-drugs-farmland-food-prices-malaysia-palm-oil",
+  "runs": 57,
   "published": 0,
   "lastUsage": {
     "calls": 2,
     "failed": 0,
-    "usd": 0.0116,
-    "promptTokens": 39948,
-    "completionTokens": 6088
+    "usd": 0.0099,
+    "promptTokens": 38755,
+    "completionTokens": 4223
   },
-  "lastFinalizedRunId": "45093702710",
+  "lastFinalizedRunId": "45166554021",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45093702710:1",
+  "lastFinalizedKey": "45166554021:1",
   "finalizedRuns": {
-    "45093702710": {
+    "45166554021": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "45093702710:1"
+      "finalizationKey": "45166554021:1"
     }
   },
   "publishedRunIds": [],
