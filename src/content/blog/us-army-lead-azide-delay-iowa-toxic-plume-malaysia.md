@@ -137,6 +137,8 @@ Readers following how Malaysian agencies handle environmental risk and public me
 
 **What would change my mind.** A published Army statement naming the model as the reason for the delay, or a published storage-risk assessment showing the barrels are stable enough to wait, would move both inferences from reading to record. A revised model showing the plume below 0.15 at 100 miles would undercut the first. A cancellation of the open detonation in favour of a sealed-chamber method would change the story entirely, and no such announcement has been made.
 
+> Also read: [GLP-1 weight-loss drugs can free farmland larger than Italy — and change what Malaysia exports](/blog/glp1-drugs-farmland-food-prices-malaysia-palm-oil/)
+
 ## For you
 
 - **A household in a Malaysian industrial district:** the question to ask your local authority is not about Iowa but about the nearest scheduled hazardous-waste operation, and whether its release modelling is public before the operation runs, not after.

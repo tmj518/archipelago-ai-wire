@@ -136,6 +136,8 @@ For the wider regional picture of how conflict reshapes supply chains, see our r
 
 > Also read: [US Army delays blowing up 68 barrels of lead azide in Iowa; modelling put the plume 100 miles north](/blog/us-army-lead-azide-delay-iowa-toxic-plume-malaysia/)
 
+> Also read: [GLP-1 weight-loss drugs can free farmland larger than Italy — and change what Malaysia exports](/blog/glp1-drugs-farmland-food-prices-malaysia-palm-oil/)
+
 ## For you
 
 - **A Malaysian student following Southeast Asia:** the date to note is April 4, 2027. What to watch is not the result but whether voting actually takes place in the one-third of seats where the last poll was cancelled for security reasons.
