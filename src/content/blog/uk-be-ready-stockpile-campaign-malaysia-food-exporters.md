@@ -134,6 +134,8 @@ For readers tracking how a foreign policy decision reaches a Malaysian order boo
 
 **What would change my mind.** UK trade statistics showing the country breakdown of long-life food imports for October and November 2026 would confirm or refute the Malaysian link directly. So would a named UK retailer or importer stating that it increased orders from Malaysian suppliers, or a Malaysian exporter disclosing a UK order increase. A November 2026 ONS figure showing food store volumes falling back would suggest the October rise was a one-month bringing-forward of purchases rather than a sustained shift, and would weaken the case for committing capacity.
 
+> Also read: [Singapore banks open physical gold to retail investors — what it means for Malaysians who buy gold](/blog/singapore-banks-physical-gold-retail-investors-malaysia/)
+
 ## For you
 
 - **A Malaysian tinned-food or UHT manufacturer with a UK customer:** ask the buyer directly whether October and November orders moved, and in which lines, before adding a shift or booking extra container space. The published figure is an aggregate; the order book is the evidence that matters to your line.

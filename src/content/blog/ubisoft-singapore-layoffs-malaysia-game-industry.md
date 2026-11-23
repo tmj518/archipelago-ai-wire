@@ -102,6 +102,8 @@ For context on how regional investment decisions reach Malaysian workers, see ou
 
 > Also read: [Britain told households to stock three days of food; Malaysia's tinned-food and UHT exporters just got a demand signal](/blog/uk-be-ready-stockpile-campaign-malaysia-food-exporters/)
 
+> Also read: [Singapore banks open physical gold to retail investors — what it means for Malaysians who buy gold](/blog/singapore-banks-physical-gold-retail-investors-malaysia/)
+
 ## For you
 
 - **A developer weighing a move to a regional hub:** ask which project and which publisher the role sits under, and how long the contract runs, before accepting. The 70-job cut at one studio is the reason to ask, not a reason to stay put.
