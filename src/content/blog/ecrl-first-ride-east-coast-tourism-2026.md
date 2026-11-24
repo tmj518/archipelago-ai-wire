@@ -137,6 +137,8 @@ The freight side of the line is a separate story and the first passenger ride do
 
 **What would change my mind.** A published timetable with frequencies, a published fare table, and a stated plan for station-to-town connection at Kuala Terengganu and Kota Bharu. If the operator publishes a frequent shuttle at a low fare, the last-mile concern shrinks. If the fare turns out to be close to a budget flight, the weekend-travel conclusion weakens. If the two Gombak to Kota Bharu figures turn out to describe two different services rather than one, the comparison table above needs rewriting.
 
+> Also read: [Otters return to Klang River as water improves to Class 3 — but they're raiding fish ponds](/blog/klang-river-otters-clean-water-class-3-fish-ponds/)
+
 ## For you
 
 - **A household planning a trip home to Kelantan:** the reported four-hour journey from Gombak to Kota Bharu is the number to plan around, and the station sits about 9.2 kilometres from the city centre, so budget for a taxi or a connecting bus at the far end.
