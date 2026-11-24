@@ -185,6 +185,8 @@ The calculation shows why the missing base matters. At a base of about RM649 a m
 
 **What would change my mind.** A published contribution schedule from Socso, or a Budget 2027 appendix setting the contribution base and the effective date, would replace the assumption in the calculation with a real figure. A statement from Grab Holdings or another platform on whether it will contribute, and at what rate, would settle the tier question. A breakdown of the RM160 million between government and company would show who is paying for what.
 
+> Also read: [MySejahtera's second life: 15 million Malaysians now have their health records on their phones](/blog/mysejahtera-digital-health-records-2027/)
+
 ## For you
 
 - **An e-hailing driver doing this full time:** the 35 per cent tier applies to your contribution unless your platform also pays in, in which case the government share rises to 50 per cent. The projected median net income gain is up to RM227 a month, and the EPF match is up to RM600 a year against a RM6,000 lifetime cap. Ask your platform whether it will contribute before you budget the gain.

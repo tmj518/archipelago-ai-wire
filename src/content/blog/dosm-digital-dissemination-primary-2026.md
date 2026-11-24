@@ -134,6 +134,8 @@ The shift also connects to broader trends in Malaysian data use. As more governm
 
 **What would change my mind.** A DOSM clarification that printed publications remain available on request, or that the change applies only to new publications and not existing series, would narrow the scope of the shift. A statement that libraries will receive digital access terminals or training support would change the assessment of who bears the access burden. The current evidence supports the primary-approach reading, but the details of implementation are not yet public.
 
+> Also read: [MySejahtera's second life: 15 million Malaysians now have their health records on their phones](/blog/mysejahtera-digital-health-records-2027/)
+
 ## For you
 
 - **A student writing a thesis:** the change means learning to download and cite DOSM digital datasets, with the download date recorded, rather than photocopying printed tables from a library.
