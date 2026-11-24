@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-24T03:55:28.851Z",
-  "runId": "45322560845",
+  "at": "2026-11-24T07:51:04.779Z",
+  "runId": "45350886650",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "f094e82f91f2e82f868532554ee688d9754c5908",
+  "executionSha": "851e35b1069b3789c8d97075bed3095de87a8fe4",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "58 previous run(s), last 2026-11-23T23:16:55.963Z (FAILED)"
+      "detail": "59 previous run(s), last 2026-11-24T04:01:27.175Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "4 of 25 net-new this week"
+      "detail": "5 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "mysejahtera-digital-health-records-2027 from /data/directive.json"
+      "detail": "klang-river-otters-clean-water-class-3-fish-ponds from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/mysejahtera-digital-health-records-2027.md"
+      "detail": "draft at /data/drafts/klang-river-otters-clean-water-class-3-fish-ponds.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/mysejahtera-digital-health-records-2027.md"
+      "detail": "staged at src/content/blog/klang-river-otters-clean-water-class-3-fish-ponds.md"
     },
     {
       "name": "registry",
@@ -77,8 +77,8 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "mysejahtera-digital-health-records-2027",
-  "commit": "c9f408f6f92858412bc468758d0ef798f1020e0d",
+  "article": "klang-river-otters-clean-water-class-3-fish-ponds",
+  "commit": "8145fcff1fe1b86b980965de12fce32e271e73b1",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
@@ -88,17 +88,17 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 3,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0141,
-    "promptTokens": 42705,
-    "completionTokens": 6681
+    "usd": 0.0188,
+    "promptTokens": 102051,
+    "completionTokens": 7954
   },
   "route": "script",
   "categoryActivity": {
     "malaysia-impact": 0,
     "success-cases": 1,
-    "work-education-family": 1,
+    "work-education-family": 2,
     "business-opportunities-risks": 1,
     "economy": 0,
     "world": 1,
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 39,
+  "seconds": 28,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "45322560845:1",
-  "finalizedAt": "2026-11-24T04:01:27.175Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/mysejahtera-digital-health-records-2027/",
+  "finalizationKey": "45350886650:1",
+  "finalizedAt": "2026-11-24T07:56:58.895Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/klang-river-otters-clean-water-class-3-fish-ponds/",
   "executionConclusion": "failure",
   "verifyOutcome": "failure",
   "liveChecks": {

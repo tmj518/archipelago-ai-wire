@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-24T04:01:27.175Z",
+  "lastRun": "2026-11-24T07:56:58.895Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "mysejahtera-digital-health-records-2027",
-  "runs": 59,
+  "lastArticle": "klang-river-otters-clean-water-class-3-fish-ponds",
+  "runs": 60,
   "published": 0,
   "lastUsage": {
-    "calls": 3,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0141,
-    "promptTokens": 42705,
-    "completionTokens": 6681
+    "usd": 0.0188,
+    "promptTokens": 102051,
+    "completionTokens": 7954
   },
-  "lastFinalizedRunId": "45322560845",
+  "lastFinalizedRunId": "45350886650",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45322560845:1",
+  "lastFinalizedKey": "45350886650:1",
   "finalizedRuns": {
-    "45322560845": {
+    "45350886650": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "45322560845:1"
+      "finalizationKey": "45350886650:1"
     }
   },
   "publishedRunIds": [],

@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-21T23:04:09Z",
-  "sha": "43e66491488bb120782dc94202510867bf7945f9",
-  "run": "44959199140",
+  "at": "2026-11-24T07:56:58Z",
+  "sha": "851e35b1069b3789c8d97075bed3095de87a8fe4",
+  "run": "45350886650",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "dosm-bnm-data-sharing-collaboration-2026",
-  "commit": "82f1b0b97f76b0b3371f8ab7f33b398c161796e1",
+  "article": "klang-river-otters-clean-water-class-3-fish-ponds",
+  "commit": "8145fcff1fe1b86b980965de12fce32e271e73b1",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
