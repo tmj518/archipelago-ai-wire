@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-21T18:40:47Z",
-  "sha": "3de5a8b3b03f1b0a35637394a538845b67657298",
-  "run": "44935982050",
+  "at": "2026-11-24T04:01:27Z",
+  "sha": "f094e82f91f2e82f868532554ee688d9754c5908",
+  "run": "45322560845",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "federal-reserve-2025-debit-card-report-malaysia-interchange",
-  "commit": "71840543d648deb6d84c6571c3d45381bb58037c",
+  "article": "mysejahtera-digital-health-records-2027",
+  "commit": "c9f408f6f92858412bc468758d0ef798f1020e0d",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"

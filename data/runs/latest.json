@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-23T23:11:15.830Z",
-  "runId": "45286322855",
+  "at": "2026-11-24T03:55:28.851Z",
+  "runId": "45322560845",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "222c91d93ecc539f317661e697eca7c6cf03f83e",
+  "executionSha": "f094e82f91f2e82f868532554ee688d9754c5908",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "57 previous run(s), last 2026-11-23T11:43:07.113Z (FAILED)"
+      "detail": "58 previous run(s), last 2026-11-23T23:16:55.963Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "3 of 25 net-new this week"
+      "detail": "4 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "singapore-banks-physical-gold-retail-investors-malaysia from /data/directive.json"
+      "detail": "mysejahtera-digital-health-records-2027 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "4 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/singapore-banks-physical-gold-retail-investors-malaysia.md"
+      "detail": "draft at /data/drafts/mysejahtera-digital-health-records-2027.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/singapore-banks-physical-gold-retail-investors-malaysia.md"
+      "detail": "staged at src/content/blog/mysejahtera-digital-health-records-2027.md"
     },
     {
       "name": "registry",
@@ -77,8 +77,8 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "singapore-banks-physical-gold-retail-investors-malaysia",
-  "commit": "035bcb57f03d79c6ab12f36637eb21cab91c1be0",
+  "article": "mysejahtera-digital-health-records-2027",
+  "commit": "c9f408f6f92858412bc468758d0ef798f1020e0d",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
@@ -88,18 +88,18 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 2,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0094,
-    "promptTokens": 32501,
-    "completionTokens": 4475
+    "usd": 0.0141,
+    "promptTokens": 42705,
+    "completionTokens": 6681
   },
   "route": "script",
   "categoryActivity": {
     "malaysia-impact": 0,
     "success-cases": 1,
     "work-education-family": 1,
-    "business-opportunities-risks": 0,
+    "business-opportunities-risks": 1,
     "economy": 0,
     "world": 1,
     "tech-ai": 0
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 24,
+  "seconds": 39,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "45286322855:1",
-  "finalizedAt": "2026-11-23T23:16:55.963Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/singapore-banks-physical-gold-retail-investors-malaysia/",
+  "finalizationKey": "45322560845:1",
+  "finalizedAt": "2026-11-24T04:01:27.175Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/mysejahtera-digital-health-records-2027/",
   "executionConclusion": "failure",
   "verifyOutcome": "failure",
   "liveChecks": {

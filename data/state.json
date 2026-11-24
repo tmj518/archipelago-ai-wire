@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-23T23:16:55.963Z",
+  "lastRun": "2026-11-24T04:01:27.175Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "singapore-banks-physical-gold-retail-investors-malaysia",
-  "runs": 58,
+  "lastArticle": "mysejahtera-digital-health-records-2027",
+  "runs": 59,
   "published": 0,
   "lastUsage": {
-    "calls": 2,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0094,
-    "promptTokens": 32501,
-    "completionTokens": 4475
+    "usd": 0.0141,
+    "promptTokens": 42705,
+    "completionTokens": 6681
   },
-  "lastFinalizedRunId": "45286322855",
+  "lastFinalizedRunId": "45322560845",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45286322855:1",
+  "lastFinalizedKey": "45322560845:1",
   "finalizedRuns": {
-    "45286322855": {
+    "45322560845": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "45286322855:1"
+      "finalizationKey": "45322560845:1"
     }
   },
   "publishedRunIds": [],
