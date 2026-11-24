@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-24T07:56:58.895Z",
+  "lastRun": "2026-11-24T19:53:42.215Z",
   "lastVerdict": "FAILED",
   "lastArticle": "klang-river-otters-clean-water-class-3-fish-ponds",
-  "runs": 60,
+  "runs": 61,
   "published": 0,
   "lastUsage": {
-    "calls": 5,
+    "calls": 7,
     "failed": 0,
-    "usd": 0.0188,
-    "promptTokens": 102051,
-    "completionTokens": 7954
+    "usd": 0.0243,
+    "promptTokens": 155163,
+    "completionTokens": 8863
   },
-  "lastFinalizedRunId": "45350886650",
+  "lastFinalizedRunId": "45474328951",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45350886650:1",
+  "lastFinalizedKey": "45474328951:1",
   "finalizedRuns": {
-    "45350886650": {
+    "45474328951": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "45350886650:1"
+      "finalizationKey": "45474328951:1"
     }
   },
   "publishedRunIds": [],
@@ -28,7 +28,7 @@
     "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",

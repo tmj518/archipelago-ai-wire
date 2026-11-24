@@ -1,19 +1,19 @@
 {
-  "at": "2026-11-22T00:57:26Z",
-  "sha": "0ae18121b2b65981a4d934740cb32d25f1a06405",
-  "run": "44968506770",
+  "at": "2026-11-24T19:53:42Z",
+  "sha": "2ce7dcf017d1dfda1b9364bc1b0026fd6483e50d",
+  "run": "45474328951",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost",
-  "commit": "654c6aefb68f6d64710c894edbbedb533dc7f56f",
+  "article": null,
+  "commit": "3b92eb9a6defe7196cbdb09a76fef9757ed805a9",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "live_checks": {
     "status": "failure"

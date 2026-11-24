@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-24T07:51:04.779Z",
-  "runId": "45350886650",
+  "at": "2026-11-24T19:52:37.238Z",
+  "runId": "45474328951",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "851e35b1069b3789c8d97075bed3095de87a8fe4",
+  "executionSha": "2ce7dcf017d1dfda1b9364bc1b0026fd6483e50d",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "59 previous run(s), last 2026-11-24T04:01:27.175Z (FAILED)"
+      "detail": "60 previous run(s), last 2026-11-24T07:56:58.895Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "5 of 25 net-new this week"
+      "detail": "6 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "klang-river-otters-clean-water-class-3-fish-ponds from /data/directive.json"
+      "detail": "mida-expatriate-system-maintenance-november-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "3 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/klang-river-otters-clean-water-class-3-fish-ponds.md"
+      "detail": "draft at /data/drafts/mida-expatriate-system-maintenance-november-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,17 +53,12 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/klang-river-otters-clean-water-class-3-fish-ponds.md"
+      "detail": "staged at src/content/blog/mida-expatriate-system-maintenance-november-2026.md"
     },
     {
-      "name": "registry",
-      "ok": true,
-      "detail": "rebuilt"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
+      "name": "publish",
+      "ok": false,
+      "detail": "rolled back after the gate: primary-source cited                   declares primary-sour"
     },
     {
       "name": "state written",
@@ -75,28 +70,29 @@
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve",
+    "the staged article failed qa-check as a published file: primary-source cited                   declares primary-sour",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "klang-river-otters-clean-water-class-3-fish-ponds",
-  "commit": "8145fcff1fe1b86b980965de12fce32e271e73b1",
+  "article": null,
+  "commit": "3b92eb9a6defe7196cbdb09a76fef9757ed805a9",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 5,
+    "calls": 7,
     "failed": 0,
-    "usd": 0.0188,
-    "promptTokens": 102051,
-    "completionTokens": 7954
+    "usd": 0.0243,
+    "promptTokens": 155163,
+    "completionTokens": 8863
   },
   "route": "script",
   "categoryActivity": {
-    "malaysia-impact": 0,
+    "malaysia-impact": 1,
     "success-cases": 1,
     "work-education-family": 2,
     "business-opportunities-risks": 1,
@@ -114,11 +110,11 @@
     }
   ],
   "qa": null,
-  "seconds": 28,
+  "seconds": 21,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "45350886650:1",
-  "finalizedAt": "2026-11-24T07:56:58.895Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/klang-river-otters-clean-water-class-3-fish-ponds/",
+  "finalizationKey": "45474328951:1",
+  "finalizedAt": "2026-11-24T19:53:42.215Z",
+  "productionUrl": null,
   "executionConclusion": "failure",
   "verifyOutcome": "failure",
   "liveChecks": {
