@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-25T16:43:27Z",
+  "sha": "4b3ba1d9bb4b75fb2711d1773c98aa5246f5ff9e",
+  "run": "45655384776",
+  "run_attempt": "1",
+  "workflow_status": "failure",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
+  "article": "india-visa-exemption-ends-january-2027-malaysia-tourism",
+  "commit": "fadfda253a754ea8fbd5306c9a83ba943c9b629b",
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "live_checks": {
+    "status": "failure"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "RECORDED",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}

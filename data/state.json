@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-25T04:02:31.117Z",
+  "lastRun": "2026-11-25T16:43:27.883Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "nasa-mars-fleet-outages-malaysia-space-tech",
-  "runs": 63,
+  "lastArticle": "india-visa-exemption-ends-january-2027-malaysia-tourism",
+  "runs": 64,
   "published": 0,
   "lastUsage": {
-    "calls": 5,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0319,
-    "promptTokens": 122996,
-    "completionTokens": 8510
+    "usd": 0.0187,
+    "promptTokens": 46622,
+    "completionTokens": 5512
   },
-  "lastFinalizedRunId": "45543037422",
+  "lastFinalizedRunId": "45655384776",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45543037422:1",
+  "lastFinalizedKey": "45655384776:1",
   "finalizedRuns": {
-    "45543037422": {
+    "45655384776": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "45543037422:1"
+      "finalizationKey": "45655384776:1"
     }
   },
   "publishedRunIds": [],

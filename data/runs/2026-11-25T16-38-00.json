@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-25T03:56:27.113Z",
-  "runId": "45543037422",
+  "at": "2026-11-25T16:37:33.539Z",
+  "runId": "45655384776",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "76af4755166b88ebb0958c28f028f3b4fdb2c181",
+  "executionSha": "4b3ba1d9bb4b75fb2711d1773c98aa5246f5ff9e",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "62 previous run(s), last 2026-11-25T02:06:48.519Z (FAILED)"
+      "detail": "63 previous run(s), last 2026-11-25T04:02:31.117Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "6 of 25 net-new this week"
+      "detail": "7 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,27 +33,27 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "nasa-mars-fleet-outages-malaysia-space-tech from /data/directive.json"
+      "detail": "india-visa-exemption-ends-january-2027-malaysia-tourism from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "5 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/nasa-mars-fleet-outages-malaysia-space-tech.md"
+      "detail": "draft at /data/drafts/india-visa-exemption-ends-january-2027-malaysia-tourism.md"
     },
     {
       "name": "reviewer",
-      "ok": false,
+      "ok": true,
       "detail": "no parseable verdict"
     },
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/nasa-mars-fleet-outages-malaysia-space-tech.md"
+      "detail": "staged at src/content/blog/india-visa-exemption-ends-january-2027-malaysia-tourism.md"
     },
     {
       "name": "registry",
@@ -76,7 +76,7 @@
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve"
   ],
-  "article": "nasa-mars-fleet-outages-malaysia-space-tech",
+  "article": "india-visa-exemption-ends-january-2027-malaysia-tourism",
   "commit": null,
   "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
@@ -87,11 +87,11 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 5,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0319,
-    "promptTokens": 122996,
-    "completionTokens": 8510
+    "usd": 0.0187,
+    "promptTokens": 46622,
+    "completionTokens": 5512
   },
   "route": "script",
   "categoryActivity": {
@@ -101,7 +101,7 @@
     "business-opportunities-risks": 1,
     "economy": 0,
     "world": 1,
-    "tech-ai": 0
+    "tech-ai": 1
   },
   "uncoveredSections": [],
   "attempts": [
@@ -113,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 37
+  "seconds": 27
 }
