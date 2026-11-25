@@ -119,6 +119,8 @@ The third carrier is price. A customer moved from a regulated copper line to a f
 
 > Also read: [Micron Malaysia: from factory floor to AI, and a world-first 256GB memory module made in Penang](/blog/micron-malaysia-ai-upskilling-256gb-lpdram-socamm2/)
 
+> Also read: [Two of NASA's four Mars missions have stopped doing science — and the repair contract runs to 2030](/blog/nasa-mars-fleet-outages-malaysia-space-tech/)
+
 ## For you
 
 - **A household still on a copper landline:** the US case shows the sequence to watch. When an operator asks for relief from its obligation to serve you, the question to ask your provider is what replaces the line, at what price, and on what date. Ask before the copper is switched off, not after.

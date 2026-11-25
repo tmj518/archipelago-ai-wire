@@ -138,6 +138,8 @@ The fourth carrier is the market for local integration work. Firms that write th
 
 > Also read: [Micron Malaysia: from factory floor to AI, and a world-first 256GB memory module made in Penang](/blog/micron-malaysia-ai-upskilling-256gb-lpdram-socamm2/)
 
+> Also read: [Two of NASA's four Mars missions have stopped doing science — and the repair contract runs to 2030](/blog/nasa-mars-fleet-outages-malaysia-space-tech/)
+
 ## For you
 
 - **A Malaysian SME owner about to install an AI assistant:** ask the vendor, in writing, for the default state of every autonomous behaviour and for the log of outbound requests. If the answer is a dashboard you do not control, you do not have a log.
