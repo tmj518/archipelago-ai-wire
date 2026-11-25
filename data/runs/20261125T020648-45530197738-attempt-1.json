@@ -1,15 +1,16 @@
 {
-  "at": "2026-11-22T10:39:35Z",
-  "sha": "c461e056cdd4a6b6dae76759e855c55b42991bfc",
-  "run": "45013158412",
+  "at": "2026-11-25T02:06:48Z",
+  "sha": "9de58a79760a39f8a20621148a2e3cabb264f44b",
+  "run": "45530197738",
   "run_attempt": "1",
   "workflow_status": "success",
-  "verdict": "QUIET",
-  "publication_status": "QUIET",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
   "article": null,
   "commit": null,
   "reviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "registry": {
     "status": "NOT_RUN"

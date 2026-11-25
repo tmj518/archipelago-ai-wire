@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-24T19:52:37.238Z",
-  "runId": "45474328951",
+  "at": "2026-11-25T02:05:35.936Z",
+  "runId": "45530197738",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "2ce7dcf017d1dfda1b9364bc1b0026fd6483e50d",
+  "executionSha": "9de58a79760a39f8a20621148a2e3cabb264f44b",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "60 previous run(s), last 2026-11-24T07:56:58.895Z (FAILED)"
+      "detail": "61 previous run(s), last 2026-11-24T19:53:42.215Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -52,13 +52,13 @@
     },
     {
       "name": "publish",
-      "ok": true,
-      "detail": "staged at src/content/blog/mida-expatriate-system-maintenance-november-2026.md"
+      "ok": false,
+      "detail": "refused (duplicate): mida-expatriate-system-maintenance-november-2026"
     },
     {
       "name": "publish",
       "ok": false,
-      "detail": "rolled back after the gate: primary-source cited                   declares primary-sour"
+      "detail": "publish refused: duplicate for mida-expatriate-system-maintenance-november-2026"
     },
     {
       "name": "state written",
@@ -70,7 +70,7 @@
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve",
-    "the staged article failed qa-check as a published file: primary-source cited                   declares primary-sour"
+    "could not stage the article: publish refused: duplicate for mida-expatriate-system-maintenance-november-2026"
   ],
   "article": null,
   "commit": null,
@@ -83,11 +83,11 @@
     "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 7,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0243,
-    "promptTokens": 155163,
-    "completionTokens": 8863
+    "usd": 0.0097,
+    "promptTokens": 34604,
+    "completionTokens": 4132
   },
   "route": "script",
   "categoryActivity": {
@@ -109,5 +109,5 @@
     }
   ],
   "qa": null,
-  "seconds": 21
+  "seconds": 36
 }

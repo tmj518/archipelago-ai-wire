@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-24T19:53:42.215Z",
+  "lastRun": "2026-11-25T02:06:48.519Z",
   "lastVerdict": "FAILED",
   "lastArticle": "klang-river-otters-clean-water-class-3-fish-ponds",
-  "runs": 61,
+  "runs": 62,
   "published": 0,
   "lastUsage": {
-    "calls": 7,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0243,
-    "promptTokens": 155163,
-    "completionTokens": 8863
+    "usd": 0.0097,
+    "promptTokens": 34604,
+    "completionTokens": 4132
   },
-  "lastFinalizedRunId": "45474328951",
+  "lastFinalizedRunId": "45530197738",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45474328951:1",
+  "lastFinalizedKey": "45530197738:1",
   "finalizedRuns": {
-    "45474328951": {
+    "45530197738": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "45474328951:1"
+      "finalizationKey": "45530197738:1"
     }
   },
   "publishedRunIds": [],
@@ -32,7 +32,7 @@
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }
