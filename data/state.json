@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-25T02:06:48.519Z",
+  "lastRun": "2026-11-25T04:02:31.117Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "klang-river-otters-clean-water-class-3-fish-ponds",
-  "runs": 62,
+  "lastArticle": "nasa-mars-fleet-outages-malaysia-space-tech",
+  "runs": 63,
   "published": 0,
   "lastUsage": {
-    "calls": 3,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0097,
-    "promptTokens": 34604,
-    "completionTokens": 4132
+    "usd": 0.0319,
+    "promptTokens": 122996,
+    "completionTokens": 8510
   },
-  "lastFinalizedRunId": "45530197738",
+  "lastFinalizedRunId": "45543037422",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45530197738:1",
+  "lastFinalizedKey": "45543037422:1",
   "finalizedRuns": {
-    "45530197738": {
+    "45543037422": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "45530197738:1"
+      "finalizationKey": "45543037422:1"
     }
   },
   "publishedRunIds": [],
@@ -28,11 +28,11 @@
     "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }

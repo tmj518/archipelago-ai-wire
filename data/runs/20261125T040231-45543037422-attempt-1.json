@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-25T04:02:31Z",
+  "sha": "76af4755166b88ebb0958c28f028f3b4fdb2c181",
+  "run": "45543037422",
+  "run_attempt": "1",
+  "workflow_status": "failure",
+  "verdict": "FAILED",
+  "publication_status": "FAILED",
+  "article": "nasa-mars-fleet-outages-malaysia-space-tech",
+  "commit": "f703d7fd0f5d23ace0926aa591f6c8fa33713b6a",
+  "reviewer": {
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
+  },
+  "registry": {
+    "status": "REBUILT"
+  },
+  "live_checks": {
+    "status": "failure"
+  },
+  "recording": {
+    "rejectionReport": "RECORDED",
+    "feishuRelease": "RECORDED",
+    "feishuRunLedger": "RECORDED",
+    "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
+  }
+}

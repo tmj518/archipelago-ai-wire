@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-25T02:05:35.936Z",
-  "runId": "45530197738",
+  "at": "2026-11-25T03:56:27.113Z",
+  "runId": "45543037422",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "9de58a79760a39f8a20621148a2e3cabb264f44b",
+  "executionSha": "76af4755166b88ebb0958c28f028f3b4fdb2c181",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "61 previous run(s), last 2026-11-24T19:53:42.215Z (FAILED)"
+      "detail": "62 previous run(s), last 2026-11-25T02:06:48.519Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "mida-expatriate-system-maintenance-november-2026 from /data/directive.json"
+      "detail": "nasa-mars-fleet-outages-malaysia-space-tech from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "3 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/mida-expatriate-system-maintenance-november-2026.md"
+      "detail": "draft at /data/drafts/nasa-mars-fleet-outages-malaysia-space-tech.md"
     },
     {
       "name": "reviewer",
@@ -52,13 +52,18 @@
     },
     {
       "name": "publish",
-      "ok": false,
-      "detail": "refused (duplicate): mida-expatriate-system-maintenance-november-2026"
+      "ok": true,
+      "detail": "staged at src/content/blog/nasa-mars-fleet-outages-malaysia-space-tech.md"
     },
     {
-      "name": "publish",
-      "ok": false,
-      "detail": "publish refused: duplicate for mida-expatriate-system-maintenance-november-2026"
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
@@ -70,25 +75,24 @@
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve",
-    "could not stage the article: publish refused: duplicate for mida-expatriate-system-maintenance-november-2026",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": null,
-  "commit": null,
+  "article": "nasa-mars-fleet-outages-malaysia-space-tech",
+  "commit": "f703d7fd0f5d23ace0926aa591f6c8fa33713b6a",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "usage": {
-    "calls": 3,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0097,
-    "promptTokens": 34604,
-    "completionTokens": 4132
+    "usd": 0.0319,
+    "promptTokens": 122996,
+    "completionTokens": 8510
   },
   "route": "script",
   "categoryActivity": {
@@ -110,19 +114,19 @@
     }
   ],
   "qa": null,
-  "seconds": 36,
+  "seconds": 37,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "45530197738:1",
-  "finalizedAt": "2026-11-25T02:06:48.519Z",
-  "productionUrl": null,
-  "executionConclusion": "success",
-  "verifyOutcome": "skipped",
+  "finalizationKey": "45543037422:1",
+  "finalizedAt": "2026-11-25T04:02:31.117Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/nasa-mars-fleet-outages-malaysia-space-tech/",
+  "executionConclusion": "failure",
+  "verifyOutcome": "failure",
   "liveChecks": {
-    "status": "skipped"
+    "status": "failure"
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },
