@@ -99,6 +99,8 @@ The action for a Malaysian business is procedural and cheap. Ask the bank what i
 
 > Also read: [KL heritage land premium cut from RM4.67m to RM1,000: what it means for property owners](/blog/klscah-land-premium-rm1000-99-year-lease-renewal/)
 
+> Also read: [Malaysia ends visa-free entry for Indian nationals on 1 January 2027, with MyVISA applications opening 1 December 2026](/blog/india-visa-exemption-ends-january-2027-malaysia-tourism/)
+
 ## For you
 
 - **A small exporter paid by US check:** ask your bank what it charges to collect a dollar check and whether that charge changes for items cleared after 1 January 2027; the collection fee comes straight off what you receive.

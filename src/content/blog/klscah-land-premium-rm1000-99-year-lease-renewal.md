@@ -161,6 +161,8 @@ The implied administrative charge of RM860 is a residual: the report states the 
 
 > Also read: [Banglo289 spends RM50,000 a month on fresh coconut milk to keep Malay cuisine authentic](/blog/banglo289-traditional-malay-cuisine-fresh-coconut-milk-cost/)
 
+> Also read: [Malaysia ends visa-free entry for Indian nationals on 1 January 2027, with MyVISA applications opening 1 December 2026](/blog/india-visa-exemption-ends-january-2027-malaysia-tourism/)
+
 ## For you
 
 - **A leasehold property owner in Kuala Lumpur:** the premium on your renewal is an assessed figure, and the assessment depends on the land-use category recorded for your land. Check the category on your title before you negotiate, because the category is the lever this case turned.
