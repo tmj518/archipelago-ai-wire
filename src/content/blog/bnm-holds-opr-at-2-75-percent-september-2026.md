@@ -163,6 +163,8 @@ For the broader economy, the hold supports the growth forecast. The central bank
 
 > Also read: [Kedah's RM1.34 billion 2027 budget leans on federal loans to fund three water projects](/blog/kedah-budget-2027-rm1-34-billion-water-supply-deficit/)
 
+> Also read: [Budget 2027 passes Dewan Rakyat by voice vote: RM459.8 billion, RM83 billion for development, and the CSA that cleared](/blog/budget-2027-supply-bill-passed-rm459-8-billion-csa/)
+
 ## For you
 
 - **A household paying a floating-rate housing loan:** your monthly instalment stays the same. The OPR hold means no new interest cost lands on your repayment schedule.
