@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-23T11:43:07Z",
-  "sha": "7c120922f78281e95bc49a3b464a46dc93a657fb",
-  "run": "45166554021",
+  "at": "2026-11-26T01:49:28Z",
+  "sha": "85b353a7f21cfbda3ec323f7792df91e0a9af6c7",
+  "run": "45737474915",
   "run_attempt": "1",
-  "workflow_status": "failure",
+  "workflow_status": "success",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "glp1-drugs-farmland-food-prices-malaysia-palm-oil",
-  "commit": "dccb3c6c32b5a9925bed45c4fbd35fc431dd26c4",
+  "article": "sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026",
+  "commit": "8700fab3c0ada4be53d1979c7895322ab645ed78",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"

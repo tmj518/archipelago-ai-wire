@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-26T01:31:23.923Z",
+  "lastRun": "2026-11-26T01:49:28.267Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "japan-data-centre-revolt-malaysia-johor-investment",
-  "runs": 65,
+  "lastArticle": "sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026",
+  "runs": 66,
   "published": 0,
   "lastUsage": {
-    "calls": 3,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0119,
-    "promptTokens": 36000,
-    "completionTokens": 6396
+    "usd": 0.0301,
+    "promptTokens": 79966,
+    "completionTokens": 7738
   },
-  "lastFinalizedRunId": "45735423865",
+  "lastFinalizedRunId": "45737474915",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45735423865:1",
+  "lastFinalizedKey": "45737474915:1",
   "finalizedRuns": {
-    "45735423865": {
+    "45737474915": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "45735423865:1"
+      "finalizationKey": "45737474915:1"
     }
   },
   "publishedRunIds": [],

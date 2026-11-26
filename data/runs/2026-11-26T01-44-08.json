@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-26T01:25:33.077Z",
-  "runId": "45735423865",
+  "at": "2026-11-26T01:43:30.967Z",
+  "runId": "45737474915",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "f7162fa4e36d3bf15fdc4d49d1149a1caf6f68df",
+  "executionSha": "85b353a7f21cfbda3ec323f7792df91e0a9af6c7",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "64 previous run(s), last 2026-11-25T16:43:27.883Z (FAILED)"
+      "detail": "65 previous run(s), last 2026-11-26T01:31:23.923Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "8 of 25 net-new this week"
+      "detail": "10 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "japan-data-centre-revolt-malaysia-johor-investment from /data/directive.json"
+      "detail": "sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/japan-data-centre-revolt-malaysia-johor-investment.md"
+      "detail": "draft at /data/drafts/sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/japan-data-centre-revolt-malaysia-johor-investment.md"
+      "detail": "staged at src/content/blog/sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026.md"
     },
     {
       "name": "registry",
@@ -76,7 +76,7 @@
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve"
   ],
-  "article": "japan-data-centre-revolt-malaysia-johor-investment",
+  "article": "sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026",
   "commit": null,
   "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
@@ -87,21 +87,21 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 3,
+    "calls": 5,
     "failed": 0,
-    "usd": 0.0119,
-    "promptTokens": 36000,
-    "completionTokens": 6396
+    "usd": 0.0301,
+    "promptTokens": 79966,
+    "completionTokens": 7738
   },
   "route": "script",
   "categoryActivity": {
     "malaysia-impact": 2,
-    "success-cases": 1,
+    "success-cases": 2,
     "work-education-family": 2,
     "business-opportunities-risks": 1,
     "economy": 0,
     "world": 1,
-    "tech-ai": 1
+    "tech-ai": 2
   },
   "uncoveredSections": [],
   "attempts": [
@@ -113,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 31
+  "seconds": 37
 }
