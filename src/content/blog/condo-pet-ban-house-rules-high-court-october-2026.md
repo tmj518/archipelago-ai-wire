@@ -189,6 +189,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [Otters return to Klang River as water improves to Class 3 — but they're raiding fish ponds](/blog/klang-river-otters-clean-water-class-3-fish-ponds/)
 
+> Also read: [A 6.04am transmission fault blacked out Sandakan, Tawau and Lahad Datu — and Sabah Electricity still cannot say how](/blog/sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.

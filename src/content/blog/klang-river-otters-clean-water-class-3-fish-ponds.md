@@ -137,6 +137,8 @@ The third carrier is the ornamental fish trade. Arowana are a high-value hobby f
 
 **What would change my mind.** A published count of otters in the Klang basin, a dated record of when the river's classification changed, or a statement from the Wildlife and National Parks Department on how residents should handle otter conflict would each move this from a reported account to a documented one. A figure for the value of fish lost would turn the household cost from a description into a number.
 
+> Also read: [A 6.04am transmission fault blacked out Sandakan, Tawau and Lahad Datu — and Sabah Electricity still cannot say how](/blog/sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026/)
+
 ## For you
 
 - **A household with a fish pond near the Klang:** cover the pond, net it, or move the fish indoors. The otter is protected, so removal is not an option; prevention is the step that lands on your own compound.
