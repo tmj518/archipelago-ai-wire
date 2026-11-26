@@ -124,7 +124,9 @@
       "sources": [
         "https://www.indiehackers.com/interviews"
       ],
-      "used": false
+      "used": true,
+      "usedAt": "2026-11-26",
+      "articleSlug": "cs-allen-indie-hackers-community-interview-archive"
     }
   ]
 }
