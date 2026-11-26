@@ -140,6 +140,8 @@ The fourth carrier is the market for local integration work. Firms that write th
 
 > Also read: [Two of NASA's four Mars missions have stopped doing science — and the repair contract runs to 2030](/blog/nasa-mars-fleet-outages-malaysia-space-tech/)
 
+> Also read: [Japan's data centre boom hits a wall of resident revolts — what it means for Johor's build-out](/blog/japan-data-centre-revolt-malaysia-johor-investment/)
+
 ## For you
 
 - **A Malaysian SME owner about to install an AI assistant:** ask the vendor, in writing, for the default state of every autonomous behaviour and for the log of outbound requests. If the answer is a dashboard you do not control, you do not have a log.
