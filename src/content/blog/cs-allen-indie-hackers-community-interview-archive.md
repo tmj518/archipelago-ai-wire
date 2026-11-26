@@ -14,9 +14,6 @@ tags:
   - founder-interviews
   - community-building
 ---
-
-<h1>CS Allen and Indie Hackers: One-Person Businesses, Documented by Their Founders</h1>
-
 <p>Indie Hackers is not a product you can copy in a weekend, but its core mechanic is. CS Allen built it around a single asset: an archive of interviews where founders of small, often one-person businesses publish their own revenue, pricing and growth numbers. The interview collection lives at <a href="https://www.indiehackers.com/interviews">indiehackers.com/interviews</a>, and each entry carries the founder's own figures rather than a reporter's estimate. This article examines how that archive works, how it was grown, what it earns, and which parts an individual can replicate without inventing a single number.</p>
 
 <h2>Who CS Allen is and what Indie Hackers is</h2>

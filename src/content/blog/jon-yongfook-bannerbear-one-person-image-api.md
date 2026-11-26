@@ -14,9 +14,6 @@ tags:
   - api-business
   - open-startup
 ---
-
-<h1>Jon Yongfook's Bannerbear: Building a One-Person Image API in Public</h1>
-
 <p>Jon Yongfook runs Bannerbear, an API that generates images and videos from templates, as a solo founder based in Singapore. What makes the case worth studying is not a headline revenue number but the operating model: he publishes an open-startup revenue page that is updated monthly, so anyone can watch a one-person API business move month to month. The product sits in a narrow, unglamorous niche — automated image generation for developers and marketing teams — and the acquisition strategy is built around documentation, developer trust, and public transparency rather than paid ads.</p>
 
 <h2>Who the founder is</h2>

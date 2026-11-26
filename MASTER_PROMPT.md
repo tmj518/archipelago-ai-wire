@@ -397,3 +397,13 @@ something that does not exist. When it starts, it records `line: "B"` everywhere
 
 Two lines writing to one console and one ledger will be indistinguishable within a week unless each row
 says which line produced it. The naming comes first, the second line second.
+
+
+## The standard this site is measured by (2026-11-26)
+
+An article is not finished when it passes the gates. It is finished when **Google indexes it**.
+
+- Target: **ten indexed articles a week**, verified from Search Console, not from our own logs.
+- Quality is the mechanism, not an excuse: thin, duplicated or machine-spun pages do not get indexed, and
+  a page nobody indexes has no value to a reader either.
+- A week below ten is a failure of this pipeline, recorded as one.

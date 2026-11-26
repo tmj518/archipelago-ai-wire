@@ -14,8 +14,6 @@ tags:
   - digital-nomads
   - remote-ok
 ---
-
-<h1>Pieter Levels: A One-Person Business Posting $200K–$250K a Month in Revenue</h1>
 <p>Pieter Levels runs Nomads.com (formerly Nomad List) and Remote OK as a solo operator with no employees and no funding, and in a 23 September 2026 post he quoted his business revenue as having "remained very stable at about $200K-$250K/mo" while stating his profit margin was about 94.5% and his total business expenses had fallen to roughly $300 per month, excluding Photo AI's GPU and storage bills. Those figures are self-reported on his own site. They are not audited. This article sticks to what his published posts, the Remote OK FAQ, and the live Nomads.com homepage actually say, and marks clearly where the public record stops.</p>
 <table>
 <tr><th>Founder</th><td>Pieter Levels, who writes at levels.io and describes himself as a solo operator working for "10+ years now" with "no employees, no funding, no board meetings." His nationality and current residence are not stated in the reviewed sources.</td></tr>

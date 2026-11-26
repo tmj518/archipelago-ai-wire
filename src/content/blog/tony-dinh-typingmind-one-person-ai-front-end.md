@@ -15,9 +15,6 @@ tags:
   - ai-tools
   - indie-hacker
 ---
-
-<h1>Tony Dinh: TypingMind and the One-Person AI Front End</h1>
-
 <p>Tony Dinh is a solo developer based in Vietnam who built TypingMind, a paid web front end for large language models, and runs it alongside several smaller tools. The business model is simple and verifiable: a one-time or subscription license sold through the product's own site, with no outside funding disclosed. What makes the case worth studying is not a headline revenue number but the structure — a single person shipping a thin layer on top of someone else's API, charging for the interface, and distributing through developer communities. This article sticks to what his own site and the product's pricing page actually state, and flags where numbers need checking against his own posts.</p>
 
 <h2>Who the founder is</h2>

@@ -14,9 +14,6 @@ tags:
   - build-in-public
   - saas-exit
 ---
-
-<h1>Arvid Kahl: From a Bootstrapped Tool for Teachers to a Bootstrapped Audience Business</h1>
-
 <p>Arvid Kahl is a Germany-based founder who co-founded FeedbackPanda, a tool for online teachers, bootstrapped it, and sold it in under two years without outside funding. He then built in public again with Podscan, a podcast intelligence product, and sold that to Audiohook. Today his main asset is <em>The Bootstrapped Founder</em>: a blog, podcast, and book catalogue that feeds consulting, a course, and a shop. The pattern worth copying is not "get acquired" — it is using a shipped product to earn an audience, then selling to that audience for years.</p>
 
 <h2>Who the founder is and what he built</h2>

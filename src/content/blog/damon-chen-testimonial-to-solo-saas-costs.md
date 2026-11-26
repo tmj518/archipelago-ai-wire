@@ -16,9 +16,6 @@ tags:
   - indie-hacker
   - saas-pricing
 ---
-
-<h1>Damon Chen's Testimonial.to: What a One-Person SaaS Actually Costs</h1>
-
 <p>Damon Chen is a solo founder in the United States who built Testimonial.to, a widget that collects and displays video testimonials on SaaS websites. The product is sold on a public pricing page with tiered monthly plans, and Chen has discussed building it as a one-person operation. The copyable lesson is not the revenue figure — that needs checking on his own page before anyone quotes it — but the cost structure: a small subscription stack, a video-hosting bill that scales with customers, and a support load that one person absorbs. Below is what the documented pricing shows, and where the model stops working.</p>
 
 <h2>The stack, by role</h2>

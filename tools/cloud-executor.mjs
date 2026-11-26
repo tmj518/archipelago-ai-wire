@@ -236,6 +236,17 @@ function recordFeedback(entry) {
   }
 }
 
+
+/*
+ * The article body carries no <h1>.
+ *
+ * The layout already renders the title as the page's only h1, and the writer emits another at the top of
+ * the body - two h1 elements on every article, which tells Google two different things about the page.
+ */
+function stripLeadingH1(html) {
+  return String(html ?? "").replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>\s*/, "");
+}
+
 function schemaViolations(article) {
   const f = frontmatter(article);
   if (!f) return ["no frontmatter block: the file must open with --- on its own line and close it the same way"];
@@ -1145,7 +1156,7 @@ async function assembleFaq(article) {
   if (previous && Number(previous) !== assigned) {
     console.log(`  number    : the draft said #${previous}, the collection needs #${assigned} - assigned #${assigned}`);
   }
-  writeFileSync(outFile, withNumber, "utf8");
+  writeFileSync(outFile, stripLeadingH1(withNumber), "utf8");
   try {
     const tf = readFileSync(outFile, "utf8");
     const tv = /^information_gain:[^\n]*/m.exec(tf)?.[0] ?? "(absent)";

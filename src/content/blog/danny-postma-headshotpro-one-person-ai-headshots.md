@@ -15,9 +15,6 @@ tags:
   - ai-headshots
   - solo-founder
 ---
-
-<h1>Danny Postma's HeadshotPro: A One-Person AI Headshot Business</h1>
-
 <p>Danny Postma runs HeadshotPro, a service that turns ordinary selfies into professional-looking business headshots using AI, and he has publicly described it as a one-person company based in the Netherlands. The business model is simple: a customer uploads photos, pays a flat fee, and receives a batch of generated headshots within a stated turnaround. What makes the case worth studying is not the AI itself — it is that a single operator built a productized service around a narrow, high-intent search need ("professional headshot") and priced it against the alternative of a studio photographer. This article covers who he is, what the product does, how customers find it, how it makes money, and which parts a solo operator can realistically copy. Figures below are attributed to the sources listed at the end; where a number could not be confirmed from a primary source, it is not stated.</p>
 
 <h2>Who the founder is</h2>
