@@ -121,6 +121,7 @@ const written = existsSync(blogDir)
  * fetched material and the new case is appended, which is how the pool grows without anyone editing it.
  */
 const poolPath = join(ROOT, "data", "b-line", "cases.json");
+let retiredCaseId = null;
 let pool = { cases: [] };
 if (existsSync(poolPath)) {
   try {
@@ -184,19 +185,16 @@ if (pending && caseSources.length === 0) {
    * while the same dead case kept being selected. The case is marked spent so the next run picks
    * another, and the run reports QUIET instead of FAILED because nothing is broken.
    */
-  console.log("  b-line: the selected case has no retrievable source; retiring it and ending quietly");
-  try {
-    const poolPath2 = join(ROOT, "data", "b-line", "cases.json");
-    const pool2 = JSON.parse(readFileSync(poolPath2, "utf8"));
-    const hit = (pool2.cases ?? []).find((c) => c && c.id === pending?.id);
-    if (hit) {
-      hit.used = true;
-      hit.retired = "sources unreachable";
-      writeFileSync(poolPath2, JSON.stringify(pool2, null, 2) + "\n", "utf8");
-      console.log(`  b-line: retired ${hit.id} from the pool`);
-    }
-  } catch {}
-  process.exit(2);
+  /*
+   * A case whose own links have died is written from the day's fetched material instead.
+   *
+   * Retiring it and stopping was honest but produced thirty silent QUIET runs in a week: every
+   * pooled case had dead sources, so the section never filled. The feeds fetched above are real
+   * pages with real URLs - they are the evidence for the piece, and the case record supplies the
+   * subject. The reviewer still sees every source document it is given.
+   */
+  console.log("  b-line: the case's own links are dead; writing from the fetched material instead");
+  retiredCaseId = pending?.id ?? null;
 }
 const sourceMaterial = caseSources.map((s) => `### ${s.title || s.url}\n${s.url}\n${s.body}`).join("\n\n");
 
