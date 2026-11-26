@@ -144,6 +144,8 @@ The third carrier is the organ donor pledge. A digital pledge inside a health ap
 
 **What would change my mind.** A published list of which facilities are already digitalised, a statement of the programme's cost, or a ministry document setting out what a patient does when a record is wrong. Any of those would move this from a description of a plan to a description of a service. A second independent source on the 15 million figure would also strengthen it; at present it rests on one interview.
 
+> Also read: [MIDA's expatriate application system goes dark for three days, from 26 to 28 November 2026](/blog/mida-expatriate-system-mes-closure-november-2026/)
+
 ## For you
 
 - **A patient with a chronic condition:** open MySejahtera before your next appointment and check whether your prescription list matches what you are actually taking. If a clinic is not on the network, carry your last prescription slip; the app cannot show what was never entered.
