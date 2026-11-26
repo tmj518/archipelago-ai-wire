@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-23T01:25:48Z",
-  "sha": "8c94763abae5e15d271d4002ef3f450e7de549ef",
-  "run": "45093702710",
+  "at": "2026-11-26T01:31:23Z",
+  "sha": "f7162fa4e36d3bf15fdc4d49d1149a1caf6f68df",
+  "run": "45735423865",
   "run_attempt": "1",
   "workflow_status": "failure",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "socso-gig-worker-matching-incentives-budget-2027",
-  "commit": "d60350b49985f24998cc7a258a7b8a0bd16793c0",
+  "article": "japan-data-centre-revolt-malaysia-johor-investment",
+  "commit": "5abea3d05f2d61ebafa5bf204878779f8ca883bb",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"

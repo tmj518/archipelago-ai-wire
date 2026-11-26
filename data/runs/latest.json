@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-25T16:37:33.539Z",
-  "runId": "45655384776",
+  "at": "2026-11-26T01:25:33.077Z",
+  "runId": "45735423865",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "4b3ba1d9bb4b75fb2711d1773c98aa5246f5ff9e",
+  "executionSha": "f7162fa4e36d3bf15fdc4d49d1149a1caf6f68df",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "63 previous run(s), last 2026-11-25T04:02:31.117Z (FAILED)"
+      "detail": "64 previous run(s), last 2026-11-25T16:43:27.883Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "7 of 25 net-new this week"
+      "detail": "8 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,27 +33,27 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "india-visa-exemption-ends-january-2027-malaysia-tourism from /data/directive.json"
+      "detail": "japan-data-centre-revolt-malaysia-johor-investment from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "5 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/india-visa-exemption-ends-january-2027-malaysia-tourism.md"
+      "detail": "draft at /data/drafts/japan-data-centre-revolt-malaysia-johor-investment.md"
     },
     {
       "name": "reviewer",
-      "ok": true,
+      "ok": false,
       "detail": "no parseable verdict"
     },
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/india-visa-exemption-ends-january-2027-malaysia-tourism.md"
+      "detail": "staged at src/content/blog/japan-data-centre-revolt-malaysia-johor-investment.md"
     },
     {
       "name": "registry",
@@ -77,8 +77,8 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "india-visa-exemption-ends-january-2027-malaysia-tourism",
-  "commit": "fadfda253a754ea8fbd5306c9a83ba943c9b629b",
+  "article": "japan-data-centre-revolt-malaysia-johor-investment",
+  "commit": "5abea3d05f2d61ebafa5bf204878779f8ca883bb",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
@@ -90,13 +90,13 @@
   "usage": {
     "calls": 3,
     "failed": 0,
-    "usd": 0.0187,
-    "promptTokens": 46622,
-    "completionTokens": 5512
+    "usd": 0.0119,
+    "promptTokens": 36000,
+    "completionTokens": 6396
   },
   "route": "script",
   "categoryActivity": {
-    "malaysia-impact": 1,
+    "malaysia-impact": 2,
     "success-cases": 1,
     "work-education-family": 2,
     "business-opportunities-risks": 1,
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 27,
+  "seconds": 31,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "45655384776:1",
-  "finalizedAt": "2026-11-25T16:43:27.883Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/india-visa-exemption-ends-january-2027-malaysia-tourism/",
+  "finalizationKey": "45735423865:1",
+  "finalizedAt": "2026-11-26T01:31:23.923Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/japan-data-centre-revolt-malaysia-johor-investment/",
   "executionConclusion": "failure",
   "verifyOutcome": "failure",
   "liveChecks": {
