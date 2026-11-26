@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-24T04:01:27Z",
-  "sha": "f094e82f91f2e82f868532554ee688d9754c5908",
-  "run": "45322560845",
+  "at": "2026-11-26T20:53:11Z",
+  "sha": "fa4b6f1a9ef4ea9b30097cb17562302dde0c175a",
+  "run": "45893368519",
   "run_attempt": "1",
-  "workflow_status": "failure",
+  "workflow_status": "success",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "mysejahtera-digital-health-records-2027",
-  "commit": "c9f408f6f92858412bc468758d0ef798f1020e0d",
+  "article": "mida-expatriate-system-mes-closure-november-2026",
+  "commit": "ebb469c1be30e9ec560f0006b5dcff87349c21f9",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
