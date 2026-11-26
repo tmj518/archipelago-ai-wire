@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-26T01:49:28.267Z",
+  "lastRun": "2026-11-26T11:52:44.159Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026",
-  "runs": 66,
+  "lastArticle": "budget-2027-supply-bill-passed-rm459-8-billion-csa",
+  "runs": 67,
   "published": 0,
   "lastUsage": {
-    "calls": 5,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0301,
-    "promptTokens": 79966,
-    "completionTokens": 7738
+    "usd": 0.0177,
+    "promptTokens": 40206,
+    "completionTokens": 6200
   },
-  "lastFinalizedRunId": "45737474915",
+  "lastFinalizedRunId": "45813295781",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45737474915:1",
+  "lastFinalizedKey": "45813295781:1",
   "finalizedRuns": {
-    "45737474915": {
+    "45813295781": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "45737474915:1"
+      "finalizationKey": "45813295781:1"
     }
   },
   "publishedRunIds": [],

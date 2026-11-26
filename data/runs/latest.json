@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-26T01:43:30.967Z",
-  "runId": "45737474915",
+  "at": "2026-11-26T11:46:47.216Z",
+  "runId": "45813295781",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "85b353a7f21cfbda3ec323f7792df91e0a9af6c7",
+  "executionSha": "d84a5e2804d6194d7b8ebd04f61491902acbb228",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "65 previous run(s), last 2026-11-26T01:31:23.923Z (FAILED)"
+      "detail": "66 previous run(s), last 2026-11-26T01:49:28.267Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "10 of 25 net-new this week"
+      "detail": "11 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026 from /data/directive.json"
+      "detail": "budget-2027-supply-bill-passed-rm459-8-billion-csa from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "8 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026.md"
+      "detail": "draft at /data/drafts/budget-2027-supply-bill-passed-rm459-8-billion-csa.md"
     },
     {
       "name": "reviewer",
@@ -53,7 +53,7 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026.md"
+      "detail": "staged at src/content/blog/budget-2027-supply-bill-passed-rm459-8-billion-csa.md"
     },
     {
       "name": "registry",
@@ -77,8 +77,8 @@
     "the reviewer did not approve",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026",
-  "commit": "8700fab3c0ada4be53d1979c7895322ab645ed78",
+  "article": "budget-2027-supply-bill-passed-rm459-8-billion-csa",
+  "commit": "f283b5cae2f8d82ac04aa8b17b4b85b14a5c2c6c",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
@@ -88,15 +88,15 @@
     "status": "REBUILT"
   },
   "usage": {
-    "calls": 5,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0301,
-    "promptTokens": 79966,
-    "completionTokens": 7738
+    "usd": 0.0177,
+    "promptTokens": 40206,
+    "completionTokens": 6200
   },
   "route": "script",
   "categoryActivity": {
-    "malaysia-impact": 2,
+    "malaysia-impact": 3,
     "success-cases": 2,
     "work-education-family": 2,
     "business-opportunities-risks": 1,
@@ -114,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 37,
+  "seconds": 29,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "45737474915:1",
-  "finalizedAt": "2026-11-26T01:49:28.267Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026/",
+  "finalizationKey": "45813295781:1",
+  "finalizedAt": "2026-11-26T11:52:44.159Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/budget-2027-supply-bill-passed-rm459-8-billion-csa/",
   "executionConclusion": "success",
   "verifyOutcome": "failure",
   "liveChecks": {

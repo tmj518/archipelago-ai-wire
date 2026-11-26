@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-23T23:16:55Z",
-  "sha": "222c91d93ecc539f317661e697eca7c6cf03f83e",
-  "run": "45286322855",
+  "at": "2026-11-26T11:52:44Z",
+  "sha": "d84a5e2804d6194d7b8ebd04f61491902acbb228",
+  "run": "45813295781",
   "run_attempt": "1",
-  "workflow_status": "failure",
+  "workflow_status": "success",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "singapore-banks-physical-gold-retail-investors-malaysia",
-  "commit": "035bcb57f03d79c6ab12f36637eb21cab91c1be0",
+  "article": "budget-2027-supply-bill-passed-rm459-8-billion-csa",
+  "commit": "f283b5cae2f8d82ac04aa8b17b4b85b14a5c2c6c",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
