@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-26T20:53:11.401Z",
+  "lastRun": "2026-11-27T01:38:42.795Z",
   "lastVerdict": "FAILED",
   "lastArticle": "mida-expatriate-system-mes-closure-november-2026",
-  "runs": 68,
+  "runs": 69,
   "published": 0,
   "lastUsage": {
     "calls": 5,
     "failed": 0,
-    "usd": 0.0235,
-    "promptTokens": 63165,
-    "completionTokens": 5853
+    "usd": 0.0176,
+    "promptTokens": 93701,
+    "completionTokens": 6711
   },
-  "lastFinalizedRunId": "45893368519",
+  "lastFinalizedRunId": "45923418451",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45893368519:1",
+  "lastFinalizedKey": "45923418451:1",
   "finalizedRuns": {
-    "45893368519": {
+    "45923418451": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "45893368519:1"
+      "finalizationKey": "45923418451:1"
     }
   },
   "publishedRunIds": [],
@@ -28,11 +28,11 @@
     "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "FAILED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }

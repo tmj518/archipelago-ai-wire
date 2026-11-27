@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-26T20:47:27.633Z",
-  "runId": "45893368519",
+  "at": "2026-11-27T01:37:43.664Z",
+  "runId": "45923418451",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "fa4b6f1a9ef4ea9b30097cb17562302dde0c175a",
+  "executionSha": "9b5a9da25c8cee470c017181c8b890651498b3fc",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "67 previous run(s), last 2026-11-26T11:52:44.159Z (FAILED)"
+      "detail": "68 previous run(s), last 2026-11-26T20:53:11.401Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "12 of 25 net-new this week"
+      "detail": "13 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "mida-expatriate-system-mes-closure-november-2026 from /data/directive.json"
+      "detail": "ford-gt41-lmdh-wec-2027-malaysia-motorsport from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "3 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/mida-expatriate-system-mes-closure-november-2026.md"
+      "detail": "draft at /data/drafts/ford-gt41-lmdh-wec-2027-malaysia-motorsport.md"
     },
     {
       "name": "reviewer",
@@ -53,17 +53,12 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/mida-expatriate-system-mes-closure-november-2026.md"
+      "detail": "staged at src/content/blog/ford-gt41-lmdh-wec-2027-malaysia-motorsport.md"
     },
     {
-      "name": "registry",
-      "ok": true,
-      "detail": "rebuilt"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
+      "name": "publish",
+      "ok": false,
+      "detail": "rolled back after the gate: 3R review                              race, religion or roy"
     },
     {
       "name": "state written",
@@ -74,30 +69,31 @@
   "verdict": "READY_FOR_PUBLISH",
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
-    "the reviewer did not approve"
+    "the reviewer did not approve",
+    "the staged article failed qa-check as a published file: 3R review                              race, religion or roy"
   ],
-  "article": "mida-expatriate-system-mes-closure-november-2026",
+  "article": null,
   "commit": null,
-  "publicationStatus": "DRAFT_STAGED",
+  "publicationStatus": "NOT_STAGED",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "usage": {
     "calls": 5,
     "failed": 0,
-    "usd": 0.0235,
-    "promptTokens": 63165,
-    "completionTokens": 5853
+    "usd": 0.0176,
+    "promptTokens": 93701,
+    "completionTokens": 6711
   },
   "route": "script",
   "categoryActivity": {
     "malaysia-impact": 3,
     "success-cases": 2,
-    "work-education-family": 2,
+    "work-education-family": 3,
     "business-opportunities-risks": 1,
     "economy": 1,
     "world": 1,
@@ -113,5 +109,5 @@
     }
   ],
   "qa": null,
-  "seconds": 27
+  "seconds": 30
 }

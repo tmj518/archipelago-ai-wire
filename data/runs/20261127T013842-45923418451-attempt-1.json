@@ -1,26 +1,26 @@
 {
-  "at": "2026-11-24T07:56:58Z",
-  "sha": "851e35b1069b3789c8d97075bed3095de87a8fe4",
-  "run": "45350886650",
+  "at": "2026-11-27T01:38:42Z",
+  "sha": "9b5a9da25c8cee470c017181c8b890651498b3fc",
+  "run": "45923418451",
   "run_attempt": "1",
-  "workflow_status": "failure",
+  "workflow_status": "success",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "klang-river-otters-clean-water-class-3-fish-ponds",
-  "commit": "8145fcff1fe1b86b980965de12fce32e271e73b1",
+  "article": null,
+  "commit": "adc3d6910787c7b8bf08f35c26968e658210bd08",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "live_checks": {
     "status": "failure"
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "FAILED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }
