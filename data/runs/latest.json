@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-27T03:26:18.115Z",
-  "runId": "45934004793",
+  "at": "2026-11-27T15:57:41.593Z",
+  "runId": "46029117511",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "ddd48aa7c236478ffe77fef056ba25976d6de28b",
+  "executionSha": "041c0acbfc764b9c427beebb822e9558ec641cc4",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "69 previous run(s), last 2026-11-27T01:38:42.795Z (FAILED)"
+      "detail": "70 previous run(s), last 2026-11-27T03:32:07.174Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "13 of 25 net-new this week"
+      "detail": "14 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,66 +33,53 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia from /data/directive.json"
+      "detail": "us-government-10-percent-intel-stake-chip-supply-malaysia from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "7 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
-      "ok": true,
-      "detail": "draft at /data/drafts/nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia.md"
-    },
-    {
-      "name": "reviewer",
       "ok": false,
-      "detail": "no parseable verdict"
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
-      "name": "publish",
-      "ok": true,
-      "detail": "staged at src/content/blog/nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia.md"
+      "name": "writer (revision 1)",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
-      "name": "registry",
-      "ok": true,
-      "detail": "rebuilt"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
+      "name": "writer (revision 2)",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
     },
     {
       "name": "state written",
       "ok": true,
-      "detail": "verdict READY_FOR_PUBLISH"
+      "detail": "verdict WRITE-FAILED"
     }
   ],
   "verdict": "FAILED",
   "reasons": [
-    "review unavailable and published anyway: no usable reviewer result",
-    "the reviewer did not approve",
-    "publication not finalized: independent reviewer approval is missing"
+    "the writer's draft violates the content schema on every attempt (3), so the limits are not reaching the model"
   ],
-  "article": "nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia",
-  "commit": "fa668f9d08d699f89db631bfb6667516853b52b4",
+  "article": null,
+  "commit": null,
   "publicationStatus": "FAILED",
   "reviewer": {
-    "status": "UNAVAILABLE",
-    "detail": "no usable reviewer result"
+    "status": "NOT_RUN"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "usage": {
-    "calls": 3,
+    "calls": 6,
     "failed": 0,
-    "usd": 0.0167,
-    "promptTokens": 39898,
-    "completionTokens": 5431
+    "usd": 0.0214,
+    "promptTokens": 64250,
+    "completionTokens": 12726
   },
   "route": "script",
   "categoryActivity": {
@@ -102,31 +89,22 @@
     "business-opportunities-risks": 1,
     "economy": 1,
     "world": 1,
-    "tech-ai": 2
+    "tech-ai": 3
   },
   "uncoveredSections": [],
-  "attempts": [
-    {
-      "attempt": 1,
-      "score": null,
-      "verdict": null,
-      "issues": []
-    }
-  ],
-  "qa": null,
-  "seconds": 25,
-  "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "45934004793:1",
-  "finalizedAt": "2026-11-27T03:32:07.174Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia/",
-  "executionConclusion": "success",
-  "verifyOutcome": "failure",
+  "seconds": 86,
+  "orchestratorVerdict": "WRITE-FAILED",
+  "finalizationKey": "46029117511:1",
+  "finalizedAt": "2026-11-27T15:59:14.696Z",
+  "productionUrl": null,
+  "executionConclusion": "failure",
+  "verifyOutcome": "skipped",
   "liveChecks": {
-    "status": "failure"
+    "status": "skipped"
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "NOT_APPLICABLE",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },

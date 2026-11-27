@@ -1,0 +1,96 @@
+{
+  "at": "2026-11-27T15:57:41.593Z",
+  "runId": "46029117511",
+  "runAttempt": 1,
+  "workflow": "Content day",
+  "event": "schedule",
+  "executionSha": "041c0acbfc764b9c427beebb822e9558ec641cc4",
+  "providers": [
+    "volces",
+    "deepseek"
+  ],
+  "steps": [
+    {
+      "name": "providers",
+      "ok": true,
+      "detail": "volces, deepseek"
+    },
+    {
+      "name": "state",
+      "ok": true,
+      "detail": "70 previous run(s), last 2026-11-27T03:32:07.174Z (FAILED)"
+    },
+    {
+      "name": "weekly ceiling",
+      "ok": true,
+      "detail": "14 of 25 net-new this week"
+    },
+    {
+      "name": "sections covered this week",
+      "ok": true,
+      "detail": "every section has a net-new article this week (7 sections)"
+    },
+    {
+      "name": "directive",
+      "ok": true,
+      "detail": "us-government-10-percent-intel-stake-chip-supply-malaysia from /data/directive.json"
+    },
+    {
+      "name": "directive figures",
+      "ok": true,
+      "detail": "6 sourced figure(s)"
+    },
+    {
+      "name": "writer",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
+    },
+    {
+      "name": "writer (revision 1)",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
+    },
+    {
+      "name": "writer (revision 2)",
+      "ok": false,
+      "detail": "refused: the draft violates the content schema and would fail the whole build"
+    },
+    {
+      "name": "state written",
+      "ok": true,
+      "detail": "verdict WRITE-FAILED"
+    }
+  ],
+  "verdict": "WRITE-FAILED",
+  "reasons": [
+    "the writer's draft violates the content schema on every attempt (3), so the limits are not reaching the model"
+  ],
+  "article": null,
+  "commit": null,
+  "publicationStatus": "NOT_STAGED",
+  "reviewer": {
+    "status": "NOT_RUN"
+  },
+  "registry": {
+    "status": "NOT_RUN"
+  },
+  "usage": {
+    "calls": 6,
+    "failed": 0,
+    "usd": 0.0214,
+    "promptTokens": 64250,
+    "completionTokens": 12726
+  },
+  "route": "script",
+  "categoryActivity": {
+    "malaysia-impact": 3,
+    "success-cases": 2,
+    "work-education-family": 3,
+    "business-opportunities-risks": 1,
+    "economy": 1,
+    "world": 1,
+    "tech-ai": 3
+  },
+  "uncoveredSections": [],
+  "seconds": 86
+}
