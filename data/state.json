@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-27T01:38:42.795Z",
+  "lastRun": "2026-11-27T03:32:07.174Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "mida-expatriate-system-mes-closure-november-2026",
-  "runs": 69,
+  "lastArticle": "nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia",
+  "runs": 70,
   "published": 0,
   "lastUsage": {
-    "calls": 5,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0176,
-    "promptTokens": 93701,
-    "completionTokens": 6711
+    "usd": 0.0167,
+    "promptTokens": 39898,
+    "completionTokens": 5431
   },
-  "lastFinalizedRunId": "45923418451",
+  "lastFinalizedRunId": "45934004793",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "45923418451:1",
+  "lastFinalizedKey": "45934004793:1",
   "finalizedRuns": {
-    "45923418451": {
+    "45934004793": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "45923418451:1"
+      "finalizationKey": "45934004793:1"
     }
   },
   "publishedRunIds": [],
@@ -28,11 +28,11 @@
     "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "FAILED",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }

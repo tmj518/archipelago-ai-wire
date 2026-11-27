@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-27T01:37:43.664Z",
-  "runId": "45923418451",
+  "at": "2026-11-27T03:26:18.115Z",
+  "runId": "45934004793",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "9b5a9da25c8cee470c017181c8b890651498b3fc",
+  "executionSha": "ddd48aa7c236478ffe77fef056ba25976d6de28b",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "68 previous run(s), last 2026-11-26T20:53:11.401Z (FAILED)"
+      "detail": "69 previous run(s), last 2026-11-27T01:38:42.795Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "ford-gt41-lmdh-wec-2027-malaysia-motorsport from /data/directive.json"
+      "detail": "nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "6 sourced figure(s)"
+      "detail": "7 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/ford-gt41-lmdh-wec-2027-malaysia-motorsport.md"
+      "detail": "draft at /data/drafts/nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia.md"
     },
     {
       "name": "reviewer",
@@ -53,12 +53,17 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/ford-gt41-lmdh-wec-2027-malaysia-motorsport.md"
+      "detail": "staged at src/content/blog/nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia.md"
     },
     {
-      "name": "publish",
-      "ok": false,
-      "detail": "rolled back after the gate: 3R review                              race, religion or roy"
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
@@ -69,25 +74,24 @@
   "verdict": "READY_FOR_PUBLISH",
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
-    "the reviewer did not approve",
-    "the staged article failed qa-check as a published file: 3R review                              race, religion or roy"
+    "the reviewer did not approve"
   ],
-  "article": null,
+  "article": "nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia",
   "commit": null,
-  "publicationStatus": "NOT_STAGED",
+  "publicationStatus": "DRAFT_STAGED",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "usage": {
-    "calls": 5,
+    "calls": 3,
     "failed": 0,
-    "usd": 0.0176,
-    "promptTokens": 93701,
-    "completionTokens": 6711
+    "usd": 0.0167,
+    "promptTokens": 39898,
+    "completionTokens": 5431
   },
   "route": "script",
   "categoryActivity": {
@@ -109,5 +113,5 @@
     }
   ],
   "qa": null,
-  "seconds": 30
+  "seconds": 25
 }

@@ -1,19 +1,19 @@
 {
-  "at": "2026-11-24T19:53:42Z",
-  "sha": "2ce7dcf017d1dfda1b9364bc1b0026fd6483e50d",
-  "run": "45474328951",
+  "at": "2026-11-27T03:32:07Z",
+  "sha": "ddd48aa7c236478ffe77fef056ba25976d6de28b",
+  "run": "45934004793",
   "run_attempt": "1",
-  "workflow_status": "failure",
+  "workflow_status": "success",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": null,
-  "commit": "3b92eb9a6defe7196cbdb09a76fef9757ed805a9",
+  "article": "nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia",
+  "commit": "fa668f9d08d699f89db631bfb6667516853b52b4",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "live_checks": {
     "status": "failure"
