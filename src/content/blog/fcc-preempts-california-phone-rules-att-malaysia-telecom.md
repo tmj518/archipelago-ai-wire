@@ -123,6 +123,8 @@ The third carrier is price. A customer moved from a regulated copper line to a f
 
 > Also read: [Japan's data centre boom hits a wall of resident revolts — what it means for Johor's build-out](/blog/japan-data-centre-revolt-malaysia-johor-investment/)
 
+> Also read: [Nvidia told partners to stop shipping its servers to Malaysia, Singapore, Thailand and Indonesia](/blog/nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia/)
+
 ## For you
 
 - **A household still on a copper landline:** the US case shows the sequence to watch. When an operator asks for relief from its obligation to serve you, the question to ask your provider is what replaces the line, at what price, and on what date. Ask before the copper is switched off, not after.

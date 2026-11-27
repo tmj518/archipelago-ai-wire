@@ -142,6 +142,8 @@ The fourth carrier is the market for local integration work. Firms that write th
 
 > Also read: [Japan's data centre boom hits a wall of resident revolts — what it means for Johor's build-out](/blog/japan-data-centre-revolt-malaysia-johor-investment/)
 
+> Also read: [Nvidia told partners to stop shipping its servers to Malaysia, Singapore, Thailand and Indonesia](/blog/nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia/)
+
 ## For you
 
 - **A Malaysian SME owner about to install an AI assistant:** ask the vendor, in writing, for the default state of every autonomous behaviour and for the log of outbound requests. If the answer is a dashboard you do not control, you do not have a log.
