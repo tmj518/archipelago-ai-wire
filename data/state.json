@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-28T01:03:25.006Z",
+  "lastRun": "2026-11-28T01:18:57.135Z",
   "lastVerdict": "FAILED",
   "lastArticle": "malaysia-scam-confidence-gap-2026-report",
-  "runs": 72,
+  "runs": 73,
   "published": 0,
   "lastUsage": {
     "calls": 2,
     "failed": 0,
-    "usd": 0.0111,
-    "promptTokens": 39622,
-    "completionTokens": 5608
+    "usd": 0.0116,
+    "promptTokens": 39437,
+    "completionTokens": 6151
   },
-  "lastFinalizedRunId": "46090467945",
+  "lastFinalizedRunId": "46092181521",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "46090467945:1",
+  "lastFinalizedKey": "46092181521:1",
   "finalizedRuns": {
-    "46090467945": {
+    "46092181521": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "46090467945:1"
+      "finalizationKey": "46092181521:1"
     }
   },
   "publishedRunIds": [],
@@ -28,11 +28,11 @@
     "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "FAILED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }

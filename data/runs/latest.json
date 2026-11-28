@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-28T00:57:31.702Z",
-  "runId": "46090467945",
+  "at": "2026-11-28T01:17:46.540Z",
+  "runId": "46092181521",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "7d0ef3b26752063a684983c271655e22ff88ed0f",
+  "executionSha": "8ae6bdec1974ffaa3ed136890ddc1dd6bb3185c5",
   "providers": [
     "volces",
     "deepseek"
@@ -18,12 +18,12 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "71 previous run(s), last 2026-11-27T15:59:14.696Z (FAILED)"
+      "detail": "72 previous run(s), last 2026-11-28T01:03:25.006Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
       "ok": true,
-      "detail": "14 of 25 net-new this week"
+      "detail": "15 of 25 net-new this week"
     },
     {
       "name": "sections covered this week",
@@ -33,7 +33,7 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "malaysia-scam-confidence-gap-2026-report from /data/directive.json"
+      "detail": "sarawak-election-nomination-82-seats-2058781-voters from /data/directive.json"
     },
     {
       "name": "directive figures",
@@ -43,7 +43,7 @@
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/malaysia-scam-confidence-gap-2026-report.md"
+      "detail": "draft at /data/drafts/sarawak-election-nomination-82-seats-2058781-voters.md"
     },
     {
       "name": "reviewer",
@@ -53,17 +53,12 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/malaysia-scam-confidence-gap-2026-report.md"
+      "detail": "staged at src/content/blog/sarawak-election-nomination-82-seats-2058781-voters.md"
     },
     {
-      "name": "registry",
-      "ok": true,
-      "detail": "rebuilt"
-    },
-    {
-      "name": "inbound links",
-      "ok": true,
-      "detail": "2 older article(s) now link here"
+      "name": "publish",
+      "ok": false,
+      "detail": "rolled back after the gate: 3R review                              race, religion or roy"
     },
     {
       "name": "state written",
@@ -75,28 +70,29 @@
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve",
+    "the staged article failed qa-check as a published file: 3R review                              race, religion or roy",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": "malaysia-scam-confidence-gap-2026-report",
-  "commit": "9b2075c2a88b8a6bb5d8122259503dbb565ddf9d",
+  "article": null,
+  "commit": "7e6799891b3efdc672826f8e5cf407a768c90642",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "REBUILT"
+    "status": "NOT_RUN"
   },
   "usage": {
     "calls": 2,
     "failed": 0,
-    "usd": 0.0111,
-    "promptTokens": 39622,
-    "completionTokens": 5608
+    "usd": 0.0116,
+    "promptTokens": 39437,
+    "completionTokens": 6151
   },
   "route": "script",
   "categoryActivity": {
-    "malaysia-impact": 3,
+    "malaysia-impact": 4,
     "success-cases": 2,
     "work-education-family": 3,
     "business-opportunities-risks": 1,
@@ -114,11 +110,11 @@
     }
   ],
   "qa": null,
-  "seconds": 24,
+  "seconds": 28,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "46090467945:1",
-  "finalizedAt": "2026-11-28T01:03:25.006Z",
-  "productionUrl": "https://www.ghiblistyled.com/blog/malaysia-scam-confidence-gap-2026-report/",
+  "finalizationKey": "46092181521:1",
+  "finalizedAt": "2026-11-28T01:18:57.135Z",
+  "productionUrl": null,
   "executionConclusion": "success",
   "verifyOutcome": "failure",
   "liveChecks": {
@@ -126,9 +122,9 @@
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "RECORDED",
+    "feishuRelease": "FAILED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },
-  "recordingFailure": false
+  "recordingFailure": true
 }
