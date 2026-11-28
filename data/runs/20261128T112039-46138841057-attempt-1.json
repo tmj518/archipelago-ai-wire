@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-26T01:31:23Z",
-  "sha": "f7162fa4e36d3bf15fdc4d49d1149a1caf6f68df",
-  "run": "45735423865",
+  "at": "2026-11-28T11:20:39Z",
+  "sha": "106a95c561399b6e77c36faf0da2bf5a320b1d7f",
+  "run": "46138841057",
   "run_attempt": "1",
-  "workflow_status": "failure",
+  "workflow_status": "success",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "japan-data-centre-revolt-malaysia-johor-investment",
-  "commit": "5abea3d05f2d61ebafa5bf204878779f8ca883bb",
+  "article": "ecrl-trial-2000-free-seats-gombak-kota-bharu-december-2026",
+  "commit": "2dbd20503a04a028d6ee4a388b812fea6b977832",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"

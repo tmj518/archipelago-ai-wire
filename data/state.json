@@ -1,24 +1,24 @@
 {
-  "lastRun": "2026-11-28T01:18:57.135Z",
+  "lastRun": "2026-11-28T11:20:39.027Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "malaysia-scam-confidence-gap-2026-report",
-  "runs": 73,
+  "lastArticle": "ecrl-trial-2000-free-seats-gombak-kota-bharu-december-2026",
+  "runs": 74,
   "published": 0,
   "lastUsage": {
     "calls": 2,
     "failed": 0,
-    "usd": 0.0116,
-    "promptTokens": 39437,
-    "completionTokens": 6151
+    "usd": 0.0112,
+    "promptTokens": 40668,
+    "completionTokens": 5460
   },
-  "lastFinalizedRunId": "46092181521",
+  "lastFinalizedRunId": "46138841057",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "46092181521:1",
+  "lastFinalizedKey": "46138841057:1",
   "finalizedRuns": {
-    "46092181521": {
+    "46138841057": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "46092181521:1"
+      "finalizationKey": "46138841057:1"
     }
   },
   "publishedRunIds": [],
@@ -28,11 +28,11 @@
     "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "FAILED",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }

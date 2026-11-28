@@ -1,10 +1,10 @@
 {
-  "at": "2026-11-28T01:17:46.540Z",
-  "runId": "46092181521",
+  "at": "2026-11-28T11:14:45.102Z",
+  "runId": "46138841057",
   "runAttempt": 1,
   "workflow": "Content day",
   "event": "schedule",
-  "executionSha": "8ae6bdec1974ffaa3ed136890ddc1dd6bb3185c5",
+  "executionSha": "106a95c561399b6e77c36faf0da2bf5a320b1d7f",
   "providers": [
     "volces",
     "deepseek"
@@ -18,7 +18,7 @@
     {
       "name": "state",
       "ok": true,
-      "detail": "72 previous run(s), last 2026-11-28T01:03:25.006Z (FAILED)"
+      "detail": "73 previous run(s), last 2026-11-28T01:18:57.135Z (FAILED)"
     },
     {
       "name": "weekly ceiling",
@@ -33,17 +33,17 @@
     {
       "name": "directive",
       "ok": true,
-      "detail": "sarawak-election-nomination-82-seats-2058781-voters from /data/directive.json"
+      "detail": "ecrl-trial-2000-free-seats-gombak-kota-bharu-december-2026 from /data/directive.json"
     },
     {
       "name": "directive figures",
       "ok": true,
-      "detail": "8 sourced figure(s)"
+      "detail": "6 sourced figure(s)"
     },
     {
       "name": "writer",
       "ok": true,
-      "detail": "draft at /data/drafts/sarawak-election-nomination-82-seats-2058781-voters.md"
+      "detail": "draft at /data/drafts/ecrl-trial-2000-free-seats-gombak-kota-bharu-december-2026.md"
     },
     {
       "name": "reviewer",
@@ -53,12 +53,17 @@
     {
       "name": "publish",
       "ok": true,
-      "detail": "staged at src/content/blog/sarawak-election-nomination-82-seats-2058781-voters.md"
+      "detail": "staged at src/content/blog/ecrl-trial-2000-free-seats-gombak-kota-bharu-december-2026.md"
     },
     {
-      "name": "publish",
-      "ok": false,
-      "detail": "rolled back after the gate: 3R review                              race, religion or roy"
+      "name": "registry",
+      "ok": true,
+      "detail": "rebuilt"
+    },
+    {
+      "name": "inbound links",
+      "ok": true,
+      "detail": "2 older article(s) now link here"
     },
     {
       "name": "state written",
@@ -70,25 +75,24 @@
   "reasons": [
     "review unavailable and published anyway: no usable reviewer result",
     "the reviewer did not approve",
-    "the staged article failed qa-check as a published file: 3R review                              race, religion or roy",
     "publication not finalized: independent reviewer approval is missing"
   ],
-  "article": null,
-  "commit": "7e6799891b3efdc672826f8e5cf407a768c90642",
+  "article": "ecrl-trial-2000-free-seats-gombak-kota-bharu-december-2026",
+  "commit": "2dbd20503a04a028d6ee4a388b812fea6b977832",
   "publicationStatus": "FAILED",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"
   },
   "registry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "usage": {
     "calls": 2,
     "failed": 0,
-    "usd": 0.0116,
-    "promptTokens": 39437,
-    "completionTokens": 6151
+    "usd": 0.0112,
+    "promptTokens": 40668,
+    "completionTokens": 5460
   },
   "route": "script",
   "categoryActivity": {
@@ -110,11 +114,11 @@
     }
   ],
   "qa": null,
-  "seconds": 28,
+  "seconds": 29,
   "orchestratorVerdict": "READY_FOR_PUBLISH",
-  "finalizationKey": "46092181521:1",
-  "finalizedAt": "2026-11-28T01:18:57.135Z",
-  "productionUrl": null,
+  "finalizationKey": "46138841057:1",
+  "finalizedAt": "2026-11-28T11:20:39.027Z",
+  "productionUrl": "https://www.ghiblistyled.com/blog/ecrl-trial-2000-free-seats-gombak-kota-bharu-december-2026/",
   "executionConclusion": "success",
   "verifyOutcome": "failure",
   "liveChecks": {
@@ -122,9 +126,9 @@
   },
   "recording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "FAILED",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   },
-  "recordingFailure": true
+  "recordingFailure": false
 }
