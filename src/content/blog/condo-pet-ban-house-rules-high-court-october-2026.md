@@ -191,6 +191,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [A 6.04am transmission fault blacked out Sandakan, Tawau and Lahad Datu — and Sabah Electricity still cannot say how](/blog/sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026/)
 
+> Also read: [7 in 10 Malaysians who meet a scam still engage with it, report finds](/blog/malaysia-scam-confidence-gap-2026-report/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.

@@ -139,6 +139,8 @@ The third carrier is the ornamental fish trade. Arowana are a high-value hobby f
 
 > Also read: [A 6.04am transmission fault blacked out Sandakan, Tawau and Lahad Datu — and Sabah Electricity still cannot say how](/blog/sabah-east-coast-power-outage-sandakan-tawau-lahad-datu-november-2026/)
 
+> Also read: [7 in 10 Malaysians who meet a scam still engage with it, report finds](/blog/malaysia-scam-confidence-gap-2026-report/)
+
 ## For you
 
 - **A household with a fish pond near the Klang:** cover the pond, net it, or move the fish indoors. The otter is protected, so removal is not an option; prevention is the step that lands on your own compound.
