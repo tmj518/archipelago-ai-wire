@@ -141,6 +141,8 @@ The third carrier is the ornamental fish trade. Arowana are a high-value hobby f
 
 > Also read: [7 in 10 Malaysians who meet a scam still engage with it, report finds](/blog/malaysia-scam-confidence-gap-2026-report/)
 
+> Also read: [ECRL trial rides: 2,000 free seats from Gombak to Kota Bharu snapped up at Yakin Madani](/blog/ecrl-trial-2000-free-seats-gombak-kota-bharu-december-2026/)
+
 ## For you
 
 - **A household with a fish pond near the Klang:** cover the pond, net it, or move the fish indoors. The otter is protected, so removal is not an option; prevention is the step that lands on your own compound.

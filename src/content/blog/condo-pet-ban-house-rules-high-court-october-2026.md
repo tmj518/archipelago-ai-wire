@@ -193,6 +193,8 @@ For readers tracking how Malaysian institutions handle rules that overreach, the
 
 > Also read: [7 in 10 Malaysians who meet a scam still engage with it, report finds](/blog/malaysia-scam-confidence-gap-2026-report/)
 
+> Also read: [ECRL trial rides: 2,000 free seats from Gombak to Kota Bharu snapped up at Yakin Madani](/blog/ecrl-trial-2000-free-seats-gombak-kota-bharu-december-2026/)
+
 ## For you
 
 - **A strata owner who keeps a cat or dog:** ask your JMB in writing which by-law it is relying on and what evidence it holds about your specific animal. A house rule number alone does not meet the standard set on 30 October 2026.
