@@ -1,13 +1,13 @@
 {
-  "at": "2026-11-25T04:02:31Z",
-  "sha": "76af4755166b88ebb0958c28f028f3b4fdb2c181",
-  "run": "45543037422",
+  "at": "2026-11-28T01:03:25Z",
+  "sha": "7d0ef3b26752063a684983c271655e22ff88ed0f",
+  "run": "46090467945",
   "run_attempt": "1",
-  "workflow_status": "failure",
+  "workflow_status": "success",
   "verdict": "FAILED",
   "publication_status": "FAILED",
-  "article": "nasa-mars-fleet-outages-malaysia-space-tech",
-  "commit": "f703d7fd0f5d23ace0926aa591f6c8fa33713b6a",
+  "article": "malaysia-scam-confidence-gap-2026-report",
+  "commit": "9b2075c2a88b8a6bb5d8122259503dbb565ddf9d",
   "reviewer": {
     "status": "UNAVAILABLE",
     "detail": "no usable reviewer result"

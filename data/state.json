@@ -1,37 +1,38 @@
 {
-  "lastRun": "2026-11-27T15:59:14.696Z",
+  "lastRun": "2026-11-28T01:03:25.006Z",
   "lastVerdict": "FAILED",
-  "lastArticle": "nvidia-halt-server-shipments-malaysia-singapore-thailand-indonesia",
-  "runs": 71,
+  "lastArticle": "malaysia-scam-confidence-gap-2026-report",
+  "runs": 72,
   "published": 0,
   "lastUsage": {
-    "calls": 6,
+    "calls": 2,
     "failed": 0,
-    "usd": 0.0214,
-    "promptTokens": 64250,
-    "completionTokens": 12726
+    "usd": 0.0111,
+    "promptTokens": 39622,
+    "completionTokens": 5608
   },
-  "lastFinalizedRunId": "46029117511",
+  "lastFinalizedRunId": "46090467945",
   "lastFinalizedRunAttempt": 1,
-  "lastFinalizedKey": "46029117511:1",
+  "lastFinalizedKey": "46090467945:1",
   "finalizedRuns": {
-    "46029117511": {
+    "46090467945": {
       "runAttempt": 1,
       "verdict": "FAILED",
-      "finalizationKey": "46029117511:1"
+      "finalizationKey": "46090467945:1"
     }
   },
   "publishedRunIds": [],
   "lastCommit": null,
   "lastReviewer": {
-    "status": "NOT_RUN"
+    "status": "UNAVAILABLE",
+    "detail": "no usable reviewer result"
   },
   "lastRegistry": {
-    "status": "NOT_RUN"
+    "status": "REBUILT"
   },
   "lastRecording": {
     "rejectionReport": "RECORDED",
-    "feishuRelease": "NOT_APPLICABLE",
+    "feishuRelease": "RECORDED",
     "feishuRunLedger": "RECORDED",
     "githubRunLedger": "UNKNOWN (commit/push follows this finalization step)"
   }
